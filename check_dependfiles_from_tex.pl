@@ -17,8 +17,8 @@ sub pattern_recv_match {
 		$str = $1;
 		$str =~ s/^\\input{//;
 		$str =~ s/}$//;
-		print "$str\n";
-		open(IN,$str) || die;
+		#print "$str\n";
+		open(IN,$str) || print("no file: $str\n");
 			while(<IN>){
 				&pattern_recv_match($_);
 			}
