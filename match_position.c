@@ -56,7 +56,7 @@ void init_options(struct options *opt){
 	(*opt).qfile[0] = '\0';
 }
 
-int get_options(int optc, char **optv, struct options *opt){
+void get_options(int optc, char **optv, struct options *opt){
 	int i = 0;
 	for(i=0;i<optc;i++){
 		if(strcmp(optv[i],"-h") == 0){
@@ -89,7 +89,7 @@ int main(int argc, char **argv){
 	int curr_pos_qptr;
 	int source_size;
 	char *source;
-	int tmp_len;
+	//int tmp_len;
 
 	//option analysis
 	opt = alloc_options();
@@ -194,7 +194,7 @@ int main(int argc, char **argv){
 		for(j=0;j<source_size;j++){
 			//printf("sptr:%d:\n",j);
 			if(strncmp(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
-				printf("%s	%d	%d\n",qbuf+(qptrs[i]),j,j-1+strlen(qbuf+(qptrs[i])));
+				printf("%s	%d	%d\n",qbuf+(qptrs[i]),j,j-1+(int)strlen(qbuf+(qptrs[i])));
 			}
 		}
 		//printf("\n");
