@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <ctype.h>
 #define F_NAME_LEN 1024
 
 struct options {
@@ -11,16 +12,18 @@ struct options {
 	int stat;
 	int check;
 	int qsize;
+	int ign;
 	char *sfile;
 	char *qfile;
 };
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" match_potistion [-h] [-s] [-c] qf=<query file> sf=<source file> [qb=<query buf>] -seek(not available)\n");
-	printf("  -h : help.\n");
-	printf("  -s : status.\n");
-	printf("  -c : status.\n");
+	printf(" match_potistion [-h] [-s] [-c] [-i] qf=<query file> sf=<source file> [qb=<query buf>] -seek(not available)\n");
+	printf("  -h : print help and exit.\n");
+	printf("  -s : print status and exit.\n");
+	printf("  -c : print option values and exit.\n");
+	printf("  -i : gnore case.\n");
 	printf("  <query file> : query file, 1 term / 1 line.\n");
 	printf("  <source file> : source file, as single string.\n");
 	printf("  <query buf> : query buffer size,\n");
@@ -54,6 +57,7 @@ void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
 	(*opt).check = 0;
+	(*opt).ign = 0;
 	(*opt).qsize = 0;
 	(*opt).sfile[0] = '\0';
 	(*opt).qfile[0] = '\0';
@@ -68,6 +72,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).stat = 1;
 		}else if(strcmp(optv[i],"-c") == 0){
 			(*opt).check = 1;
+		}else if(strcmp(optv[i],"-i") == 0){
+			(*opt).ign = 1;
 		}else if(strncmp(optv[i],"qf=",3) == 0){
 			sscanf(optv[i],"qf=%s",(*opt).qfile);
 		}else if(strncmp(optv[i],"sf=",3) == 0){
@@ -82,6 +88,7 @@ void check_options(struct options *opt){
 	printf("opt.help:%d:\n",(*opt).help);
 	printf("opt.stat:%d:\n",(*opt).stat);
 	printf("opt.check:%d:\n",(*opt).check);
+	printf("opt.ign:%d:\n",(*opt).ign);
 	printf("opt.qsize:%d:\n",(*opt).qsize);
 	printf("opt.qfile:%s:\n",(*opt).qfile);
 	printf("opt.sfile:%s:\n",(*opt).sfile);
@@ -144,17 +151,31 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	//read qfile
-	i = 0;
-	num_qptrs = 0;
-	while(((c = fgetc(IN)) != EOF)){
-		if(c == '\n'){
-			num_qptrs++;
-			c = '\0';
+	if((*opt).ign == 0){ // case sensitive
+		i = 0;
+		num_qptrs = 0;
+		while(((c = fgetc(IN)) != EOF)){
+			if(c == '\n'){
+				num_qptrs++;
+				c = '\0';
+			}
+			qbuf[i] = c;
+			i++;
 		}
-		qbuf[i] = c;
-		i++;
+		qbuf[i] = '\0';
+	}else{ //case ignore
+		i = 0;
+		num_qptrs = 0;
+		while(((c = fgetc(IN)) != EOF)){
+			if(c == '\n'){
+				num_qptrs++;
+				c = '\0';
+			}
+			qbuf[i] = toupper(c);
+			i++;
+		}
+		qbuf[i] = '\0';
 	}
-	qbuf[i] = '\0';
 	//close qfile
 	fclose(IN);
 
@@ -198,13 +219,23 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	//read sfile
-	i = 0;
-	while(((c = fgetc(SIN)) != EOF)){
-		source[i] = c;
-		i++;
+	if((*opt).ign == 0){
+		i = 0;
+		while(((c = fgetc(SIN)) != EOF)){
+			source[i] = c;
+			i++;
+		}
+		source[i] = '\0';
+	}else{
+		i = 0;
+		while(((c = fgetc(SIN)) != EOF)){
+			source[i] = toupper(c);
+			i++;
+		}
+		source[i] = '\0';
 	}
+	//close sfile
 	fclose(SIN);
-	source[i] = '\0';
 
 	//scan
 	for(i=0;i<num_qptrs;i++){  //query
