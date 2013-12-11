@@ -9,6 +9,7 @@
 struct options {
 	int help;
 	int stat;
+	int check;
 	int qsize;
 	char *sfile;
 	char *qfile;
@@ -16,13 +17,14 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" match_potistion [-h] [-s] qf=<query file> sf=<source file> [qb=<query buf>] -seek(not available)\n");
+	printf(" match_potistion [-h] [-s] [-c] qf=<query file> sf=<source file> [qb=<query buf>] -seek(not available)\n");
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
-	printf("  qf : query file.\n");
-	printf("  sf : source file.\n");
-	printf("  qb : query buffer size,\n");
-	printf("     | -qb=0 : auto.\n");
+	printf("  -c : status.\n");
+	printf("  <query file> : query file, 1 term / 1 line.\n");
+	printf("  <source file> : source file, as single string.\n");
+	printf("  <query buf> : query buffer size,\n");
+	printf("              | -qb=0 : auto.\n");
 	printf("  -seek : seek source file without buffer.\n");
 }
 
@@ -51,6 +53,7 @@ struct options *alloc_options(void){
 void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
+	(*opt).check = 0;
 	(*opt).qsize = 0;
 	(*opt).sfile[0] = '\0';
 	(*opt).qfile[0] = '\0';
@@ -63,6 +66,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).help = 1;
 		}else if(strcmp(optv[i],"-s") == 0){
 			(*opt).stat = 1;
+		}else if(strcmp(optv[i],"-c") == 0){
+			(*opt).check = 1;
 		}else if(strncmp(optv[i],"qf=",3) == 0){
 			sscanf(optv[i],"qf=%s",(*opt).qfile);
 		}else if(strncmp(optv[i],"sf=",3) == 0){
@@ -71,6 +76,15 @@ void get_options(int optc, char **optv, struct options *opt){
 			fprintf(stderr,"%s : undefined.\n",optv[i]);
 		}
 	}
+}
+
+void check_options(struct options *opt){
+	printf("opt.help:%d:\n",(*opt).help);
+	printf("opt.stat:%d:\n",(*opt).stat);
+	printf("opt.check:%d:\n",(*opt).check);
+	printf("opt.qsize:%d:\n",(*opt).qsize);
+	printf("opt.qfile:%s:\n",(*opt).qfile);
+	printf("opt.sfile:%s:\n",(*opt).sfile);
 }
 
 int main(int argc, char **argv){
@@ -104,8 +118,12 @@ int main(int argc, char **argv){
 	if((*opt).stat ==1){
 		status();
 	}
+	//put opt
+	if((*opt).check == 1){
+		check_options(opt);
+	}
 	//exit
-	if(((*opt).help ==1) || ((*opt).stat ==1)){
+	if(((*opt).help == 1) || ((*opt).stat == 1) || ((*opt).check == 1)){
 		exit(0);
 	}
 
