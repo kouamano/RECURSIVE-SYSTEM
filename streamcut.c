@@ -9,8 +9,6 @@ struct options {
 	int help;
 	int stat;
 	int check;
-	int argint;
-	//char *argstr;
 	char *spanstr;
 	char *filename;
 };
@@ -28,6 +26,9 @@ void help(void){
 void status(void){
 	printf("STATUS:\n");
 	printf(" Under construction.\n");
+	printf("TODO:\n");
+	printf(" create function <-spanstr2spanint(spanstr).\n");
+	printf(" create function seekWhilePut(*FILE,p1,p2).\n");
 }
 
 struct options *alloc_options(void){
@@ -40,6 +41,10 @@ struct options *alloc_options(void){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
+	if(((*p).filename = malloc(sizeof(char) * FILE_NAME_SIZE)) == NULL){
+		printf("failed : malloc() in alloc_options().\n");
+		exit(1);
+	}
 	return(p);
 }
 
@@ -47,7 +52,6 @@ void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
 	(*opt).check = 0;
-	(*opt).argint = 0;
 	(*opt).spanstr[0] = '\0';
 }
 
@@ -62,6 +66,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).check = 1;
 		}else if(strncmp(optv[i],"span=",4) == 0){
 			sscanf(optv[i],"span=%s",(*opt).spanstr);
+		}else if(strncmp(optv[i],"if=",3) == 0){
+			sscanf(optv[i],"if=%s",(*opt).filename);
 		}
 	}
 }
@@ -72,6 +78,7 @@ void check_options(struct options *opt){
 	printf(" opt.stat:%d:\n",(*opt).stat);
 	printf(" opt.check:%d:\n",(*opt).check);
 	printf(" opt.spanstr:%s:\n",(*opt).spanstr);
+	printf(" opt.filename:%s:\n",(*opt).filename);
 }
 
 int main(int argc, char **argv){
@@ -96,5 +103,6 @@ int main(int argc, char **argv){
 	if(ie == 1){
 		exit(0);
 	}
+
 	return(0);
 }
