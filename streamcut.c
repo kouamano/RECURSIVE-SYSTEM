@@ -1,10 +1,12 @@
 /* streamcut.c */
+/* (* declare */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #define ARG_LEN 512
 #define FILE_NAME_SIZE 1024
-
+/* *) */
+/* (* arg operation */
 struct options {
 	int help;
 	int stat;
@@ -80,7 +82,28 @@ void check_options(struct options *opt){
 	printf(" opt.spanstr:%s:\n",(*opt).spanstr);
 	printf(" opt.filename:%s:\n",(*opt).filename);
 }
+/* *) */
+/* (* functions */
+int *spanstr2spanint(char *str){
+	int len = 0;
+	int frag = 0;
+	int i = 0;
+	len = strlen(str);
+	//printf("len:%d:\n",len);
+	for(i=0;i<len;i++){
+		//printf(":%d:\n",i);
+		if(str[i] == ','){
+			frag++;
+		}
+	}
+	frag++;
+	//printf("frag:%d:\n",frag);
+}
 
+void seekWhilePut(FILE *fp, int p1, int p2){
+}
+/* *) */
+/* (* main */
 int main(int argc, char **argv){
 	struct options *opt;
 	int ie = 0;
@@ -104,5 +127,10 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 
+	/* (* argolithm */
+	spanstr2spanint((*opt).spanstr);
+	/* *) */
+
 	return(0);
 }
+/* *) */
