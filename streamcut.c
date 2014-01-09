@@ -6,6 +6,9 @@
 #define ARG_LEN 512
 #define FILE_NAME_SIZE 1024
 /* *) */
+/* (* local include */
+//#include "../include/alloc.c"
+/* *) */
 /* (* arg operation */
 struct options {
 	int help;
@@ -84,11 +87,25 @@ void check_options(struct options *opt){
 }
 /* *) */
 /* (* functions */
-int *spanstr2spanint(char *str){
+int **spanstr2spanint(char *str){
 	int len = 0;
 	int frag = 0;
 	int i = 0;
+	int *start;
+	int *end;
+	char *strBUF;
+	int ptr = 0;
+	int **retptr;
+	int ret; //extra
 	len = strlen(str);
+	if((strBUF = malloc(sizeof(char) * len)) == NULL){
+		printf("failed : malloc() in spanstr2spanint().\n");
+		exit(1);
+	}
+	if((retptr = malloc(sizeof(int *) * 2)) == NULL){
+		printf("failed : malloc() in spanstr2spanint().\n");
+		exit(1);
+	}
 	//printf("len:%d:\n",len);
 	for(i=0;i<len;i++){
 		//printf(":%d:\n",i);
@@ -97,7 +114,26 @@ int *spanstr2spanint(char *str){
 		}
 	}
 	frag++;
+	if((start = malloc(sizeof(int) * frag)) == NULL){
+		printf("failed : malloc() in spanstr2spanint().\n");
+		exit(1);
+	}
+	if((end = malloc(sizeof(int) * frag)) == NULL){
+		printf("failed : malloc() in spanstr2spanint().\n");
+		exit(1);
+	}
 	//printf("frag:%d:\n",frag);
+	for(i=0;i<frag;i++){
+		ret=sscanf(str+ptr,"%[^,],",strBUF);
+		ptr = ptr+strlen(strBUF)+1;
+		//printf("ret:%d:\n",ret);
+		//printf("BUF:%s:\n",strBUF);
+		sscanf(strBUF,"%d-%d",&start[i],&end[i]);
+		printf("start:%d: - end:%d:\n",start[i],end[i]);
+	}
+	retptr[1] = start;
+	retptr[2] = end;
+	return(retptr);
 }
 
 void seekWhilePut(FILE *fp, int p1, int p2){
