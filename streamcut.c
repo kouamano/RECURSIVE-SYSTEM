@@ -131,8 +131,8 @@ int **spanstr2spanint(char *str){
 		sscanf(strBUF,"%d-%d",&start[i],&end[i]);
 		printf("start:%d: - end:%d:\n",start[i],end[i]);
 	}
-	retptr[1] = start;
-	retptr[2] = end;
+	retptr[0] = start;
+	retptr[1] = end;
 	return(retptr);
 }
 
