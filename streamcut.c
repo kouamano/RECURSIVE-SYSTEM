@@ -1,13 +1,10 @@
 /* streamcut.c */
-/* (* declare */
+/* (* include, declare */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #define ARG_LEN 512
 #define FILE_NAME_SIZE 1024
-/* *) */
-/* (* local include */
-//#include "../include/alloc.c"
 /* *) */
 /* (* arg operation */
 struct options {
@@ -24,16 +21,16 @@ void help(void){
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
-	printf("  span : string span: ex. 10-20,25-30.\n");
+	printf("  span : string span: start at 1, ex: 1-1,2-3.\n");
 	printf("  file : input file.\n");
 }
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" Under construction.\n");
+	printf(" test usage.\n");
 	printf("TODO:\n");
-	printf(" create function <-spanstr2spanint(spanstr).\n");
-	printf(" create function seekWhilePut(*FILE,p1,p2).\n");
+	//printf(" create function <-spanstr2spanint(spanstr).\n");
+	//printf(" create function seekWhilePut(*FILE,p1,p2).\n");
 }
 
 struct options *alloc_options(void){
@@ -87,7 +84,7 @@ void check_options(struct options *opt){
 }
 /* *) */
 /* (* functions */
-int **spanstr2spanint(char *str){
+int **spanstr2spanint(char *str, int *fragment){
 	int len = 0;
 	int frag = 0;
 	int i = 0;
@@ -96,7 +93,6 @@ int **spanstr2spanint(char *str){
 	char *strBUF;
 	int ptr = 0;
 	int **retptr;
-	int ret; //extra
 	len = strlen(str);
 	if((strBUF = malloc(sizeof(char) * len)) == NULL){
 		printf("failed : malloc() in spanstr2spanint().\n");
@@ -106,9 +102,7 @@ int **spanstr2spanint(char *str){
 		printf("failed : malloc() in spanstr2spanint().\n");
 		exit(1);
 	}
-	//printf("len:%d:\n",len);
 	for(i=0;i<len;i++){
-		//printf(":%d:\n",i);
 		if(str[i] == ','){
 			frag++;
 		}
@@ -124,25 +118,39 @@ int **spanstr2spanint(char *str){
 	}
 	//printf("frag:%d:\n",frag);
 	for(i=0;i<frag;i++){
-		ret=sscanf(str+ptr,"%[^,],",strBUF);
+		sscanf(str+ptr,"%[^,],",strBUF);
 		ptr = ptr+strlen(strBUF)+1;
 		//printf("ret:%d:\n",ret);
 		//printf("BUF:%s:\n",strBUF);
 		sscanf(strBUF,"%d-%d",&start[i],&end[i]);
-		printf("start:%d: - end:%d:\n",start[i],end[i]);
+		//printf("start:%d: - end:%d:\n",start[i],end[i]);
 	}
+	*fragment = frag;
 	retptr[0] = start;
 	retptr[1] = end;
 	return(retptr);
 }
 
 void seekWhilePut(FILE *fp, int p1, int p2){
+	int i;
+	int c;
+	fseek(fp,p1,SEEK_SET);
+	for(i=0;i<(p2-p1)+1;i++){
+		c = fgetc(fp);
+		putc(c,stdout);
+	}
 }
 /* *) */
 /* (* main */
 int main(int argc, char **argv){
 	struct options *opt;
+	int **pos;
+	int fragment;
 	int ie = 0;
+	FILE *IN;
+	int is_open = 0;
+	int c;
+	int i;
 
 	opt = alloc_options();
 	init_options(opt);
@@ -164,7 +172,28 @@ int main(int argc, char **argv){
 	}
 
 	/* (* argolithm */
-	spanstr2spanint((*opt).spanstr);
+	pos = spanstr2spanint((*opt).spanstr,&fragment);
+	printf("fragment:%d:\n",fragment);
+	printf("pos[0][0]:%d:\n",pos[0][0]);
+	printf("pos[1][0]:%d:\n",pos[1][0]);
+	printf("pos[0][1]:%d:\n",pos[0][1]);
+	printf("pos[1][1]:%d:\n",pos[1][1]);
+	if((IN = fopen((*opt).filename,"r")) == NULL){
+		perror((*opt).filename);
+		exit(1);
+	}else{
+		for(i=0;i<fragment;i++){
+			seekWhilePut(IN,pos[0][i]-1,pos[1][i]-1);
+			//printf(":");
+		}
+		fclose(IN);
+	}
+	/*
+	while((c = fgetc(IN)) != EOF){
+		putc(c,stdout);
+	}
+	*/
+	
 	/* *) */
 
 	return(0);
