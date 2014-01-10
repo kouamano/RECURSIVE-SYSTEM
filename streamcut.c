@@ -193,7 +193,7 @@ int main(int argc, char **argv){
 		exit(1);
 	}else{
 		for(i=0;i<fragment;i++){
-			seekWhilePut(IN,pos[0][i]-1,pos[1][i]-1);
+			seekWhilePut(IN,pos[0][i],pos[1][i]);
 			printf("%s",(*opt).conj);
 		}
 		fclose(IN);
