@@ -13,11 +13,12 @@ struct options {
 	int check;
 	char *spanstr;
 	char *filename;
+	char *conj;
 };
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" streamcut [-h] [-s] [-c] span=<span> if=<file>.\n");
+	printf(" streamcut [-h] [-s] [-c] span=<span> if=<file> con=<conjugater>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
@@ -47,6 +48,10 @@ struct options *alloc_options(void){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
+	if(((*p).conj = malloc(sizeof(char) * ARG_LEN)) == NULL){
+		printf("failed : malloc() in alloc_options().\n");
+		exit(1);
+	}
 	return(p);
 }
 
@@ -55,6 +60,8 @@ void init_options(struct options *opt){
 	(*opt).stat = 0;
 	(*opt).check = 0;
 	(*opt).spanstr[0] = '\0';
+	(*opt).filename[0] = '\0';
+	(*opt).conj[0] = '\0';
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -70,6 +77,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"span=%s",(*opt).spanstr);
 		}else if(strncmp(optv[i],"if=",3) == 0){
 			sscanf(optv[i],"if=%s",(*opt).filename);
+		}else if(strncmp(optv[i],"con=",4) == 0){
+			sscanf(optv[i],"con=%s",(*opt).conj);
 		}
 	}
 }
@@ -81,6 +90,7 @@ void check_options(struct options *opt){
 	printf(" opt.check:%d:\n",(*opt).check);
 	printf(" opt.spanstr:%s:\n",(*opt).spanstr);
 	printf(" opt.filename:%s:\n",(*opt).filename);
+	printf(" opt.conj:%s:\n",(*opt).conj);
 }
 /* *) */
 /* (* functions */
@@ -173,18 +183,18 @@ int main(int argc, char **argv){
 
 	/* (* argolithm */
 	pos = spanstr2spanint((*opt).spanstr,&fragment);
-	printf("fragment:%d:\n",fragment);
-	printf("pos[0][0]:%d:\n",pos[0][0]);
-	printf("pos[1][0]:%d:\n",pos[1][0]);
-	printf("pos[0][1]:%d:\n",pos[0][1]);
-	printf("pos[1][1]:%d:\n",pos[1][1]);
+	//printf("fragment:%d:\n",fragment);
+	//printf("pos[0][0]:%d:\n",pos[0][0]);
+	//printf("pos[1][0]:%d:\n",pos[1][0]);
+	//printf("pos[0][1]:%d:\n",pos[0][1]);
+	//printf("pos[1][1]:%d:\n",pos[1][1]);
 	if((IN = fopen((*opt).filename,"r")) == NULL){
 		perror((*opt).filename);
 		exit(1);
 	}else{
 		for(i=0;i<fragment;i++){
 			seekWhilePut(IN,pos[0][i]-1,pos[1][i]-1);
-			//printf(":");
+			printf("%s",(*opt).conj);
 		}
 		fclose(IN);
 	}
