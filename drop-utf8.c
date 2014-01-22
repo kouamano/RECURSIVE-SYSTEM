@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "/home/pub/include/alloc.c"
+#include "../include/alloc.c"
 #define FILE_NAME_SIZE 1024
 #define UTF_BUF_SIZE 7
 
