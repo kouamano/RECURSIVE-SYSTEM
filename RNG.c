@@ -79,6 +79,8 @@ int main(int argc, char **argv){
 	struct options *opt;
 	int ie = 0;
 	float **dmat;
+	FILE *fp;
+	int i,j;
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
@@ -99,6 +101,21 @@ int main(int argc, char **argv){
 	}
 
 	dmat = f_alloc_mat((*opt).msize,(*opt).msize);
+	if((fp = fopen((*opt).dfile,"r")) == NULL){
+		perror((*opt).dfile);
+		exit(1);
+	}
+	read_ftable_from_stream((*opt).msize, (*opt).msize,fp,dmat);
+	fclose(fp);
+
+	/* (* check */
+	for(i=0;i<(*opt).msize;i++){
+		for(j=0;j<(*opt).msize;j++){
+			printf("%f ",dmat[i][j]);
+		}
+		printf("\n");
+	}
+	/* *) */
 
 	return(0);
 }
