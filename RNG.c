@@ -11,24 +11,22 @@ struct options {
 	int stat;
 	int check;
 	char *dfile;
-	int col;
-	int tup;
+	int msize;
 };
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" RNG [-h] [-s] [-c] df=<file of distance matrix> size=<col>,<tup> .\n");
+	printf(" RNG [-h] [-s] [-c] df=<file of distance matrix> size=<matrix size> .\n");
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
 	printf("  file of distance matrix : with no header.\n");
-	printf("  col : size of column.\n");
-	printf("  tup : size of tuple.\n");
+	printf("  matrix size : size of matrix.\n");
 }
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" underconstruction.\n");
+	printf(" under construction.\n");
 }
 
 struct options *alloc_options(void){
@@ -49,8 +47,7 @@ void init_options(struct options *opt){
 	(*opt).stat = 0;
 	(*opt).check = 0;
 	(*opt).dfile[0] = '\0';
-	(*opt).col = 0;
-	(*opt).tup = 0;
+	(*opt).msize = 0;
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -65,7 +62,7 @@ void get_options(int optc, char **optv, struct options *opt){
 		}else if(strncmp(optv[i],"df=",3) == 0){
 			sscanf(optv[i],"df=%s",(*opt).dfile);
 		}else if(strncmp(optv[i],"size=",5) == 0){
-			sscanf(optv[i],"size=%d,%d",&(*opt).col,&(*opt).tup);
+			sscanf(optv[i],"size=%d",&(*opt).msize);
 		}else{
 			printf("%s : undefined.",optv[i]);
 		}
@@ -75,23 +72,33 @@ void get_options(int optc, char **optv, struct options *opt){
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	printf(" opt.dfile:%s:\n",(*opt).dfile);
-	printf(" opt.col:%d:\n",(*opt).col);
-	printf(" opt.tup:%d:\n",(*opt).tup);
+	printf(" opt.msize:%d:\n",(*opt).msize);
 }
 
 int main(int argc, char **argv){
 	struct options *opt;
+	int ie = 0;
+	float **dmat;
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
 	if((*opt).help == 1){
 		help();
+		ie = 1;
 	}
 	if((*opt).stat == 1){
 		status();
+		ie = 1;
 	}
 	if((*opt).check == 1){
 		check_options(opt);
+		ie = 1;
 	}
+	if(ie == 1){
+		exit(0);
+	}
+
+	dmat = f_alloc_mat((*opt).msize,(*opt).msize);
+
 	return(0);
 }
