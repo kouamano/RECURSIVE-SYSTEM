@@ -11,15 +11,19 @@ struct options {
 	int stat;
 	int check;
 	char *dfile;
+	int col;
+	int tup;
 };
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" RNG [-h] [-s] [-c] df=<file of distance matrix> .\n");
+	printf(" RNG [-h] [-s] [-c] df=<file of distance matrix> size=<col>,<tup> .\n");
 	printf("  -h : help.\n");
-	printf("  -s : stat.\n");
+	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
 	printf("  file of distance matrix : with no header.\n");
+	printf("  col : size of column.\n");
+	printf("  tup : size of tuple.\n");
 }
 
 void status(void){
@@ -44,8 +48,9 @@ void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
 	(*opt).check = 0;
-	//(*opt).argint = 0;
 	(*opt).dfile[0] = '\0';
+	(*opt).col = 0;
+	(*opt).tup = 0;
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -59,6 +64,10 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).check = 1;
 		}else if(strncmp(optv[i],"df=",3) == 0){
 			sscanf(optv[i],"df=%s",(*opt).dfile);
+		}else if(strncmp(optv[i],"size=",5) == 0){
+			sscanf(optv[i],"size=%d,%d",&(*opt).col,&(*opt).tup);
+		}else{
+			printf("%s : undefined.",optv[i]);
 		}
 	}
 }
@@ -66,6 +75,8 @@ void get_options(int optc, char **optv, struct options *opt){
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	printf(" opt.dfile:%s:\n",(*opt).dfile);
+	printf(" opt.col:%d:\n",(*opt).col);
+	printf(" opt.tup:%d:\n",(*opt).tup);
 }
 
 int main(int argc, char **argv){
