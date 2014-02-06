@@ -6,22 +6,29 @@
 #include "../include/data_read.c"
 #define FILE_NAME_LEN 1024
 
+struct pair {
+	int *p;
+	int *t;
+};
+
 struct options {
 	int help;
 	int stat;
 	int check;
 	char *dfile;
 	int msize;
+	int pbsize;
 };
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" RNG [-h] [-s] [-c] df=<file of distance matrix> size=<matrix size> .\n");
+	printf(" RNG [-h] [-s] [-c] df=<file of distance matrix> size=<matrix size> pbuf=<buffer size> .\n");
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
 	printf("  file of distance matrix : with no header.\n");
-	printf("  matrix size : size of matrix.\n");
+	printf("  matrix size : size of square matrix.\n");
+	printf("  buffer size : size of pair list.\n");
 }
 
 void status(void){
@@ -47,7 +54,8 @@ void init_options(struct options *opt){
 	(*opt).stat = 0;
 	(*opt).check = 0;
 	(*opt).dfile[0] = '\0';
-	(*opt).msize = 0;
+	(*opt).msize = 1000;
+	(*opt).pbsize = 600;
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -63,6 +71,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"df=%s",(*opt).dfile);
 		}else if(strncmp(optv[i],"size=",5) == 0){
 			sscanf(optv[i],"size=%d",&(*opt).msize);
+		}else if(strncmp(optv[i],"pbuf=",5) == 0){
+			sscanf(optv[i],"pbuf=%d",&(*opt).msize);
 		}else{
 			printf("%s : undefined.",optv[i]);
 		}
@@ -73,6 +83,7 @@ void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	printf(" opt.dfile:%s:\n",(*opt).dfile);
 	printf(" opt.msize:%d:\n",(*opt).msize);
+	printf(" opt.pbsize:%d:\n",(*opt).pbsize);
 }
 
 int main(int argc, char **argv){
@@ -81,6 +92,8 @@ int main(int argc, char **argv){
 	float **dmat;
 	FILE *fp;
 	int i,j;
+	struct pair lunlist;
+	int num_lun;
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
@@ -107,7 +120,6 @@ int main(int argc, char **argv){
 	}
 	read_ftable_from_stream((*opt).msize, (*opt).msize,fp,dmat);
 	fclose(fp);
-
 	/* (* check */
 	for(i=0;i<(*opt).msize;i++){
 		for(j=0;j<(*opt).msize;j++){
@@ -116,6 +128,9 @@ int main(int argc, char **argv){
 		printf("\n");
 	}
 	/* *) */
+
+	lunlist.p = i_calloc_vec((*opt).pbsize);
+	lunlist.t = i_calloc_vec((*opt).pbsize);
 
 	return(0);
 }
