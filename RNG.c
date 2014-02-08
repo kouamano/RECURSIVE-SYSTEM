@@ -91,7 +91,7 @@ int main(int argc, char **argv){
 	int ie = 0;
 	float **dmat;
 	FILE *fp;
-	int i,j;
+	int i,j,p,q,z;
 	struct pair lunlist;
 	int num_lun;
 	opt = alloc_options();
@@ -131,6 +131,23 @@ int main(int argc, char **argv){
 
 	lunlist.p = i_calloc_vec((*opt).pbsize);
 	lunlist.t = i_calloc_vec((*opt).pbsize);
+	for(p=0;p<(*opt).msize;p++){
+		for(q=0;q<(*opt).msize;q++){
+			if(p==q){
+				break;
+			}
+			for(z=0;z<(*opt).msize;z++){
+				if(dmat[p][q] > dmat[p][z]){
+					break;
+				}
+				if(dmat[p][q] > dmat[z][q]){
+					break;
+				}
+				printf("");
+			}
+		}
+	}
 
+ 
 	return(0);
 }
