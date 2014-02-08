@@ -92,6 +92,7 @@ int main(int argc, char **argv){
 	float **dmat;
 	FILE *fp;
 	int i,j,p,q,z;
+	int ng = 0;
 	struct pair lunlist;
 	int num_lun;
 	opt = alloc_options();
@@ -131,27 +132,26 @@ int main(int argc, char **argv){
 
 	lunlist.p = i_calloc_vec((*opt).pbsize);
 	lunlist.t = i_calloc_vec((*opt).pbsize);
-	for(p=0;p<(*opt).msize;p++){
+	for(p=1;p<(*opt).msize;p++){
+		ng = 0;
 		for(q=0;q<p;q++){
-			/*
 			if(p==q){
 				break;
 			}
-			*/
+			ng = 0;
 			for(z=0;z<(*opt).msize;z++){
-				if(dmat[p][q] > dmat[p][z]){
-					printf("break(p:%d)\n",p);
-					goto exq;
+				printf("%d,%d,%d : %f\n",p,q,z,dmat[p][q]);
+				printf("pz:%f,zq:%f\n",dmat[p][z],dmat[z][q]);
+				if((dmat[p][q] > dmat[p][z]) && (dmat[p][q] > dmat[z][q])){
+					printf("boo:%f;%f\n",dmat[p][z],dmat[z][q]);
+					ng = 1;
 				}
-				if(dmat[p][q] > dmat[z][q]){
-					printf("break(q:%d)\n",q);
-					goto exq;
-				}
-				printf("%d,%d:%d\n",p,q,z);
 			}
+			if(ng == 0){
+				printf("[%d-%d]\n",p,q);
+			}
+
 		}
-		exq:;
-				printf("%d,%d:%d\n",p,q,z);
 	}
 
  
