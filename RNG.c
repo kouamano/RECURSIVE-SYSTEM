@@ -132,20 +132,26 @@ int main(int argc, char **argv){
 	lunlist.p = i_calloc_vec((*opt).pbsize);
 	lunlist.t = i_calloc_vec((*opt).pbsize);
 	for(p=0;p<(*opt).msize;p++){
-		for(q=0;q<(*opt).msize;q++){
+		for(q=0;q<p;q++){
+			/*
 			if(p==q){
 				break;
 			}
+			*/
 			for(z=0;z<(*opt).msize;z++){
 				if(dmat[p][q] > dmat[p][z]){
-					break;
+					printf("break(p:%d)\n",p);
+					goto exq;
 				}
 				if(dmat[p][q] > dmat[z][q]){
-					break;
+					printf("break(q:%d)\n",q);
+					goto exq;
 				}
-				printf("");
+				printf("%d,%d:%d\n",p,q,z);
 			}
 		}
+		exq:;
+				printf("%d,%d:%d\n",p,q,z);
 	}
 
  
