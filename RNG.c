@@ -122,14 +122,14 @@ int main(int argc, char **argv){
 	}
 	read_ftable_from_stream((*opt).msize, (*opt).msize,fp,dmat);
 	fclose(fp);
-	/* (* check */
+	/* (* check 
 	for(i=0;i<(*opt).msize;i++){
 		for(j=0;j<(*opt).msize;j++){
 			printf("%f ",dmat[i][j]);
 		}
 		printf("\n");
 	}
-	/* *) */
+	 *) */
 
 	//lunlist.p = i_calloc_vec((*opt).pbsize);
 	//lunlist.t = i_calloc_vec((*opt).pbsize);
