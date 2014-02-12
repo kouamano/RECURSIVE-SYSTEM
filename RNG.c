@@ -5,11 +5,12 @@
 #include "../include/alloc.c"
 #include "../include/data_read.c"
 #define FILE_NAME_LEN 1024
-
+/*
 struct pair {
 	int *p;
 	int *t;
 };
+*/
 
 struct options {
 	int help;
@@ -28,7 +29,7 @@ void help(void){
 	printf("  -c : check args.\n");
 	printf("  file of distance matrix : with no header.\n");
 	printf("  matrix size : size of square matrix.\n");
-	printf("  buffer size : size of pair list.\n");
+	printf("  buffer size : NA.\n");
 }
 
 void status(void){
@@ -93,7 +94,7 @@ int main(int argc, char **argv){
 	FILE *fp;
 	int i,j,p,q,z;
 	int ng = 0;
-	struct pair lunlist;
+	//struct pair lunlist;
 	int num_lun;
 	opt = alloc_options();
 	init_options(opt);
@@ -130,27 +131,26 @@ int main(int argc, char **argv){
 	}
 	/* *) */
 
-	lunlist.p = i_calloc_vec((*opt).pbsize);
-	lunlist.t = i_calloc_vec((*opt).pbsize);
+	//lunlist.p = i_calloc_vec((*opt).pbsize);
+	//lunlist.t = i_calloc_vec((*opt).pbsize);
 	for(p=1;p<(*opt).msize;p++){
-		ng = 0;
+		//ng = 0;
 		for(q=0;q<p;q++){
-			if(p==q){
-				break;
-			}
 			ng = 0;
 			for(z=0;z<(*opt).msize;z++){
-				printf("%d,%d,%d : %f\n",p,q,z,dmat[p][q]);
-				printf("pz:%f,zq:%f\n",dmat[p][z],dmat[z][q]);
-				if((dmat[p][q] > dmat[p][z]) && (dmat[p][q] > dmat[z][q])){
-					printf("ng\n");
-					ng = 1;
+				if(p==q || q==z || p==z){
+				}else{
+					//printf("%d,%d,%d : %f\n",p,q,z,dmat[p][q]);
+					//printf("pz:%f,zq:%f\n",dmat[p][z],dmat[z][q]);
+					if((dmat[p][q] > dmat[p][z]) && (dmat[p][q] > dmat[z][q])){
+						//printf("ng\n");
+						ng = 1;
+					}
 				}
 			}
 			if(ng == 0){
 				printf("[%d-%d]\n",p,q);
 			}
-
 		}
 	}
 
