@@ -133,6 +133,7 @@ int main(int argc, char **argv){
 
 	//lunlist.p = i_calloc_vec((*opt).pbsize);
 	//lunlist.t = i_calloc_vec((*opt).pbsize);
+	printf("{");
 	for(p=1;p<(*opt).msize;p++){
 		//ng = 0;
 		for(q=0;q<p;q++){
@@ -149,11 +150,11 @@ int main(int argc, char **argv){
 				}
 			}
 			if(ng == 0){
-				printf("[%d-%d]\n",p,q);
+				printf(",{%d,%d}\n",p,q);
 			}
 		}
 	}
-
+	printf("}");
  
 	return(0);
 }
