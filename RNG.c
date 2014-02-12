@@ -143,7 +143,7 @@ int main(int argc, char **argv){
 				printf("%d,%d,%d : %f\n",p,q,z,dmat[p][q]);
 				printf("pz:%f,zq:%f\n",dmat[p][z],dmat[z][q]);
 				if((dmat[p][q] > dmat[p][z]) && (dmat[p][q] > dmat[z][q])){
-					printf("boo:%f;%f\n",dmat[p][z],dmat[z][q]);
+					printf("ng\n");
 					ng = 1;
 				}
 			}
