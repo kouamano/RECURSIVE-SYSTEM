@@ -23,13 +23,12 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" RNG [-h] [-s] [-c] df=<file of distance matrix> size=<matrix size> pbuf=<buffer size> .\n");
+	printf(" RNG [-h] [-s] [-c] df=<file of distance matrix> size=<matrix size> .\n");
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
 	printf("  file of distance matrix : with no header.\n");
 	printf("  matrix size : size of square matrix.\n");
-	printf("  buffer size : NA.\n");
 }
 
 void status(void){
@@ -56,7 +55,7 @@ void init_options(struct options *opt){
 	(*opt).check = 0;
 	(*opt).dfile[0] = '\0';
 	(*opt).msize = 1000;
-	(*opt).pbsize = 600;
+	//(*opt).pbsize = 600;
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -72,8 +71,10 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"df=%s",(*opt).dfile);
 		}else if(strncmp(optv[i],"size=",5) == 0){
 			sscanf(optv[i],"size=%d",&(*opt).msize);
+		/*
 		}else if(strncmp(optv[i],"pbuf=",5) == 0){
 			sscanf(optv[i],"pbuf=%d",&(*opt).msize);
+		*/
 		}else{
 			printf("%s : undefined.",optv[i]);
 		}
@@ -84,7 +85,7 @@ void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	printf(" opt.dfile:%s:\n",(*opt).dfile);
 	printf(" opt.msize:%d:\n",(*opt).msize);
-	printf(" opt.pbsize:%d:\n",(*opt).pbsize);
+	//printf(" opt.pbsize:%d:\n",(*opt).pbsize);
 }
 
 int main(int argc, char **argv){
@@ -133,7 +134,7 @@ int main(int argc, char **argv){
 
 	//lunlist.p = i_calloc_vec((*opt).pbsize);
 	//lunlist.t = i_calloc_vec((*opt).pbsize);
-	printf("{");
+	//printf("{");
 	for(p=1;p<(*opt).msize;p++){
 		//ng = 0;
 		for(q=0;q<p;q++){
@@ -150,11 +151,11 @@ int main(int argc, char **argv){
 				}
 			}
 			if(ng == 0){
-				printf(",{%d,%d}\n",p,q);
+				printf("%d,%d\n",p,q);
 			}
 		}
 	}
-	printf("}");
+	//printf("}");
  
 	return(0);
 }
