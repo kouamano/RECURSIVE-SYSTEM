@@ -100,6 +100,10 @@ int main(int argc, char **argv){
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
+	if(argc == 1){
+		(*opt).help = 1;
+		//ie = 1;
+	}
 	if((*opt).help == 1){
 		help();
 		ie = 1;
