@@ -43,7 +43,7 @@ struct options *alloc_options(void){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
-	if(((*p).df = malloc(sizeof(char) * LEN)) == NULL){
+	if(((*p).pf = malloc(sizeof(char) * LEN)) == NULL){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
@@ -54,8 +54,6 @@ void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
 	(*opt).check = 0;
-	//(*opt).argint = 0;
-	//(*opt).argstr[0] = '\0';
 	(*opt).dsize = 1000;
 	(*opt).psize = 1000;
 	(*opt).df[0] = '\0';
