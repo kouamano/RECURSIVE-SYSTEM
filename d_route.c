@@ -147,13 +147,14 @@ void add_match_edge(int *r, int r_size, struct edge RNG_edge, int RNG_size){
 	}
 }
 
+int create_path_vec_prime(int **curr, struct edge RNG, int num_tuple){
+	return(0);
+}
+
 int create_path_vec(int **prev, int **curr, int num_tuple, int level){
 	return(0);
 };
 
-int create_path_vec_prime(int **curr, struct edge RNG, int num_tuple){
-	return(0);
-};
 
 /* *) */
 
@@ -211,8 +212,9 @@ int main(int argc, char **argv){
 	/* *) */
 	curr_level = 0;
 	for(p_node=0;p_node<num_RNG_edge;p_node++){	
-		create_path_vec(d_route_prev, d_route_curr, num_RNG_edge/*???*/, curr_level);
+		create_path_vec_prime(d_route_curr,RNG_edge,num_RNG_edge);
 		for(level=curr_level;level<num_RNG_edge;level++){
+			create_path_vec(d_route_prev, d_route_curr, num_RNG_edge/*???*/, curr_level);
 			//print_match_edge();
 			//for(next_pos=0;next_pos<num_RNG_edge;next_pos++){
 			//}
