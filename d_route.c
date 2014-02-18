@@ -3,7 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 #define LEN 1024
+#define MEM_BLK 1024
 #include "../include/alloc.c"
+
 
 struct options {
 	int help;
@@ -97,14 +99,76 @@ struct edge {
 	int *p;
 	int *t;
 };
+
+void print_match_edge(int *r, int r_size, struct edge RNG_edge, int RNG_size){
+	int i,j,k,l;
+	int match = 0;
+	int p_or_t; /* p->1, t->2 */
+	for(j=0;j<RNG_size;j++){
+		//if(r[r_size] == RNG_edge.p[j] || r[r_size] == RNG_edge.t[j]){
+		p_or_t = 0;
+		if(r[r_size] == RNG_edge.p[j]){
+			p_or_t = 1;
+		}else if(r[r_size] == RNG_edge.t[j]){
+			p_or_t = 2;
+		}else{
+			p_or_t = 0;
+		}
+		if(p_or_t > 0){
+			for(i=0;i<r_size-1;i++){
+				if(r[i] != RNG_edge.p[j] && r[i] != RNG_edge.t[j]){
+					for(l=0;l<r_size-1;l++){printf("%d,",r[l]);};
+					if(p_or_t == 1){
+					printf("%d",RNG_edge.p[j]);
+					}else if(p_or_t == 2){
+					printf("%d",RNG_edge.t[j]);
+					}
+				}
+			}
+
+		}
+	}
+}
+
+void add_route(int *v, int node);
+
+void add_match_edge(int *r, int r_size, struct edge RNG_edge, int RNG_size){
+	int i,j,k;
+	int match = 0;
+	for(j=0;j<RNG_size;j++){
+		if(r[r_size] == RNG_edge.p[j] || r[r_size] == RNG_edge.t[j]){
+			for(i=0;i<r_size-1;i++){
+				if(r[i] != RNG_edge.p[j] && r[i] != RNG_edge.t[j]){
+					printf("%d,%d",RNG_edge.p[j],RNG_edge.t[j]);
+				}
+			}
+
+		}
+	}
+}
+
+int create_path_vec(int **prev, int **curr, int num_tuple, int level){
+	return(0);
+};
+
+int create_path_vec_prime(int **curr, struct edge RNG, int num_tuple){
+	return(0);
+};
+
 /* *) */
 
 int main(int argc, char **argv){
 	struct options *opt;
 	int ie = 0;
 	FILE *fp;
+	char *line;
 	int num_RNG_edge = 0;
 	struct edge RNG_edge;
+	int i;
+	int p_node,level,next_pos; /* < num_RNG_edge */
+	int curr_level;
+	int **d_route_prev;
+	int **d_route_curr;
 
 	opt = alloc_options();
 	init_options(opt);
@@ -130,11 +194,31 @@ int main(int argc, char **argv){
 
 	RNG_edge.p = i_alloc_vec((*opt).psize);
 	RNG_edge.t = i_alloc_vec((*opt).psize);
+	line = c_calloc_vec(LEN);
 	if((fp = fopen((*opt).pf,"r")) == NULL){
 		perror((*opt).pf);
 		exit(1);
 	}
+	while(fgets(line,LEN-1,fp) != NULL){
+		sscanf(line,"%d,%d",RNG_edge.p+num_RNG_edge,RNG_edge.t+num_RNG_edge);
+		num_RNG_edge++;
+	}
 	fclose(fp);
+	/* (* test */
+	for(i=0;i<num_RNG_edge;i++){
+		printf("%d,%d\n",RNG_edge.p[i],RNG_edge.t[i]);
+	}
+	/* *) */
+	curr_level = 0;
+	for(p_node=0;p_node<num_RNG_edge;p_node++){	
+		create_path_vec(d_route_prev, d_route_curr, num_RNG_edge/*???*/, curr_level);
+		for(level=curr_level;level<num_RNG_edge;level++){
+			//print_match_edge();
+			//for(next_pos=0;next_pos<num_RNG_edge;next_pos++){
+			//}
+		}
+		curr_level++;
+	}
 
 	return(0);
 }
