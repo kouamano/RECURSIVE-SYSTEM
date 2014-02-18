@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #define LEN 1024
+#include "../include/alloc.c"
 
 struct options {
 	int help;
@@ -18,14 +19,14 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" d_route [-h] [-s] [-c] df=<dist matrix file> dsize=<size of dsit matrix> pf=<path list file> psize=<number of path>.\n");
+	printf(" d_route [-h] [-s] [-c] df=<dist matrix file> dsize=<size of dsit matrix> pf=<path list file> psize=<number of lines>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  dist matrix : not triangle .\n");
 	printf("  size of dist matrix : single integer .\n");
 	printf("  math list : output of RNG.\n");
-	printf("  number of path : number of path.\n");
+	printf("  number of lines : number of lines of path list file.\n");
 }
 
 void status(void){
@@ -91,9 +92,20 @@ void check_options(struct options *opt){
 	printf(" opt.psize:%d:\n",(*opt).psize);
 }
 
+/* (* RNG edge */
+struct edge {
+	int *p;
+	int *t;
+};
+/* *) */
+
 int main(int argc, char **argv){
 	struct options *opt;
-	int ie=0;
+	int ie = 0;
+	FILE *fp;
+	int num_RNG_edge = 0;
+	struct edge RNG_edge;
+
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
@@ -115,5 +127,14 @@ int main(int argc, char **argv){
 	if(ie == 1){
 		exit(0);
 	}
+
+	RNG_edge.p = i_alloc_vec((*opt).psize);
+	RNG_edge.t = i_alloc_vec((*opt).psize);
+	if((fp = fopen((*opt).pf,"r")) == NULL){
+		perror((*opt).pf);
+		exit(1);
+	}
+	fclose(fp);
+
 	return(0);
 }
