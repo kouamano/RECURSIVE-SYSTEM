@@ -204,11 +204,13 @@ int **copy_path_vec(int num, int dim, int **ref){
 }
 
 int **create_path_vec_from_prev(int **prev, int num_tuple, int alloc_level, int *_path_vec_alloc_num, struct edge _RNG_edge, int _num_RNG_edge){ /*return curr*/
-	/*UNDER CONSTRUCTION*/
+	/* NG DONT USE : UNDER CONSTRUCTION */
 	int **curr;
 	int alloc_tuples = num_tuple;
-	int i,j,k;
+	int i,j,k,l;
 	int p_or_t = 0;
+	int joint_node;
+	int remain_node;
 	int hit = 0;
 	printf("  IN:create_path_vec_from_prev()\n");
 	curr = i_alloc_mat(alloc_tuples,alloc_level);
@@ -217,12 +219,33 @@ int **create_path_vec_from_prev(int **prev, int num_tuple, int alloc_level, int 
 		//for(j=0;j<alloc_level-1;j++){
 			//printf("-%d",prev[i][j]);
 			for(k=0;k<_num_RNG_edge;k++){
+				printf("comp %d RNG\n",prev[i][alloc_level-1]);
 				if(prev[i][alloc_level-1] == _RNG_edge.p[k]){
-					p_or_t = 1;
-				}else if(prev[i][alloc_level-1] == _RNG_edge.t[k]){
-					p_or_t = 2;
-				}else{
 					p_or_t = 0;
+					joint_node = _RNG_edge.p[k];
+					remain_node = _RNG_edge.t[k];
+					printf("joint_as_p:%d:,remain_as_t:%d:\n",joint_node,remain_node);
+				}else if(prev[i][alloc_level-1] == _RNG_edge.t[k]){
+					p_or_t = 1;
+					joint_node = _RNG_edge.t[k];
+					remain_node = _RNG_edge.p[k];
+					printf("joint_as_t:%d:,remain_as_p:%d:\n",joint_node,remain_node);
+				}else{
+					p_or_t = 2;
+				}
+				if(p_or_t < 2){ /*match*/
+					hit = 0;
+					for(j=0;j<alloc_level-1;j++){
+						if(prev[i][j] == remain_node){
+							hit++;
+						}
+					}
+					if(hit == 0){
+						for(l=0;l<alloc_level-1;l++){
+							printf("-%d",prev[i][l]);
+						}
+						printf(":-%d-%d:\n",joint_node,remain_node);
+					}
 				}
 				//print_match_edge(prev[i],alloc_level-1,_RNG_edge,_num_RNG_edge);
 			}
