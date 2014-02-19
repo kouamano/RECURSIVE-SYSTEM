@@ -148,7 +148,7 @@ void add_match_edge(int *r, int r_size, struct edge RNG_edge, int RNG_size){
 	}
 }
 
-int **create_path_vec_prime(struct edge RNG, int num_tuple){
+int **create_path_vec_ref(int start_node, struct edge RNG, int num_tuple, int *num){
 	int **curr;
 	int i,j;
 	curr = i_alloc_mat(num_tuple,2);
@@ -156,6 +156,30 @@ int **create_path_vec_prime(struct edge RNG, int num_tuple){
 		curr[i][0] = RNG.p[i];
 		curr[i][1] = RNG.t[i];
 	}
+	*num = i;
+	return(curr);
+}
+
+int **create_path_vec_prime(int start_node, struct edge RNG, int num_tuple, int *num){
+	int **curr;
+	int i,j;
+	int len = 0;
+	curr = i_alloc_mat(num_tuple,2);
+	for(i=0;i<num_tuple;i++){
+		printf("s:%d,p:%d,t:%d\n",start_node,RNG.p[i],RNG.t[i]);
+		if(start_node == RNG.p[i]){
+			curr[len][0] = RNG.p[i];
+			curr[len][1] = RNG.t[i];
+			len++;
+		}else if(start_node == RNG.t[i]){
+			curr[len][0] = RNG.t[i];
+			curr[len][1] = RNG.p[i];
+			len++;
+		}else{
+			;
+		}
+	}
+	*num = len;
 	return(curr);
 }
 
@@ -180,6 +204,7 @@ int main(int argc, char **argv){
 	int curr_level;
 	int **d_route_prev;
 	int **d_route_curr;
+	int num_of_route = 0;
 
 	opt = alloc_options();
 	init_options(opt);
@@ -210,6 +235,7 @@ int main(int argc, char **argv){
 		perror((*opt).pf);
 		exit(1);
 	}
+	num_RNG_edge = 0;
 	while(fgets(line,LEN-1,fp) != NULL){
 		sscanf(line,"%d,%d",RNG_edge.p+num_RNG_edge,RNG_edge.t+num_RNG_edge);
 		num_RNG_edge++;
@@ -220,18 +246,22 @@ int main(int argc, char **argv){
 		printf("%d,%d\n",RNG_edge.p[i],RNG_edge.t[i]);
 	}
 	*) */
+	printf("num_RNG_edge:%d:\n",num_RNG_edge);
 	for(p_node=0;p_node<num_RNG_edge;p_node++){	
-		d_route_curr = create_path_vec_prime(RNG_edge,num_RNG_edge);
+		printf("start node:%d:\n",p_node);
 		curr_level = 1;
+		d_route_curr = create_path_vec_prime(p_node,RNG_edge,num_RNG_edge,&num_of_route);
+		printf("num_of_route:%d:\n",num_of_route);
 		/* (* check */
-		printf(":%d:",d_route_curr[0][0]);
-		printf(":%d:",d_route_curr[0][1]);
+		for(i=0;i<num_of_route;i++){
+			for(j=0;j<=curr_level;j++){
+				printf("%d,",d_route_curr[i][j]);
+			}
+			printf("\n");
+		}
 		/* *) */
 		for(level=curr_level;level<num_RNG_edge;level++){
 			d_route_curr = create_path_vec(d_route_prev, num_RNG_edge/*???*/, curr_level);
-			//print_match_edge();
-			//for(next_pos=0;next_pos<num_RNG_edge;next_pos++){
-			//}
 		}
 		curr_level++;
 	}
