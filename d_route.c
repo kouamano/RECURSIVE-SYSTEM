@@ -244,9 +244,10 @@ int main(int argc, char **argv){
 		printf("%d,%d\n",RNG_edge.p[i],RNG_edge.t[i]);
 	}
 	*) */
-	printf("num_RNG_edge:%d:\n",num_RNG_edge);
+	printf("dsize:%d:\n",(*opt).dsize);
 	for(p_node=0;p_node<(*opt).dsize;p_node++){	
 		printf("start node:%d:\n",p_node);
+		printf("num_RNG_edge:%d:\n",num_RNG_edge);
 		curr_level = 1;
 		d_route_curr = create_path_vec_prime(p_node,RNG_edge,num_RNG_edge,&num_of_route);
 		printf("num_of_route:%d:\n",num_of_route);
