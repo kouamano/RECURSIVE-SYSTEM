@@ -166,7 +166,7 @@ int **create_path_vec_prime(int start_node, struct edge RNG, int num_tuple, int 
 	int len = 0;
 	curr = i_alloc_mat(num_tuple,2);
 	for(i=0;i<num_tuple;i++){
-		printf("s:%d,p:%d,t:%d\n",start_node,RNG.p[i],RNG.t[i]);
+		//printf("s:%d,p:%d,t:%d\n",start_node,RNG.p[i],RNG.t[i]);
 		if(start_node == RNG.p[i]){
 			curr[len][0] = RNG.p[i];
 			curr[len][1] = RNG.t[i];
@@ -211,8 +211,7 @@ int main(int argc, char **argv){
 	int num_RNG_edge = 0;
 	struct edge RNG_edge;
 	int i,j;
-	int p_node,level,next_pos; /* < num_RNG_edge */
-	int curr_level;
+	int p_node,curr_level; /* < num_RNG_edge */
 	int **d_route_prev;
 	int **d_route_curr;
 	int num_of_route = 0;
@@ -273,18 +272,19 @@ int main(int argc, char **argv){
 			printf("\n");
 		}
 		/* *) */
-		for(level=curr_level;level<(*opt).dsize;level++){
-			/* TODO : copy values not pointer */
-			//d_route_prev = d_route_curr;
-			d_route_prev = copy_path_vec(num_of_route,level+1,d_route_curr);
+		for(curr_level=1;curr_level<(*opt).dsize;curr_level++){
+			/* TODO : copy values not pointer : OK */
+			d_route_prev = copy_path_vec(num_of_route,curr_level+1,d_route_curr);
 			/* TODO : free() */
 			printf("alloc:%d:\n",path_vec_alloc_num);
+			for(i=0;i<path_vec_alloc_num;i++){
+				//free(d_route_curr[i]);
+			}
 			/* (* check */
-			printf("0,0,%d\n",d_route_prev[0][0]);
+			//printf("0,0,%d\n",d_route_prev[0][0]);
 			/* *) */
 			//d_route_curr = create_path_vec_from_prev(d_route_prev, num_RNG_edge/*???*/, curr_level);
 		}
-		curr_level++;
 	}
 
 	return(0);
