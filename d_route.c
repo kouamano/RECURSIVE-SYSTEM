@@ -188,8 +188,6 @@ int **create_path_vec(int **prev, int num_tuple, int level){ /*return curr*/
 	int i,j;
 	return(curr);
 };
-
-
 /* *) */
 
 int main(int argc, char **argv){
@@ -247,7 +245,7 @@ int main(int argc, char **argv){
 	}
 	*) */
 	printf("num_RNG_edge:%d:\n",num_RNG_edge);
-	for(p_node=0;p_node<num_RNG_edge;p_node++){	
+	for(p_node=0;p_node<(*opt).dsize;p_node++){	
 		printf("start node:%d:\n",p_node);
 		curr_level = 1;
 		d_route_curr = create_path_vec_prime(p_node,RNG_edge,num_RNG_edge,&num_of_route);
