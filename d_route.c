@@ -100,6 +100,8 @@ struct edge {
 	int *t;
 };
 
+void add_route(int *v, int node);
+
 void print_match_edge(int *r, int r_size, struct edge RNG_edge, int RNG_size){
 	int i,j,k,l;
 	int match = 0;
@@ -130,7 +132,6 @@ void print_match_edge(int *r, int r_size, struct edge RNG_edge, int RNG_size){
 	}
 }
 
-void add_route(int *v, int node);
 
 void add_match_edge(int *r, int r_size, struct edge RNG_edge, int RNG_size){
 	int i,j,k;
@@ -147,12 +148,21 @@ void add_match_edge(int *r, int r_size, struct edge RNG_edge, int RNG_size){
 	}
 }
 
-int create_path_vec_prime(int **curr, struct edge RNG, int num_tuple){
-	return(0);
+int **create_path_vec_prime(struct edge RNG, int num_tuple){
+	int **curr;
+	int i,j;
+	curr = i_alloc_mat(num_tuple,2);
+	for(i=0;i<num_tuple;i++){
+		curr[i][0] = RNG.p[i];
+		curr[i][1] = RNG.t[i];
+	}
+	return(curr);
 }
 
-int create_path_vec(int **prev, int **curr, int num_tuple, int level){
-	return(0);
+int **create_path_vec(int **prev, int num_tuple, int level){ /*return curr*/
+	int **curr;
+	int i,j;
+	return(curr);
 };
 
 
@@ -165,7 +175,7 @@ int main(int argc, char **argv){
 	char *line;
 	int num_RNG_edge = 0;
 	struct edge RNG_edge;
-	int i;
+	int i,j;
 	int p_node,level,next_pos; /* < num_RNG_edge */
 	int curr_level;
 	int **d_route_prev;
@@ -205,16 +215,20 @@ int main(int argc, char **argv){
 		num_RNG_edge++;
 	}
 	fclose(fp);
-	/* (* test */
+	/* (* check
 	for(i=0;i<num_RNG_edge;i++){
 		printf("%d,%d\n",RNG_edge.p[i],RNG_edge.t[i]);
 	}
-	/* *) */
-	curr_level = 0;
+	*) */
 	for(p_node=0;p_node<num_RNG_edge;p_node++){	
-		create_path_vec_prime(d_route_curr,RNG_edge,num_RNG_edge);
+		d_route_curr = create_path_vec_prime(RNG_edge,num_RNG_edge);
+		curr_level = 1;
+		/* (* check */
+		printf(":%d:",d_route_curr[0][0]);
+		printf(":%d:",d_route_curr[0][1]);
+		/* *) */
 		for(level=curr_level;level<num_RNG_edge;level++){
-			create_path_vec(d_route_prev, d_route_curr, num_RNG_edge/*???*/, curr_level);
+			d_route_curr = create_path_vec(d_route_prev, num_RNG_edge/*???*/, curr_level);
 			//print_match_edge();
 			//for(next_pos=0;next_pos<num_RNG_edge;next_pos++){
 			//}
