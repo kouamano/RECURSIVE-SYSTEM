@@ -12,10 +12,7 @@ struct options {
 	int help;
 	int stat;
 	int check;
-	//int argint;
 	int dsize;
-	//int psize;
-	//char *argstr;
 	char *df;
 	char *ef;
 };
@@ -58,7 +55,6 @@ void init_options(struct options *opt){
 	(*opt).stat = 0;
 	(*opt).check = 0;
 	(*opt).dsize = 1000;
-	//(*opt).psize = 1000;
 	(*opt).df[0] = '\0';
 	(*opt).ef[0] = '\0';
 }
@@ -171,6 +167,14 @@ int main(int argc, char **argv){
 	for(i=0;i<num_path;i++){
 		path_list[i][0] = i;
 	}
+	printf("path level %d:\n",level);
+	for(i=0;i<num_path;i++){
+		for(j=0;j<level;j++){
+			printf("%d-",path_list[i][j]);
+		}
+		printf("\n");
+	}
+	printf(":\n");
 	/*  *) */
 	/*  (* extend path */
 	for(level=2;level<=N;level++){
