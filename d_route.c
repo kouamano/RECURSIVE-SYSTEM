@@ -6,7 +6,7 @@
 #define MEM_BLK 1024
 #include "../include/alloc.c"
 #include "d_route.edgeop.h"
-
+#include "d_route.edgeop.c"
 
 struct options {
 	int help;
@@ -99,6 +99,7 @@ int main(int argc, char **argv){
 	int **path_list;
 	int i,j;
 	int c;
+	int **adding_num_path_of_curr_paths;
 
 	opt = alloc_options();
 	init_options(opt);
@@ -179,9 +180,22 @@ int main(int argc, char **argv){
 	/*  (* extend path */
 	max_level = (*opt).dsize;
 	for(level=2;level<=max_level;level++){
+		printf("path level %d:\n",level);
+		/* current level : to be made */
 		/* TODO : count num_path */
+		/* comp_node : path_list[cmp_path][level-2] */
 		for(cmp_path=0;cmp_path<num_path;cmp_path++){ /* comp to RNG edge */
 			for(edge=0;edge<num_RNG_edge*2;edge++){
+				printf("%d vs %d\n",path_list[cmp_path][level-2],RNG_edge.p[edge]);
+				/* if path_list[][] == RNG_edge.p[] ; comp RNG_edge.t[] != path_list[][0:level-2] then ; add */
+				/* check 
+				for(i=0;i<num_path;i++){
+					for(j=0;j<level-1;j++){
+						printf("%d-",path_list[i][j]);
+					}
+					printf("* vs %d\n",RNG_edge.p[edge]);
+				}
+				*/
 			}
 		}
 		/* TODO : allocation */
@@ -191,6 +205,7 @@ int main(int argc, char **argv){
 			}
 		}
 		/*TODO : free path_list at level-1 */
+		printf(":\n",level);
 	}
 	/*  *) */
 	/* *) */
