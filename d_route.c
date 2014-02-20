@@ -187,6 +187,10 @@ int main(int argc, char **argv){
 		for(cmp_path=0;cmp_path<num_path;cmp_path++){ /* comp to RNG edge */
 			for(edge=0;edge<num_RNG_edge*2;edge++){
 				printf("%d vs %d\n",path_list[cmp_path][level-2],RNG_edge.p[edge]);
+				if(path_list[cmp_path][level-2] == RNG_edge.p[edge]){
+					printf(" t:%d:\n",RNG_edge.t[edge]);
+					if_match_int_sc_vec(RNG_edge.t[edge],path_list[cmp_path],level-2);
+				}
 				/* if path_list[][] == RNG_edge.p[] ; comp RNG_edge.t[] != path_list[][0:level-2] then ; add */
 				/* check 
 				for(i=0;i<num_path;i++){
@@ -209,7 +213,6 @@ int main(int argc, char **argv){
 	}
 	/*  *) */
 	/* *) */
-
 
 	return(0);
 }
