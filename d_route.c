@@ -127,6 +127,8 @@ int main(int argc, char **argv){
 	
 	/* (* read RNG edge from ef */
 	/* TODO : count lines */
+	/* TODO : allocation */
+	/* TODO : read data */
 	/* *) */
 
 	/* (* analyze path */
@@ -141,7 +143,12 @@ int main(int argc, char **argv){
 	/*  (* extend path */
 	for(level=2;level<=N;level++){
 		/* TODO : count num_path */
+		for(cmp_path=0;cmp_path<num_path;cmp_path++){ /* comp to RNG edge */
+			for(edge=0;edge<num_RNG_edge*2;edge++){
+			}
+		}
 		/* TODO : allocation */
+		/* TODO : extend path */
 		for(cmp_path=0;cmp_path<num_path;cmp_path++){ /* comp to RNG edge */
 			for(edge=0;edge<num_RNG_edge*2;edge++){
 			}
