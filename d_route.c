@@ -100,6 +100,7 @@ int main(int argc, char **argv){
 	int level,N;
 	int cmp_path,num_path;
 	int edge,num_RNG_edge = 0;
+	int **path_list;
 	int i,j;
 
 	opt = alloc_options();
@@ -125,15 +126,29 @@ int main(int argc, char **argv){
 	}
 	
 	/* (* read RNG edge from ef */
+	/* TODO : count lines */
 	/* *) */
 
 	/* (* analyze path */
-	for(level=1;level<=N;level++){
+	/*  (* create first pathes level 1 */
+	level = 1;
+	num_path = (*opt).dsize;
+	path_list = i_alloc_mat(num_path,level);
+	for(i=0;i<num_path;i++){
+		path_list[i][0] = i;
+	}
+	/*  *) */
+	/*  (* extend path */
+	for(level=2;level<=N;level++){
+		/* TODO : count num_path */
+		/* TODO : allocation */
 		for(cmp_path=0;cmp_path<num_path;cmp_path++){ /* comp to RNG edge */
 			for(edge=0;edge<num_RNG_edge*2;edge++){
 			}
 		}
+		/*TODO : free path_list at level-1 */
 	}
+	/*  *) */
 	/* *) */
 
 
