@@ -93,7 +93,7 @@ int main(int argc, char **argv){
 	FILE *fp;
 	char *line;
 	struct edge RNG_edge;
-	int level,N;
+	int level,max_level;
 	int cmp_path,num_path;
 	int edge,num_RNG_edge = 0;
 	int **path_list;
@@ -177,7 +177,8 @@ int main(int argc, char **argv){
 	printf(":\n");
 	/*  *) */
 	/*  (* extend path */
-	for(level=2;level<=N;level++){
+	max_level = (*opt).dsize;
+	for(level=2;level<=max_level;level++){
 		/* TODO : count num_path */
 		for(cmp_path=0;cmp_path<num_path;cmp_path++){ /* comp to RNG edge */
 			for(edge=0;edge<num_RNG_edge*2;edge++){
