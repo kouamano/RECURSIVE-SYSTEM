@@ -172,7 +172,7 @@ int main(int argc, char **argv){
 		for(j=0;j<level;j++){
 			printf("%d-",path_list[i][j]);
 		}
-		printf("\n");
+		printf("*\n");
 	}
 	printf(":\n");
 	/*  *) */
@@ -185,7 +185,7 @@ int main(int argc, char **argv){
 			}
 		}
 		/* TODO : allocation */
-		/* TODO : extend path */
+		/* TODO : extend path at level from level-1 */
 		for(cmp_path=0;cmp_path<num_path;cmp_path++){ /* comp to RNG edge */
 			for(edge=0;edge<num_RNG_edge*2;edge++){
 			}
