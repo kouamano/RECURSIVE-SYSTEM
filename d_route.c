@@ -102,6 +102,7 @@ int main(int argc, char **argv){
 	int edge,num_RNG_edge = 0;
 	int **path_list;
 	int i,j;
+	int c;
 
 	opt = alloc_options();
 	init_options(opt);
@@ -126,9 +127,40 @@ int main(int argc, char **argv){
 	}
 	
 	/* (* read RNG edge from ef */
-	/* TODO : count lines */
-	/* TODO : allocation */
-	/* TODO : read data */
+	/*  (* raed */
+	line = c_alloc_vec(LEN);
+	if((fp = fopen((*opt).ef,"r")) == NULL){
+		perror((*opt).ef);
+		exit(1);
+	}
+	num_RNG_edge = 0;
+	while((c=fgetc(fp)) != EOF){
+		if((char)c == '\n'){
+			num_RNG_edge++;
+		}
+	}
+	printf("num_RNG_edge:%d:\n",num_RNG_edge);
+	fseek(fp,0U,SEEK_SET);
+	RNG_edge.p = i_alloc_vec(num_RNG_edge * 2);
+	RNG_edge.t = i_alloc_vec(num_RNG_edge * 2);
+	i = 0;
+	while((fgets(line,LEN,fp)) != NULL){
+		sscanf(line,"%d,%d",RNG_edge.p+i,RNG_edge.t+i);
+		i++;
+	}
+	fclose(fp);
+	/*  *) */
+	/*  (* extend data */
+	for(j=i;j<num_RNG_edge*2;j++){
+		RNG_edge.t[j] = RNG_edge.p[j-num_RNG_edge];
+		RNG_edge.p[j] = RNG_edge.t[j-num_RNG_edge];
+	}
+	printf("RNG_edge both:\n");
+	for(j=0;j<num_RNG_edge*2;j++){
+		printf("%d,%d\n",RNG_edge.p[j],RNG_edge.t[j]);
+	}
+	printf(":\n");
+	/*  *) */
 	/* *) */
 
 	/* (* analyze path */
