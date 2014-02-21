@@ -247,7 +247,7 @@ int main(int argc, char **argv){
 			}
 		}
 		/* *) */
-		/* (* print cmp_path_new <NEED> */
+		/* (* print cmp_path_new */
 		printf("  path_list_new:\n");
 		for(i=0;i<num_path_new;i++){
 			for(j=0;j<level;j++){
@@ -273,6 +273,7 @@ int main(int argc, char **argv){
 				path_list[i][j] = path_list_new[i][j];
 			}
 		}
+		/*  (* check */
 		printf("  path_list <copy>:\n");
 		for(i=0;i<num_path;i++){
 			for(j=0;j<level;j++){
@@ -281,6 +282,7 @@ int main(int argc, char **argv){
 			printf("*\n");
 		}
 		printf("  :\n");
+		/*  *) */
 		/* *) */
 		printf(":\n",level);
 
