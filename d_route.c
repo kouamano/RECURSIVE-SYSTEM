@@ -19,11 +19,10 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" d_route [-h] [-s] [-c] df=<dist matrix file> dsize=<size of dsit matrix> ef=<edge list file> .\n");
+	printf(" d_route [-h] [-s] [-c] dsize=<size of dsit matrix> ef=<edge list file> .\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
-	printf("  dist matrix : not triangle .\n");
 	printf("  size of dist matrix : single integer .\n");
 	printf("  edge list : output of RNG.\n");
 }
