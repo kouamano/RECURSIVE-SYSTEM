@@ -258,7 +258,7 @@ int main(int argc, char **argv){
 		printf("  :\n");
 		/* *) */
 		/* (* copy */
-		/*TODO : free path_list at level-1 */
+		/*TODO : free path_list at level-1 OK */
 		printf("   num_path:%d:\n",num_path);
 		printf("   num_path_new:%d:\n",num_path_new);
 
@@ -284,7 +284,6 @@ int main(int argc, char **argv){
 		/* *) */
 		printf(":\n",level);
 
-		//if(level == 2){exit(0);}
 	}
 	/*  *) */
 	/* *) */
