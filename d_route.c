@@ -154,11 +154,13 @@ int main(int argc, char **argv){
 		RNG_edge.t[j] = RNG_edge.p[j-num_RNG_edge];
 		RNG_edge.p[j] = RNG_edge.t[j-num_RNG_edge];
 	}
+	/*
 	printf("RNG_edge both:\n");
 	for(j=0;j<num_RNG_edge*2;j++){
 		printf("%d,%d\n",RNG_edge.p[j],RNG_edge.t[j]);
 	}
 	printf(":\n");
+	*/
 	/*  *) */
 	/* *) */
 
@@ -192,18 +194,17 @@ int main(int argc, char **argv){
 		/* (* count */
 		for(cmp_path=0;cmp_path<num_path;cmp_path++){ /* comp to RNG edge */
 			for(edge=0;edge<num_RNG_edge*2;edge++){
-				printf("%d vs %d\n",path_list[cmp_path][level-2],RNG_edge.p[edge]);
+				//printf("%d vs %d\n",path_list[cmp_path][level-2],RNG_edge.p[edge]);
 				/* if path_list[][] == RNG_edge.p[] ; comp RNG_edge.t[] != path_list[][0:level-2] then ; add */
 				if(path_list[cmp_path][level-2] == RNG_edge.p[edge]){
-					printf(" t:%d:\n",RNG_edge.t[edge]);
+					//printf(" t:%d:\n",RNG_edge.t[edge]);
 					if(if_match_int_sc_vec(RNG_edge.t[edge],path_list[cmp_path],level-2) == 0){
-						//for(i=0;i<num_path;i++){
+						/*
 						for(j=0;j<level-1;j++){
 							printf("%d-",path_list[cmp_path][j]);
-							
 						}
-						//}
-						printf("%d-*\n",RNG_edge.t[edge]);
+						*/
+						//printf("%d-*\n",RNG_edge.t[edge]);
 						adding_num_path++;
 					}
 				}
@@ -219,7 +220,7 @@ int main(int argc, char **argv){
 		}
 		/* *) */
 		/* (* add */
-		printf("  add_path:%d:\n",adding_num_path);
+		//printf("  add_path:%d:\n",adding_num_path);
 		num_path_new = adding_num_path;
 		path_list_new = i_alloc_mat(num_path_new,level);
 		/* TODO : extend path at level from level-1 OK */
@@ -227,16 +228,16 @@ int main(int argc, char **argv){
 		for(cmp_path=0;cmp_path<num_path;cmp_path++){ /* comp to RNG edge */
 			for(edge=0;edge<num_RNG_edge*2;edge++){
 				if(path_list[cmp_path][level-2] == RNG_edge.p[edge]){
-					printf(" t:%d:\n",RNG_edge.t[edge]);
+					//printf(" t:%d:\n",RNG_edge.t[edge]);
 					if(if_match_int_sc_vec(RNG_edge.t[edge],path_list[cmp_path],level-2) == 0){
 						//for(i=0;i<num_path;i++){
 						for(j=0;j<level-1;j++){
-							printf("%d-",path_list[cmp_path][j]);
+							//printf("%d-",path_list[cmp_path][j]);
 							path_list_new[cmp_path_new][j] = path_list[cmp_path][j];
 							
 						}
 						//}
-						printf("%d-*\n",RNG_edge.t[edge]);
+						//printf("%d-*\n",RNG_edge.t[edge]);
 						path_list_new[cmp_path_new][level-1] = RNG_edge.t[edge];
 						cmp_path_new++;
 						//adding_num_path++;
@@ -246,7 +247,7 @@ int main(int argc, char **argv){
 			}
 		}
 		/* *) */
-		/* (* print cmp_path_new */
+		/* (* print cmp_path_new 
 		printf("  path_list_new:\n");
 		for(i=0;i<num_path_new;i++){
 			for(j=0;j<level;j++){
@@ -255,7 +256,7 @@ int main(int argc, char **argv){
 			printf("*\n");
 		}
 		printf("  :\n");
-		/* *) */
+		*) */
 		/* (* copy */
 		/*TODO : free path_list at level-1 OK */
 		printf("   num_path:%d:\n",num_path);
