@@ -193,7 +193,24 @@ int main(int argc, char **argv){
 	}
 	/* *) */
 
-	/* (* route search */
+	/* (* route search (*opt).p to (*opt).t */
+	//flag used[p]
+	//for i in RNG_tbl.next_pos[p][i]
+		//func(){
+		//if not used[i]
+			//if RNG_tbl.next_pos[p][i] == t
+				//add t to route_mem
+				//add route_mem to route_tbl
+				// MAX(tmp_max,current) -> max
+				//all clear used
+				//all clear route_mem
+				//return(out)
+			//else
+				//add RNG_tbl.next_pos[p][i] to route_mem
+				// MAX(tmp_max,curent) -> tmp_max
+				//func()
+		//else retuen()
+		//}
 	/* *) */
 
 
