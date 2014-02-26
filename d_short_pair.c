@@ -165,8 +165,8 @@ int main(int argc, char **argv){
 	/* (* create RNG_tbl */
 	tmp_i_vec = i_alloc_vec((*opt).dsize);
 	RNG_tbl.size = i_alloc_vec((*opt).dsize);
-	RNG_tbl.used = i_calloc_vec((*opt).dsize);
 	RNG_tbl.next_pos = pi_alloc_vec((*opt).dsize);
+	RNG_tbl.next_pos_used = pi_alloc_vec((*opt).dsize);
 	for(i=0;i<(*opt).dsize;i++){
 		//printf("i:%d:\n",i);
 		count = 0;
@@ -179,6 +179,7 @@ int main(int argc, char **argv){
 		}
 		RNG_tbl.size[i] = count;
 		RNG_tbl.next_pos[i] = i_alloc_vec(RNG_tbl.size[i]);
+		//RNG_tbl.next_pos_used[i] = i_alloc_vec(RNG_tbl.size[i]);
 		for(k=0;k<RNG_tbl.size[i];k++){
 			RNG_tbl.next_pos[i][k] = tmp_i_vec[k];
 		}
@@ -207,14 +208,15 @@ int main(int argc, char **argv){
 				//all clear max,tmp_max
 				//all clear used
 				//all clear route_mem
-				//return(out)
+				//goto label_1
 			//else
 				//flag used[RNG_tbl.next_pos[route_mem[last]][i]]
 				//last ++
 				//MAX(tmp_max,curent) -> tmp_max
 				//add RNG_tbl.next_pos[route_mem[last]][i] to route_mem
 				//func(route_mem)
-		//else return()
+		//else goto label_1
+		//label_1
 	//}
 	/* *) */
 
