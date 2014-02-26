@@ -1,10 +1,11 @@
-/* d_route.edgeop.h */
+/* edgeop.h */
 struct edge {
 	int *p;
 	int *t;
 };
-/*
-int if_match_int_sc_vec(int sc, int *vec, int len){
-	return(0);
-}
-*/
+
+struct RNG_tbl{ /* node ID = position */
+	int *size;
+	int **next_pos;
+	int *useed;
+};
