@@ -4,8 +4,8 @@ struct edge {
 	int *t;
 };
 
-struct RNG_tbl{ /* node ID = position */
+struct RNG_table{ /* node ID = position */
 	int *size;
 	int **next_pos;
-	int *useed;
+	int *used;
 };
