@@ -165,6 +165,7 @@ int main(int argc, char **argv){
 	/* (* create RNG_tbl */
 	tmp_i_vec = i_alloc_vec((*opt).dsize);
 	RNG_tbl.size = i_alloc_vec((*opt).dsize);
+	RNG_tbl.used = i_calloc_vec((*opt).dsize);
 	RNG_tbl.next_pos = pi_alloc_vec((*opt).dsize);
 	for(i=0;i<(*opt).dsize;i++){
 		//printf("i:%d:\n",i);
@@ -190,6 +191,9 @@ int main(int argc, char **argv){
 		}
 		printf("\n");
 	}
+	/* *) */
+
+	/* (* route search */
 	/* *) */
 
 
