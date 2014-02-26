@@ -5,8 +5,8 @@
 #define LEN 1024
 #define MEM_BLK 1024
 #include "../include/alloc.c"
-#include "d_route.edgeop.h"
-#include "d_route.edgeop.c"
+#include "edgeop.h"
+#include "edgeop.c"
 
 struct options {
 	int help;
