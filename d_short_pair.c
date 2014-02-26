@@ -194,23 +194,28 @@ int main(int argc, char **argv){
 	/* *) */
 
 	/* (* route search (*opt).p to (*opt).t */
+	//func(tmp_max,route_mem,t) <- prog of func()
 	//flag used[p]
-	//for i in RNG_tbl.next_pos[p][i]
-		//func(){
-		//if not used[i]
-			//if RNG_tbl.next_pos[p][i] == t
+	//add p to route_mem
+	//prog of func(route_mem){
+	//for i in RNG_tbl.next_pos[route_mem[last]][i]
+		//if not used[RNG_tbl.next_pos[route_mem[last]][i]]
+			//if RNG_tbl.next_pos[route_mem[last]][i] == t
 				//add t to route_mem
 				//add route_mem to route_tbl
-				// MAX(tmp_max,current) -> max
+				//MAX(tmp_max,current) -> max ; add max to max_list
+				//all clear max,tmp_max
 				//all clear used
 				//all clear route_mem
 				//return(out)
 			//else
-				//add RNG_tbl.next_pos[p][i] to route_mem
-				// MAX(tmp_max,curent) -> tmp_max
-				//func()
-		//else retuen()
-		//}
+				//flag used[RNG_tbl.next_pos[route_mem[last]][i]]
+				//last ++
+				//MAX(tmp_max,curent) -> tmp_max
+				//add RNG_tbl.next_pos[route_mem[last]][i] to route_mem
+				//func(route_mem)
+		//else return()
+	//}
 	/* *) */
 
 
