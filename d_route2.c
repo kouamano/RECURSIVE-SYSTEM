@@ -1,4 +1,4 @@
-/* d_route.c */
+/*d_route2.c*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,7 +19,7 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" d_route [-h] [-s] [-c] dsize=<size of dsit matrix> ef=<edge list file> ; using struct edge .\n");
+	printf(" d_route2 [-h] [-s] [-c] dsize=<size of dsit matrix> ef=<edge list file> ; using struct edge_table.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
@@ -29,7 +29,7 @@ void help(void){
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" complete.\n");
+	printf(" under construction.\n");
 }
 
 struct options *alloc_options(void){
