@@ -105,7 +105,7 @@ int main(int argc, char **argv){
 	int c;
 	int num_RNG_edge = 0;
 	struct edge RNG_edge;
-	struct RNG_table RNG_tbl;
+	struct edge_table RNG_tbl;
 
 	int i,j,k,count;
 	int *tmp_i_vec;
