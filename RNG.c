@@ -155,7 +155,7 @@ int main(int argc, char **argv){
 				}
 			}
 			if(ng == 0){
-				printf("%d,%d\n",p,q);
+				printf("%d %d\n",p,q);
 			}
 		}
 	}
