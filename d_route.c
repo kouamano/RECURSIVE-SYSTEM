@@ -144,7 +144,7 @@ int main(int argc, char **argv){
 	RNG_edge.t = i_alloc_vec(num_RNG_edge * 2);
 	i = 0;
 	while((fgets(line,LEN,fp)) != NULL){
-		sscanf(line,"%d,%d",RNG_edge.p+i,RNG_edge.t+i);
+		sscanf(line,"%d %d",RNG_edge.p+i,RNG_edge.t+i);
 		i++;
 	}
 	fclose(fp);
