@@ -23,11 +23,11 @@ void help(void){
 	printf("  -h : print help and exit.\n");
 	printf("  -s : print status and exit.\n");
 	printf("  -c : print option values and exit.\n");
-	printf("  -i : gnore case.\n");
+	printf("  -i : ignore case.\n");
 	printf("  <query file> : query file, 1 term / 1 line.\n");
 	printf("  <source file> : source file, as single string.\n");
 	printf("  <query buf> : query buffer size,\n");
-	printf("              | -qb=0 : auto.\n");
+	printf("              | qb=0 : auto.\n");
 	printf("  -seek : seek source file without buffer.\n");
 }
 
@@ -103,6 +103,7 @@ int main(int argc, char **argv){
 	struct stat st_sfile;
 	char *qbuf;
 	char c;
+	int ie = 0;
 	int i;
 	int j;
 	int num_qptrs;
@@ -117,20 +118,30 @@ int main(int argc, char **argv){
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
 
+	//exit condition
+	if(strlen((*opt).qfile) == 0){
+		(*opt).help = 1;
+	}
+	if(strlen((*opt).sfile) == 0){
+		(*opt).help = 1;
+	}
 	//put help
 	if((*opt).help ==1){
 		help();
+		ie = 1;
 	}
 	//put status
 	if((*opt).stat ==1){
 		status();
+		ie = 1;
 	}
 	//put opt
 	if((*opt).check == 1){
 		check_options(opt);
+		ie = 1;
 	}
 	//exit
-	if(((*opt).help == 1) || ((*opt).stat == 1) || ((*opt).check == 1)){
+	if(ie > 0){
 		exit(0);
 	}
 
