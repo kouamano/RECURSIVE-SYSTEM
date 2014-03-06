@@ -206,7 +206,8 @@ int main(int argc, char **argv){
 	stat((*opt).sfile, &st_sfile);
 	//printf("OK2\n");
 	//set source_size
-	source_size = (st_sfile.st_size + 1);
+	//source_size = (st_sfile.st_size + 1);
+	source_size = st_sfile.st_size;
 	//alloc source
 	if((source = malloc(sizeof(char)*(source_size + 1))) == NULL){
 		printf("failed : malloc() for source.\n");
