@@ -137,10 +137,10 @@ int main(int argc, char **argv){
 	//get stat qfile
 	stat((*opt).qfile, &st_qfile);
 	//set (*opt).qsize
-	(*opt).qsize = (st_qfile.st_size + 1);
+	(*opt).qsize = (st_qfile.st_size);
 	  //printf("st_size:%d:\n",(*opt).qsize);
 	//alloc qbuf
-	if((qbuf = malloc(sizeof(char) * (*opt).qsize)) == NULL){
+	if((qbuf = malloc(sizeof(char) * ((*opt).qsize+1))) == NULL){
 		printf("failed : malloc() for qbuf.\n");
 		exit(1);
 	}
