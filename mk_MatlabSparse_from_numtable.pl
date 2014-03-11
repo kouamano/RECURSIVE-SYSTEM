@@ -32,5 +32,5 @@ for $mainKey ( keys %{$count} ){
 	}
 }
 @out = sort {$a <=> $b} @out;
-print "$cl\t$max_col\t$ol\n";
+print "$cl\t$max_col\t0\n";
 print @out;
