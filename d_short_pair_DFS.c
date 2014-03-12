@@ -16,11 +16,12 @@ struct options {
 	int dsize;
 	int p;
 	int t;
+	float cmm;
 };
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" template [-h] [-s] [-c] df=<dist mat file> dsize=<mat size> p=<primal node> t=<terminanode> ef=<edge file> .\n");
+	printf(" template [-h] [-s] [-c] df=<dist mat file> dsize=<mat size> p=<primal node> t=<terminanode> cmm=<current max-min> ef=<edge file> .\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
@@ -28,6 +29,7 @@ void help(void){
 	printf("  mat size : integer.\n");
 	printf("  primal node : integer.\n");
 	printf("  terminal node : integer.\n");
+	printf("  current max-min : float, current value of min(max(edge in route)).\n");
 	printf("  edge file : list of node vs node.\n");
 }
 
@@ -62,6 +64,7 @@ void init_options(struct options *opt){
 	(*opt).dsize = 0;
 	(*opt).p = 0;
 	(*opt).t = 0;
+	(*opt).cmm = 0;
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -83,6 +86,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"p=%d",&(*opt).p);
 		}else if(strncmp(optv[i],"t=",2) == 0){
 			sscanf(optv[i],"t=%d",&(*opt).t);
+		}else if(strncmp(optv[i],"cmm=",4) == 0){
+			sscanf(optv[i],"cmm=%f",&(*opt).cmm);
 
 		}
 	}
@@ -95,6 +100,7 @@ void check_options(struct options *opt){
 	printf(" opt.dsize:%d:\n",(*opt).dsize);
 	printf(" opt.p:%d:\n",(*opt).p);
 	printf(" opt.t:%d:\n",(*opt).t);
+	printf(" opt.cmm:%f:\n",(*opt).cmm);
 }
 
 int main(int argc, char **argv){
