@@ -94,6 +94,8 @@ int main(int argc, char **argv){
 	struct edge RNG_edge;
 	struct edge_table RNG_tbl;
 
+	float **dmat;
+
 	int i,j,k,count;
 	int *tmp_i_vec;
 
@@ -148,7 +150,6 @@ int main(int argc, char **argv){
 		RNG_edge.p[j] = RNG_edge.t[j-num_RNG_edge];
 	}
 	/* *) */
-
 	/* (* create RNG_tbl */
 	tmp_i_vec = i_alloc_vec((*opt).dsize);
 	RNG_tbl.size = i_alloc_vec((*opt).dsize);
@@ -179,33 +180,16 @@ int main(int argc, char **argv){
 		}
 		printf("\n");
 	}
+	printf(":\n");
 	/* *) */
 
-	/* (* route search (*opt).p to (*opt).t */
-	//func(tmp_max,route_mem,t) <- prog of func()
-	//flag used[p]
-	//add p to route_mem
-	//prog of func(route_mem){
-	//for i in RNG_tbl.next_pos[route_mem[last]][i]
-		//if not used[RNG_tbl.next_pos[route_mem[last]][i]]
-			//if RNG_tbl.next_pos[route_mem[last]][i] == t
-				//add t to route_mem
-				//add route_mem to route_tbl
-				//MAX(tmp_max,current) -> max ; add max to max_list
-				//all clear max,tmp_max
-				//all clear used
-				//all clear route_mem
-				//goto label_1
-			//else
-				//flag used[RNG_tbl.next_pos[route_mem[last]][i]]
-				//last ++
-				//MAX(tmp_max,curent) -> tmp_max
-				//add RNG_tbl.next_pos[route_mem[last]][i] to route_mem
-				//func(route_mem)
-		//else goto label_1
-		//label_1
-	//}
+	/* (* read dmat */
+	//allocation
+	dmat = f_calloc_mat((*opt).dsize,(*opt).dsize);
+	//open
+	//close
 	/* *) */
+
 
 
 	return(0);
