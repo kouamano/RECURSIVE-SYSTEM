@@ -190,6 +190,18 @@ int main(int argc, char **argv){
 	//close
 	/* *) */
 
+	/* (* refine dmat */
+	//for i in row
+		//for j in row
+			//for k in column
+				//comp(dmat[i] dmat[j])
+				//if dmat[i][k]!=0, dmat[j][k]!=0
+				//add stack max(pair);
+			//end for k
+		//end for j
+	//end for i
+	/* *) */
+
 
 
 	return(0);
