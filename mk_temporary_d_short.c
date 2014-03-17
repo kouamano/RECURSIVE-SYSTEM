@@ -12,6 +12,7 @@ struct options {
 	int help;
 	int stat;
 	int check;
+	int diag;
 	char *df;
 	char *ef;
 	int dsize;
@@ -20,10 +21,11 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" mk_temporary_d_short [-h] [-s] [-c] dsize=<mat size>  ef=<edge file with dist> cyc=<test cycle>\n");
+	printf(" mk_temporary_d_short [-h] [-s] [-c] [-d] dsize=<mat size>  ef=<edge file with dist> cyc=<test cycle>\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
+	printf("  -d : rewrite diagonal -> -1 .\n");
 	printf("  mat size : integer.\n");
 	printf("  edge file : list of node vs node and the distance, output of RNG_d .\n");
 	printf("  test cycle : cycle of test of full matrix for break.\n");
@@ -55,6 +57,7 @@ void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
 	(*opt).check = 0;
+	(*opt).diag = 0;
 	(*opt).ef[0] = '\0';
 	(*opt).dsize = 0;
 	(*opt).cycle = 10;
@@ -69,6 +72,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).stat = 1;
 		}else if(strcmp(optv[i],"-c") == 0){
 			(*opt).check = 1;
+		}else if(strcmp(optv[i],"-d") == 0){
+			(*opt).diag = 1;
 		}else if(strncmp(optv[i],"dsize=",6) == 0){
 			sscanf(optv[i],"dsize=%d",&(*opt).dsize);
 		//}else if(strncmp(optv[i],"df=",3) == 0){
@@ -88,6 +93,7 @@ void check_options(struct options *opt){
 	//printf(" opt.df:%s:\n",(*opt).df);
 	printf(" opt.ef:%s:\n",(*opt).ef);
 	printf(" opt.dsize:%d:\n",(*opt).dsize);
+	printf(" opt.diag:%d:\n",(*opt).diag);
 	printf(" opt.cycle:%d:\n",(*opt).cycle);
 }
 
@@ -209,7 +215,8 @@ int main(int argc, char **argv){
 				for(k=0;k<(*opt).dsize;k++){
 					//comp(dmat[i] dmat[j])
 					//if dmat[i][k]!=0, dmat[j][k]!=0
-					if((RNG_d_tbl[i][k] != -1) && (RNG_d_tbl[j][k] != -1)){
+					//if((RNG_d_tbl[i][k] != -1) && (RNG_d_tbl[j][k] != -1)){
+					if((RNG_d_tbl[i][k] >= 0) && (RNG_d_tbl[j][k] >= 0)){
 						//add max(pair) to min_stack; nim_stack_len++;
 						min_stack[min_stack_len] = max(RNG_d_tbl[i][k],RNG_d_tbl[j][k]);
 						min_stack_len++;
@@ -218,7 +225,7 @@ int main(int argc, char **argv){
 				}
 				//min of nim_stack
 				maxmin = f_min_list(min_stack_len,min_stack); // ?? can rewrite maxmin ??
-				/* if(i==j){ maxmin = 0; } // ?? needs ?? */
+				if((*opt).diag==1 && i==j){ maxmin = -1; } // ?? needs ??
 				//printf("maxmin:%f:\n",maxmin);
 				//rewrite RNG_d_tbl[i][j] <- nim(nin_stack);
 				if(min_stack_len > 0){
