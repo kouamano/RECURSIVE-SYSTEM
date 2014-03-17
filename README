@@ -1,2 +1,3 @@
 current:
-RNG.c
+mk_temporary_d_short.c
+対角行列の書き換えは必要か確認。
