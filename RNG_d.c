@@ -22,6 +22,8 @@ struct options {
 };
 
 void help(void){
+	printf("DESCRIPTION:\n");
+	printf(" RNG_d prints RNG edge with distance from distance matrix.\n");
 	printf("USAGE:\n");
 	printf(" RNG_d [-h] [-s] [-c] df=<file of distance matrix> size=<matrix size> .\n");
 	printf("  -h : help.\n");
@@ -155,7 +157,7 @@ int main(int argc, char **argv){
 				}
 			}
 			if(ng == 0){
-				printf("%d %d\n",p,q);
+				printf("%d %d %f\n",p,q,dmat[p][q]);
 			}
 		}
 	}
