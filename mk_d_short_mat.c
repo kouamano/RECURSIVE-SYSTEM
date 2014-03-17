@@ -12,6 +12,7 @@ struct options {
 	int help;
 	int stat;
 	int check;
+	int diag;
 	char *df;
 	char *ef;
 	int dsize;
@@ -19,10 +20,11 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" mk_d_short_mat [-h] [-s] [-c] dsize=<mat size>  ef=<edge file with dist> \n");
+	printf(" mk_d_short_mat [-h] [-s] [-c] [-d] dsize=<mat size>  ef=<edge file with dist> \n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
+	printf("  -d : rewrite diagonal -> -1 .\n");
 	printf("  mat size : integer.\n");
 	printf("  edge file : list of node vs node and the distance, output of RNG_d .\n");
 }
@@ -53,6 +55,7 @@ void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
 	(*opt).check = 0;
+	(*opt).diag = 0;
 	(*opt).ef[0] = '\0';
 	(*opt).dsize = 0;
 }
@@ -66,6 +69,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).stat = 1;
 		}else if(strcmp(optv[i],"-c") == 0){
 			(*opt).check = 1;
+		}else if(strcmp(optv[i],"-d") == 0){
+			(*opt).diag = 1;
 		}else if(strncmp(optv[i],"dsize=",6) == 0){
 			sscanf(optv[i],"dsize=%d",&(*opt).dsize);
 		//}else if(strncmp(optv[i],"df=",3) == 0){
@@ -79,6 +84,7 @@ void get_options(int optc, char **optv, struct options *opt){
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	//printf(" opt.df:%s:\n",(*opt).df);
+	printf(" opt.diag:%d:\n",(*opt).diag);
 	printf(" opt.ef:%s:\n",(*opt).ef);
 	printf(" opt.dsize:%d:\n",(*opt).dsize);
 }
@@ -207,7 +213,7 @@ int main(int argc, char **argv){
 				}
 				//min of nim_stack
 				maxmin = f_min_list(min_stack_len,min_stack); // ?? can rewrite maxmin ??
-				/* if(i==j){ maxmin = 0; } // ?? needs ?? */
+				if((*opt).diag==1 && i==j){ maxmin = -1; } // ?? needs ??
 				//printf("maxmin:%f:\n",maxmin);
 				//rewrite RNG_d_tbl[i][j] <- nim(nin_stack);
 				if(min_stack_len > 0){
