@@ -207,6 +207,7 @@ int main(int argc, char **argv){
 			}
 		//end for i
 		}
+		//check matrix for break
 	//end for l
 	}
 	/* *) */
