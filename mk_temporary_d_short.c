@@ -183,6 +183,7 @@ int main(int argc, char **argv){
 			for(j=0;j<(*opt).dsize;j++){
 				//for k in column
 				//min_stack_len = 0;
+				maxmin = 0;
 				min_stack_len = 0;
 				for(k=0;k<(*opt).dsize;k++){
 					//comp(dmat[i] dmat[j])
@@ -196,7 +197,11 @@ int main(int argc, char **argv){
 				}
 				//min of nim_stack
 				min_list(min_stack_len,min_stack,maxmin); // ?? can rewrite maxmin ??
+				printf("maxmin:%f:\n",maxmin);
 				//rewrite RNG_d_tbl[i][j] <- nim(nin_stack);
+				if(min_stack_len > 0){
+					RNG_d_tbl[i][j] = maxmin;
+				}
 			//end for j
 			}
 		//end for i
