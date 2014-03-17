@@ -157,7 +157,7 @@ int main(int argc, char **argv){
 				}
 			}
 			if(ng == 0){
-				printf("%d %d %f\n",p,q,dmat[p][q]);
+				printf("%d %d %.12lg\n",p,q,dmat[p][q]);
 			}
 		}
 	}
