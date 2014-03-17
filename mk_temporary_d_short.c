@@ -18,13 +18,12 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" template [-h] [-s] [-c] df=<dist mat file> dsize=<mat size>  ef=<edge file> \n");
+	printf(" template [-h] [-s] [-c] dsize=<mat size>  ef=<edge file with dist> \n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
-	printf("  dist mat : integer matrix.\n");
 	printf("  mat size : integer.\n");
-	printf("  edge file : list of node vs node, output of RNG.\n");
+	printf("  edge file : list of node vs node and the distance, output of RNG_d .\n");
 }
 
 void status(void){
@@ -53,7 +52,6 @@ void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
 	(*opt).check = 0;
-	(*opt).df[0] = '\0';
 	(*opt).ef[0] = '\0';
 	(*opt).dsize = 0;
 }
@@ -69,8 +67,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).check = 1;
 		}else if(strncmp(optv[i],"dsize=",6) == 0){
 			sscanf(optv[i],"dsize=%d",&(*opt).dsize);
-		}else if(strncmp(optv[i],"df=",3) == 0){
-			sscanf(optv[i],"df=%s",(*opt).df);
+		//}else if(strncmp(optv[i],"df=",3) == 0){
+			//sscanf(optv[i],"df=%s",(*opt).df);
 		}else if(strncmp(optv[i],"ef=",3) == 0){
 			sscanf(optv[i],"ef=%s",(*opt).ef);
 		}
@@ -79,7 +77,7 @@ void get_options(int optc, char **optv, struct options *opt){
 
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
-	printf(" opt.df:%s:\n",(*opt).df);
+	//printf(" opt.df:%s:\n",(*opt).df);
 	printf(" opt.ef:%s:\n",(*opt).ef);
 	printf(" opt.dsize:%d:\n",(*opt).dsize);
 }
@@ -124,6 +122,7 @@ int main(int argc, char **argv){
 	/* *) */
 
 	/* (* read RNG */
+	//must be rewrite
 	line = c_alloc_vec(LEN);
 	if((fp = fopen((*opt).ef,"r")) == NULL){
 		perror((*opt).ef);
@@ -150,7 +149,8 @@ int main(int argc, char **argv){
 		RNG_edge.p[j] = RNG_edge.t[j-num_RNG_edge];
 	}
 	/* *) */
-	/* (* create RNG_tbl */
+	/* (* create dmat (RNG_tbl) */
+	//must be rewite
 	tmp_i_vec = i_alloc_vec((*opt).dsize);
 	RNG_tbl.size = i_alloc_vec((*opt).dsize);
 	RNG_tbl.next_pos = pi_alloc_vec((*opt).dsize);
@@ -183,12 +183,6 @@ int main(int argc, char **argv){
 	printf(":\n");
 	/* *) */
 
-	/* (* read dmat */
-	//allocation
-	dmat = f_calloc_mat((*opt).dsize,(*opt).dsize);
-	//open
-	//close
-	/* *) */
 
 	/* (* refine dmat */
 	//for i in row
