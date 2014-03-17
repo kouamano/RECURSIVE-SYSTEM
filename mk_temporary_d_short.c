@@ -195,7 +195,7 @@ int main(int argc, char **argv){
 				//end for k
 				}
 				//min of nim_stack
-				min_list(min_stack_len,min_stack,maxmin); // ??
+				min_list(min_stack_len,min_stack,maxmin); // ?? can rewrite maxmin ??
 				//rewrite RNG_d_tbl[i][j] <- nim(nin_stack);
 			//end for j
 			}
