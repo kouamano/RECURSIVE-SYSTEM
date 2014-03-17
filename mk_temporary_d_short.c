@@ -15,16 +15,18 @@ struct options {
 	char *df;
 	char *ef;
 	int dsize;
+	int cycle;
 };
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" template [-h] [-s] [-c] dsize=<mat size>  ef=<edge file with dist> \n");
+	printf(" template [-h] [-s] [-c] dsize=<mat size>  ef=<edge file with dist> cyc=<test cycle>\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  mat size : integer.\n");
 	printf("  edge file : list of node vs node and the distance, output of RNG_d .\n");
+	printf("  test cycle : cycle of test of full matrix for break.\n");
 }
 
 void status(void){
@@ -55,6 +57,7 @@ void init_options(struct options *opt){
 	(*opt).check = 0;
 	(*opt).ef[0] = '\0';
 	(*opt).dsize = 0;
+	(*opt).cycle = 10;
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -72,6 +75,10 @@ void get_options(int optc, char **optv, struct options *opt){
 			//sscanf(optv[i],"df=%s",(*opt).df);
 		}else if(strncmp(optv[i],"ef=",3) == 0){
 			sscanf(optv[i],"ef=%s",(*opt).ef);
+		}else if(strncmp(optv[i],"cyc=",4) == 0){
+			sscanf(optv[i],"cyc=%d",&(*opt).cycle);
+		}else{
+			printf("unknown:%s:\n",optv[i]);
 		}
 	}
 }
@@ -81,6 +88,7 @@ void check_options(struct options *opt){
 	//printf(" opt.df:%s:\n",(*opt).df);
 	printf(" opt.ef:%s:\n",(*opt).ef);
 	printf(" opt.dsize:%d:\n",(*opt).dsize);
+	printf(" opt.cycle:%d:\n",(*opt).cycle);
 }
 
 int main(int argc, char **argv){
@@ -100,6 +108,7 @@ int main(int argc, char **argv){
 	float maxmin = 0;
 
 	int i,j,k,l;
+	int s,t,count;
 
 	/* (* check options */
 	opt = alloc_options();
@@ -138,7 +147,7 @@ int main(int argc, char **argv){
 			num_RNG_edge++;
 		}
 	}
-	printf("num_RNG_edge:%d:\n",num_RNG_edge);
+	//printf("num_RNG_edge:%d:\n",num_RNG_edge);
 	fseek(fp,0U,SEEK_SET);
 	RNG_edge_d.p = i_alloc_vec(num_RNG_edge);
 	RNG_edge_d.t = i_alloc_vec(num_RNG_edge);
@@ -150,9 +159,11 @@ int main(int argc, char **argv){
 	}
 	fclose(fp);
 	//check
+	/*
 	for(i=0;i<num_RNG_edge;i++){
 		printf("%d %d %f\n",RNG_edge_d.p[i],RNG_edge_d.t[i],RNG_edge_d.d[i]);
 	}
+	*/
 	/* *) */
 
 	/* (* create RNG_d_tbl */
@@ -163,6 +174,7 @@ int main(int argc, char **argv){
 		RNG_d_tbl[RNG_edge_d.t[i]][RNG_edge_d.p[i]] = RNG_edge_d.d[i];
 	}
 	//check
+	/*
 	printf("dsize:%d:\n",(*opt).dsize);
 	for(i=0;i<(*opt).dsize;i++){
 		for(j=0;j<(*opt).dsize;j++){
@@ -170,6 +182,7 @@ int main(int argc, char **argv){
 		}
 		printf("\n");
 	}
+	*/
 	/* *) */
 
 
@@ -178,9 +191,14 @@ int main(int argc, char **argv){
 	//for l in loop
 	for(l=0;l<(*opt).dsize;l++){
 		//for i in row
-		for(i=0;i<(*opt).dsize;i++){
+		for(i=0;i<(*opt).dsize;i++){ //rectangle
+		//for(i=1;i<(*opt).dsize;i++){ //triangle
 			//for j in row
-			for(j=0;j<(*opt).dsize;j++){
+			for(j=0;j<(*opt).dsize;j++){ //rectangle
+			//for(j=0;j<i;j++){ //triangle
+				if(RNG_d_tbl[i][j] != 0){
+					;
+				}else{
 				//for k in column
 				//min_stack_len = 0;
 				maxmin = 0;
@@ -203,17 +221,34 @@ int main(int argc, char **argv){
 				if(min_stack_len > 0){
 					RNG_d_tbl[i][j] = maxmin;
 				}
+				}
 			//end for j
 			}
 		//end for i
 		}
 		//check matrix for break
+		//count=0;
+		if((l+1)%(*opt).cycle == 0){
+			//printf("l:%d\n",l);
+			for(s=1;s<(*opt).dsize;s++){
+				for(t=0;t<s;t++){
+					if(RNG_d_tbl[s][t] == 0){
+						goto label1;
+					}else{
+						//count++;
+						;
+					}
+				}
+			}
+			break; //break l
+		}
+		label1:;
 	//end for l
 	}
 	/* *) */
 
 	/* (* print results */
-	printf("result after %d times loop:\n",l);
+	printf("#result after %d times loop:\n",l);
 	for(i=0;i<(*opt).dsize;i++){
 		printf("%f",RNG_d_tbl[i][0]);
 		for(j=1;j<(*opt).dsize;j++){
