@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/alloc.c"
+#include "../include/math_base.c"
 #define LEN 1024
 
 #include "edgeop.h"
@@ -96,6 +97,7 @@ int main(int argc, char **argv){
 	float **RNG_d_tbl;
 	float *min_stack;
 	int min_stack_len;
+	float maxmin = 0;
 
 	int i,j,k,l;
 
@@ -176,20 +178,25 @@ int main(int argc, char **argv){
 	//for l in loop
 	for(l=0;l<(*opt).dsize;l++){
 		//for i in row
-		min_stack_len = 0;
 		for(i=0;i<(*opt).dsize;i++){
 			//for j in row
 			for(j=0;j<(*opt).dsize;j++){
 				//for k in column
+				//min_stack_len = 0;
+				min_stack_len = 0;
 				for(k=0;k<(*opt).dsize;k++){
 					//comp(dmat[i] dmat[j])
 					//if dmat[i][k]!=0, dmat[j][k]!=0
-					//add max(pair) to min_stack; nim_stack_len++;
+					if((RNG_d_tbl[i][k] != 0) && (RNG_d_tbl[j][k] != 0)){
+						//add max(pair) to min_stack; nim_stack_len++;
+						min_stack[min_stack_len] = max(RNG_d_tbl[i][k],RNG_d_tbl[j][k]);
+						min_stack_len++;
+					}
 				//end for k
-				//min of nim_stack
-				//rewrite RNG_d_tbl[i][j] <- nim(nin_stack);
-				//min_stack_len = 0;
 				}
+				//min of nim_stack
+				min_list(min_stack_len,min_stack,maxmin); // ??
+				//rewrite RNG_d_tbl[i][j] <- nim(nin_stack);
 			//end for j
 			}
 		//end for i
@@ -199,7 +206,7 @@ int main(int argc, char **argv){
 	/* *) */
 
 	/* (* print results */
-	printf("result:\n");
+	printf("result after %d times loop:\n",l);
 	for(i=0;i<(*opt).dsize;i++){
 		printf("%f",RNG_d_tbl[i][0]);
 		for(j=1;j<(*opt).dsize;j++){
@@ -208,8 +215,6 @@ int main(int argc, char **argv){
 		printf("\n");
 	}
 	/* *) */
-
-
 
 	return(0);
 }
