@@ -160,6 +160,11 @@ int main(int argc, char **argv){
 	/* (* create RNG_d_tbl */
 	//must be rewite
 	RNG_d_tbl = f_calloc_mat((*opt).dsize,(*opt).dsize);
+	for(i=0;i<(*opt).dsize;i++){
+		for(j=0;j<(*opt).dsize;j++){
+			RNG_d_tbl[i][j] = -1;
+		}
+	}
 	for(i=0;i<num_RNG_edge;i++){
 		RNG_d_tbl[RNG_edge_d.p[i]][RNG_edge_d.t[i]] = RNG_edge_d.d[i];
 		RNG_d_tbl[RNG_edge_d.t[i]][RNG_edge_d.p[i]] = RNG_edge_d.d[i];
@@ -192,7 +197,7 @@ int main(int argc, char **argv){
 				for(k=0;k<(*opt).dsize;k++){
 					//comp(dmat[i] dmat[j])
 					//if dmat[i][k]!=0, dmat[j][k]!=0
-					if((RNG_d_tbl[i][k] != 0) && (RNG_d_tbl[j][k] != 0)){
+					if((RNG_d_tbl[i][k] != -1) && (RNG_d_tbl[j][k] != -1)){
 						//add max(pair) to min_stack; nim_stack_len++;
 						min_stack[min_stack_len] = max(RNG_d_tbl[i][k],RNG_d_tbl[j][k]);
 						min_stack_len++;
