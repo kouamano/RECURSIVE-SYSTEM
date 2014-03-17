@@ -4,6 +4,12 @@ struct edge {
 	int *t;
 };
 
+struct edge_d {
+	int *p;
+	int *t;
+	float *d;
+};
+
 struct edge_table{ /* node ID = position */
 	int *size;
 	int **next_pos;
