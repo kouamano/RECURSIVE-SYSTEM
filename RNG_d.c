@@ -1,4 +1,4 @@
-/* RNG.c */
+/* RNG_d.c */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -23,7 +23,7 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" RNG [-h] [-s] [-c] df=<file of distance matrix> size=<matrix size> .\n");
+	printf(" RNG_d [-h] [-s] [-c] df=<file of distance matrix> size=<matrix size> .\n");
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
@@ -33,7 +33,7 @@ void help(void){
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" complete.\n");
+	printf(" copy from RNG.\n");
 }
 
 struct options *alloc_options(void){
