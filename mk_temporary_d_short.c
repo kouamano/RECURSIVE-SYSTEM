@@ -97,8 +97,7 @@ int main(int argc, char **argv){
 	float *min_stack;
 	int min_stack_len;
 
-	int i,j,k,count;
-	int *tmp_i_vec;
+	int i,j,k,l;
 
 	/* (* check options */
 	opt = alloc_options();
@@ -175,6 +174,7 @@ int main(int argc, char **argv){
 	/* (* refine RNG_d_tbl */
 	min_stack = f_alloc_vec((*opt).dsize);
 	//for l in loop
+	for(l=0;l<(*opt).dsize;l++){
 		//for i in row
 		min_stack_len = 0;
 		for(i=0;i<(*opt).dsize;i++){
@@ -195,6 +195,7 @@ int main(int argc, char **argv){
 		//end for i
 		}
 	//end for l
+	}
 	/* *) */
 
 	/* (* print results */
