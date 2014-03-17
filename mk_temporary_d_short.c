@@ -90,9 +90,10 @@ int main(int argc, char **argv){
 	int c;
 	int num_RNG_edge = 0;
 	struct edge_d RNG_edge_d;
-	struct edge_table RNG_tbl;
+	//struct edge_table RNG_tbl;
 
-	float **dmat;
+	//float **dmat;
+	float **RNG_d_tbl;
 
 	int i,j,k,count;
 	int *tmp_i_vec;
@@ -145,13 +146,19 @@ int main(int argc, char **argv){
 	i++;
 	}
 	fclose(fp);
+	//check
 	for(i=0;i<num_RNG_edge;i++){
 		printf("%d %d %f\n",RNG_edge_d.p[i],RNG_edge_d.t[i],RNG_edge_d.d[i]);
 	}
 	/* *) */
 
-	/* (* create dmat (RNG_tbl) */
+	/* (* create RNG_d_tbl */
 	//must be rewite
+	RNG_d_tbl = f_calloc_mat((*opt).dsize,(*opt).dsize);
+	for(i=0;i<num_RNG_edge;i++){
+		RNG_d_tbl[RNG_edge_d.p[i]][RNG_edge_d.t[i]] = RNG_edge_d.d[i];
+		RNG_d_tbl[RNG_edge_d.t[i]][RNG_edge_d.p[i]] = RNG_edge_d.d[i];
+	}
 	/* *) */
 
 
@@ -161,8 +168,10 @@ int main(int argc, char **argv){
 			//for k in column
 				//comp(dmat[i] dmat[j])
 				//if dmat[i][k]!=0, dmat[j][k]!=0
-				//add stack max(pair);
+				//add max(pair) to min_stack; nim_stack_len++;
 			//end for k
+			//min of nim_stack
+			//rewrite RNG_d_tbl[i][j] <- nim(nin_stack);
 		//end for j
 	//end for i
 	/* *) */
