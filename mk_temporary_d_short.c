@@ -33,7 +33,7 @@ void help(void){
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" under construction.\n");
+	printf(" check algorithm: diag; condition of rewrite dist .\n");
 }
 
 struct options *alloc_options(void){
