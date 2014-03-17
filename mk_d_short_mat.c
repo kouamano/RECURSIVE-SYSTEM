@@ -197,7 +197,8 @@ int main(int argc, char **argv){
 				for(k=0;k<(*opt).dsize;k++){
 					//comp(dmat[i] dmat[j])
 					//if dmat[i][k]!=0, dmat[j][k]!=0
-					if((RNG_d_tbl[i][k] != -1) && (RNG_d_tbl[j][k] != -1)){
+					//if((RNG_d_tbl[i][k] != -1) && (RNG_d_tbl[j][k] != -1)){
+					if((RNG_d_tbl[i][k] >= 0) && (RNG_d_tbl[j][k] >= 0)){
 						//add max(pair) to min_stack; nim_stack_len++;
 						min_stack[min_stack_len] = max(RNG_d_tbl[i][k],RNG_d_tbl[j][k]);
 						min_stack_len++;
