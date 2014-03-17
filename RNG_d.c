@@ -35,7 +35,7 @@ void help(void){
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" copy from RNG.\n");
+	printf(" complete.\n");
 }
 
 struct options *alloc_options(void){
@@ -98,7 +98,7 @@ int main(int argc, char **argv){
 	int i,j,p,q,z;
 	int ng = 0;
 	//struct pair lunlist;
-	int num_lun;
+	//int num_lun;
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
