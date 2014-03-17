@@ -94,6 +94,8 @@ int main(int argc, char **argv){
 
 	//float **dmat;
 	float **RNG_d_tbl;
+	float *min_stack;
+	int min_stack_len;
 
 	int i,j,k,count;
 	int *tmp_i_vec;
@@ -159,21 +161,51 @@ int main(int argc, char **argv){
 		RNG_d_tbl[RNG_edge_d.p[i]][RNG_edge_d.t[i]] = RNG_edge_d.d[i];
 		RNG_d_tbl[RNG_edge_d.t[i]][RNG_edge_d.p[i]] = RNG_edge_d.d[i];
 	}
+	//check
+	printf("dsize:%d:\n",(*opt).dsize);
+	for(i=0;i<(*opt).dsize;i++){
+		for(j=0;j<(*opt).dsize;j++){
+			printf(" %f",RNG_d_tbl[i][j]);
+		}
+		printf("\n");
+	}
 	/* *) */
 
 
-	/* (* refine dmat */
-	//for i in row
-		//for j in row
-			//for k in column
-				//comp(dmat[i] dmat[j])
-				//if dmat[i][k]!=0, dmat[j][k]!=0
-				//add max(pair) to min_stack; nim_stack_len++;
-			//end for k
-			//min of nim_stack
-			//rewrite RNG_d_tbl[i][j] <- nim(nin_stack);
-		//end for j
-	//end for i
+	/* (* refine RNG_d_tbl */
+	min_stack = f_alloc_vec((*opt).dsize);
+	//for l in loop
+		//for i in row
+		min_stack_len = 0;
+		for(i=0;i<(*opt).dsize;i++){
+			//for j in row
+			for(j=0;j<(*opt).dsize;j++){
+				//for k in column
+				for(k=0;k<(*opt).dsize;k++){
+					//comp(dmat[i] dmat[j])
+					//if dmat[i][k]!=0, dmat[j][k]!=0
+					//add max(pair) to min_stack; nim_stack_len++;
+				//end for k
+				//min of nim_stack
+				//rewrite RNG_d_tbl[i][j] <- nim(nin_stack);
+				//min_stack_len = 0;
+				}
+			//end for j
+			}
+		//end for i
+		}
+	//end for l
+	/* *) */
+
+	/* (* print results */
+	printf("result:\n");
+	for(i=0;i<(*opt).dsize;i++){
+		printf("%f",RNG_d_tbl[i][0]);
+		for(j=1;j<(*opt).dsize;j++){
+			printf(" %f",RNG_d_tbl[i][j]);
+		}
+		printf("\n");
+	}
 	/* *) */
 
 
