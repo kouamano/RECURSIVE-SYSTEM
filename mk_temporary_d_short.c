@@ -89,7 +89,7 @@ int main(int argc, char **argv){
 	char *line;
 	int c;
 	int num_RNG_edge = 0;
-	struct edge RNG_edge;
+	struct edge_d RNG_edge_d;
 	struct edge_table RNG_tbl;
 
 	float **dmat;
@@ -121,7 +121,7 @@ int main(int argc, char **argv){
 	}
 	/* *) */
 
-	/* (* read RNG */
+	/* (* read RNG_d */
 	//must be rewrite
 	line = c_alloc_vec(LEN);
 	if((fp = fopen((*opt).ef,"r")) == NULL){
@@ -136,51 +136,22 @@ int main(int argc, char **argv){
 	}
 	printf("num_RNG_edge:%d:\n",num_RNG_edge);
 	fseek(fp,0U,SEEK_SET);
-	RNG_edge.p = i_alloc_vec(num_RNG_edge * 2);
-	RNG_edge.t = i_alloc_vec(num_RNG_edge * 2);
+	RNG_edge_d.p = i_alloc_vec(num_RNG_edge);
+	RNG_edge_d.t = i_alloc_vec(num_RNG_edge);
+	RNG_edge_d.d = f_alloc_vec(num_RNG_edge);
 	i = 0;
 	while((fgets(line,LEN,fp)) != NULL){
-		sscanf(line,"%d,%d",RNG_edge.p+i,RNG_edge.t+i);
+		sscanf(line,"%d %d %f",RNG_edge_d.p+i,RNG_edge_d.t+i,RNG_edge_d.d+i);
 	i++;
 	}
 	fclose(fp);
-	for(j=i;j<num_RNG_edge*2;j++){
-		RNG_edge.t[j] = RNG_edge.p[j-num_RNG_edge];
-		RNG_edge.p[j] = RNG_edge.t[j-num_RNG_edge];
+	for(i=0;i<num_RNG_edge;i++){
+		printf("%d %d %f\n",RNG_edge_d.p[i],RNG_edge_d.t[i],RNG_edge_d.d[i]);
 	}
 	/* *) */
+
 	/* (* create dmat (RNG_tbl) */
 	//must be rewite
-	tmp_i_vec = i_alloc_vec((*opt).dsize);
-	RNG_tbl.size = i_alloc_vec((*opt).dsize);
-	RNG_tbl.next_pos = pi_alloc_vec((*opt).dsize);
-	RNG_tbl.next_pos_used = pi_alloc_vec((*opt).dsize);
-	for(i=0;i<(*opt).dsize;i++){
-		//printf("i:%d:\n",i);
-		count = 0;
-		for(j=0;j<num_RNG_edge*2;j++){
-			//printf(" j:%d:\n",j);
-			if(i == RNG_edge.p[j]){
-				tmp_i_vec[count] = RNG_edge.t[j];
-				count++;
-			}
-		}
-		RNG_tbl.size[i] = count;
-		RNG_tbl.next_pos[i] = i_alloc_vec(RNG_tbl.size[i]);
-		//RNG_tbl.next_pos_used[i] = i_alloc_vec(RNG_tbl.size[i]);
-		for(k=0;k<RNG_tbl.size[i];k++){
-			RNG_tbl.next_pos[i][k] = tmp_i_vec[k];
-		}
-	}
-	printf("RNG_tbl:\n");
-	for(i=0;i<(*opt).dsize;i++){
-		printf("[%d]",i);
-		for(k=0;k<RNG_tbl.size[i];k++){
-			printf(",%d",RNG_tbl.next_pos[i][k]);
-		}
-		printf("\n");
-	}
-	printf(":\n");
 	/* *) */
 
 
