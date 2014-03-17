@@ -233,7 +233,7 @@ int main(int argc, char **argv){
 			for(s=1;s<(*opt).dsize;s++){
 				for(t=0;t<s;t++){
 					if(RNG_d_tbl[s][t] == 0){
-						goto label1;
+						goto remain;
 					}else{
 						//count++;
 						;
@@ -242,7 +242,7 @@ int main(int argc, char **argv){
 			}
 			break; //break l
 		}
-		label1:;
+		remain:;
 	//end for l
 	}
 	/* *) */
