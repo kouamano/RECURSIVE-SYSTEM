@@ -1,4 +1,4 @@
-/* mk_temporary_d_short.c */
+/* mk_d_short_mat.c */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,7 +19,7 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" template [-h] [-s] [-c] dsize=<mat size>  ef=<edge file with dist> \n");
+	printf(" mk_d_short_mat [-h] [-s] [-c] dsize=<mat size>  ef=<edge file with dist> \n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
@@ -138,7 +138,7 @@ int main(int argc, char **argv){
 			num_RNG_edge++;
 		}
 	}
-	printf("num_RNG_edge:%d:\n",num_RNG_edge);
+	//printf("num_RNG_edge:%d:\n",num_RNG_edge);
 	fseek(fp,0U,SEEK_SET);
 	RNG_edge_d.p = i_alloc_vec(num_RNG_edge);
 	RNG_edge_d.t = i_alloc_vec(num_RNG_edge);
@@ -150,9 +150,11 @@ int main(int argc, char **argv){
 	}
 	fclose(fp);
 	//check
+	/*
 	for(i=0;i<num_RNG_edge;i++){
 		printf("%d %d %f\n",RNG_edge_d.p[i],RNG_edge_d.t[i],RNG_edge_d.d[i]);
 	}
+	*/
 	/* *) */
 
 	/* (* create RNG_d_tbl */
@@ -163,6 +165,7 @@ int main(int argc, char **argv){
 		RNG_d_tbl[RNG_edge_d.t[i]][RNG_edge_d.p[i]] = RNG_edge_d.d[i];
 	}
 	//check
+	/*
 	printf("dsize:%d:\n",(*opt).dsize);
 	for(i=0;i<(*opt).dsize;i++){
 		for(j=0;j<(*opt).dsize;j++){
@@ -170,6 +173,7 @@ int main(int argc, char **argv){
 		}
 		printf("\n");
 	}
+	*/
 	/* *) */
 
 
@@ -212,7 +216,7 @@ int main(int argc, char **argv){
 	/* *) */
 
 	/* (* print results */
-	printf("result after %d times loop:\n",l);
+	//printf("result after %d times loop:\n",l);
 	for(i=0;i<(*opt).dsize;i++){
 		printf("%f",RNG_d_tbl[i][0]);
 		for(j=1;j<(*opt).dsize;j++){
