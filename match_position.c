@@ -3,6 +3,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <fcntl.h>
 #include <unistd.h>
 #include <ctype.h>
 #define F_NAME_LEN 1024
@@ -38,7 +39,7 @@ void status(void){
 
 struct options *alloc_options(void){
 	struct options *p;
-	if((p = malloc(sizeof(struct options) * 1)) == NULL){
+	if((p = malloc(sizeof(struct options) * 2)) == NULL){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
@@ -100,9 +101,9 @@ int main(int argc, char **argv){
 	//vars
 	struct options *opt;
 	FILE *IN;
-	FILE *SIN;
-	struct stat st_qfile;
-	struct stat st_sfile;
+	//FILE *SIN;
+	//struct stat st_qfile;
+	//struct stat st_sfile;
 	char *qbuf;
 	char c;
 	int ie = 0;
@@ -111,7 +112,8 @@ int main(int argc, char **argv){
 	int num_qptrs;
 	int *qptrs;
 	int curr_pos_qptr;
-	int source_size;
+	//int source_size;
+	size_t source_size;
 	char *source;
 	//int tmp_len;
 
@@ -148,15 +150,28 @@ int main(int argc, char **argv){
 	}
 
 	//get stat qfile
-	stat((*opt).qfile, &st_qfile);
-	//set (*opt).qsize
-	(*opt).qsize = (st_qfile.st_size);
-	  //printf("st_size:%d:\n",(*opt).qsize);
+	//stat((*opt).qfile, &st_qfile);
+	//(*opt).qsize = (st_qfile.st_size);
+
+	//get qfile size
+	if((IN = fopen((*opt).qfile,"r")) == NULL){
+		perror((*opt).qfile);
+		exit(1);
+	}
+	i = 0;
+	while(((c = fgetc(IN)) != EOF)){
+		i++;
+	}
+	(*opt).qsize = i;
+	fclose(IN);
+	//printf(":%d:\n",(*opt).qsize);
+	//exit(0);
 	//alloc qbuf
-	if((qbuf = malloc(sizeof(char) * ((*opt).qsize+1))) == NULL){
+	if((qbuf = malloc(sizeof(char) * (((*opt).qsize) + 1))) == NULL){
 		printf("failed : malloc() for qbuf.\n");
 		exit(1);
 	}
+	qbuf[(*opt).qsize] = '\0';
 
 	//open qfile
 	if((IN = fopen((*opt).qfile,"r")) == NULL){
@@ -195,7 +210,7 @@ int main(int argc, char **argv){
 	fclose(IN);
 
 	//alloc qptrs
-	if((qptrs = malloc(sizeof(int) * num_qptrs)) == NULL){
+	if((qptrs = malloc(sizeof(int) * (num_qptrs + 1))) == NULL){
 		printf("failed : malloc() for qptrs.\n");
 		exit(1);
 	}
@@ -209,6 +224,7 @@ int main(int argc, char **argv){
 			qptrs[curr_pos_qptr] = (i+1);
 		}
 	}
+	//printf("[OK1]\n");
 	  //test
 	//fprintf(stdout,":::%d:::\n",num_qptrs);
 	//for(i=0;i<num_qptrs;i++){
@@ -218,11 +234,23 @@ int main(int argc, char **argv){
 	//fprintf(stdout,"\n");
 
 	//get stat sfile
-	stat((*opt).sfile, &st_sfile);
-	//printf("OK2\n");
-	//set source_size
-	//source_size = (st_sfile.st_size + 1);
-	source_size = st_sfile.st_size;
+	//stat((*opt).sfile, &st_sfile);
+	//source_size = st_sfile.st_size;
+
+	//get sfile size
+	//printf("[OK2]\n");
+	if((IN = fopen((*opt).sfile,"r")) == NULL){
+		//perror((*opt).sfile);
+		exit(1);
+	}
+	//printf("[OK3]\n");
+	i = 0;
+	while((c = getc(IN)) != EOF){
+		i++;
+	}
+	source_size = i;
+	fclose(IN);
+
 	//alloc source
 	if((source = malloc(sizeof(char)*(source_size + 1))) == NULL){
 		printf("failed : malloc() for source.\n");
@@ -230,14 +258,14 @@ int main(int argc, char **argv){
 	}
 
 	//open sfile
-	if((SIN = fopen((*opt).sfile,"r")) == NULL){
+	if((IN = fopen((*opt).sfile,"r")) == NULL){
 		perror((*opt).sfile);
 		exit(1);
 	}
 	//read sfile
 	//if((*opt).ign == 0){
 		i = 0;
-		while(((c = fgetc(SIN)) != EOF)){
+		while(((c = fgetc(IN)) != EOF)){
 			source[i] = c;
 			i++;
 		}
@@ -245,7 +273,7 @@ int main(int argc, char **argv){
 	//}else{
 	/*
 		i = 0;
-		while(((c = fgetc(SIN)) != EOF)){
+		while(((c = fgetc(IN)) != EOF)){
 			source[i] = toupper(c);
 			i++;
 		}
@@ -253,7 +281,7 @@ int main(int argc, char **argv){
 	*/
 	//}
 	//close sfile
-	fclose(SIN);
+	fclose(IN);
 
 	//scan
 	if((*opt).ign == 0){
