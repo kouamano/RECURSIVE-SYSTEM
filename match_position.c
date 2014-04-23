@@ -240,7 +240,7 @@ int main(int argc, char **argv){
 	//get sfile size
 	//printf("[OK2]\n");
 	if((IN = fopen((*opt).sfile,"r")) == NULL){
-		//perror((*opt).sfile);
+		perror((*opt).sfile);
 		exit(1);
 	}
 	//printf("[OK3]\n");
