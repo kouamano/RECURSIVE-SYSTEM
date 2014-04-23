@@ -94,6 +94,8 @@ void check_options(struct options *opt){
 	printf("opt.sfile:%s:\n",(*opt).sfile);
 }
 
+#include "strncmpi.c"
+
 int main(int argc, char **argv){
 	//vars
 	struct options *opt;
@@ -162,7 +164,7 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	//read qfile
-	if((*opt).ign == 0){ // case sensitive
+	//if((*opt).ign == 0){ // case sensitive
 		i = 0;
 		num_qptrs = 0;
 		while(((c = fgetc(IN)) != EOF)){
@@ -174,7 +176,8 @@ int main(int argc, char **argv){
 			i++;
 		}
 		qbuf[i] = '\0';
-	}else{ //case ignore
+	//}else{ //case ignore
+	/*
 		i = 0;
 		num_qptrs = 0;
 		while(((c = fgetc(IN)) != EOF)){
@@ -186,7 +189,8 @@ int main(int argc, char **argv){
 			i++;
 		}
 		qbuf[i] = '\0';
-	}
+	*/
+	//}
 	//close qfile
 	fclose(IN);
 
@@ -231,34 +235,49 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	//read sfile
-	if((*opt).ign == 0){
+	//if((*opt).ign == 0){
 		i = 0;
 		while(((c = fgetc(SIN)) != EOF)){
 			source[i] = c;
 			i++;
 		}
 		source[i] = '\0';
-	}else{
+	//}else{
+	/*
 		i = 0;
 		while(((c = fgetc(SIN)) != EOF)){
 			source[i] = toupper(c);
 			i++;
 		}
 		source[i] = '\0';
-	}
+	*/
+	//}
 	//close sfile
 	fclose(SIN);
 
 	//scan
-	for(i=0;i<num_qptrs;i++){  //query
-		//printf("%s: ",qbuf+(qptrs[i]));
-		for(j=0;j<source_size;j++){
-			//printf("sptr:%d:\n",j);
-			if(strncmp(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
-				printf("%s	%d	%d\n",qbuf+(qptrs[i]),j,j-1+(int)strlen(qbuf+(qptrs[i])));
+	if((*opt).ign == 0){
+		for(i=0;i<num_qptrs;i++){  //query
+			//printf("%s: ",qbuf+(qptrs[i]));
+			for(j=0;j<source_size;j++){
+				//printf("sptr:%d:\n",j);
+				if(strncmp(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
+					printf("%s	%d	%d\n",qbuf+(qptrs[i]),j,j-1+(int)strlen(qbuf+(qptrs[i])));
+				}
 			}
+			//printf("\n");
 		}
-		//printf("\n");
+	}else{
+		for(i=0;i<num_qptrs;i++){  //query
+			//printf("%s: ",qbuf+(qptrs[i]));
+			for(j=0;j<source_size;j++){
+				//printf("sptr:%d:\n",j);
+				if(strncmpi(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
+					printf("%s	%d	%d\n",qbuf+(qptrs[i]),j,j-1+(int)strlen(qbuf+(qptrs[i])));
+				}
+			}
+			//printf("\n");
+		}
 	}
 	return(0);
 }
