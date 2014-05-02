@@ -39,7 +39,7 @@ void status(void){
 
 struct options *alloc_options(void){
 	struct options *p;
-	if((p = malloc(sizeof(struct options) * 2)) == NULL){
+	if((p = malloc(sizeof(struct options) * 1)) == NULL){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
