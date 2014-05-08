@@ -20,7 +20,7 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" match_potistion [-h] [-s] [-c] [-i] qf=<query file> sf=<source file> [qb=<query buf>] -seek(not available)\n");
+	printf(" match_potistion [-h] [-s] [-c] [-i] qf=<query file> sf=<source file> [qb=<query buf>] [ex=<bytes for extra print>]\n");
 	printf("  -h : print help and exit.\n");
 	printf("  -s : print status and exit.\n");
 	printf("  -c : print option values and exit.\n");
@@ -29,12 +29,12 @@ void help(void){
 	printf("  <source file> : source file, as single string.\n");
 	printf("  <query buf> : query buffer size,\n");
 	printf("              | qb=0 : auto.\n");
-	printf("  -seek : seek source file without buffer.\n");
+	printf("  <bytes for extra print> : print extra byte at both ends (int).\n");
 }
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" Under construction.\n");
+	printf(" Under construction: ex option.\n");
 }
 
 struct options *alloc_options(void){
