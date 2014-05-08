@@ -101,9 +101,6 @@ int main(int argc, char **argv){
 	//vars
 	struct options *opt;
 	FILE *IN;
-	//FILE *SIN;
-	//struct stat st_qfile;
-	//struct stat st_sfile;
 	char *qbuf;
 	char c;
 	int ie = 0;
@@ -112,10 +109,8 @@ int main(int argc, char **argv){
 	int num_qptrs;
 	int *qptrs;
 	int curr_pos_qptr;
-	//int source_size;
 	size_t source_size;
 	char *source;
-	//int tmp_len;
 
 	//option analysis
 	opt = alloc_options();
@@ -149,10 +144,6 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 
-	//get stat qfile
-	//stat((*opt).qfile, &st_qfile);
-	//(*opt).qsize = (st_qfile.st_size);
-
 	//get qfile size
 	if((IN = fopen((*opt).qfile,"r")) == NULL){
 		perror((*opt).qfile);
@@ -164,8 +155,7 @@ int main(int argc, char **argv){
 	}
 	(*opt).qsize = i;
 	fclose(IN);
-	//printf(":%d:\n",(*opt).qsize);
-	//exit(0);
+
 	//alloc qbuf
 	if((qbuf = malloc(sizeof(char) * (((*opt).qsize) + 1))) == NULL){
 		printf("failed : malloc() for qbuf.\n");
@@ -179,33 +169,17 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	//read qfile
-	//if((*opt).ign == 0){ // case sensitive
-		i = 0;
-		num_qptrs = 0;
-		while(((c = fgetc(IN)) != EOF)){
-			if(c == '\n'){
-				num_qptrs++;
-				c = '\0';
-			}
-			qbuf[i] = c;
-			i++;
+	i = 0;
+	num_qptrs = 0;
+	while(((c = fgetc(IN)) != EOF)){
+		if(c == '\n'){
+			num_qptrs++;
+			c = '\0';
 		}
-		qbuf[i] = '\0';
-	//}else{ //case ignore
-	/*
-		i = 0;
-		num_qptrs = 0;
-		while(((c = fgetc(IN)) != EOF)){
-			if(c == '\n'){
-				num_qptrs++;
-				c = '\0';
-			}
-			qbuf[i] = toupper(c);
-			i++;
-		}
-		qbuf[i] = '\0';
-	*/
-	//}
+		qbuf[i] = c;
+		i++;
+	}
+	qbuf[i] = '\0';
 	//close qfile
 	fclose(IN);
 
@@ -224,26 +198,12 @@ int main(int argc, char **argv){
 			qptrs[curr_pos_qptr] = (i+1);
 		}
 	}
-	//printf("[OK1]\n");
-	  //test
-	//fprintf(stdout,":::%d:::\n",num_qptrs);
-	//for(i=0;i<num_qptrs;i++){
-	//	fprintf(stdout,"%s",qbuf+(qptrs[i]));
-	//	fprintf(stdout,":%d:",strlen(qbuf+(qptrs[i])));
-	//}
-	//fprintf(stdout,"\n");
-
-	//get stat sfile
-	//stat((*opt).sfile, &st_sfile);
-	//source_size = st_sfile.st_size;
 
 	//get sfile size
-	//printf("[OK2]\n");
 	if((IN = fopen((*opt).sfile,"r")) == NULL){
 		perror((*opt).sfile);
 		exit(1);
 	}
-	//printf("[OK3]\n");
 	i = 0;
 	while((c = getc(IN)) != EOF){
 		i++;
@@ -263,23 +223,12 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	//read sfile
-	//if((*opt).ign == 0){
-		i = 0;
-		while(((c = fgetc(IN)) != EOF)){
-			source[i] = c;
-			i++;
-		}
-		source[i] = '\0';
-	//}else{
-	/*
-		i = 0;
-		while(((c = fgetc(IN)) != EOF)){
-			source[i] = toupper(c);
-			i++;
-		}
-		source[i] = '\0';
-	*/
-	//}
+	i = 0;
+	while(((c = fgetc(IN)) != EOF)){
+		source[i] = c;
+		i++;
+	}
+	source[i] = '\0';
 	//close sfile
 	fclose(IN);
 
