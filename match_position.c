@@ -238,31 +238,45 @@ int main(int argc, char **argv){
 	fclose(IN);
 
 	//scan
-	if((*opt).ign == 0){
+	if((*opt).ign == 0 && (*opt).ex == 0){
 		for(i=0;i<num_qptrs;i++){  //query
-			//printf("%s: ",qbuf+(qptrs[i]));
 			for(j=0;j<source_size;j++){
-				//printf("sptr:%d:\n",j);
 				if(strncmp(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
-					//printf("%s	%d	%d\n",qbuf+(qptrs[i]),j,j-1+(int)strlen(qbuf+(qptrs[i])));
 					printf("%s",qbuf+(qptrs[i]));
 					printf("	%d	%d\n",j,j-1+(int)strlen(qbuf+(qptrs[i])));
 				}
 			}
-			//printf("\n");
 		}
-	}else{
+	}else if((*opt).ign != 0 && (*opt).ex == 0){
 		for(i=0;i<num_qptrs;i++){  //query
-			//printf("%s: ",qbuf+(qptrs[i]));
 			for(j=0;j<source_size;j++){
-				//printf("sptr:%d:\n",j);
 				if(strncmpi(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
-					//printf("%s	%d	%d\n",qbuf+(qptrs[i]),j,j-1+(int)strlen(qbuf+(qptrs[i])));
 					printf("%s",qbuf+(qptrs[i]));
 					printf("	%d	%d\n",j,j-1+(int)strlen(qbuf+(qptrs[i])));
 				}
 			}
-			//printf("\n");
+		}
+	}else if((*opt).ign == 0 && (*opt).ex != 0){ //Under construction
+		for(i=0;i<num_qptrs;i++){  //query
+			for(j=0;j<source_size;j++){
+				if(strncmp(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
+					// printf(extra byte)
+					printf("%s",qbuf+(qptrs[i]));
+					// printf(extra byte)
+					printf("	%d	%d\n",j,j-1+(int)strlen(qbuf+(qptrs[i])));
+				}
+			}
+		}
+	}else if((*opt).ign != 0 && (*opt).ex != 0){ //Under construction
+		for(i=0;i<num_qptrs;i++){  //query
+			for(j=0;j<source_size;j++){
+				if(strncmpi(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
+					// printf(extra byte)
+					printf("%s",qbuf+(qptrs[i]));
+					// printf(extra byte)
+					printf("	%d	%d\n",j,j-1+(int)strlen(qbuf+(qptrs[i])));
+				}
+			}
 		}
 	}
 	return(0);
