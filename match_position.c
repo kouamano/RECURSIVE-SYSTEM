@@ -14,6 +14,7 @@ struct options {
 	int check;
 	int qsize;
 	int ign;
+	int ex;
 	char *sfile;
 	char *qfile;
 };
@@ -59,6 +60,7 @@ void init_options(struct options *opt){
 	(*opt).stat = 0;
 	(*opt).check = 0;
 	(*opt).ign = 0;
+	(*opt).ex = 0;
 	(*opt).qsize = 0;
 	(*opt).sfile[0] = '\0';
 	(*opt).qfile[0] = '\0';
@@ -79,6 +81,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"qf=%s",(*opt).qfile);
 		}else if(strncmp(optv[i],"sf=",3) == 0){
 			sscanf(optv[i],"sf=%s",(*opt).sfile);
+		}else if(strncmp(optv[i],"ex=",3) == 0){
+			sscanf(optv[i],"ex=%d",&(*opt).ex);
 		}else{
 			fprintf(stderr,"%s : undefined.\n",optv[i]);
 		}
@@ -90,6 +94,7 @@ void check_options(struct options *opt){
 	printf("opt.stat:%d:\n",(*opt).stat);
 	printf("opt.check:%d:\n",(*opt).check);
 	printf("opt.ign:%d:\n",(*opt).ign);
+	printf("opt.ex:%d:\n",(*opt).ex);
 	printf("opt.qsize:%d:\n",(*opt).qsize);
 	printf("opt.qfile:%s:\n",(*opt).qfile);
 	printf("opt.sfile:%s:\n",(*opt).sfile);
@@ -239,7 +244,9 @@ int main(int argc, char **argv){
 			for(j=0;j<source_size;j++){
 				//printf("sptr:%d:\n",j);
 				if(strncmp(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
-					printf("%s	%d	%d\n",qbuf+(qptrs[i]),j,j-1+(int)strlen(qbuf+(qptrs[i])));
+					//printf("%s	%d	%d\n",qbuf+(qptrs[i]),j,j-1+(int)strlen(qbuf+(qptrs[i])));
+					printf("%s",qbuf+(qptrs[i]));
+					printf("	%d	%d\n",j,j-1+(int)strlen(qbuf+(qptrs[i])));
 				}
 			}
 			//printf("\n");
@@ -250,7 +257,9 @@ int main(int argc, char **argv){
 			for(j=0;j<source_size;j++){
 				//printf("sptr:%d:\n",j);
 				if(strncmpi(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
-					printf("%s	%d	%d\n",qbuf+(qptrs[i]),j,j-1+(int)strlen(qbuf+(qptrs[i])));
+					//printf("%s	%d	%d\n",qbuf+(qptrs[i]),j,j-1+(int)strlen(qbuf+(qptrs[i])));
+					printf("%s",qbuf+(qptrs[i]));
+					printf("	%d	%d\n",j,j-1+(int)strlen(qbuf+(qptrs[i])));
 				}
 			}
 			//printf("\n");
