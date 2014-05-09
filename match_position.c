@@ -273,7 +273,7 @@ int main(int argc, char **argv){
 					// print extra byte
 					b_tail = 0;
 					for(k=0;k<(*opt).ex;k++){
-						if(j+strlen(qbuf+qptrs[i])+k <= source_size){
+						if(j+strlen(qbuf+qptrs[i])+k < source_size){
 							putchar(*(source+j+strlen(qbuf+qptrs[i])+k));
 							b_tail++;
 						}
@@ -302,7 +302,7 @@ int main(int argc, char **argv){
 					// print extra byte
 					b_tail = 0;
 					for(k=0;k<(*opt).ex;k++){
-						if(j+strlen(qbuf+qptrs[i])+k <= source_size){
+						if(j+strlen(qbuf+qptrs[i])+k < source_size){
 							putchar(*(source+j+strlen(qbuf+qptrs[i])+k));
 							b_tail++;
 						}
