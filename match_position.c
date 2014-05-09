@@ -256,7 +256,7 @@ int main(int argc, char **argv){
 				}
 			}
 		}
-	}else if((*opt).ign == 0 && (*opt).ex != 0){ //Under construction
+	}else if((*opt).ign == 0 && (*opt).ex > 0){
 		for(i=0;i<num_qptrs;i++){  //query
 			for(j=0;j<source_size;j++){ //source
 				if(strncmp(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
@@ -285,7 +285,7 @@ int main(int argc, char **argv){
 				}
 			}
 		}
-	}else if((*opt).ign != 0 && (*opt).ex != 0){ //Under construction
+	}else if((*opt).ign != 0 && (*opt).ex > 0){
 		for(i=0;i<num_qptrs;i++){  //query
 			for(j=0;j<source_size;j++){ //source
 				if(strncmpi(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
