@@ -35,7 +35,7 @@ void help(void){
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" Under construction: ex option.\n");
+	printf(" available.\n");
 }
 
 struct options *alloc_options(void){
@@ -109,13 +109,13 @@ int main(int argc, char **argv){
 	char *qbuf;
 	char c;
 	int ie = 0;
-	int i;
-	int j;
+	int i, j, k;
 	int num_qptrs;
 	int *qptrs;
 	int curr_pos_qptr;
 	size_t source_size;
 	char *source;
+	int b_head, b_tail;
 
 	//option analysis
 	opt = alloc_options();
@@ -240,7 +240,7 @@ int main(int argc, char **argv){
 	//scan
 	if((*opt).ign == 0 && (*opt).ex == 0){
 		for(i=0;i<num_qptrs;i++){  //query
-			for(j=0;j<source_size;j++){
+			for(j=0;j<source_size;j++){ //source
 				if(strncmp(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
 					printf("%s",qbuf+(qptrs[i]));
 					printf("	%d	%d\n",j,j-1+(int)strlen(qbuf+(qptrs[i])));
@@ -249,7 +249,7 @@ int main(int argc, char **argv){
 		}
 	}else if((*opt).ign != 0 && (*opt).ex == 0){
 		for(i=0;i<num_qptrs;i++){  //query
-			for(j=0;j<source_size;j++){
+			for(j=0;j<source_size;j++){ //source
 				if(strncmpi(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
 					printf("%s",qbuf+(qptrs[i]));
 					printf("	%d	%d\n",j,j-1+(int)strlen(qbuf+(qptrs[i])));
@@ -258,23 +258,59 @@ int main(int argc, char **argv){
 		}
 	}else if((*opt).ign == 0 && (*opt).ex != 0){ //Under construction
 		for(i=0;i<num_qptrs;i++){  //query
-			for(j=0;j<source_size;j++){
+			for(j=0;j<source_size;j++){ //source
 				if(strncmp(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
-					// printf(extra byte)
+					// print extra byte
+					putchar('[');
+					b_head = 0;
+					for(k=0;k<(*opt).ex;k++){
+						if(j-(*opt).ex+k >= 0){
+							putchar(*(source+j-(*opt).ex+k));
+							b_head++;
+						}
+					}
 					printf("%s",qbuf+(qptrs[i]));
-					// printf(extra byte)
-					printf("	%d	%d\n",j,j-1+(int)strlen(qbuf+(qptrs[i])));
+					// print extra byte
+					b_tail = 0;
+					for(k=0;k<(*opt).ex;k++){
+						if(j+strlen(qbuf+qptrs[i])+k <= source_size){
+							putchar(*(source+j+strlen(qbuf+qptrs[i])+k));
+							b_tail++;
+						}
+					}
+					// print pointers
+					printf("	%d	%d	%d,%d",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail);
+					putchar(']');
+					putchar('\n');
 				}
 			}
 		}
 	}else if((*opt).ign != 0 && (*opt).ex != 0){ //Under construction
 		for(i=0;i<num_qptrs;i++){  //query
-			for(j=0;j<source_size;j++){
+			for(j=0;j<source_size;j++){ //source
 				if(strncmpi(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
-					// printf(extra byte)
+					// print extra byte
+					putchar('[');
+					b_head = 0;
+					for(k=0;k<(*opt).ex;k++){
+						if(j-(*opt).ex+k >= 0){
+							putchar(*(source+j-(*opt).ex+k));
+							b_head++;
+						}
+					}
 					printf("%s",qbuf+(qptrs[i]));
-					// printf(extra byte)
-					printf("	%d	%d\n",j,j-1+(int)strlen(qbuf+(qptrs[i])));
+					// print extra byte
+					b_tail = 0;
+					for(k=0;k<(*opt).ex;k++){
+						if(j+strlen(qbuf+qptrs[i])+k <= source_size){
+							putchar(*(source+j+strlen(qbuf+qptrs[i])+k));
+							b_tail++;
+						}
+					}
+					// print pointers
+					printf("	%d	%d	%d,%d",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail);
+					putchar(']');
+					putchar('\n');
 				}
 			}
 		}
