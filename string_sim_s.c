@@ -1,5 +1,5 @@
-/* sims */
-/* gives a similarity between two short ascii sequence */
+/* string_sim_s */
+/* gives a similarity between two short ascii sequence using 1-gram. */
 
 #include<stdio.h>
 #include<stdlib.h>

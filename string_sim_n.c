@@ -1,8 +1,8 @@
 /* SIMilarity between two Strings using N-gram */
-/* gives a similarity between two short ascii sequence with direction */
+/* gives a similarity between two short ascii sequence using n-gram. */
 
 /* CODENAME :*/
-/* simsn.c */
+/* string_sim_n.c */
 /* :END */
 
 #include<stdio.h>
@@ -33,7 +33,7 @@ int get_options (int optc, char **optv, struct option *opt) {
 
 void help (void) {
 	printf("USAGE:\n");
-	printf("  simsn seq1 seq2 n(>=2)\n");
+	printf("  string_sim_n seq1 seq2 n(>=2)\n");
 }
 
 double simshort (char *firstseq, int firstlen, char *secondseq, int secondlen) {
