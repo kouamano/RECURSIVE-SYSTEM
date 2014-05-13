@@ -11,6 +11,12 @@ int main(int argc, char **argv){
 	int s_size = 0;
 	int counter[128];
 	char *base;
+
+	if(argc == 1){
+		printf("no input file.\n");
+		exit(0);
+	}
+
 	if((IN = fopen(argv[1],"r")) == NULL){
 		perror(argv[1]);
 		exit(1);
