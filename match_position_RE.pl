@@ -84,7 +84,7 @@ close(IN);
 
 ## matching
 foreach(@arr){
-	while($sstr =~ /($_)/gims){
+	while($sstr =~ /($_)/gim){
 		$e = pos($sstr) - 1;
 		$p = $e - length($1) + 1;
 		print "$1	$p	$e\n";
