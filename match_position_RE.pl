@@ -7,7 +7,8 @@ $stat = 0;
 $qf = "";
 $sf = "";
 
-# subroutine
+# subroutines
+## help
 sub _help {
 	print "USAGE:\n";
 	print " match_position_RE.pl [-h] [-c] [-s] qf=<query file> sf=<source file>\n";
@@ -16,6 +17,7 @@ sub _help {
 	print " It uses valiable for query as like $str =~ /($query)/ \n";
 }
 
+## print argv
 sub _check {
 	print "ARGS:\n";
 	print " help:$help:\n";
@@ -25,12 +27,13 @@ sub _check {
 	print " sf:$sf:\n";
 }
 
+## print status
 sub _status {
 	print "STATUS:\n";
 	printf " Under construction.\n"
 }
 
-# argment analysis
+## argument analysis
 foreach $l (@ARGV) {
 	if($l eq "-h"){
 		$help = 1;
