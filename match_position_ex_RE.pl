@@ -98,9 +98,11 @@ close(IN);
 ## matching
 foreach(@arr){
 	while($sstr =~ /($head)($_)($tail)/gim){
-		$e = pos($sstr) -length($3) -1;
-		$p = $e - length($2) +1;
-		print "$2	$p	$e\n";
+		$p = pos($sstr);
+		pos($sstr) = $p -length($3);
+		$e = pos($sstr) -1;
+		$s = $e - length($2) +1;
+		print "$2	$s	$e\n";
 	}
 }
 
