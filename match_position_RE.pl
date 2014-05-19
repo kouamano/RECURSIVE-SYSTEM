@@ -6,6 +6,8 @@ $check = 0;
 $stat = 0;
 $qf = "";
 $sf = "";
+#$head = "[ \(]{0,1}";
+#$tail = "[,\)]{0,1}";
 
 # subroutines
 ## help
@@ -88,8 +90,8 @@ close(IN);
 ## matching
 foreach(@arr){
 	while($sstr =~ /($_)/gim){
-		$e = pos($sstr) - 1;
-		$p = $e - length($1) + 1;
+		$e = pos($sstr) -1;
+		$p = $e - length($1) +1;
 		print "$1	$p	$e\n";
 	}
 }
