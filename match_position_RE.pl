@@ -6,8 +6,6 @@ $check = 0;
 $stat = 0;
 $qf = "";
 $sf = "";
-#$head = "[ \(]{0,1}";
-#$tail = "[,\)]{0,1}";
 
 # subroutines
 ## help
@@ -32,7 +30,7 @@ sub _check {
 ## print status
 sub _status {
 	print "STATUS:\n";
-	printf " Under construction.\n"
+	printf " Available.\n"
 }
 
 ## argument analysis
