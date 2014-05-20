@@ -261,7 +261,7 @@ int main(int argc, char **argv){
 			for(j=0;j<source_size;j++){ //source
 				if(strncmp(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
 					// print extra byte
-					putchar('[');
+					//putchar('[');
 					b_head = 0;
 					for(k=0;k<(*opt).ex;k++){
 						if(j-(*opt).ex+k >= 0){
@@ -280,7 +280,8 @@ int main(int argc, char **argv){
 					}
 					// print pointers
 					printf("	%d	%d	%d,%d",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail);
-					putchar(']');
+					//putchar(']');
+					putchar(4);
 					putchar('\n');
 				}
 			}
@@ -290,7 +291,7 @@ int main(int argc, char **argv){
 			for(j=0;j<source_size;j++){ //source
 				if(strncmpi(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
 					// print extra byte
-					putchar('[');
+					//putchar('[');
 					b_head = 0;
 					for(k=0;k<(*opt).ex;k++){
 						if(j-(*opt).ex+k >= 0){
@@ -309,7 +310,8 @@ int main(int argc, char **argv){
 					}
 					// print pointers
 					printf("	%d	%d	%d,%d",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail);
-					putchar(']');
+					//putchar(']');
+					putchar(4);
 					putchar('\n');
 				}
 			}
