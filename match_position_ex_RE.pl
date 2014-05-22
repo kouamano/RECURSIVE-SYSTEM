@@ -6,8 +6,8 @@ $check = 0;
 $stat = 0;
 $qf = "";
 $sf = "";
-$head = "[ \(]";
-$tail = "[,\)]";
+$head = "[ \(>]";
+$tail = "[,\)<]";
 
 # subroutines
 ## help
