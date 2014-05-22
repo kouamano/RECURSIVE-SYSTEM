@@ -153,7 +153,7 @@ int main(int argc, char **argv){
 	}
 	i++;
 	target_chars[i] = '\0';
-	printf("%s",target_chars);
+	//printf("%s",target_chars);
 	fclose(IN);
 
 	/* read source and escape */
