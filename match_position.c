@@ -287,7 +287,7 @@ int main(int argc, char **argv){
 					}
 					ex_tail[k] = '\0';
 					// print pointers
-					printf("	%d	%d	%d,%d	%s	%s",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,ex_head,ex_tail);
+					printf("	%d	%d	%d	%d	%s%s",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,ex_head,ex_tail);
 					//putchar(']');
 					putchar(4);
 					putchar('\n');
@@ -323,7 +323,7 @@ int main(int argc, char **argv){
 					}
 					ex_tail[k] = '\0';
 					// print pointers
-					printf("	%d	%d	%d,%d	%s	%s",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,ex_head,ex_tail);
+					printf("	%d	%d	%d	%d	%s%s",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,ex_head,ex_tail);
 					//putchar(']');
 					putchar(4);
 					putchar('\n');
