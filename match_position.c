@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <ctype.h>
+#include "../include/alloc.c"
 #define F_NAME_LEN 1024
 
 struct options {
@@ -116,6 +117,7 @@ int main(int argc, char **argv){
 	size_t source_size;
 	char *source;
 	int b_head, b_tail;
+	char *ex_head, *ex_tail;
 
 	//option analysis
 	opt = alloc_options();
@@ -257,6 +259,8 @@ int main(int argc, char **argv){
 			}
 		}
 	}else if((*opt).ign == 0 && (*opt).ex > 0){
+		ex_head = c_alloc_vec((*opt).ex + 1);
+		ex_tail = c_alloc_vec((*opt).ex + 1);
 		for(i=0;i<num_qptrs;i++){  //query
 			for(j=0;j<source_size;j++){ //source
 				if(strncmp(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
@@ -265,21 +269,25 @@ int main(int argc, char **argv){
 					b_head = 0;
 					for(k=0;k<(*opt).ex;k++){
 						if(j-(*opt).ex+k >= 0){
-							putchar(*(source+j-(*opt).ex+k));
+							//putchar(*(source+j-(*opt).ex+k));
+							ex_head[k] = *(source+j-(*opt).ex+k);
 							b_head++;
 						}
 					}
+					ex_head[k] = '\0';
 					printf("%s",qbuf+(qptrs[i]));
 					// print extra byte
 					b_tail = 0;
 					for(k=0;k<(*opt).ex;k++){
 						if(j+strlen(qbuf+qptrs[i])+k < source_size){
-							putchar(*(source+j+strlen(qbuf+qptrs[i])+k));
+							//putchar(*(source+j+strlen(qbuf+qptrs[i])+k));
+							ex_tail[k] = *(source+j+strlen(qbuf+qptrs[i])+k);
 							b_tail++;
 						}
 					}
+					ex_tail[k] = '\0';
 					// print pointers
-					printf("	%d	%d	%d,%d",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail);
+					printf("	%d	%d	%d,%d	%s	%s",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,ex_head,ex_tail);
 					//putchar(']');
 					putchar(4);
 					putchar('\n');
@@ -287,6 +295,8 @@ int main(int argc, char **argv){
 			}
 		}
 	}else if((*opt).ign != 0 && (*opt).ex > 0){
+		ex_head = c_alloc_vec((*opt).ex + 1);
+		ex_tail = c_alloc_vec((*opt).ex + 1);
 		for(i=0;i<num_qptrs;i++){  //query
 			for(j=0;j<source_size;j++){ //source
 				if(strncmpi(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
@@ -295,21 +305,25 @@ int main(int argc, char **argv){
 					b_head = 0;
 					for(k=0;k<(*opt).ex;k++){
 						if(j-(*opt).ex+k >= 0){
-							putchar(*(source+j-(*opt).ex+k));
+							//putchar(*(source+j-(*opt).ex+k));
+							ex_head[k] = *(source+j-(*opt).ex+k);
 							b_head++;
 						}
 					}
+					ex_head[k] = '\0';
 					printf("%s",qbuf+(qptrs[i]));
 					// print extra byte
 					b_tail = 0;
 					for(k=0;k<(*opt).ex;k++){
 						if(j+strlen(qbuf+qptrs[i])+k < source_size){
-							putchar(*(source+j+strlen(qbuf+qptrs[i])+k));
+							//putchar(*(source+j+strlen(qbuf+qptrs[i])+k));
+							ex_tail[k] = *(source+j+strlen(qbuf+qptrs[i])+k);
 							b_tail++;
 						}
 					}
+					ex_tail[k] = '\0';
 					// print pointers
-					printf("	%d	%d	%d,%d",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail);
+					printf("	%d	%d	%d,%d	%s	%s",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,ex_head,ex_tail);
 					//putchar(']');
 					putchar(4);
 					putchar('\n');
