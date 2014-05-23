@@ -15,10 +15,10 @@ sub _help {
 	print "USAGE:\n";
 	print " match_position_RE.pl [-h] [-c] [-s] qf=<query file> sf=<source file> head=<extra head> tail=<extra tail>\n";
 	print "SEARCH RULE:\n";
-	print " match_position_RE.pl searchs query(RE) as line by line of <query file>.\n";
-	print " It uses valiable for query as like $str =~ /($query)/ \n";
-	print " extra head: regular expression head for search term\n";
-	print " extra tail: regular expression tail for search term\n";
+	print " match_position_RE.pl searchs query as a line of <query file>.\n";
+	print " query must be RE.\n";
+	print " extra head: prepositional term for search term (RE).\n";
+	print " extra tail: postpositional term for search term (RE).\n";
 }
 
 ## print argv
