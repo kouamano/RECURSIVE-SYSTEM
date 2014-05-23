@@ -13,9 +13,9 @@ $tail = "[ ,\)<]";
 ## help
 sub _help {
 	print "USAGE:\n";
-	print " match_position_RE.pl [-h] [-c] [-s] qf=<query file> sf=<source file> head=<extra head> tail=<extra tail>\n";
+	print " match_position_ex_RE.pl [-h] [-c] [-s] qf=<query file> sf=<source file> head=<extra head> tail=<extra tail>\n";
 	print "SEARCH RULE:\n";
-	print " match_position_RE.pl searchs query as a line of <query file>.\n";
+	print " match_position_ex_RE.pl searchs query as a line of <query file>.\n";
 	print " query must be RE.\n";
 	print " extra head: prepositional term for search term (RE).\n";
 	print " extra tail: postpositional term for search term (RE).\n";
