@@ -226,6 +226,7 @@ int main(int argc, char **argv){
 				//printf("maxmin:%f:\n",maxmin);
 				//rewrite RNG_d_tbl[i][j] <- nim(nin_stack);
 				if(min_stack_len > 0){
+					// must be replaced!!
 					RNG_d_tbl[i][j] = maxmin;
 				}
 			//end for j
