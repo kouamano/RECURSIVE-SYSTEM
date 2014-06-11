@@ -138,7 +138,7 @@ int main(int argc, char **argv){
 			num_RNG_edge++;
 		}
 	}
-	printf("num_RNG_edge:%d:\n",num_RNG_edge);
+	printf("#num_RNG_edge:%d:\n",num_RNG_edge);
 	fseek(fp,0U,SEEK_SET);
 	RNG_edge.p = i_alloc_vec(num_RNG_edge * 2);
 	RNG_edge.t = i_alloc_vec(num_RNG_edge * 2);
@@ -172,19 +172,19 @@ int main(int argc, char **argv){
 	for(i=0;i<num_path;i++){
 		path_list[i][0] = i;
 	}
-	printf("path level %d:\n",level);
+	printf("#path level %d:\n",level);
 	for(i=0;i<num_path;i++){
 		for(j=0;j<level;j++){
 			printf("%d-",path_list[i][j]);
 		}
 		printf("*\n");
 	}
-	printf(":\n");
+	printf("#;\n");
 	/*  *) */
 	/*  (* extend path */
 	max_level = (*opt).dsize;
 	for(level=2;level<=max_level;level++){
-		printf("path level %d:\n",level);
+		printf("#path level %d:\n",level);
 		/* current level : to be made */
 		/* TODO : count num_path */
 		/* comp_node : path_list[cmp_path][level-2] */
@@ -284,7 +284,7 @@ int main(int argc, char **argv){
 		//printf("  :\n");
 		/*  *) */
 		/* *) */
-		printf(":\n");
+		printf("#;\n");
 
 	}
 	/*  *) */
