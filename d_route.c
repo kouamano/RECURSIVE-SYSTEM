@@ -175,7 +175,7 @@ int main(int argc, char **argv){
 	printf("#path level %d:\n",level);
 	for(i=0;i<num_path;i++){
 		for(j=0;j<level;j++){
-			printf("%d-",path_list[i][j]);
+			printf("%d,",path_list[i][j]);
 		}
 		printf("*\n");
 	}
@@ -201,7 +201,7 @@ int main(int argc, char **argv){
 					if(if_match_int_sc_vec(RNG_edge.t[edge],path_list[cmp_path],level-2) == 0){
 						/*
 						for(j=0;j<level-1;j++){
-							printf("%d-",path_list[cmp_path][j]);
+							printf("%d,",path_list[cmp_path][j]);
 						}
 						*/
 						//printf("%d-*\n",RNG_edge.t[edge]);
@@ -211,7 +211,7 @@ int main(int argc, char **argv){
 				/* check 
 				for(i=0;i<num_path;i++){
 					for(j=0;j<level-1;j++){
-						printf("%d-",path_list[i][j]);
+						printf("%d,",path_list[i][j]);
 					}
 					printf("* vs %d\n",RNG_edge.p[edge]);
 				}
@@ -251,7 +251,7 @@ int main(int argc, char **argv){
 		printf("  path_list_new:\n");
 		for(i=0;i<num_path_new;i++){
 			for(j=0;j<level;j++){
-				printf("%d-",path_list_new[i][j]);
+				printf("%d,",path_list_new[i][j]);
 			}
 			printf("*\n");
 		}
@@ -277,7 +277,7 @@ int main(int argc, char **argv){
 		//printf("  path_list <copy>:\n");
 		for(i=0;i<num_path;i++){
 			for(j=0;j<level;j++){
-				printf("%d-",path_list[i][j]);
+				printf("%d,",path_list[i][j]);
 			}
 			printf("*\n");
 		}
