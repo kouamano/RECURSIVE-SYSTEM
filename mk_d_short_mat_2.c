@@ -231,6 +231,7 @@ int main(int argc, char **argv){
 				//rewrite RNG_d_tbl[i][j] <- nim(nin_stack);
 				if(min_stack_len > 0){
 					RNG_d_tbl[i][j] = maxmin;
+					RNG_d_tbl[j][i] = maxmin;
 				}
 			//end for j
 			}
