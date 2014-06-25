@@ -21,7 +21,7 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" mk_d_short_mat [-h] [-s] [-c] [-d] loop=<max loop> dsize=<mat size>  ef=<edge file with dist> \n");
+	printf(" mk_d_short_mat [-h] [-s] [-c] [-d] loop=<max loop> dsize=<mat size>  ef=<edge file with dist>\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
