@@ -212,6 +212,7 @@ int main(int argc, char **argv){
 				for(k=0;k<(*opt).dsize;k++){
 					//comp(dmat[i] dmat[j])
 					//if dmat[i][k]!=0, dmat[j][k]!=0
+					//Func1
 					//if((RNG_d_tbl[i][k] != -1) && (RNG_d_tbl[j][k] != -1)){
 					if((RNG_d_tbl[i][k] >= 0) && (RNG_d_tbl[j][k] >= 0)){
 						//add max(pair) to min_stack; nim_stack_len++;
@@ -221,12 +222,17 @@ int main(int argc, char **argv){
 				//end for k
 				}
 				//min of nim_stack
+				//Func2
 				maxmin = f_min_list(min_stack_len,min_stack); // ?? can rewrite maxmin ??
 				if((*opt).diag==1 && i==j){ maxmin = -1; } // ?? needs ??
 				//printf("maxmin:%f:\n",maxmin);
 				//rewrite RNG_d_tbl[i][j] <- nim(nin_stack);
 				if(min_stack_len > 0){
 					// must be replaced!!
+					//Func3
+					if(RNG_d_tbl[i][j] >= 0){
+						maxmin = min(maxmin,RNG_d_tbl[i][j]);
+					}
 					RNG_d_tbl[i][j] = maxmin;
 				}
 			//end for j
