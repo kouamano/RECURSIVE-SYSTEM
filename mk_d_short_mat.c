@@ -25,7 +25,7 @@ void help(void){
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
-	printf("  -d : rewrite diagonal -> -1 .\n");
+	printf("  -d : rewrite diagonal -> -1 each loop.\n");
 	printf("  max loop : integer.\n");
 	printf("  mat size : integer.\n");
 	printf("  edge file : list of node vs node and the distance, output of RNG_d .\n");
