@@ -81,6 +81,8 @@ void get_options(int optc, char **optv, struct options *opt){
 		}else if(strncmp(optv[i],"ef=",3) == 0){
 			sscanf(optv[i],"ef=%s",(*opt).ef);
 
+		}else{
+			printf("Unknown option : %s\n",optv[i]);
 		}
 	}
 }
