@@ -8,6 +8,12 @@
 #include "edgeop.h"
 #include "edgeop.c"
 
+struct route {
+	int length;
+	int *route_arr;
+	float dist_max;
+};
+
 struct options {
 	int help;
 	int stat;
@@ -95,6 +101,7 @@ int main(int argc, char **argv){
 	float tmp;
 	//struct edge RNG_edge;
 	struct edge_d RNG_edge_d;
+	struct route *current_route;
 	int edge,num_RNG_edge = 0;
 	int level,max_level;
 	int cmp_path,num_path;
@@ -127,6 +134,19 @@ int main(int argc, char **argv){
 	if(ie == 1){
 		exit(0);
 	}
+
+	/* (* alloc route */
+	if((current_route = malloc(sizeof(struct route) * 2)) == NULL){
+		fprintf(stderr, "failed : malloc() for current_route.\n");
+		exit(1);
+	}
+	(*current_route).length = 0;
+	if(((*current_route).route_arr = malloc(sizeof(int) * (*opt).dsize)) == NULL){
+		fprintf(stderr, "failed : malloc() for route_arr.\n");
+		exit(1);
+	}
+	(*current_route).dist_max = -1;
+	/* *) */
 
 	/* (* alloc d_tbl */
 	d_tbl = f_alloc_mat((*opt).dsize,(*opt).dsize);
