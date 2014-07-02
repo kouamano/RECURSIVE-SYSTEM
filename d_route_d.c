@@ -191,13 +191,12 @@ int main(int argc, char **argv){
 		RNG_edge_d.p[j] = RNG_edge_d.t[j-num_RNG_edge];
 		RNG_edge_d.d[j] = RNG_edge_d.d[j-num_RNG_edge];
 	}
-	/*
-	printf("RNG_edge both:\n");
+	/* (* */
+	printf("#RNG_edge both:\n");
 	for(j=0;j<num_RNG_edge*2;j++){
-		printf("%d,%d\n",RNG_edge_d.p[j],RNG_edge_d.t[j]);
+		printf("%s %d,%d,%f\n","%",RNG_edge_d.p[j],RNG_edge_d.t[j],RNG_edge_d.d[j]);
 	}
-	printf(":\n");
-	*/
+	/* *) */
 	/*  *) */
 	/* *) */
 
@@ -207,6 +206,7 @@ int main(int argc, char **argv){
 	}
 	/* *) */
 	/* (* print d_tbl */
+	printf("#primer d_tbl:\n");
 	for(i=0;i<(*opt).dsize;i++){
 		printf("%c",'%');
 		for(j=0;j<(*opt).dsize;j++){
