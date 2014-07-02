@@ -94,6 +94,9 @@ void check_options(struct options *opt){
 	printf(" opt.ef:%s:\n",(*opt).ef);
 }
 
+void create_current_route_from_path_list(struct route *_c_route, int _len_p_list, int *_p_list, float **_d_tbl){
+}
+
 int main(int argc, char **argv){
 	struct options *opt;
 	int ie = 0;
@@ -332,6 +335,7 @@ int main(int argc, char **argv){
 				printf("%d,",path_list[i][j]);
 			}
 			printf("*\n");
+			create_current_route_from_path_list(current_route,level,path_list[i],d_tbl);
 		}
 		//printf("  :\n");
 		/*  *) */
