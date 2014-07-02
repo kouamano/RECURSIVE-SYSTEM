@@ -10,7 +10,8 @@
 
 struct route {
 	int length;
-	int *route_arr;
+	int route_start;
+	int route_end;
 	float dist_max;
 };
 
@@ -95,7 +96,12 @@ void check_options(struct options *opt){
 }
 
 void create_current_route_from_path_list(struct route *_c_route, int _len_p_list, int *_p_list, float **_d_tbl){
+	int i;
+	float max_v = 0;
+	for(i=0;i<_len_p_list-1;i++){
+	}
 }
+	
 
 int main(int argc, char **argv){
 	struct options *opt;
@@ -146,10 +152,6 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	(*current_route).length = 0;
-	if(((*current_route).route_arr = malloc(sizeof(int) * (*opt).dsize)) == NULL){
-		fprintf(stderr, "failed : malloc() for route_arr.\n");
-		exit(1);
-	}
 	(*current_route).dist_max = -1;
 	/* *) */
 
