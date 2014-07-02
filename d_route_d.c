@@ -25,12 +25,12 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" d_route [-h] [-s] [-c] dsize=<size of dsit matrix> ef=<edge list file> ; using struct edge .\n");
+	printf(" d_route_d [-h] [-s] [-c] dsize=<size of dsit matrix> ef=<edge list file> ; using struct edge .\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  size of dist matrix : single integer .\n");
-	printf("  edge list : output of RNG.\n");
+	printf("  edge list : output of RNGd .\n");
 }
 
 void status(void){
