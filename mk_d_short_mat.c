@@ -18,15 +18,17 @@ struct options {
 	char *df;
 	char *ef;
 	int dsize;
+	int zeroself;
 };
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" mk_d_short_mat [-h] [-s] [-c] [-d] loop=<max loop> dsize=<mat size>  ef=<edge file with dist>\n");
+	printf(" mk_d_short_mat [-h] [-s] [-c] [-d] [-z] loop=<max loop> dsize=<mat size>  ef=<edge file with dist>\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  -d : rewrite diagonal -> -1 at each loop.\n");
+	printf("  -z : diagonal element -> print zero .\n");
 	printf("  diagonal value : Where(diagonal value != self) ; final diagonal element -> diagonal value .\n");
 	printf("  max loop : integer.\n");
 	printf("  mat size : integer.\n");
@@ -70,6 +72,7 @@ void init_options(struct options *opt){
 	(*opt).ef[0] = '\0';
 	(*opt).dsize = 0;
 	(*opt).loop = 0;
+	(*opt).zeroself = 0;
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -89,6 +92,10 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"loop=%d",&(*opt).loop);
 		}else if(strncmp(optv[i],"ef=",3) == 0){
 			sscanf(optv[i],"ef=%s",(*opt).ef);
+		}else if(strncmp(optv[i],"-z",2) == 0){
+			(*opt).zeroself = 1;
+		}else{
+			printf("Unknown option : %s\n",optv[i]);
 		}
 	}
 }
@@ -100,6 +107,7 @@ void check_options(struct options *opt){
 	printf(" opt.ef:%s:\n",(*opt).ef);
 	printf(" opt.dsize:%d:\n",(*opt).dsize);
 	printf(" opt.loop:%d:\n",(*opt).loop);
+	printf(" opt.zeroself:%d:\n",(*opt).zeroself);
 }
 
 int main(int argc, char **argv){
@@ -252,6 +260,11 @@ int main(int argc, char **argv){
 
 	/* (* print results */
 	//printf("result after %d times loop:\n",l);
+	if((*opt).zeroself == 1){
+		for(i=0;i<(*opt).dsize;i++){
+			RNG_d_tbl[i][i] = 0;
+		}
+	}
 	for(i=0;i<(*opt).dsize;i++){
 		printf("%f",RNG_d_tbl[i][0]);
 		for(j=1;j<(*opt).dsize;j++){
