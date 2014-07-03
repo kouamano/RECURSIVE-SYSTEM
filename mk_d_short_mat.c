@@ -5,6 +5,7 @@
 #include "../include/alloc.c"
 #include "../include/math_base.c"
 #define LEN 1024
+#define SHORT_LEN 64
 
 #include "edgeop.h"
 
@@ -17,17 +18,16 @@ struct options {
 	char *df;
 	char *ef;
 	int dsize;
-	float diag_value;
 };
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" mk_d_short_mat [-h] [-s] [-c] [-d] [fd=<diagonal value>] loop=<max loop> dsize=<mat size>  ef=<edge file with dist>\n");
+	printf(" mk_d_short_mat [-h] [-s] [-c] [-d] loop=<max loop> dsize=<mat size>  ef=<edge file with dist>\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  -d : rewrite diagonal -> -1 at each loop.\n");
-	printf("  diagonal value : final diagonal element -> diagonal value .\n");
+	printf("  diagonal value : Where(diagonal value != self) ; final diagonal element -> diagonal value .\n");
 	printf("  max loop : integer.\n");
 	printf("  mat size : integer.\n");
 	printf("  edge file : list of node vs node and the distance, output of RNG_d .\n");
@@ -70,7 +70,6 @@ void init_options(struct options *opt){
 	(*opt).ef[0] = '\0';
 	(*opt).dsize = 0;
 	(*opt).loop = 0;
-	(*opt).diag_value = 0;
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -88,8 +87,6 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"dsize=%d",&(*opt).dsize);
 		}else if(strncmp(optv[i],"loop=",5) == 0){
 			sscanf(optv[i],"loop=%d",&(*opt).loop);
-		}else if(strncmp(optv[i],"fd=",3) == 0){
-			sscanf(optv[i],"fd=%f",(*opt).diag_value);
 		}else if(strncmp(optv[i],"ef=",3) == 0){
 			sscanf(optv[i],"ef=%s",(*opt).ef);
 		}
@@ -102,7 +99,6 @@ void check_options(struct options *opt){
 	printf(" opt.diag:%d:\n",(*opt).diag);
 	printf(" opt.ef:%s:\n",(*opt).ef);
 	printf(" opt.dsize:%d:\n",(*opt).dsize);
-	printf(" opt.diag_value:%f:\n",(*opt).diag_value);
 	printf(" opt.loop:%d:\n",(*opt).loop);
 }
 
