@@ -34,7 +34,7 @@ void help(void){
 	printf("ARGORITHM:\n");
 	printf(" mk_d_short_mat calculates \n");
 	printf(" Inner(dmat[i],dmat[j],Func1,Func2,Func3,dmat[][]) .\n");
-	printf(" Whrer : \n");
+	printf(" Where : \n");
 	printf("  Func1 : Max(dmat[i][k],dmat[j][k]) -> list[k] .\n");
 	printf("  Func2 : Min(list) .\n");
 	printf("  Func3 : When(dmat[i][j] != -1) ; Min(Min(list),dmat[i][j]) -> dmat[i][j], Other ; Min(list) -> dmat[i][j] . \n");
