@@ -349,7 +349,11 @@ int main(int argc, char **argv){
 			create_current_route_from_path_list(current_route,level,path_list[i],d_tbl);
 			printf("len:%d: ",(*current_route).length);
 			printf("S:%d: E:%d: dmax:%f: \n",(*current_route).route_start,(*current_route).route_end,(*current_route).dist_max);
-			d_tbl[(*current_route).route_start][(*current_route).route_end] = max(d_tbl[(*current_route).route_start][(*current_route).route_end],(*current_route).dist_max);
+			if(d_tbl[(*current_route).route_start][(*current_route).route_end] >= 0){
+				d_tbl[(*current_route).route_start][(*current_route).route_end] = min(d_tbl[(*current_route).route_start][(*current_route).route_end],(*current_route).dist_max);
+			}else{
+				d_tbl[(*current_route).route_start][(*current_route).route_end] = (*current_route).dist_max;
+			}
 		}
 		/*  *) */
 		/* *) */
