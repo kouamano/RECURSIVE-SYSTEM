@@ -35,7 +35,7 @@ void help(void){
 	printf("  edge file : list of node vs node and the distance, output of RNG_d .\n");
 	printf("ARGORITHM:\n");
 	printf(" mk_d_short_mat calculates \n");
-	printf(" Inner(dmat[i],dmat[j],Func1,Func2,Func3,dmat[][]) .\n");
+	printf(" Inner(dmat[i],dmat[j],Func1,Func2,Func3,dmat) ,\n");
 	printf(" Where : \n");
 	printf("  Func1 : When(dmat[i][k] != -1 && dmat[j][k] != -1) ; Max(dmat[i][k],dmat[j][k]) -> list[k] .\n");
 	printf("  Func2 : Min(list) .\n");
