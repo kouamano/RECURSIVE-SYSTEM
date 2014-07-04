@@ -101,10 +101,10 @@ float create_current_route_from_path_list(struct route *_c_route, int _len_p_lis
 	float max_v = -1;
 	for(i=0;i<_len_p_list-1;i++){
 		max_v = max(_d_tbl[_p_list[i]][_p_list[i+1]],max_v);
-		printf("%f ",_d_tbl[_p_list[i]][_p_list[i+1]]);
+		//printf("%f ",_d_tbl[_p_list[i]][_p_list[i+1]]);
 	}
-	printf(" -> max:%f:",max_v);
-	printf("\n");
+	//printf(" -> max:%f:",max_v);
+	//printf("\n");
 	(*_c_route).length = _len_p_list;
 	(*_c_route).route_start = _p_list[0];
 	(*_c_route).route_end = _p_list[_len_p_list-1];
@@ -186,7 +186,7 @@ int main(int argc, char **argv){
 			num_RNG_edge++;
 		}
 	}
-	printf("#num_RNG_edge:%d:\n",num_RNG_edge);
+	//printf("#num_RNG_edge:%d:\n",num_RNG_edge);
 	fseek(fp,0U,SEEK_SET);
 	RNG_edge_d.p = i_alloc_vec(num_RNG_edge * 2);
 	RNG_edge_d.t = i_alloc_vec(num_RNG_edge * 2);
@@ -205,12 +205,12 @@ int main(int argc, char **argv){
 		RNG_edge_d.p[j] = RNG_edge_d.t[j-num_RNG_edge];
 		RNG_edge_d.d[j] = RNG_edge_d.d[j-num_RNG_edge];
 	}
-	/*   (* */
+	/*   (* 
 	printf("#RNG_edge both:\n");
 	for(j=0;j<num_RNG_edge*2;j++){
 		printf("%s %d,%d,%f\n","%",RNG_edge_d.p[j],RNG_edge_d.t[j],RNG_edge_d.d[j]);
 	}
-	/*   *) */
+	     *) */
 	/*  *) */
 	/* *) */
 
@@ -219,7 +219,7 @@ int main(int argc, char **argv){
 		d_tbl[RNG_edge_d.p[j]][RNG_edge_d.t[j]] = RNG_edge_d.d[j];
 	}
 	/* *) */
-	/* (* print d_tbl */
+	/* (* print d_tbl 
 	printf("#primer d_tbl:\n");
 	for(i=0;i<(*opt).dsize;i++){
 		printf("%c",'%');
@@ -228,7 +228,7 @@ int main(int argc, char **argv){
 		}
 		printf("\n");
 	}
-	/* *) */
+	   *) */
 
 	/* (* analyze path */
 	/*  (* create first pathes level 1 */
@@ -238,7 +238,8 @@ int main(int argc, char **argv){
 	for(i=0;i<num_path;i++){
 		path_list[i][0] = i;
 	}
-	printf("#path level %d:\n",level);
+	//printf("#path level %d:\n",level);
+	/*
 	for(i=0;i<num_path;i++){
 		for(j=0;j<level;j++){
 			printf("%d,",path_list[i][j]);
@@ -246,13 +247,13 @@ int main(int argc, char **argv){
 		printf("*\n");
 	}
 	printf("#;\n");
+	*/
 	/*  *) */
 	/*  (* extend path */
 	max_level = (*opt).dsize;
 	for(level=2;level<=max_level;level++){
-		printf("#path level %d:\n",level);
+		//printf("#path level %d:\n",level);
 		/* current level : to be made */
-		/* TODO : count num_path */
 		/* comp_node : path_list[cmp_path][level-2] */
 		//path_list_new = i_calloc_mat(MEM_BLK,level);
 		//num_path_new = 0;
@@ -340,15 +341,17 @@ int main(int argc, char **argv){
 			}
 		}
 		/*  *) */
-		/*  (* print */
+		/*  (* print preparation */
 		for(i=0;i<num_path;i++){
+			/*
 			for(j=0;j<level;j++){
 				printf("%d,",path_list[i][j]);
 			}
-			printf("*\n");
+			*/
+			//printf("*\n");
 			create_current_route_from_path_list(current_route,level,path_list[i],d_tbl);
-			printf("len:%d: ",(*current_route).length);
-			printf("S:%d: E:%d: dmax:%f: \n",(*current_route).route_start,(*current_route).route_end,(*current_route).dist_max);
+			//printf("len:%d: ",(*current_route).length);
+			//printf("S:%d: E:%d: dmax:%f: \n",(*current_route).route_start,(*current_route).route_end,(*current_route).dist_max);
 			if(d_tbl[(*current_route).route_start][(*current_route).route_end] >= 0){
 				d_tbl[(*current_route).route_start][(*current_route).route_end] = min(d_tbl[(*current_route).route_start][(*current_route).route_end],(*current_route).dist_max);
 			}else{
@@ -357,7 +360,7 @@ int main(int argc, char **argv){
 		}
 		/*  *) */
 		/* *) */
-		printf("#;\n");
+		//printf("#;\n");
 	}
 	/* *) */
 	/* (* print d_tbl */
