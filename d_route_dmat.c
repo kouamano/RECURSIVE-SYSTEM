@@ -208,7 +208,7 @@ int main(int argc, char **argv){
 		d_tbl[RNG_edge_d.p[j]][RNG_edge_d.t[j]] = RNG_edge_d.d[j];
 	}
 	/* *) */
-	/* (* print d_tbl 
+	/* (* print primer d_tbl 
 	printf("#primer d_tbl:\n");
 	for(i=0;i<(*opt).dsize;i++){
 		printf("%c",'%');
@@ -235,7 +235,6 @@ int main(int argc, char **argv){
 		}
 		printf("*\n");
 	}
-	printf("#;\n");
 	*/
 	/*  *) */
 	/*  (* extend path */
@@ -248,30 +247,15 @@ int main(int argc, char **argv){
 			for(edge=0;edge<num_RNG_edge*2;edge++){
 				if(path_list[cmp_path][level-2] == RNG_edge_d.p[edge]){
 					if(if_match_int_sc_vec(RNG_edge_d.t[edge],path_list[cmp_path],level-2) == 0){
-						/*
-						for(j=0;j<level-1;j++){
-							printf("%d,",path_list[cmp_path][j]);
-						}
-						printf("%d-*\n",RNG_edge_d.t[edge]);
-						*/
 						adding_num_path++;
 					}else{
 						;
 					}
 				}
-				/* check 
-				for(i=0;i<num_path;i++){
-					for(j=0;j<level-1;j++){
-						printf("%d,",path_list[i][j]);
-					}
-					printf("* vs %d\n",RNG_edge_d.p[edge]);
-				}
-				*/
 			}
 		}
 		/* *) */
-		/* (* add */
-		//printf("  add_path:%d:\n",adding_num_path);
+		/* (* add path */
 		num_path_new = adding_num_path;
 		path_list_new = i_alloc_mat(num_path_new,level);
 		cmp_path_new = 0;
@@ -293,25 +277,14 @@ int main(int argc, char **argv){
 			}
 		}
 		/* *) */
-		/* (* test: print cmp_path_new 
-		printf("  path_list_new:\n");
-		for(i=0;i<num_path_new;i++){
-			for(j=0;j<level;j++){
-				printf("%d,",path_list_new[i][j]);
-			}
-			printf("*\n");
-		}
-		printf("  :\n");
-		*) */
 		/* (* copy path_list_new to path_list */
 		free(path_list[0]);
 		free(path_list);
 		num_path = num_path_new;
 		path_list = i_alloc_mat(num_path,level);
-		/* copy */
 		for(i=0;i<num_path;i++){
 			for(j=0;j<level;j++){
-				path_list[i][j] = path_list_new[i][j];
+				path_list[i][j] = path_list_new[i][j];	//copy
 			}
 		}
 		free(path_list_new[0]);
@@ -335,8 +308,6 @@ int main(int argc, char **argv){
 			}
 		}
 		/*  *) */
-		/* *) */
-		//printf("#;\n");
 	}
 	/* *) */
 	/* (* print d_tbl */
