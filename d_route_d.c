@@ -325,13 +325,8 @@ int main(int argc, char **argv){
 		printf("  :\n");
 		*) */
 		/* (* copy path_list_new to path_list */
-		/*TODO : free path_list at level-1 OK */
-		//printf("   num_path:%d:\n",num_path);
-		//printf("   num_path_new:%d:\n",num_path_new);
-
 		free(path_list[0]);
 		free(path_list);
-
 		num_path = num_path_new;
 		path_list = i_alloc_mat(num_path,level);
 		/* copy */
@@ -340,6 +335,8 @@ int main(int argc, char **argv){
 				path_list[i][j] = path_list_new[i][j];
 			}
 		}
+		free(path_list_new[0]);
+		free(path_list_new);
 		/*  *) */
 		/*  (* print preparation */
 		for(i=0;i<num_path;i++){
@@ -368,8 +365,9 @@ int main(int argc, char **argv){
 		d_tbl[i][i] = 0;
 	}
 	for(i=0;i<(*opt).dsize;i++){
-		for(j=0;j<(*opt).dsize;j++){
-			printf("%f ",d_tbl[i][j]);
+		printf("%f",d_tbl[i][0]);
+		for(j=1;j<(*opt).dsize;j++){
+			printf(" %f",d_tbl[i][j]);
 		}
 		printf("\n");
 	}
