@@ -182,7 +182,6 @@ int main(int argc, char **argv){
 			num_RNG_edge++;
 		}
 	}
-	//printf("#num_RNG_edge:%d:\n",num_RNG_edge);
 	fseek(fp,0U,SEEK_SET);
 	RNG_edge_d.p = i_alloc_vec(num_RNG_edge * 2);
 	RNG_edge_d.t = i_alloc_vec(num_RNG_edge * 2);
@@ -201,12 +200,6 @@ int main(int argc, char **argv){
 		RNG_edge_d.p[j] = RNG_edge_d.t[j-num_RNG_edge];
 		RNG_edge_d.d[j] = RNG_edge_d.d[j-num_RNG_edge];
 	}
-	/*   (* 
-	printf("#RNG_edge both:\n");
-	for(j=0;j<num_RNG_edge*2;j++){
-		printf("%s %d,%d,%f\n","%",RNG_edge_d.p[j],RNG_edge_d.t[j],RNG_edge_d.d[j]);
-	}
-	     *) */
 	/*  *) */
 	/* *) */
 
@@ -253,16 +246,14 @@ int main(int argc, char **argv){
 		/* (* count for malloc of path_list_new */
 		for(cmp_path=0;cmp_path<num_path;cmp_path++){ /* comp to RNG edge */
 			for(edge=0;edge<num_RNG_edge*2;edge++){
-				//printf("%d vs %d\n",path_list[cmp_path][level-2],RNG_edge_d.p[edge]);
 				if(path_list[cmp_path][level-2] == RNG_edge_d.p[edge]){
-					//printf(" t:%d:\n",RNG_edge_d.t[edge]);
 					if(if_match_int_sc_vec(RNG_edge_d.t[edge],path_list[cmp_path],level-2) == 0){
 						/*
 						for(j=0;j<level-1;j++){
 							printf("%d,",path_list[cmp_path][j]);
 						}
+						printf("%d-*\n",RNG_edge_d.t[edge]);
 						*/
-						//printf("%d-*\n",RNG_edge_d.t[edge]);
 						adding_num_path++;
 					}else{
 						;
