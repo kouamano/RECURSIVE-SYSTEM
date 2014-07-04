@@ -1,4 +1,4 @@
-/* d_route_d.c */
+/* d_route_dmat.c */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,7 +27,7 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" d_route_d [-h] [-s] [-c] dsize=<size of dsit matrix> ef=<edge list file> ; using struct edge .\n");
+	printf(" d_route_dmat [-h] [-s] [-c] dsize=<size of dsit matrix> ef=<edge list file> ; using struct edge .\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
@@ -61,7 +61,7 @@ void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
 	(*opt).check = 0;
-	(*opt).dsize = 1000;
+	(*opt).dsize = 20;
 	(*opt).df[0] = '\0';
 	(*opt).ef[0] = '\0';
 }
