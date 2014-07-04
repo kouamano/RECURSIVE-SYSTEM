@@ -1,4 +1,4 @@
-/* d_route.c */
+/* d_route_d.c */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -101,10 +101,7 @@ float create_current_route_from_path_list(struct route *_c_route, int _len_p_lis
 	float max_v = -1;
 	for(i=0;i<_len_p_list-1;i++){
 		max_v = max(_d_tbl[_p_list[i]][_p_list[i+1]],max_v);
-		//printf("%f ",_d_tbl[_p_list[i]][_p_list[i+1]]);
 	}
-	//printf(" -> max:%f:",max_v);
-	//printf("\n");
 	(*_c_route).length = _len_p_list;
 	(*_c_route).route_start = _p_list[0];
 	(*_c_route).route_end = _p_list[_len_p_list-1];
@@ -119,7 +116,6 @@ int main(int argc, char **argv){
 	char *line;
 	float **d_tbl;
 	float tmp;
-	//struct edge RNG_edge;
 	struct edge_d RNG_edge_d;
 	struct route *current_route;
 	int edge,num_RNG_edge = 0;
@@ -253,16 +249,11 @@ int main(int argc, char **argv){
 	max_level = (*opt).dsize;
 	for(level=2;level<=max_level;level++){
 		//printf("#path level %d:\n",level);
-		/* current level : to be made */
-		/* comp_node : path_list[cmp_path][level-2] */
-		//path_list_new = i_calloc_mat(MEM_BLK,level);
-		//num_path_new = 0;
 		adding_num_path = 0;
-		/* (* count */
+		/* (* count for malloc of path_list_new */
 		for(cmp_path=0;cmp_path<num_path;cmp_path++){ /* comp to RNG edge */
 			for(edge=0;edge<num_RNG_edge*2;edge++){
 				//printf("%d vs %d\n",path_list[cmp_path][level-2],RNG_edge_d.p[edge]);
-				/* if path_list[][] == RNG_edge_d.p[] ; comp RNG_edge_d.t[] != path_list[][0:level-2] then ; add */
 				if(path_list[cmp_path][level-2] == RNG_edge_d.p[edge]){
 					//printf(" t:%d:\n",RNG_edge_d.t[edge]);
 					if(if_match_int_sc_vec(RNG_edge_d.t[edge],path_list[cmp_path],level-2) == 0){
@@ -273,6 +264,8 @@ int main(int argc, char **argv){
 						*/
 						//printf("%d-*\n",RNG_edge_d.t[edge]);
 						adding_num_path++;
+					}else{
+						;
 					}
 				}
 				/* check 
@@ -290,27 +283,22 @@ int main(int argc, char **argv){
 		//printf("  add_path:%d:\n",adding_num_path);
 		num_path_new = adding_num_path;
 		path_list_new = i_alloc_mat(num_path_new,level);
-		/* TODO : extend path at level from level-1 OK */
 		cmp_path_new = 0;
 		for(cmp_path=0;cmp_path<num_path;cmp_path++){ /* comp to RNG edge */
 			for(edge=0;edge<num_RNG_edge*2;edge++){
 				if(path_list[cmp_path][level-2] == RNG_edge_d.p[edge]){
 					//printf(" t:%d:\n",RNG_edge_d.t[edge]);
 					if(if_match_int_sc_vec(RNG_edge_d.t[edge],path_list[cmp_path],level-2) == 0){
-						//for(i=0;i<num_path;i++){
 						for(j=0;j<level-1;j++){
 							//printf("%d-",path_list[cmp_path][j]);
 							path_list_new[cmp_path_new][j] = path_list[cmp_path][j];
 							
 						}
-						//}
 						//printf("%d-*\n",RNG_edge_d.t[edge]);
 						path_list_new[cmp_path_new][level-1] = RNG_edge_d.t[edge];
 						cmp_path_new++;
-						//adding_num_path++;
 					}
 				}
-
 			}
 		}
 		/* *) */
