@@ -8,6 +8,7 @@ struct options {
 	int help;
 	int stat;
 	int check;
+	int n;
 	//int argint;
 	//char *argstr;
 	char *od;
@@ -57,7 +58,7 @@ void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
 	(*opt).check = 0;
-	//(*opt).argint = 0;
+	(*opt).n = 1;
 	//(*opt).argstr[0] = '\0';
 	(*opt).od[0] = '\n';
 	(*opt).od[1] = '\0';
@@ -74,6 +75,10 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).stat = 1;
 		}else if(strcmp(optv[i],"-c") == 0){
 			(*opt).check = 1;
+		}else if(strcmp(optv[i],"-n") == 0){
+			(*opt).n = 1;
+		}else if(strcmp(optv[i],"+n") == 0){
+			(*opt).n = 0;
 		//}else if(strncmp(optv[i],"int=",4) == 0){
 		//	sscanf(optv[i],"int=%d",&(*opt).argint);
 		//}else if(strncmp(optv[i],"str=",4) == 0){
@@ -91,6 +96,7 @@ void get_options(int optc, char **optv, struct options *opt){
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	//printf(" opt.argint:%d:\n",(*opt).argint);
+	printf(" opt.n:%d:\n",(*opt).n);
 	printf(" opt.od:%s:\n",(*opt).od);
 	printf(" opt.df:%s:\n",(*opt).df);
 	printf(" opt.sf:%s:\n",(*opt).sf);
@@ -144,8 +150,14 @@ int main(int argc, char **argv){
 		}
 	}
 	fseek(IN,0U,SEEK_SET);
-	delims_list = c_alloc_vec(len_delims_list + 1);
-	ptr_delims = i_alloc_vec(num_delims);
+	/* option brunch */
+	if((*opt).n == 0){
+		delims_list = c_alloc_vec(len_delims_list + 1);
+		ptr_delims = i_alloc_vec(num_delims);
+	}else{
+		delims_list = c_alloc_vec(len_delims_list + 1 + 2);
+		ptr_delims = i_alloc_vec(num_delims + 1);
+	}
 	tmpptr = 0;
 	tmpptr2 = 0;
 	ptr_delims[0] = tmpptr;
@@ -161,6 +173,15 @@ int main(int argc, char **argv){
 		tmpptr++;
 	}
 	fclose(IN);
+	/* option brunch */
+	if((*opt).n != 0){
+		delims_list[tmpptr] = '\n';
+		tmpptr++;
+		delims_list[tmpptr] = '\0';
+		tmpptr++;
+		ptr_delims[tmpptr2] = tmpptr;
+		num_delims++;
+	}
 	/* *) */
 
 	/*UNDER CONSTRUCTION*/
@@ -172,7 +193,7 @@ int main(int argc, char **argv){
 	}
 	printf("-------\n");
 	for(i=0;i<num_delims;i++){
-		printf("%s\n",delims_list+ptr_delims[i]);
+		printf(":%s:\n",delims_list+ptr_delims[i]);
 	}
 	printf("-------\n");
 	
