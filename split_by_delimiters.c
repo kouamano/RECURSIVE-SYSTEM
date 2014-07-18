@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../include/alloc.c"
 #define LEN 1024
 
 struct options {
@@ -58,7 +59,8 @@ void init_options(struct options *opt){
 	(*opt).check = 0;
 	//(*opt).argint = 0;
 	//(*opt).argstr[0] = '\0';
-	(*opt).od[0] = '\0';
+	(*opt).od[0] = '\n';
+	(*opt).od[1] = '\0';
 	(*opt).df[0] = '\0';
 	(*opt).sf[0] = '\0';
 }
@@ -95,8 +97,17 @@ void check_options(struct options *opt){
 }
 
 int main(int argc, char **argv){
+	int i;
 	struct options *opt;
-	int ie=0;
+	int ie = 0;
+	int c = 0;
+	int tmpptr = 0;
+	int tmpptr2 = 0;
+	FILE *IN;
+	char *delims_list;
+	int len_delims_list = 0;
+	int num_delims = 0;
+	int *ptr_delims;
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
@@ -118,5 +129,52 @@ int main(int argc, char **argv){
 	if(ie == 1){
 		exit(0);
 	}
+
+	/* (* read df */
+	if((IN = fopen((*opt).df,"r")) == NULL){
+		perror((*opt).df);
+		exit(1);
+	}
+	len_delims_list = 0;
+	num_delims = 0;
+	while((c = fgetc(IN)) != EOF){
+		len_delims_list++;
+		if(c == '\n'){
+			num_delims++;
+		}
+	}
+	fseek(IN,0U,SEEK_SET);
+	delims_list = c_alloc_vec(len_delims_list + 1);
+	ptr_delims = i_alloc_vec(num_delims);
+	tmpptr = 0;
+	tmpptr2 = 0;
+	ptr_delims[0] = tmpptr;
+	tmpptr2++;
+	while((c = fgetc(IN)) != EOF){
+		if(c == '\n'){
+			delims_list[tmpptr] = '\0';
+			ptr_delims[tmpptr2] = tmpptr+1;
+			tmpptr2++;
+		}else{
+			delims_list[tmpptr] = c;
+		}
+		tmpptr++;
+	}
+	fclose(IN);
+	/* *) */
+
+	/*UNDER CONSTRUCTION*/
+	
+	printf("len:%d:\n",len_delims_list);
+	printf("num:%d:\n",num_delims);
+	for(i=0;i<num_delims;i++){
+		printf("%d\n",ptr_delims[i]);
+	}
+	printf("-------\n");
+	for(i=0;i<num_delims;i++){
+		printf("%s\n",delims_list+ptr_delims[i]);
+	}
+	printf("-------\n");
+	
 	return(0);
 }
