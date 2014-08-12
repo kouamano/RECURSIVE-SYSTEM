@@ -73,13 +73,17 @@ while(<IN>){
 close(IN);
 $dcs = join('',@arr);
 #print ";;;$dcs;;;\n";
+
 ## read source file
 open(IN,$srcfile);
 while(<IN>){
 	chomp;
 	@word = split(/$dcs/,$_);
+	if($word[0] == ""){
+		shift(@word);
+	}
 	for($i=0;$i<@word-1;$i++){
-		print ":::$word[$i]\t$word[$i+1]:::\n";
+		print "$word[$i]\t$word[$i+1]\n";
 	}
 }
 close(IN);
