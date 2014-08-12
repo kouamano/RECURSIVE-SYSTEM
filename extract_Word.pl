@@ -79,6 +79,9 @@ open(IN,$srcfile);
 while(<IN>){
 	chomp;
 	@word = split(/$dcs/,$_);
+	if($word[0] == ""){
+		shift(@word);
+	}
 	for($i=0;$i<@word;$i++){
 		print "$word[$i]\n";
 	}
