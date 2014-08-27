@@ -7,6 +7,8 @@ $status = 0;
 $sf = 0;
 $qf = "";
 $ie = 0;
+$head = "[^A-Za-z]";
+$tail = "[^A-Za-z]";
 
 # subroutine
 sub _help {
@@ -77,7 +79,7 @@ while(<IN>){
 	$sl = $_;
 	print $sl;
 	foreach(@arr){
-		if($sl =~ /$_/i){
+		if($sl =~ /($head)($_)($tail)/i){
 			print "\t$_";
 		}
 	}
