@@ -11,7 +11,7 @@ $ie = 0;
 # subroutine
 sub _help {
 	print "USAGE:\n";
-	printf " this is a template.\n"
+	printf " match_lines.pl -c -h -s sf=<source file> qf=<query file>\n"
 }
 
 sub _check {
@@ -25,7 +25,7 @@ sub _check {
 
 sub _status {
 	print "STATUS:\n";
-	printf " this is a template.\n"
+	printf " Available.\n"
 }
 
 # argment analysis
@@ -75,10 +75,12 @@ open(IN,$sf);
 while(<IN>){
 	chomp;
 	$sl = $_;
+	print $sl;
 	foreach(@arr){
 		if($sl =~ /$_/i){
-			print "$sl\t$_\n";
+			print "\t$_";
 		}
 	}
+	print "\n";
 }
 close(IN);
