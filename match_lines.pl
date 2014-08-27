@@ -64,7 +64,7 @@ if($ie == 1){
 	exit(0);
 }
 
-#read query file
+## read query file
 open(IN,$qf);
 while(<IN>){
 	chomp;
@@ -72,7 +72,7 @@ while(<IN>){
 }
 close(IN);
 
-#read source file
+## read source file
 open(IN,$sf);
 while(<IN>){
 	chomp;
