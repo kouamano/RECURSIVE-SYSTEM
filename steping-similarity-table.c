@@ -23,9 +23,9 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
-#include "/home/pub/include/alloc.c"
-#include "/home/pub/include/list_operations.c"
-#include "/home/pub/include/data_read.c"
+#include "../include/alloc.c"
+#include "../include/list_operations.c"
+#include "../include/data_read.c"
 #include "hash.c"
 #ifndef max
 #define max(a,b) (((a)>(b))?(a):(b))
@@ -34,7 +34,6 @@
 #define min(a,b) (((a)<(b))?(a):(b))
 #endif
 #define FILE_NAME_LEN 256
-#define TMP_STR_LEN_LONG 2050
 
 struct options {
 	char base_sim_file[FILE_NAME_LEN];
