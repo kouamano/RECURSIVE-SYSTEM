@@ -73,25 +73,6 @@ void check_options(struct options *opt){
 	printf(" opt.dmat:%s:\n",(*opt).dmat);
 }
 
-struct path{
-	int *Vstart;
-	int *Vend;
-	float *dist;
-	int num;
-};
-
-void init_path(struct path *path_list, int size){
-	if((path_list = malloc(sizeof(struct path))) == NULL){
-		fprintf(stderr,"failed malloc() at init_path().\n");
-		exit(0);
-	}
-	(*path_list).Vstart = i_alloc_vec(size);
-	(*path_list).Vend = i_alloc_vec(size);
-	(*path_list).dist = f_alloc_vec(size);
-	(*path_list).num = 0;
-}
-
-
 int select_posUnflagedV(int *vpool, int size, int pos){
 	int i;
 	int count = -1;
@@ -121,18 +102,6 @@ int poolremain(int *vpool, int size){
 	}
 	return(count);
 }
-
-int sizeV(int *v, int size){
-	int i;
-	int count = 0;
-	for(i=0;i<size;i++){
-		if(v[i] == 1){
-			count++;
-		}
-	}
-	return(count);
-}
-
 
 float minimum_dist_from_Vnew(int *vnew, int size_vnew, int *vpool, int size_vpool, float **_dmat, int *vnpoint, int *vppoint){
 	int i,j;
