@@ -244,7 +244,7 @@ int main(int argc, char **argv){
 	//printf("path %d",currentV);
 	/** find nimimum dist edge **/
 	currentDist = minimum_dist_from_Vnew(Vnew, (*opt).size, Vpool, (*opt).size, dmat, &Vnpoint, &Vppoint);
-	printf("path\t%d\t%d\t%f\n",Vnpoint,Vppoint,currentDist);
+	printf("%d\t%d\t%f\n",Vnpoint,Vppoint,currentDist);
 	/** move Vp to Vn, switch currentV **/
 	currentV = Vppoint;
 	moveVp2Vn(Vpool, Vnew, currentV);
