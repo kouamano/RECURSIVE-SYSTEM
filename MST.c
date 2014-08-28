@@ -210,19 +210,19 @@ int main(int argc, char **argv){
 
 	/* while */
 	for(;;){
-	//printf("path %d",currentV);
-	/** find nimimum dist edge **/
-	currentDist = minimum_dist_from_Vnew(Vnew, (*opt).size, Vpool, (*opt).size, dmat, &Vnpoint, &Vppoint);
-	printf("%d\t%d\t%f\n",Vnpoint,Vppoint,currentDist);
-	/** move Vp to Vn, switch currentV **/
-	currentV = Vppoint;
-	moveVp2Vn(Vpool, Vnew, currentV);
-	/** check loop **/
-	R = poolremain(Vpool,(*opt).size);
-	//printf("\nR:%d:\n",R);
-	if(R <= 0){
-		break;
-	}
+		//printf("path %d",currentV);
+		/** find nimimum dist edge **/
+		currentDist = minimum_dist_from_Vnew(Vnew, (*opt).size, Vpool, (*opt).size, dmat, &Vnpoint, &Vppoint);
+		printf("%d\t%d\t%f\n",Vnpoint,Vppoint,currentDist);
+		/** move Vp to Vn, switch currentV **/
+		currentV = Vppoint;
+		moveVp2Vn(Vpool, Vnew, currentV);
+		/** check loop **/
+		R = poolremain(Vpool,(*opt).size);
+		//printf("\nR:%d:\n",R);
+		if(R <= 0){
+			break;
+		}
 	}
 	
 
