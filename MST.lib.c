@@ -122,7 +122,7 @@ void myMST(int *opt_size, float **dmat, struct path *path_list){
 		//printf("path %d",currentV);
 		/** find nimimum dist edge **/
 		currentDist = minimum_dist_from_Vnew(Vnew, *opt_size, Vpool, *opt_size, dmat, &Vnpoint, &Vppoint);
-		printf("%d\t%d\t%f\n",Vnpoint,Vppoint,currentDist);
+		//printf("%d\t%d\t%f\n",Vnpoint,Vppoint,currentDist);
 		path_list[i].head_node = Vnpoint;
 		path_list[i].tail_node = Vppoint;
 		path_list[i].dist = currentDist;
