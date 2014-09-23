@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #define LEN 1024
+#define SEP '\t'
 #include "../include/alloc.c"
 #include "../include/data_read.c"
 #include "../include/math_base.c"
@@ -137,6 +138,7 @@ float minimum_dist_from_Vnew(int *vnew, int size_vnew, int *vpool, int size_vpoo
 int main(int argc, char **argv){
 	float **dmat;
 	FILE *fp;
+	int c;
 	int i,j;
 	int *Vpool;
 	int *Vnew;
@@ -169,6 +171,26 @@ int main(int argc, char **argv){
 	if(ie == 1){
 		exit(0);
 	}
+	//if opt.size == 0; automatic
+	int col = 0;
+	if((*opt).size == 0){
+		if((fp = fopen((*opt).dmat,"r")) == NULL){
+		perror((*opt).dmat);
+		exit(1);
+		}
+		while((c=fgetc(fp)) != EOF){
+			if(c == SEP){
+				col++;
+			} else if(c == '\n'){
+				break;
+			}else{
+				;
+			}
+		}
+		fclose(fp);
+	}
+	(*opt).size=col + 1;
+
 	dmat = f_alloc_mat((*opt).size,(*opt).size);
 	if((fp = fopen((*opt).dmat,"r")) == NULL){
 		perror((*opt).dmat);
