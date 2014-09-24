@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #define LEN 1024
-#define SEP '\t'
+#define SEPS "\t "
 #include "../include/alloc.c"
 #include "../include/data_read.c"
 #include "../include/math_base.c"
@@ -21,13 +21,13 @@ void help(void){
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
-	printf("  size : no. of nodes [integer].\n");
+	printf("  size : no. of nodes [integer]. ; if size==0 -> auto.\n");
 	printf("  dmat : distance matrix file [string].\n");
 }
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" Under construction.\n");
+	printf(" Available.\n");
 }
 
 struct options *alloc_options(void){
@@ -172,6 +172,7 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 	//if opt.size == 0; automatic
+	//printf(";;;%d;;;\n",(*opt).size);
 	int col = 0;
 	if((*opt).size == 0){
 		if((fp = fopen((*opt).dmat,"r")) == NULL){
@@ -179,7 +180,7 @@ int main(int argc, char **argv){
 		exit(1);
 		}
 		while((c=fgetc(fp)) != EOF){
-			if(c == SEP){
+			if(c == SEPS[0]||c == SEPS[1]){
 				col++;
 			} else if(c == '\n'){
 				break;
@@ -188,8 +189,9 @@ int main(int argc, char **argv){
 			}
 		}
 		fclose(fp);
+		((*opt).size)=col + 1;
 	}
-	(*opt).size=col + 1;
+	//printf(";;;%d;;;\n",(*opt).size);
 
 	dmat = f_alloc_mat((*opt).size,(*opt).size);
 	if((fp = fopen((*opt).dmat,"r")) == NULL){
