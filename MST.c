@@ -173,8 +173,8 @@ int main(int argc, char **argv){
 	}
 	//if opt.size == 0; automatic
 	//printf(";;;%d;;;\n",(*opt).size);
-	int col = 0;
 	if((*opt).size == 0){
+		int col = 0;
 		if((fp = fopen((*opt).dmat,"r")) == NULL){
 		perror((*opt).dmat);
 		exit(1);
