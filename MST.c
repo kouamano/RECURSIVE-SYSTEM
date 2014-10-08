@@ -232,6 +232,12 @@ int main(int argc, char **argv){
 	}
 	*/
 
+	/* if table size == 1*/
+	if((*opt).size == 1){
+		printf("0\t0\t0\n");
+		return(0);
+	}
+
 	/* while */
 	for(;;){
 		//printf("path %d",currentV);
@@ -248,7 +254,5 @@ int main(int argc, char **argv){
 			break;
 		}
 	}
-	
-
 	return(0);
 }
