@@ -78,6 +78,7 @@ while(<IN>){
 	chomp;
 	$sl = $_;
 	print $sl;
+	print "\t<\t>\t";
 	foreach(@arr){
 		if($sl =~ /($head)($_)($tail)/i){
 			print "\t$_";
