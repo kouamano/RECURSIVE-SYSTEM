@@ -4,6 +4,7 @@
 $help = 0;
 $check = 0;
 $status = 0;
+$ig = 0;
 $sf = 0;
 $qf = "";
 $ie = 0;
@@ -13,7 +14,7 @@ $tail = "[^A-Za-z]";
 # subroutine
 sub _help {
 	print "USAGE:\n";
-	printf " match_lines.pl -c -h -s sf=<source file> qf=<query file>\n"
+	printf " match_lines.pl -c -h -s -i sf=<source file> qf=<query file>\n"
 }
 
 sub _check {
@@ -21,6 +22,7 @@ sub _check {
 	print " help:$help:\n";
 	print " check:$check:\n";
 	print " status:$status:\n";
+	print " ignore:$ig:\n";
 	print " sf:$sf:\n";
 	print " qf:$qf:\n";
 }
@@ -38,6 +40,8 @@ foreach $l (@ARGV) {
 		$check = 1;
 	}elsif($l eq "-s"){
 		$status = 1;
+	}elsif($l eq "-i"){
+		$ig = 1;
 	}elsif($l =~ /sf=(.*)/){
 		$sf = $1;
 	}elsif($l =~ /qf=(.*)/){
@@ -72,18 +76,36 @@ while(<IN>){
 }
 close(IN);
 
+if($ig == 0){
 ## read source file
-open(IN,$sf);
-while(<IN>){
-	chomp;
-	$sl = $_;
-	print $sl;
-	print "\t<\t>\t";
-	foreach(@arr){
-		if($sl =~ /($head)($_)($tail)/i){
-			print "\t$_";
+	open(IN,$sf);
+	while(<IN>){
+		chomp;
+		$sl = $_;
+		print $sl;
+		print "\t<\t>\t";
+		foreach(@arr){
+			if($sl =~ /($head)($_)($tail)/){
+				print "\t$_";
+			}
 		}
+		print "\n";
 	}
-	print "\n";
+	close(IN);
+}else{
+## read source file
+	open(IN,$sf);
+	while(<IN>){
+		chomp;
+		$sl = $_;
+		print $sl;
+		print "\t<\t>\t";
+		foreach(@arr){
+			if($sl =~ /($head)($_)($tail)/i){
+				print "\t$_";
+			}
+		}
+		print "\n";
+	}
+	close(IN);
 }
-close(IN);
