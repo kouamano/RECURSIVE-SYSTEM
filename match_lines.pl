@@ -4,6 +4,7 @@
 $help = 0;
 $check = 0;
 $status = 0;
+$cskip = 0;
 $ig = 0;
 $sf = 0;
 $qf = "";
@@ -23,6 +24,7 @@ sub _check {
 	print " check:$check:\n";
 	print " status:$status:\n";
 	print " ignore:$ig:\n";
+	print " cskip:$cskip:\n";
 	print " sf:$sf:\n";
 	print " qf:$qf:\n";
 }
@@ -46,6 +48,8 @@ foreach $l (@ARGV) {
 		$sf = $1;
 	}elsif($l =~ /qf=(.*)/){
 		$qf = $1;
+	}elsif($l =~ /cskip=(.*)/){
+		$cskip = $1;
 	}else{
 		print "unknown:$l:\n";
 	}
@@ -82,10 +86,15 @@ if($ig == 0){
 	while(<IN>){
 		chomp;
 		$sl = $_;
+		@target = split(/\t/,$sl);
+		for($i=0;$i<$cskip;$i++){
+			shift(@target);
+		}
+		$target = join('',@target);
 		print $sl;
 		print "\t<\t>\t";
 		foreach(@arr){
-			if($sl =~ /($head)($_)($tail)/){
+			if($target =~ /($head)($_)($tail)/){
 				print "\t$_";
 			}
 		}
@@ -98,10 +107,15 @@ if($ig == 0){
 	while(<IN>){
 		chomp;
 		$sl = $_;
+		@target = split(/\t/,$sl);
+		for($i=0;$i<$cskip;$i++){
+			shift(@target);
+		}
+		$target = join('',@target);
 		print $sl;
 		print "\t<\t>\t";
 		foreach(@arr){
-			if($sl =~ /($head)($_)($tail)/i){
+			if($target =~ /($head)($_)($tail)/i){
 				print "\t$_";
 			}
 		}
