@@ -9,8 +9,8 @@ $ig = 0;
 $sf = 0;
 $qf = "";
 $ie = 0;
-$head = "[^A-Za-z]";
-$tail = "[^A-Za-z]";
+$head = "[^A-Za-z0-9]";
+$tail = "[^A-Za-z0-9]";
 
 # subroutine
 sub _help {
