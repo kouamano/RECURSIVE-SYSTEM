@@ -8,10 +8,13 @@ while(<>){
 	s/\s+$//;
 	s/\s+/ /g;
 	$hit = ($_ =~ s/(\([^()]+\)).{0,1}$//);
+	$id = $1;
+	$id =~ s/^(//;
+	$id =~ s/)$//;
 	#print "$hit\n";
 	print "$_\t";
 	if($hit == 1){
-		print "$1\n";
+		print "$id\n";
 	}else{
 		print "\n";
 	}
