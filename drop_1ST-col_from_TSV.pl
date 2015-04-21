@@ -1,6 +1,8 @@
 #!/usr/bin/perl
 
 while(<>){
-	$_ =~ s/^[^\t]*\t//;
-	print $_;
+	if($_ =~ /\t/){
+		$_ =~ s/^[^\t]*\t//;
+		print $_;
+	}
 }
