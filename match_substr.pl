@@ -23,7 +23,7 @@ foreach(@source){
 	$str = $_;
 	foreach(@substr){
 		if($src =~ /$_/){
-			print "$src\n"
+			print "$src\n";
 			break;
 		}
 	}
