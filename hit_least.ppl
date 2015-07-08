@@ -77,9 +77,16 @@ while(<IN>){
 }
 close(IN);
 
+open(IN,$src);
+while(<IN>){
+        chomp;
+        push(@sarr,$_);
+}
+close(IN);
+
+
 if($col==-1){		#col==-1
-	open(IN,$src);
-	while(<IN>){
+	foreach(@sarr){
 		$pm->start and next;
 		$brk = 0;
 		$out = $_;
@@ -93,10 +100,8 @@ if($col==-1){		#col==-1
 		}
 		$pm->finish;
 	}
-	close(IN);
 }else{		#col>0
-	open(IN,$src);
-	while(<IN>){
+	foreach(@sarr){
 		$pm->start and next;
 		$brk = 0;
 		$out = $_;
@@ -110,7 +115,6 @@ if($col==-1){		#col==-1
 		}
 		$pm->finish;
 	}
-	close(IN);
 }
 
 
