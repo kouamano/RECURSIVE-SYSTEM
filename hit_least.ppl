@@ -1,0 +1,118 @@
+#!/usr/bin/perl
+
+use Parallel::ForkManager;
+
+my $pm = Parallel::ForkManager->new(20);
+
+# vars
+$help = 0;
+$check = 0;
+$status = 0;
+$ie = 0;
+
+# subroutine
+sub _help {
+	print "USAGE:\n";
+	printf " hit_least.pl src=<source file> qury=<query file> col=<target column>.\n";
+	print "STATEMENTS:\n";
+	printf " col == -1 : whole line.\n";
+}
+
+sub _check {
+	print "ARGS:\n";
+	print " help:$help:\n";
+	print " check:$check:\n";
+	print " status:$status:\n";
+	print " src:$src:\n";
+	print " qury:$qury:\n";
+	print " col:$col:\n";
+}
+
+sub _status {
+	print "STATUS:\n";
+	printf " Under construction.\n"
+}
+
+# argment analysis
+foreach $l (@ARGV) {
+	if($l eq "-h"){
+		$help = 1;
+	}elsif($l eq "-c"){
+		$check = 1;
+	}elsif($l eq "-s"){
+		$status = 1;
+	}elsif($l =~ /src=(.*)/){
+		$src = $1;
+	}elsif($l =~ /qury=(.*)/){
+		$qury = $1;
+	}elsif($l =~ /col=(.*)/){
+		$col = $1;
+	}else{
+		print "unknown:$l:\n";
+	}
+}
+
+# main
+if($help == 1){
+	&_help;
+	$ie = 1;
+}
+if($check == 1){
+	&_check;
+	$ie = 1;
+}
+if($status == 1){
+	&_status;
+	$ie = 1;
+}
+if($ie == 1){
+	exit(0);
+}
+
+open(IN,$qury);
+while(<IN>){
+	chomp;
+	push(@qarr,$_);
+}
+close(IN);
+
+if($col==-1){		#col==-1
+	open(IN,$src);
+	while(<IN>){
+		$pm->start and next;
+		$brk = 0;
+		$out = $_;
+		$target = $_;
+		#print $_;
+		foreach(@qarr){
+			if($target =~ /$_/){
+				print "$out";
+				last;
+			}
+		}
+		$pm->finish;
+	}
+	close(IN);
+}else{		#col>0
+	open(IN,$src);
+	while(<IN>){
+		$pm->start and next;
+		$brk = 0;
+		$out = $_;
+		@target = split(/ /,$out);
+		#print ":::$target[$col]";
+		foreach(@qarr){
+			if($target[$col] =~ /$_/){
+				print "$out";
+				last;
+			}
+		}
+		$pm->finish;
+	}
+	close(IN);
+}
+
+
+
+
+
