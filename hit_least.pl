@@ -93,7 +93,7 @@ if($col==-1){		#col==-1
 	while(<IN>){
 		$brk = 0;
 		$out = $_;
-		@target = split(/ /,$out);
+		@target = split(/\t/,$out);
 		#print ":::$target[$col]";
 		foreach(@qarr){
 			if($target[$col] =~ /$_/){
