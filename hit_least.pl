@@ -4,6 +4,7 @@
 $help = 0;
 $check = 0;
 $status = 0;
+$col = -1;
 $ie = 0;
 
 # subroutine
