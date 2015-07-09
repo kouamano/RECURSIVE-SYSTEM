@@ -2,7 +2,7 @@
 
 while(<>){
 	chomp;
-	@tmp = split(' or ',$_);
+	@tmp = split(/ [oO][rR] /,$_);
 	foreach(@tmp){
 		print "$_\n";
 	}
