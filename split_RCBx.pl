@@ -9,6 +9,6 @@ while(<>){
 			print "$_\n";
 		}
 	}else{
-		print "$_";
+		print "$_\n";
 	}
 }
