@@ -118,6 +118,7 @@ int main(int argc, char **argv){
 	char *source;
 	int b_head, b_tail;
 	char *ex_head, *ex_tail;
+	int LFcount = 0;
 
 	//option analysis
 	opt = alloc_options();
@@ -242,19 +243,23 @@ int main(int argc, char **argv){
 	//scan
 	if((*opt).ign == 0 && (*opt).ex == 0){
 		for(i=0;i<num_qptrs;i++){  //query
+			LFcount = 0;
 			for(j=0;j<source_size;j++){ //source
+				if(strncmp(source+j,"\n",1) == 0){LFcount++;}
 				if(strncmp(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
 					printf("%s",qbuf+(qptrs[i]));
-					printf("	%d	%d\n",j,j-1+(int)strlen(qbuf+(qptrs[i])));
+					printf("	%d	%d	L:%d\n",j,j-1+(int)strlen(qbuf+(qptrs[i])),LFcount);
 				}
 			}
 		}
 	}else if((*opt).ign != 0 && (*opt).ex == 0){
 		for(i=0;i<num_qptrs;i++){  //query
+			LFcount = 0;
 			for(j=0;j<source_size;j++){ //source
+				if(strncmp(source+j,"\n",1) == 0){LFcount++;}
 				if(strncmpi(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
 					printf("%s",qbuf+(qptrs[i]));
-					printf("	%d	%d\n",j,j-1+(int)strlen(qbuf+(qptrs[i])));
+					printf("	%d	%d	L:%d\n",j,j-1+(int)strlen(qbuf+(qptrs[i])),LFcount);
 				}
 			}
 		}
@@ -262,7 +267,9 @@ int main(int argc, char **argv){
 		ex_head = c_alloc_vec((*opt).ex + 1);
 		ex_tail = c_alloc_vec((*opt).ex + 1);
 		for(i=0;i<num_qptrs;i++){  //query
+			LFcount = 0;
 			for(j=0;j<source_size;j++){ //source
+				if(strncmp(source+j,"\n",1) == 0){LFcount++;}
 				if(strncmp(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
 					// print extra byte
 					//putchar('[');
@@ -287,7 +294,7 @@ int main(int argc, char **argv){
 					}
 					ex_tail[k] = '\0';
 					// print pointers
-					printf("	%d	%d	%d	%d	%s%s",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,ex_head,ex_tail);
+					printf("	%d	%d	%d	%d	%s%s	%d",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,ex_head,ex_tail,LFcount);
 					//putchar(']');
 					putchar(4);
 					putchar('\n');
@@ -298,7 +305,9 @@ int main(int argc, char **argv){
 		ex_head = c_alloc_vec((*opt).ex + 1);
 		ex_tail = c_alloc_vec((*opt).ex + 1);
 		for(i=0;i<num_qptrs;i++){  //query
+			LFcount = 0;
 			for(j=0;j<source_size;j++){ //source
+				if(strncmp(source+j,"\n",1) == 0){LFcount++;}
 				if(strncmpi(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
 					// print extra byte
 					//putchar('[');
@@ -323,7 +332,7 @@ int main(int argc, char **argv){
 					}
 					ex_tail[k] = '\0';
 					// print pointers
-					printf("	%d	%d	%d	%d	%s%s",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,ex_head,ex_tail);
+					printf("	%d	%d	%d	%d	%s%s	%d",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,ex_head,ex_tail,LFcount);
 					//putchar(']');
 					putchar(4);
 					putchar('\n');
