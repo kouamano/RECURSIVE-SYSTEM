@@ -133,12 +133,12 @@ int main(int argc, char **argv){
 		(*opt).help = 1;
 	}
 	//put help
-	if((*opt).help ==1){
+	if((*opt).help == 1){
 		help();
 		ie = 1;
 	}
 	//put status
-	if((*opt).stat ==1){
+	if((*opt).stat == 1){
 		status();
 		ie = 1;
 	}
