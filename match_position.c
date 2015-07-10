@@ -282,7 +282,7 @@ int main(int argc, char **argv){
 						}
 					}
 					ex_head[k] = '\0';
-					printf("%s",qbuf+(qptrs[i]));
+					printf("%s%s",ex_head,qbuf+(qptrs[i]));
 					// print extra byte
 					b_tail = 0;
 					for(k=0;k<(*opt).ex;k++){
@@ -294,7 +294,7 @@ int main(int argc, char **argv){
 					}
 					ex_tail[k] = '\0';
 					// print pointers
-					printf("	%d	%d	%d	%d	%s%s	L:%d",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,ex_head,ex_tail,LFcount);
+					printf("%s	%d	%d	%d	%d	L:%d",ex_tail,j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,LFcount);
 					//putchar(']');
 					//putchar(4);
 					putchar('\n');
@@ -320,7 +320,7 @@ int main(int argc, char **argv){
 						}
 					}
 					ex_head[k] = '\0';
-					printf("%s",qbuf+(qptrs[i]));
+					printf("%s%s",ex_head,qbuf+(qptrs[i]));
 					// print extra byte
 					b_tail = 0;
 					for(k=0;k<(*opt).ex;k++){
@@ -332,7 +332,7 @@ int main(int argc, char **argv){
 					}
 					ex_tail[k] = '\0';
 					// print pointers
-					printf("	%d	%d	%d	%d	%s%s	L:%d",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,ex_head,ex_tail,LFcount);
+					printf("%s	%d	%d	%d	%d	L:%d",ex_tail,j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,LFcount);
 					//putchar(']');
 					//putchar(4);
 					putchar('\n');
