@@ -296,7 +296,7 @@ int main(int argc, char **argv){
 					// print pointers
 					printf("	%d	%d	%d	%d	%s%s	L:%d",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,ex_head,ex_tail,LFcount);
 					//putchar(']');
-					putchar(4);
+					//putchar(4);
 					putchar('\n');
 				}
 			}
@@ -334,7 +334,7 @@ int main(int argc, char **argv){
 					// print pointers
 					printf("	%d	%d	%d	%d	%s%s	L:%d",j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,ex_head,ex_tail,LFcount);
 					//putchar(']');
-					putchar(4);
+					//putchar(4);
 					putchar('\n');
 				}
 			}
