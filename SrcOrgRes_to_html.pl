@@ -31,6 +31,7 @@ foreach(@brr){
 	}
 	@srtorglist = sort @srtorglist;
 	@uniqsrtorglist = &uniq(@srtorglist);
+	@escuniqsrtorglist = &escape(@uniqsrtorglist);
 	#Reslist
 	chomp($reslist);
 	@reslist = split(/\n/,$reslist);
@@ -40,11 +41,12 @@ foreach(@brr){
 	}
 	@srtreslist = sort @srtreslist;
 	@uniqsrtreslist = &uniq(@srtreslist);
+	@escuniqsrtreslist = &escape(@uniqsrtreslist);
 	#ins font col
-	foreach(@uniqsrtorglist){
+	foreach(@escuniqsrtorglist){
 		$src =~ s/$_/<font color="red">$_<\/font>/g;
 	}
-	foreach(@uniqsrtreslist){
+	foreach(@escuniqsrtreslist){
 		$src =~ s/([ .,:;\-\^\(\[]$_[ .,:;\-\^\)\]])/<font color="blue">$1<\/font>/g;
 	}
 	print "<br> $head <br>";
@@ -64,3 +66,51 @@ sub uniq {
 	grep !$seen{$_}++, @_;
 }
 
+sub escape {
+        my @all = ();
+        my @out = ();
+        my @sp = ();
+        my $out = "";
+        foreach(@_){
+                @out = ();
+                @sp = split(//,$_);
+                foreach(@sp){
+                        if($_ eq '\\'){
+                                push(@out,"\\\\");
+                        }elsif($_ eq '*'){
+                                push(@out,"\\\*");
+                        }elsif($_ eq '+'){
+                                push(@out,"\\\+");
+                        }elsif($_ eq '.'){
+                                push(@out,"\\\.");
+                        }elsif($_ eq '?'){
+                                push(@out,"\\\?");
+                        }elsif($_ eq '{'){
+                                push(@out,"\\\{");
+                        }elsif($_ eq '}'){
+                                push(@out,"\\\}");
+                        }elsif($_ eq '('){
+                                push(@out,"\\\(");
+                        }elsif($_ eq ')'){
+                                push(@out,"\\\)");
+                        }elsif($_ eq '['){
+                                push(@out,"\\\[");
+                        }elsif($_ eq ']'){
+                                push(@out,"\\\]");
+                        }elsif($_ eq '^'){
+                                push(@out,"\\\^");
+                        }elsif($_ eq '$'){
+                                push(@out,"\\\$");
+                        }elsif($_ eq '|'){
+                                push(@out,"\\\|");
+                        }elsif($_ eq '/'){
+                                push(@out,"\\\/");
+                        }else{
+                                push(@out,"$_");
+                        }
+                }
+                $out = join("",@out);
+                push(@all,$out);
+        }
+        return @all;
+}
