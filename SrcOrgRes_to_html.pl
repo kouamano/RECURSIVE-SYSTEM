@@ -18,7 +18,7 @@ foreach(@brr){
 	@ln = split(/;;\n/,$_);
 	$src = $ln[0];
 	@src = split(/\t/,$src);
-	$head = join('',@src);
+	#$head = join('',@src);
 	$src = pop(@src);
 	$orglist = $ln[1];
 	$reslist = $ln[2];
@@ -49,7 +49,7 @@ foreach(@brr){
 	foreach(@escuniqsrtreslist){
 		$src =~ s/([ .,:;\-\^\(\[]$_[ .,:;\-\^\)\]])/<font color="blue">$1<\/font>/g;
 	}
-	print "<br> $head <br>";
+	#print "<br> $head <br>";
 	print $src;
 	print "\n<;;/>\n";
 	print $orglist;
