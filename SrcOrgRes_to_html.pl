@@ -48,7 +48,8 @@ foreach(@brr){
 	}
 	foreach(@escuniqsrtreslist){
 		#$src =~ s/([ .,:;\-\^\(\[]$_[ .,:;\-\^\)\]])/<font color="blue">$1<\/font>/g;
-		$src =~ s/[^0-9a0zA-Z]($_)[0-9a-zA-Z]/<font color="blue">$1<\/font>/g;
+		$src =~ s/([ .,:;\-\^\(\[>])($_)([ .,:;\-\^\)\]<])/$1<font color="blue">$2<\/font>$3/g;
+		#$src =~ s/([^0-9a0zA-Z])($_)([0-9a-zA-Z])/$1<font color="blue">$2<\/font>$3/g;
 	}
 	print "<br> $head <br>";
 	print $src;
