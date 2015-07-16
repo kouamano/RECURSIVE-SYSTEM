@@ -58,6 +58,7 @@ foreach(@brr){
 	print "\n<;;/>\n";
 	print $reslist;
 	print "\n<;;;/>\n";
+	print "<hr></hr>\n";
 }
 
 print "</body>\n";
