@@ -10,9 +10,8 @@ $ie = 0;
 # subroutine
 sub _help {
 	print "USAGE:\n";
-	printf " hit_least.pl src=<source file> qury=<query file> col=<target column>.\n";
+	printf " hit_least.pl src=<source file> qury=<query file> col=<target columns all n-th after>.\n";
 	print "STATEMENTS:\n";
-	printf " col == -1 : whole line.\n";
 }
 
 sub _check {
@@ -73,37 +72,23 @@ while(<IN>){
 }
 close(IN);
 
-if($col==-1){		#col==-1
-	open(IN,$src);
-	while(<IN>){
-		$brk = 0;
-		$out = $_;
-		$target = $_;
-		#print $_;
-		foreach(@qarr){
-			if($target =~ /$_/){
-				print "$out";
-				last;
-			}
+open(IN,$src);
+while(<IN>){
+	$out = $_;
+	$target = $_;
+	@target = split(/\t/,$target);
+	for($i=0;$i<$col;$i++){
+		shift(@target);
+	}
+	$target = join("\t",@target);
+	foreach(@qarr){
+		if($target =~ /$_/){
+			print "$out";
+			last;
 		}
 	}
-	close(IN);
-}else{		#col>0
-	open(IN,$src);
-	while(<IN>){
-		$brk = 0;
-		$out = $_;
-		@target = split(/\t/,$out);
-		#print ":::$target[$col]";
-		foreach(@qarr){
-			if($target[$col] =~ /$_/){
-				print "$out";
-				last;
-			}
-		}
-	}
-	close(IN);
 }
+close(IN);
 
 
 
