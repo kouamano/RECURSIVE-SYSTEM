@@ -112,6 +112,7 @@ float minimum_dist_from_Vnew(int *vnew, int size_vnew, int *vpool, int size_vpoo
 	for(i=0;i<size_vnew;i++){
 		for(j=0;j<size_vpool;j++){
 			//printf("[i,j,vnew_i,vpool_i]:%d,%d,%d,%d:",i,j,vnew[i],vpool[j]);
+			//if(vnew[i] == 1 && vpool[j] == 1 && _dmat[i][j] != -1){	// not full dist table
 			if(vnew[i] == 1 && vpool[j] == 1){
 				//printf("\nHit[%d,%d,%f]\n",i,j,_dmat[i][j]);
 				if(dist_min == -1){
