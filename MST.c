@@ -74,6 +74,25 @@ void check_options(struct options *opt){
 	printf(" opt.dmat:%s:\n",(*opt).dmat);
 }
 
+int search_first_pos(float **_dmat, int _size){
+	float min;
+	int pos_s,pos_e;
+	int i,j;
+	pos_s = 0;
+	pos_e = 1;
+	min = _dmat[pos_s][pos_e];
+	for(i=0;i<_size;i++){
+		for(j=0;j<_size;j++){
+			if(min > _dmat[i][j] && _dmat[i][j] != -1 && i != j){
+				min =  _dmat[i][j];
+				pos_s = i;
+				pos_e = j;
+			}
+		}
+	}
+	return(pos_s);
+}
+
 int select_posUnflagedV(int *vpool, int size, int pos){
 	int i;
 	int count = -1;
@@ -141,6 +160,7 @@ int main(int argc, char **argv){
 	FILE *fp;
 	int c;
 	int i,j;
+	int first_pos;
 	int *Vpool;
 	int *Vnew;
 	int Vppoint = -1;
@@ -220,8 +240,12 @@ int main(int argc, char **argv){
 		Vnew[i] = 0;
 	}
 
+
 	/* initial select */
-	currentV = select_posUnflagedV(Vpool,(*opt).size,0);
+	first_pos = search_first_pos(dmat,(*opt).size);
+	//currentV = select_posUnflagedV(Vpool,(*opt).size,0);
+	//printf("%d",first_pos);
+	currentV = select_posUnflagedV(Vpool,(*opt).size,first_pos);
 	//printf("currentV:%d:\n",currentV);
 	moveVp2Vn(Vpool, Vnew, currentV);
 	/*
