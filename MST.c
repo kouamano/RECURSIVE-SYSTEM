@@ -21,7 +21,7 @@ void help(void){
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
-	printf("  size : no. of nodes [integer]. ; if size==0 -> auto.\n");
+	printf("  size : no. of nodes [integer].\n");
 	printf("  dmat : distance matrix file [string].\n");
 }
 
