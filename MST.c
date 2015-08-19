@@ -83,7 +83,11 @@ int search_first_pos(float **_dmat, int _size){
 	min = _dmat[pos_s][pos_e];
 	for(i=0;i<_size;i++){
 		for(j=0;j<_size;j++){
-			if(min > _dmat[i][j] && _dmat[i][j] != -1 && i != j){
+			if(min == -1 && _dmat[i][j] != -1 && i != j){
+				min = _dmat[i][j];
+				pos_s = i;
+				pos_e = j;
+			}else if(min > _dmat[i][j] && _dmat[i][j] != -1 && i != j){
 				min =  _dmat[i][j];
 				pos_s = i;
 				pos_e = j;
