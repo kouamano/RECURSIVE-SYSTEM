@@ -8,14 +8,16 @@ $X = 1;
 $ie = 0;
 $be = 0;
 $af = 0;
+$col = 0;
 
 # subroutine
 sub _help {
 	print "USAGE:\n";
 	print " 対象ファイルのラインごとにマッチ処理を行なう。\n";
-	printf " extract_terms.pl sf=<source file> qf=<query file> span=<before>,<after> [-X|+X]\n";
+	printf " extract_terms.pl sf=<source file> qf=<query file> span=<before>,<after> skip=<col> [-X|+X]\n";
 	printf "  <query file> : escaped term list.\n";
 	printf "  <before>,<after> : print before <before> bytes, and after <after> bytes.\n";
+	printf "  <col> : skip <col> columns.\n";
 	printf "  [-X|+X] : knock out XML-tags; -X:on, +X:off.\n";
 }
 
@@ -28,6 +30,7 @@ sub _check {
 	print " qf:$qf:\n";
 	print " be:$be:\n";
 	print " af:$af:\n";
+	print " col:$col:\n";
 	print " X:$X:\n";
 }
 
@@ -51,6 +54,8 @@ foreach $l (@ARGV) {
 	}elsif($l =~ /span=([^,]*),([^,]*)/){
 		$be = $1;
 		$af = $2;
+	}elsif($l =~ /col=(.*)/){
+		$col = $1;
 	}elsif($l =~ /^-XX$/){
 		$X = 2;	#complete knock out XML-tags
 	}elsif($l =~ /^-X$/){
@@ -106,6 +111,9 @@ foreach(@qr){
 	$lcount = 0;
 	while(<IN>){
 		$sr = $_;
+		for($i=0;i<$col;$i++){
+			$sr = s/^[^\t]\t//;
+		}
 		$sr =~ s/\s/ /g;
 		if($X == 1){
 			$sr =~ s/(<[^<>]*?>)/$count=0;$sb="";while($count < length($1)){$sb = $sb." "; $count++;};$sb/eg;
