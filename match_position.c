@@ -16,13 +16,15 @@ struct options {
 	int qsize;
 	int ign;
 	int ex;
+	int sh;
+	int lsh;
 	char *sfile;
 	char *qfile;
 };
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" match_potistion [-h] [-s] [-c] [-i] qf=<query file> sf=<source file> [qb=<query buf>] [ex=<bytes for extra print>]\n");
+	printf(" match_potistion [-h] [-s] [-c] [-i] qf=<query file> sf=<source file> [qb=<query buf>] [ex=<bytes for extra print>] [s=<shift>] [ls=<lshift>]\n");
 	printf("  -h : print help and exit.\n");
 	printf("  -s : print status and exit.\n");
 	printf("  -c : print option values and exit.\n");
@@ -32,6 +34,8 @@ void help(void){
 	printf("  <query buf> : query buffer size,\n");
 	printf("              | qb=0 : auto.\n");
 	printf("  <bytes for extra print> : print extra byte at both ends (int).\n");
+	printf("  <shift> : print postion+<shift>.\n");
+	printf("  <lshift> : print line+<lshift>.\n");
 }
 
 void status(void){
@@ -63,6 +67,8 @@ void init_options(struct options *opt){
 	(*opt).ign = 0;
 	(*opt).ex = 0;
 	(*opt).qsize = 0;
+	(*opt).sh = 0;
+	(*opt).lsh = 0;
 	(*opt).sfile[0] = '\0';
 	(*opt).qfile[0] = '\0';
 }
@@ -84,6 +90,10 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"sf=%s",(*opt).sfile);
 		}else if(strncmp(optv[i],"ex=",3) == 0){
 			sscanf(optv[i],"ex=%d",&(*opt).ex);
+		}else if(strncmp(optv[i],"s=",2) == 0){
+			sscanf(optv[i],"s=%d",&(*opt).sh);
+		}else if(strncmp(optv[i],"ls=",2) == 0){
+			sscanf(optv[i],"ls=%d",&(*opt).lsh);
 		}else{
 			fprintf(stderr,"%s : undefined.\n",optv[i]);
 		}
@@ -96,6 +106,7 @@ void check_options(struct options *opt){
 	printf("opt.check:%d:\n",(*opt).check);
 	printf("opt.ign:%d:\n",(*opt).ign);
 	printf("opt.ex:%d:\n",(*opt).ex);
+	printf("opt.sh:%d:\n",(*opt).sh);
 	printf("opt.qsize:%d:\n",(*opt).qsize);
 	printf("opt.qfile:%s:\n",(*opt).qfile);
 	printf("opt.sfile:%s:\n",(*opt).sfile);
@@ -248,7 +259,7 @@ int main(int argc, char **argv){
 				if(strncmp(source+j,"\n",1) == 0){LFcount++;}
 				if(strncmp(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
 					printf("%s",qbuf+(qptrs[i]));
-					printf("	%d	%d	L:%d\n",j,j-1+(int)strlen(qbuf+(qptrs[i])),LFcount);
+					printf("	%d	%d	L:%d\n",j+(*opt).sh,j-1+(int)strlen(qbuf+(qptrs[i]))+(*opt).sh,LFcount+(*opt).lsh);
 				}
 			}
 		}
@@ -259,7 +270,7 @@ int main(int argc, char **argv){
 				if(strncmp(source+j,"\n",1) == 0){LFcount++;}
 				if(strncmpi(qbuf+(qptrs[i]),source+j,strlen(qbuf+(qptrs[i]))) == 0){
 					printf("%s",qbuf+(qptrs[i]));
-					printf("	%d	%d	L:%d\n",j,j-1+(int)strlen(qbuf+(qptrs[i])),LFcount);
+					printf("	%d	%d	L:%d\n",j+(*opt).sh,j-1+(int)strlen(qbuf+(qptrs[i]))+(*opt).sh,LFcount+(*opt).lsh);
 				}
 			}
 		}
@@ -294,7 +305,7 @@ int main(int argc, char **argv){
 					}
 					ex_tail[k] = '\0';
 					// print pointers
-					printf("%s	%d	%d	%d	%d	L:%d",ex_tail,j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,LFcount);
+					printf("%s	%d	%d	%d	%d	L:%d",ex_tail,j+(*opt).sh,j-1+(int)strlen(qbuf+(qptrs[i]))+(*opt).sh,b_head,b_tail,LFcount+(*opt).lsh);
 					//putchar(']');
 					//putchar(4);
 					putchar('\n');
@@ -332,7 +343,7 @@ int main(int argc, char **argv){
 					}
 					ex_tail[k] = '\0';
 					// print pointers
-					printf("%s	%d	%d	%d	%d	L:%d",ex_tail,j,j-1+(int)strlen(qbuf+(qptrs[i])),b_head,b_tail,LFcount);
+					printf("%s	%d	%d	%d	%d	L:%d",ex_tail,j+(*opt).sh,j-1+(int)strlen(qbuf+(qptrs[i]))+(*opt).sh,b_head,b_tail,LFcount+(*opt).lsh);
 					//putchar(']');
 					//putchar(4);
 					putchar('\n');
