@@ -10,6 +10,7 @@ $ie = 0;
 # subroutine
 sub _help {
 	print "USAGE:\n";
+	print " ラインごとに処理せず、一つのファイルに対して動作する。\n";
 	printf " extract_terms.pl sf=<source file> qf=<query file> span=<before>,<after> [-X|+X]\n";
 	printf "  <query file> : escaped term list.\n";
 	printf "  <before>,<after> : print before <before> bytes, and after <after> bytes.\n";
@@ -30,7 +31,7 @@ sub _check {
 
 sub _status {
 	print "STATUS:\n";
-	printf " Under construction.\n"
+	printf " OK.\n"
 }
 
 # argment analysis
