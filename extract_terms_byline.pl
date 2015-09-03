@@ -14,7 +14,7 @@ $col = 0;
 sub _help {
 	print "USAGE:\n";
 	print " 対象ファイルのラインごとにマッチ処理を行なう。\n";
-	printf " extract_terms.pl sf=<source file> qf=<query file> span=<before>,<after> skip=<col> [-X|+X]\n";
+	printf " extract_terms_byline.pl sf=<source file> qf=<query file> span=<before>,<after> skip=<col> [-X|+X]\n";
 	printf "  <query file> : escaped term list.\n";
 	printf "  <before>,<after> : print before <before> bytes, and after <after> bytes.\n";
 	printf "  <col> : skip <col> columns.\n";
