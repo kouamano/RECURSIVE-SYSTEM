@@ -116,7 +116,7 @@ foreach(@qr){
 		}
 		@arr = ();
 		while($sr =~ /((?:[^ ]* ){0,$be})($q)((?: [^ ]*){0,$af})/g){
-			push(@arr,$1.$2.$3);
+			push(@arr,$1."[[".$2."]]".$3);
 			$p = pos($sr);
 			pos($sr) = $p - length($3) + 1;
 		}
