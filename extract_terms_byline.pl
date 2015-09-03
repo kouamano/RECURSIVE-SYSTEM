@@ -51,6 +51,8 @@ foreach $l (@ARGV) {
 	}elsif($l =~ /span=([^,]*),([^,]*)/){
 		$be = $1;
 		$af = $2;
+	}elsif($l =~ /^-XX$/){
+		$X = 2;	#complete knock out XML-tags
 	}elsif($l =~ /^-X$/){
 		$X = 1;	#knock out XML-tags
 	}elsif($l =~ /^\+X$/){
@@ -107,6 +109,8 @@ foreach(@qr){
 		$sr =~ s/\s/ /g;
 		if($X == 1){
 			$sr =~ s/(<[^<>]*?>)/$count=0;$sb="";while($count < length($1)){$sb = $sb." "; $count++;};$sb/eg;
+		}elsif($X == 2){
+			$sr =~ s/<[^<>]*?>/ /g;
 		}
 		@arr = ();
 		while($sr =~ /(.{0,$be})($q)(.{0,$af})/g){
