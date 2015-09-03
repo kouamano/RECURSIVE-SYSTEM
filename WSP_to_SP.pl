@@ -5,4 +5,4 @@ while(<>){
 }
 $l = join('',@arr);
 $l =~ s/\s/ /g;
-print $l;
+print "$l\n";
