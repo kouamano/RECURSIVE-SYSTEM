@@ -107,6 +107,9 @@ close(IN);
 
 ##create term array (@tr)
 $sr = join('',@sr);
+if($X == 1){
+	$sr =~ s/<[^<>]*>/ /g;
+}
 $sr =~ s/\s+/ /g;
 @tr = split(/ /,$sr);
 
@@ -139,7 +142,7 @@ foreach(@qr){
 					if($targetpos >= 0){ print "$tr[$posterm-$be+$i] "; }
 				}
 				#print "[["."$posterm"." : "."$_"."]]";
-				print "<|>"."$tr[$posterm]"."</|>";
+				print "<[/>"."$tr[$posterm]"."<]/>";
 				#print " :af:"."$af".":";
 				for($i=0;$i<$af;$i++){
 					#print "[$posterm+$i+1]";
