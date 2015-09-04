@@ -108,7 +108,7 @@ close(IN);
 ##create term array (@tr)
 $sr = join('',@sr);
 if($X == 1){
-	$sr =~ s/<[^<>]*>/ /g;
+	$sr =~ s/<[^<>]*?>/ /g;
 }
 $sr =~ s/\s+/ /g;
 @tr = split(/ /,$sr);

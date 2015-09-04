@@ -1,8 +1,5 @@
 #!/usr/bin/perl
 
-#use Parallel::ForkManager;
-
-
 # vars
 $help = 0;
 $check = 0;
@@ -11,7 +8,6 @@ $X = 1;
 $ie = 0;
 $be = 0;
 $af = 0;
-#$P = 1;
 
 # subroutine
 sub _help {
@@ -97,7 +93,6 @@ while(<IN>){
 }
 close(IN);
 
-
 ##store source
 open(IN,$sf);
 while(<IN>){
@@ -107,53 +102,37 @@ close(IN);
 
 ##create term array (@tr)
 $sr = join('',@sr);
+if($X == 1){
+	$sr =~ s/<[^<>]*?>/ /g;
+}
 $sr =~ s/\s+/ /g;
 @tr = split(/ /,$sr);
 
 ##match
-#my $pm = Parallel::ForkManager->new($P);
 foreach(@qr){
-	#$pm->start and next;
 	$qterm = $_;
-	#print "$qterm\n";
-	#$lcount = 0;
-	#foreach(@sr){
-		#$sline = $_;
-		#print "\t$sline\n";
-		#if($X == 1){
-		#	$sline =~ s/<[^<>]*?>/ /g;
-		#	$sline =~ s/^\s+//;
-		#	$sline =~ s/\s+$//;
-		#	$sline =~ s/\s+/ /;
-		#}
-		#@tr = split(/\s/,$sline);
-		$posterm = 0;
-		foreach(@tr){
-			if($_ =~ /$qterm/){
-				print "$qterm"."\t[$posterm]\t";
-				#print ":be:"."$be".":";
-				for($i=0;$i<$be;$i++){
-					#print "[$posterm-$be+$i]";
-					$targetpos = $posterm-$be+$i;
-					#print "::"."$targetpos"."::";
-					if($targetpos >= 0){ print "$tr[$posterm-$be+$i] "; }
-				}
-				#print "[["."$posterm"." : "."$_"."]]";
-				print "<|>"."$tr[$posterm]"."</|>";
-				#print " :af:"."$af".":";
-				for($i=0;$i<$af;$i++){
-					#print "[$posterm+$i+1]";
-					$targetpos = $posterm+$i+1;
-					if($targetpos >= 0){ print " $tr[$posterm+$i+1]"; }
-				}
-				print "\n";
+	$posterm = 0;
+	foreach(@tr){
+		if($_ =~ /$qterm/){
+			print "$qterm"."\t[$posterm]\t";
+			#print ":be:"."$be".":";
+			for($i=0;$i<$be;$i++){
+				#print "[$posterm-$be+$i]";
+				$targetpos = $posterm-$be+$i;
+				#print "::"."$targetpos"."::";
+				if($targetpos >= 0){ print "$tr[$posterm-$be+$i] "; }
 			}
-			$posterm++;
+			#print "[["."$posterm"." : "."$_"."]]";
+			print "<[/>"."$tr[$posterm]"."<]/>";
+			#print " :af:"."$af".":";
+			for($i=0;$i<$af;$i++){
+				#print "[$posterm+$i+1]";
+				$targetpos = $posterm+$i+1;
+				if($targetpos >= 0){ print " $tr[$posterm+$i+1]"; }
+			}
+			print "\n";
 		}
-		#print "\n";
-		#$lcount++;
-	#}
-	#$pm->finish;
+		$posterm++;
+	}
 }
-#$pm->wait_all_children;
 
