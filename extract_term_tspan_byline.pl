@@ -89,42 +89,59 @@ while(<IN>){
 }
 close(IN);
 
-##store src
-#open(IN,$sf);
-#while(<IN>){
-#	push(@sr,$_);
-#}
-#close(IN);
-#$sr = join("",@sr);
-$sr =~ s/\s/ /g;
 
-##mach / print @ each term
-###open target
+##store source
 open(IN,$sf);
+while(<IN>){
+	chomp;
+	push(@sr,$_);
+}
+close(IN);
+
+
+##match
 foreach(@qr){
-	print "$_\n";
-	$q = $_;
-	seek(IN,0,0);
+	$qterm = $_;
+	print "$qterm\n";
 	$lcount = 0;
-	while(<IN>){
-		$sr = $_;
-		$sr =~ s/\s/ /g;
+	foreach(@sr){
+		$sline = $_;
+		#print "\t$sline\n";
 		if($X == 1){
-			$sr =~ s/(<[^<>]*?>)/$count=0;$sb="";while($count < length($1)){$sb = $sb." "; $count++;};$sb/eg;
-		}elsif($X == 2){
-			$sr =~ s/<[^<>]*?>/ /g;
+			$sline =~ s/<[^<>]*?>/ /g;
+			$sline =~ s/^\s+//;
+			$sline =~ s/\s+$//;
+			$sline =~ s/\s+/ /;
 		}
-		@arr = ();
-		while($sr =~ /((?:[^ ]* ){0,$be})($q)((?: [^ ]*){0,$af})/g){
-			push(@arr,$1."[[".$2."]]".$3);
-			$p = pos($sr);
-			pos($sr) = $p - length($3) + 1;
+		@tr = split(/\s/,$sline);
+		$posterm = 0;
+		foreach(@tr){
+			if($_ =~ /$qterm/){
+				print "\t[$lcount][$posterm]\t";
+				#print ":be:"."$be".":";
+				for($i=0;$i<$be;$i++){
+					#print "[$posterm-$be+$i]";
+					$targetpos = $posterm-$be+$i;
+					#print "::"."$targetpos"."::";
+					if($targetpos >= 0){ print "$tr[$posterm-$be+$i] "; }
+				}
+				#print "[["."$posterm"." : "."$_"."]]";
+				print "<|>"."$tr[$posterm]"."</|>";
+				#print " :af:"."$af".":";
+				for($i=0;$i<$af;$i++){
+					#print "[$posterm+$i+1]";
+					$targetpos = $posterm+$i+1;
+					if($targetpos >= 0){ print " $tr[$posterm+$i+1]"; }
+				}
+				print "\n";
+			}
+			$posterm++;
 		}
-		foreach(@arr){
-			print "\t[$lcount]\t$_\n";
-		}
+		#print "\n";
 		$lcount++;
 	}
 }
-close(IN);
+
+
+
 
