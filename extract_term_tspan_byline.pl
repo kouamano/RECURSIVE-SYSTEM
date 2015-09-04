@@ -11,15 +11,17 @@ $X = 1;
 $ie = 0;
 $be = 0;
 $af = 0;
+$P = 1;
 
 # subroutine
 sub _help {
 	print "USAGE:\n";
 	print " 対象ファイルのラインごとにマッチ処理を行なう。\n";
-	printf " extract_term_span_byline.pl sf=<source file> qf=<query file> span=<before>,<after> [-X|+X]\n";
+	printf " extract_term_span_byline.pl sf=<source file> qf=<query file> span=<before>,<after> [-X|+X] P=<par>\n";
 	printf "  <query file> : escaped term list.\n";
 	printf "  <before>,<after> : print before <before> terms, and after <after> terms.\n";
 	printf "  [-X|+X] : knock out XML-tags; -X:on, +X:off.\n";
+	printf "  <par> threads for parallel.\n";
 }
 
 sub _check {
@@ -32,6 +34,7 @@ sub _check {
 	print " be:$be:\n";
 	print " af:$af:\n";
 	print " X:$X:\n";
+	print " P:$P:\n";
 }
 
 sub _status {
@@ -54,6 +57,8 @@ foreach $l (@ARGV) {
 	}elsif($l =~ /span=([^,]*),([^,]*)/){
 		$be = $1;
 		$af = $2;
+	}elsif($l =~ /P=(.*)/){
+		$P = $1;
 	}elsif($l =~ /col=(.*)/){
 		$col = $1;
 	}elsif($l =~ /^-XX$/){
@@ -103,7 +108,7 @@ close(IN);
 
 
 ##match
-my $pm = Parallel::ForkManager->new(8);
+my $pm = Parallel::ForkManager->new($P);
 foreach(@qr){
 	$pm->start and next;
 	$qterm = $_;
