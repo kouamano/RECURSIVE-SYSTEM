@@ -1,5 +1,8 @@
 #!/usr/bin/perl
 
+use Parallel::ForkManager;
+
+
 # vars
 $help = 0;
 $check = 0;
@@ -100,7 +103,9 @@ close(IN);
 
 
 ##match
+my $pm = Parallel::ForkManager->new(8);
 foreach(@qr){
+	$pm->start and next;
 	$qterm = $_;
 	print "$qterm\n";
 	$lcount = 0;
@@ -140,8 +145,7 @@ foreach(@qr){
 		#print "\n";
 		$lcount++;
 	}
+	$pm->finish;
 }
-
-
-
+$pm->wait_all_children;
 
