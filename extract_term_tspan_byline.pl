@@ -112,7 +112,7 @@ my $pm = Parallel::ForkManager->new($P);
 foreach(@qr){
 	$pm->start and next;
 	$qterm = $_;
-	print "$qterm\n";
+	#print "$qterm\n";
 	$lcount = 0;
 	foreach(@sr){
 		$sline = $_;
@@ -127,7 +127,7 @@ foreach(@qr){
 		$posterm = 0;
 		foreach(@tr){
 			if($_ =~ /$qterm/){
-				print "\t[$lcount][$posterm]\t";
+				print "$qterm"."\t[$lcount][$posterm]\t";
 				#print ":be:"."$be".":";
 				for($i=0;$i<$be;$i++){
 					#print "[$posterm-$be+$i]";
