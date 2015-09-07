@@ -8,6 +8,7 @@ $help = 0;
 $check = 0;
 $status = 0;
 $X = 1;
+$R = 0;
 $ie = 0;
 $be = 0;
 $af = 0;
@@ -17,10 +18,11 @@ $P = 1;
 sub _help {
 	print "USAGE:\n";
 	print " 対象ファイルを1ラインとしてマッチ処理を行なう。\n";
-	printf " extract_term_span_byline.pl sf=<source file> qf=<query file> span=<before>,<after> [-X|+X] P=<par>\n";
+	printf " extract_term_span_byline.pl sf=<source file> qf=<query file> span=<before>,<after> [-X|+X] [-R|+R] P=<par>\n";
 	printf "  <query file> : escaped term list.\n";
 	printf "  <before>,<after> : print before <before> terms, and after <after> terms.\n";
 	printf "  [-X|+X] : knock out XML-tags; -X:on, +X:off.\n";
+	printf "  [-R|+R] : RE search; -X:on, +X:off.\n";
 	printf "  <par> threads for parallel.\n";
 }
 
@@ -34,6 +36,7 @@ sub _check {
 	print " be:$be:\n";
 	print " af:$af:\n";
 	print " X:$X:\n";
+	print " R:$R:\n";
 	print " P:$P:\n";
 }
 
@@ -67,6 +70,10 @@ foreach $l (@ARGV) {
 		$X = 1;	#knock out XML-tags
 	}elsif($l =~ /^\+X$/){
 		$X = 0;	#print XML-tags
+	}elsif($l =~ /^-R$/){
+		$R = 1;
+	}elsif($l =~ /^\+R$/){
+		$R = 0;
 	}else{
 		print "unknown:$l:\n";
 	}
@@ -114,22 +121,11 @@ $sr =~ s/\s+/ /g;
 @tr = split(/ /,$sr);
 
 ##match
-my $pm = Parallel::ForkManager->new($P);
-foreach(@qr){
-	$pm->start and next;
-	$qterm = $_;
-	#print "$qterm\n";
-	#$lcount = 0;
-	#foreach(@sr){
-		#$sline = $_;
-		#print "\t$sline\n";
-		#if($X == 1){
-		#	$sline =~ s/<[^<>]*?>/ /g;
-		#	$sline =~ s/^\s+//;
-		#	$sline =~ s/\s+$//;
-		#	$sline =~ s/\s+/ /;
-		#}
-		#@tr = split(/\s/,$sline);
+if($R == 0){
+	my $pm = Parallel::ForkManager->new($P);
+	foreach(@qr){
+		$pm->start and next;
+		$qterm = $_;
 		$posterm = 0;
 		foreach(@tr){
 			if($_ =~ /$qterm/){
@@ -153,10 +149,38 @@ foreach(@qr){
 			}
 			$posterm++;
 		}
-		#print "\n";
-		#$lcount++;
-	#}
-	$pm->finish;
+		$pm->finish;
+	}
+	$pm->wait_all_children;
+}else{
+	my $pm = Parallel::ForkManager->new($P);
+	foreach(@qr){
+		$pm->start and next;
+		$qterm = $_;
+		$posterm = 0;
+		foreach(@tr){
+			if($_ =~ /$qterm/){
+				print "$qterm"."\t[$posterm]\t";
+				#print ":be:"."$be".":";
+				for($i=0;$i<$be;$i++){
+					#print "[$posterm-$be+$i]";
+					$targetpos = $posterm-$be+$i;
+					#print "::"."$targetpos"."::";
+					if($targetpos >= 0){ print "$tr[$posterm-$be+$i] "; }
+				}
+				#print "[["."$posterm"." : "."$_"."]]";
+				print "<[/>"."$tr[$posterm]"."<]/>";
+				#print " :af:"."$af".":";
+				for($i=0;$i<$af;$i++){
+					#print "[$posterm+$i+1]";
+					$targetpos = $posterm+$i+1;
+					if($targetpos >= 0){ print " $tr[$posterm+$i+1]"; }
+				}
+				print "\n";
+			}
+			$posterm++;
+		}
+		$pm->finish;
+	}
+	$pm->wait_all_children;
 }
-$pm->wait_all_children;
-
