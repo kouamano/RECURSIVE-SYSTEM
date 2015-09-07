@@ -128,7 +128,7 @@ if($R == 0){
 		$qterm = $_;
 		$posterm = 0;
 		foreach(@tr){
-			if($_ =~ /$qterm/){
+			if($_ eq $qterm){
 				print "$qterm"."\t[$posterm]\t";
 				#print ":be:"."$be".":";
 				for($i=0;$i<$be;$i++){
