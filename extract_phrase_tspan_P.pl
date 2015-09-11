@@ -1,0 +1,191 @@
+#!/usr/bin/perl
+
+use Parallel::ForkManager;
+
+
+# vars
+$help = 0;
+$check = 0;
+$status = 0;
+$X = 1;
+$R = 0;
+$ie = 0;
+$be = 0;
+$af = 0;
+$P = 1;
+
+# subroutine
+sub _help {
+	print "USAGE:\n";
+	print " 対象ファイルを1ラインとしてフレーズマッチ処理を行なう。\n";
+	printf " extract_term_span_byline.pl sf=<source file> qf=<query file> span=<before>,<after> [-X|+X] [-R|+R] P=<par>\n";
+	printf "  <query file> : escaped term list.\n";
+	printf "  <before>,<after> : print before <before> terms, and after <after> terms.\n";
+	printf "  [-X|+X] : knock out XML-tags; -X:on, +X:off.\n";
+	printf "  [-R|+R] : RE search; -X:on, +X:off.\n";
+	printf "  <par> threads for parallel.\n";
+}
+
+sub _check {
+	print "ARGS:\n";
+	print " help:$help:\n";
+	print " check:$check:\n";
+	print " status:$status:\n";
+	print " sf:$sf:\n";
+	print " qf:$qf:\n";
+	print " be:$be:\n";
+	print " af:$af:\n";
+	print " X:$X:\n";
+	print " R:$R:\n";
+	print " P:$P:\n";
+}
+
+sub _status {
+	print "STATUS:\n";
+	printf " OK.\n"
+}
+
+# argment analysis
+foreach $l (@ARGV) {
+	if($l eq "-h"){
+		$help = 1;
+	}elsif($l eq "-c"){
+		$check = 1;
+	}elsif($l eq "-s"){
+		$status = 1;
+	}elsif($l =~ /sf=(.*)/){
+		$sf = $1;
+	}elsif($l =~ /qf=(.*)/){
+		$qf = $1;
+	}elsif($l =~ /span=([^,]*),([^,]*)/){
+		$be = $1;
+		$af = $2;
+	}elsif($l =~ /P=(.*)/){
+		$P = $1;
+	}elsif($l =~ /col=(.*)/){
+		$col = $1;
+	}elsif($l =~ /^-XX$/){
+		$X = 2;	#complete knock out XML-tags
+	}elsif($l =~ /^-X$/){
+		$X = 1;	#knock out XML-tags
+	}elsif($l =~ /^\+X$/){
+		$X = 0;	#print XML-tags
+	}elsif($l =~ /^-R$/){
+		$R = 1;
+	}elsif($l =~ /^\+R$/){
+		$R = 0;
+	}else{
+		print "unknown:$l:\n";
+	}
+}
+
+# main
+if($help == 1){
+	&_help;
+	$ie = 1;
+}
+if($check == 1){
+	&_check;
+	$ie = 1;
+}
+if($status == 1){
+	&_status;
+	$ie = 1;
+}
+if($ie == 1){
+	exit(0);
+}
+
+##store query phrase (escaped)
+open(IN,$qf);
+while(<IN>){
+	chomp;
+	$_ =~ s/^\s+//;
+	$_ =~ s/\s+$//;
+	$_ =~ s/\s+/ /g;
+	push(@qr,$_);
+}
+close(IN);
+
+
+##store source
+open(IN,$sf);
+while(<IN>){
+	push(@sr,$_);
+}
+close(IN);
+
+##create term array (@tr)
+$sr = join('',@sr);
+if($X == 1){
+	$sr =~ s/<[^<>]*?>/ /g;
+}
+$sr =~ s/\s+/ /g;
+@tr = split(/ /,$sr);
+
+##match
+if($R == 0){
+	my $pm = Parallel::ForkManager->new($P);
+	foreach(@qr){
+		$pm->start and next;
+		$qterm = $_;
+		$count = ($qterm =~ s/ / /g);
+		print "_$count_\n";
+		$posterm = 0;
+		foreach(@tr){
+			if($_ eq $qterm){
+				print "$qterm"."\t[$posterm]\t";
+				#print ":be:"."$be".":";
+				for($i=0;$i<$be;$i++){
+					#print "[$posterm-$be+$i]";
+					$targetpos = $posterm-$be+$i;
+					#print "::"."$targetpos"."::";
+					if($targetpos >= 0){ print "$tr[$posterm-$be+$i] "; }
+				}
+				#print "[["."$posterm"." : "."$_"."]]";
+				print "<[/>"."$tr[$posterm]"."<]/>";
+				#print " :af:"."$af".":";
+				for($i=0;$i<$af;$i++){
+					#print "[$posterm+$i+1]";
+					$targetpos = $posterm+$i+1;
+					if($targetpos >= 0){ print " $tr[$posterm+$i+1]"; }
+				}
+				print "\n";
+			}
+			$posterm++;
+		}
+		$pm->finish;
+	}
+	$pm->wait_all_children;
+}else{
+	my $pm = Parallel::ForkManager->new($P);
+	foreach(@qr){
+		$pm->start and next;
+		$qterm = $_;
+		$posterm = 0;
+		foreach(@tr){
+			if($_ =~ /$qterm/){
+				print "$qterm"."\t[$posterm]\t";
+				#print ":be:"."$be".":";
+				for($i=0;$i<$be;$i++){
+					#print "[$posterm-$be+$i]";
+					$targetpos = $posterm-$be+$i;
+					#print "::"."$targetpos"."::";
+					if($targetpos >= 0){ print "$tr[$posterm-$be+$i] "; }
+				}
+				#print "[["."$posterm"." : "."$_"."]]";
+				print "<[/>"."$tr[$posterm]"."<]/>";
+				#print " :af:"."$af".":";
+				for($i=0;$i<$af;$i++){
+					#print "[$posterm+$i+1]";
+					$targetpos = $posterm+$i+1;
+					if($targetpos >= 0){ print " $tr[$posterm+$i+1]"; }
+				}
+				print "\n";
+			}
+			$posterm++;
+		}
+		$pm->finish;
+	}
+	$pm->wait_all_children;
+}
