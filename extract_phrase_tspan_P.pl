@@ -42,7 +42,7 @@ sub _check {
 
 sub _status {
 	print "STATUS:\n";
-	printf " OK.\n"
+	printf " Under construction.\n"
 }
 
 # argment analysis
