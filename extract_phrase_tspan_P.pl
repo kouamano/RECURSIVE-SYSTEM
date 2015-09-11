@@ -129,8 +129,9 @@ if($R == 0){
 	foreach(@qr){
 		$pm->start and next;
 		$qterm = $_;
-		$count = ($qterm =~ s/ / /g);
-		print "_$count_\n";
+		$count = 0;
+		$count = (() = $qterm =~ m/ /g);
+		print "$count\n";
 		$posterm = 0;
 		foreach(@tr){
 			if($_ eq $qterm){
