@@ -18,7 +18,7 @@ $P = 1;
 sub _help {
 	print "USAGE:\n";
 	print " 対象ファイルを1ラインとしてフレーズマッチ処理を行なう。\n";
-	printf " extract_term_span_byline.pl sf=<source file> qf=<query file> span=<before>,<after> [-X|+X] [-R|+R] P=<par>\n";
+	printf " extract_phrase_tspan_P.pl sf=<source file> qf=<query file> span=<before>,<after> [-X|+X] [-R|+R] P=<par>\n";
 	printf "  <query file> : escaped term list.\n";
 	printf "  <before>,<after> : print before <before> terms, and after <after> terms.\n";
 	printf "  [-X|+X] : knock out XML-tags; -X:on, +X:off.\n";
