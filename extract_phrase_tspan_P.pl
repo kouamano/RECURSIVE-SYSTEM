@@ -131,25 +131,26 @@ if($R == 0){
 		$qterm = $_;
 		$count = 0;
 		$count = (() = $qterm =~ m/ /g);
-		print "$count\n";
 		$posterm = 0;
 		foreach(@tr){
-			if($_ eq $qterm){
+			$elms = $_;
+			for($i=0;$i<$count;$i++){
+				$elms = $elms." ".$tr[$posterm+1+$i];
+			}
+			#print "$qterm".":vs:"."$elms\n";
+			if($elms eq $qterm){
 				print "$qterm"."\t[$posterm]\t";
-				#print ":be:"."$be".":";
 				for($i=0;$i<$be;$i++){
 					#print "[$posterm-$be+$i]";
 					$targetpos = $posterm-$be+$i;
 					#print "::"."$targetpos"."::";
 					if($targetpos >= 0){ print "$tr[$posterm-$be+$i] "; }
 				}
-				#print "[["."$posterm"." : "."$_"."]]";
-				print "<[/>"."$tr[$posterm]"."<]/>";
-				#print " :af:"."$af".":";
+				print "<[/>"."$elms"."<]/>";
 				for($i=0;$i<$af;$i++){
 					#print "[$posterm+$i+1]";
 					$targetpos = $posterm+$i+1;
-					if($targetpos >= 0){ print " $tr[$posterm+$i+1]"; }
+					if($targetpos >= 0){ print " $tr[$posterm+$i+$count+1]"; }
 				}
 				print "\n";
 			}
@@ -163,24 +164,28 @@ if($R == 0){
 	foreach(@qr){
 		$pm->start and next;
 		$qterm = $_;
+		$count = 0;
+		$count = (() = $qterm =~ m/ /g);
 		$posterm = 0;
 		foreach(@tr){
-			if($_ =~ /$qterm/){
+			$elms = $_;
+			for($i=0;$i<$count;$i++){
+				$elms = $elms." ".$tr[$posterm+1+$i];
+			}
+			#print "$qterm".":vs:"."$elms\n";
+			if($elms =~ /$qterm/){
 				print "$qterm"."\t[$posterm]\t";
-				#print ":be:"."$be".":";
 				for($i=0;$i<$be;$i++){
 					#print "[$posterm-$be+$i]";
 					$targetpos = $posterm-$be+$i;
 					#print "::"."$targetpos"."::";
 					if($targetpos >= 0){ print "$tr[$posterm-$be+$i] "; }
 				}
-				#print "[["."$posterm"." : "."$_"."]]";
-				print "<[/>"."$tr[$posterm]"."<]/>";
-				#print " :af:"."$af".":";
+				print "<[/>"."$elms"."<]/>";
 				for($i=0;$i<$af;$i++){
 					#print "[$posterm+$i+1]";
 					$targetpos = $posterm+$i+1;
-					if($targetpos >= 0){ print " $tr[$posterm+$i+1]"; }
+					if($targetpos >= 0){ print " $tr[$posterm+$i+$count+1]"; }
 				}
 				print "\n";
 			}
@@ -189,4 +194,5 @@ if($R == 0){
 		$pm->finish;
 	}
 	$pm->wait_all_children;
+
 }
