@@ -17,8 +17,8 @@ $P = 1;
 # subroutine
 sub _help {
 	print "USAGE:\n";
-	print " 対象ファイルを1ラインとしてマッチ処理を行なう。\n";
-	printf " extract_term_tspan_P.pl sf=<source file> qf=<query file> span=<before>,<after> [-X|+X] [-R|+R] P=<par>\n";
+	print " 対象ファイルを1ラインとしてフレーズマッチ処理を行なう。\n";
+	printf " extract_phrase_tspan_P.pl sf=<source file> qf=<query file> span=<before>,<after> [-X|+X] [-R|+R] P=<par>\n";
 	printf "  <query file> : escaped term list.\n";
 	printf "  <before>,<after> : print before <before> terms, and after <after> terms.\n";
 	printf "  [-X|+X] : knock out XML-tags; -X:on, +X:off.\n";
@@ -42,7 +42,7 @@ sub _check {
 
 sub _status {
 	print "STATUS:\n";
-	printf " OK.\n"
+	printf " Under construction.\n"
 }
 
 # argment analysis
@@ -96,13 +96,17 @@ if($ie == 1){
 	exit(0);
 }
 
-##store query (escaped)
+##store query phrase (escaped)
 open(IN,$qf);
 while(<IN>){
 	chomp;
+	$_ =~ s/^\s+//;
+	$_ =~ s/\s+$//;
+	$_ =~ s/\s+/ /g;
 	push(@qr,$_);
 }
 close(IN);
+
 
 ##store source
 open(IN,$sf);
@@ -125,6 +129,9 @@ if($R == 0){
 	foreach(@qr){
 		$pm->start and next;
 		$qterm = $_;
+		$count = 0;
+		$count = (() = $qterm =~ m/ /g);
+		print "$count\n";
 		$posterm = 0;
 		foreach(@tr){
 			if($_ eq $qterm){
