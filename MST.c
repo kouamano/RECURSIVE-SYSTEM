@@ -198,7 +198,7 @@ int main(int argc, char **argv){
 	}
 	//if opt.size == 0; automatic
 	//printf(";;;%d;;;\n",(*opt).size);
-	if((*opt).size == 0){
+	if((*opt).size == 0){	//auto-get of size
 		int col = 0;
 		if((fp = fopen((*opt).dmat,"r")) == NULL){
 		perror((*opt).dmat);
@@ -246,7 +246,7 @@ int main(int argc, char **argv){
 
 
 	/* initial select */
-	first_pos = search_first_pos(dmat,(*opt).size);
+	first_pos = search_first_pos(dmat,(*opt).size);	//first edge
 	//currentV = select_posUnflagedV(Vpool,(*opt).size,0);
 	//printf("%d",first_pos);
 	currentV = select_posUnflagedV(Vpool,(*opt).size,first_pos);
