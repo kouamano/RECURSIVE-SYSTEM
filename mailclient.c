@@ -60,7 +60,7 @@ int get_options(int arg_start, int arg_end, char **arg_s, struct argop *option){
 					s = s + 32;
 				}
 			}else{
-				printf("Unknown optios.\n");
+				printf("Unknown option.\n");
 				exit(0);
 			}
 		}
