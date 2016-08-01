@@ -6,7 +6,7 @@ while(<>){
 	if($word[0] == ""){
 		shift(@word);
 	}
-	for($i=0; $i<@word-1; $i++){
-		print "$word[$i] $word[$i]+1\n";
+	for($i=0; $i<$#word; $i++){
+		print "$word[$i] $word[$i+1]\n";
 	}
 }
