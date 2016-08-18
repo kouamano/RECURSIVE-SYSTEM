@@ -2,11 +2,11 @@
 #include <stdlib.h>
 
 int main(int argc, char **argv){
-	int size = 1024;
+	long int size = 1024;
 	char *m;
-	int i;
-	sscanf(argv[1],"%d",&size);
-	printf("size: %d",size);
+	long int i;
+	sscanf(argv[1],"%ld",&size);
+	printf("size: %ld",size);
 	if( (m = malloc(sizeof(char) * size +1)) == NULL ){
 		perror("failed");
 		exit(1);
