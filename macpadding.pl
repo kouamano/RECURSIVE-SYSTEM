@@ -32,6 +32,7 @@ while(<>){
 #		}
 #		$out = join(":",@out);
 		$pout = &_padding($target);
+		$pout =~ tr/A-Z/a-z/;
 		print "$str $pout\n";
 	}else{
 		print "$_\n";
