@@ -28,7 +28,7 @@ while(<IN>){
 	$_=~ s/ +/ /g;
 	@tmp = split(/ /,$_);
 	print "$_";
-	print "\t:::\t";
+	print "\t<==\t";
 	print "$ip{$tmp[2]}";
 	print "\n";
 }
