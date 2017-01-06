@@ -9,9 +9,8 @@ open(IN,$userFile);
 while(<IN>){
 	chomp;
 	@tmp = split(/\t/,$_);
-	#print ";;;$tmp[2];;;\n";
 	if($tmp[2] ne ""){
-		$ip{$tmp[2]} = "$tmp[0]\t$tmp[1]\t$tmp[2]";
+		$ip{$tmp[0]} = "$tmp[0]\t$tmp[1]\t$tmp[2]";
 	}
 }
 close(IN);
