@@ -20,17 +20,6 @@ while(<>){
 		@line = split(/ /,$_);
 		$target = pop(@line);
 		$str = join(" ",@line);
-#		@target = split(/:/,$target);
-#		@out = ();
-#		foreach(@target){
-#			if(length($_) > 1){
-#				$n = $_;
-#			}else{
-#				$n = "0"."$_";
-#			}
-#			push(@out,$n);
-#		}
-#		$out = join(":",@out);
 		$pout = &_padding($target);
 		$pout =~ tr/A-Z/a-z/;
 		print "$str $pout\n";
