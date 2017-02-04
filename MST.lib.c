@@ -12,6 +12,29 @@ struct path{
 	float dist;
 };
 
+int search_first_pos(float **_dmat, int _size){
+        float min;
+        int pos_s,pos_e;
+        int i,j;
+        pos_s = 0;
+        pos_e = 1;
+        min = _dmat[pos_s][pos_e];
+        for(i=0;i<_size;i++){
+                for(j=0;j<_size;j++){
+                        if(min == -1 && _dmat[i][j] != -1 && i != j){
+                                min = _dmat[i][j];
+                                pos_s = i;
+                                pos_e = j;
+                        }else if(min > _dmat[i][j] && _dmat[i][j] != -1 && i != j){
+                                min =  _dmat[i][j];
+                                pos_s = i;
+                                pos_e = j;
+                        }
+                }
+        }
+        return(pos_s);
+}
+
 int select_posUnflagedV(int *vpool, int size, int pos){
 	int i;
 	int count = -1;
@@ -85,6 +108,7 @@ void myMST(int *opt_size, float **dmat, struct path *path_list){
 	float currentDist = -1;
 	int R = -1;
 	int *tmp_i;
+	int first_pos = 0;
 
 	/* init Vpool */
 	Vpool = i_alloc_vec(*opt_size);
@@ -104,7 +128,9 @@ void myMST(int *opt_size, float **dmat, struct path *path_list){
 	
 
 	/* initial select */
-	currentV = select_posUnflagedV(Vpool,*opt_size,0);
+	first_pos = search_first_pos(dmat,(*opt_size)); //first edge
+	//currentV = select_posUnflagedV(Vpool,*opt_size,0);
+	currentV = select_posUnflagedV(Vpool,*opt_size,first_pos);
 	//printf("currentV:%d:\n",currentV);
 	moveVp2Vn(Vpool, Vnew, currentV);
 	/*
