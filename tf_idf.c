@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "/home/pub/include/alloc.c"
+#include "../include/alloc.c"
 #define IDSIZE 2050
 #define FILE_NAME_SIZE 4096
 #define MAT_DIM 2
