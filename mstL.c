@@ -187,7 +187,7 @@ int main(int argc, char **argv){
 		printf("c1:%d ",c1);
 		c2 = classes[n2_list[i]];
 		printf("c2:%d ",c2);
-		printf("dst:%f\n",dst_list[i]);
+		printf("dst:%f\t",dst_list[i]);
 		if(c1 != c2){
 			targetClass = max(c1,c2);
 			joinClass = min(c1,c2);
@@ -204,6 +204,8 @@ int main(int argc, char **argv){
 				printf("%d ",classes[j]);
 			}
 			printf("}\n");
+		}else{
+			printf("\n");
 		}
 		/*check break loop*/
 		classOneCount = 0;
