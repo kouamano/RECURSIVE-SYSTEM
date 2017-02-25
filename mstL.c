@@ -184,9 +184,9 @@ int main(int argc, char **argv){
 	for(i=0;i<(*opt).size;i++){
 		//printf("i:%d\n",i);
 		c1 = classes[n1_list[i]];
-		printf("c1:%d ",c1);
+		printf("id:%d;c1:%d ",n1_list[i],c1);
 		c2 = classes[n2_list[i]];
-		printf("c2:%d ",c2);
+		printf("id:%d;c2:%d ",n2_list[i],c2);
 		printf("dst:%f\t",dst_list[i]);
 		if(c1 != c2){
 			targetClass = max(c1,c2);
