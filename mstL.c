@@ -175,7 +175,7 @@ int main(int argc, char **argv){
 	fclose(fp);
 
 	/*print initial classes*/
-	printf("{");
+	printf("\t{");
 	for(i=0;i<(*opt).n;i++){
 		printf("%d ",classes[i]);
 	}
