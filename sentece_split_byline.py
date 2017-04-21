@@ -6,7 +6,7 @@ import nltk
 from nltk import tokenize
 
 for line in fileinput.input():
-  print('<;/>'.
+  print(' <;/>'.
     join(
       #sent_detector.tokenize(line.strip()) ) )
       tokenize.sent_tokenize(line.strip()) ) )
