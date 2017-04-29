@@ -63,13 +63,14 @@ if($ie == 1){
 }
 
 ## function
-open(IN,$if);
-	while(<IN>){
-		push(@arr,$_);
-	}
-close(IN);
-$str = join("",@arr);
 my $count;
-$count++ while($str =~ m/$patt/g);
+open(IN,$if);
+while(<IN>){
+	#push(@arr,$_);
+	$count++ while($_ =~ m/$patt/g);
+}
+close(IN);
+#$str = join("",@arr);
+#$count++ while($str =~ m/$patt/g);
 print "$count\t$patt\n";
 
