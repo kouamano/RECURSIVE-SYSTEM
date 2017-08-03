@@ -10,4 +10,5 @@ sub url_encode($) {
 while(<>){
 	chomp;
 	print url_encode($_);
+	print "\n";
 }
