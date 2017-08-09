@@ -25,8 +25,10 @@ int init_options (struct option *opt) {
 }
 
 int get_options (int optc, char **optv, struct option *opt) {
-	sscanf(optv[0],"%s",opt->firstseq);
-	sscanf(optv[1],"%s",opt->secondseq);
+	//sscanf(optv[0],"%s",opt->firstseq);
+	strcpy(opt->firstseq,optv[0]);
+	//sscanf(optv[1],"%s",opt->secondseq);
+	strcpy(opt->secondseq,optv[1]);
 	sscanf(optv[2],"%d",&(opt->n));
 	return(0);
 }
