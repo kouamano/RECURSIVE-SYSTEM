@@ -98,7 +98,7 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 
-	//fifostat = mkfifo((*opt).argstr, 777);
+	//fifostat = mkfifo((*opt).argstr, 0666);
 	fifostat = mkfifo((*opt).argstr, (*opt).argint);
 	printf("stat:%d:\n",fifostat);
 
