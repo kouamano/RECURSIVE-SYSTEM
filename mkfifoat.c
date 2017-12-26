@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <libgen.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 #define LEN 1024
 
 struct options {
@@ -10,17 +12,17 @@ struct options {
 	int stat;
 	int check;
 	int argint;
-	char *argstr;
+	char *argpath;
 };
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" mkfifoat [-h] [-s] [-c] int=<mode> str=<path>.\n");
+	printf(" mkfifoat [-h] [-s] [-c] int=<mode> path=<path>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  int : set mode.\n");
-	printf("  str : target (len < 1024).\n");
+	printf("  path : target (len < 1024).\n");
 }
 
 void status(void){
@@ -34,7 +36,7 @@ struct options *alloc_options(void){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
-	if(((*p).argstr = malloc(sizeof(char) * LEN)) == NULL){
+	if(((*p).argpath = malloc(sizeof(char) * LEN)) == NULL){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
@@ -46,7 +48,7 @@ void init_options(struct options *opt){
 	(*opt).stat = 0;
 	(*opt).check = 0;
 	(*opt).argint = 0;
-	(*opt).argstr[0] = '\0';
+	(*opt).argpath[0] = '\0';
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -60,8 +62,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).check = 1;
 		}else if(strncmp(optv[i],"int=",4) == 0){
 			sscanf(optv[i],"int=%d",&(*opt).argint);
-		}else if(strncmp(optv[i],"str=",4) == 0){
-			sscanf(optv[i],"str=%s",(*opt).argstr);
+		}else if(strncmp(optv[i],"path=",5) == 0){
+			sscanf(optv[i],"path=%s",(*opt).argpath);
 		}
 	}
 }
@@ -69,11 +71,69 @@ void get_options(int optc, char **optv, struct options *opt){
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	printf(" opt.argint:%d:\n",(*opt).argint);
-	printf(" opt.argstr:%s:\n",(*opt).argstr);
+	printf(" opt.argpath:%s:\n",(*opt).argpath);
+}
+
+int checkCreateDir(const char *tstr, char *dstr, int mode){
+	fprintf(stderr,"IN:checkCraeteDir()\n");
+	printf("checkCreateDir.dstr:%s:\n",dstr);
+	struct stat _statBuf;
+	int _ret = -1;
+	int _mkstat = -1;
+	char *sdstr;
+	if( (sdstr = malloc(sizeof(char) * LEN)) == NULL){
+		printf("malloc error.\n");
+		exit(-1);
+	}
+	sdstr[0] = '\0';
+	char *udstr;
+	if( (udstr = malloc(sizeof(char) * LEN)) == NULL){
+		printf("malloc error.\n");
+		exit(-1);
+	}
+	udstr[0] = '\0';
+
+	_ret = stat(tstr,&_statBuf);
+	printf("targetstr:%s:\n",tstr);
+	if(_ret == 0){// if exist tstr
+		;
+	}else{
+		// create
+		_mkstat = mkdir(dstr, S_IRWXU);
+		// if failed
+		if(_mkstat == 0){
+			;
+		}else{
+			dstr = dirname(dstr);
+			checkCreateDir(tstr,dstr,S_IRWXU);
+		}
+		strcpy(sdstr,tstr);
+		checkCreateDir(tstr,sdstr,S_IRWXU);
+
+	}
+	fprintf(stderr,"OUT:checkCraeteDir()\n");
+	return(_ret);
 }
 
 int main(int argc, char **argv){
 	int fifostat = 0;
+	char *dir;
+	if( (dir = malloc(sizeof(char) * LEN)) == NULL){
+		printf("malloc error.\n");
+		exit(-1);
+	}
+	char *vdir;
+	if( (vdir = malloc(sizeof(char) * LEN)) == NULL){
+		printf("malloc error.\n");
+		exit(-1);
+	}
+	char *vpath;
+	if( (vpath = malloc(sizeof(char) * LEN)) == NULL){
+		printf("malloc error.\n");
+		exit(-1);
+	}
+	struct stat statBuf;
+	int ret = -1;
 	struct options *opt;
 	int ie = 0;
 	opt = alloc_options();
@@ -97,10 +157,23 @@ int main(int argc, char **argv){
 	if(ie == 1){
 		exit(0);
 	}
+	
+	fprintf(stderr,"(1)argpath:%s:\n",(*opt).argpath);
+	strcpy(vpath,(*opt).argpath);
+	fprintf(stderr,"(1)vpath:%s:\n",vpath);
 
-	//fifostat = mkfifo((*opt).argstr, 0666);
-	fifostat = mkfifo((*opt).argstr, (*opt).argint);
-	printf("stat:%d:\n",fifostat);
+	/*check dir*/
+	strcpy(vdir, dirname(vpath));
+	strcpy(dir, vdir);
+	fprintf(stderr,"(1)vdir:%s:\n",vdir);
+	ret = checkCreateDir(dir, vdir, (*opt).argint);
+
+
+	fifostat = mkfifo((*opt).argpath, (*opt).argint);
+	fprintf(stderr,"(4)argpath:%s:\n",(*opt).argpath);
+	fprintf(stderr,"stat:%d:\n",fifostat);
+	fprintf(stderr,"dir:%s:\n",dir);
+	fprintf(stderr,"dir:exist:%d:\n",ret);
 
 	return(0);
 }
