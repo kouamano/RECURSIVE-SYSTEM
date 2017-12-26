@@ -75,8 +75,7 @@ void check_options(struct options *opt){
 }
 
 int checkCreateDir(const char *tstr, char *dstr, int mode){
-	fprintf(stderr,"IN:checkCraeteDir()\n");
-	printf("checkCreateDir.dstr:%s:\n",dstr);
+	//fprintf(stderr,"IN:checkCraeteDir()\n");
 	struct stat _statBuf;
 	int _ret = -1;
 	int _mkstat = -1;
@@ -86,15 +85,7 @@ int checkCreateDir(const char *tstr, char *dstr, int mode){
 		exit(-1);
 	}
 	sdstr[0] = '\0';
-	char *udstr;
-	if( (udstr = malloc(sizeof(char) * LEN)) == NULL){
-		printf("malloc error.\n");
-		exit(-1);
-	}
-	udstr[0] = '\0';
-
 	_ret = stat(tstr,&_statBuf);
-	printf("targetstr:%s:\n",tstr);
 	if(_ret == 0){// if exist tstr
 		;
 	}else{
@@ -109,9 +100,8 @@ int checkCreateDir(const char *tstr, char *dstr, int mode){
 		}
 		strcpy(sdstr,tstr);
 		checkCreateDir(tstr,sdstr,S_IRWXU);
-
 	}
-	fprintf(stderr,"OUT:checkCraeteDir()\n");
+	//fprintf(stderr,"OUT:checkCraeteDir()\n");
 	return(_ret);
 }
 
@@ -134,6 +124,7 @@ int main(int argc, char **argv){
 	}
 	struct stat statBuf;
 	int ret = -1;
+	int fst = -1;
 	struct options *opt;
 	int ie = 0;
 	opt = alloc_options();
@@ -158,22 +149,20 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 	
-	fprintf(stderr,"(1)argpath:%s:\n",(*opt).argpath);
-	strcpy(vpath,(*opt).argpath);
-	fprintf(stderr,"(1)vpath:%s:\n",vpath);
-
 	/*check dir*/
+	strcpy(vpath, (*opt).argpath);
 	strcpy(vdir, dirname(vpath));
 	strcpy(dir, vdir);
-	fprintf(stderr,"(1)vdir:%s:\n",vdir);
+	fst = stat((*opt).argpath,&statBuf);
+	fprintf(stderr,"target:exist:%d:\n",fst);
+	if(fst == 0){
+		fprintf(stderr,"targetfile:already exists.\n");
+		exit(0);
+	}
 	ret = checkCreateDir(dir, vdir, (*opt).argint);
-
-
-	fifostat = mkfifo((*opt).argpath, (*opt).argint);
-	fprintf(stderr,"(4)argpath:%s:\n",(*opt).argpath);
-	fprintf(stderr,"stat:%d:\n",fifostat);
-	fprintf(stderr,"dir:%s:\n",dir);
 	fprintf(stderr,"dir:exist:%d:\n",ret);
+	fifostat = mkfifo((*opt).argpath, (*opt).argint);
+	fprintf(stderr,"fifo:create:%d:\n",ret);
 
 	return(0);
 }
