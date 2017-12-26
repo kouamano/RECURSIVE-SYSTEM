@@ -149,7 +149,7 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 	
-	/*check dir*/
+	/* check and create dir */
 	strcpy(vpath, (*opt).argpath);
 	strcpy(vdir, dirname(vpath));
 	strcpy(dir, vdir);
@@ -161,6 +161,7 @@ int main(int argc, char **argv){
 	}
 	ret = checkCreateDir(dir, vdir, (*opt).argint);
 	fprintf(stderr,"dir:exist:%d:\n",ret);
+	/* create fifo */
 	fifostat = mkfifo((*opt).argpath, (*opt).argint);
 	fprintf(stderr,"fifo:create:%d:\n",ret);
 
