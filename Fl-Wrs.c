@@ -18,16 +18,18 @@ struct options {
 	int check;
 	int size;
 	char *dmat;
+	char *pmat;
 };
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" MST [-h] [-s] [-c] dmat=<distance matrix file> size=<no. of nodes> \n");
+	printf(" Fl-Wrs [-h] [-s] [-c] dmat=<distance matrix file> pmat=<routematrix> size=<no. of nodes> \n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  size : no. of nodes [integer].\n");
 	printf("  dmat : distance matrix file [string].\n");
+	printf("  pmat : route information matrix (output file) [string].\n");
 }
 
 void status(void){
@@ -54,6 +56,7 @@ void init_options(struct options *opt){
 	(*opt).check = 0;
 	(*opt).size= 0;
 	(*opt).dmat[0] = '\0';
+	(*opt).pmat[0] = '\0';
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -69,6 +72,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"size=%d",&(*opt).size);
 		}else if(strncmp(optv[i],"dmat=",5) == 0){
 			sscanf(optv[i],"dmat=%s",(*opt).dmat);
+		}else if(strncmp(optv[i],"pmat=",5) == 0){
+			sscanf(optv[i],"pmat=%s",(*opt).pmat);
 		}
 	}
 }
@@ -77,49 +82,10 @@ void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	printf(" opt.size:%d:\n",(*opt).size);
 	printf(" opt.dmat:%s:\n",(*opt).dmat);
+	printf(" opt.pmat:%s:\n",(*opt).pmat);
 }
 
-int search_first_pos(float **_dmat, int _size){
-	float min;
-	int pos_s,pos_e;
-	int i,j;
-	pos_s = 0;
-	pos_e = 1;
-	min = _dmat[pos_s][pos_e];
-	for(i=0;i<_size;i++){
-		for(j=0;j<_size;j++){
-			if(min == -1 && _dmat[i][j] != -1 && i != j){
-				min = _dmat[i][j];
-				pos_s = i;
-				pos_e = j;
-			}else if(min > _dmat[i][j] && _dmat[i][j] != -1 && i != j){
-				min =  _dmat[i][j];
-				pos_s = i;
-				pos_e = j;
-			}
-		}
-	}
-	return(pos_s);
-}
 
-int select_posUnflagedV(int *vpool, int size, int pos){
-	int i;
-	int count = -1;
-	for(i=0;i<size;i++){
-		if(vpool[i] == 1){
-			count++;
-			if(count == pos){
-				return(i);
-			}
-		}
-	}
-	return(-1);
-}
-
-void moveVp2Vn(int *vpool, int *vnew, int id){
-	vpool[id] = 0;
-	vnew[id] = 1;
-}
 
 int poolremain(int *vpool, int size){
 	int i;
@@ -238,55 +204,8 @@ int main(int argc, char **argv){
                 printf("\n");
         }
 	*/
-	/* init Vpool */
-	Vpool = i_alloc_vec((*opt).size);
-	for(i=0;i<(*opt).size;i++){
-		Vpool[i] = 1;
-	}
-	/* init Vnew */
-	Vnew = i_alloc_vec((*opt).size);
-	for(i=0;i<(*opt).size;i++){
-		Vnew[i] = 0;
-	}
 
 
-	/* initial select */
-	first_pos = search_first_pos(dmat,(*opt).size);	//first edge
-	//currentV = select_posUnflagedV(Vpool,(*opt).size,0);
-	//printf("%d",first_pos);
-	currentV = select_posUnflagedV(Vpool,(*opt).size,first_pos);
-	//printf("currentV:%d:\n",currentV);
-	moveVp2Vn(Vpool, Vnew, currentV);
-	/*
-	for(i=0;i<(*opt).size;i++){
-		printf("Vpool[%d]:%d:\n",i,Vpool[i]);
-	}
-	for(i=0;i<(*opt).size;i++){
-		printf("Vnew[%d]:%d:\n",i,Vnew[i]);
-	}
-	*/
 
-	/* if table size == 1*/
-	if((*opt).size == 1){
-		printf("0\t0\t0\n");
-		return(0);
-	}
-
-	/* while */
-	for(;;){
-		//printf("path %d",currentV);
-		/** find nimimum dist edge **/
-		currentDist = minimum_dist_from_Vnew(Vnew, (*opt).size, Vpool, (*opt).size, dmat, &Vnpoint, &Vppoint);
-		printf("%d\t%d\t%f\n",Vnpoint,Vppoint,currentDist);
-		/** move Vp to Vn, switch currentV **/
-		currentV = Vppoint;
-		moveVp2Vn(Vpool, Vnew, currentV);
-		/** check loop **/
-		R = poolremain(Vpool,(*opt).size);
-		//printf("\nR:%d:\n",R);
-		if(R <= 0){
-			break;
-		}
-	}
 	return(0);
 }
