@@ -47,6 +47,10 @@ struct options *alloc_options(void){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
+	if(((*p).pmat = malloc(sizeof(char) * LEN)) == NULL){
+		printf("failed : malloc() in alloc_options().\n");
+		exit(1);
+	}
 	return(p);
 }
 
@@ -87,62 +91,12 @@ void check_options(struct options *opt){
 
 
 
-int poolremain(int *vpool, int size){
-	int i;
-	int count = 0;
-	for(i=0;i<size;i++){
-		if(vpool[i] == 1){
-			count++;
-		}
-	}
-	return(count);
-}
-
-float minimum_dist_from_Vnew(int *vnew, int size_vnew, int *vpool, int size_vpool, float **_dmat, int *vnpoint, int *vppoint){
-	int i,j;
-	float dist_min = -1;
-	int pos_vn_min;
-	int pos_vp_min;
-	for(i=0;i<size_vnew;i++){
-		for(j=0;j<size_vpool;j++){
-			//printf("[i,j,vnew_i,vpool_i]:%d,%d,%d,%d:",i,j,vnew[i],vpool[j]);
-			if(vnew[i] == 1 && vpool[j] == 1 && _dmat[i][j] != -1){	// not full dist table
-			//if(vnew[i] == 1 && vpool[j] == 1){
-				//printf("\nHit[%d,%d,%f]\n",i,j,_dmat[i][j]);
-				if(dist_min == -1){
-					dist_min = _dmat[i][j];
-					pos_vn_min = i;
-					pos_vp_min = j;
-				}else{
-					if(dist_min > _dmat[i][j]){
-						dist_min = _dmat[i][j];
-						pos_vn_min = i;
-						pos_vp_min = j;
-					}else{
-						;
-					}
-				}
-			}
-		}
-	}
-	*vnpoint = pos_vn_min;
-	*vppoint = pos_vp_min;
-	return(dist_min);
-}
 
 int main(int argc, char **argv){
 	float **dmat;
 	FILE *fp;
 	int c;
 	int i,j;
-	int first_pos;
-	int *Vpool;
-	int *Vnew;
-	int Vppoint = -1;
-	int Vnpoint = -1;
-	int currentV = -1;
-	float currentDist = -1;
-	int R = -1;
 
 	struct options *opt;
 	int ie=0;
