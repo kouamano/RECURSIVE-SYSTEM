@@ -140,14 +140,14 @@ int main(int argc, char **argv){
 		for(q=0;q<p;q++){
 			ng = 0;
 			for(z=0;z<(*opt).msize;z++){
-				if(p==q || q==z || p==z){
+				if(p==q || q==z || p==z || dmat[p][q] == -1){
 				}else{
-					if((dmat[p][q] != -1 && dmat[p][q] > dmat[p][z]) && (dmat[p][q] > dmat[z][q])){
+					if((dmat[p][q] > dmat[p][z]) && (dmat[p][q] > dmat[z][q])){
 						ng = 1;
 					}
 				}
 			}
-			if(ng == 0){
+			if(ng == 0 && dmat[p][q] != -1){
 				printf("%d %d %.12lg\n",p,q,dmat[p][q]);
 			}
 		}
