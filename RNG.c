@@ -10,7 +10,6 @@
 #define FILE_NAME_LEN 1024
 #define SEPS "\t "
 
-
 struct options {
 	int help;
 	int stat;
@@ -82,13 +81,15 @@ void check_options(struct options *opt){
 	printf(" opt.msize:%d:\n",(*opt).msize);
 }
 
+
+
 int main(int argc, char **argv){
-	struct options *opt;
-	int ie = 0;
-	int c;
 	FILE *fp;
+	int c;
 	int i,j,p,q,z;
 	int ng = 0;
+	int ie = 0;
+	struct options *opt;
 	float **dmat;
 
 	opt = alloc_options();
