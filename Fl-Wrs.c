@@ -95,6 +95,7 @@ void check_options(struct options *opt){
 int main(int argc, char **argv){
 	float **dmat;
 	float **pmat;
+	float newLen = -1;
 	FILE *fp;
 	int c;
 	int i,j,u,v,t;
@@ -167,9 +168,30 @@ int main(int argc, char **argv){
 	for(t=0;t<(*opt).size;t++){
 		for(u=0;u<(*opt).size;u++){
 			for(v=0;v<(*opt).size;v++){
+				/* new length */
+				if(dmat[u][t]!=-1 && dmat[t][v]!=-1){
+					newLen = dmat[u][t] + dmat[t][v];
+				}else{
+					newLen = -1;
+				}
+				/* dmat rewrite */
+				if(newLen!=-1 && newLen<dmat[u][v]){
+					dmat[u][v] = newLen;
+					pmat[u][v] = pmat[t][v];
+				}else if(newLen!=-1 && dmat[u][v]==-1){
+					dmat[u][v] = newLen;
+				}
 			}
 		}
 	}
+
+	/* print out */
+        for(i=0;i<(*opt).size;i++){
+                for(j=0;j<(*opt).size;j++){
+                        printf("%f ",dmat[i][j]);
+                }
+                printf("\n");
+        }
 
 	return(0);
 }
