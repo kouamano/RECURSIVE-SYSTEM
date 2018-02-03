@@ -183,6 +183,7 @@ int main(int argc, char **argv){
 					pmat[u][v] = pmat[t][v];
 				}else if(newLen!=-1 && dmat[u][v]==-1){
 					dmat[u][v] = newLen;
+					pmat[u][v] = pmat[t][v];
 				}
 			}
 		}
