@@ -94,10 +94,10 @@ void check_options(struct options *opt){
 
 int main(int argc, char **argv){
 	float **dmat;
+	float **pmat;
 	FILE *fp;
 	int c;
-	int i,j;
-
+	int i,j,u,v,t;
 	struct options *opt;
 	int ie=0;
 	opt = alloc_options();
@@ -140,7 +140,6 @@ int main(int argc, char **argv){
 		fclose(fp);
 		((*opt).size)=col + 1;
 	}
-	//printf(";;;%d;;;\n",(*opt).size);
 
 	dmat = f_alloc_mat((*opt).size,(*opt).size);
 	if((fp = fopen((*opt).dmat,"r")) == NULL){
@@ -158,7 +157,19 @@ int main(int argc, char **argv){
         }
 	*/
 
+	pmat = f_alloc_mat((*opt).size,(*opt).size);
+	for(u=0;u<(*opt).size;u++){
+		for(v=0;v<(*opt).size;v++){
+			pmat[u][v] = u;
+		}
+	}
 
+	for(t=0;t<(*opt).size;t++){
+		for(u=0;u<(*opt).size;u++){
+			for(v=0;v<(*opt).size;v++){
+			}
+		}
+	}
 
 	return(0);
 }
