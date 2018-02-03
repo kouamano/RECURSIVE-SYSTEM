@@ -17,7 +17,6 @@ struct options {
 	int check;
 	char *dfile;
 	int msize;
-	int pbsize;
 };
 
 void help(void){
@@ -71,10 +70,6 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"df=%s",(*opt).dfile);
 		}else if(strncmp(optv[i],"size=",5) == 0){
 			sscanf(optv[i],"size=%d",&(*opt).msize);
-		/*
-		}else if(strncmp(optv[i],"pbuf=",5) == 0){
-			sscanf(optv[i],"pbuf=%d",&(*opt).msize);
-		*/
 		}else{
 			printf("%s : undefined.",optv[i]);
 		}
@@ -85,7 +80,6 @@ void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	printf(" opt.dfile:%s:\n",(*opt).dfile);
 	printf(" opt.msize:%d:\n",(*opt).msize);
-	//printf(" opt.pbsize:%d:\n",(*opt).pbsize);
 }
 
 int main(int argc, char **argv){
@@ -120,15 +114,6 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 
-	dmat = f_alloc_mat((*opt).msize,(*opt).msize);
-	/*
-	for(i=0;i<(*opt).msize;i++){
-		for(j=0;j<(*opt).msize;j++){
-			dmat[i][j] = -1;
-		}
-	}
-	*/
-
         if((*opt).msize == 0){   //auto-get of size
                 int col = 0;
                 if((fp = fopen((*opt).dfile,"r")) == NULL){
@@ -144,17 +129,15 @@ int main(int argc, char **argv){
                                 ;
                         }
                 }
-		printf("col:%d:\n",col);
                 fclose(fp);
                 ((*opt).msize) = (col+1);
         }
-		printf("col:%d:\n",(*opt).msize);
 
 	if((fp = fopen((*opt).dfile,"r")) == NULL){
 		perror((*opt).dfile);
 		exit(1);
 	}
-	printf("OK\n");
+	dmat = f_alloc_mat((*opt).msize,(*opt).msize);
 	read_ftable_from_stream((*opt).msize, (*opt).msize,fp,dmat);
 	fclose(fp);
 	/* check 
