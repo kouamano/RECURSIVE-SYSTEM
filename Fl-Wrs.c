@@ -122,7 +122,6 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 	//if opt.size == 0; automatic
-	//printf(";;;%d;;;\n",(*opt).size);
 	if((*opt).size == 0){	//auto-get of size
 		int col = 0;
 		if((fp = fopen((*opt).dmat,"r")) == NULL){
