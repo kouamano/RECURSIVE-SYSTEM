@@ -1,5 +1,6 @@
 /*Minimum Spanning Tree          */
 /* input : dmat  without index   */
+/*  inf : -1                     */
 /* output : edge list with dist  */
 #include <stdio.h>
 #include <stdlib.h>
