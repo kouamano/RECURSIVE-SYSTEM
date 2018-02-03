@@ -91,10 +91,9 @@ void check_options(struct options *opt){
 
 
 
-
 int main(int argc, char **argv){
 	float **dmat;
-	float **pmat;
+	int **pmat;
 	float newLen = -1;
 	FILE *fp;
 	int c;
@@ -139,7 +138,7 @@ int main(int argc, char **argv){
 			}
 		}
 		fclose(fp);
-		((*opt).size)=col + 1;
+		((*opt).size) = col+1;
 	}
 
 	dmat = f_alloc_mat((*opt).size,(*opt).size);
@@ -158,10 +157,14 @@ int main(int argc, char **argv){
         }
 	*/
 
-	pmat = f_alloc_mat((*opt).size,(*opt).size);
+	pmat = i_alloc_mat((*opt).size,(*opt).size);
 	for(u=0;u<(*opt).size;u++){
 		for(v=0;v<(*opt).size;v++){
-			pmat[u][v] = u;
+			if(dmat[u][v]!=-1){
+				pmat[u][v] = u;
+			}else{
+				pmat[u][v] = -1;
+			}
 		}
 	}
 
@@ -192,6 +195,18 @@ int main(int argc, char **argv){
                 }
                 printf("\n");
         }
+
+	/* file out */
+	if(strlen((*opt).pmat)!=0){
+		fp = fopen((*opt).pmat,"w");
+		for(i=0;i<(*opt).size;i++){
+			for(j=0;j<(*opt).size;j++){
+				fprintf(fp,"%d ",pmat[i][j]);
+			}
+                	fprintf(fp,"\n");
+		}
+		fclose(fp);
+	}
 
 	return(0);
 }
