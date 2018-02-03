@@ -1,3 +1,6 @@
+/*Minimum Spanning Tree          */
+/* input : dmat  without index   */
+/* output : edge list with dist  */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -243,8 +246,6 @@ int main(int argc, char **argv){
 	for(i=0;i<(*opt).size;i++){
 		Vnew[i] = 0;
 	}
-
-
 	/* initial select */
 	first_pos = search_first_pos(dmat,(*opt).size);	//first edge
 	//currentV = select_posUnflagedV(Vpool,(*opt).size,0);
