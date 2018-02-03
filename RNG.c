@@ -8,6 +8,8 @@
 #include "../include/alloc.c"
 #include "../include/data_read.c"
 #define FILE_NAME_LEN 1024
+#define SEPS "\t "
+
 
 struct options {
 	int help;
@@ -53,7 +55,7 @@ void init_options(struct options *opt){
 	(*opt).stat = 0;
 	(*opt).check = 0;
 	(*opt).dfile[0] = '\0';
-	(*opt).msize = 1000;
+	(*opt).msize = 0;
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -89,13 +91,16 @@ void check_options(struct options *opt){
 int main(int argc, char **argv){
 	struct options *opt;
 	int ie = 0;
-	float **dmat;
+	int c;
 	FILE *fp;
 	int i,j,p,q,z;
 	int ng = 0;
+	float **dmat;
+
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
+
 	if(argc == 1){
 		(*opt).help = 1;
 	}
@@ -123,20 +128,43 @@ int main(int argc, char **argv){
 		}
 	}
 	*/
+
+        if((*opt).msize == 0){   //auto-get of size
+                int col = 0;
+                if((fp = fopen((*opt).dfile,"r")) == NULL){
+                perror((*opt).dfile);
+                exit(1);
+                }
+                while((c=fgetc(fp)) != EOF){
+                        if(c == SEPS[0]||c == SEPS[1]){
+                                col++;
+                        } else if(c == '\n'){
+                                break;
+                        }else{
+                                ;
+                        }
+                }
+		printf("col:%d:\n",col);
+                fclose(fp);
+                ((*opt).msize) = (col+1);
+        }
+		printf("col:%d:\n",(*opt).msize);
+
 	if((fp = fopen((*opt).dfile,"r")) == NULL){
 		perror((*opt).dfile);
 		exit(1);
 	}
+	printf("OK\n");
 	read_ftable_from_stream((*opt).msize, (*opt).msize,fp,dmat);
 	fclose(fp);
-	/* (* check 
+	/* check 
 	for(i=0;i<(*opt).msize;i++){
 		for(j=0;j<(*opt).msize;j++){
 			printf("%f ",dmat[i][j]);
 		}
 		printf("\n");
 	}
-	 *) */
+	*/
 
 	for(p=1;p<(*opt).msize;p++){
 		for(q=0;q<p;q++){
