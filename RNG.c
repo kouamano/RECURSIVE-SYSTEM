@@ -54,7 +54,6 @@ void init_options(struct options *opt){
 	(*opt).check = 0;
 	(*opt).dfile[0] = '\0';
 	(*opt).msize = 1000;
-	//(*opt).pbsize = 600;
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -117,6 +116,11 @@ int main(int argc, char **argv){
 	}
 
 	dmat = f_alloc_mat((*opt).msize,(*opt).msize);
+	for(i=0;i<(*opt).msize;i++){
+		for(j=0;j<(*opt).msize;j++){
+			dmat[i][j] = -1;
+		}
+	}
 	if((fp = fopen((*opt).dfile,"r")) == NULL){
 		perror((*opt).dfile);
 		exit(1);
