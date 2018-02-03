@@ -34,7 +34,7 @@ void help(void){
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" Under construction: just copied from code of MST.\n");
+	printf(" Testing.\n");
 }
 
 struct options *alloc_options(void){
@@ -177,7 +177,7 @@ int main(int argc, char **argv){
 				}else{
 					newLen = -1;
 				}
-				/* dmat rewrite */
+				/* dmat/pmat rewrite */
 				if(newLen!=-1 && newLen<dmat[u][v]){
 					dmat[u][v] = newLen;
 					pmat[u][v] = pmat[t][v];
