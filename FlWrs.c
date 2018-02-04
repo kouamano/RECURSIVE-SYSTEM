@@ -23,7 +23,7 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" Fl-Wrs [-h] [-s] [-c] dmat=<distance matrix file> pmat=<route matrix> size=<no. of nodes> \n");
+	printf(" FlWrs [-h] [-s] [-c] dmat=<distance matrix file> pmat=<route matrix> size=<no. of nodes> \n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
@@ -34,7 +34,7 @@ void help(void){
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" Testing.\n");
+	printf(" Available.\n");
 }
 
 struct options *alloc_options(void){
