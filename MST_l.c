@@ -16,8 +16,11 @@ struct options {
 };
 
 void help(void){
+	printf("DESCRIPTION:\n");
+	printf(" MST_l prints list of edges with node-id-pair and distance.\n");
+	printf(" Each ID of edge list must be integer.\n");
 	printf("USAGE:\n");
-	printf(" MST_l [-h] [-s] [-c] n=<nodes (start with 1)> dlist=<\"sorted\" distance list of all node-pairs> size=<no. of entry> \n");
+	printf(" MST_l [-h] [-s] [-c] n=<no. of nodes> dlist=<\"sorted\" distance list of all node-pairs> size=<no. of entry> \n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
@@ -28,7 +31,7 @@ void help(void){
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" Under construction.\n");
+	printf(" Available.\n");
 }
 
 struct options *alloc_options(void){
@@ -136,7 +139,7 @@ int main(int argc, char **argv){
 		}
 		fclose(fp);
 		(*opt).size = count;
-		fprintf(stderr,"Line count:%d\n",count);
+		//fprintf(stderr,"Line count:%d\n",count);
 	}
 
 	/*memory allocation*/
@@ -175,19 +178,21 @@ int main(int argc, char **argv){
 	fclose(fp);
 
 	/*print initial classes*/
+	/*
 	printf("\t{");
 	for(i=0;i<(*opt).n;i++){
 		printf("%d ",classes[i]);
 	}
 	printf("}\n");
+	*/
 	/*create MST*/
 	for(i=0;i<(*opt).size;i++){
 		//printf("i:%d\n",i);
 		c1 = classes[n1_list[i]];
-		printf("id:%d;c1:%d ",n1_list[i],c1);
+		//printf("id:%d;c1:%d ",n1_list[i],c1);
 		c2 = classes[n2_list[i]];
-		printf("id:%d;c2:%d ",n2_list[i],c2);
-		printf("dst:%f\t",dst_list[i]);
+		//printf("id:%d;c2:%d ",n2_list[i],c2);
+		//printf("dst:%f\t",dst_list[i]);
 		if(c1 != c2){
 			targetClass = max(c1,c2);
 			joinClass = min(c1,c2);
@@ -199,13 +204,19 @@ int main(int argc, char **argv){
 				}
 			}
 			/*print classes*/
+			printf("%d ",n1_list[i]);
+			printf("%d ",n2_list[i]);
+			printf("%f",dst_list[i]);
+			printf("\n");
+			/*
 			printf("{");
 			for(j=0;j<(*opt).n;j++){
 				printf("%d ",classes[j]);
 			}
 			printf("}\n");
+			*/
 		}else{
-			printf("\n");
+			//printf("\n");
 		}
 		/*check break loop*/
 		classOneCount = 0;
