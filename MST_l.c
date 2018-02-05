@@ -17,7 +17,7 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" mstL [-h] [-s] [-c] n=<nodes (start with 1)> dlist=<\"sorted\" distance list of all node-pairs> size=<no. of entry> \n");
+	printf(" MST_l [-h] [-s] [-c] n=<nodes (start with 1)> dlist=<\"sorted\" distance list of all node-pairs> size=<no. of entry> \n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
