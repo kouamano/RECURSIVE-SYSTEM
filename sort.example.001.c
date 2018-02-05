@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "/home/pub/include/alloc.c"
+#include "../include/alloc.c"
 
 int mat[10][5];
 typedef int bigint[10];
