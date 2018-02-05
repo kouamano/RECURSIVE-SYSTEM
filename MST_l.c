@@ -221,7 +221,7 @@ int main(int argc, char **argv){
 		/*check break loop*/
 		classOneCount = 0;
 		for(j=0;j<(*opt).n;j++){
-			if(classes[j] == 1){
+			if(classes[j] == 0){
 				classOneCount++;
 			}
 		}
