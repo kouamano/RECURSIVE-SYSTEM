@@ -21,9 +21,9 @@ struct options {
 
 void help(void){
 	printf("DESCRIPTION:\n");
-	printf(" GblG prints Gabriel Graph edges with distance from distance matrix.\n");
+	printf(" mat2edge simply prints edges from distance matrix.\n");
 	printf("USAGE:\n");
-	printf(" GblG [-h] [-s] [-c] df=<file of distance matrix> size=<matrix size> .\n");
+	printf(" mat2edge [-h] [-s] [-c] df=<file of distance matrix> size=<matrix size> .\n");
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
@@ -33,7 +33,7 @@ void help(void){
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" Under construction: copied from GblG.c.\n");
+	printf(" Available.\n");
 }
 
 struct options *alloc_options(void){
@@ -142,29 +142,10 @@ int main(int argc, char **argv){
 	dmat = f_alloc_mat((*opt).msize,(*opt).msize);
 	read_ftable_from_stream((*opt).msize, (*opt).msize,fp,dmat);
 	fclose(fp);
-	/* rewrite dmat */
-	for(i=0;i<(*opt).msize;i++){
-		for(j=0;j<(*opt).msize;j++){
-			if(dmat[i][j] != -1){
-				dmat[i][j] = dmat[i][j]*dmat[i][j];
-			}
-		}
-	}
 
-	for(p=1;p<(*opt).msize;p++){
-		for(q=0;q<p;q++){
-			ng = 0;
-			for(z=0;z<(*opt).msize;z++){
-				if(p==q || p==z || q==z || dmat[p][q] == -1){
-				}else{
-					if(dmat[p][q] < dmat[p][z] + dmat[z][q]){
-						ng = 1;
-					}
-				}
-			}
-			if(ng == 0 && dmat[p][q] != -1){
-				printf("%d %d %.12lg\n",p,q,sqrt(dmat[p][q]));
-			}
+	for(p=0;p<(*opt).msize;p++){
+		for(q=0;q<(*opt).msize;q++){
+			printf("%d %d %.12lg\n",p,q,dmat[p][q]);
 		}
 	}
  
