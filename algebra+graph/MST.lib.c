@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #define LEN 1024
-#include "../include/alloc.c"
-#include "../include/data_read.c"
-#include "../include/math_base.c"
+#include "../../include/alloc.c"
+#include "../../include/data_read.c"
+#include "../../include/math_base.c"
 
 struct path{
 	int head_node;

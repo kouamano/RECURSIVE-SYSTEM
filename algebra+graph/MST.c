@@ -7,9 +7,9 @@
 #include <string.h>
 #define LEN 1024
 #define SEPS "\t "
-#include "../include/alloc.c"
-#include "../include/data_read.c"
-#include "../include/math_base.c"
+#include "../../include/alloc.c"
+#include "../../include/data_read.c"
+#include "../../include/math_base.c"
 
 struct options {
 	int help;

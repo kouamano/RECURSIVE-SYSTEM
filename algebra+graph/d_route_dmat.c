@@ -4,8 +4,8 @@
 #include <string.h>
 #define LEN 1024
 #define MEM_BLK 1024
-#include "../include/alloc.c"
-#include "../include/math_base.c"
+#include "../../include/alloc.c"
+#include "../../include/math_base.c"
 #include "edgeop.h"
 #include "edgeop.c"
 
