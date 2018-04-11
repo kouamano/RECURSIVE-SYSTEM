@@ -1,7 +1,8 @@
-/*RNG                                 */
-/* input : dfile => dmat              */
-/*  inf : -1                          */
-/* output : edge list with dist       */
+/*connectedClass                      */
+/* input : dfile => adjacency matrix  */
+/* connected : 1                      */
+/* not-connected : 0                  */
+/* output : Node Id list with class   */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,14 +21,14 @@ struct options {
 
 void help(void){
 	printf("DESCRIPTION:\n");
-	printf(" RNG prints RNG edge with distance from distance matrix.\n");
+	printf(" connectedClass prints node IDs with its connected-class from adjacency matrix.\n");
 	printf("USAGE:\n");
-	printf(" RNG [-h] [-s] [-c] df=<file of distance matrix> size=<matrix size> .\n");
+	printf(" connectedClass [-h] [-s] [-c] df=<file of distance matrix> size=<matrix size> .\n");
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
 	printf("  file of distance matrix : with no header.\n");
-	printf("  matrix size (must be defined) : size of square matrix.\n");
+	printf("  matrix size (size=0 :: auto) : size of square matrix.\n");
 }
 
 void status(void){
