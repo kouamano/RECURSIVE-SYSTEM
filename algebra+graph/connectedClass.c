@@ -142,19 +142,13 @@ int main(int argc, char **argv){
 	dmat = f_alloc_mat((*opt).msize,(*opt).msize);
 	read_ftable_from_stream((*opt).msize, (*opt).msize,fp,dmat);
 	fclose(fp);
-	/* check 
 	for(i=0;i<(*opt).msize;i++){
 		for(j=0;j<(*opt).msize;j++){
 			printf("%f ",dmat[i][j]);
 		}
 		printf("\n");
 	}
-	*/
 
-	for(p=1;p<(*opt).msize;p++){
-		for(q=0;q<(*opt).msize;q++){
-		}
-	}
  
 	return(0);
 }
