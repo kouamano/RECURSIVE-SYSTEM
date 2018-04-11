@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../include/alloc.c"
-#include "../include/data_read.c"
+#include "../../include/alloc.c"
+#include "../../include/data_read.c"
 #define FILE_NAME_LEN 1024
 #define SEPS "\t "
 
@@ -32,7 +32,7 @@ void help(void){
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" complete.\n");
+	printf(" copied, uninitialized.\n");
 }
 
 struct options *alloc_options(void){
