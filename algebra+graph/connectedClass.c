@@ -119,8 +119,8 @@ int main(int argc, char **argv){
         if((*opt).msize == 0){   //auto-get of size
                 int col = 0;
                 if((fp = fopen((*opt).dfile,"r")) == NULL){
-                perror((*opt).dfile);
-                exit(1);
+			perror((*opt).dfile);
+			exit(1);
                 }
                 while((c=fgetc(fp)) != EOF){
                         if(c == SEPS[0]||c == SEPS[1]){
@@ -152,19 +152,7 @@ int main(int argc, char **argv){
 	*/
 
 	for(p=1;p<(*opt).msize;p++){
-		for(q=0;q<p;q++){
-			ng = 0;
-			for(z=0;z<(*opt).msize;z++){
-				if(p==q || q==z || p==z || dmat[p][q] == -1){
-				}else{
-					if((dmat[p][q] > dmat[p][z]) && (dmat[p][q] > dmat[z][q])){
-						ng = 1;
-					}
-				}
-			}
-			if(ng == 0 && dmat[p][q] != -1){
-				printf("%d %d %.12lg\n",p,q,dmat[p][q]);
-			}
+		for(q=0;q<(*opt).msize;q++){
 		}
 	}
  
