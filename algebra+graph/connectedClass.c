@@ -17,6 +17,7 @@ struct options {
 	int stat;
 	int check;
 	int create;
+	int print;
 	char *dfile;
 	int msize;
 };
@@ -25,11 +26,12 @@ void help(void){
 	printf("DESCRIPTION:\n");
 	printf(" connectedClass prints node IDs with its connected-class from adjacency matrix.\n");
 	printf("USAGE:\n");
-	printf(" connectedClass [-h] [-s] [-c] [-C] df=<file of distance matrix> size=<matrix size> .\n");
+	printf(" connectedClass [-h] [-s] [-c] [-A|-a] [-m] df=<file of distance matrix> size=<matrix size> .\n");
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
-	printf("  -A/-a : create/not create the symmetric adjacency matrix from input.\n");
+	printf("  -A|-a : create/not create the symmetric adjacency matrix from input.\n");
+	printf("  -m : print matrix.\n");
 	printf("  file of distance matrix : with no header.\n");
 	printf("  matrix size (size=0 :: auto) : size of square matrix.\n");
 }
@@ -57,6 +59,7 @@ void init_options(struct options *opt){
 	(*opt).stat = 0;
 	(*opt).check = 0;
 	(*opt).create = 1;
+	(*opt).print = 0;
 	(*opt).dfile[0] = '\0';
 	(*opt).msize = 0;
 }
@@ -74,6 +77,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).create = 0;
 		}else if(strcmp(optv[i],"-A") == 0){
 			(*opt).create = 1;
+		}else if(strcmp(optv[i],"-m") == 0){
+			(*opt).print = 1;
 		}else if(strncmp(optv[i],"df=",3) == 0){
 			sscanf(optv[i],"df=%s",(*opt).dfile);
 		}else if(strncmp(optv[i],"size=",5) == 0){
@@ -89,9 +94,8 @@ void check_options(struct options *opt){
 	printf(" opt.dfile:%s:\n",(*opt).dfile);
 	printf(" opt.msize:%d:\n",(*opt).msize);
 	printf(" opt.create:%d:\n",(*opt).create);
+	printf(" opt.print:%d:\n",(*opt).print);
 }
-
-
 
 int main(int argc, char **argv){
 	FILE *fp;
@@ -165,37 +169,37 @@ int main(int argc, char **argv){
 	}
 	/** create symmetric */
 	if((*opt).create == 1){
-	for(i=0;i<(*opt).msize;i++){
-		for(j=0;j<(*opt).msize;j++){
-			if(dmat[i][j] > 0 && dmat[j][i] == 0){
-				dmat[j][i] = 1;
+		for(i=0;i<(*opt).msize;i++){
+			for(j=0;j<(*opt).msize;j++){
+				if(dmat[i][j] > 0 && dmat[j][i] == 0){
+					dmat[j][i] = 1;
+				}
 			}
 		}
 	}
-	}
+	/** create diagonal */
 	for(i=0;i<(*opt).msize;i++){
 		dmat[i][i]=1;
 	}
-
-	/** Class */
+	/** rewrite class */
 	lineClass = -1;
 	for(i=0;i<(*opt).msize;i++){
 		lineClass = i;
 		for(j=0;j<(*opt).msize;j++){
 			colClass = j;
 			if(dmat[i][j] > 0){
-				printf("colClass %d\n",colClass);
+				//printf("colClass %d\n",colClass);
 				break;
 			}
 		}
-		printf("break\n");
-		if(lineClass >= 0 && colClass >= 0){
+		//printf("break\n");
+		//if(lineClass >= 0 && colClass >= 0){
 			if(lineClass > colClass){
 				currentClass = colClass;
 			}else{
 				currentClass = lineClass;
 			}
-			if(currentClass > class[j]){
+			if(currentClass != -1 && currentClass > class[j]){
 				currentClass = class[j];
 			}
 			for(j2=0;j2<(*opt).msize;j2++){
@@ -203,26 +207,25 @@ int main(int argc, char **argv){
 					class[j2] = currentClass;
 				}
 			}
-		}
+		//}
 		currentClass = -1;
 	}
 
-
-	/** print dmat */
-	for(i=0;i<(*opt).msize;i++){
-		for(j=0;j<(*opt).msize;j++){
-			printf("%f ",dmat[i][j]);
-		}
-		printf("\n");
-	}
-
-	/** print class */
+	/* print class */
 	for(j2=0;j2<(*opt).msize;j2++){
 		printf("%f ",class[j2]);
 	}
 	printf("\n");
 
-
+	/* print dmat */
+	if((*opt).print == 1){
+		for(i=0;i<(*opt).msize;i++){
+			for(j=0;j<(*opt).msize;j++){
+				printf("%f ",dmat[i][j]);
+			}
+			printf("\n");
+		}
+	}
  
 	return(0);
 }
