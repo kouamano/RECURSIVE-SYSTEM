@@ -96,14 +96,15 @@ void check_options(struct options *opt){
 int main(int argc, char **argv){
 	FILE *fp;
 	int c;
-	int i,j,p,q,z;
+	int i,j,i2,j2,z;
 	int ng = 0;
 	int ie = 0;
 	struct options *opt;
 	float **dmat;
 	float *class;
-	int minClassLine = -1;
-	int minClassCol = -1;
+	int lineClass = -1;
+	int colClass = -1;
+	int currentClass = -1;
 
 	opt = alloc_options();
 	init_options(opt);
@@ -176,7 +177,36 @@ int main(int argc, char **argv){
 		dmat[i][i]=1;
 	}
 
-	/** min Class */
+	/** Class */
+	lineClass = -1;
+	for(i=0;i<(*opt).msize;i++){
+		lineClass = i;
+		for(j=0;j<(*opt).msize;j++){
+			colClass = j;
+			if(dmat[i][j] > 0){
+				printf("colClass %d\n",colClass);
+				break;
+			}
+		}
+		printf("break\n");
+		if(lineClass >= 0 && colClass >= 0){
+			if(lineClass > colClass){
+				currentClass = colClass;
+			}else{
+				currentClass = lineClass;
+			}
+			if(currentClass > class[j]){
+				currentClass = class[j];
+			}
+			for(j2=0;j2<(*opt).msize;j2++){
+				if(dmat[i][j2] > 0){
+					class[j2] = currentClass;
+				}
+			}
+		}
+		currentClass = -1;
+	}
+
 
 	/** print dmat */
 	for(i=0;i<(*opt).msize;i++){
@@ -185,6 +215,12 @@ int main(int argc, char **argv){
 		}
 		printf("\n");
 	}
+
+	/** print class */
+	for(j2=0;j2<(*opt).msize;j2++){
+		printf("%f ",class[j2]);
+	}
+	printf("\n");
 
 
  
