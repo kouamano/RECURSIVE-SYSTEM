@@ -1,7 +1,8 @@
 /*connectedClass                      */
-/* input : dfile => adjacency matrix  */
-/* connected : 1                      */
+/* input : dfile -> adjacency matrix  */
+/* connected : >= 1                   */
 /* not-connected : 0                  */
+/* diagonal : class                   */
 /* output : Node Id list with class   */
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,6 +16,7 @@ struct options {
 	int help;
 	int stat;
 	int check;
+	int create;
 	char *dfile;
 	int msize;
 };
@@ -23,17 +25,18 @@ void help(void){
 	printf("DESCRIPTION:\n");
 	printf(" connectedClass prints node IDs with its connected-class from adjacency matrix.\n");
 	printf("USAGE:\n");
-	printf(" connectedClass [-h] [-s] [-c] df=<file of distance matrix> size=<matrix size> .\n");
+	printf(" connectedClass [-h] [-s] [-c] [-C] df=<file of distance matrix> size=<matrix size> .\n");
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
+	printf("  -C : create symmetric adjacency matrix from input.\n");
 	printf("  file of distance matrix : with no header.\n");
 	printf("  matrix size (size=0 :: auto) : size of square matrix.\n");
 }
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" copied, uninitialized.\n");
+	printf(" Under construction.\n");
 }
 
 struct options *alloc_options(void){
@@ -53,6 +56,7 @@ void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
 	(*opt).check = 0;
+	(*opt).create = 0;
 	(*opt).dfile[0] = '\0';
 	(*opt).msize = 0;
 }
@@ -66,6 +70,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).stat = 1;
 		}else if(strcmp(optv[i],"-c") == 0){
 			(*opt).check = 1;
+		}else if(strcmp(optv[i],"-C") == 0){
+			(*opt).create = 1;
 		}else if(strncmp(optv[i],"df=",3) == 0){
 			sscanf(optv[i],"df=%s",(*opt).dfile);
 		}else if(strncmp(optv[i],"size=",5) == 0){
@@ -87,7 +93,7 @@ void check_options(struct options *opt){
 int main(int argc, char **argv){
 	FILE *fp;
 	int c;
-	int i,j,p,q,z;
+	int u,v,i,j,p,q,z;
 	int ng = 0;
 	int ie = 0;
 	struct options *opt;
@@ -142,6 +148,17 @@ int main(int argc, char **argv){
 	dmat = f_alloc_mat((*opt).msize,(*opt).msize);
 	read_ftable_from_stream((*opt).msize, (*opt).msize,fp,dmat);
 	fclose(fp);
+
+	/* algorithm */
+	/* class initialize */
+	for(i=0;i<(*opt).msize;i++){
+		dmat[i][i]=i;
+	}
+	/* create symmetric */
+
+	/* minimum class */
+
+	/* print dmat */
 	for(i=0;i<(*opt).msize;i++){
 		for(j=0;j<(*opt).msize;j++){
 			printf("%f ",dmat[i][j]);
