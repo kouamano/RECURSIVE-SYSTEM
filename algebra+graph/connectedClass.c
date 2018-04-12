@@ -29,7 +29,7 @@ void help(void){
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
-	printf("  -C : create symmetric adjacency matrix from input.\n");
+	printf("  -A/-a : create/not create the symmetric adjacency matrix from input.\n");
 	printf("  file of distance matrix : with no header.\n");
 	printf("  matrix size (size=0 :: auto) : size of square matrix.\n");
 }
@@ -56,7 +56,7 @@ void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
 	(*opt).check = 0;
-	(*opt).create = 0;
+	(*opt).create = 1;
 	(*opt).dfile[0] = '\0';
 	(*opt).msize = 0;
 }
@@ -70,7 +70,9 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).stat = 1;
 		}else if(strcmp(optv[i],"-c") == 0){
 			(*opt).check = 1;
-		}else if(strcmp(optv[i],"-C") == 0){
+		}else if(strcmp(optv[i],"-a") == 0){
+			(*opt).create = 0;
+		}else if(strcmp(optv[i],"-A") == 0){
 			(*opt).create = 1;
 		}else if(strncmp(optv[i],"df=",3) == 0){
 			sscanf(optv[i],"df=%s",(*opt).dfile);
@@ -86,6 +88,7 @@ void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	printf(" opt.dfile:%s:\n",(*opt).dfile);
 	printf(" opt.msize:%d:\n",(*opt).msize);
+	printf(" opt.create:%d:\n",(*opt).create);
 }
 
 
@@ -93,11 +96,14 @@ void check_options(struct options *opt){
 int main(int argc, char **argv){
 	FILE *fp;
 	int c;
-	int u,v,i,j,p,q,z;
+	int i,j,p,q,z;
 	int ng = 0;
 	int ie = 0;
 	struct options *opt;
 	float **dmat;
+	float *class;
+	int minClassLine = -1;
+	int minClassCol = -1;
 
 	opt = alloc_options();
 	init_options(opt);
@@ -121,8 +127,8 @@ int main(int argc, char **argv){
 	if(ie == 1){
 		exit(0);
 	}
-
-        if((*opt).msize == 0){   //auto-get of size
+	/* get size */
+        if((*opt).msize == 0){
                 int col = 0;
                 if((fp = fopen((*opt).dfile,"r")) == NULL){
 			perror((*opt).dfile);
@@ -140,31 +146,46 @@ int main(int argc, char **argv){
                 fclose(fp);
                 ((*opt).msize) = (col+1);
         }
-
+	/* allocation */
+	dmat = f_alloc_mat((*opt).msize,(*opt).msize);
+	class = f_alloc_vec((*opt).msize);
+	/* read */
 	if((fp = fopen((*opt).dfile,"r")) == NULL){
 		perror((*opt).dfile);
 		exit(1);
 	}
-	dmat = f_alloc_mat((*opt).msize,(*opt).msize);
 	read_ftable_from_stream((*opt).msize, (*opt).msize,fp,dmat);
 	fclose(fp);
 
 	/* algorithm */
-	/* class initialize */
+	/** class initialize */
 	for(i=0;i<(*opt).msize;i++){
-		dmat[i][i]=i;
+		class[i]=i;
 	}
-	/* create symmetric */
+	/** create symmetric */
+	if((*opt).create == 1){
+	for(i=0;i<(*opt).msize;i++){
+		for(j=0;j<(*opt).msize;j++){
+			if(dmat[i][j] > 0 && dmat[j][i] == 0){
+				dmat[j][i] = 1;
+			}
+		}
+	}
+	}
+	for(i=0;i<(*opt).msize;i++){
+		dmat[i][i]=1;
+	}
 
-	/* minimum class */
+	/** min Class */
 
-	/* print dmat */
+	/** print dmat */
 	for(i=0;i<(*opt).msize;i++){
 		for(j=0;j<(*opt).msize;j++){
 			printf("%f ",dmat[i][j]);
 		}
 		printf("\n");
 	}
+
 
  
 	return(0);
