@@ -38,7 +38,7 @@ void help(void){
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" Under construction.\n");
+	printf(" Testing.\n");
 }
 
 struct options *alloc_options(void){
