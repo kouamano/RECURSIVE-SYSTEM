@@ -35,7 +35,7 @@ void help(void){
 	printf("  file of distance matrix : with no header.\n");
 	printf("  matrix size (size=0 :: auto) : size of square matrix.\n");
 	printf("OUTPUT:\n");
-	printf("  list of {ID,Class} (space-separated).\n");
+	printf("  MMA list of {ID,Class}, ID starts with 0.\n");
 }
 
 void status(void){
@@ -216,10 +216,12 @@ int main(int argc, char **argv){
 	}
 
 	/* print class */
-	for(j2=0;j2<(*opt).msize;j2++){
-		printf("{%d,%d} ",j2,class[j2]);
+	printf("{");
+	printf("{%d,%d}",0,class[0]);
+	for(j2=1;j2<(*opt).msize;j2++){
+		printf(", {%d,%d}",j2,class[j2]);
 	}
-	printf("\n");
+	printf("}\n");
 
 	/* print dmat */
 	if((*opt).print == 1){
