@@ -3,7 +3,7 @@
 /* connected : >= 1                   */
 /* not-connected : 0                  */
 /* diagonal : class                   */
-/* output : Node Id list with class   */
+/* output : Node Id with class {Id,C} */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -34,6 +34,8 @@ void help(void){
 	printf("  -m : print matrix.\n");
 	printf("  file of distance matrix : with no header.\n");
 	printf("  matrix size (size=0 :: auto) : size of square matrix.\n");
+	printf("OUTPUT:\n");
+	printf("  list of {ID,Class} (space-separated).\n");
 }
 
 void status(void){
@@ -215,7 +217,7 @@ int main(int argc, char **argv){
 
 	/* print class */
 	for(j2=0;j2<(*opt).msize;j2++){
-		printf("%d ",class[j2]);
+		printf("{%d,%d} ",j2,class[j2]);
 	}
 	printf("\n");
 
