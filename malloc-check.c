@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #define LEN 1024
 
 struct options {
@@ -46,7 +47,7 @@ void init_options(struct options *opt){
 	(*opt).stat = 0;
 	(*opt).check = 0;
 	(*opt).size = 0;
-	(*opt).itv = 1;
+	(*opt).itv = 0;
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -61,7 +62,7 @@ void get_options(int optc, char **optv, struct options *opt){
 		}else if(strncmp(optv[i],"size=",5) == 0){
 			sscanf(optv[i],"size=%d",&(*opt).size);
 		}else if(strncmp(optv[i],"itv=",4) == 0){
-			sscanf(optv[i],"itv=%d",(*opt).itv);
+			sscanf(optv[i],"itv=%d",&(*opt).itv);
 		}
 	}
 }
@@ -77,9 +78,12 @@ void check_options(struct options *opt){
 int main(int argc, char **argv){
 	struct options *opt;
 	int ie = 0;
+	int i;
+	int *ptr;
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
+	printf("args\n");
 	if(argc == 1){
 		(*opt).help = 1;
 	}
@@ -98,5 +102,24 @@ int main(int argc, char **argv){
 	if(ie == 1){
 		exit(0);
 	}
+
+	/* test */
+	printf("alloc\n");
+	if( (ptr = malloc((size_t)sizeof(int)*(*opt).size)) == NULL ){
+		fprintf(stderr,"failed.\n");
+		exit(1);
+	}
+	if((*opt).itv == 0){
+		printf("no agign\n");
+	}else{
+		printf("agign: itv:%d\n",(*opt).itv);
+		for(i=0;i<(*opt).size;i+=(*opt).itv){
+			printf("%d\n",i);
+			ptr[i] = i;
+		}
+	}
+	printf("sleep:1000\n");
+	sleep(1000);
+	
 	return(0);
 }
