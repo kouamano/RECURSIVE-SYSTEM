@@ -105,7 +105,8 @@ int main(int argc, char **argv){
 	int ie = 0;
 	struct options *opt;
 	float **dmat;
-	float *class;
+	//float *class;
+	int *class;
 	int lineClass = -1;
 	int colClass = -1;
 	int currentClass = -1;
@@ -153,7 +154,8 @@ int main(int argc, char **argv){
         }
 	/* allocation */
 	dmat = f_alloc_mat((*opt).msize,(*opt).msize);
-	class = f_alloc_vec((*opt).msize);
+	//class = f_alloc_vec((*opt).msize);
+	class = i_alloc_vec((*opt).msize);
 	/* read */
 	if((fp = fopen((*opt).dfile,"r")) == NULL){
 		perror((*opt).dfile);
@@ -213,7 +215,7 @@ int main(int argc, char **argv){
 
 	/* print class */
 	for(j2=0;j2<(*opt).msize;j2++){
-		printf("%f ",class[j2]);
+		printf("%d ",class[j2]);
 	}
 	printf("\n");
 
