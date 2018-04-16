@@ -25,7 +25,7 @@ void help(void){
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  n : no. of nodes [integer].\n");
-	printf("  dlsit : \"<node1> <node2> <dist>\" (space-separated).\n");
+	printf("  dlsit : \"<node1::Int> <node2::Int> <dist::Flt>\" (space-separated).\n");
 	printf("  size : no. of lines [integer].\n");
 }
 
