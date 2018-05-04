@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 int main(){
 	printf("char            \t:%ld:\tbyte\n",sizeof(char));
 	printf("_Bool           \t:%ld:\tbyte\n",sizeof(_Bool));
+	printf("mode_t          \t:%ld:\tbyte\n",sizeof(mode_t));
 	printf("short int       \t:%ld:\tbyte\n",sizeof(short int));
 	printf("int             \t:%ld:\tbyte\n",sizeof(int));
 	  int a[2][2];

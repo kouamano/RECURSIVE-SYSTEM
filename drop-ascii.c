@@ -31,7 +31,8 @@ int main(int argc, char **argv){
 		if(C > 0x00 && C < 0x7f){
 			;
 		}else{
-			putc(C,stdout);
+			//putc(C,stdout);
+			fprintf(stdout,"%c",C);
 		}
 	}
 	
