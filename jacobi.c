@@ -3,9 +3,9 @@
 #include <stdlib.h>
 
 /*
- * n 行 n 列の対称行列 a[ n ][ n ] の固有値と固有ベクトルをJacobi法で求める.
- * a[ k ][ k ] に固有値が代入される.
- * w[ k ][ 0.... n-1 ] に 固有値 a[ k ][ k ] に対応する固有ベクトルが入る.
+ * n by n : real symmetric matrix;  eigen system for a[ n ][ n ].
+ * insert eigen values into a[ k ][ k ] .
+ * insert eigen vectors into w[ k ][ 0.... n-1 ] corresponding to a[ k ][ k ] .
  */
 void jacobi( int n, double **a, double **w )
 {
