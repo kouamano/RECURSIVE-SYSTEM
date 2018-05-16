@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <complex.h>
 
 int main(){
 	printf("char            \t:%ld:\tbyte\n",sizeof(char));
@@ -18,6 +19,7 @@ int main(){
 	printf("float 2D:2x2    \t:%ld:\tbyte\n",sizeof(b));
 	printf("double          \t:%ld:\tbyte\n",sizeof(double));
 	printf("long double     \t:%ld:\tbyte\n",sizeof(long double));
+	printf("double _Complex \t:%ld:\tbyte\n",sizeof(double _Complex));
 	printf("size_t          \t:%ld:\tbyte\n",sizeof(size_t));
 	printf("time_t          \t:%ld:\tbyte\n",sizeof(time_t));
 	printf("void            \t:%ld:\tbyte\n",sizeof(void));
