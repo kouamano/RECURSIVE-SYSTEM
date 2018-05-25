@@ -13,13 +13,27 @@ if [[ $sym == '-h' ]]; then
   echo '  : search symbol form ldconfig, /usr/local/lib/blas, /usr/local/lib/lapack.'
   echo 'STATUS:'
   echo ' Under constrution.'
-  echo '  implemented : for ldconfig'
+  echo '  implemented : for ldconfig.'
+  echo '  implemented : for blas.'
   exit
 fi
 
+## earch /usr/local/lib/blas
+src="/usr/local/lib/blas"
+echo "Search: ${src}"
+ldarray=`find $src | grep -e \.a$ -e \.o$ -e \.so$`
+for e in ${ldarray[@]}; do
+  #echo :::${e}:::
+  syarray=`nm ${e} | grep $sym`
+    IFS=$'\n'
+    for s in ${syarray}; do
+      echo ${e}::: ${s}
+    done
+done
+
 ## search ldconfig
 src="ldconfig"
-echo $src
+echo "Search: ${src}"
 ldarray=`ldconfig  -p | awk -F' => ' '{print $2}'`
 for e in ${ldarray[@]}; do
   #echo :::${e}:::
