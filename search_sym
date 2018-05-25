@@ -5,7 +5,7 @@ declare -a ldarray=()
 declare -a syarray=()
 
 ## arguments, help
-if [[ $sym == '-h' ]]; then
+if [[ $sym == '-h' || $# -eq 0 ]]; then
   echo 'USAGE:'
   echo ' search_sym -h'
   echo '  : prints help.'
