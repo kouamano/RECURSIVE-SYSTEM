@@ -19,6 +19,7 @@ fi
 
 ## search ldconfig
 src="ldconfig"
+echo $src
 ldarray=`ldconfig  -p | awk -F' => ' '{print $2}'`
 for e in ${ldarray[@]}; do
   #echo :::${e}:::
