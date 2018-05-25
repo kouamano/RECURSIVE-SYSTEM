@@ -25,10 +25,10 @@ ldarray=`find $src | grep -e \.a$ -e \.o$ -e \.so$`
 for e in ${ldarray[@]}; do
   #echo :::${e}:::
   syarray=`nm ${e} | grep -i $sym`
-    IFS=$'\n'
-    for s in ${syarray}; do
-      echo ${e}::: ${s}
-    done
+  IFS=$'\n'
+  for s in ${syarray}; do
+    echo ${e}::: ${s}
+  done
 done
 
 ## earch /usr/local/lib/blas
@@ -38,10 +38,10 @@ ldarray=`find $src | grep -e \.a$ -e \.o$ -e \.so$`
 for e in ${ldarray[@]}; do
   #echo :::${e}:::
   syarray=`nm ${e} | grep -i $sym`
-    IFS=$'\n'
-    for s in ${syarray}; do
-      echo ${e}::: ${s}
-    done
+  IFS=$'\n'
+  for s in ${syarray}; do
+    echo ${e}::: ${s}
+  done
 done
 
 ## search ldconfig
@@ -51,9 +51,9 @@ ldarray=`ldconfig  -p | awk -F' => ' '{print $2}'`
 for e in ${ldarray[@]}; do
   #echo :::${e}:::
   syarray=`nm ${e} | grep -i $sym`
-    IFS=$'\n'
-    for s in ${syarray}; do
-      echo ${e}::: ${s}
-    done
+  IFS=$'\n'
+  for s in ${syarray}; do
+    echo ${e}::: ${s}
+  done
 done
 
