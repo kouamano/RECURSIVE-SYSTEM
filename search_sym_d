@@ -1,0 +1,32 @@
+#!/bin/bash
+## declare, allocate, assign
+sym=$1
+dir=$2
+declare -a ldarray=()
+declare -a syarray=()
+
+## arguments, help
+if [[ $sym == '-h' ]]; then
+  echo 'USAGE:'
+  echo ' search_sym -h'
+  echo '  : prints help.'
+  echo ' search_sym_d <symbol> <directory>'
+  echo '  : search <symbol> form files *.o, *.so and *.a in <directory>'
+  echo 'STATUS:'
+  echo ' Under constrution.'
+  exit
+fi
+
+## search
+src=$dir
+echo "Search: ${src}"
+ldarray=`find $src | grep -e \.a$ -e \.o$ -e \.so$`
+for e in ${ldarray[@]}; do
+  #echo :::${e}:::
+  syarray=`nm ${e} | grep -i $sym`
+  IFS=$'\n'
+  for s in ${syarray}; do
+    echo ${e}::: ${s}
+  done
+done
+
