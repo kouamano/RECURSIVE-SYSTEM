@@ -18,6 +18,19 @@ if [[ $sym == '-h' ]]; then
   exit
 fi
 
+## earch /usr/local/lib/lapack
+src="/usr/local/lib/lapack"
+echo "Search: ${src}"
+ldarray=`find $src | grep -e \.a$ -e \.o$ -e \.so$`
+for e in ${ldarray[@]}; do
+  #echo :::${e}:::
+  syarray=`nm ${e} | grep -i $sym`
+    IFS=$'\n'
+    for s in ${syarray}; do
+      echo ${e}::: ${s}
+    done
+done
+
 ## earch /usr/local/lib/blas
 src="/usr/local/lib/blas"
 echo "Search: ${src}"
