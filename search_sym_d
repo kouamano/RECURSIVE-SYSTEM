@@ -8,12 +8,12 @@ declare -a syarray=()
 ## arguments, help
 if [[ $sym == '-h' ]]; then
   echo 'USAGE:'
-  echo ' search_sym -h'
+  echo ' search_sym_d -h'
   echo '  : prints help.'
   echo ' search_sym_d <symbol> <directory>'
   echo '  : search <symbol> form files *.o, *.so and *.a in <directory>'
   echo 'STATUS:'
-  echo ' Under constrution.'
+  echo ' complete.'
   exit
 fi
 
