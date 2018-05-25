@@ -11,7 +11,7 @@ if [[ $sym == '-h' ]]; then
   echo ' search_sym_d -h'
   echo '  : prints help.'
   echo ' search_sym_d <symbol> <directory>'
-  echo '  : search <symbol> form files *.o, *.so and *.a in <directory>'
+  echo '  : search <symbol> from files *.o, *.so and *.a in <directory>'
   echo 'STATUS:'
   echo ' complete.'
   exit

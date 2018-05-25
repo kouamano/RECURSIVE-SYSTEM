@@ -10,7 +10,7 @@ if [[ $sym == '-h' ]]; then
   echo ' search_sym -h'
   echo '  : prints help.'
   echo ' search_sym <symbol>'
-  echo '  : search <symbol> form ldconfig, /usr/local/lib/blas, /usr/local/lib/lapack.'
+  echo '  : search <symbol> from ldconfig, /usr/local/lib/blas, /usr/local/lib/lapack.'
   echo 'STATUS:'
   echo ' complete.'
   echo '  implemented : for ldconfig.'
