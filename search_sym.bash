@@ -4,6 +4,19 @@ sym=$1
 declare -a ldarray=()
 declare -a syarray=()
 
+## arguments
+if [[ $sym == '-h' ]]; then
+  echo 'USAGE:'
+  echo ' search_sym.bash -h'
+  echo '  : prints help.'
+  echo ' search_sym.bash <symbol>'
+  echo '  : search symbol form ldconfig, /usr/local/lib/blas, /usr/local/lib/lapack.'
+  echo 'STATUS:'
+  echo ' Under constrution.'
+  echo ' implemented : for ldconfig'
+  exit
+fi
+
 ## search ldconfig
 src="ldconfig"
 ldarray=`ldconfig  -p | awk -F' => ' '{print $2}'`
