@@ -24,7 +24,7 @@ echo "Search: ${src}"
 ldarray=`find $src | grep -e \.a$ -e \.o$ -e \.so$`
 for e in ${ldarray[@]}; do
   #echo :::${e}:::
-  syarray=`nm ${e} | grep $sym`
+  syarray=`nm ${e} | grep -i $sym`
     IFS=$'\n'
     for s in ${syarray}; do
       echo ${e}::: ${s}
@@ -37,7 +37,7 @@ echo "Search: ${src}"
 ldarray=`ldconfig  -p | awk -F' => ' '{print $2}'`
 for e in ${ldarray[@]}; do
   #echo :::${e}:::
-  syarray=`nm ${e} | grep $sym`
+  syarray=`nm ${e} | grep -i $sym`
     IFS=$'\n'
     for s in ${syarray}; do
       echo ${e}::: ${s}
