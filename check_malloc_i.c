@@ -15,7 +15,7 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" malloc_check [-h] [-s] [-c] size=<size> itv=<interval>.\n");
+	printf(" check_malloc_i [-h] [-s] [-c] size=<size> itv=<interval>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
