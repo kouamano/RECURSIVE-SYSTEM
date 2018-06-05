@@ -115,7 +115,7 @@ int main(int argc, char **argv){
 		printf("agign: itv:%d\n",(*opt).itv);
 		for(i=0;i<(*opt).size;i+=(*opt).itv){
 			printf("%d\n",i);
-			ptr[i] = i;
+			ptr[i] = (int)i;
 			printf("sleep:%f\n",(*opt).sleep);
 			sleep((*opt).sleep);
 		}
