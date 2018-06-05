@@ -122,10 +122,12 @@ int main(int argc, char **argv){
 		for(i=0;i<(*opt).size;i+=(*opt).itv){
 			printf("%d\n",i);
 			ptr[i] = i;
+			printf("sleep:%d\n",(*opt).sleep);
+			sleep((*opt).sleep);
 		}
 	}
-	printf("sleep:%d\n",(*opt).sleep);
-	sleep((*opt).sleep);
+	printf("sleep:%d\n",100);
+	sleep(100);
 	
 	return(0);
 }
