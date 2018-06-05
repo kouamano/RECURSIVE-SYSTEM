@@ -8,7 +8,7 @@ struct options {
 	int help;
 	int stat;
 	int check;
-	int size;
+	size_t size;
 	int itv;
 	float sleep;
 };
@@ -57,7 +57,7 @@ void get_options(int optc, char **optv, struct options *opt){
 		}else if(strcmp(optv[i],"-c") == 0){
 			(*opt).check = 1;
 		}else if(strncmp(optv[i],"size=",5) == 0){
-			sscanf(optv[i],"size=%d",&(*opt).size);
+			sscanf(optv[i],"size=%ld",&(*opt).size);
 		}else if(strncmp(optv[i],"itv=",4) == 0){
 			sscanf(optv[i],"itv=%d",&(*opt).itv);
 		}else if(strncmp(optv[i],"sleep=",6) == 0){
@@ -70,7 +70,7 @@ void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	//printf(" opt.argint:%d:\n",(*opt).argint);
 	//printf(" opt.argstr:%s:\n",(*opt).argstr);
-	printf(" opt.size:%d:\n",(*opt).size);
+	printf(" opt.size:%ld:\n",(*opt).size);
 	printf(" opt.itv:%d:\n",(*opt).itv);
 	printf(" opt.sleep:%f:\n",(*opt).sleep);
 }
@@ -120,7 +120,8 @@ int main(int argc, char **argv){
 			sleep((*opt).sleep);
 		}
 	}
-	printf("alloced:%dBytes\n",(*opt).size * 4);
+	printf("alloced:%ldBytes\n",(*opt).size * 4);
+	printf("interval:%dBytes\n",(*opt).itv * 4);
 	printf("sleep:%d\n",100);
 	sleep(100);
 	
