@@ -10,7 +10,7 @@ struct options {
 	int check;
 	int size;
 	int itv;
-	int sleep;
+	float sleep;
 };
 
 void help(void){
@@ -50,7 +50,7 @@ void init_options(struct options *opt){
 	(*opt).check = 0;
 	(*opt).size = 0;
 	(*opt).itv = 0;
-	(*opt).sleep = 10;
+	(*opt).sleep = 1;
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -67,7 +67,7 @@ void get_options(int optc, char **optv, struct options *opt){
 		}else if(strncmp(optv[i],"itv=",4) == 0){
 			sscanf(optv[i],"itv=%d",&(*opt).itv);
 		}else if(strncmp(optv[i],"sleep=",6) == 0){
-			sscanf(optv[i],"sleep=%d",&(*opt).sleep);
+			sscanf(optv[i],"sleep=%f",&(*opt).sleep);
 		}
 	}
 }
@@ -78,7 +78,7 @@ void check_options(struct options *opt){
 	//printf(" opt.argstr:%s:\n",(*opt).argstr);
 	printf(" opt.size:%d:\n",(*opt).size);
 	printf(" opt.itv:%d:\n",(*opt).itv);
-	printf(" opt.sleep:%d:\n",(*opt).sleep);
+	printf(" opt.sleep:%f:\n",(*opt).sleep);
 }
 
 int main(int argc, char **argv){
@@ -122,10 +122,11 @@ int main(int argc, char **argv){
 		for(i=0;i<(*opt).size;i+=(*opt).itv){
 			printf("%d\n",i);
 			ptr[i] = i;
-			printf("sleep:%d\n",(*opt).sleep);
+			printf("sleep:%f\n",(*opt).sleep);
 			sleep((*opt).sleep);
 		}
 	}
+	printf("alloced:%dBytes\n",(*opt).size);
 	printf("sleep:%d\n",100);
 	sleep(100);
 	
