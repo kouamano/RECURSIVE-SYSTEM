@@ -15,11 +15,11 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" malloc-check [-h] [-s] [-c] size=<size> itv=<interval>.\n");
+	printf(" malloc_check [-h] [-s] [-c] size=<size> itv=<interval>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
-	printf("  size : malloc size.\n");
+	printf("  size : malloc size (Byte:char).\n");
 	printf("  itv : write interval of asignment.\n");
 	printf("  sleep : sleep interval of write.\n");
 }
@@ -111,7 +111,7 @@ int main(int argc, char **argv){
 
 	/* test */
 	printf("alloc\n");
-	if( (ptr = malloc((size_t)sizeof(int)*(*opt).size)) == NULL ){
+	if( (ptr = malloc((size_t)sizeof(char)*(*opt).size)) == NULL ){
 		fprintf(stderr,"failed.\n");
 		exit(1);
 	}
