@@ -19,7 +19,7 @@ void help(void){
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
-	printf("  size : malloc size (Byte:char).\n");
+	printf("  size : malloc size (4Byte:int).\n");
 	printf("  itv : write interval of asignment.\n");
 	printf("  sleep : sleep interval of write.\n");
 }
@@ -35,12 +35,6 @@ struct options *alloc_options(void){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
-	/*
-	if(((*p).argstr = malloc(sizeof(char) * LEN)) == NULL){
-		printf("failed : malloc() in alloc_options().\n");
-		exit(1);
-	}
-	*/
 	return(p);
 }
 
@@ -111,7 +105,7 @@ int main(int argc, char **argv){
 
 	/* test */
 	printf("alloc\n");
-	if( (ptr = malloc((size_t)sizeof(char)*(*opt).size)) == NULL ){
+	if( (ptr = malloc((size_t)sizeof(int)*(*opt).size)) == NULL ){
 		fprintf(stderr,"failed.\n");
 		exit(1);
 	}
@@ -126,7 +120,7 @@ int main(int argc, char **argv){
 			sleep((*opt).sleep);
 		}
 	}
-	printf("alloced:%dBytes\n",(*opt).size);
+	printf("alloced:%dBytes\n",(*opt).size * 4);
 	printf("sleep:%d\n",100);
 	sleep(100);
 	
