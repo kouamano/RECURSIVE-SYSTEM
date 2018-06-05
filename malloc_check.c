@@ -10,6 +10,7 @@ struct options {
 	int check;
 	int size;
 	int itv;
+	int sleep;
 };
 
 void help(void){
@@ -19,12 +20,13 @@ void help(void){
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  size : malloc size.\n");
-	printf("  itv : interval of asignment.\n");
+	printf("  itv : write interval of asignment.\n");
+	printf("  sleep : sleep interval of write.\n");
 }
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" Under construction.\n");
+	printf(" Complete.\n");
 }
 
 struct options *alloc_options(void){
@@ -48,6 +50,7 @@ void init_options(struct options *opt){
 	(*opt).check = 0;
 	(*opt).size = 0;
 	(*opt).itv = 0;
+	(*opt).sleep = 10;
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -63,6 +66,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"size=%d",&(*opt).size);
 		}else if(strncmp(optv[i],"itv=",4) == 0){
 			sscanf(optv[i],"itv=%d",&(*opt).itv);
+		}else if(strncmp(optv[i],"sleep=",6) == 0){
+			sscanf(optv[i],"sleep=%d",&(*opt).sleep);
 		}
 	}
 }
@@ -73,6 +78,7 @@ void check_options(struct options *opt){
 	//printf(" opt.argstr:%s:\n",(*opt).argstr);
 	printf(" opt.size:%d:\n",(*opt).size);
 	printf(" opt.itv:%d:\n",(*opt).itv);
+	printf(" opt.sleep:%d:\n",(*opt).sleep);
 }
 
 int main(int argc, char **argv){
@@ -118,8 +124,8 @@ int main(int argc, char **argv){
 			ptr[i] = i;
 		}
 	}
-	printf("sleep:1000\n");
-	sleep(1000);
+	printf("sleep:%d\n",(*opt).sleep);
+	sleep((*opt).sleep);
 	
 	return(0);
 }
