@@ -15,12 +15,12 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" check_malloc_i [-h] [-s] [-c] size=<size> itv=<interval>.\n");
+	printf(" read_malloc_i [-h] [-s] [-c] size=<size> itv=<interval>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  size : malloc size (4Byte:int).\n");
-	printf("  itv : write interval of asignment.\n");
+	printf("  itv : read interval of asignment.\n");
 	printf("  sleep : sleep interval of write.\n");
 }
 
@@ -68,8 +68,6 @@ void get_options(int optc, char **optv, struct options *opt){
 
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
-	//printf(" opt.argint:%d:\n",(*opt).argint);
-	//printf(" opt.argstr:%s:\n",(*opt).argstr);
 	printf(" opt.size:%ld:\n",(*opt).size);
 	printf(" opt.itv:%d:\n",(*opt).itv);
 	printf(" opt.sleep:%f:\n",(*opt).sleep);
@@ -114,15 +112,10 @@ int main(int argc, char **argv){
 	}else{
 		printf("agign: itv:%d\n",(*opt).itv);
 		for(i=0;i<(*opt).size;i+=(*opt).itv){
-			ptr[i] = (int)i;
 			printf("%d:%d\n",i,ptr[i]);
-			printf("%d+1024:%d:\n",i,ptr[i+1024]);
-			printf("sleep:%f\n",(*opt).sleep);
+			//printf("sleep:%f\n",(*opt).sleep);
 			sleep((*opt).sleep);
 		}
-	}
-	for(i=0;i<(*opt).size;i+=(int)((*opt).size/20)-1){
-		printf("%d:%d\n",i,ptr[i]);
 	}
 	printf("alloced:%ldBytes\n",(*opt).size * 4);
 	printf("interval:%dBytes\n",(*opt).itv * 4);
