@@ -110,12 +110,13 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	if((*opt).itv == 0){
-		printf("no agign\n");
+		printf("no asign\n");
 	}else{
 		printf("agign: itv:%d\n",(*opt).itv);
 		for(i=0;i<(*opt).size;i+=(*opt).itv){
 			printf("%d\n",i);
 			ptr[i] = (int)i;
+			printf("%d+1024:%d:\n",i,ptr[i+1024]);
 			printf("sleep:%f\n",(*opt).sleep);
 			sleep((*opt).sleep);
 		}

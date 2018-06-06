@@ -114,11 +114,15 @@ int main(int argc, char **argv){
 	}else{
 		printf("agign: itv:%d\n",(*opt).itv);
 		for(i=0;i<(*opt).size;i+=(*opt).itv){
-			printf("%d\n",i);
 			ptr[i] = (int)i;
+			printf("%d\n",ptr[i]);
+			printf("%d+1024:%d:\n",i,ptr[i+1024]);
 			printf("sleep:%f\n",(*opt).sleep);
 			sleep((*opt).sleep);
 		}
+	}
+	for(i=0;i<(*opt).size;i+=(int)((*opt).size/20)){
+		printf("%d\n",ptr[i]);
 	}
 	printf("alloced:%ldBytes\n",(*opt).size * 4);
 	printf("interval:%dBytes\n",(*opt).itv * 4);
