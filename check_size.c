@@ -15,10 +15,12 @@ int main(){
 	printf("long int        \t:%ld:\tbyte\n",sizeof(long int));
 	printf("long long int   \t:%ld:\tbyte\n",sizeof(long long int));
 	printf("float           \t:%ld:\tbyte\n",sizeof(float));
-	  int b[2][2];
+	  float b[2][2];
 	printf("float 2D:2x2    \t:%ld:\tbyte\n",sizeof(b));
 	printf("double          \t:%ld:\tbyte\n",sizeof(double));
 	printf("long double     \t:%ld:\tbyte\n",sizeof(long double));
+	printf("_Complex        \t:%ld:\tbyte\n",sizeof(_Complex));
+	printf("complex         \t:%ld:\tbyte\n",sizeof(complex));
 	printf("double _Complex \t:%ld:\tbyte\n",sizeof(double _Complex));
 	printf("size_t          \t:%ld:\tbyte\n",sizeof(size_t));
 	printf("time_t          \t:%ld:\tbyte\n",sizeof(time_t));
