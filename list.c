@@ -9,12 +9,15 @@ int main(void){
 	int TAS;
 	int VAS;
 	float v[5] = {1,2,3,7,5};
-	struct List cell[5];
+	struct List *cell;
+	cell = malloc(sizeof(struct List) * 5);
+	if(cell == NULL){printf("[Err] malloc() @ main .\n");exit(1);}
 	struct List precell;
 	struct List *lastcell;
 	TAS = 0;
 	VAS = 5;
 	for(i=0;i<5;i++){
+		init_List_zero(&cell[i]);
 		cell[i].Head = malloc(sizeof(char)*256);
 		sprintf(cell[i].Head,"%s","FLOAT");
 		cell[i].function = NULL;
