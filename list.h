@@ -52,7 +52,6 @@ struct List *init_List_Head(struct List *list, size_t h_size){
 	}
 	return(list);
 }
-
 struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_size, int v, struct List *(*fun)(), int NC, int AC){
 	(*list).ID=_ID;
 	(*list).LVself=lv;
