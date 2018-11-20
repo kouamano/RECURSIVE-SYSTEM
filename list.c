@@ -26,6 +26,7 @@ int main(void){
 	init_List_Head(&precell,256);
 	sprintf(precell.Head,"%s","FLOAT");
 	printf("%s\n",precell.Head);
+	Function_Print_Head(&precell);
 	//precell.function = &Function_Print_Head;
 	//precell.Val = v[0];
 	//precell.function = &Function_Print_Val;

@@ -103,7 +103,7 @@ struct List *Function_Recursive_List(struct List *list){
 	return(out);
 }
 
-struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_function)()){
+struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_function)(struct List *)){
 	int i;
 	int j;
 	struct List *out = list;
@@ -112,7 +112,7 @@ struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_funct
 		return(NULL);
 	}
 	if((*list).function != NULL){
-		e_function(*list);  //OR
+		e_function(list);  //OR
 		//(*list).function = e_function;
 		//(*list).function(list);
 	}
