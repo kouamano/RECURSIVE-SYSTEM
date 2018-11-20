@@ -7,7 +7,7 @@ struct List {
 	int LVself;
 	int ACself;
 	char *Head;
-	int val;
+	int Val;
 	struct List *(*function)();
 	int NextCount;
 	struct List **Next;
@@ -21,7 +21,7 @@ struct List *init_List_zero(struct List *list){
 	if(((*list).Head = malloc(sizeof(char) * 1)) == NULL){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
 	}
-	(*list).val=0;
+	(*list).Val=0;
 	(*list).Head[0] = '\0';
 	(*list).NextCount=0;
 	if( ((*list).Next = malloc(sizeof(struct List) * 1)) == NULL ){
@@ -42,7 +42,7 @@ struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_s
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
 	}
 	(*list).Head[0] = '\0';
-	(*list).val = v;
+	(*list).Val = v;
 	(*list).NextCount = NC;
 	if( ((*list).Next = malloc(sizeof(struct List) * NC)) == NULL ){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
@@ -56,6 +56,11 @@ struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_s
 
 struct List *Function_Print_Head(struct List *list){
 	printf("%s\n",(*list).Head);
+	return(list);
+}
+
+struct List *Function_Print_Val(struct List *list){
+	printf("%d\n",(*list).Val);
 	return(list);
 }
 
@@ -76,6 +81,28 @@ struct List *Function_Recursive_List(struct List *list){
 
 	for(j=0;j<(*list).ArgCount;j++){
 		Function_Recursive_List((*list).Arg[j]);
+	}
+	return(out);
+}
+
+struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_function)()){
+	int i;
+	int j;
+	struct List *out = list;
+	if(list == NULL){
+		printf("NULL\n");
+		return(NULL);
+	}
+	if((*list).function != NULL){
+		(*list).function = e_function;
+		(*list).function(list);
+	}
+	for(i=0;i<(*list).NextCount;i++){
+		ExFunction_Recursive_List((*list).Next[i],e_function);
+	}
+
+	for(j=0;j<(*list).ArgCount;j++){
+		ExFunction_Recursive_List((*list).Arg[j],e_function);
 	}
 	return(out);
 }
