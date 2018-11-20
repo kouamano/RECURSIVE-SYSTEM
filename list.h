@@ -66,7 +66,7 @@ struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_s
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
 	}
 	(*list).ArgCount = AC;
-	if( ((*list).Arg = malloc(sizeof(struct List) * NC)) == NULL ){
+	if( ((*list).Arg = malloc(sizeof(struct List) * AC)) == NULL ){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
 	}
 	return(list);
