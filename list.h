@@ -94,8 +94,9 @@ struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_funct
 		return(NULL);
 	}
 	if((*list).function != NULL){
-		(*list).function = e_function;
-		(*list).function(list);
+		e_function(*list);  //OR
+		//(*list).function = e_function;
+		//(*list).function(list);
 	}
 	for(i=0;i<(*list).NextCount;i++){
 		ExFunction_Recursive_List((*list).Next[i],e_function);
