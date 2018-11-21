@@ -152,7 +152,6 @@ struct List *Function_Print_Status_Tree(struct List *list){
 	for(i=0;i<(*list).NextCount;i++){
 		printf("    :%ld:\n",(*list).Next[i]);
 		//printf("    :%ld:\n",*(*list).Next+i);
-		//Function_Print_Status_Tree((*list).Next[i]);
 	}
 	printf("  :::\n");
 	printf("  :::ArgCount:%d:::\n",(*list).ArgCount);
@@ -160,7 +159,6 @@ struct List *Function_Print_Status_Tree(struct List *list){
 	for(i=0;i<(*list).ArgCount;i++){
 		printf("    :%ld:\n",(*list).Arg[i]);
 		//printf("    :%ld:\n",(*list).Arg+i);
-		//Function_Print_Status_Tree((*list).Arg[i]);
 	}
 	printf("  :::\n");
 	printf("}");
