@@ -84,14 +84,7 @@ struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_s
 }
 
 //functions
-struct List *Function_Print_Head(struct List *list){
-	printf("%s\n",(*list).Head);
-	return(list);
-}
-struct List *Function_Print_Val(struct List *list){
-	printf("%d\n",(*list).Val);
-	return(list);
-}
+////restructure func
 struct List *Function_Add_Next(struct List *list, struct List *next_list){
 	(*list).Next = realloc((*list).Next,(size_t)sizeof(struct List) * (*list).NextCount+1);
 	if((*list).Next == NULL){
@@ -119,6 +112,15 @@ struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
 	return((*list).Arg[(*list).ArgCount]);
 }
 
+////print func
+struct List *Function_Print_Head(struct List *list){
+	printf("%s\n",(*list).Head);
+	return(list);
+}
+struct List *Function_Print_Val(struct List *list){
+	printf("%d\n",(*list).Val);
+	return(list);
+}
 struct List *Function_Print_Status(struct List *list){
 	int i;
 	int j;
@@ -146,7 +148,6 @@ struct List *Function_Print_Status(struct List *list){
 	printf("}\n");
 	return(list);
 }
-
 struct List *Function_Print_Status_Tree(struct List *list){
 	int i;
 	int j;
@@ -174,7 +175,6 @@ struct List *Function_Print_Status_Tree(struct List *list){
 	return(list);
 }
 
-
 //Apply function
 struct List *Function_Recursive_List(struct List *list){
 	int i;
@@ -196,7 +196,6 @@ struct List *Function_Recursive_List(struct List *list){
 	}
 	return(out);
 }
-
 struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_function)(struct List *)){
 	int i;
 	int j;
@@ -219,7 +218,7 @@ struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_funct
 	}
 	return(out);
 }
-
+////print&apply function
 struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e_function)(struct List *),int ON){
 	int _ON = 0;
 	_ON = ON;
@@ -232,11 +231,11 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 	}
 	if((*list).function != NULL){
 		if(_ON >= 0){
-			printf("$%ld",list,(*list).LVself,(*list).ACself,(*list).NXCount);
+			printf("$%ld",list);
 			//printf("$%ld:LV=%d:AC=%d:NX=%d:",list,(*list).LVself,(*list).ACself,(*list).NXCount);
 		}
 		if(_ON > 0){
-			printf(":LV=%d:AC=%d:NX=%d:",list,(*list).LVself,(*list).ACself,(*list).NXCount);
+			printf(":LV=%d:AC=%d:NX=%d:",(*list).LVself,(*list).ACself,(*list).NXCount);
 		}
 		if(_ON > 4){
 			e_function(list);  //OR
@@ -264,7 +263,6 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 	}
 	return(out);
 }
-
 struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_function)(struct List *),int ON){
 	int _ON = 0;
 	_ON = ON;
