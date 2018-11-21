@@ -222,12 +222,16 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 	if((*list).function != NULL){
 		printf("%ld",list);
 		printf("(");
-		e_function(list);  //OR
+		//e_function(list);  //OR
 		//(*list).function = e_function;
 		//(*list).function(list);
 	}
 	for(i=0;i<(*list).NextCount;i++){
-		printf(", ");
+		if(i == 0){
+			//printf("\n");
+		}else{
+			printf(",\n");
+		}
 		ExFunction_Recursive_Tree_Print((*list).Next[i],e_function);
 	}
 	if((*list).NextCount == i){
@@ -237,7 +241,7 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 	for(j=0;j<(*list).ArgCount;j++){
 		ExFunction_Recursive_Tree_Print((*list).Arg[j],e_function);
 	}
-	printf("\n");
+	//printf("\n");
 	return(out);
 }
 
