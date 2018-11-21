@@ -12,12 +12,10 @@ int main(void){
 	struct List precell;
 	struct List *cell;
 
-	init_List_Head(&precell,256);
-	precell.NextCount = 0;
-
+	printf("=====\n");
+	init_List_zero(&precell);
 	cell = malloc(sizeof(struct List) * 5);
 	if(cell == NULL){printf("[Err] malloc() @ main .\n");exit(1);}
-
 	for(i=0;i<5;i++){
 		init_List_zero(&cell[i]);
 		cell[i].Head = malloc(sizeof(char)*256);
@@ -27,13 +25,11 @@ int main(void){
 		cell[i].function = &Function_Print_Head;
 		Function_Add_Next(&precell,&cell[i]);
 	}
-
-	//ExFunction_Recursive_List(&precell, (struct List *(*)())Function_Print_Status);
-	printf("=====\n");
-	//ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status_Tree,1);
 	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status_Tree,0);
 	printf("\n");
 	printf("=====\n");
+	//ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status_Tree,1);
+	//ExFunction_Recursive_List(&precell, (struct List *(*)())Function_Print_Status);
 	//precell.function = &Function_Print_Head;
 	//precell.Val = v[0];
 	//precell.function = &Function_Print_Val;
