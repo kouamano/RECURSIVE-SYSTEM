@@ -42,7 +42,8 @@ int main(void){
 	printf("\n=====\n");
 
 	//ExFunction_Recursive_List(&precell, (struct List *(*)())Function_Print_Status);
-	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status_Tree);
+	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status_Tree,1);
+	printf("\n");
 	//precell.function = &Function_Print_Head;
 	//precell.Val = v[0];
 	//precell.function = &Function_Print_Val;
