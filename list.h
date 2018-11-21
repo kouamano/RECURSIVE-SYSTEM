@@ -116,6 +116,7 @@ struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
 
 struct List *Function_Print_Status(struct List *list){
 	int i;
+	int j;
 	printf("{:%ld:\n",list);
 	printf("  :::ID:%d:::\n",(*list).ID);
 	printf("  :::LVself:%d:::\n",(*list).LVself);
@@ -132,8 +133,8 @@ struct List *Function_Print_Status(struct List *list){
 	printf("  :::\n");
 	printf("  :::ArgCount:%d:::\n",(*list).ArgCount);
 	printf("  :::ArgPointers:\n");
-	for(i=0;i<(*list).ArgCount;i++){
-		printf("    :%ld:\n",(*list).Arg[i]);
+	for(j=0;j<(*list).ArgCount;j++){
+		printf("    :%ld:\n",(*list).Arg[j]);
 		//printf("    :%ld:\n",(*list).Arg+i);
 	}
 	printf("  :::\n");
@@ -143,6 +144,7 @@ struct List *Function_Print_Status(struct List *list){
 
 struct List *Function_Print_Status_Tree(struct List *list){
 	int i;
+	int j;
 	printf(":%ld:{",list);
 	printf("  :::ID:%d:::\n",(*list).ID);
 	printf("  :::LVself:%d:::\n",(*list).LVself);
@@ -159,8 +161,8 @@ struct List *Function_Print_Status_Tree(struct List *list){
 	printf("  :::\n");
 	printf("  :::ArgCount:%d:::\n",(*list).ArgCount);
 	printf("  :::ArgPointers:\n");
-	for(i=0;i<(*list).ArgCount;i++){
-		printf("    :%ld:\n",(*list).Arg[i]);
+	for(j=0;j<(*list).ArgCount;j++){
+		printf("    :%ld:\n",(*list).Arg[j]);
 		//printf("    :%ld:\n",(*list).Arg+i);
 	}
 	printf("  :::\n");
