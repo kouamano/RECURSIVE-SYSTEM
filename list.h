@@ -99,7 +99,7 @@ struct List *Function_Add_Arg(struct List *list){
 	if((*list).Arg == NULL){
 		exit(1);
 	}
-	(*list).Next[(*list).NextCount]->LVself = (*list).LVself+1;
+	(*list).Next[(*list).NextCount]->LVself = (*list).LVself;
 	return(list);
 }
 
