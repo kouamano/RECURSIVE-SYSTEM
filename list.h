@@ -269,19 +269,7 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 		printf("NULL\n");
 		return(NULL);
 	}
-	if((*list).function != NULL){
-		if(WAR >= 0){
-			//printf("$%ld",list,(*list).LVself,(*list).ACself,(*list).NXCount);
-		}
-		if(WAR > 0){
-			//printf(":LV=%d:AC=%d:NX=%d:",list,(*list).LVself,(*list).ACself,(*list).NXCount);
-		}
-		if(WAR > 4){
-			//e_function(list);  //OR
-			//(*list).function = e_function;
-			//(*list).function(list);
-		}
-	}
+
 	//RECURSIVE
 
 	//NEXT
