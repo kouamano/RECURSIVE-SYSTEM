@@ -161,7 +161,7 @@ struct List *Function_Print_Status_Tree(struct List *list){
 		//printf("    :%ld:\n",(*list).Arg+i);
 	}
 	printf("  :::\n");
-	printf("},");
+	printf("}");
 	return(list);
 }
 
