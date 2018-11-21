@@ -98,7 +98,7 @@ struct List *Function_Add_Next(struct List *list){
 }
 struct List *Function_Add_Arg(struct List *list){
 	(*list).ArgCount++;
-	(*list).Arg = realloc((*list).Arg,(size_t)sizeof(struct List) * (*list).NextCount);
+	(*list).Arg = realloc((*list).Arg,(size_t)sizeof(struct List) * (*list).ArgCount);
 	if((*list).Arg == NULL){
 		exit(1);
 	}
