@@ -101,7 +101,7 @@ struct List *Function_Print_Status(struct List *list){
 	}
 	printf("  :::ArgCount:%d:::\n",(*list).ArgCount);
 	printf("  :::ArgPointers:\n");
-	for(i=0;i<(*list).NextCount;i++){
+	for(i=0;i<(*list).ArgCount;i++){
 		printf("    :%ld:\n",&(*list).Arg[i]);
 		printf("    :%ld:\n",(*list).Arg+i);
 	}

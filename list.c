@@ -9,13 +9,20 @@ int main(void){
 	int TAS;
 	int VAS;
 	float v[5] = {1,2,3,7,5};
+	struct List precell;
 	struct List *cell;
+	struct List *lastcell;
+	//TAS = 0;
+	//VAS = 5;
+
+	init_List_Head(&precell,256);
+	precell.NextCount = 5;
+	precell.Next = malloc(sizeof(struct List) * 5);
+	sprintf(precell.Head,"%s","FLOAT");
+
 	cell = malloc(sizeof(struct List) * 5);
 	if(cell == NULL){printf("[Err] malloc() @ main .\n");exit(1);}
-	struct List precell;
-	struct List *lastcell;
-	TAS = 0;
-	VAS = 5;
+
 	for(i=0;i<5;i++){
 		init_List_zero(&cell[i]);
 		cell[i].Head = malloc(sizeof(char)*256);
@@ -24,12 +31,13 @@ int main(void){
 		cell[i].Val = v[i];
 		cell[i].function = &Function_Print_Head;
 		//cell[i].v_function = NULL;
-		cell[i].Next = NULL;
+		precell.Next[i] = &cell[i];
 	}
-	init_List_Head(&precell,256);
-	sprintf(precell.Head,"%s","FLOAT");
-	printf("%s\n",precell.Head);
+	//printf("%s\n",precell.Head);
 	Function_Print_Head(&precell);
+	printf("\n=====\n");
+
+	ExFunction_Recursive_List(&precell, (struct List *(*)())Function_Print_Status);
 	//precell.function = &Function_Print_Head;
 	//precell.Val = v[0];
 	//precell.function = &Function_Print_Val;
