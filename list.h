@@ -64,6 +64,7 @@ struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_s
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
 	}
 	(*list).Head[0] = '\0';
+	(*list).function = fun;
 	(*list).NextCount = NC;
 	if( ((*list).Next = malloc(sizeof(struct List) * NC)) == NULL ){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
