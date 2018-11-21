@@ -189,6 +189,7 @@ struct List *Function_Recursive_List(struct List *list){
 	}
 	return(out);
 }
+
 struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_function)(struct List *)){
 	int i;
 	int j;
@@ -209,6 +210,35 @@ struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_funct
 	for(j=0;j<(*list).ArgCount;j++){
 		ExFunction_Recursive_List((*list).Arg[j],e_function);
 	}
+	return(out);
+}
+
+struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e_function)(struct List *)){
+	int i;
+	int j;
+	struct List *out = list;
+	if(list == NULL){
+		printf("NULL\n");
+		return(NULL);
+	}
+	if((*list).function != NULL){
+		printf("%ld",list);
+		printf("(");
+		e_function(list);  //OR
+		//(*list).function = e_function;
+		//(*list).function(list);
+	}
+	for(i=0;i<(*list).NextCount;i++){
+		ExFunction_Recursive_Tree_Print((*list).Next[i],e_function);
+	}
+	if((*list).NextCount == i){
+		printf(")");
+	}
+
+	for(j=0;j<(*list).ArgCount;j++){
+		ExFunction_Recursive_Tree_Print((*list).Arg[j],e_function);
+	}
+	printf("\n");
 	return(out);
 }
 
