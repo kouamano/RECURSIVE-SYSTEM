@@ -32,9 +32,10 @@ int main(void){
 		cell[i].function = &Function_Print_Head;
 		//cell[i].v_function = NULL;
 		precell.Next[i] = &cell[i];
+		cell[i].LVself = precell.LVself+1;
 	}
 	//printf("%s\n",precell.Head);
-	Function_Print_Head(&precell);
+	//Function_Print_Head(&precell);
 	printf("\n=====\n");
 
 	ExFunction_Recursive_List(&precell, (struct List *(*)())Function_Print_Status);
