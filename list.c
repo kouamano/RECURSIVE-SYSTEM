@@ -11,34 +11,22 @@ int main(void){
 	float v[5] = {1,2,3,7,5};
 	struct List precell;
 	struct List *cell;
-	struct List *lastcell;
-	//TAS = 0;
-	//VAS = 5;
 
 	init_List_Head(&precell,256);
 	precell.NextCount = 0;
-	//precell.NextCount = 5;
-	//precell.Next = malloc(sizeof(struct List) * 5);
-	//sprintf(precell.Head,"%s","FLOAT");
 
 	cell = malloc(sizeof(struct List) * 5);
 	if(cell == NULL){printf("[Err] malloc() @ main .\n");exit(1);}
 
 	for(i=0;i<5;i++){
-		//printf(":%f:\n",v[i]);
 		init_List_zero(&cell[i]);
 		cell[i].Head = malloc(sizeof(char)*256);
 		sprintf(cell[i].Head,"%s","FLOAT");
 		cell[i].function = NULL;
 		cell[i].Val = v[i];
 		cell[i].function = &Function_Print_Head;
-		//cell[i].v_function = NULL;
-		//precell.Next[i] = &cell[i];
-		//cell[i].LVself = precell.LVself+1;
 		Function_Add_Next(&precell,&cell[i]);
 	}
-	//printf("%s\n",precell.Head);
-	//Function_Print_Head(&precell);
 
 	//ExFunction_Recursive_List(&precell, (struct List *(*)())Function_Print_Status);
 	printf("\n=====\n");
