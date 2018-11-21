@@ -138,6 +138,35 @@ struct List *Function_Print_Status(struct List *list){
 	return(list);
 }
 
+struct List *Function_Print_Status_Tree(struct List *list){
+	int i;
+	printf(":%ld:{\n",list);
+	printf("  :::ID:%d:::\n",(*list).ID);
+	printf("  :::LVself:%d:::\n",(*list).LVself);
+	printf("  :::ACself:%d:::\n",(*list).ACself);
+	printf("  :::Val:%d:::\n",(*list).Val);
+	printf("  :::Head:%s:::\n",(*list).Head);
+	printf("  :::function -skip- :::\n");
+	printf("  :::NextCount:%d:::\n",(*list).NextCount);
+	printf("  :::NextPointers:\n");
+	for(i=0;i<(*list).NextCount;i++){
+		printf("    :%ld:\n",(*list).Next[i]);
+		//printf("    :%ld:\n",*(*list).Next+i);
+		//Function_Print_Status_Tree((*list).Next[i]);
+	}
+	printf("  :::\n");
+	printf("  :::ArgCount:%d:::\n",(*list).ArgCount);
+	printf("  :::ArgPointers:\n");
+	for(i=0;i<(*list).ArgCount;i++){
+		printf("    :%ld:\n",(*list).Arg[i]);
+		//printf("    :%ld:\n",(*list).Arg+i);
+		//Function_Print_Status_Tree((*list).Arg[i]);
+	}
+	printf("  :::\n");
+	printf("}\n");
+	return(list);
+}
+
 
 //Apply function
 struct List *Function_Recursive_List(struct List *list){
