@@ -91,6 +91,7 @@ struct List *Function_Add_Next(struct List *list){
 		exit(1);
 	}
 	(*list).Next[(*list).NextCount]->LVself = (*list).LVself+1;
+	(*list).Next[(*list).NextCount]->ACself = 0;
 	return(list);
 }
 struct List *Function_Add_Arg(struct List *list){
@@ -99,8 +100,9 @@ struct List *Function_Add_Arg(struct List *list){
 	if((*list).Arg == NULL){
 		exit(1);
 	}
-	(*list).Next[(*list).NextCount]->LVself = (*list).LVself;
-	return(list);
+	(*list).Next[(*list).ArgCount]->LVself = (*list).LVself;
+	(*list).Next[(*list).ArgCount]->ACself = (*list).ACself+1;
+	return((*list).Next[(*list).NextCount]);
 }
 
 struct List *Function_Print_Status(struct List *list){
