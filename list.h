@@ -269,7 +269,7 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 		printf("NULL\n");
 		return(NULL);
 	}
-
+	printf("[NC=%d]",(*list).NextCount);
 	//RECURSIVE
 
 	//NEXT
@@ -279,7 +279,7 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	for(i=0;i<(*list).NextCount;i++){
 		//(*list).Next[i]->NXCount = i;
 		if(i == 0){
-			printf("$%ld",list);
+			printf("$%ld:NC=%d:",list,(*list).NextCount);
 		}else{
 			printf(",$%ld#",(*list).Next[i]);
 		}
