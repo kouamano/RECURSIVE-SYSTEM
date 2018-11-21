@@ -105,7 +105,7 @@ struct List *Function_Print_Status(struct List *list){
 		printf("    :%ld:\n",&(*list).Arg[i]);
 		printf("    :%ld:\n",(*list).Arg+i);
 	}
-	printf("\n}\n");
+	printf("}\n");
 	return(list);
 }
 
