@@ -85,8 +85,8 @@ struct List *Function_Print_Val(struct List *list){
 	return(list);
 }
 struct List *Function_Print_Status(struct List *list){
-	int i,j;
-	printf("{\n");
+	int i;
+	printf("{:%ld:\n",list);
 	printf("  :::ID:%d:::\n",(*list).ID);
 	printf("  :::LVself:%d:::\n",(*list).LVself);
 	printf("  :::ACself:%d:::\n",(*list).ACself);
@@ -96,13 +96,13 @@ struct List *Function_Print_Status(struct List *list){
 	printf("  :::NextCount:%d:::\n",(*list).NextCount);
 	printf("  :::NextPointers:\n");
 	for(i=0;i<(*list).NextCount;i++){
-		printf("    :%ld:\n",&(*list).Next[i]);
+		//printf("    :%ld:\n",&(*list).Next[i]);
 		printf("    :%ld:\n",(*list).Next+i);
 	}
 	printf("  :::ArgCount:%d:::\n",(*list).ArgCount);
 	printf("  :::ArgPointers:\n");
 	for(i=0;i<(*list).ArgCount;i++){
-		printf("    :%ld:\n",&(*list).Arg[i]);
+		//printf("    :%ld:\n",&(*list).Arg[i]);
 		printf("    :%ld:\n",(*list).Arg+i);
 	}
 	printf("}\n");
