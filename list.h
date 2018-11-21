@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+//structure
 struct List {
 	int ID;
 	int LVself;
@@ -14,6 +15,8 @@ struct List {
 	int ArgCount;
 	struct List **Arg;
 };
+
+//initialize function
 struct List *init_List_zero(struct List *list){
 	(*list).ID=0;
 	(*list).LVself=0;
@@ -72,16 +75,42 @@ struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_s
 	return(list);
 }
 
+//functions
 struct List *Function_Print_Head(struct List *list){
 	printf("%s\n",(*list).Head);
 	return(list);
 }
-
 struct List *Function_Print_Val(struct List *list){
 	printf("%d\n",(*list).Val);
 	return(list);
 }
+struct List *Function_Print_Status(struct List *list){
+	int i,j;
+	printf("{\n");
+	printf("  :::ID:%d:::\n",(*list).ID);
+	printf("  :::LVself:%d:::\n",(*list).LVself);
+	printf("  :::ACself:%d:::\n",(*list).ACself);
+	printf("  :::Val:%d:::\n",(*list).Val);
+	printf("  :::Head:%s:::\n",(*list).Head);
+	printf("  :::function -skip- \n");
+	printf("  :::NextCount:%d:::\n",(*list).NextCount);
+	printf("  :::NextPointers:\n");
+	for(i=0;i<(*list).NextCount;i++){
+		printf("    :%ld:\n",&(*list).Next[i]);
+		printf("    :%ld:\n",(*list).Next+i);
+	}
+	printf("  :::ArgCount:%d:::\n",(*list).ArgCount);
+	printf("  :::ArgPointers:\n");
+	for(i=0;i<(*list).NextCount;i++){
+		printf("    :%ld:\n",&(*list).Arg[i]);
+		printf("    :%ld:\n",(*list).Arg+i);
+	}
+	printf("\n}\n");
+	return(list);
+}
 
+
+//Apply function
 struct List *Function_Recursive_List(struct List *list){
 	int i;
 	int j;
@@ -102,7 +131,6 @@ struct List *Function_Recursive_List(struct List *list){
 	}
 	return(out);
 }
-
 struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_function)(struct List *)){
 	int i;
 	int j;
