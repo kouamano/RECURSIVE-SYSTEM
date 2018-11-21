@@ -288,24 +288,30 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 			//(*list).function(list);
 		}
 	}
+
+	//NEXT
+	for(i=0;i<(*list).NextCount;i++){
+		printf("(");
+	}
 	for(i=0;i<(*list).NextCount;i++){
 		//(*list).Next[i]->NXCount = i;
 		if(i == 0){
-			printf("($%ld",list);
+			printf("$%ld",list);
 		}else{
-			printf("(");
+			printf(",$%ld#",(*list).Next[i]);
 		}
-		ExFunction_Recursive_Tree_Print((*list).Next[i],e_function,_ON);
+		ExFunction_Recursive_S_Print((*list).Next[i],e_function,_ON);
 		printf(")");
 	}
 
+	//Arg
 	for(j=0;j<(*list).ArgCount;j++){
 		if(j == 0){
-			printf("(");
+			printf("($%ld&,",list);
 		}else{
 			printf(",");
 		}
-		ExFunction_Recursive_Tree_Print((*list).Arg[j],e_function,_ON);
+		ExFunction_Recursive_S_Print((*list).Arg[j],e_function,_ON);
 		if(j == (*list).ArgCount-1){
 			printf(")");
 		}
