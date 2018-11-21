@@ -295,9 +295,9 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	//Arg
 	for(j=0;j<(*list).ArgCount;j++){
 		if(j == 0){
-			printf("($%ld&,",(*list).Arg[i]);
+			printf("($%ld&,",(*list).Arg[j]);
 		}else{
-			printf("($%ld&,",(*list).Arg[i]);
+			printf("($%ld&,",(*list).Arg[j]);
 			//printf(",");
 		}
 		ExFunction_Recursive_S_Print((*list).Arg[j],e_function,WAR);
