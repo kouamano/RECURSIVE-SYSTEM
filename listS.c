@@ -6,8 +6,6 @@
 
 int main(void){
 	int i;
-	int TAS;
-	int VAS;
 	struct List precell;
 	struct List *cell;
 	float v[5] = {1,2,3,7,5};
@@ -25,7 +23,8 @@ int main(void){
 		cell[i].function = &Function_Print_Head;
 		Function_Add_Next(&precell,&cell[i]);
 	}
-	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status_Tree,0);
+	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status_Tree,0); printf("\n");
+	ExFunction_Recursive_S_Print(&precell, (struct List *(*)())Function_Print_Status_Tree,0);
 	printf("\n");
 	printf("=====\n");
 
@@ -46,7 +45,8 @@ int main(void){
 	for(i=1;i<5;i++){
 		Function_Add_Next(&cell[i-1],&cell[i]);
 	}
-	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status_Tree,0);
+	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status_Tree,0); printf("\n");
+	ExFunction_Recursive_S_Print(&precell, (struct List *(*)())Function_Print_Status_Tree,0);
 	printf("\n");
 	printf("=====\n");
 
@@ -63,7 +63,8 @@ int main(void){
 		cell[i].function = &Function_Print_Head;
 		Function_Add_Arg(&precell,&cell[i]);
 	}
-	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status_Tree,0);
+	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status_Tree,0); printf("\n");
+	ExFunction_Recursive_S_Print(&precell, (struct List *(*)())Function_Print_Status_Tree,0);
 	printf("\n");
 	printf("=====\n");
 
@@ -82,7 +83,8 @@ int main(void){
 		Function_Add_Next(&precell,&cell[i]);
 	}
 	Function_Add_Next(&cell[2],&cell[3]);
-	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status_Tree,0);
+	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status_Tree,0); printf("\n");
+	ExFunction_Recursive_S_Print(&precell, (struct List *(*)())Function_Print_Status_Tree,0);
 	printf("\n");
 	printf("=====\n");
 
