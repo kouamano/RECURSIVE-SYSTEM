@@ -113,7 +113,7 @@ struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
 		exit(1);
 	}
 	(*list).Arg[(*list).ArgCount] = arg_list;
-	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself;
+	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself+1;
 	(*list).Arg[(*list).ArgCount]->ACself = (*list).ACself+1;
 	(*list).ArgCount++;
 	return((*list).Arg[(*list).ArgCount]);
@@ -239,14 +239,22 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 		}
 	}
 	for(i=0;i<(*list).NextCount;i++){
-		(*list).Next[i]->NXCount = i;
+		//(*list).Next[i]->NXCount = i;
 		printf("(");
 		ExFunction_Recursive_Tree_Print((*list).Next[i],e_function,_ON);
 		printf(")");
 	}
 
 	for(j=0;j<(*list).ArgCount;j++){
+		if(j == 0){
+			printf("(");
+		}else{
+			printf(",");
+		}
 		ExFunction_Recursive_Tree_Print((*list).Arg[j],e_function,_ON);
+		if(j == (*list).ArgCount-1){
+			printf(")");
+		}
 	}
 	return(out);
 }
