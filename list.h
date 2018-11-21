@@ -93,7 +93,6 @@ struct List *Function_Add_Next(struct List *list){
 	(*list).Next[(*list).NextCount]->LVself = (*list).LVself+1;
 	(*list).Next[(*list).NextCount]->ACself = 0;
 	//(*(*list).Next[(*list).NextCount]).ACself = 0;
-	//return(list);
 	return((*list).Next[(*list).NextCount]);
 }
 struct List *Function_Add_Arg(struct List *list){
