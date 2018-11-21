@@ -162,7 +162,7 @@ struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_funct
 	int j;
 	struct List *out = list;
 	if(list == NULL){
-		printf("NULL\n");
+		//printf("NULL\n");
 		return(NULL);
 	}
 	if((*list).function != NULL){
