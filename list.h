@@ -140,7 +140,7 @@ struct List *Function_Print_Status(struct List *list){
 
 struct List *Function_Print_Status_Tree(struct List *list){
 	int i;
-	printf(":%ld:{\n",list);
+	printf(":%ld:{",list);
 	printf("  :::ID:%d:::\n",(*list).ID);
 	printf("  :::LVself:%d:::\n",(*list).LVself);
 	printf("  :::ACself:%d:::\n",(*list).ACself);
@@ -163,7 +163,7 @@ struct List *Function_Print_Status_Tree(struct List *list){
 		//Function_Print_Status_Tree((*list).Arg[i]);
 	}
 	printf("  :::\n");
-	printf("}\n");
+	printf("}");
 	return(list);
 }
 
@@ -229,6 +229,7 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 		//(*list).function(list);
 	}
 	for(i=0;i<(*list).NextCount;i++){
+		printf(", ");
 		ExFunction_Recursive_Tree_Print((*list).Next[i],e_function);
 	}
 	if((*list).NextCount == i){
