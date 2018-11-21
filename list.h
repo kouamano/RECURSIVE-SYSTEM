@@ -85,8 +85,7 @@ struct List *Function_Print_Val(struct List *list){
 	return(list);
 }
 struct List *Function_Add_Next(struct List *list, struct List *next_list){
-	(*list).NextCount++;
-	(*list).Next = realloc((*list).Next,(size_t)sizeof(struct List) * (*list).NextCount);
+	(*list).Next = realloc((*list).Next,(size_t)sizeof(struct List) * (*list).NextCount+1);
 	if((*list).Next == NULL){
 		exit(1);
 	}
@@ -94,17 +93,18 @@ struct List *Function_Add_Next(struct List *list, struct List *next_list){
 	(*list).Next[(*list).NextCount]->LVself = (*list).LVself+1;
 	(*list).Next[(*list).NextCount]->ACself = 0;
 	//(*(*list).Next[(*list).NextCount]).ACself = 0;
+	(*list).NextCount++;
 	return((*list).Next[(*list).NextCount]);
 }
 struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
-	(*list).ArgCount++;
-	(*list).Arg = realloc((*list).Arg,(size_t)sizeof(struct List) * (*list).ArgCount);
+	(*list).Arg = realloc((*list).Arg,(size_t)sizeof(struct List) * (*list).ArgCount+1);
 	if((*list).Arg == NULL){
 		exit(1);
 	}
 	(*list).Arg[(*list).ArgCount] = arg_list;
 	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself;
 	(*list).Arg[(*list).ArgCount]->ACself = (*list).ACself+1;
+	(*list).ArgCount++;
 	return((*list).Arg[(*list).ArgCount]);
 }
 
