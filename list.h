@@ -87,6 +87,7 @@ struct List *Function_Print_Val(struct List *list){
 struct List *Function_Add_Next(struct List *list, struct List *next_list){
 	(*list).Next = realloc((*list).Next,(size_t)sizeof(struct List) * (*list).NextCount+1);
 	if((*list).Next == NULL){
+		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
 		exit(1);
 	}
 	(*list).Next[(*list).NextCount] = next_list;
@@ -99,6 +100,7 @@ struct List *Function_Add_Next(struct List *list, struct List *next_list){
 struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
 	(*list).Arg = realloc((*list).Arg,(size_t)sizeof(struct List) * (*list).ArgCount+1);
 	if((*list).Arg == NULL){
+		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
 		exit(1);
 	}
 	(*list).Arg[(*list).ArgCount] = arg_list;
