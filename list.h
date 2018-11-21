@@ -84,6 +84,13 @@ struct List *Function_Print_Val(struct List *list){
 	printf("%d\n",(*list).Val);
 	return(list);
 }
+struct List *Function_Add_Next(struct List *list){
+	(*list).NextCount++;
+	(*list).Next = realloc((*list).Next,(size_t)sizeof(struct List) * (*list).NextCount);
+	(*list).Next[(*list).NextCount]->LVself = (*list).LVself+1;
+	return(list);
+}
+
 struct List *Function_Print_Status(struct List *list){
 	int i;
 	printf("{:%ld:\n",list);
