@@ -25,7 +25,7 @@ struct List *init_List_zero(struct List *list){
 	(*list).LVself=0;
 	(*list).ACself=0;
 	(*list).Val=0;
-	if(((*list).Head = malloc(sizeof(char) * 1)) == NULL){
+	if(((*list).Head = malloc(sizeof(char) * BUFF)) == NULL){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
 	}
 	(*list).Head[0] = '\0';
