@@ -199,9 +199,10 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 		printf("NULL\n");
 		return(NULL);
 	}
+	printf("$%ld",list);
 	if((*list).function != NULL){
 		if(WAR >= 0){
-			printf("$%ld",list);
+			//printf("$%ld",list);
 		}
 		if(WAR > 0){
 			printf(":LV=%d:AC=%d:NXp=%d:",(*list).LVself,(*list).ACself,(*list).NCself);
