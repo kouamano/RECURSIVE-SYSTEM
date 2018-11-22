@@ -252,9 +252,15 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	/* *) */
 
 	//BRK COMM
+	if(Parent != NULL){
+		if((*Parent).NextCount > 1 && (*list).NXprog == (*Parent).NextCount-1 && (*list).NextCount != 0){
+			printf(",");
+		}
+	}
 	for(i=0;i<(*list).NextCount;i++){
 		printf("(");
 	}
+
 	if((*list).LVself==0 && (*list).ACself==0 && (*list).NextCount==0 && (*list).ArgCount > 0){
 		printf("(");
 	}
