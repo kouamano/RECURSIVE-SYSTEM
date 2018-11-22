@@ -128,11 +128,11 @@ struct List *Function_Print_Status(struct List *list){
 	printf("  :::ID:%d:::\n",(*list).ID);
 	printf("  :::LVself:%d:::\n",(*list).LVself);
 	printf("  :::ACself:%d:::\n",(*list).ACself);
-	printf("  :::NXprog:%d:::\n",(*list).NXprog);
 	printf("  :::Val:%d:::\n",(*list).Val);
 	printf("  :::Head:%s:::\n",(*list).Head);
 	printf("  :::function -skip- :::\n");
 	printf("  :::NextCount:%d:::\n",(*list).NextCount);
+	printf("  :::NextCountProg:%d:::\n",(*list).NXprog);
 	printf("  :::NextPointers:\n");
 	for(i=0;i<(*list).NextCount;i++){
 		printf("    :%ld:\n",(*list).Next[i]);
@@ -243,7 +243,7 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	}
 
 	//SELF
-	printf("$%ld:LV=%d:NC=%d:NXp=%d:AC=%d:",list,(*list).LVself,(*list).NextCount,(*list).NXprog,(*list).ACself);
+	printf("$%ld:LV=%d:NXc=%d:NXp=%d:AC=%d:",list,(*list).LVself,(*list).NextCount,(*list).NXprog,(*list).ACself);
 
 	//NEXT
 	for(i=0;i<(*list).NextCount;i++){
