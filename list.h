@@ -246,7 +246,7 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	for(i=0;i<(*list).NextCount;i++){
 		printf("(");
 	}
-	printf("$%ld:LV=%d:NXc=%d:NXp=%d:AC=%d:",list,(*list).LVself,(*list).NextCount,(*list).NXprog,(*list).ACself);
+	printf("$%ld:LV=%d:pNXc=%d:NXp=%d:AC=%d:",list,(*list).LVself,(*Parent).NextCount,(*list).NXprog,(*list).ACself);
 	//printf(";;;%d;;;",(*list).NextCount);
 	//printf("$%ld",list,(*list).LVself,(*list).NextCount,(*list).NXprog,(*list).ACself);
 	if((*list).LVself == 0){
