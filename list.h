@@ -242,10 +242,6 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 		return(NULL);
 	}
 
-	//SELF
-	for(i=0;i<(*list).NextCount;i++){
-		printf("(");
-	}
 	/* (* check */
 	if(Parent == NULL){
 		//printf(":::$%ld:LV=%d:sAC=%d:pNXc=%d:NXp=%d:NXc=%d:AC=%d:::\n",list,(*list).LVself,(*list).ACself,NULL,(*list).NXprog,(*list).NextCount,(*list).ACself);
@@ -253,6 +249,11 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 		//printf(":::$%ld:LV=%d:sAC=%d:pNXc=%d:NXp=%d:NXc=%d:AC=%d:::\n",list,(*list).LVself,(*list).ACself,(*Parent).NextCount,(*list).NXprog,(*list).NextCount,(*list).ACself);
 	}
 	/* *) */
+
+	//SELF
+	for(i=0;i<(*list).NextCount;i++){
+		printf("(");
+	}
 	if((*list).LVself==1 && (*list).ACself==0 && (*Parent).NextCount != 1){
 		printf(",");
 	}else if((*list).NXprog==0 && (*list).NextCount==0 && (*list).ACself==0){
@@ -262,9 +263,6 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	if((*list).NXprog==0 && (*list).NextCount==1 && (*list).ACself==0){
 		printf(",");
 	}
-
-	//printf(";;;%d;;;",(*list).NextCount);
-	//printf("$%ld",list,(*list).LVself,(*list).NextCount,(*list).NXprog,(*list).ACself);
 	if((*list).LVself == 0){
 		//printf(",");
 	}
