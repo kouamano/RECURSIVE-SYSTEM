@@ -245,9 +245,9 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 
 	/* (* check */
 	if(Parent == NULL){
-		//printf(":::$%ld:LV=%d:sAC=%d:pNXc=%d:NXp=%d:NXc=%d:AC=%d:::\n",list,(*list).LVself,(*list).ACself,NULL,(*list).NXprog,(*list).NextCount,(*list).ArgCount);
+		//printf("\n:::$%ld:LV=%d:sAC=%d:pNXc=%d:NXp=%d:NXc=%d:AC=%d::: ",list,(*list).LVself,(*list).ACself,NULL,(*list).NXprog,(*list).NextCount,(*list).ArgCount);
 	}else{
-		//printf(":::$%ld:LV=%d:sAC=%d:pNXc=%d:NXp=%d:NXc=%d:AC=%d:::\n",list,(*list).LVself,(*list).ACself,(*Parent).NextCount,(*list).NXprog,(*list).NextCount,(*list).ArgCount);
+		//printf("\n:::$%ld:LV=%d:sAC=%d:pNXc=%d:NXp=%d:NXc=%d:AC=%d::: ",list,(*list).LVself,(*list).ACself,(*Parent).NextCount,(*list).NXprog,(*list).NextCount,(*list).ArgCount);
 	}
 	/* *) */
 
