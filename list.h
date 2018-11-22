@@ -233,7 +233,7 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 	}
 	return(out);
 }
-struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_function)(struct List *),int WAR){
+struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_function)(struct List *), int WAR, struct List *Parent){
 	int i;
 	int j;
 	struct List *out = list;
@@ -243,16 +243,25 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	}
 
 	//SELF
+	for(i=0;i<(*list).NextCount;i++){
+		printf("(");
+	}
 	printf("$%ld:LV=%d:NXc=%d:NXp=%d:AC=%d:",list,(*list).LVself,(*list).NextCount,(*list).NXprog,(*list).ACself);
+	//printf(";;;%d;;;",(*list).NextCount);
+	//printf("$%ld",list,(*list).LVself,(*list).NextCount,(*list).NXprog,(*list).ACself);
+	if((*list).LVself == 0){
+		printf(",");
+	}
 
 	//NEXT
 	for(i=0;i<(*list).NextCount;i++){
-		ExFunction_Recursive_S_Print((*list).Next[i],e_function,WAR);
+		ExFunction_Recursive_S_Print((*list).Next[i],e_function,WAR,list);
+		printf(")");
 	}
 
 	//Arg
 	for(j=0;j<(*list).ArgCount;j++){
-		ExFunction_Recursive_S_Print((*list).Arg[j],e_function,WAR);
+		ExFunction_Recursive_S_Print((*list).Arg[j],e_function,WAR,list);
 	}
 	return(out);
 }
@@ -289,7 +298,7 @@ struct List *ExFunction_Recursive_ES_Print(struct List *list, struct List *(*e_f
 		}else{
 			printf(",$%ld",(*list).Next[i]);
 		}
-		ExFunction_Recursive_S_Print((*list).Next[i],e_function,WAR);
+		ExFunction_Recursive_S_Print((*list).Next[i],e_function,WAR,list);
 		printf(")");
 	}
 
@@ -300,7 +309,7 @@ struct List *ExFunction_Recursive_ES_Print(struct List *list, struct List *(*e_f
 		}else{
 			printf("($%ld,",(*list).Arg[j]);
 		}
-		ExFunction_Recursive_S_Print((*list).Arg[j],e_function,WAR);
+		ExFunction_Recursive_S_Print((*list).Arg[j],e_function,WAR,list);
 		if(j == (*list).ArgCount-1){
 			printf(")");
 		}
