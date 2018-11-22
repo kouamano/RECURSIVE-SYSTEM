@@ -107,7 +107,8 @@ struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
 	}
 	(*list).Arg[(*list).ArgCount] = arg_list;
 	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself+1;
-	(*list).Arg[(*list).ArgCount]->ACself = (*list).ACself+1;
+	//(*list).Arg[(*list).ArgCount]->ACself = (*list).ACself+1;
+	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount;
 	(*list).ArgCount++;
 	return((*list).Arg[(*list).ArgCount]);
 }
@@ -244,9 +245,9 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 
 	/* (* check */
 	if(Parent == NULL){
-		printf(":::$%ld:LV=%d:sAC=%d:pNXc=%d:NXp=%d:NXc=%d:AC=%d:::\n",list,(*list).LVself,(*list).ACself,NULL,(*list).NXprog,(*list).NextCount,(*list).ArgCount);
+		//printf(":::$%ld:LV=%d:sAC=%d:pNXc=%d:NXp=%d:NXc=%d:AC=%d:::\n",list,(*list).LVself,(*list).ACself,NULL,(*list).NXprog,(*list).NextCount,(*list).ArgCount);
 	}else{
-		printf(":::$%ld:LV=%d:sAC=%d:pNXc=%d:NXp=%d:NXc=%d:AC=%d:::\n",list,(*list).LVself,(*list).ACself,(*Parent).NextCount,(*list).NXprog,(*list).NextCount,(*list).ArgCount);
+		//printf(":::$%ld:LV=%d:sAC=%d:pNXc=%d:NXp=%d:NXc=%d:AC=%d:::\n",list,(*list).LVself,(*list).ACself,(*Parent).NextCount,(*list).NXprog,(*list).NextCount,(*list).ArgCount);
 	}
 	/* *) */
 
@@ -254,12 +255,18 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	for(i=0;i<(*list).NextCount;i++){
 		printf("(");
 	}
+	if((*list).LVself==0 && (*list).ACself==0 && (*list).NextCount==0 && (*list).ArgCount > 0){
+		printf("(");
+	}
+
 	if((*list).LVself==1 && (*list).ACself==0 && (*Parent).NextCount != 1){
 		printf(",");
 	}else if((*list).NXprog==0 && (*list).NextCount==0 && (*list).ACself==0){
 		//printf(",");
 	}
+
 	printf("$%ld",list);
+
 	if((*list).NXprog==0 && (*list).NextCount==1 && (*list).ACself==0){
 		printf(",");
 	}
@@ -276,6 +283,9 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	//Arg
 	for(j=0;j<(*list).ArgCount;j++){
 		ExFunction_Recursive_S_Print((*list).Arg[j],e_function,WAR,list);
+	}
+	if((*list).LVself==0 && (*list).ACself==0 && (*list).ArgCount>0){
+		printf(")");
 	}
 	return(out);
 }
