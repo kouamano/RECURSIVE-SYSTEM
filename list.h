@@ -9,6 +9,7 @@
 struct List {
 	int ID;
 	int LVself;
+	int NCself;
 	int ACself;
 	int Val;
 	char *Head;
@@ -17,7 +18,6 @@ struct List {
 	struct List **Next;
 	int ArgCount;
 	struct List **Arg;
-	int NextCountself;
 };
 
 //initialize function
@@ -38,7 +38,7 @@ struct List *init_List_zero(struct List *list){
 	if( ((*list).Arg = malloc(sizeof(struct List) * 1)) == NULL ){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
 	}
-	(*list).NextCountself = 0;
+	(*list).NCself = 0;
 	return(list);
 }
 struct List *init_List_Head(struct List *list, size_t h_size){
@@ -58,7 +58,7 @@ struct List *init_List_Head(struct List *list, size_t h_size){
 	if( ((*list).Arg = malloc(sizeof(struct List) * 1)) == NULL ){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
 	}
-	(*list).NextCountself = 0;
+	(*list).NCself = 0;
 	return(list);
 }
 struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_size, int v, struct List *(*fun)(), int NC, int AC){
@@ -79,7 +79,7 @@ struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_s
 	if( ((*list).Arg = malloc(sizeof(struct List) * AC)) == NULL ){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
 	}
-	(*list).NextCountself = 0;
+	(*list).NCself = 0;
 	return(list);
 }
 
@@ -93,7 +93,7 @@ struct List *Function_Add_Next(struct List *list, struct List *next_list){
 	}
 	(*list).Next[(*list).NextCount] = next_list;
 	(*list).Next[(*list).NextCount]->LVself = (*list).LVself+1;
-	(*list).Next[(*list).NextCount]->NextCountself = (*list).NextCount;
+	(*list).Next[(*list).NextCount]->NCself = (*list).NextCount;
 	(*list).Next[(*list).NextCount]->ACself = 0;
 	//(*(*list).Next[(*list).NextCount]).ACself = 0;
 	(*list).NextCount++;
@@ -133,7 +133,7 @@ struct List *Function_Print_Status(struct List *list){
 	printf("  :::Head:%s:::\n",(*list).Head);
 	printf("  :::function -skip- :::\n");
 	printf("  :::NextCount:%d:::\n",(*list).NextCount);
-	printf("  :::NextCountProg:%d:::\n",(*list).NextCountself);
+	printf("  :::NextCountProg:%d:::\n",(*list).NCself);
 	printf("  :::NextPointers:\n");
 	for(i=0;i<(*list).NextCount;i++){
 		printf("    :%ld:\n",(*list).Next[i]);
@@ -207,7 +207,7 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 			printf("$%ld",list);
 		}
 		if(WAR > 0){
-			printf(":LV=%d:AC=%d:NXp=%d:",(*list).LVself,(*list).ACself,(*list).NextCountself);
+			printf(":LV=%d:AC=%d:NXp=%d:",(*list).LVself,(*list).ACself,(*list).NCself);
 		}
 		if(WAR > 4){
 			e_function(list);  //OR
@@ -245,15 +245,15 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 
 	/* (* check */
 	if(Parent == NULL){
-		printf("\n:::$%ld:LV=%d:sAC=%d:pNXc=%d:NXp=%d:NXc=%d:AC=%d::: ",list,(*list).LVself,(*list).ACself,NULL,(*list).NextCountself,(*list).NextCount,(*list).ArgCount);
+		printf("\n:::$%ld:LV=%d:sAC=%d:pNXc=%d:NXp=%d:NXc=%d:AC=%d::: ",list,(*list).LVself,(*list).ACself,NULL,(*list).NCself,(*list).NextCount,(*list).ArgCount);
 	}else{
-		printf("\n:::$%ld:LV=%d:sAC=%d:pNXc=%d:NXp=%d:NXc=%d:AC=%d::: ",list,(*list).LVself,(*list).ACself,(*Parent).NextCount,(*list).NextCountself,(*list).NextCount,(*list).ArgCount);
+		printf("\n:::$%ld:LV=%d:sAC=%d:pNXc=%d:NXp=%d:NXc=%d:AC=%d::: ",list,(*list).LVself,(*list).ACself,(*Parent).NextCount,(*list).NCself,(*list).NextCount,(*list).ArgCount);
 	}
 	/* *) */
 
 	//BRK COMM
 	if(Parent != NULL){
-		if((*Parent).NextCount > 1 && (*list).NextCountself == (*Parent).NextCount-1 && (*list).NextCount != 0){
+		if((*Parent).NextCount > 1 && (*list).NCself == (*Parent).NextCount-1 && (*list).NextCount != 0){
 			printf(",");
 		}
 	}
@@ -269,7 +269,7 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 		printf(",");
 	}else if((*list).ACself>0){
 		printf(",");
-	}else if((*list).NextCountself==0 && (*list).NextCount==0 && (*list).ACself==0){
+	}else if((*list).NCself==0 && (*list).NextCount==0 && (*list).ACself==0){
 		//printf(",");
 	}
 
