@@ -83,8 +83,7 @@ struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_s
 	return(list);
 }
 
-//functions
-////restructure func
+//restructure function
 struct List *Function_Add_Next(struct List *list, struct List *next_list){
 	(*list).Next = realloc((*list).Next,(size_t)sizeof(struct List) * (*list).NextCount+1);
 	if((*list).Next == NULL){
@@ -129,7 +128,6 @@ struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
 	(*list).ArgCount++;
 	return((*list).Arg[(*list).ArgCount]);
 }
-
 struct List *Function_Create_Arg(struct List *list){
 	struct List *arg_list;
 	arg_list = malloc((size_t)sizeof(struct List) * 1);
@@ -149,7 +147,7 @@ struct List *Function_Create_Arg(struct List *list){
 	return(arg_list);
 }
 
-////print func
+//print function primitive
 struct List *Function_Print_Head(struct List *list){
 	printf("%s\n",(*list).Head);
 	return(list);
@@ -186,7 +184,7 @@ struct List *Function_Print_Status(struct List *list){
 	return(list);
 }
 
-//Apply function
+//apply function
 struct List *Function_Recursive_List(struct List *list){
 	int i;
 	int j;
@@ -227,7 +225,8 @@ struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_funct
 	}
 	return(out);
 }
-////print&apply function
+
+//complex function (print&apply)
 struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e_function)(struct List *),int WAR){
 	int i;
 	int j;
