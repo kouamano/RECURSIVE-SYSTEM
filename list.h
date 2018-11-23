@@ -190,7 +190,7 @@ struct List *Function_Recursive_List(struct List *list){
 	int j;
 	struct List *out = list;
 	if(list == NULL){
-		printf("NULL\n");
+		fprintf(stderr,"NULL\n");
 		return(NULL);
 	}
 	if((*list).function != NULL){
@@ -199,7 +199,6 @@ struct List *Function_Recursive_List(struct List *list){
 	for(i=0;i<(*list).NextCount;i++){
 		Function_Recursive_List((*list).Next[i]);
 	}
-
 	for(j=0;j<(*list).ArgCount;j++){
 		Function_Recursive_List((*list).Arg[j]);
 	}
@@ -210,7 +209,7 @@ struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_funct
 	int j;
 	struct List *out = list;
 	if(list == NULL){
-		printf("NULL\n");
+		fprintf(stderr,"NULL\n");
 		return(NULL);
 	}
 	if((*list).function != NULL){
@@ -219,7 +218,6 @@ struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_funct
 	for(i=0;i<(*list).NextCount;i++){
 		ExFunction_Recursive_List((*list).Next[i],e_function);
 	}
-
 	for(j=0;j<(*list).ArgCount;j++){
 		ExFunction_Recursive_List((*list).Arg[j],e_function);
 	}
