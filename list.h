@@ -159,7 +159,7 @@ struct List *Function_Print_Val(struct List *list){
 struct List *Function_Print_Status(struct List *list){
 	int i;
 	int j;
-	printf("{:%ld:\n",list);
+	printf("{:%ld:\n",(long int)list);
 	printf("  :::ID:%d:::\n",(*list).ID);
 	printf("  :::LVself:%d:::\n",(*list).LVself);
 	printf("  :::NCself:%d:::\n",(*list).NCself);
@@ -170,14 +170,14 @@ struct List *Function_Print_Status(struct List *list){
 	printf("  :::NextCount:%d:::\n",(*list).NextCount);
 	printf("  :::NextPointers:\n");
 	for(i=0;i<(*list).NextCount;i++){
-		printf("    :%ld:\n",(*list).Next[i]);
+		printf("    :%ld:\n",(long int)(*list).Next[i]);
 		//printf("    :%ld:\n",*(*list).Next+i);
 	}
 	printf("  :::\n");
 	printf("  :::ArgCount:%d:::\n",(*list).ArgCount);
 	printf("  :::ArgPointers:\n");
 	for(j=0;j<(*list).ArgCount;j++){
-		printf("    :%ld:\n",(*list).Arg[j]);
+		printf("    :%ld:\n",(long int)(*list).Arg[j]);
 	}
 	printf("  :::\n");
 	printf("}\n");
@@ -236,7 +236,7 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 		return(NULL);
 	}
 
-	printf("$%ld",list);
+	printf("$%ld",(long int)list);
 
 	for(i=0;i<(*list).NextCount;i++){
 		printf("(");
@@ -295,7 +295,7 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	}
 
 	//SELF
-	printf("$%ld",list);
+	printf("$%ld",(long int)list);
 	if((*list).NextCount==1 && (*list).ACself==0){
 		printf(",");
 	}
