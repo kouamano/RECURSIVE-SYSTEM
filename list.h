@@ -286,6 +286,8 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 
 	if((*list).LVself==0 && (*list).ACself==0 && (*list).NextCount==0 && (*list).ArgCount > 0){
 		printf("(");
+	}else if((*list).ArgCount>0){
+		printf("(");
 	}
 
 	if((*list).LVself==1 && (*list).ACself==0 && (*Parent).NextCount!=1 && (*list).NextCount==0){
@@ -298,6 +300,10 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	printf("$%ld",(long int)list);
 	if((*list).NextCount==1 && (*list).ACself==0){
 		printf(",");
+	}else if(Parent != NULL){
+	if((*list).ArgCount > 0){
+		printf(",");
+	}
 	}
 
 	//NEXT
@@ -312,6 +318,10 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	}
 	if((*list).LVself==0 && (*list).ACself==0 && (*list).ArgCount>0){
 		printf(")");
+	}else if(Parent != NULL){
+		if((*list).ACself==0 && (*Parent).NextCount==0 && (*list).NCself==0 && (*list).NextCount==0 && (*list).ArgCount==0){
+			printf(")");
+		}
 	}
 
 	//return

@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "list.h"
+#define WL 0
 
 int main(void){
 	int i;
@@ -24,7 +24,7 @@ int main(void){
 		Function_Add_Next(&precell,&cell[i]);
 	}
 	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status,0); printf("\n");
-	ExFunction_Recursive_S_Print(&precell, (struct List *(*)())Function_Print_Status,0,NULL);
+	ExFunction_Recursive_S_Print(&precell, (struct List *(*)())Function_Print_Status,WL,NULL);
 	printf("\n");
 	printf("=====\n");
 
@@ -46,10 +46,9 @@ int main(void){
 		Function_Add_Next(&cell[i-1],&cell[i]);
 	}
 	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status,0); printf("\n");
-	ExFunction_Recursive_S_Print(&precell, (struct List *(*)())Function_Print_Status,0,NULL);
+	ExFunction_Recursive_S_Print(&precell, (struct List *(*)())Function_Print_Status,WL,NULL);
 	printf("\n");
 	printf("=====\n");
-
 
 	printf("===== ex.03 =\n");
 	init_List_zero(&precell);
@@ -64,7 +63,7 @@ int main(void){
 		Function_Add_Arg(&precell,&cell[i]);
 	}
 	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status,0); printf("\n");
-	ExFunction_Recursive_S_Print(&precell, (struct List *(*)())Function_Print_Status,0,NULL);
+	ExFunction_Recursive_S_Print(&precell, (struct List *(*)())Function_Print_Status,WL,NULL);
 	printf("\n");
 	printf("=====\n");
 
@@ -85,25 +84,10 @@ int main(void){
 	Function_Add_Next(&cell[2],&cell[3]);
 	Function_Add_Arg(&cell[3],&cell[4]);
 	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status,0); printf("\n");
-	ExFunction_Recursive_S_Print(&precell, (struct List *(*)())Function_Print_Status,0,NULL);
+	ExFunction_Recursive_S_Print(&precell, (struct List *(*)())Function_Print_Status,WL,NULL);
 	printf("\n");
 	printf("=====\n");
 
-	//ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status_Tree,1);
-	//ExFunction_Recursive_List(&precell, (struct List *(*)())Function_Print_Status);
-	//precell.function = &Function_Print_Head;
-	//precell.Val = v[0];
-	//precell.function = &Function_Print_Val;
-	//precell.Next = NULL;
-	//precell.Next[0] = &cell[4];
-	//cell[4].Next[0] = &cell[1];
-	//cell[1].Next[0] = &cell[3];
-	//cell[3].Next[0] = &cell[2];
-	//lastcell = ExFunction_Recursive_List(&precell, (struct List *(*)())precell.function);
-	//lastcell = FunctionExternal_Recursive_Liposome(&precell, (struct Liposome *(*)())&Function_PrintAdd_Value, (struct Liposome *(*)())&Function_PrintAdd_Value);
 	//lastcell = FunctionExternal_Recursive_Liposome(&precell, NULL, (struct Liposome *(*)())precell.v_function);
-	//lastcell = FunctionExternal_Recursive_Liposome(&precell, (struct Liposome *(*)())precell.t_function, (struct Liposome *(*)())precell.v_function);
-	//lastcell = Function_Recursive_Liposome(&precell);
-	//Function_PrintAdd_Value(lastcell);
 	return(0);
 }
