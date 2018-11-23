@@ -301,9 +301,9 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	if((*list).NextCount==1 && (*list).ACself==0){
 		printf(",");
 	}else if(Parent != NULL){
-	if((*list).ArgCount > 0){
-		printf(",");
-	}
+		if((*list).ArgCount > 0){
+			printf(",");
+		}
 	}
 
 	//NEXT
