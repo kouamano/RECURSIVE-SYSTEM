@@ -24,13 +24,13 @@ struct List {
 struct List *init_List_zero(struct List *list){
 	(*list).ID=0;
 	(*list).LVself=0;
-	(*list).NCself = 0;
+	(*list).NCself=0;
 	(*list).ACself=0;
 	(*list).Val=0;
 	if(((*list).Head = malloc(sizeof(char) * BUFF)) == NULL){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
 	}
-	(*list).Head[0] = '\0';
+	(*list).Head[0]='\0';
 	(*list).NextCount=0;
 	if( ((*list).Next = malloc(sizeof(struct List) * 1)) == NULL ){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
@@ -44,13 +44,13 @@ struct List *init_List_zero(struct List *list){
 struct List *init_List_Head(struct List *list, size_t h_size){
 	(*list).ID=0;
 	(*list).LVself=0;
-	(*list).NCself = 0;
+	(*list).NCself=0;
 	(*list).ACself=0;
 	(*list).Val=0;
 	if(((*list).Head = malloc(sizeof(char) * h_size)) == NULL){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
 	}
-	(*list).Head[0] = '\0';
+	(*list).Head[0]='\0';
 	(*list).NextCount=0;
 	if( ((*list).Next = malloc(sizeof(struct List) * 1)) == NULL ){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
@@ -64,19 +64,19 @@ struct List *init_List_Head(struct List *list, size_t h_size){
 struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_size, int v, struct List *(*fun)(), int NC, int AC){
 	(*list).ID=_ID;
 	(*list).LVself=lv;
-	(*list).NCself = 0;
+	(*list).NCself=0;
 	(*list).ACself=ac;
-	(*list).Val = v;
+	(*list).Val=v;
 	if(((*list).Head = malloc(sizeof(char) * head_size)) == NULL){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
 	}
-	(*list).Head[0] = '\0';
-	(*list).function = fun;
-	(*list).NextCount = NC;
+	(*list).Head[0]='\0';
+	(*list).function=fun;
+	(*list).NextCount=NC;
 	if( ((*list).Next = malloc(sizeof(struct List) * NC)) == NULL ){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
 	}
-	(*list).ArgCount = AC;
+	(*list).ArgCount=AC;
 	if( ((*list).Arg = malloc(sizeof(struct List) * AC)) == NULL ){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
 	}
