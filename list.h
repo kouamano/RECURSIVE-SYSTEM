@@ -216,14 +216,11 @@ struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_funct
 	int i;
 	int j;
 	struct List *out = list;
-	if(list == NULL){
+	if(list == NULL || e_function == NULL){
 		fprintf(stderr,"NULL\n");
 		return(NULL);
 	}
-	if((*list).function != NULL){
-		//ExFunction_Recursive_List(list,e_function);
-		e_function(list);
-	}
+	(*e_function)(list);
 	for(i=0;i<(*list).NextCount;i++){
 		ExFunction_Recursive_List((*list).Next[i],e_function);
 	}
