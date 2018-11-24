@@ -202,7 +202,8 @@ struct List *Function_Recursive_List(struct List *list){
 		return(NULL);
 	}
 	if((*list).function != NULL){
-		(*list).function(list);
+		(*(*list).function)(list);
+		//(*list).function(list);
 	}
 	for(i=0;i<(*list).NextCount;i++){
 		Function_Recursive_List((*list).Next[i]);
