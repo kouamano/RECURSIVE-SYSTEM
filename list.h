@@ -183,6 +183,14 @@ struct List *Function_Print_Status(struct List *list){
 	printf("}\n");
 	return(list);
 }
+struct List *Function_Print_Index(struct List *list){
+	printf("{%ld",(long int)list);
+	printf(",LVself=%d",(*list).LVself);
+	printf(",NCself=%d",(*list).NCself);
+	printf(",ACself=%d",(*list).ACself);
+	printf("}\n");
+	return(list);
+}
 
 //apply function
 struct List *Function_Recursive_List(struct List *list){
@@ -213,6 +221,7 @@ struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_funct
 		return(NULL);
 	}
 	if((*list).function != NULL){
+		//ExFunction_Recursive_List(list,e_function);
 		e_function(list);
 	}
 	for(i=0;i<(*list).NextCount;i++){
