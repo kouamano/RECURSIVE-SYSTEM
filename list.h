@@ -319,7 +319,7 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	if((*list).LVself==0 && (*list).ACself==0 && (*list).ArgCount>0){
 		printf(")");
 	}else if(Parent != NULL){
-		if((*list).ACself==0 && (*Parent).NextCount==0 && (*list).NCself==0 && (*list).NextCount==0 && (*list).ArgCount==0){
+		if((*list).LVself>1 && (*list).ACself==0 && (*Parent).NextCount==0 && (*list).NCself==0 && (*list).NextCount==0 && (*list).ArgCount==0){
 			printf(")");
 		}
 	}
