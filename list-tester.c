@@ -67,5 +67,14 @@ int main(void){
 	printf("\n");
 	printf("=====\n");
 
+	printf("===== ex.05-01 =\n");
+	struct List *Branch1 = Function_Create_Next(&cell[1]);
+	Function_Create_Arg(Branch1);
+	ExFunction_Recursive_Tree_Print(&cell[0], (struct List *(*)())Function_Print_Status,0); printf("\n");
+	ExFunction_Recursive_S_Print(&cell[0], (struct List *(*)())Function_Print_Status,0,NULL); printf("\n");
+	ExFunction_Recursive_S_Print(&cell[0], (struct List *(*)())Function_Print_Status,WL,NULL);
+	printf("\n");
+	printf("=====\n");
+
 	return(0);
 }
