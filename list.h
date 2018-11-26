@@ -145,7 +145,13 @@ struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
 	(*list).ArgCount++;
 	return((*list).Arg[(*list).ArgCount]);
 }
-struct List *Function_Add_ArgRtd(struct List *list, struct List *arg_list){
+struct List *Function_Add_ArgRtd(struct List *list, struct List *arg_list, struct List *Parent){
+	if(Parent != NULL){
+		if((*Parent).ArgCount > 0){
+			fprintf(stderr,"[Err] Restriction: tandem argument alloc.\n");
+			exit(1);
+		}
+	}
 	if((*list).LVself == 0){
 		fprintf(stderr,"[Err] Restriction: top level argument must be single.\n");
 		exit(1);
@@ -334,7 +340,7 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 		printf("(");
 	}
 	if((*list).ArgCount>0){
-		printf("(");
+		//printf("(");
 	}
 
 	//SELF
@@ -350,7 +356,7 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	for(j=0;j<(*list).ArgCount;j++){
 		ExFunction_Recursive_S_Print((*list).Arg[j],e_function,WAR,list);
 		if(j==(*list).ArgCount-1){
-			printf(")");
+			//printf("&)");
 		}
 	}
 
