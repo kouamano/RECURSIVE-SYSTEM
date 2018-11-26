@@ -300,16 +300,8 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 
 	//Arg
 	for(j=0;j<(*list).ArgCount;j++){
-		//if(j != 0){
-			printf(",");
-		//}
-		//if(j == 0){
-			//printf("(");
-		//}
+		printf(",");
 		ExFunction_Recursive_Tree_Print((*list).Arg[j],e_function,WAR);
-		if(j == (*list).ArgCount-1){
-			//printf(")");
-		}
 	}
 	return(out);
 }
