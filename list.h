@@ -341,11 +341,7 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	//Arg
 	for(j=0;j<(*list).ArgCount;j++){
 		ExFunction_Recursive_S_Print((*list).Arg[j],e_function,WAR,list);
-	}
-	if((*list).LVself==0 && (*list).ACself==0 && (*list).ArgCount>0){
-		printf(")");
-	}else if(Parent != NULL){
-		if((*list).LVself>1 && (*list).ACself==0 && (*Parent).NextCount==0 && (*list).NCself==0 && (*list).NextCount==0 && (*list).ArgCount==0){
+		if(j==(*list).ArgCount-1){
 			printf(")");
 		}
 	}
