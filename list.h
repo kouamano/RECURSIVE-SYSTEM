@@ -325,6 +325,12 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	for(i=0;i<(*list).NextCount;i++){
 		printf("(");
 	}
+	if(Parent != NULL){
+		if((*Parent).NextCount && (*list).ArgCount>0){
+			printf("(");
+
+		}
+	}
 
 	//SELF
 	printf("$%ld",(long int)list);
