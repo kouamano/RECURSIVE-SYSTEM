@@ -21,7 +21,7 @@ int main(void){
 		cell[i].function = NULL;
 		cell[i].Val = v[i];
 		cell[i].function = &Function_Print_Head;
-		Function_Add_Next(&precell,&cell[i]);
+		Function_Add_NextRtd(&precell,&cell[i]);
 	}
 	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status,0); printf("\n");
 	ExFunction_Recursive_S_Print(&precell, (struct List *(*)())Function_Print_Status,0,NULL); printf("\n");
@@ -40,11 +40,10 @@ int main(void){
 		cell[i].function = NULL;
 		cell[i].Val = v[i];
 		cell[i].function = &Function_Print_Head;
-		//Function_Add_Next(&precell,&cell[i]);
 	}
-	Function_Add_Next(&precell,&cell[0]);
+	Function_Add_NextRtd(&precell,&cell[0]);
 	for(i=1;i<5;i++){
-		Function_Add_Next(&cell[i-1],&cell[i]);
+		Function_Add_NextRtd(&cell[i-1],&cell[i]);
 	}
 	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status,0); printf("\n");
 	ExFunction_Recursive_S_Print(&precell, (struct List *(*)())Function_Print_Status,0,NULL); printf("\n");
@@ -62,7 +61,7 @@ int main(void){
 		cell[i].function = NULL;
 		cell[i].Val = v[i];
 		cell[i].function = &Function_Print_Head;
-		Function_Add_Arg(&precell,&cell[i]);
+		Function_Add_ArgRtd(&precell,&cell[i]);
 	}
 	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status,0); printf("\n");
 	ExFunction_Recursive_S_Print(&precell, (struct List *(*)())Function_Print_Status,0,NULL); printf("\n");
@@ -82,10 +81,10 @@ int main(void){
 		cell[i].function = &Function_Print_Head;
 	}
 	for(i=0;i<3;i++){
-		Function_Add_Next(&precell,&cell[i]);
+		Function_Add_NextRtd(&precell,&cell[i]);
 	}
-	Function_Add_Next(&cell[2],&cell[3]);
-	Function_Add_Arg(&cell[3],&cell[4]);
+	Function_Add_NextRtd(&cell[2],&cell[3]);
+	Function_Add_ArgRtd(&cell[3],&cell[4]);
 	ExFunction_Recursive_Tree_Print(&precell, (struct List *(*)())Function_Print_Status,0); printf("\n");
 	ExFunction_Recursive_S_Print(&precell, (struct List *(*)())Function_Print_Status,0,NULL); printf("\n");
 	ExFunction_Recursive_S_Print(&precell, (struct List *(*)())Function_Print_Status,WL,NULL);
@@ -108,10 +107,10 @@ int main(void){
 		cell[i].function = &Function_Print_Head;
 	}
 	for(i=0;i<3;i++){
-		Function_Add_Next(&precell,&cell[i]);
+		Function_Add_NextRtd(&precell,&cell[i]);
 	}
-	Function_Add_Next(&cell[2],&cell[3]);
-	Function_Add_Arg(&cell[3],&cell[4]);
+	Function_Add_NextRtd(&cell[2],&cell[3]);
+	Function_Add_ArgRtd(&cell[3],&cell[4]);
 	ExFunction_Recursive_List(&precell,Function_Print_Index);
 	printf("=====\n");
 
