@@ -8,7 +8,7 @@ int main(void){
 	int i;
 	struct List precell;
 	struct List *cell;
-	float v[5] = {1,2,3,7,5};
+	float v[5] = {1,2,3,4,5};
 
 	printf("===== ex.01 =\n");
 	init_List_zero(&precell);
@@ -18,7 +18,6 @@ int main(void){
 		init_List_zero(&cell[i]);
 		cell[i].Head = malloc(sizeof(char)*256);
 		sprintf(cell[i].Head,"%s","FLOAT");
-		cell[i].function = NULL;
 		cell[i].Val = v[i];
 		cell[i].function = &Function_Print_Head;
 		Function_Add_NextRtd(&precell,&cell[i]);
@@ -37,7 +36,6 @@ int main(void){
 		init_List_zero(&cell[i]);
 		cell[i].Head = malloc(sizeof(char)*256);
 		sprintf(cell[i].Head,"%s","FLOAT");
-		cell[i].function = NULL;
 		cell[i].Val = v[i];
 		cell[i].function = &Function_Print_Head;
 	}
@@ -58,7 +56,6 @@ int main(void){
 	for(i=0;i<5;i++){
 		init_List_zero(&cell[i]);
 		sprintf(cell[i].Head,"%s","FLOAT");
-		cell[i].function = NULL;
 		cell[i].Val = v[i];
 		cell[i].function = &Function_Print_Head;
 		Function_Add_ArgRtd(&precell,&cell[i]);
@@ -76,7 +73,6 @@ int main(void){
 	for(i=0;i<5;i++){
 		init_List_zero(&cell[i]);
 		sprintf(cell[i].Head,"%s","FLOAT");
-		cell[i].function = NULL;
 		cell[i].Val = v[i];
 		cell[i].function = &Function_Print_Head;
 	}
