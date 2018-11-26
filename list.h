@@ -140,12 +140,16 @@ struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
 		exit(1);
 	}
 	(*list).Arg[(*list).ArgCount] = arg_list;
-	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself+1;
+	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself;
 	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount;
 	(*list).ArgCount++;
 	return((*list).Arg[(*list).ArgCount]);
 }
 struct List *Function_Add_ArgRtd(struct List *list, struct List *arg_list){
+	if((*list).LVself == 0){
+		fprintf(stderr,"[Err] Restriction: top level argument must be single.\n");
+		exit(1);
+	}
 	if((*list).NextCount > 0){
 		fprintf(stderr,"[Err] Restriction: already allocated Next.\n");
 		exit(1);
@@ -156,7 +160,7 @@ struct List *Function_Add_ArgRtd(struct List *list, struct List *arg_list){
 		exit(1);
 	}
 	(*list).Arg[(*list).ArgCount] = arg_list;
-	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself+1;
+	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself;
 	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount;
 	(*list).ArgCount++;
 	return((*list).Arg[(*list).ArgCount]);
@@ -174,7 +178,7 @@ struct List *Function_Create_Arg(struct List *list){
 		exit(1);
 	}
 	(*list).Arg[(*list).ArgCount] = arg_list;
-	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself+1;
+	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself;
 	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount;
 	(*list).ArgCount++;
 	return(arg_list);
@@ -286,15 +290,15 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 
 	//Arg
 	for(j=0;j<(*list).ArgCount;j++){
-		if(j != 0){
+		//if(j != 0){
 			printf(",");
-		}
-		if(j == 0){
-			printf("(");
-		}
+		//}
+		//if(j == 0){
+			//printf("(");
+		//}
 		ExFunction_Recursive_Tree_Print((*list).Arg[j],e_function,WAR);
 		if(j == (*list).ArgCount-1){
-			printf(")");
+			//printf(")");
 		}
 	}
 	return(out);
