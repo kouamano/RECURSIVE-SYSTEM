@@ -307,7 +307,7 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	/* (* check */
 	if(WAR>0){
 	if(Parent == NULL){
-		printf("\n:::$%ld:sLV=%d:pAC=%d:sAC=%d:pNC=%ld:sNC=%d:NC=%d:AC=%d::: ",(long int)list,(*list).LVself,(long int)NULL,(*list).ACself,(long int)NULL,(*list).NCself,(*list).NextCount,(*list).ArgCount);
+		printf("\n:::$%ld:sLV=%d:pAC=%ld:sAC=%d:pNC=%ld:sNC=%d:NC=%d:AC=%d::: ",(long int)list,(*list).LVself,(long int)NULL,(*list).ACself,(long int)NULL,(*list).NCself,(*list).NextCount,(*list).ArgCount);
 	}else{
 		printf("\n:::$%ld:sLV=%d:pAC=%d:sAC=%d:pNC=%d:sNC=%d:NC=%d:AC=%d::: ",(long int)list,(*list).LVself,(*Parent).ArgCount,(*list).ACself,(*Parent).NextCount,(*list).NCself,(*list).NextCount,(*list).ArgCount);
 	}
