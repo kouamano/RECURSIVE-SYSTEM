@@ -97,6 +97,23 @@ struct List *Function_Add_Next(struct List *list, struct List *next_list){
 	(*list).NextCount++;
 	return((*list).Next[(*list).NextCount]);
 }
+struct List *Function_Add_NextRtd(struct List *list, struct List *next_list){
+	if((*list).ArgCount > 0){
+		fprintf(stderr,"[Err] Restriction: already allocated Arg.\n");
+		exit(1);
+	}
+	(*list).Next = realloc((*list).Next,(size_t)sizeof(struct List) * (*list).NextCount+1);
+	if((*list).Next == NULL){
+		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
+		exit(1);
+	}
+	(*list).Next[(*list).NextCount] = next_list;
+	(*list).Next[(*list).NextCount]->LVself = (*list).LVself+1;
+	(*list).Next[(*list).NextCount]->NCself = (*list).NextCount;
+	(*list).Next[(*list).NextCount]->ACself = 0;
+	(*list).NextCount++;
+	return((*list).Next[(*list).NextCount]);
+}
 struct List *Function_Create_Next(struct List *list){
 	struct List *next_list;
 	next_list = malloc((size_t)sizeof(struct List) * 1);
@@ -117,6 +134,22 @@ struct List *Function_Create_Next(struct List *list){
 	return(next_list);
 }
 struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
+	(*list).Arg = realloc((*list).Arg,(size_t)sizeof(struct List) * (*list).ArgCount+1);
+	if((*list).Arg == NULL){
+		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
+		exit(1);
+	}
+	(*list).Arg[(*list).ArgCount] = arg_list;
+	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself+1;
+	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount;
+	(*list).ArgCount++;
+	return((*list).Arg[(*list).ArgCount]);
+}
+struct List *Function_Add_ArgRtd(struct List *list, struct List *arg_list){
+	if((*list).NextCount > 0){
+		fprintf(stderr,"[Err] Restriction: already allocated Next.\n");
+		exit(1);
+	}
 	(*list).Arg = realloc((*list).Arg,(size_t)sizeof(struct List) * (*list).ArgCount+1);
 	if((*list).Arg == NULL){
 		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
