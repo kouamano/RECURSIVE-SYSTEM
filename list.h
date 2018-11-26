@@ -274,19 +274,23 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 		return(NULL);
 	}
 
+	//SELF
 	printf("$%ld",(long int)list);
 
+	//Next
 	for(i=0;i<(*list).NextCount;i++){
 		printf("(");
 		ExFunction_Recursive_Tree_Print((*list).Next[i],e_function,WAR);
 		printf(")");
 	}
 
+	//Arg
 	for(j=0;j<(*list).ArgCount;j++){
+		if(j != 0){
+			printf(",");
+		}
 		if(j == 0){
 			printf("(");
-		}else{
-			printf(",");
 		}
 		ExFunction_Recursive_Tree_Print((*list).Arg[j],e_function,WAR);
 		if(j == (*list).ArgCount-1){
