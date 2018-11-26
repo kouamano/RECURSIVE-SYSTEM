@@ -98,10 +98,12 @@ struct List *Function_Add_Next(struct List *list, struct List *next_list){
 	return((*list).Next[(*list).NextCount]);
 }
 struct List *Function_Add_NextRtd(struct List *list, struct List *next_list){
+	/*
 	if((*list).ArgCount > 0){
 		fprintf(stderr,"[Err] Restriction: already allocated Arg.\n");
 		exit(1);
 	}
+	*/
 	(*list).Next = realloc((*list).Next,(size_t)sizeof(struct List) * (*list).NextCount+1);
 	if((*list).Next == NULL){
 		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
@@ -156,10 +158,12 @@ struct List *Function_Add_ArgRtd(struct List *list, struct List *arg_list, struc
 		fprintf(stderr,"[Err] Restriction: top level argument must be single.\n");
 		exit(1);
 	}
+	/*
 	if((*list).NextCount > 0){
 		fprintf(stderr,"[Err] Restriction: already allocated Next.\n");
 		exit(1);
 	}
+	*/
 	(*list).Arg = realloc((*list).Arg,(size_t)sizeof(struct List) * (*list).ArgCount+1);
 	if((*list).Arg == NULL){
 		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
