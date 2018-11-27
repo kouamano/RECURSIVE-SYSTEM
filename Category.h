@@ -11,13 +11,13 @@ struct Object {
 	int Category;	// 1:A, 2:D, 4:C
 	int DCself;
 	int CCself;
+	struct Object *Parent;
 	struct Object *Arrow;
+	struct Object *(*function)();
 	int DCount;
 	struct Object **Dom;
 	int CCount;
 	struct Object **Cod;
-	struct Object *(*function)();
-	struct Object *Parent;
 };
 
 struct Object *init_Object_zero(struct Object *obj){
@@ -26,14 +26,14 @@ struct Object *init_Object_zero(struct Object *obj){
 	(*obj).Category=0;
 	(*obj).DCself=0;
 	(*obj).CCself=0;
+	(*obj).Parent=NULL;
 	(*obj).Arrow = malloc(sizeof(struct Object) * 1);
 	if((*obj).Arrow == NULL){ printf("[Fail] alloc.\n"); exit(1); }
+	(*obj).function=NULL;
 	(*obj).DCount=0;
 	(*obj).Dom = malloc(sizeof(struct Object *) * 1);
 	if((*obj).Dom == NULL){ printf("[Fail] alloc.\n"); exit(1); }
 	(*obj).CCount=0;
 	(*obj).Cod = malloc(sizeof(struct Object *) * 1);
 	if((*obj).Cod == NULL){ printf("[Fail] alloc.\n"); exit(1); }
-	(*obj).function=NULL;
-	(*obj).Parent=NULL;
 }
