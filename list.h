@@ -235,7 +235,6 @@ struct List *Function_Print_Status(struct List *list){
 	printf("  :::NextPointers:\n");
 	for(i=0;i<(*list).NextCount;i++){
 		printf("    :%ld:\n",(long int)(*list).Next[i]);
-		//printf("    :%ld:\n",*(*list).Next+i);
 	}
 	printf("  :::\n");
 	printf("  :::ArgCount:%d:::\n",(*list).ArgCount);
@@ -267,7 +266,6 @@ struct List *Function_Recursive_List(struct List *list){
 	}
 	if((*list).function != NULL){
 		(*(*list).function)(list);
-		//(*list).function(list);
 	}
 	for(i=0;i<(*list).NextCount;i++){
 		Function_Recursive_List((*list).Next[i]);
