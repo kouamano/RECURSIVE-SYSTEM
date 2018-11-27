@@ -9,6 +9,16 @@ int main(void){
 	struct List *cell;
 	float v[6] = {0,1,2,3,4,5};
 
+	printf("===== ex.0 =\n");
+	cell = malloc(sizeof(struct List) * 3);
+	for(i=0;i<3;i++){
+		init_List_zero(&cell[i]);
+	}
+	Function_Add_Next(&cell[0],&cell[1]);
+	Function_Add_Arg(&cell[1],&cell[2]);
+	ExFunction_Recursive_Tree_Print(&cell[0], (struct List *(*)())Function_Print_Status,0); printf("\n");
+	printf("=====\n");
+
 	printf("===== ex.01 =\n");
 	cell = malloc(sizeof(struct List) * 6);
 	if(cell == NULL){printf("[Err] malloc() @ main .\n");exit(1);}
