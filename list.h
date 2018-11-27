@@ -92,7 +92,7 @@ struct List *Function_Add_Next(struct List *list, struct List *next_list){
 	}
 	(*list).Next[(*list).NextCount] = next_list;
 	(*list).Next[(*list).NextCount]->LVself = (*list).LVself+1;
-	(*list).Next[(*list).NextCount]->NCself = (*list).NextCount;
+	(*list).Next[(*list).NextCount]->NCself = (*list).NextCount+1;
 	(*list).Next[(*list).NextCount]->ACself = 0;
 	(*list).NextCount++;
 	return((*list).Next[(*list).NextCount]);
@@ -105,7 +105,7 @@ struct List *Function_Add_NextRtd(struct List *list, struct List *next_list){
 	}
 	(*list).Next[(*list).NextCount] = next_list;
 	(*list).Next[(*list).NextCount]->LVself = (*list).LVself+1;
-	(*list).Next[(*list).NextCount]->NCself = (*list).NextCount;
+	(*list).Next[(*list).NextCount]->NCself = (*list).NextCount+1;
 	(*list).Next[(*list).NextCount]->ACself = 0;
 	(*list).NextCount++;
 	return((*list).Next[(*list).NextCount]);
@@ -124,7 +124,7 @@ struct List *Function_Create_Next(struct List *list){
 	}
 	(*list).Next[(*list).NextCount] = next_list;
 	(*list).Next[(*list).NextCount]->LVself = (*list).LVself+1;
-	(*list).Next[(*list).NextCount]->NCself = (*list).NextCount;
+	(*list).Next[(*list).NextCount]->NCself = (*list).NextCount+1;
 	(*list).Next[(*list).NextCount]->ACself = 0;
 	(*list).NextCount++;
 	return(next_list);
@@ -137,7 +137,7 @@ struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
 	}
 	(*list).Arg[(*list).ArgCount] = arg_list;
 	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself;
-	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount;
+	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount+1;
 	(*list).ArgCount++;
 	return((*list).Arg[(*list).ArgCount]);
 }
@@ -159,7 +159,7 @@ struct List *Function_Add_ArgRtd(struct List *list, struct List *arg_list, struc
 	}
 	(*list).Arg[(*list).ArgCount] = arg_list;
 	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself;
-	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount;
+	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount+1;
 	(*list).ArgCount++;
 	return((*list).Arg[(*list).ArgCount]);
 }
@@ -177,7 +177,7 @@ struct List *Function_Create_Arg(struct List *list, struct List *Parent){
 	}
 	(*list).Arg[(*list).ArgCount] = arg_list;
 	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself;
-	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount;
+	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount+1;
 	(*list).ArgCount++;
 	return(arg_list);
 }
@@ -206,7 +206,7 @@ struct List *Function_Create_ArgRtd(struct List *list, struct List *Parent){
 	}
 	(*list).Arg[(*list).ArgCount] = arg_list;
 	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself;
-	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount;
+	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount+1;
 	(*list).ArgCount++;
 	return(arg_list);
 }
