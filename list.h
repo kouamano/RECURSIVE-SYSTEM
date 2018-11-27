@@ -294,7 +294,7 @@ struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_funct
 }
 
 //complex function (print&apply)
-struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e_function)(struct List *),int WAR){
+struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e_function)(struct List *),int WAR, struct List *Parent){
 	int i;
 	int j;
 	struct List *out = list;
@@ -303,20 +303,30 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 		return(NULL);
 	}
 
+	/* (* check */
+	if(WAR>0){
+	if(Parent == NULL){
+		printf("\n:::$%ld:sLV=%d:pAC=%d:sAC=%d:pNC=%ld:sNC=%d:NC=%d:AC=%d::: ",(long int)list,(*list).LVself,(long int)NULL,(*list).ACself,(long int)NULL,(*list).NCself,(*list).NextCount,(*list).ArgCount);
+	}else{
+		printf("\n:::$%ld:sLV=%d:pAC=%d:sAC=%d:pNC=%d:sNC=%d:NC=%d:AC=%d::: ",(long int)list,(*list).LVself,(*Parent).ArgCount,(*list).ACself,(*Parent).NextCount,(*list).NCself,(*list).NextCount,(*list).ArgCount);
+	}
+	}
+	/* *) */
+
 	//SELF
 	printf("$%ld",(long int)list);
 
 	//Next
 	for(i=0;i<(*list).NextCount;i++){
 		printf("(");
-		ExFunction_Recursive_Tree_Print((*list).Next[i],e_function,WAR);
+		ExFunction_Recursive_Tree_Print((*list).Next[i],e_function,WAR,list);
 		printf(")");
 	}
 
 	//Arg
 	for(j=0;j<(*list).ArgCount;j++){
 		printf(",");
-		ExFunction_Recursive_Tree_Print((*list).Arg[j],e_function,WAR);
+		ExFunction_Recursive_Tree_Print((*list).Arg[j],e_function,WAR,list);
 	}
 	return(out);
 }
