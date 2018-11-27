@@ -163,7 +163,7 @@ struct List *Function_Add_ArgRtd(struct List *list, struct List *arg_list, struc
 	(*list).ArgCount++;
 	return((*list).Arg[(*list).ArgCount]);
 }
-struct List *Function_Create_Arg(struct List *list){
+struct List *Function_Create_Arg(struct List *list, struct List *Parent){
 	struct List *arg_list;
 	arg_list = malloc((size_t)sizeof(struct List) * 1);
 	if(arg_list == NULL){
@@ -181,7 +181,13 @@ struct List *Function_Create_Arg(struct List *list){
 	(*list).ArgCount++;
 	return(arg_list);
 }
-struct List *Function_Create_ArgRtd(struct List *list){
+struct List *Function_Create_ArgRtd(struct List *list, struct List *Parent){
+	if(Parent != NULL){
+		if((*Parent).ArgCount > 0){
+			fprintf(stderr,"[Err] Restriction: tandem argument alloc.\n");
+			exit(1);
+		}
+	}
 	if((*list).LVself == 0){
 		fprintf(stderr,"[Err] Restriction: top level argument must be single.\n");
 		exit(1);
