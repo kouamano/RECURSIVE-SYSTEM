@@ -164,6 +164,24 @@ struct List *Function_Add_ArgRtd(struct List *list, struct List *arg_list, struc
 	return((*list).Arg[(*list).ArgCount]);
 }
 struct List *Function_Create_Arg(struct List *list){
+	struct List *arg_list;
+	arg_list = malloc((size_t)sizeof(struct List) * 1);
+	if(arg_list == NULL){
+		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
+		exit(1);
+	}
+	(*list).Arg = realloc((*list).Arg,(size_t)sizeof(struct List) * (*list).ArgCount+1);
+	if((*list).Arg == NULL){
+		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
+		exit(1);
+	}
+	(*list).Arg[(*list).ArgCount] = arg_list;
+	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself;
+	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount;
+	(*list).ArgCount++;
+	return(arg_list);
+}
+struct List *Function_Create_ArgRtd(struct List *list){
 	if((*list).LVself == 0){
 		fprintf(stderr,"[Err] Restriction: top level argument must be single.\n");
 		exit(1);
