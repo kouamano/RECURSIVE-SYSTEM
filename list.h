@@ -18,6 +18,7 @@ struct List {
 	struct List **Next;
 	int ArgCount;
 	struct List **Arg;
+	struct List *Parent;
 };
 
 //initialize function
@@ -39,6 +40,7 @@ struct List *init_List_zero(struct List *list){
 	if( ((*list).Arg = malloc(sizeof(struct List) * 1)) == NULL ){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
 	}
+	(*list).Parent=NULL;
 	return(list);
 }
 struct List *init_List_Head(struct List *list, size_t h_size){
@@ -59,6 +61,7 @@ struct List *init_List_Head(struct List *list, size_t h_size){
 	if( ((*list).Arg = malloc(sizeof(struct List) * 1)) == NULL ){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
 	}
+	(*list).Parent=NULL;
 	return(list);
 }
 struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_size, int v, struct List *(*fun)(), int NC, int AC){
@@ -80,6 +83,7 @@ struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_s
 	if( ((*list).Arg = malloc(sizeof(struct List) * AC)) == NULL ){
 		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
 	}
+	(*list).Parent=NULL;
 	return(list);
 }
 
@@ -108,6 +112,7 @@ struct List *Function_Add_NextRtd(struct List *parent, struct List *list, struct
 	(*list).Next[(*list).NextCount]->NCself = (*list).NextCount+1;
 	(*list).Next[(*list).NextCount]->ACself = 0;
 	(*list).NextCount++;
+	(*list).Parent = parent;
 	return((*list).Next[(*list).NextCount]);
 }
 struct List *Function_Create_Next(struct List *list){
@@ -161,9 +166,10 @@ struct List *Function_Add_ArgRtd(struct List *parent, struct List *list, struct 
 	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself;
 	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount+1;
 	(*list).ArgCount++;
+	(*list).Parent = parent;
 	return((*list).Arg[(*list).ArgCount]);
 }
-struct List *Function_Create_Arg(struct List *list, struct List *Parent){
+struct List *Function_Create_Arg(struct List *parent, struct List *list){
 	struct List *arg_list;
 	arg_list = malloc((size_t)sizeof(struct List) * 1);
 	if(arg_list == NULL){
@@ -181,9 +187,9 @@ struct List *Function_Create_Arg(struct List *list, struct List *Parent){
 	(*list).ArgCount++;
 	return(arg_list);
 }
-struct List *Function_Create_ArgRtd(struct List *list, struct List *Parent){
-	if(Parent != NULL){
-		if((*Parent).ArgCount > 0){
+struct List *Function_Create_ArgRtd(struct List *parent, struct List *list){
+	if(parent != NULL){
+		if((*parent).ArgCount > 0){
 			fprintf(stderr,"[Err] Restriction: tandem argument alloc.\n");
 			exit(1);
 		}
