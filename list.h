@@ -141,9 +141,9 @@ struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
 	(*list).ArgCount++;
 	return((*list).Arg[(*list).ArgCount]);
 }
-struct List *Function_Add_ArgRtd(struct List *list, struct List *arg_list, struct List *Parent){
-	if(Parent != NULL){
-		if((*Parent).ArgCount > 0){
+struct List *Function_Add_ArgRtd(struct List *parent, struct List *list, struct List *arg_list){
+	if(parent != NULL){
+		if((*parent).ArgCount > 0){
 			fprintf(stderr,"[Err] Restriction: tandem argument alloc.\n");
 			exit(1);
 		}

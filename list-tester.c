@@ -83,7 +83,7 @@ int main(void){
 	}
 	Function_Add_NextRtd(&cell[0],&cell[1]);
 	for(i=2;i<6;i++){
-		Function_Add_ArgRtd(&cell[1],&cell[i],&cell[0]);
+		Function_Add_ArgRtd(&cell[0],&cell[1],&cell[i]);
 	}
 	printf("#T "); ExFunction_Recursive_Tree_Print(&cell[0], (struct List *(*)())Function_Print_Status,0,NULL); printf("\n");
 	printf("#S "); ExFunction_Recursive_S_Print(&cell[0], (struct List *(*)())Function_Print_Status,0,NULL); printf("\n");
