@@ -306,9 +306,10 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 	/* (* check */
 	if(WAR>0){
 	if(Parent == NULL){
-		printf("\n$$%ld:::$%ld:sLV=%d:pAC=%d:sAC=%d:pNC=%ld:sNC=%d:NC=%d:AC=%d::: ",NULL,(long int)list,(*list).LVself,(long int)NULL,(*list).ACself,(long int)NULL,(*list).NCself,(*list).NextCount,(*list).ArgCount);
+		printf("\n$$%ld:::$%ld:sLV=%d:pNC=%ld:pAC=%ld:sNC=%d:sAC=%d:NC=%d:AC=%d::: ",(long int)NULL,(long int)list,(*list).LVself,(long int)NULL,(long int)NULL,(*list).NCself,(*list).ACself,(*list).NextCount,(*list).ArgCount);
+		//printf("\n$$%ld:::$%ld:sLV=%d:pAC=%d:sAC=%d:pNC=%ld:sNC=%d:NC=%d:AC=%d::: ",NULL,(long int)list,(*list).LVself,(long int)NULL,(*list).ACself,(long int)NULL,(*list).NCself,(*list).NextCount,(*list).ArgCount);
 	}else{
-		printf("\n$$%ld:::$%ld:sLV=%d:pAC=%d:sAC=%d:pNC=%d:sNC=%d:NC=%d:AC=%d::: ",Parent,(long int)list,(*list).LVself,(*Parent).ArgCount,(*list).ACself,(*Parent).NextCount,(*list).NCself,(*list).NextCount,(*list).ArgCount);
+		printf("\n$$%ld:::$%ld:sLV=%d:pAC=%d:sAC=%d:pNC=%d:sNC=%d:NC=%d:AC=%d::: ",(long int)Parent,(long int)list,(*list).LVself,(*Parent).ArgCount,(*list).ACself,(*Parent).NextCount,(*list).NCself,(*list).NextCount,(*list).ArgCount);
 	}
 	}
 	/* *) */
