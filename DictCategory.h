@@ -15,11 +15,10 @@ struct Triple {
 	struct List **Cod;
 };
 
-struct Triple *init_Object_zero(struct Triple *obj){
+struct Triple *init_Triple_zero(struct Triple *obj){
 	(*obj).ID=0;
 	(*obj).Arrow = malloc(sizeof(struct List) * 1);
 	if((*obj).Arrow == NULL){ printf("[Fail] alloc.\n"); exit(1); }
-	(*obj).function=NULL;
 	(*obj).Dcount=0;
 	(*obj).Dom = malloc(sizeof(struct List *) * 1);
 	if((*obj).Dom == NULL){ printf("[Fail] alloc.\n"); exit(1); }
@@ -34,7 +33,6 @@ struct Triple *create_Triple_zero(void){
 	if(obj == NULL){ printf("[Fail] malloc.\n"); exit(1); }
 	(*obj).Arrow = malloc(sizeof(struct List) * 1);
 	if((*obj).Arrow == NULL){ printf("[Fail] alloc.\n"); exit(1); }
-	(*obj).function=NULL;
 	(*obj).Dcount=0;
 	(*obj).Dom = malloc(sizeof(struct List *) * 1);
 	if((*obj).Dom == NULL){ printf("[Fail] alloc.\n"); exit(1); }
