@@ -97,7 +97,7 @@ struct List *Function_Add_Next(struct List *list, struct List *next_list){
 	(*list).NextCount++;
 	return((*list).Next[(*list).NextCount]);
 }
-struct List *Function_Add_NextRtd(struct List *list, struct List *next_list){
+struct List *Function_Add_NextRtd(struct List *parent, struct List *list, struct List *next_list){
 	(*list).Next = realloc((*list).Next,(size_t)sizeof(struct List) * (*list).NextCount+1);
 	if((*list).Next == NULL){
 		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
