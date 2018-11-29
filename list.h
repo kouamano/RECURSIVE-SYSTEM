@@ -367,6 +367,12 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	}else{
 		printf("\n$$%ld:::$%ld:sLV=%d:pNC=%d:pAC=%d:sNC=%d:sAC=%d:NC=%d:AC=%d::: ",(long int)Parent,(long int)list,(*list).LVself,(*Parent).NextCount,(*Parent).ArgCount,(*list).NCself,(*list).ACself,(*list).NextCount,(*list).ArgCount);
 	}
+	//check for "Parent" in structure
+	if((*list).Parent == NULL){
+		printf("\n$$%ld: :$%ld:sLV=%d:pNC=%ld:pAC=%ld:sNC=%d:sAC=%d:NC=%d:AC=%d::: ",(long int)NULL,(long int)list,(*list).LVself,(long int)NULL,(long int)NULL,(*list).NCself,(*list).ACself,(*list).NextCount,(*list).ArgCount);
+	}else{
+		printf("\n$$%ld: :$%ld:sLV=%d:pNC=%d:pAC=%d:sNC=%d:sAC=%d:NC=%d:AC=%d::: ",(long int)(*list).Parent,(long int)list,(*list).LVself,(*(*list).Parent).NextCount,(*(*list).Parent).ArgCount,(*list).NCself,(*list).ACself,(*list).NextCount,(*list).ArgCount);
+	}
 	}
 	/* *) */
 
