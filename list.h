@@ -137,6 +137,30 @@ struct List *Function_Create_Next(struct List *list){
 	(*list).NextCount++;
 	return(next_list);
 }
+struct List *Function_Create_NextRtd(struct List *parent, struct List *list){
+	struct List *next_list;
+	next_list = malloc((size_t)sizeof(struct List) * 1);
+	if(next_list == NULL){
+		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
+		exit(1);
+	}
+	(*list).Next = realloc((*list).Next,(size_t)sizeof(struct List) * (*list).NextCount+1);
+	if((*list).Next == NULL){
+		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
+		exit(1);
+	}
+	if(parent != NULL){
+		(*list).Parent = parent;
+	}
+	(*list).Next[(*list).NextCount] = next_list;
+	(*list).Next[(*list).NextCount]->LVself = (*list).LVself+1;
+	(*list).Next[(*list).NextCount]->NCself = (*list).NextCount+1;
+	(*list).Next[(*list).NextCount]->ACself = 0;
+	(*list).Next[(*list).NextCount]->Parent = list;
+	(*list).NextCount++;
+	return(next_list);
+}
+
 struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
 	(*list).Arg = realloc((*list).Arg,(size_t)sizeof(struct List) * (*list).ArgCount+1);
 	if((*list).Arg == NULL){
@@ -220,9 +244,6 @@ struct List *Function_Create_ArgRtd(struct List *parent, struct List *list){
 	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount+1;
 	(*list).Arg[(*list).ArgCount]->Parent = list;
 	(*list).ArgCount++;
-	if(parent != NULL){
-		(*list).Parent = parent;
-	}
 	return(arg_list);
 }
 
