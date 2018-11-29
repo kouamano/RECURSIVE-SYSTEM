@@ -111,6 +111,7 @@ struct List *Function_Add_NextRtd(struct List *parent, struct List *list, struct
 	(*list).Next[(*list).NextCount]->LVself = (*list).LVself+1;
 	(*list).Next[(*list).NextCount]->NCself = (*list).NextCount+1;
 	(*list).Next[(*list).NextCount]->ACself = 0;
+	(*list).Next[(*list).NextCount]->Parent = list;
 	(*list).NextCount++;
 	if(parent != NULL){
 		(*list).Parent = parent;
@@ -165,13 +166,14 @@ struct List *Function_Add_ArgRtd(struct List *parent, struct List *list, struct 
 	(*list).Arg[(*list).ArgCount] = arg_list;
 	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself;
 	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount+1;
+	(*list).Arg[(*list).ArgCount]->Parent = list;
 	(*list).ArgCount++;
 	if(parent != NULL){
 		(*list).Parent = parent;
 	}
 	return((*list).Arg[(*list).ArgCount]);
 }
-struct List *Function_Create_Arg(struct List *parent, struct List *list){
+struct List *Function_Create_Arg(struct List *list){
 	struct List *arg_list;
 	arg_list = malloc((size_t)sizeof(struct List) * 1);
 	if(arg_list == NULL){
@@ -213,6 +215,7 @@ struct List *Function_Create_ArgRtd(struct List *parent, struct List *list){
 	(*list).Arg[(*list).ArgCount] = arg_list;
 	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself;
 	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount+1;
+	(*list).Arg[(*list).ArgCount]->Parent = list;
 	(*list).ArgCount++;
 	if(parent != NULL){
 		(*list).Parent = parent;
