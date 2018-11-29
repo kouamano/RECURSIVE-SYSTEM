@@ -112,7 +112,9 @@ struct List *Function_Add_NextRtd(struct List *parent, struct List *list, struct
 	(*list).Next[(*list).NextCount]->NCself = (*list).NextCount+1;
 	(*list).Next[(*list).NextCount]->ACself = 0;
 	(*list).NextCount++;
-	(*list).Parent = parent;
+	if(parent != NULL){
+		(*list).Parent = parent;
+	}
 	return((*list).Next[(*list).NextCount]);
 }
 struct List *Function_Create_Next(struct List *list){
@@ -164,7 +166,9 @@ struct List *Function_Add_ArgRtd(struct List *parent, struct List *list, struct 
 	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself;
 	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount+1;
 	(*list).ArgCount++;
-	(*list).Parent = parent;
+	if(parent != NULL){
+		(*list).Parent = parent;
+	}
 	return((*list).Arg[(*list).ArgCount]);
 }
 struct List *Function_Create_Arg(struct List *parent, struct List *list){
@@ -210,6 +214,9 @@ struct List *Function_Create_ArgRtd(struct List *parent, struct List *list){
 	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself;
 	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount+1;
 	(*list).ArgCount++;
+	if(parent != NULL){
+		(*list).Parent = parent;
+	}
 	return(arg_list);
 }
 
