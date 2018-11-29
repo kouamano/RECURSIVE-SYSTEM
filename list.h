@@ -43,27 +43,6 @@ struct List *init_List_zero(struct List *list){
 	(*list).Parent=NULL;
 	return(list);
 }
-struct List *init_List_Head(struct List *list, size_t h_size){
-	(*list).ID=0;
-	(*list).LVself=0;
-	(*list).NCself=0;
-	(*list).ACself=0;
-	(*list).Val=0;
-	if(((*list).Head = malloc(sizeof(char) * h_size)) == NULL){
-		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
-	}
-	(*list).Head[0]='\0';
-	(*list).NextCount=0;
-	if( ((*list).Next = malloc(sizeof(struct List) * 1)) == NULL ){
-		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
-	}
-	(*list).ArgCount=0;
-	if( ((*list).Arg = malloc(sizeof(struct List) * 1)) == NULL ){
-		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
-	}
-	(*list).Parent=NULL;
-	return(list);
-}
 struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_size, int v, struct List *(*fun)(), int NC, int AC){
 	(*list).ID=_ID;
 	(*list).LVself=lv;
