@@ -201,6 +201,9 @@ struct List *Function_Create_ArgRtd(struct List *parent, struct List *list){
 		exit(1);
 	}
 
+	if(parent != NULL){
+		(*list).Parent = parent;
+	}
 	struct List *arg_list;
 	arg_list = malloc((size_t)sizeof(struct List) * 1);
 	if(arg_list == NULL){
