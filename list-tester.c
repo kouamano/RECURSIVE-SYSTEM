@@ -14,8 +14,10 @@ int main(void){
 	for(i=0;i<3;i++){
 		init_List_zero(&cell[i]);
 	}
-	Function_Add_Next(&cell[0],&cell[1]);
-	Function_Add_Arg(&cell[1],&cell[2]);
+	//Function_Add_Next(&cell[0],&cell[1]);
+	Function_Add_NextRtd(NULL,&cell[0],&cell[1]);
+	//Function_Add_Arg(&cell[1],&cell[2]);
+	Function_Add_ArgRtd(&cell[0],&cell[1],&cell[2]);
 	printf("#T "); ExFunction_Recursive_Tree_Print(&cell[0], (struct List *(*)())Function_Print_Status,0,NULL); printf("\n");
 	printf("=====\n");
 
@@ -24,8 +26,10 @@ int main(void){
 	for(i=0;i<3;i++){
 		init_List_zero(&cell[i]);
 	}
-	Function_Add_Next(&cell[0],&cell[1]);
-	Function_Add_Arg(&cell[0],&cell[2]);
+	//Function_Add_Next(&cell[0],&cell[1]);
+	Function_Add_NextRtd(NULL,&cell[0],&cell[1]);
+	//Function_Add_Arg(&cell[0],&cell[2]);
+	Function_Add_ArgRtd(NULL,&cell[0],&cell[2]);
 	printf("#T "); ExFunction_Recursive_Tree_Print(&cell[0], (struct List *(*)())Function_Print_Status,0,NULL); printf("\n");
 	printf("=====\n");
 
