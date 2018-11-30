@@ -29,16 +29,16 @@ struct List *init_List_zero(struct List *list){
 	(*list).ACself=0;
 	(*list).Val=0;
 	if(((*list).Head = malloc(sizeof(char) * BUFF)) == NULL){
-		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
+		fprintf(stderr,"[Fail] @ malloc() @ init_List_zero .\n");
 	}
 	(*list).Head[0]='\0';
 	(*list).NextCount=0;
 	if( ((*list).Next = malloc(sizeof(struct List) * 1)) == NULL ){
-		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
+		fprintf(stderr,"[Fail] @ malloc() @ init_List_zero .\n");
 	}
 	(*list).ArgCount=0;
 	if( ((*list).Arg = malloc(sizeof(struct List) * 1)) == NULL ){
-		fprintf(stderr,"[Fail] @ malloc() @ init_List .\n");
+		fprintf(stderr,"[Fail] @ malloc() @ init_List_zero .\n");
 	}
 	(*list).Parent=NULL;
 	return(list);
@@ -83,7 +83,7 @@ struct List *Function_Add_Next(struct List *list, struct List *next_list){
 struct List *Function_Add_NextRtd(struct List *parent, struct List *list, struct List *next_list){
 	(*list).Next = realloc((*list).Next,(size_t)sizeof(struct List) * (*list).NextCount+1);
 	if((*list).Next == NULL){
-		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
+		fprintf(stderr,"[Fail] malloc @ Function_Add_NextRtd .\n");
 		exit(1);
 	}
 	(*list).Next[(*list).NextCount] = next_list;
@@ -101,12 +101,12 @@ struct List *Function_Create_Next(struct List *list){
 	struct List *next_list;
 	next_list = malloc((size_t)sizeof(struct List) * 1);
 	if(next_list == NULL){
-		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
+		fprintf(stderr,"[Fail] malloc @ Function_Create_Next .\n");
 		exit(1);
 	}
 	(*list).Next = realloc((*list).Next,(size_t)sizeof(struct List) * (*list).NextCount+1);
 	if((*list).Next == NULL){
-		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
+		fprintf(stderr,"[Fail] malloc @ Function_Create_Next .\n");
 		exit(1);
 	}
 	(*list).Next[(*list).NextCount] = next_list;
@@ -120,12 +120,12 @@ struct List *Function_Create_NextRtd(struct List *parent, struct List *list){
 	struct List *next_list;
 	next_list = malloc((size_t)sizeof(struct List) * 1);
 	if(next_list == NULL){
-		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
+		fprintf(stderr,"[Fail] malloc @ Function_Create_NextRtd .\n");
 		exit(1);
 	}
 	(*list).Next = realloc((*list).Next,(size_t)sizeof(struct List) * (*list).NextCount+1);
 	if((*list).Next == NULL){
-		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
+		fprintf(stderr,"[Fail] malloc @ Function_Create_NextRtd .\n");
 		exit(1);
 	}
 	if(parent != NULL){
@@ -143,7 +143,7 @@ struct List *Function_Create_NextRtd(struct List *parent, struct List *list){
 struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
 	(*list).Arg = realloc((*list).Arg,(size_t)sizeof(struct List) * (*list).ArgCount+1);
 	if((*list).Arg == NULL){
-		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
+		fprintf(stderr,"[Fail] malloc @ Function_Add_Arg .\n");
 		exit(1);
 	}
 	(*list).Arg[(*list).ArgCount] = arg_list;
@@ -163,7 +163,7 @@ struct List *Function_Add_ArgRtd(struct List *parent, struct List *list, struct 
 	}
 	(*list).Arg = realloc((*list).Arg,(size_t)sizeof(struct List) * (*list).ArgCount+1);
 	if((*list).Arg == NULL){
-		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
+		fprintf(stderr,"[Fail] malloc @ Function_Add_ArgRtd .\n");
 		exit(1);
 	}
 	(*list).Arg[(*list).ArgCount] = arg_list;
@@ -180,12 +180,12 @@ struct List *Function_Create_Arg(struct List *list){
 	struct List *arg_list;
 	arg_list = malloc((size_t)sizeof(struct List) * 1);
 	if(arg_list == NULL){
-		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
+		fprintf(stderr,"[Fail] malloc @ Function_Create_Arg .\n");
 		exit(1);
 	}
 	(*list).Arg = realloc((*list).Arg,(size_t)sizeof(struct List) * (*list).ArgCount+1);
 	if((*list).Arg == NULL){
-		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
+		fprintf(stderr,"[Fail] malloc @ Function_Create_Arg .\n");
 		exit(1);
 	}
 	(*list).Arg[(*list).ArgCount] = arg_list;
@@ -210,12 +210,12 @@ struct List *Function_Create_ArgRtd(struct List *parent, struct List *list){
 	struct List *arg_list;
 	arg_list = malloc((size_t)sizeof(struct List) * 1);
 	if(arg_list == NULL){
-		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
+		fprintf(stderr,"[Fail] malloc @ Function_Create_ArgRtd .\n");
 		exit(1);
 	}
 	(*list).Arg = realloc((*list).Arg,(size_t)sizeof(struct List) * (*list).ArgCount+1);
 	if((*list).Arg == NULL){
-		fprintf(stderr,"[Fail] malloc @ Function_Add_Next .\n");
+		fprintf(stderr,"[Fail] malloc @ Function_Create_ArgRtd .\n");
 		exit(1);
 	}
 	(*list).Arg[(*list).ArgCount] = arg_list;
