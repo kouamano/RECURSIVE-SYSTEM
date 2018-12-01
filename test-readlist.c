@@ -86,10 +86,11 @@ void check_options(struct options *opt){
 
 // function definition
 
-int print_CHAR(FILE *_IN, int *_LIST_LV, int *_DLM_ACC, int WAR){
-	int RC = 0;
+int relay_CHAR(FILE *_IN, char *_HEAD_BUF, int WAR){
 	int C;
 	int DLM_ACC = 1;
+	int LIST_LV = 0;
+	int NEXT_COUNT = 0;
 	int ARG_COUNT = 0;
 	while(C = fgetc(_IN)){
 
@@ -103,10 +104,10 @@ int print_CHAR(FILE *_IN, int *_LIST_LV, int *_DLM_ACC, int WAR){
 			ARG_COUNT++;
 		}
 		if(C == '('){
-			(*_LIST_LV)++;
+			LIST_LV++;
 		}
 		if(C == ')'){
-			(*_LIST_LV)--;
+			LIST_LV--;
 		}
 	
 		if(C == '('){
@@ -116,8 +117,8 @@ int print_CHAR(FILE *_IN, int *_LIST_LV, int *_DLM_ACC, int WAR){
 		}else if(C == EOF){
 		}else{
 		}
-	//return(C);
 	}
+	return(C);
 }
 
 
@@ -162,9 +163,11 @@ int main(int argc, char **argv){
 	int R_COUNT = 0;
 	int BRK_REMAIN = 0;
 	int LIST_LV = 0;
+	char *HEAD_BUF;
+	struct List *top;
 	while(c != EOF){
 	//while((c = fgetc(IN)) != EOF){
-		c = print_CHAR(IN,&LIST_LV,&DLM_ACC,(*opt).war);
+		c = relay_CHAR(IN,HEAD_BUF,(*opt).war);
 	
 	}
 
