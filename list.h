@@ -226,6 +226,36 @@ struct List *Function_Create_ArgRtd(struct List *parent, struct List *list){
 	(*list).ArgCount++;
 	return(arg_list);
 }
+////free
+int Function_Free_Node(struct List *list, int _clear_child){
+	int i,j;
+	int clear_child = 0;
+	//free
+	if(_clear_child > 0){
+		free((*list).Head);
+		free((*list).function);
+		for(i=0;i<(*list).NextCount;i++){
+			free((*list).Next[i]);
+		}
+		free((*list).Next);
+		for(j=0;j<(*list).ArgCount;j++){
+			free((*list).Arg[i]);
+		}
+		free((*list).Arg);
+		free((*list).Parent);
+		clear_child = 1;
+	}
+	if((*list).NextCount==0 && (*list).ArgCount==0){
+		free((*list).Head);
+		free((*list).function);
+		free((*list).Next);
+		free((*list).Arg);
+		free((*list).Parent);
+		clear_child = 1;
+	}
+	//return
+	return(clear_child);
+}
 
 //print function primitive
 struct List *Function_Print_Head(struct List *list){
