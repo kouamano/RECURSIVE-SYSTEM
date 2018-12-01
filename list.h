@@ -67,6 +67,7 @@ struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_s
 }
 
 //restructure function
+////restructure Next
 struct List *Function_Add_Next(struct List *list, struct List *next_list){
 	(*list).Next = realloc((*list).Next,(size_t)sizeof(struct List) * (*list).NextCount+1);
 	if((*list).Next == NULL){
@@ -139,7 +140,7 @@ struct List *Function_Create_NextRtd(struct List *parent, struct List *list){
 	(*list).NextCount++;
 	return(next_list);
 }
-
+////restructure Arg
 struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
 	(*list).Arg = realloc((*list).Arg,(size_t)sizeof(struct List) * (*list).ArgCount+1);
 	if((*list).Arg == NULL){
