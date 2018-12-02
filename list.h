@@ -406,11 +406,11 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	/* *) */
 
 	//COMM
-	if(Parent != NULL){
+	//if(Parent != NULL){
 		if((*list).NCself>0 || (*list).ACself>0){
 			printf(",");
 		}
-	}
+	//}
 
 	//BRK
 	for(i=0;i<(*list).NextCount;i++){
