@@ -65,6 +65,15 @@ struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_s
 	(*list).Parent=NULL;
 	return(list);
 }
+struct List *Function_Create_Node(void){
+	struct List *node;
+	if((node = malloc(sizeof(struct List) * 1)) == NULL){
+		fprintf(stderr,"[Fail] malloc.\n");
+		exit(1);
+	}
+	init_List_zero(node);
+	return(node);
+}
 
 //restructure function
 ////restructure Next
