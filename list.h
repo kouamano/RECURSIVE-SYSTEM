@@ -114,6 +114,7 @@ struct List *Function_Create_Next(struct List *list){
 	(*list).Next[(*list).NextCount]->LVself = (*list).LVself+1;
 	(*list).Next[(*list).NextCount]->NCself = (*list).NextCount+1;
 	(*list).Next[(*list).NextCount]->ACself = 0;
+	(*list).Next[(*list).NextCount]->Parent = list;
 	(*list).NextCount++;
 	return(next_list);
 }
@@ -192,6 +193,7 @@ struct List *Function_Create_Arg(struct List *list){
 	(*list).Arg[(*list).ArgCount] = arg_list;
 	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself;
 	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount+1;
+	(*list).Arg[(*list).ArgCount]->Parent = list;
 	(*list).ArgCount++;
 	return(arg_list);
 }
