@@ -111,11 +111,19 @@ int relay_CHAR(FILE *_IN, char *_HEAD_BUF, int WAR){
 		}
 	
 		if(C == '('){
-		}else if(C == ','){
+		//confirm current
+		//alloc next
+		}else if(C == ',' && DLM_ACC > 0){
+		//confirm current
+		//alloc arg
 		}else if(C == ')'){
+		//confirm current
+		//close list
 		}else if(C == '\n'){
+		//clear list
 		}else if(C == EOF){
 		}else{
+		//buffering
 		}
 	}
 	return(C);
