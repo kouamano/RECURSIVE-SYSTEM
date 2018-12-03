@@ -94,13 +94,15 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 	int ARG_COUNT = 0;
 	char *BUFF;
 	int buf_ptr = 0;
-	struct List *current_cell;
+	struct List *current;
+	struct List *tmp;
+	current = top;
 	if((BUFF = malloc(sizeof(char) * BUFF_LEN)) == NULL){
 		printf("[Fail] malloc.\n");
 		exit(1);
 	}
-	current_cell = top;
 	while(C = fgetc(_IN)){
+		putc(C,stdout);
 
 		if(C == '['){
 			DLM_ACC--;
@@ -119,26 +121,50 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 		}
 	
 		if(C == '('){
-		//confirm current
-		//alloc next
-		//clear BUFF
+			//confirm current
+			BUFF[buf_ptr] = '\0';
+			strcpy((*current).Head,BUFF);
+			//alloc next
+			current = Function_Create_Next(current);
+			init_List_zero(current);
+			//clear BUFF
+			BUFF[0] = '\0';
+			buf_ptr = 0;
 		}else if(C == ',' && DLM_ACC > 0){
-		//confirm current
-		//alloc arg
-		//clear BUFF
+			//confirm current
+			BUFF[buf_ptr] = '\0';
+			strcpy((*current).Head,BUFF);
+			//alloc arg
+			current = Function_Create_Arg(current);
+			init_List_zero(current);
+			//clear BUFF
+			BUFF[0] = '\0';
+			buf_ptr = 0;
 		}else if(C == ')'){
-		//confirm current
-		//clear BUFF
-		//close list
+			//confirm current
+			BUFF[buf_ptr] = '\0';
+			strcpy((*current).Head,BUFF);
+			//clear BUFF
+			BUFF[0] = '\0';
+			buf_ptr = 0;
+			//close list
+			if((*current).Parent != NULL){
+				current = (*current).Parent;
+			}
 		}else if(C == '\n'){
-		//clear BUFF
-		//clear list
+			//clear BUFF
+			BUFF[0] = '\0';
+			buf_ptr = 0;
+			//clear tree
+			Function_Free_List(top,0);
+			init_List_zero(top);
 		}else if(C == EOF){
+			return(C);
 		}else{
-		//buffering
-		BUFF[buf_ptr] = C;
-		BUFF[buf_ptr+1] = '\0';
-		buf_ptr++;
+			//buffering
+			BUFF[buf_ptr] = C;
+			BUFF[buf_ptr+1] = '\0';
+			buf_ptr++;
 		}
 	}
 	return(C);
@@ -172,7 +198,6 @@ int main(int argc, char **argv){
 	if(ie == 1){
 		exit(0);
 	}
-
 	// open file
 	if((IN = fopen((*opt).in,"r")) == NULL){
 		perror((*opt).in);
@@ -183,10 +208,14 @@ int main(int argc, char **argv){
 	// main function
 	c = 1;
 	struct List *top;
+	if((top = malloc(sizeof(struct List) * 1)) == NULL){
+		printf("[Fail] malloc.\n");
+		exit(1);
+	}
+	init_List_zero(top);
 	while(c != EOF){
 	//while((c = fgetc(IN)) != EOF){
 		c = relay_CHAR(IN,top,(*opt).war);
-	
 	}
 
 	// close file
