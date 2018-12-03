@@ -1,1 +1,2 @@
-./a.out | grep -e '^=' -e '#T' -e '#S' | ../DimensionDefinitionLanguage/create_check.pl > check.sh
+gcc list-tester.c -o tester
+./tester | grep -e '^=' -e '#T' -e '#S' | ../DimensionDefinitionLanguage/create_check.pl > check.sh
