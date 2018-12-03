@@ -417,7 +417,7 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 	/* *) */
 
 	//SELF
-	printf("$%ld$%s",(long int)list,(*list).Head);
+	printf("$%ld#%s",(long int)list,(*list).Head);
 
 	//Next
 	for(i=0;i<(*list).NextCount;i++){
