@@ -14,9 +14,7 @@ int main(void){
 	for(i=0;i<3;i++){
 		init_List_zero(&cell[i]);
 	}
-	//Function_Add_Next(&cell[0],&cell[1]);
 	Function_Add_NextRtd(NULL,&cell[0],&cell[1]);
-	//Function_Add_Arg(&cell[1],&cell[2]);
 	Function_Add_ArgRtd(&cell[0],&cell[1],&cell[2]);
 	printf("#T "); ExFunction_Recursive_Tree_Print(&cell[0], (struct List *(*)())Function_Print_Status,0,NULL); printf("\n");
 	printf("=====\n");
@@ -26,10 +24,8 @@ int main(void){
 	for(i=0;i<3;i++){
 		init_List_zero(&cell[i]);
 	}
-	//Function_Add_Next(&cell[0],&cell[1]);
 	Function_Add_NextRtd(NULL,&cell[0],&cell[1]);
 	Function_Add_Arg(&cell[0],&cell[2]);
-	//Function_Add_ArgRtd(NULL,&cell[0],&cell[2]);
 	printf("#T "); ExFunction_Recursive_Tree_Print(&cell[0], (struct List *(*)())Function_Print_Status,0,NULL); printf("\n");
 	printf("=====\n");
 
@@ -99,10 +95,7 @@ int main(void){
 	printf("=====\n");
 
 	printf("===== ex.05-01 =\n");
-	//struct List *Branch1 = Function_Create_Next(&cell[1]);
 	struct List *Branch1 = Function_Create_NextRtd(&cell[0],&cell[1]);
-	//Function_Create_Arg(Branch1);
-	//Function_Create_Arg(Branch1);
 	Function_Create_ArgRtd(&cell[1],Branch1);
 	Function_Create_ArgRtd(&cell[1],Branch1);
 	printf("#T "); ExFunction_Recursive_Tree_Print(&cell[0], (struct List *(*)())Function_Print_Status,0,NULL); printf("\n");
@@ -114,7 +107,6 @@ int main(void){
 	printf("=====\n");
 
 	printf("===== ex.05-02 =\n");
-	//Function_Create_Next(&cell[1]);
 	Function_Create_NextRtd(&cell[0],&cell[1]);
 	printf("#T "); ExFunction_Recursive_Tree_Print(&cell[0], (struct List *(*)())Function_Print_Status,0,NULL); printf("\n");
 	printf("#S "); ExFunction_Recursive_S_Print(&cell[0], (struct List *(*)())Function_Print_Status,0,NULL); printf("\n");
@@ -125,7 +117,6 @@ int main(void){
 	printf("=====\n");
 
 	printf("===== ex.05-03 =\n");
-	//Function_Create_Next(Branch1);
 	Function_Create_NextRtd(&cell[1],Branch1);
 	printf("#T "); ExFunction_Recursive_Tree_Print(&cell[0], (struct List *(*)())Function_Print_Status,0,NULL); printf("\n");
 	printf("#S "); ExFunction_Recursive_S_Print(&cell[0], (struct List *(*)())Function_Print_Status,0,NULL); printf("\n");

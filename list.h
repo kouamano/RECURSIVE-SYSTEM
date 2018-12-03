@@ -80,7 +80,7 @@ struct List *Function_Add_Next(struct List *list, struct List *next_list){
 	(*list).Next[(*list).NextCount]->ACself = 0;
 	(*list).NextCount++;
 	//return(list);
-	return((*list).Next[(*list).NextCount]);
+	return(next_list);
 }
 struct List *Function_Add_NextRtd(struct List *parent, struct List *list, struct List *next_list){
 	(*list).Next = realloc((*list).Next,(size_t)sizeof(struct List) * (*list).NextCount+1);
@@ -98,7 +98,7 @@ struct List *Function_Add_NextRtd(struct List *parent, struct List *list, struct
 		(*list).Parent = parent;
 	}
 	//return(list);
-	return((*list).Next[(*list).NextCount]);
+	return(next_list);
 }
 struct List *Function_Create_Next(struct List *list){
 	struct List *next_list;
@@ -154,7 +154,7 @@ struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
 	(*list).Arg[(*list).ArgCount]->LVself = (*list).LVself;
 	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount+1;
 	(*list).ArgCount++;
-	return(list);
+	return(arg_list);
 	//return((*list).Arg[(*list).ArgCount]);
 }
 struct List *Function_Add_ArgRtd(struct List *parent, struct List *list, struct List *arg_list){
@@ -179,7 +179,7 @@ struct List *Function_Add_ArgRtd(struct List *parent, struct List *list, struct 
 	if(parent != NULL){
 		(*list).Parent = parent;
 	}
-	return(list);
+	return(arg_list);
 	//return((*list).Arg[(*list).ArgCount]);
 }
 struct List *Function_Create_Arg(struct List *list){
@@ -199,8 +199,7 @@ struct List *Function_Create_Arg(struct List *list){
 	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount+1;
 	(*list).Arg[(*list).ArgCount]->Parent = list;
 	(*list).ArgCount++;
-	return(list);
-	//return(arg_list);
+	return(arg_list);
 }
 struct List *Function_Create_ArgRtd(struct List *parent, struct List *list){
 	if((*list).ACself > 0){
@@ -231,8 +230,7 @@ struct List *Function_Create_ArgRtd(struct List *parent, struct List *list){
 	(*list).Arg[(*list).ArgCount]->ACself = (*list).ArgCount+1;
 	(*list).Arg[(*list).ArgCount]->Parent = list;
 	(*list).ArgCount++;
-	return(list);
-	//return(arg_list);
+	return(arg_list);
 }
 ////free
 int Function_Free_Node(struct List *list, int _clear_child){
