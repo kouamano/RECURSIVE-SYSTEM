@@ -167,6 +167,9 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 			if((*current).ACself != 0){
 				Function_Add_ArgRtd((*current).Parent,(*current).Parent,arg);
 			}else{
+				for(i=0;i<close;i++){
+					current = (*current).Parent;
+				}
 				Function_Add_ArgRtd((*current).Parent,current,arg);
 			}
 			current = arg;
@@ -192,7 +195,9 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 			buf_ptr = 0;
 			//close list
 			if((*current).Parent != NULL){
-				current = (*current).Parent;
+				//for(i=0;i<close;i++){
+					current = (*current).Parent;
+				//}
 			}
 			close++;
 		}else if(C == '\n'){
