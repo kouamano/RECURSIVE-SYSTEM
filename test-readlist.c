@@ -34,6 +34,7 @@ void help(void){
 void status(void){
 	printf("STATUS:\n");
 	printf(" Testing.\n");
+	printf(" Bug remains.\n");
 }
 
 struct options *alloc_options(void){
