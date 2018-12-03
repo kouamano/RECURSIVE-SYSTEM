@@ -5,10 +5,14 @@
 #define BUFF_LEN 1024
 #endif
 
-struct Seq {
+struct Tree {
+	char *Head;
 	int LVself;
+	int NCself;
 	int ACself;
 	int open;
 	int close;
-	struct Seq *Next;
+	int NextCount;
+	int ArgCount;
+	struct Tree **Next;
 };
