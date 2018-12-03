@@ -392,7 +392,7 @@ struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_funct
 }
 
 //complex function (print&apply)
-struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e_function)(struct List *),int WAR, struct List *Parent){
+struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e_function)(struct List *),int WAR, struct List *Parent, int p_opt){
 	int i;
 	int j;
 	struct List *out = list;
@@ -417,23 +417,28 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 	/* *) */
 
 	//SELF
-	printf("$%ld#%s",(long int)list,(*list).Head);
+	if((p_opt&1) == 1){
+		printf("$%ld",(long int)list);
+	}
+	if((p_opt&2) == 2){
+		printf("%s",(*list).Head);
+	}
 
 	//Next
 	for(i=0;i<(*list).NextCount;i++){
 		printf("(");
-		ExFunction_Recursive_Tree_Print((*list).Next[i],e_function,WAR,list);
+		ExFunction_Recursive_Tree_Print((*list).Next[i],e_function,WAR,list,p_opt);
 		printf(")");
 	}
 
 	//Arg
 	for(j=0;j<(*list).ArgCount;j++){
 		printf(",");
-		ExFunction_Recursive_Tree_Print((*list).Arg[j],e_function,WAR,list);
+		ExFunction_Recursive_Tree_Print((*list).Arg[j],e_function,WAR,list,p_opt);
 	}
 	return(out);
 }
-struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_function)(struct List *), int WAR, struct List *Parent){
+struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_function)(struct List *), int WAR, struct List *Parent, int p_opt){
 	int i;
 	int j;
 	struct List *out = list;
@@ -468,17 +473,22 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	}
 
 	//SELF
-	printf("$%ld$%s",(long int)list,(*list).Head);
+	if((p_opt&1) == 1){
+		printf("$%ld",(long int)list);
+	}
+	if((p_opt&2) == 2){
+		printf("%s",(*list).Head);
+	}
 
 	//NEXT
 	for(i=0;i<(*list).NextCount;i++){
-		ExFunction_Recursive_S_Print((*list).Next[i],e_function,WAR,list);
+		ExFunction_Recursive_S_Print((*list).Next[i],e_function,WAR,list,p_opt);
 		printf(")");
 	}
 
 	//Arg
 	for(j=0;j<(*list).ArgCount;j++){
-		ExFunction_Recursive_S_Print((*list).Arg[j],e_function,WAR,list);
+		ExFunction_Recursive_S_Print((*list).Arg[j],e_function,WAR,list,p_opt);
 	}
 
 	//return
