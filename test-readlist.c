@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "list.h"
 #define LEN 1024
 #define BUFF_LEN 1024
 #ifndef max
@@ -10,6 +9,7 @@
 #ifndef min
 #define min(a,b) (((a)<(b))?(a):(b))
 #endif
+#include "list.h"
 
 struct options {
 	int help;
@@ -85,8 +85,7 @@ void check_options(struct options *opt){
 }
 
 // function definition
-
-int relay_CHAR(FILE *_IN, int WAR){
+int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 	int i;
 	int C;
 	int DLM_ACC = 1;
@@ -94,10 +93,13 @@ int relay_CHAR(FILE *_IN, int WAR){
 	int NEXT_COUNT = 0;
 	int ARG_COUNT = 0;
 	char *BUFF;
+	int buf_ptr = 0;
+	struct List *current_cell;
 	if((BUFF = malloc(sizeof(char) * BUFF_LEN)) == NULL){
 		printf("[Fail] malloc.\n");
 		exit(1);
 	}
+	current_cell = top;
 	while(C = fgetc(_IN)){
 
 		if(C == '['){
@@ -119,17 +121,24 @@ int relay_CHAR(FILE *_IN, int WAR){
 		if(C == '('){
 		//confirm current
 		//alloc next
+		//clear BUFF
 		}else if(C == ',' && DLM_ACC > 0){
 		//confirm current
 		//alloc arg
+		//clear BUFF
 		}else if(C == ')'){
 		//confirm current
+		//clear BUFF
 		//close list
 		}else if(C == '\n'){
+		//clear BUFF
 		//clear list
 		}else if(C == EOF){
 		}else{
 		//buffering
+		BUFF[buf_ptr] = C;
+		BUFF[buf_ptr+1] = '\0';
+		buf_ptr++;
 		}
 	}
 	return(C);
@@ -176,7 +185,7 @@ int main(int argc, char **argv){
 	struct List *top;
 	while(c != EOF){
 	//while((c = fgetc(IN)) != EOF){
-		c = relay_CHAR(IN,(*opt).war);
+		c = relay_CHAR(IN,top,(*opt).war);
 	
 	}
 
