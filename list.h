@@ -264,6 +264,41 @@ int Function_Free_Node(struct List *list, int _clear_child){
 	//return
 	return(clear_child);
 }
+int Function_Free_List(struct List *list, int _clear_child){
+	int i,j;
+	int clear_child = 0;
+	//free
+	if(_clear_child > 0){
+		free((*list).Head);
+		free((*list).function);
+		for(i=0;i<(*list).NextCount;i++){
+			free((*list).Next[i]);
+		}
+		free((*list).Next);
+		for(j=0;j<(*list).ArgCount;j++){
+			free((*list).Arg[i]);
+		}
+		free((*list).Arg);
+		free((*list).Parent);
+		clear_child = 1;
+	}
+	if((*list).NextCount==0 && (*list).ArgCount==0){
+		free((*list).Head);
+		free((*list).function);
+		free((*list).Next);
+		free((*list).Arg);
+		free((*list).Parent);
+		clear_child = 1;
+	}
+	for(i=0;i<(*list).NextCount;i++){
+		Function_Free_List((*list).Next[i],clear_child);
+	}
+	for(j=0;j<(*list).ArgCount;j++){
+		Function_Free_List((*list).Arg[i],clear_child);
+	}
+	//return
+	return(clear_child);
+}
 
 //print function primitive
 struct List *Function_Print_Head(struct List *list){
