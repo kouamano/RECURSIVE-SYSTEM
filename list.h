@@ -245,6 +245,7 @@ struct List *Function_Create_ArgRtd(struct List *parent, struct List *list){
 int Function_Free_Node(struct List *list, int _clear_child){
 	int i,j;
 	int clear_child = 0;
+	int fr = 0;
 	//free
 	if(_clear_child > 0){
 		free((*list).Head);
@@ -259,8 +260,9 @@ int Function_Free_Node(struct List *list, int _clear_child){
 		free((*list).Arg);
 		free((*list).Parent);
 		clear_child = 1;
+		fr++;
 	}
-	if((*list).NextCount==0 && (*list).ArgCount==0){
+	if((*list).NextCount==0 && (*list).ArgCount==0 && fr==0){
 		free((*list).Head);
 		free((*list).function);
 		free((*list).Next);
@@ -415,7 +417,7 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 	/* *) */
 
 	//SELF
-	printf("$%ld",(long int)list);
+	printf("$%ld$%s",(long int)list,(*list).Head);
 
 	//Next
 	for(i=0;i<(*list).NextCount;i++){
@@ -466,7 +468,7 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 	}
 
 	//SELF
-	printf("$%ld",(long int)list);
+	printf("$%ld$%s",(long int)list,(*list).Head);
 
 	//NEXT
 	for(i=0;i<(*list).NextCount;i++){

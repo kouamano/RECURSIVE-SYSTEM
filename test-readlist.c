@@ -94,15 +94,18 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 	int ARG_COUNT = 0;
 	char *BUFF;
 	int buf_ptr = 0;
+	struct List *parent;
 	struct List *current;
-	struct List *tmp;
+	struct List *next;
+	struct List *arg;
+	int close = 0;
 	current = top;
 	if((BUFF = malloc(sizeof(char) * BUFF_LEN)) == NULL){
 		printf("[Fail] malloc.\n");
 		exit(1);
 	}
 	while(C = fgetc(_IN)){
-		putc(C,stdout);
+		printf("\n:C=%c: ",C);
 
 		if(C == '['){
 			DLM_ACC--;
@@ -118,32 +121,46 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 		}
 		if(C == ')'){
 			LIST_LV--;
+			close = 1;
 		}
 	
 		if(C == '('){
 			//confirm current
 			BUFF[buf_ptr] = '\0';
 			strcpy((*current).Head,BUFF);
+			printf(":B=%s:",(*current).Head);
 			//alloc next
-			current = Function_Create_Next(current);
-			init_List_zero(current);
+			next = Function_Create_Node();
+			Function_Add_NextRtd((*current).Parent,current,next);
+			current = next;
 			//clear BUFF
 			BUFF[0] = '\0';
 			buf_ptr = 0;
+			close = 0;
 		}else if(C == ',' && DLM_ACC > 0){
 			//confirm current
 			BUFF[buf_ptr] = '\0';
 			strcpy((*current).Head,BUFF);
+			printf(":B=%s:",(*current).Head);
 			//alloc arg
-			current = Function_Create_Arg(current);
-			init_List_zero(current);
+			arg = Function_Create_Node();
+			if((*current).ACself != 0){
+				Function_Add_ArgRtd((*current).Parent,(*current).Parent,arg);
+			}else{
+				Function_Add_ArgRtd((*current).Parent,current,arg);
+			}
+			current = arg;
 			//clear BUFF
 			BUFF[0] = '\0';
 			buf_ptr = 0;
+			close = 0;
 		}else if(C == ')'){
 			//confirm current
 			BUFF[buf_ptr] = '\0';
 			strcpy((*current).Head,BUFF);
+			printf(":B=%s:",(*current).Head);
+			printf(":Cp=%ld:",current);
+			printf(":Pp=%ld:",(*current).Parent);
 			//clear BUFF
 			BUFF[0] = '\0';
 			buf_ptr = 0;
@@ -155,9 +172,14 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 			//clear BUFF
 			BUFF[0] = '\0';
 			buf_ptr = 0;
+			//print tree
+			printf("\n-----\n");
+			ExFunction_Recursive_Tree_Print(top,(struct List *(*)())Function_Print_Status,1,NULL);
+			printf("\n-----\n");
 			//clear tree
-			Function_Free_List(top,0);
+			//Function_Free_List(top,0);
 			init_List_zero(top);
+			close = 0;
 		}else if(C == EOF){
 			return(C);
 		}else{
@@ -165,6 +187,7 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 			BUFF[buf_ptr] = C;
 			BUFF[buf_ptr+1] = '\0';
 			buf_ptr++;
+			close = 0;
 		}
 	}
 	return(C);
