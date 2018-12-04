@@ -164,11 +164,13 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 			printf(":Cl=%d:",close);
 			//alloc arg
 			arg = Function_Create_Node();
+			//if(close == 0){
 			if((*current).ACself == 0){
 				Function_Add_ArgRtd((*current).Parent,current,arg);
 			}else{
 				Function_Add_ArgRtd((*(*current).Parent).Parent,(*current).Parent,arg);
 			}
+			//}
 			current = arg;
 			//clear BUFF
 			BUFF[0] = '\0';
