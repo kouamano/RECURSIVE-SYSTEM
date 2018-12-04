@@ -8,7 +8,10 @@
 struct Seq {
 	int LVself;
 	int ACself;
+	int conj;
 	int open;
+	char *Head;
 	int close;
 	struct Seq *Next;
+	struct Seq *Parent;
 };
