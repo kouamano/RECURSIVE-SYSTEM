@@ -140,10 +140,9 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 			//alloc next
 			next = Function_Create_Node();
 			if((*current).NCself == 0 || close == 0){
-			//if((*current).NCself == 0){
 				Function_Add_NextRtd((*current).Parent,current,next);
 			}else{
-				Function_Add_NextRtd((*current).Parent,(*current).Parent,next);
+				Function_Add_NextRtd((*(*current).Parent).Parent,(*current).Parent,next);
 			}
 			current = next;
 			//clear BUFF
@@ -165,16 +164,10 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 			printf(":Cl=%d:",close);
 			//alloc arg
 			arg = Function_Create_Node();
-			if((*current).ACself != 0){
-				Function_Add_ArgRtd((*current).Parent,(*current).Parent,arg);
-			}else{
-				//printf("===%d===",(*current).ACself);
-				//for(i=0;i<close;i++){
-					//if((*current).NCself != 0){
-						//current = (*current).Parent;
-					//}
-				//}
+			if((*current).ACself == 0){
 				Function_Add_ArgRtd((*current).Parent,current,arg);
+			}else{
+				Function_Add_ArgRtd((*(*current).Parent).Parent,(*current).Parent,arg);
 			}
 			current = arg;
 			//clear BUFF
