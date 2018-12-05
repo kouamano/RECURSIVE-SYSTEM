@@ -88,6 +88,7 @@ void check_options(struct options *opt){
 // function definition
 int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 	int i;
+	int itrs;
 	int C;
 	int DLM_ACC = 1;
 	int LIST_LV = 0;
@@ -166,9 +167,12 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 			arg = Function_Create_Node();
 			//if(close == 0){
 			if((*current).ACself == 0){
-				Function_Add_ArgRtd((*current).Parent,current,arg);
+				parent = (*current).Parent;
+				Function_Add_ArgRtd(parent,current,arg);
 			}else{
-				Function_Add_ArgRtd((*(*current).Parent).Parent,(*current).Parent,arg);
+				current = (*current).Parent;
+				parent = (*current).Parent;
+				Function_Add_ArgRtd(parent,current,arg);
 			}
 			//}
 			current = arg;
