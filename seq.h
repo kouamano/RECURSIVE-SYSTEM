@@ -49,7 +49,7 @@ struct Seq *Function_Search_Parent(struct Seq *seq){
 	if(parent_lv < 1){
 		return(parent);
 	}
-	while((*(*parent).Prev).LVself != parent_lv){
+	while((*parent).LVself != parent_lv){
 		parent = (*parent).Prev;
 	}
 	return(parent);
