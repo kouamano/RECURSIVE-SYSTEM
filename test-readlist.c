@@ -131,7 +131,6 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 			if(strlen(BUFF) > 0 && close == 0){
 				strcpy((*current).Head,BUFF);
 			}
-			if(WAR > 0){
 			printf(":B=%s:",(*current).Head);
 			printf(":Pp=%ld:",(*current).Parent);
 			printf(":Cp=%ld:",current);
@@ -139,7 +138,6 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 			printf(":NCs=%d:",(*current).NCself);
 			printf(":ACs=%d:",(*current).ACself);
 			printf(":Cl=%d:",close);
-			}
 			//alloc next
 			next = Function_Create_Node();
 			//create next
@@ -210,6 +208,7 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 			printf("\n-----\n");
 			ExFunction_Recursive_Tree_Print(top,(struct List *(*)())Function_Print_Status,0,NULL,1);
 			printf("\n#T "); ExFunction_Recursive_Tree_Print(top,(struct List *(*)())Function_Print_Status,0,NULL,2);
+			printf("\n#S "); ExFunction_Recursive_S_Print(top,(struct List *(*)())Function_Print_Status,0,NULL,2);
 			ExFunction_Recursive_Tree_Print(top,(struct List *(*)())Function_Print_Status,1,NULL,3);
 			printf("\n-----\n");
 			//clear tree
