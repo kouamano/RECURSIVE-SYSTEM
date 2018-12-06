@@ -128,7 +128,7 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 		if(C == '('){
 			//confirm current
 			BUFF[buf_ptr] = '\0';
-			if(strlen(BUFF) > 0){
+			if(strlen(BUFF) > 0 && close == 0){
 				strcpy((*current).Head,BUFF);
 			}
 			printf(":B=%s:",(*current).Head);
@@ -140,11 +140,7 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 			printf(":Cl=%d:",close);
 			//alloc next
 			next = Function_Create_Node();
-			if((*current).NCself == 0 || close == 0){
-				Function_Add_NextRtd((*current).Parent,current,next);
-			}else{
-				Function_Add_NextRtd((*(*current).Parent).Parent,(*current).Parent,next);
-			}
+			Function_Add_NextRtd((*current).Parent,current,next);
 			current = next;
 			//clear BUFF
 			BUFF[0] = '\0';
@@ -165,16 +161,12 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 			printf(":Cl=%d:",close);
 			//alloc arg
 			arg = Function_Create_Node();
-			//if(close == 0){
 			if((*current).ACself == 0){
-				parent = (*current).Parent;
-				Function_Add_ArgRtd(parent,current,arg);
+				Function_Add_ArgRtd((*current).Parent,current,arg);
 			}else{
 				current = (*current).Parent;
-				parent = (*current).Parent;
-				Function_Add_ArgRtd(parent,current,arg);
+				Function_Add_ArgRtd((*current).Parent,current,arg);
 			}
-			//}
 			current = arg;
 			//clear BUFF
 			BUFF[0] = '\0';
@@ -197,6 +189,9 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 			BUFF[0] = '\0';
 			buf_ptr = 0;
 			//close list
+			if((*current).ACself > 0){
+				current = (*current).Parent;
+			}
 			if((*current).Parent != NULL){
 				current = (*current).Parent;
 			}
