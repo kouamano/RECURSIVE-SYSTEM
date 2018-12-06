@@ -464,7 +464,11 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 
 	//COMM
 	if((*list).NCself>0 || (*list).ACself>0){
-		printf(",");
+		if(strlen((*list).Head)==0 && (*list).NCself>0){
+			;
+		}else{
+			printf(",");
+		}
 	}
 
 	//BRK
