@@ -9,7 +9,7 @@
 #ifndef min
 #define min(a,b) (((a)<(b))?(a):(b))
 #endif
-#include "list.h"
+#include "../RECURSIVE-SYSTEM/list.h"
 
 struct options {
 	int help;
@@ -209,6 +209,9 @@ int relay_CHAR(FILE *_IN, struct List *top, int WAR){
 			}
 			close++;
 		}else if(C == '\n'){
+			//print BUFF
+			BUFF[buf_ptr] = '\0';
+			printf("%s",BUFF);
 			//clear BUFF
 			BUFF[0] = '\0';
 			buf_ptr = 0;
@@ -284,7 +287,6 @@ int main(int argc, char **argv){
 	}
 	init_List_zero(top);
 	while(c != EOF){
-	//while((c = fgetc(IN)) != EOF){
 		c = relay_CHAR(IN,top,(*opt).war);
 	}
 
