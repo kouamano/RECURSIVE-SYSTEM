@@ -7,7 +7,7 @@
 
 struct Tree {
 	int LVself;
-	int ACself;
+	int NCself;
 	int Conj;
 	int Bopen;
 	char *Head;
@@ -23,7 +23,31 @@ struct Tree *Create_Tree(int H_size){
 		exit(1);
 	}
 	(*tree).LVself=0;
-	(*tree).ACself=0;
+	(*tree).NCself=0;
 	(*tree).Conj=0;
 	(*tree).Bopen=0;
+	(*tree).Head = malloc(sizeof(char) * H_size);
+	if((*tree).Head == NULL){
+		fprintf(stderr,"[Fail] malloc.\n");
+		exit(1);
+	}
+	(*tree).Bclose=0;
+	(*tree).NextCount=0;
+	(*tree).Next = NULL;
+	return(tree);
 }
+
+struct Tree *Add_Next(struct Tree *current, struct Tree *next){
+	(*current).Next = realloc((*current).Next,(size_t)sizeof(struct Tree) * (*current).NextCount);
+	if((*current).Next == NULL){
+		fprintf(stderr,"[Fail] malloc.\n");
+	}
+	(*current).Next[(*current).NextCount] = next;
+	(*current).Next[(*current).NextCount]->LVself = (*current).LVself+1;
+	(*current).Next[(*current).NextCount]->NCself = (*current).NextCount+1;
+	(*current).NextCount++;
+	return(next);
+}
+
+
+
