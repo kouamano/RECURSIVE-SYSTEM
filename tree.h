@@ -6,13 +6,12 @@
 #endif
 
 struct Tree {
-	char *Head;
 	int LVself;
-	int NCself;
 	int ACself;
-	int open;
-	int close;
+	int Conj;
+	int Bopen;
+	char *Head;
+	int Bclose;
 	int NextCount;
-	int ArgCount;
 	struct Tree **Next;
 };
