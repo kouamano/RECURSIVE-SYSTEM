@@ -33,12 +33,16 @@ struct Tree *Create_Node(int H_size){
 	}
 	(*tree).Bclose=0;
 	(*tree).NextCount=0;
-	(*tree).Next = NULL;
+	(*tree).Next = malloc((size_t)sizeof(struct Tree *) * 1);
+	if((*tree).Next == NULL){
+		fprintf(stderr,"[Fail] malloc.\n");
+		exit(1);
+	}
 	return(tree);
 }
 
 struct Tree *Add_Next(struct Tree *current, struct Tree *next){
-	(*current).Next = realloc((*current).Next,(size_t)sizeof(struct Tree) * (*current).NextCount+1);
+	(*current).Next = realloc((*current).Next,(size_t)sizeof(struct Tree *) * (*current).NextCount+1);
 	if((*current).Next == NULL){
 		fprintf(stderr,"[Fail] malloc.\n");
 	}
