@@ -16,7 +16,7 @@ struct Tree {
 	struct Tree **Next;
 };
 
-struct Tree *Create_Tree(int H_size){
+struct Tree *Create_Node(int H_size){
 	struct Tree *tree;
 	if((tree = malloc(sizeof(struct Tree) * 1)) == NULL){
 		fprintf(stderr,"[Fail] malloc.\n");
@@ -38,7 +38,7 @@ struct Tree *Create_Tree(int H_size){
 }
 
 struct Tree *Add_Next(struct Tree *current, struct Tree *next){
-	(*current).Next = realloc((*current).Next,(size_t)sizeof(struct Tree) * (*current).NextCount);
+	(*current).Next = realloc((*current).Next,(size_t)sizeof(struct Tree) * (*current).NextCount+1);
 	if((*current).Next == NULL){
 		fprintf(stderr,"[Fail] malloc.\n");
 	}
