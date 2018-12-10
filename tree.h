@@ -53,6 +53,7 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 	(*parent).Next[(*parent).NextCount] = next;
 	(*parent).Next[(*parent).NextCount]->LVself = (*parent).LVself+1;
 	(*parent).Next[(*parent).NextCount]->NCself = (*parent).NextCount+1;
+	(*parent).Next[(*parent).NextCount]->Parent = parent;
 	(*parent).NextCount++;
 	return(next);
 }
