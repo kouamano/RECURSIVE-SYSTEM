@@ -5,6 +5,7 @@
 #define BUFF_LEN 1024
 #endif
 
+//structure
 struct Tree {
 	int LVself;
 	int NCself;
@@ -14,8 +15,11 @@ struct Tree {
 	int Bclose;
 	int NextCount;
 	struct Tree **Next;
+	struct Tree *Parent;
 };
 
+//function
+////restructure function
 struct Tree *Create_Node(int H_size){
 	struct Tree *tree;
 	if((tree = malloc(sizeof(struct Tree) * 1)) == NULL){
@@ -38,20 +42,20 @@ struct Tree *Create_Node(int H_size){
 		fprintf(stderr,"[Fail] malloc.\n");
 		exit(1);
 	}
+	(*tree).Parent=NULL;
 	return(tree);
 }
-
-struct Tree *Add_Next(struct Tree *current, struct Tree *next){
-	(*current).Next = realloc((*current).Next,(size_t)sizeof(struct Tree *) * (*current).NextCount+1);
-	if((*current).Next == NULL){
+struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
+	(*parent).Next = realloc((*parent).Next,(size_t)sizeof(struct Tree *) * (*parent).NextCount+1);
+	if((*parent).Next == NULL){
 		fprintf(stderr,"[Fail] malloc.\n");
 	}
-	(*current).Next[(*current).NextCount] = next;
-	(*current).Next[(*current).NextCount]->LVself = (*current).LVself+1;
-	(*current).Next[(*current).NextCount]->NCself = (*current).NextCount+1;
-	(*current).NextCount++;
+	(*parent).Next[(*parent).NextCount] = next;
+	(*parent).Next[(*parent).NextCount]->LVself = (*parent).LVself+1;
+	(*parent).Next[(*parent).NextCount]->NCself = (*parent).NextCount+1;
+	(*parent).Next[(*parent).NextCount]->Parent = (*parent).Parent;
+	(*parent).NextCount++;
 	return(next);
 }
-
 
 
