@@ -84,7 +84,7 @@ void check_options(struct options *opt){
 	printf(" opt.war:%d:\n",(*opt).war);
 }
 
-// function definition
+/* function definition */
 int relay_CHAR(FILE *_IN, struct Tree *top, int WAR){
 	int i;
 	int itrs;
@@ -107,11 +107,11 @@ int relay_CHAR(FILE *_IN, struct Tree *top, int WAR){
 		exit(1);
 	}
 	while(C = fgetc(_IN)){
-		//check chars
+		/* check chars */
 		if(WAR > 0){
 		printf("\n:C=%c: ",C);
 		}
-		//set conditions
+		/* set conditions */
 		if(C == '['){
 			DLM_ACC--;
 		}
@@ -127,65 +127,66 @@ int relay_CHAR(FILE *_IN, struct Tree *top, int WAR){
 		if(C == ')'){
 			LIST_LV--;
 		}
-		//function code
+		/* function code */
 		if(C == '('){
-			//confirm current
+			/* confirm current */
 			BUFF[buf_ptr] = '\0';
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
 			}
 			(*current).Bclose = 0;
-			//create next
+			/* create next */
 			next = Create_Node(BUFF_LEN);
-			//add next to current //current.NextCount //next.LVself, NCself
+			/* add next to current / current.NextCount / next.LVself, NCself */
 			Add_Next(current,next);
-			//set properties of next
+			/* set properties of next */
 			(*next).Bclose = 0;
 			(*next).Bopen = 1;
 			(*next).Conj = 0;
-			//clear BUFF
+			/* clear BUFF */
 			BUFF[0] = '\0';
 			buf_ptr = 0;
-			//set node_parent
+			/* set node_parent */
 			parent = current;
-			//set node_current
+			/* set node_current */
 			current = next;
 			close = 0;
 		}else if(C == ',' && DLM_ACC > 0){
-			//confirm current
+			/* confirm current */
 			BUFF[buf_ptr] = '\0';
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
 			}
-			//create next
+			(*current).Bclose = 0;
+			/* create next */
 			next = Create_Node(BUFF_LEN);
-			//add next
+			/* add next */
 			Add_Next(parent,next);
-			//set properties of next
+			/* set properties of next */
 			(*next).Bclose = 0;
 			(*next).Bopen = 0;
 			(*next).Conj = 1;
-			//clear BUFF
+			/* clear BUFF */
 			BUFF[0] = '\0';
 			buf_ptr = 0;
-			//set node_parent
-			//parent = parent
-			//set node_current
+			/* set node_parent */
+			// parent = parent;
+			/* set node_current */
 			current = next;
 			close = 0;
 		}else if(C == ')'){
-			/*Under construction*/
-			//confirm current
+			/* confirm current */
 			BUFF[buf_ptr] = '\0';
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
 			}
 			(*current).Bclose = 1;
-			//clear BUFF
+			/* clear BUFF */
 			BUFF[0] = '\0';
 			buf_ptr = 0;
-			//set node_parent
-			//set node_current
+			/* set node_parent */
+			// parent = parent;
+			/* set node_current */
 			if((*current).Parent != NULL){
 				current = (*current).Parent;
 			}
@@ -197,10 +198,12 @@ int relay_CHAR(FILE *_IN, struct Tree *top, int WAR){
 			//clear BUFF
 			BUFF[0] = '\0';
 			buf_ptr = 0;
-			//final putput
+			//final output
+
 			//clear tree
 			close = 0;
 		}else if(C == EOF){
+			close = 0;
 			return(C);
 		}else{
 			//buffering
