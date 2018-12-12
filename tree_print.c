@@ -137,14 +137,12 @@ int relay_CHAR(FILE *_IN, struct Tree *top, int WAR){
 			(*current).Bclose = 0;
 			//create next
 			next = Create_Node(BUFF_LEN);
+			//add next to current //current.NextCount //next.LVself, NCself
+			Add_Next(current,next);
 			//set properties of next
-			(*next).Parent = current;
-			(*next).NextCount = 0;
 			(*next).Bclose = 0;
 			(*next).Bopen = 1;
 			(*next).Conj = 0;
-			//add next to current //current.NextCount //next.LVself, NCself
-			Add_Next(current,next);
 			//clear BUFF
 			BUFF[0] = '\0';
 			buf_ptr = 0;
@@ -154,22 +152,29 @@ int relay_CHAR(FILE *_IN, struct Tree *top, int WAR){
 			current = next;
 			close = 0;
 		}else if(C == ',' && DLM_ACC > 0){
-			/*Under construction*/
 			//confirm current
 			BUFF[buf_ptr] = '\0';
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
 			}
 			//create next
+			next = Create_Node(BUFF_LEN);
+			//add next
+			Add_Next(parent,next);
 			//set properties of next
-			//add next to current
+			(*next).Bclose = 0;
+			(*next).Bopen = 0;
+			(*next).Conj = 1;
 			//clear BUFF
 			BUFF[0] = '\0';
 			buf_ptr = 0;
 			//set node_parent
+			//parent = parent
 			//set node_current
+			current = next;
 			close = 0;
 		}else if(C == ')'){
+			/*Under construction*/
 			//confirm current
 			BUFF[buf_ptr] = '\0';
 			if(close == 0){
