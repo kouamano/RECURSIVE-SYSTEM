@@ -135,9 +135,10 @@ int relay_CHAR(FILE *_IN, struct Tree *top, int WAR){
 				strcpy((*current).Head,BUFF);
 			}
 			(*current).Bclose = 0;
+			/* check */
 			if(WAR > 0){
-				printf(":C=%ld:",current);
-				printf(":current=%s:",(*current).Head);
+			printf(":C=%ld:",current);
+			printf(":current=%s:",(*current).Head);
 			}
 			/* create next */
 			next = Create_Node(BUFF_LEN);
@@ -162,6 +163,11 @@ int relay_CHAR(FILE *_IN, struct Tree *top, int WAR){
 				strcpy((*current).Head,BUFF);
 			}
 			(*current).Bclose = 0;
+			/* check */
+			if(WAR > 0){
+			printf(":C=%ld:",current);
+			printf(":current=%s:",(*current).Head);
+			}
 			/* create next */
 			next = Create_Node(BUFF_LEN);
 			/* add next */
@@ -185,6 +191,11 @@ int relay_CHAR(FILE *_IN, struct Tree *top, int WAR){
 				strcpy((*current).Head,BUFF);
 			}
 			(*current).Bclose = 1;
+			/* check */
+			if(WAR > 0){
+			printf(":C=%ld:",current);
+			printf(":current=%s:",(*current).Head);
+			}
 			/* clear BUFF */
 			BUFF[0] = '\0';
 			buf_ptr = 0;
