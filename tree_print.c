@@ -135,6 +135,10 @@ int relay_CHAR(FILE *_IN, struct Tree *top, int WAR){
 				strcpy((*current).Head,BUFF);
 			}
 			(*current).Bclose = 0;
+			if(WAR > 0){
+				printf(":C=%ld:",current);
+				printf(":current=%s:",(*current).Head);
+			}
 			/* create next */
 			next = Create_Node(BUFF_LEN);
 			/* add next to current / current.NextCount / next.LVself, NCself */
