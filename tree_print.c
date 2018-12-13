@@ -137,8 +137,12 @@ int relay_CHAR(FILE *_IN, struct Tree *top, int WAR){
 			(*current).Bclose = 0;
 			/* check */
 			if(WAR > 0){
-			printf(":C=%ld:",current);
+			printf(":Cp=%ld:",current);
+			printf(":O=%d:",(*current).Bopen);
 			printf(":current=%s:",(*current).Head);
+			printf(":LV=%d:",(*current).LVself);
+			printf(":NCs=%d:",(*current).NCself);
+			printf(":NC=%d:",(*current).NextCount);
 			}
 			/* create next */
 			next = Create_Node(BUFF_LEN);
@@ -165,8 +169,12 @@ int relay_CHAR(FILE *_IN, struct Tree *top, int WAR){
 			(*current).Bclose = 0;
 			/* check */
 			if(WAR > 0){
-			printf(":C=%ld:",current);
+			printf(":Cp=%ld:",current);
+			printf(":O=%d:",(*current).Bopen);
 			printf(":current=%s:",(*current).Head);
+			printf(":LV=%d:",(*current).LVself);
+			printf(":NCs=%d:",(*current).NCself);
+			printf(":NC=%d:",(*current).NextCount);
 			}
 			/* create next */
 			next = Create_Node(BUFF_LEN);
@@ -193,8 +201,12 @@ int relay_CHAR(FILE *_IN, struct Tree *top, int WAR){
 			(*current).Bclose = 1;
 			/* check */
 			if(WAR > 0){
-			printf(":C=%ld:",current);
+			printf(":Cp=%ld:",current);
+			printf(":O=%d:",(*current).Bopen);
 			printf(":current=%s:",(*current).Head);
+			printf(":LV=%d:",(*current).LVself);
+			printf(":NCs=%d:",(*current).NCself);
+			printf(":NC=%d:",(*current).NextCount);
 			}
 			/* clear BUFF */
 			BUFF[0] = '\0';
