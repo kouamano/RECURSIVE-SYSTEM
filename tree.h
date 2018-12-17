@@ -57,5 +57,18 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 	(*parent).NextCount++;
 	return(next);
 }
-
+////recursive finction
+struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *) ){
+	int i;
+	struct Tree *out = tree;
+	if(tree == NULL || e_function == NULL){
+		fprintf(stderr,"NULL.\n");
+		exit(1);
+	}
+	(*e_function)(tree);
+	for(i=0;i<(*tree).NextCount;i++){
+		ExFunction_Recursive((*tree).Next[i],e_function);
+	}
+	return(out);
+}
 
