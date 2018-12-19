@@ -86,6 +86,7 @@ void check_options(struct options *opt){
 
 /* function definition */
 int read_Tree(FILE *_IN, struct Tree *top, int WAR){
+	/* test03.t でBcloseのprintが適正でない*/
 	int i;
 	int itrs;
 	int C;
