@@ -85,7 +85,7 @@ void check_options(struct options *opt){
 }
 
 /* function definition */
-int relay_CHAR(FILE *_IN, struct Tree *top, int WAR){
+int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 	int i;
 	int itrs;
 	int C;
@@ -292,13 +292,17 @@ int main(int argc, char **argv){
 	struct Tree *top;
 	top = Create_Node(BUFF_LEN);
 	while(c != EOF){
-		c = relay_CHAR(IN,top,(*opt).war);
+		c = read_Tree(IN,top,(*opt).war);
 	}
 
 	// close file
 	if(is_open > 0){
 		fclose(IN);
 	}
+
+	//function execution
+	if((*opt).war > 0){ printf("\n"); }
+	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head); printf("\n");
 
 	// finish
 	return(0);
