@@ -59,10 +59,16 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 }
 ////print function
 void Function_Print_Head(struct Tree *tree){
-	if((*tree).Conj){ printf(","); }
-	if((*tree).Bopen){ printf("("); }
+	if((*tree).Conj){
+		printf(",");
+	}
+	if((*tree).Bopen){
+		printf("(");
+	}
 	printf("%s",(*tree).Head);
-	if((*tree).Bclose){ printf(")"); }
+	if((*tree).Bclose){
+		printf(")");
+	}
 }
 ////recursive function
 struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *) ){
