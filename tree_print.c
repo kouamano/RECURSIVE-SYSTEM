@@ -160,7 +160,7 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 			BUFF[0] = '\0';
 			buf_ptr = 0;
 			/* set node_parent */
-			parent = current;
+			//parent = current;
 			/* set node_current */
 			current = next;
 			close = 0;
@@ -186,7 +186,6 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 			/* create next */
 			next = Create_Node(BUFF_LEN);
 			/* add next */
-			//Add_Next(parent,next);
 			Add_Next((*current).Parent,next);
 			/* set properties of next */
 			(*next).Bclose = 0;
@@ -308,8 +307,8 @@ int main(int argc, char **argv){
 
 	//function execution
 	if((*opt).war > 0){ printf("\n"); }
-	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head); printf("\n");
 	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status); printf("\n");
+	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head); printf("\n");
 
 	// finish
 	return(0);
