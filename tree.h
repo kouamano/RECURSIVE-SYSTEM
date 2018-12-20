@@ -70,7 +70,8 @@ void Function_Print_Head(struct Tree *tree){
 		printf("(");
 	}
 	printf("%s",(*tree).Head);
-	if((*tree).Bclose > 0){
+	//if((*tree).Bclose > 0 && (*tree).NextCount == 0){
+	if((*tree).Bclose > 0 && (*tree).NextCount == 0){
 		for(i=0;i<((*tree).Bclose);i++){
 			printf(")");
 		}
@@ -90,4 +91,21 @@ struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)
 	}
 	return(out);
 }
-
+//complex function
+////recursive print function
+struct Tree *ExFunction_RecursivePrint(struct Tree *tree){
+	//Under construction
+	int i;
+	struct Tree *out = tree;	//temporaly 
+	void func(struct Tree *);
+	if(tree == NULL){
+		fprintf(stderr,"NULL.\n");
+		exit(1);
+	}
+	//function
+	func(tree);
+	for(i=0;i<(*tree).NextCount;i++){
+		ExFunction_RecursivePrint((*tree).Next[i]);
+	}
+	return(out);
+}
