@@ -63,7 +63,7 @@ void Function_Print_Status(struct Tree *tree){
 ////print-head function
 int Function_Print_Head(struct Tree *tree){
 	int i;
-	not_print_Bclose = 0;
+	int not_print_Bclose = 0;
 	if((*tree).Conj){
 		printf(",");
 	}
