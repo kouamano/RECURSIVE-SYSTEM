@@ -205,8 +205,10 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
 				(*current).Bclose = 1;
+				//(*current).Bclose++;
+			}else{
+				//(*current).Bclose++;
 			}
-			//(*current).Bclose = 1;
 			/* check */
 			if(WAR > 0){
 			printf(":Pp=%ld:",(*current).Parent);
