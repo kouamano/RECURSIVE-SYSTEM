@@ -59,6 +59,7 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 }
 struct Tree *Add_Bclose_To_Next(struct Tree *tree){
 	//Under construction
+	//Bcloseの回数を、Closeしていない親からCloseしている子に加算する
 }
 ////status-check function
 void Function_Print_Status(struct Tree *tree){
