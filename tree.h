@@ -57,7 +57,10 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 	(*parent).NextCount++;
 	return(next);
 }
-////print function
+////status-check function
+void Function_Print_Status(struct Tree *tree){
+}
+////print-head function
 void Function_Print_Head(struct Tree *tree){
 	int i;
 	if((*tree).Conj){
