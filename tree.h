@@ -57,6 +57,8 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 	(*parent).NextCount++;
 	return(next);
 }
+struct Tree *Add_Bclose_To_Next(struct Tree *tree){
+}
 ////status-check function
 void Function_Print_Status(struct Tree *tree){
 	struct Tree *parent = (*tree).Parent;
