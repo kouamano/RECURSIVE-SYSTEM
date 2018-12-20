@@ -59,13 +59,20 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 }
 ////status-check function
 void Function_Print_Status(struct Tree *tree){
-	printf(":LVs=%d:",(*tree).LVself);
+	struct Tree *parent = (*tree).Parent;
+	printf("  :LVs=%d:",(*tree).LVself);
 	printf(":NCs=%d:",(*tree).NCself);
 	printf(":Cj=%d:",(*tree).Conj);
 	printf(":O=%d:",(*tree).Bopen);
 	printf(":H=%s:",(*tree).Head);
 	printf(":C=%d:",(*tree).Bclose);
 	printf(":Nc=%d:",(*tree).NextCount);
+	if(parent != NULL){
+		printf(":Pa=%s:",(*parent).Head);
+	}else{
+		printf(":Pa=%s:","");
+	}
+	printf("\n");
 }
 ////print-head function
 int Function_Print_Head(struct Tree *tree){
@@ -108,13 +115,13 @@ struct Tree *ExFunction_RecursivePrint(struct Tree *tree){
 	//Under construction
 	int i;
 	struct Tree *out = tree;	//temporaly 
-	void func(struct Tree *);
+	//void func(struct Tree *);
 	if(tree == NULL){
 		fprintf(stderr,"NULL.\n");
 		exit(1);
 	}
 	//function
-	func(tree);
+	//func(tree);
 	for(i=0;i<(*tree).NextCount;i++){
 		ExFunction_RecursivePrint((*tree).Next[i]);
 	}
