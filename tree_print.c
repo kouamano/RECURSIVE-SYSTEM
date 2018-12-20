@@ -186,7 +186,8 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 			/* create next */
 			next = Create_Node(BUFF_LEN);
 			/* add next */
-			Add_Next(parent,next);
+			//Add_Next(parent,next);
+			Add_Next((*current).Parent,next);
 			/* set properties of next */
 			(*next).Bclose = 0;
 			(*next).Bopen = 0;
@@ -204,12 +205,12 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 			BUFF[buf_ptr] = '\0';
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
-				//(*current).Bclose = 1;
+				(*current).Bclose = 1;
 				//(*current).Bclose++;
 			}else{
 				//(*current).Bclose++;
 			}
-			(*current).Bclose = 1;
+			//(*current).Bclose = 1;
 			/* check */
 			if(WAR > 0){
 			printf(":Pp=%ld:",(*current).Parent);
@@ -308,6 +309,7 @@ int main(int argc, char **argv){
 	//function execution
 	if((*opt).war > 0){ printf("\n"); }
 	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head); printf("\n");
+	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status); printf("\n");
 
 	// finish
 	return(0);
