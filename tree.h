@@ -61,8 +61,9 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 void Function_Print_Status(struct Tree *tree){
 }
 ////print-head function
-void Function_Print_Head(struct Tree *tree){
+int Function_Print_Head(struct Tree *tree){
 	int i;
+	not_print_Bclose = 0;
 	if((*tree).Conj){
 		printf(",");
 	}
@@ -75,7 +76,10 @@ void Function_Print_Head(struct Tree *tree){
 		for(i=0;i<((*tree).Bclose);i++){
 			printf(")");
 		}
+	}else if((*tree).Bclose > 0){
+		not_print_Bclose = not_print_Bclose + (*tree).Bclose;
 	}
+	return(not_print_Bclose);
 }
 ////recursive function
 struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *) ){
