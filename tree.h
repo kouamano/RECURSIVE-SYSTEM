@@ -59,6 +59,13 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 }
 ////status-check function
 void Function_Print_Status(struct Tree *tree){
+	printf(":LVs=%d:",(*tree).LVself);
+	printf(":NCs=%d:",(*tree).NCself);
+	printf(":Cj=%d:",(*tree).Conj);
+	printf(":O=%d:",(*tree).Bopen);
+	printf(":H=%s:",(*tree).Head);
+	printf(":C=%d:",(*tree).Bclose);
+	printf(":Nc=%d:",(*tree).NextCount);
 }
 ////print-head function
 int Function_Print_Head(struct Tree *tree){
