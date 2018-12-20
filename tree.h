@@ -58,6 +58,7 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 	return(next);
 }
 struct Tree *Add_Bclose_To_Next(struct Tree *tree){
+	//Under construction
 }
 ////status-check function
 void Function_Print_Status(struct Tree *tree){
@@ -115,17 +116,5 @@ struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)
 ////recursive print function
 struct Tree *ExFunction_RecursivePrint(struct Tree *tree){
 	//Under construction
-	int i;
-	struct Tree *out = tree;	//temporaly 
-	//void func(struct Tree *);
-	if(tree == NULL){
-		fprintf(stderr,"NULL.\n");
-		exit(1);
-	}
-	//function
-	//func(tree);
-	for(i=0;i<(*tree).NextCount;i++){
-		ExFunction_RecursivePrint((*tree).Next[i]);
-	}
 	return(out);
 }
