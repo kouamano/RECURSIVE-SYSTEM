@@ -105,6 +105,14 @@ int Function_Print_Head(struct Tree *tree){
 	}
 	return(not_print_Bclose);
 }
+////print indent head function
+int Function_Print_HeadIndent(struct Tree *tree){
+	int i;
+	for(i=0;i<(*tree).LVself;i++){
+		printf("  ");
+	}
+	printf("%s\n",(*tree).Head);
+}
 ////recursive meta-function
 struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *) ){
 	int i;

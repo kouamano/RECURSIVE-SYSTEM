@@ -135,6 +135,7 @@ int main(int argc, char **argv){
 	//function execution
 	if((*opt).war > 0){ printf("\n"); }
 	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status); printf("\n");
+	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadIndent); printf("\n");
 	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head); printf("\n");
 	Function_RecursivePrint_Head(top); printf("\n");
 
