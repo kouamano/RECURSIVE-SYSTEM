@@ -381,7 +381,10 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 		}else if(C == '\n'){
 			/* print BUFF */
 			BUFF[buf_ptr] = '\0';
-			printf("%s",BUFF);
+			//printf("%s",BUFF);
+			if(close == 0){
+				strcpy((*current).Head,BUFF);
+			}
 			/* clear BUFF */
 			BUFF[0] = '\0';
 			buf_ptr = 0;
