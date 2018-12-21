@@ -149,21 +149,21 @@ int Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	}
 	/* print "," for Conj */
 	if((*tree).Conj == 1){
-		printf(",");
+		//printf(",");
 	}
 	/* print Bopen */
 	for(i=0;i<countCZ;i++){
-		printf("(");
+		//printf("(");
 	}
 	/* print Head */
 	printf("%s",(*tree).Head);
 	/* print Bclose */
 	for(i=0;i<(*tree).Bclose;i++){
-		printf(")");
+		//printf(")");
 	}
 	/* print "," for Next */
 	if((*tree).NextCount > 0 && strlen((*tree).Next[(*tree).NextCount-1]->Head) > 0){
-		printf(",");
+		//printf(",");
 	}
 	printf("  :LV=%d:",(*tree).LVself);
 	printf(":NCs=%d:",(*tree).NCself);
