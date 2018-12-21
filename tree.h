@@ -164,7 +164,9 @@ int Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	if((*tree).NextCount > 0){
 		printf(",");
 	}
-	printf("  :CZ=%d:",countCZ);
+	printf("  :LV=%d:",(*tree).LVself);
+	printf(":NCs=%d:",(*tree).NCself);
+	printf(":CZ=%d:",countCZ);
 	printf(":NC=%d:",(*tree).NextCount);
 	printf(":Cj=%d:",(*tree).Conj);
 	printf(":Cl=%d:",(*tree).Bclose);
