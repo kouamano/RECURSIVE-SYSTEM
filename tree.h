@@ -156,7 +156,7 @@ int Function_Print_Head_S(struct Tree *tree){
 		//printf(",");
 	}
 }
-int Function_Print_HeadAndStatus(struct Tree *tree){
+int Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	int i;
 	int countCZ = 0;
 	countCZ = Function_Count_NextConjZero(tree);
