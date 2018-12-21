@@ -133,29 +133,7 @@ int Function_Print_HeadHierarchy(struct Tree *tree){
 
 	printf("%s\n",(*tree).Head);
 }
-int Function_Print_Head_S(struct Tree *tree){
-	int i;
-	int countCZ = 0;
-	countCZ = Function_Count_NextConjZero(tree);
-	/* print "," for Conj */
-	if((*tree).Conj == 1 || (*tree).Bopen > 0){
-		printf(",");
-	}
-	/* print Bopen */
-	for(i=0;i<countCZ;i++){
-		printf("(");
-	}
-	/* print Head */
-	printf("%s",(*tree).Head);
-	/* print Bclose */
-	for(i=0;i<(*tree).Bclose;i++){
-		printf(")");
-	}
-	/* print "," for Next */
-	if((*tree).NextCount > 0){
-		//printf(",");
-	}
-}
+////print indent head function and status
 int Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	int i;
 	int countCZ = 0;
@@ -191,6 +169,30 @@ int Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	printf(":Cj=%d:",(*tree).Conj);
 	printf(":Cl=%d:",(*tree).Bclose);
 	printf("\n");
+}
+////print S-form
+int Function_Print_Head_S(struct Tree *tree){
+	int i;
+	int countCZ = 0;
+	countCZ = Function_Count_NextConjZero(tree);
+	/* print "," for Conj */
+	if((*tree).Conj == 1 || (*tree).Bopen > 0){
+		printf(",");
+	}
+	/* print Bopen */
+	for(i=0;i<countCZ;i++){
+		printf("(");
+	}
+	/* print Head */
+	printf("%s",(*tree).Head);
+	/* print Bclose */
+	for(i=0;i<(*tree).Bclose;i++){
+		printf(")");
+	}
+	/* print "," for Next */
+	if((*tree).NextCount > 0){
+		//printf(",");
+	}
 }
 ////recursive meta-function
 struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *) ){
