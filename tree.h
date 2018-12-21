@@ -171,27 +171,27 @@ void Function_RecursivePrint_Head(struct Tree *tree){
 //import/export 
 ////import function
 int read_Tree(FILE *_IN, struct Tree *top, int WAR){
-	int i;
-	int itrs;
+	//int i;
+	//int itrs;
 	int C;
 	int DLM_ACC = 1;
 	int LIST_LV = 0;
-	int NEXT_COUNT = 0;
+	//int NEXT_COUNT = 0;
 	int ARG_COUNT = 0;
 	char *BUFF;
 	int buf_ptr = 0;
-	struct Tree *parent;
+	//struct Tree *parent;
 	struct Tree *current;
 	struct Tree *next;
 	int close = 0;
-	parent = NULL;
+	//parent = NULL;
 	current = top;
 	next = NULL;
 	if((BUFF = malloc(sizeof(char) * BUFF_LEN)) == NULL){
 		printf("[Fail] malloc.\n");
 		exit(1);
 	}
-	while(C = fgetc(_IN)){
+	while((C = fgetc(_IN))){
 		/* check chars */
 		if(WAR > 0){
 		printf("\n:C=%c: ",C);
@@ -284,7 +284,7 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 			current = next;
 			close = 0;
 		}else if(C == ')'){
-			parent = (*current).Parent;
+			//parent = (*current).Parent;
 			/* confirm current */
 			BUFF[buf_ptr] = '\0';
 			if(close == 0){
