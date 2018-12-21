@@ -133,7 +133,7 @@ int main(int argc, char **argv){
 	}
 
 	//function execution
-	if((*opt).war > 0){ printf("\n"); }
+	if((*opt).war > 0){ printf("\n\n---\n\n"); }
 	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status); printf("\n");
 	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadIndent); printf("\n");
 	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head); printf("\n");
