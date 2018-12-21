@@ -34,7 +34,12 @@ void help(void){
 	printf("  buff : set integer.\n");
 	printf("  in : set *chars (len < 1024).\n");
 	printf("  war : set integer.\n");
-	printf("  x : function symbol, e.g. \"-Fs\" prints S-form.\n");
+	printf("  -F<x> : function symbol, e.g. \"-FS\" prints S-form.\n");
+	printf("    -FT : prints T-form.\n");
+	printf("    -FS : prints S-form.\n");
+	printf("    -Fh : prints hierarchical-form.\n");
+	printf("    -Fst : prints import status.\n");
+	printf("    -Fhst : prints import status with hierarchical-form.\n");
 }
 
 void status(void){
@@ -162,15 +167,12 @@ int main(int argc, char **argv){
 	if((*opt).war > 0){ printf("\n\n---\n\n"); }
 	if((*opt).f_print_status == 1){
 		ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status);
-		printf("\n");
 	}
 	if((*opt).f_print_hierarchy == 1){
 		ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchy);
-		printf("\n");
 	}
 	if((*opt).f_print_hierarchy_status == 1){
 		ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus);
-		printf("\n");
 	}
 	if((*opt).f_print_T){
 		ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head);
