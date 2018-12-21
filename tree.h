@@ -391,6 +391,7 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 
 			/* clear tree */
 			close = 0;
+			return(C);
 		}else if(C == EOF){
 			close = 0;
 			return(C);
