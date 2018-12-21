@@ -111,11 +111,13 @@ int Function_Print_HeadIndent(struct Tree *tree){
 	for(i=0;i<(*tree).LVself;i++){
 		printf("  ");
 	}
-	if((*tree).NextCount == 0){
-		printf("-");
-	}else{
+	if((*tree).Conj == 1 && (*tree).NCself > 1){
 		printf("+");
+	//}else if((*tree).NCself > 1){
+	}else{
+		printf("-");
 	}
+
 	printf("%s\n",(*tree).Head);
 }
 ////recursive meta-function
