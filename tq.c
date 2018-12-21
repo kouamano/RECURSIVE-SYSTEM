@@ -18,11 +18,11 @@ struct options {
 	int buff;
 	int war;
 	char *in;
-	int op_print_t;
-	int op_print_s;
-	int op_print_status;
-	int op_print_Hierarchy;
-	int op_print_Hierarchy_status;
+	int f_print_T;
+	int f_print_S;
+	int f_print_status;
+	int f_print_hierarchy;
+	int f_print_hierarchy_status;
 };
 
 void help(void){
@@ -62,6 +62,11 @@ void init_options(struct options *opt){
 	(*opt).buff = BUFF_LEN;
 	(*opt).in[0] = '\0';
 	(*opt).war = 0;
+	(*opt).f_print_T = 0;
+	(*opt).f_print_S = 0;
+	(*opt).f_print_status = 0;
+	(*opt).f_print_hierarchy = 0;
+	(*opt).f_print_hierarchy_status = 0;
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -79,6 +84,16 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"w=%d",&(*opt).war);
 		}else if(strncmp(optv[i],"in=",3) == 0){
 			sscanf(optv[i],"in=%s",(*opt).in);
+		}else if(strncmp(optv[i],"-FT",3) == 0){
+			(*opt).f_print_T = 1;
+		}else if(strncmp(optv[i],"-Fst",4) == 0){
+			(*opt).f_print_status = 1;
+		}else if(strncmp(optv[i],"-FS",3) == 0){
+			(*opt).f_print_S = 1;
+		}else if(strncmp(optv[i],"-Fhst",4) == 0){
+			(*opt).f_print_hierarchy_status = 1;
+		}else if(strncmp(optv[i],"-Fh",3) == 0){
+			(*opt).f_print_hierarchy = 1;
 		}
 	}
 }
@@ -88,6 +103,11 @@ void check_options(struct options *opt){
 	printf(" opt.buff:%d:\n",(*opt).buff);
 	printf(" opt.in:%s:\n",(*opt).in);
 	printf(" opt.war:%d:\n",(*opt).war);
+	printf(" opt.FT:%d:\n",(*opt).f_print_T);
+	printf(" opt.FS:%d:\n",(*opt).f_print_S);
+	printf(" opt.Fst:%d:\n",(*opt).f_print_status);
+	printf(" opt.Fh:%d:\n",(*opt).f_print_hierarchy);
+	printf(" opt.Fhst:%d:\n",(*opt).f_print_hierarchy_status);
 }
 
 
@@ -140,12 +160,27 @@ int main(int argc, char **argv){
 
 	//function execution
 	if((*opt).war > 0){ printf("\n\n---\n\n"); }
-	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status); printf("\n");
-	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchy); printf("\n");
-	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus); printf("\n");
-	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head); printf("\n");
+	if((*opt).f_print_status == 1){
+		ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status);
+		printf("\n");
+	}
+	if((*opt).f_print_hierarchy == 1){
+		ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchy);
+		printf("\n");
+	}
+	if((*opt).f_print_hierarchy_status == 1){
+		ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus);
+		printf("\n");
+	}
+	if((*opt).f_print_T){
+		ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head);
+		printf("\n");
+	}
+	if((*opt).f_print_S){
+		ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_S);
+		printf("\n");
+	}
 	//Function_RecursivePrint_Head(top); printf("\n");
-	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_S); printf("\n");
 
 	// finish
 	return(0);
