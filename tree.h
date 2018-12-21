@@ -63,7 +63,7 @@ int Add_Bclose_To_Next(struct Tree *tree){
 		(*tree).Bclose++;
 		return(1);
 	}else{
-		Add_Bclose_To_Next((*tree).Next[(*tree).NextCount]);
+		Add_Bclose_To_Next((*tree).Next[(*tree).NextCount-1]);
 		return(0);
 	}
 }
@@ -262,7 +262,7 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 				strcpy((*current).Head,BUFF);
 				(*current).Bclose = 1;
 			}else{
-				//Add_Bclose_To_Next(current);
+				Add_Bclose_To_Next(current);
 			}
 			/* check */
 			if(WAR > 0){
