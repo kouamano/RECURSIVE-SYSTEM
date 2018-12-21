@@ -137,16 +137,8 @@ int Function_Print_Head_S(struct Tree *tree){
 	int i;
 	int countCZ = 0;
 	countCZ = Function_Count_NextConjZero(tree);
-	for(i=0;i<(*tree).LVself;i++){
-		printf("  ");
-	}
-	if((*tree).Conj == 1 && (*tree).NCself > 1){
-		//printf("+");
-	}else{
-		//printf("-");
-	}
 	/* print "," for Conj */
-	if((*tree).Conj == 1){
+	if((*tree).Conj == 1 || (*tree).Bopen > 0){
 		printf(",");
 	}
 	/* print Bopen */
@@ -161,13 +153,8 @@ int Function_Print_Head_S(struct Tree *tree){
 	}
 	/* print "," for Next */
 	if((*tree).NextCount > 0){
-		printf(",");
+		//printf(",");
 	}
-	//printf("  :CZ=%d:",countCZ);
-	//printf(":NC=%d:",(*tree).NextCount);
-	//printf(":Cj=%d:",(*tree).Conj);
-	//printf(":Cl=%d:",(*tree).Bclose);
-	printf("\n");
 }
 int Function_Print_HeadAndStatus(struct Tree *tree){
 	int i;
