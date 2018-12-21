@@ -156,6 +156,27 @@ int main(int argc, char **argv){
 	top = Create_Node(BUFF_LEN);
 	while(c != EOF){
 		c = read_Tree(IN,top,(*opt).war);
+		if(c == '\n'){
+			if((*opt).war > 0){ printf("\n\n---\n\n"); }
+			if((*opt).f_print_status == 1){
+			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status);
+			}
+			if((*opt).f_print_hierarchy == 1){
+			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchy);
+			}
+			if((*opt).f_print_hierarchy_status == 1){
+			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus);
+			}
+			if((*opt).f_print_T){
+			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head);
+			printf("\n");
+			}
+			if((*opt).f_print_S){
+			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_S);
+			printf("\n");
+			}
+			top = Create_Node(BUFF_LEN);
+		}
 	}
 
 	// close file
@@ -164,24 +185,6 @@ int main(int argc, char **argv){
 	}
 
 	//function execution
-	if((*opt).war > 0){ printf("\n\n---\n\n"); }
-	if((*opt).f_print_status == 1){
-		ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status);
-	}
-	if((*opt).f_print_hierarchy == 1){
-		ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchy);
-	}
-	if((*opt).f_print_hierarchy_status == 1){
-		ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus);
-	}
-	if((*opt).f_print_T){
-		ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head);
-		printf("\n");
-	}
-	if((*opt).f_print_S){
-		ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_S);
-		printf("\n");
-	}
 	//Function_RecursivePrint_Head(top); printf("\n");
 
 	// finish
