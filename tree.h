@@ -105,7 +105,7 @@ int Function_Print_Head(struct Tree *tree){
 	}
 	return(not_print_Bclose);
 }
-////recursive function
+////recursive meta-function
 struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *) ){
 	int i;
 	struct Tree *out = tree;
@@ -139,7 +139,8 @@ void Function_RecursivePrint_Head(struct Tree *tree){
 		printf(")");
 	}
 }
-//import/export function
+
+//import/export 
 ////import function
 int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 	int i;
