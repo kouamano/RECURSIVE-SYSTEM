@@ -161,7 +161,7 @@ int Function_Print_HeadHierarchyStatus(struct Tree *tree){
 		printf(")");
 	}
 	/* print "," for Next */
-	if((*tree).NextCount > 0){
+	if((*tree).NextCount > 0 && strlen((*tree).Next[(*tree).NextCount-1]->Head) > 0){
 		printf(",");
 	}
 	printf("  :LV=%d:",(*tree).LVself);
@@ -178,7 +178,7 @@ int Function_Print_Head_S(struct Tree *tree){
 	int countCZ = 0;
 	countCZ = Function_Count_NextConjZero(tree);
 	/* print "," for Conj */
-	if((*tree).Conj == 1 || (*tree).Bopen > 0){
+	if(((*tree).Conj == 1 || (*tree).Bopen > 0)&&(strlen((*tree).Head) > 0)){
 		printf(",");
 	}
 	/* print Bopen */
