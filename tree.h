@@ -67,7 +67,7 @@ int Add_Bclose_To_Next(struct Tree *tree){
 		return(0);
 	}
 }
-////status-check function
+////status-check functions
 void Function_Print_Status(struct Tree *tree){
 	struct Tree *parent = (*tree).Parent;
 	printf("  :LVs=%d:",(*tree).LVself);
@@ -83,6 +83,20 @@ void Function_Print_Status(struct Tree *tree){
 		printf(":Pa=%s:","");
 	}
 	printf("\n");
+}
+int Function_Count_NextConjZero(struct Tree *tree){
+	int i;
+	int count = 0;
+	if((*tree).NextCount == 0){
+		return(0);
+	}else{
+		for(i=0;i<(*tree).NextCount;i++){
+			if((*tree).Next[i]->Conj == 0){
+				count++;
+			}
+		}
+	}
+	return(count);
 }
 ////print-head function
 int Function_Print_Head(struct Tree *tree){
@@ -113,7 +127,6 @@ int Function_Print_HeadIndent(struct Tree *tree){
 	}
 	if((*tree).Conj == 1 && (*tree).NCself > 1){
 		printf("+");
-	//}else if((*tree).NCself > 1){
 	}else{
 		printf("-");
 	}
