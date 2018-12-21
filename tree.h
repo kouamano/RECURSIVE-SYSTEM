@@ -133,6 +133,24 @@ int Function_Print_HeadIndent(struct Tree *tree){
 
 	printf("%s\n",(*tree).Head);
 }
+int Function_Print_HeadAndStatus(struct Tree *tree){
+	int i;
+	int countCZ = 0;
+	countCZ = Function_Count_NextConjZero(tree);
+	for(i=0;i<(*tree).LVself;i++){
+		printf("  ");
+	}
+	if((*tree).Conj == 1 && (*tree).NCself > 1){
+		printf("+");
+	}else{
+		printf("-");
+	}
+	printf("%s  ",(*tree).Head);
+	printf(":CZ=%d:",countCZ);
+	printf(":NC=%d:",(*tree).NextCount);
+	printf(":Cj=%d:",(*tree).Conj);
+	printf("\n");
+}
 ////recursive meta-function
 struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *) ){
 	int i;
