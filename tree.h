@@ -115,7 +115,22 @@ struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)
 }
 //complex function
 ////recursive print function
-struct Tree *ExFunction_RecursivePrint(struct Tree *tree){
-	//Under construction
-	return(out);
+void Function_RecursivePrint_Head(struct Tree *tree){
+	int i;
+	if((*tree).NCself > 0){
+		if((*tree).Conj == 1 && (*tree).NCself > 1){
+			//printf("==,==");
+			printf(",");
+		}else if((*tree).NCself > 1){
+			printf(")(");
+		}
+	}
+	printf("%s",(*tree).Head);
+	if((*tree).NextCount > 0){
+		printf("(");
+		for(i=0;i<(*tree).NextCount;i++){
+			Function_RecursivePrint_Head((*tree).Next[i]);
+		}
+		printf(")");
+	}
 }

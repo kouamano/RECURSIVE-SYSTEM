@@ -200,6 +200,7 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 			current = next;
 			close = 0;
 		}else if(C == ')'){
+			parent = (*current).Parent;
 			/* confirm current */
 			BUFF[buf_ptr] = '\0';
 			if(close == 0){
@@ -208,6 +209,7 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 				//(*current).Bclose++;
 			}else{
 				//(*current).Bclose++;
+				//Add_Bclose_To_Next()
 			}
 			//(*current).Bclose = 1;
 			/* check */
@@ -309,6 +311,7 @@ int main(int argc, char **argv){
 	if((*opt).war > 0){ printf("\n"); }
 	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status); printf("\n");
 	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head); printf("\n");
+	Function_RecursivePrint_Head(top); printf("\n");
 
 	// finish
 	return(0);
