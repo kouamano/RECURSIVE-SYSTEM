@@ -57,9 +57,15 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 	(*parent).NextCount++;
 	return(next);
 }
-struct Tree *Add_Bclose_To_Next(struct Tree *tree){
-	//Under construction
+int Add_Bclose_To_Next(struct Tree *tree){
 	//Bcloseの回数を、Closeしていない親からCloseしている子に加算する
+	if((*tree).NextCount == 0){
+		(*tree).Bclose++;
+		return(1);
+	}else{
+		Add_Bclose_To_Next((*tree).Next[(*tree).NextCount]);
+		return(0);
+	}
 }
 ////status-check function
 void Function_Print_Status(struct Tree *tree){
@@ -119,7 +125,6 @@ void Function_RecursivePrint_Head(struct Tree *tree){
 	int i;
 	if((*tree).NCself > 0){
 		if((*tree).Conj == 1 && (*tree).NCself > 1){
-			//printf("==,==");
 			printf(",");
 		}else if((*tree).NCself > 1){
 			printf(")(");
@@ -256,12 +261,9 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
 				(*current).Bclose = 1;
-				//(*current).Bclose++;
 			}else{
-				//(*current).Bclose++;
-				//Add_Bclose_To_Next()
+				//Add_Bclose_To_Next(current);
 			}
-			//(*current).Bclose = 1;
 			/* check */
 			if(WAR > 0){
 			printf(":Pp=%ld:",(*current).Parent);
@@ -285,21 +287,20 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 			}
 			close++;
 		}else if(C == '\n'){
-			//print BUFF
+			/* print BUFF */
 			BUFF[buf_ptr] = '\0';
 			printf("%s",BUFF);
-			//clear BUFF
+			/* clear BUFF */
 			BUFF[0] = '\0';
 			buf_ptr = 0;
-			//final output
 
-			//clear tree
+			/* clear tree */
 			close = 0;
 		}else if(C == EOF){
 			close = 0;
 			return(C);
 		}else{
-			//buffering
+			/* buffering */
 			BUFF[buf_ptr] = C;
 			BUFF[buf_ptr+1] = '\0';
 			buf_ptr++;
