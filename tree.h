@@ -120,7 +120,7 @@ int Function_Print_Head(struct Tree *tree){
 	return(not_print_Bclose);
 }
 ////print indent head function
-int Function_Print_HeadIndent(struct Tree *tree){
+int Function_Print_HeadHierarchy(struct Tree *tree){
 	int i;
 	for(i=0;i<(*tree).LVself;i++){
 		printf("  ");

@@ -18,11 +18,15 @@ struct options {
 	int buff;
 	int war;
 	char *in;
+	int op_print_t;
+	int op_print_s;
+	int op_print_status;
+	int op_print_Hierarchy;
 };
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" tree_print [-h] [-s] [-c] buff=<size(int)> in=<input file> w=<print warnning>.\n");
+	printf(" tq [-h] [-s] [-c] buff=<size(int)> in=<input file> w=<print warnning>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
@@ -135,7 +139,7 @@ int main(int argc, char **argv){
 	//function execution
 	if((*opt).war > 0){ printf("\n\n---\n\n"); }
 	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status); printf("\n");
-	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadAndStatus); printf("\n");
+	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchy); printf("\n");
 	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head); printf("\n");
 	Function_RecursivePrint_Head(top); printf("\n");
 	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_S); printf("\n");
