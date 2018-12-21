@@ -22,6 +22,7 @@ struct options {
 	int op_print_s;
 	int op_print_status;
 	int op_print_Hierarchy;
+	int op_print_Hierarchy_status;
 };
 
 void help(void){
@@ -142,7 +143,7 @@ int main(int argc, char **argv){
 	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchy); printf("\n");
 	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus); printf("\n");
 	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head); printf("\n");
-	Function_RecursivePrint_Head(top); printf("\n");
+	//Function_RecursivePrint_Head(top); printf("\n");
 	ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_S); printf("\n");
 
 	// finish
