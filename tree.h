@@ -135,6 +135,7 @@ int Function_Print_HeadHierarchy(struct Tree *tree){
 }
 ////print indent head function and status
 int Function_Print_HeadHierarchyStatus(struct Tree *tree){
+	//bug remains.
 	int i;
 	int countCZ = 0;
 	countCZ = Function_Count_NextConjZero(tree);
@@ -174,6 +175,7 @@ int Function_Print_HeadHierarchyStatus(struct Tree *tree){
 }
 ////print S-form
 int Function_Print_Head_S(struct Tree *tree){
+	//debug complete?
 	int i;
 	int countCZ = 0;
 	countCZ = Function_Count_NextConjZero(tree);
