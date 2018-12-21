@@ -27,13 +27,14 @@ struct options {
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" tq [-h] [-s] [-c] buff=<size(int)> in=<input file> w=<print warnning>.\n");
+	printf(" tq [-h] [-s] [-c] buff=<size(int)> in=<input file> w=<print warnning> -F<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  buff : set integer.\n");
 	printf("  in : set *chars (len < 1024).\n");
 	printf("  war : set integer.\n");
+	printf("  x : function symbol, e.g. \"-Fs\" prints S-form.\n");
 }
 
 void status(void){
