@@ -18,8 +18,8 @@ struct Tree {
 	struct Tree *Parent;
 };
 
-//function
-////restructure function
+//single function
+////restructure functions
 struct Tree *Create_Node(int H_size){
 	struct Tree *tree;
 	if((tree = malloc(sizeof(struct Tree) * 1)) == NULL){
