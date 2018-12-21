@@ -145,10 +145,19 @@ int Function_Print_HeadAndStatus(struct Tree *tree){
 	}else{
 		printf("-");
 	}
-	printf("%s  ",(*tree).Head);
-	printf(":CZ=%d:",countCZ);
+	/* print Bopen */
+	for(i=0;i<countCZ;i++){
+		printf("(");
+	}
+	printf("%s",(*tree).Head);
+	/* print Bclose */
+	for(i=0;i<(*tree).Bclose;i++){
+		printf(")");
+	}
+	printf("  :CZ=%d:",countCZ);
 	printf(":NC=%d:",(*tree).NextCount);
 	printf(":Cj=%d:",(*tree).Conj);
+	printf(":Cl=%d:",(*tree).Bclose);
 	printf("\n");
 }
 ////recursive meta-function
