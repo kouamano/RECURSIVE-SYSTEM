@@ -159,6 +159,7 @@ int main(int argc, char **argv){
 		if(c == '\n'){
 			if((*opt).war > 0){ printf("\n\n---\n\n"); }
 			if((*opt).f_print_status == 1){
+			printf("  ");
 			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status);
 			}
 			if((*opt).f_print_hierarchy == 1){

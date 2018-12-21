@@ -70,7 +70,7 @@ int Add_Bclose_To_Next(struct Tree *tree){
 ////status-check functions
 void Function_Print_Status(struct Tree *tree){
 	struct Tree *parent = (*tree).Parent;
-	printf("  :LVs=%d:",(*tree).LVself);
+	printf(":LVs=%d:",(*tree).LVself);
 	printf(":NCs=%d:",(*tree).NCself);
 	printf(":Cj=%d:",(*tree).Conj);
 	printf(":O=%d:",(*tree).Bopen);
