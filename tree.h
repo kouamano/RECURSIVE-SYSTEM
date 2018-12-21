@@ -145,10 +145,15 @@ int Function_Print_HeadAndStatus(struct Tree *tree){
 	}else{
 		printf("-");
 	}
+	/* print "," for Conj */
+	if((*tree).Conj == 1){
+		printf(",");
+	}
 	/* print Bopen */
 	for(i=0;i<countCZ;i++){
 		printf("(");
 	}
+	/* print Head */
 	printf("%s",(*tree).Head);
 	/* print Bclose */
 	for(i=0;i<(*tree).Bclose;i++){
