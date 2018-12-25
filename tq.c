@@ -9,7 +9,7 @@
 #ifndef min
 #define min(a,b) (((a)<(b))?(a):(b))
 #endif
-#include "../RECURSIVE-SYSTEM/tree.h"
+#include "../RECURSIVE-SYSTEM/Tree.h"
 
 struct options {
 	int help;
