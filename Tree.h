@@ -233,11 +233,11 @@ void Function_RecursivePrint_Head(struct Tree *tree){
 	}
 }
 ////recursive print function
-int Function_Free_Recursive(struct Tree *tree){
+int Function_RecursiveFree(struct Tree *tree){
 	int i;
 	if((*tree).NextCount > 0){
 		for(i=0;i<(*tree).NextCount;i++){
-			Function_Free_Recursive((*tree).Next[i]);
+			Function_RecursiveFree((*tree).Next[i]);
 		}
 	}else{
 		free((*tree).Head);
