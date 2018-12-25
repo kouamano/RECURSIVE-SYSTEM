@@ -234,9 +234,13 @@ void Function_RecursivePrint_Head(struct Tree *tree){
 }
 ////recursive print function
 int Function_RecursiveFree(struct Tree *tree){
+	//including bug
 	int i;
+	if(tree == NULL){
+		return(1);
+	}
 	if((*tree).NextCount > 0){
-		for(i=0;i<(*tree).NextCount;i++){
+		for(i=0;i<(*tree).NextCount-1;i++){
 			Function_RecursiveFree((*tree).Next[i]);
 		}
 	}else{
@@ -244,6 +248,7 @@ int Function_RecursiveFree(struct Tree *tree){
 		free((*tree).Next);
 		free((*tree).Parent);
 	}
+	return(0);
 }
 
 //import/export 
