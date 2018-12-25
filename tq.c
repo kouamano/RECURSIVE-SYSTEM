@@ -177,6 +177,7 @@ int main(int argc, char **argv){
 			printf("\n");
 			}
 			Function_RecursiveFree(top);
+			free(top);
 			top = Create_Node(BUFF_LEN);
 		}
 	}
