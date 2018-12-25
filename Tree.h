@@ -246,7 +246,6 @@ int Function_RecursiveFree(struct Tree *tree){
 	}else{
 		free((*tree).Head);
 		free((*tree).Next);
-		//free((*tree).Parent);
 	}
 	return(0);
 }
