@@ -269,7 +269,7 @@ int Function_RecursiveFreeForce(struct Tree *tree){
 		return(1);
 	}
 	for(i=0;i<(*tree).NextCount-1;i++){
-		Function_RecursiveFree((*tree).Next[i]);
+		Function_RecursiveFreeForce((*tree).Next[i]);
 		free((*tree).Next[i]);
 		(*tree).Next[i] = NULL;
 	}
