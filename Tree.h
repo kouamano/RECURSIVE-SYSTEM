@@ -262,6 +262,24 @@ int Function_RecursiveFree(struct Tree *tree){
 	}
 	return(0);
 }
+int Function_RecursiveFreeForce(struct Tree *tree){
+	//including bug
+	int i;
+	if(tree == NULL){
+		return(1);
+	}
+	for(i=0;i<(*tree).NextCount-1;i++){
+		Function_RecursiveFree((*tree).Next[i]);
+		free((*tree).Next[i]);
+		(*tree).Next[i] = NULL;
+	}
+	(*tree).NextCount = 0;
+	free((*tree).Head);
+	(*tree).Head = NULL;
+	free((*tree).Next);
+	(*tree).Next = NULL;
+	return(0);
+}
 
 //import/export 
 ////import function
