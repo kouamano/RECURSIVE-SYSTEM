@@ -242,18 +242,22 @@ int Function_RecursiveFree(struct Tree *tree){
 	if((*tree).NextCount > 0){
 		for(i=0;i<(*tree).NextCount-1;i++){
 			Function_RecursiveFree((*tree).Next[i]);
-			(*tree).NextCount = 0;
-			free((*tree).Next);
-			(*tree).Next = NULL;
-			free((*tree).Head);
-			(*tree).Head = NULL;
+			free((*tree).Next[i]);
+			(*tree).Next[i] = NULL;
 		}
+		(*tree).NextCount = 0;
+		free((*tree).Head);
+		(*tree).Head = NULL;
+		free((*tree).Next);
+		(*tree).Next = NULL;
 	}else{
 		if((*tree).Head != NULL){
 			free((*tree).Head);
+			(*tree).Head = NULL;
 		}
 		if((*tree).Next != NULL){
 			free((*tree).Next);
+			(*tree).Next = NULL;
 		}
 	}
 	return(0);
