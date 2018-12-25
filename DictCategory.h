@@ -4,15 +4,15 @@
 #ifndef BUFF
 #define BUFF 1024
 #endif
-#include "list.h"
+#include "Tree.h"
 
 struct Triple {
 	int ID;
-	struct List *Arrow;
+	struct Tree *Arrow;
 	int Dcount;
-	struct List **Dom;
+	struct Tree **Dom;
 	int Ccount;
-	struct List **Cod;
+	struct Tree **Cod;
 };
 
 struct Triple *init_Triple_zero(struct Triple *obj){
