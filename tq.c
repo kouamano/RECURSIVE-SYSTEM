@@ -155,7 +155,7 @@ int main(int argc, char **argv){
 	struct Tree *top;
 	top = Create_Node(BUFF_LEN);
 	while(c != EOF){
-		c = read_Tree(IN,top,(*opt).war);
+		c = read_Tree(IN,top,(*opt).war); // it cause mem leak, call many valiables every char
 		if(c == '\n'){
 			if((*opt).war > 0){ printf("\n\n---\n\n"); }
 			if((*opt).f_print_status == 1){
