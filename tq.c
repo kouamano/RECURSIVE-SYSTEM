@@ -125,6 +125,8 @@ void check_options(struct options *opt){
 }
 
 int func_List(struct Tree *(**_flist)(struct Tree *tree),struct options *opt){
+	int i;
+	_flist = malloc(sizeof(struct Tree *(*)(struct Tree *tree)) * (*opt).f_counter);
 }
 
 
@@ -168,8 +170,8 @@ int main(int argc, char **argv){
 	c = 1;
 	struct Tree *top;
 	top = Create_Node(BUFF_LEN);
-		//c = read_Tree(IN,top,(*opt).war); // it cause mem leak, call many valiables every char
-		c = importApp_Tree(IN,top,(*opt).war,fcount,(struct Tree *(*)())Function_Print_Status); // it cause mem leak, call many valiables every char
+		//c = importApp_Tree(IN,top,(*opt).war,fcount,(struct Tree *(*)())Function_Print_Status); // it cause mem leak, call many valiables every char
+		c = importApp_Tree(IN,top,(*opt).war,fcount,flist); // it cause mem leak, call many valiables every char
 		/*
 		if(c == '\n'){
 			if((*opt).war > 0){ printf("\n\n---\n\n"); }
