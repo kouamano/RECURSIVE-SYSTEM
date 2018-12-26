@@ -17,6 +17,7 @@ struct Tree {
 	struct Tree **Next;
 	struct Tree *Parent;
 };
+#include "tqoptions.h"
 
 //single function
 ////restructure functions
@@ -457,7 +458,7 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 }
 
 //int importApp_Tree( FILE *_IN, struct Tree *top, int WAR, int Fcount, struct Tree *(**Func)(struct Tree *tree) ){
-int importApp_Tree( FILE *_IN, struct Tree *top, int WAR, int Fcount, int (**Func)(struct Tree *tree) ){
+int importApp_Tree( FILE *_IN, struct Tree *top, int WAR, int Fcount, struct options  *_opt ){
 	//int i;
 	//int itrs;
 	int C;

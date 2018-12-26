@@ -11,6 +11,7 @@
 #endif
 #include "../RECURSIVE-SYSTEM/Tree.h"
 
+/*
 struct options {
 	int help;
 	int stat;
@@ -25,6 +26,7 @@ struct options {
 	int f_print_hierarchy;
 	int f_print_hierarchy_status;
 };
+*/
 
 void help(void){
 	printf("USAGE:\n");
@@ -124,13 +126,9 @@ void check_options(struct options *opt){
 	printf(" opt.Fhst:%d:\n",(*opt).f_print_hierarchy_status);
 }
 
-int func_List(int (**_flist)(struct Tree *tree),struct options *opt){
+int create_func_list(int *_flags,struct options *opt){
 	int i=0;
-	_flist = malloc(sizeof(struct Tree *(*)(struct Tree *tree)) * (*opt).f_counter);
-	if((*opt).f_print_T == 1){
-		_flist[i] = Function_Print_Head;
-		i++;
-	}
+	_flags = malloc(sizeof(int) * (*opt).f_counter);
 }
 
 
@@ -142,7 +140,7 @@ int main(int argc, char **argv){
 	int c;
 	int fcount = 0;
 	//struct Tree *(**flist)(struct Tree *tree);
-	int (**flist)(struct Tree *tree);
+	int *flist;
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
@@ -164,6 +162,8 @@ int main(int argc, char **argv){
 	if(ie == 1){
 		exit(0);
 	}
+	//function list
+	fcount = create_func_list(flist,opt);
 	// open file
 	if((IN = fopen((*opt).in,"r")) == NULL){
 		perror((*opt).in);
@@ -176,7 +176,7 @@ int main(int argc, char **argv){
 	struct Tree *top;
 	top = Create_Node(BUFF_LEN);
 		//c = importApp_Tree(IN,top,(*opt).war,fcount,(struct Tree *(*)())Function_Print_Status); // it cause mem leak, call many valiables every char
-		c = importApp_Tree(IN,top,(*opt).war,fcount,flist); // it cause mem leak, call many valiables every char
+		c = importApp_Tree(IN,top,(*opt).war,fcount,opt); // it cause mem leak, call many valiables every char
 		/*
 		if(c == '\n'){
 			if((*opt).war > 0){ printf("\n\n---\n\n"); }
