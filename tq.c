@@ -18,6 +18,7 @@ struct options {
 	int buff;
 	int war;
 	char *in;
+	int f_counter;
 	int f_print_T;
 	int f_print_S;
 	int f_print_status;
@@ -44,7 +45,7 @@ void help(void){
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" copied from test code.\n");
+	printf(" Under construction.\n");
 }
 
 struct options *alloc_options(void){
@@ -67,6 +68,7 @@ void init_options(struct options *opt){
 	(*opt).buff = BUFF_LEN;
 	(*opt).in[0] = '\0';
 	(*opt).war = 0;
+	(*opt).f_counter = 0;
 	(*opt).f_print_T = 0;
 	(*opt).f_print_S = 0;
 	(*opt).f_print_status = 0;
@@ -76,6 +78,7 @@ void init_options(struct options *opt){
 
 void get_options(int optc, char **optv, struct options *opt){
 	int i = 0;
+	(*opt).f_counter = 0;
 	for(i=0;i<optc;i++){
 		if(strcmp(optv[i],"-h") == 0){
 			(*opt).help = 1;
@@ -91,14 +94,19 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"in=%s",(*opt).in);
 		}else if(strncmp(optv[i],"-FT",3) == 0){
 			(*opt).f_print_T = 1;
+			(*opt).f_counter++;
 		}else if(strncmp(optv[i],"-Fst",4) == 0){
 			(*opt).f_print_status = 1;
+			(*opt).f_counter++;
 		}else if(strncmp(optv[i],"-FS",3) == 0){
 			(*opt).f_print_S = 1;
+			(*opt).f_counter++;
 		}else if(strncmp(optv[i],"-Fhst",4) == 0){
 			(*opt).f_print_hierarchy_status = 1;
+			(*opt).f_counter++;
 		}else if(strncmp(optv[i],"-Fh",3) == 0){
 			(*opt).f_print_hierarchy = 1;
+			(*opt).f_counter++;
 		}
 	}
 }
@@ -108,11 +116,15 @@ void check_options(struct options *opt){
 	printf(" opt.buff:%d:\n",(*opt).buff);
 	printf(" opt.in:%s:\n",(*opt).in);
 	printf(" opt.war:%d:\n",(*opt).war);
+	printf(" opt.fcount:%d:\n",(*opt).f_counter);
 	printf(" opt.FT:%d:\n",(*opt).f_print_T);
 	printf(" opt.FS:%d:\n",(*opt).f_print_S);
 	printf(" opt.Fst:%d:\n",(*opt).f_print_status);
 	printf(" opt.Fh:%d:\n",(*opt).f_print_hierarchy);
 	printf(" opt.Fhst:%d:\n",(*opt).f_print_hierarchy_status);
+}
+
+int func_List(struct Tree *(**_flist)(struct Tree *tree),struct options *opt){
 }
 
 
