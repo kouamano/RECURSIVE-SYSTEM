@@ -176,8 +176,8 @@ int main(int argc, char **argv){
 			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_S);
 			printf("\n");
 			}
-			Function_RecursiveFree(top);
-			//free(top);
+			Function_RecursiveFreeForce(top);
+			free(top);
 			top = Create_Node(BUFF_LEN);
 		}
 	}
