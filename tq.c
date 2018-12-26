@@ -122,6 +122,8 @@ int main(int argc, char **argv){
 	FILE *IN;
 	int is_open = 0;
 	int c;
+	int fcount = 0;
+	struct Tree *(**flist)(struct Tree *tree);
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
@@ -155,7 +157,7 @@ int main(int argc, char **argv){
 	struct Tree *top;
 	top = Create_Node(BUFF_LEN);
 		//c = read_Tree(IN,top,(*opt).war); // it cause mem leak, call many valiables every char
-		c = importApp_Tree(IN,top,(*opt).war,c,(struct Tree *(*)())Function_Print_Status); // it cause mem leak, call many valiables every char
+		c = importApp_Tree(IN,top,(*opt).war,fcount,(struct Tree *(*)())Function_Print_Status); // it cause mem leak, call many valiables every char
 		/*
 		if(c == '\n'){
 			if((*opt).war > 0){ printf("\n\n---\n\n"); }
