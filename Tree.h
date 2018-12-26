@@ -614,8 +614,10 @@ int import_Tree(FILE *_IN, struct Tree *top, int WAR){
 
 			/* clear tree */
 			close = 0;
+
 			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_S);
 			printf("\n");
+
 			Function_RecursiveFreeForce(top);
 			free(top);
 			top = Create_Node(BUFF_LEN);
