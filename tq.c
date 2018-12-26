@@ -176,7 +176,7 @@ int main(int argc, char **argv){
 	struct Tree *top;
 	top = Create_Node(BUFF_LEN);
 		//c = importApp_Tree(IN,top,(*opt).war,fcount,(struct Tree *(*)())Function_Print_Status); // it cause mem leak, call many valiables every char
-		c = importApp_Tree(IN,top,(*opt).war,fcount,opt); // it cause mem leak, call many valiables every char
+		c = importApp_Tree(IN,top,opt); // it cause mem leak, call many valiables every char
 		/*
 		if(c == '\n'){
 			if((*opt).war > 0){ printf("\n\n---\n\n"); }

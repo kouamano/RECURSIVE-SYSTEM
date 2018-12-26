@@ -458,9 +458,10 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 }
 
 //int importApp_Tree( FILE *_IN, struct Tree *top, int WAR, int Fcount, struct Tree *(**Func)(struct Tree *tree) ){
-int importApp_Tree( FILE *_IN, struct Tree *top, int WAR, int Fcount, struct options  *_opt ){
+int importApp_Tree( FILE *_IN, struct Tree *top, struct options  *_opt ){
 	//int i;
 	//int itrs;
+	int WAR;
 	int C;
 	int DLM_ACC = 1;
 	int LIST_LV = 0;
@@ -473,6 +474,7 @@ int importApp_Tree( FILE *_IN, struct Tree *top, int WAR, int Fcount, struct opt
 	struct Tree *next;
 	int close = 0;
 	//parent = NULL;
+	WAR = (*_opt).war;
 	current = top;
 	next = NULL;
 	if((BUFF = malloc(sizeof(char) * BUFF_LEN)) == NULL){
