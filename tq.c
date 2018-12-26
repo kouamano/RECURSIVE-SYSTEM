@@ -124,9 +124,13 @@ void check_options(struct options *opt){
 	printf(" opt.Fhst:%d:\n",(*opt).f_print_hierarchy_status);
 }
 
-int func_List(struct Tree *(**_flist)(struct Tree *tree),struct options *opt){
-	int i;
+int func_List(int (**_flist)(struct Tree *tree),struct options *opt){
+	int i=0;
 	_flist = malloc(sizeof(struct Tree *(*)(struct Tree *tree)) * (*opt).f_counter);
+	if((*opt).f_print_T == 1){
+		_flist[i] = Function_Print_Head;
+		i++;
+	}
 }
 
 
@@ -137,7 +141,8 @@ int main(int argc, char **argv){
 	int is_open = 0;
 	int c;
 	int fcount = 0;
-	struct Tree *(**flist)(struct Tree *tree);
+	//struct Tree *(**flist)(struct Tree *tree);
+	int (**flist)(struct Tree *tree);
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
