@@ -154,8 +154,9 @@ int main(int argc, char **argv){
 	c = 1;
 	struct Tree *top;
 	top = Create_Node(BUFF_LEN);
-	while(c != EOF){
-		c = read_Tree(IN,top,(*opt).war); // it cause mem leak, call many valiables every char
+		//c = read_Tree(IN,top,(*opt).war); // it cause mem leak, call many valiables every char
+		c = importApp_Tree(IN,top,(*opt).war,c,(struct Tree *(*)())Function_Print_Status); // it cause mem leak, call many valiables every char
+		/*
 		if(c == '\n'){
 			if((*opt).war > 0){ printf("\n\n---\n\n"); }
 			if((*opt).f_print_status == 1){
@@ -180,7 +181,7 @@ int main(int argc, char **argv){
 			free(top);
 			top = Create_Node(BUFF_LEN);
 		}
-	}
+		*/
 
 	// close file
 	if(is_open > 0){
