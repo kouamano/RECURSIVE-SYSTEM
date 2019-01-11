@@ -19,14 +19,14 @@ void status(void){
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" tq [-h] [-s] [-c] buff=<size(int)> in=<input file> w=<print warnning> [-hF] -F<x>.\n");
+	printf(" tq [-h] [-s] [-c] buff=<size(int)> in=<input file> w=<print warnning> -F<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  buff : set integer.\n");
 	printf("  in : set *chars (len < 1024).\n");
 	printf("  war : set integer.\n");
-	printf("  -hF : print function help.\n");
+	//printf("  -hF : print function help.\n");
 	printf("  -F<x> : function exec flag, e.g. \"-FS\" prints S-form.\n");
 	printf("    -FT : prints T-form.\n");
 	printf("    -FS : prints S-form.\n");
@@ -220,7 +220,7 @@ int main(int argc, char **argv){
 	c = 1;
 	struct Tree *top;
 	top = Create_Node(BUFF_LEN);
-		c = importApp_Tree(IN,top,opt); // it cause mem leak, call many valiables every char
+	c = importApp_Tree(IN,top,opt,fopt); // it cause mem leak, call many valiables every char
 		/*
 		if(c == '\n'){
 			function();
@@ -231,7 +231,6 @@ int main(int argc, char **argv){
 	if(is_open > 0){
 		fclose(IN);
 	}
-
 
 	// finish
 	return(0);

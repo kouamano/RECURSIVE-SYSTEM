@@ -173,7 +173,7 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 	return(C);
 }
 ////import and apply
-int importApp_Tree( FILE *_IN, struct Tree *top, struct options  *_opt ){
+int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct function_options *_fopt){
 	//int i;
 	//int itrs;
 	int WAR;
