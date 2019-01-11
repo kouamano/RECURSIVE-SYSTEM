@@ -6,8 +6,8 @@
 #endif
 
 //structure
-#include "t-structure.h"
-#include "t-qoptions.h"
+#include "T-structure.h"
+#include "T-qoptions.h"
 
 //basic function
 ////restructure functions
