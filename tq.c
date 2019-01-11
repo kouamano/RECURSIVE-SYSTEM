@@ -12,6 +12,10 @@
 #include "../RECURSIVE-SYSTEM/Tree.h"
 #include "../RECURSIVE-SYSTEM/import_export_Tree.c"
 
+void status(void){
+	printf("STATUS:\n");
+	printf("  Constructing functions.\n");
+}
 
 void help(void){
 	printf("USAGE:\n");
@@ -29,10 +33,13 @@ void help(void){
 	printf("    -Fst : prints import status.\n");
 	printf("    -Fhst : prints import status with hierarchical-form.\n");
 }
-
-void status(void){
-	printf("STATUS:\n");
-	printf(" Under construction.\n");
+void function_help(void){
+	printf("  -F<x> : function symbol, e.g. \"-FS\" prints S-form.\n");
+	printf("    -FT : prints T-form.\n");
+	printf("    -FS : prints S-form.\n");
+	printf("    -Fh : prints hierarchical-form.\n");
+	printf("    -Fst : prints import status.\n");
+	printf("    -Fhst : prints import status with hierarchical-form.\n");
 }
 
 struct options *alloc_options(void){
@@ -61,6 +68,14 @@ void init_options(struct options *opt){
 	(*opt).f_print_status = 0;
 	(*opt).f_print_hierarchy = 0;
 	(*opt).f_print_hierarchy_status = 0;
+}
+void init_function_options(struct options *fopt){
+	(*fopt).f_counter = 0;
+	(*fopt).f_print_T = 0;
+	(*fopt).f_print_S = 0;
+	(*fopt).f_print_status = 0;
+	(*fopt).f_print_hierarchy = 0;
+	(*fopt).f_print_hierarchy_status = 0;
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -97,6 +112,28 @@ void get_options(int optc, char **optv, struct options *opt){
 		}
 	}
 }
+void get_function_options(int optc, char **optv, struct options *fopt){
+	int i = 0;
+	(*fopt).f_counter = 0;
+	for(i=0;i<optc;i++){
+		if(strncmp(optv[i],"-FT",3) == 0){
+			(*fopt).f_print_T = 1;
+			(*fopt).f_counter++;
+		}else if(strncmp(optv[i],"-Fst",4) == 0){
+			(*fopt).f_print_status = 1;
+			(*fopt).f_counter++;
+		}else if(strncmp(optv[i],"-FS",3) == 0){
+			(*fopt).f_print_S = 1;
+			(*fopt).f_counter++;
+		}else if(strncmp(optv[i],"-Fhst",4) == 0){
+			(*fopt).f_print_hierarchy_status = 1;
+			(*fopt).f_counter++;
+		}else if(strncmp(optv[i],"-Fh",3) == 0){
+			(*fopt).f_print_hierarchy = 1;
+			(*fopt).f_counter++;
+		}
+	}
+}
 
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
@@ -109,6 +146,15 @@ void check_options(struct options *opt){
 	printf(" opt.Fst:%d:\n",(*opt).f_print_status);
 	printf(" opt.Fh:%d:\n",(*opt).f_print_hierarchy);
 	printf(" opt.Fhst:%d:\n",(*opt).f_print_hierarchy_status);
+}
+void check_function_options(struct options *fopt){
+	printf("  functions:\n");
+	printf("    opt.fcount:%d:\n",(*fopt).f_counter);
+	printf("    opt.FT:%d:\n",(*fopt).f_print_T);
+	printf("    opt.FS:%d:\n",(*fopt).f_print_S);
+	printf("    opt.Fst:%d:\n",(*fopt).f_print_status);
+	printf("    opt.Fh:%d:\n",(*fopt).f_print_hierarchy);
+	printf("    opt.Fhst:%d:\n",(*fopt).f_print_hierarchy_status);
 }
 
 int create_func_list(int *_flags,struct options *opt){
