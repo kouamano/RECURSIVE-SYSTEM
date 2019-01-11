@@ -27,20 +27,22 @@ void help(void){
 	printf("  in : set *chars (len < 1024).\n");
 	printf("  war : set integer.\n");
 	//printf("  -hF : print function help.\n");
+	/*
 	printf("  -F<x> : function exec flag, e.g. \"-FS\" prints S-form.\n");
 	printf("    -FT : prints T-form.\n");
 	printf("    -FS : prints S-form.\n");
 	printf("    -Fh : prints hierarchical-form.\n");
 	printf("    -Fst : prints import status.\n");
 	printf("    -Fhst : prints import status with hierarchical-form.\n");
+	*/
 }
 void function_help(void){
 	printf("  -F<x> : function symbol, e.g. \"-FS\" prints S-form.\n");
-	printf("    -FT : prints T-form.\n");
-	printf("    -FS : prints S-form.\n");
-	printf("    -Fh : prints hierarchical-form.\n");
-	printf("    -Fst : prints import status.\n");
-	printf("    -Fhst : prints import status with hierarchical-form.\n");
+	printf("   -FT : prints T-form.\n");
+	printf("   -FS : prints S-form.\n");
+	printf("   -Fh : prints hierarchical-form.\n");
+	printf("   -Fst : prints import status.\n");
+	printf("   -Fhst : prints import status with hierarchical-form.\n");
 }
 
 struct options *alloc_options(void){
@@ -71,13 +73,15 @@ void init_options(struct options *opt){
 	(*opt).buff = BUFF_LEN;
 	(*opt).in[0] = '\0';
 	(*opt).war = 0;
-	(*opt).hF = 0;
+	//(*opt).hF = 0;
+	/*
 	(*opt).f_counter = 0;
 	(*opt).f_print_T = 0;
 	(*opt).f_print_S = 0;
 	(*opt).f_print_status = 0;
 	(*opt).f_print_hierarchy = 0;
 	(*opt).f_print_hierarchy_status = 0;
+	*/
 }
 void init_function_options(struct function_options *fopt){
 	(*fopt).f_counter = 0;
@@ -106,6 +110,7 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).hF = 1;
 		}else if(strncmp(optv[i],"in=",3) == 0){
 			sscanf(optv[i],"in=%s",(*opt).in);
+		/*
 		}else if(strncmp(optv[i],"-FT",3) == 0){
 			(*opt).f_print_T = 1;
 			(*opt).f_counter++;
@@ -121,6 +126,7 @@ void get_options(int optc, char **optv, struct options *opt){
 		}else if(strncmp(optv[i],"-Fh",3) == 0){
 			(*opt).f_print_hierarchy = 1;
 			(*opt).f_counter++;
+		*/
 		}
 	}
 }
@@ -196,6 +202,7 @@ int main(int argc, char **argv){
 	}
 	if((*opt).help == 1){
 		help();
+		function_help();
 		ie = 1;
 	}
 	if((*opt).stat == 1){
@@ -204,6 +211,7 @@ int main(int argc, char **argv){
 	}
 	if((*opt).check == 1){
 		check_options(opt);
+		check_function_options(opt);
 		ie = 1;
 	}
 	if(ie == 1){
