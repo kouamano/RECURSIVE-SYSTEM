@@ -14,19 +14,20 @@
 
 void status(void){
 	printf("STATUS:\n");
-	printf("  Constructing functions.\n");
+	printf(" Constructing functions.\n");
 }
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" tq [-h] [-s] [-c] buff=<size(int)> in=<input file> w=<print warnning> -F<x>.\n");
+	printf(" tq [-h] [-s] [-c] buff=<size(int)> in=<input file> w=<print warnning> [-hF] -F<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  buff : set integer.\n");
 	printf("  in : set *chars (len < 1024).\n");
 	printf("  war : set integer.\n");
-	printf("  -F<x> : function symbol, e.g. \"-FS\" prints S-form.\n");
+	printf("  -hF : print function help.\n");
+	printf("  -F<x> : function exec flag, e.g. \"-FS\" prints S-form.\n");
 	printf("    -FT : prints T-form.\n");
 	printf("    -FS : prints S-form.\n");
 	printf("    -Fh : prints hierarchical-form.\n");
@@ -62,6 +63,7 @@ void init_options(struct options *opt){
 	(*opt).buff = BUFF_LEN;
 	(*opt).in[0] = '\0';
 	(*opt).war = 0;
+	(*opt).hF = 0;
 	(*opt).f_counter = 0;
 	(*opt).f_print_T = 0;
 	(*opt).f_print_S = 0;
@@ -92,6 +94,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"buff=%d",&(*opt).buff);
 		}else if(strncmp(optv[i],"w=",2) == 0){
 			sscanf(optv[i],"w=%d",&(*opt).war);
+		}else if(strncmp(optv[i],"-hF",3) == 0){
+			(*opt).hF = 1;
 		}else if(strncmp(optv[i],"in=",3) == 0){
 			sscanf(optv[i],"in=%s",(*opt).in);
 		}else if(strncmp(optv[i],"-FT",3) == 0){
@@ -148,13 +152,13 @@ void check_options(struct options *opt){
 	printf(" opt.Fhst:%d:\n",(*opt).f_print_hierarchy_status);
 }
 void check_function_options(struct options *fopt){
-	printf("  functions:\n");
-	printf("    opt.fcount:%d:\n",(*fopt).f_counter);
-	printf("    opt.FT:%d:\n",(*fopt).f_print_T);
-	printf("    opt.FS:%d:\n",(*fopt).f_print_S);
-	printf("    opt.Fst:%d:\n",(*fopt).f_print_status);
-	printf("    opt.Fh:%d:\n",(*fopt).f_print_hierarchy);
-	printf("    opt.Fhst:%d:\n",(*fopt).f_print_hierarchy_status);
+	printf(" functions:\n");
+	printf("  opt.fcount:%d:\n",(*fopt).f_counter);
+	printf("  opt.FT:%d:\n",(*fopt).f_print_T);
+	printf("  opt.FS:%d:\n",(*fopt).f_print_S);
+	printf("  opt.Fst:%d:\n",(*fopt).f_print_status);
+	printf("  opt.Fh:%d:\n",(*fopt).f_print_hierarchy);
+	printf("  opt.Fhst:%d:\n",(*fopt).f_print_hierarchy_status);
 }
 
 int create_func_list(int *_flags,struct options *opt){
