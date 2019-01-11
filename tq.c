@@ -12,22 +12,6 @@
 #include "../RECURSIVE-SYSTEM/Tree.h"
 #include "../RECURSIVE-SYSTEM/import_export_Tree.c"
 
-/*
-struct options {
-	int help;
-	int stat;
-	int check;
-	int buff;
-	int war;
-	char *in;
-	int f_counter;
-	int f_print_T;
-	int f_print_S;
-	int f_print_status;
-	int f_print_hierarchy;
-	int f_print_hierarchy_status;
-};
-*/
 
 void help(void){
 	printf("USAGE:\n");
@@ -176,32 +160,10 @@ int main(int argc, char **argv){
 	c = 1;
 	struct Tree *top;
 	top = Create_Node(BUFF_LEN);
-		//c = importApp_Tree(IN,top,(*opt).war,fcount,(struct Tree *(*)())Function_Print_Status); // it cause mem leak, call many valiables every char
 		c = importApp_Tree(IN,top,opt); // it cause mem leak, call many valiables every char
 		/*
 		if(c == '\n'){
-			if((*opt).war > 0){ printf("\n\n---\n\n"); }
-			if((*opt).f_print_status == 1){
-			printf("  ");
-			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status);
-			}
-			if((*opt).f_print_hierarchy == 1){
-			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchy);
-			}
-			if((*opt).f_print_hierarchy_status == 1){
-			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus);
-			}
-			if((*opt).f_print_T){
-			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head);
-			printf("\n");
-			}
-			if((*opt).f_print_S){
-			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_S);
-			printf("\n");
-			}
-			Function_RecursiveFreeForce(top);
-			free(top);
-			top = Create_Node(BUFF_LEN);
+			function();
 		}
 		*/
 
@@ -210,8 +172,6 @@ int main(int argc, char **argv){
 		fclose(IN);
 	}
 
-	//function execution
-	//Function_RecursivePrint_Head(top); printf("\n");
 
 	// finish
 	return(0);
