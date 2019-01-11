@@ -6,20 +6,10 @@
 #endif
 
 //structure
-struct Tree {
-	int LVself;
-	int NCself;
-	int Conj;
-	int Bopen;
-	char *Head;
-	int Bclose;
-	int NextCount;
-	struct Tree **Next;
-	struct Tree *Parent;
-};
+#include "tstructure.h"
 #include "tqoptions.h"
 
-//single function
+//basic function
 ////restructure functions
 struct Tree *Create_Node(int H_size){
 	struct Tree *tree;
