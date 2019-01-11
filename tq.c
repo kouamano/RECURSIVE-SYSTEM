@@ -169,10 +169,12 @@ void check_function_options(struct options *fopt){
 	printf("  opt.Fhst:%d:\n",(*fopt).f_print_hierarchy_status);
 }
 
+/*
 int create_func_list(int *_flags,struct options *opt){
 	int i=0;
 	_flags = malloc(sizeof(int) * (*opt).f_counter);
 }
+*/
 
 
 int main(int argc, char **argv){
@@ -182,8 +184,6 @@ int main(int argc, char **argv){
 	FILE *IN;
 	int is_open = 0;
 	int c;
-	int fcount = 0;
-	//struct Tree *(**flist)(struct Tree *tree);
 	int *flist;
 	opt = alloc_options();
 	fopt = alloc_function_options();
@@ -209,8 +209,6 @@ int main(int argc, char **argv){
 	if(ie == 1){
 		exit(0);
 	}
-	//function list
-	fcount = create_func_list(flist,opt);
 	// open file
 	if((IN = fopen((*opt).in,"r")) == NULL){
 		perror((*opt).in);
