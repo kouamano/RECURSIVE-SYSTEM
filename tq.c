@@ -55,6 +55,14 @@ struct options *alloc_options(void){
 	}
 	return(p);
 }
+struct function_options *alloc_function_options(void){
+	struct function_options *p;
+	if((p = malloc(sizeof(struct function_options) * 1)) == NULL){
+		printf("failed : malloc() in alloc_options().\n");
+		exit(1);
+	}
+	return(p);
+}
 
 void init_options(struct options *opt){
 	(*opt).help = 0;
@@ -71,7 +79,7 @@ void init_options(struct options *opt){
 	(*opt).f_print_hierarchy = 0;
 	(*opt).f_print_hierarchy_status = 0;
 }
-void init_function_options(struct options *fopt){
+void init_function_options(struct function_options *fopt){
 	(*fopt).f_counter = 0;
 	(*fopt).f_print_T = 0;
 	(*fopt).f_print_S = 0;
@@ -116,7 +124,7 @@ void get_options(int optc, char **optv, struct options *opt){
 		}
 	}
 }
-void get_function_options(int optc, char **optv, struct options *fopt){
+void get_function_options(int optc, char **optv, struct function_options *fopt){
 	int i = 0;
 	(*fopt).f_counter = 0;
 	for(i=0;i<optc;i++){
@@ -169,6 +177,7 @@ int create_func_list(int *_flags,struct options *opt){
 
 int main(int argc, char **argv){
 	struct options *opt;
+	struct function_options *fopt;
 	int ie = 0;
 	FILE *IN;
 	int is_open = 0;
@@ -177,8 +186,11 @@ int main(int argc, char **argv){
 	//struct Tree *(**flist)(struct Tree *tree);
 	int *flist;
 	opt = alloc_options();
+	fopt = alloc_function_options();
 	init_options(opt);
+	init_function_options(fopt);
 	get_options(argc-1, argv+1, opt);
+	get_function_options(argc-1, argv+1, fopt);
 	if(argc == 1){
 		(*opt).help = 1;
 	}
