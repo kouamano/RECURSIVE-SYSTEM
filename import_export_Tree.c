@@ -162,6 +162,8 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 		}else if(C == EOF){
 			close = 0;
 			return(C);
+		}else if(C == ' '){
+			;	//ignore char
 		}else{
 			/* buffering */
 			BUFF[buf_ptr] = C;
