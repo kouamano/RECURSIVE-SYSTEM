@@ -120,8 +120,8 @@ int read_Tree(FILE *_IN, struct Tree *top, int WAR){
 			}
 			/* check */
 			if(WAR > 0){
-			printf(":Pp=%ld:",(*current).Parent);
-			printf(":Cp=%ld:",current);
+			printf(":Pp=%ld:",(long int)(*current).Parent);
+			printf(":Cp=%ld:",(long int)current);
 			printf(":Cj=%d:",(*current).Conj);
 			printf(":Op=%d:",(*current).Bopen);
 			printf(":current=%s:",(*current).Head);
@@ -224,8 +224,8 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 			(*current).Bclose = 0;
 			/* check */
 			if(WAR > 0){
-			printf(":Pp=%ld:",(*current).Parent);
-			printf(":Cp=%ld:",current);
+			printf(":Pp=%ld:",(long int)(*current).Parent);
+			printf(":Cp=%ld:",(long int)current);
 			printf(":Cj=%d:",(*current).Conj);
 			printf(":Op=%d:",(*current).Bopen);
 			printf(":current=%s:",(*current).Head);
