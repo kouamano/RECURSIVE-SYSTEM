@@ -190,7 +190,7 @@ int main(int argc, char **argv){
 	FILE *IN;
 	int is_open = 0;
 	int c;
-	int *flist;
+	//int *flist;
 	opt = alloc_options();
 	fopt = alloc_function_options();
 	init_options(opt);
@@ -241,5 +241,5 @@ int main(int argc, char **argv){
 	}
 
 	// finish
-	return(0);
+	return(c);
 }
