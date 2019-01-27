@@ -100,7 +100,6 @@ int Function_Print_Head(struct Tree *tree){
 		printf("(");
 	}
 	printf("%s",(*tree).Head);
-	//if((*tree).Bclose > 0 && (*tree).NextCount == 0){
 	if((*tree).Bclose > 0 && (*tree).NextCount == 0){
 		for(i=0;i<((*tree).Bclose);i++){
 			printf(")");
