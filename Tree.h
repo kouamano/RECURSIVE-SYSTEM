@@ -64,10 +64,10 @@ void Function_Print_Status(struct Tree *tree){
 	printf(":LVs=%d:",(*tree).LVself);
 	printf(":NCs=%d:",(*tree).NCself);
 	printf(":Cj=%d:",(*tree).Conj);
-	printf(":O=%d:",(*tree).Bopen);
+	printf(":BO=%d:",(*tree).Bopen);
 	printf(":H=%s:",(*tree).Head);
-	printf(":C=%d:",(*tree).Bclose);
-	printf(":Nc=%d:",(*tree).NextCount);
+	printf(":BC=%d:",(*tree).Bclose);
+	printf(":NC=%d:",(*tree).NextCount);
 	if(parent != NULL){
 		printf(":Pa=%s:",(*parent).Head);
 	}else{
