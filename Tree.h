@@ -111,7 +111,7 @@ int Function_Print_Head(struct Tree *tree){
 	return(not_print_Bclose);
 }
 ////print indent head function
-int Function_Print_HeadHierarchy(struct Tree *tree){
+void Function_Print_HeadHierarchy(struct Tree *tree){
 	int i;
 	for(i=0;i<(*tree).LVself;i++){
 		printf("  ");
@@ -125,7 +125,7 @@ int Function_Print_HeadHierarchy(struct Tree *tree){
 	printf("%s\n",(*tree).Head);
 }
 ////print indent head function and status
-int Function_Print_HeadHierarchyStatus(struct Tree *tree){
+void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	//bug remains.
 	int i;
 	int countCZ = 0;
@@ -165,7 +165,7 @@ int Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	printf("\n");
 }
 ////print S-form
-int Function_Print_Head_S(struct Tree *tree){
+void Function_Print_Head_S(struct Tree *tree){
 	//debug complete?
 	int i;
 	int countCZ = 0;
