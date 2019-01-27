@@ -10,7 +10,7 @@
 #define min(a,b) (((a)<(b))?(a):(b))
 #endif
 #include "../RECURSIVE-SYSTEM/Tree.h"
-#include "../RECURSIVE-SYSTEM/import_export_Tree.c"
+#include "../RECURSIVE-SYSTEM/T-import_export.h"
 
 void status(void){
 	printf("STATUS:\n");
