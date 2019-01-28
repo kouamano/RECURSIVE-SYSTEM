@@ -97,7 +97,7 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"buff=%d",&(*opt).buff);
 		}else if(strncmp(optv[i],"w=",2) == 0){
 			sscanf(optv[i],"w=%d",&(*opt).war);
-		}else if(strncmp(optv[i],"-hF",3 && strlen(optv[i]) == 3) == 0){
+		}else if(strncmp(optv[i],"-hF",3) == 0){
 			(*opt).hF = 1;
 		}else if(strncmp(optv[i],"in=",3) == 0){
 			sscanf(optv[i],"in=%s",(*opt).in);
@@ -165,11 +165,13 @@ int main(int argc, char **argv){
 		function_help();
 		ie = 1;
 	}
+	/*
 	if((*opt).hF == 1){
-		//help();
+		help();
 		function_help();
 		ie = 1;
 	}
+	*/
 	if((*opt).stat == 1){
 		status();
 		ie = 1;
