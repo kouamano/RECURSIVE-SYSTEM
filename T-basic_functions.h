@@ -5,10 +5,6 @@
 #define BUFF_LEN 1024
 #endif
 
-//structure
-#include "T-structure.h"
-#include "T-options.h"
-
 //basic function
 ////restructure functions
 struct Tree *Create_Node(int H_size){
