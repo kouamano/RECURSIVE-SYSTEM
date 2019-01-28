@@ -26,15 +26,6 @@ void help(void){
 	printf("  buff : set integer.\n");
 	printf("  in : set *chars (len < 1024).\n");
 	printf("  war : set integer.\n");
-	//printf("  -hF : print function help.\n");
-	/*
-	printf("  -F<x> : function exec flag, e.g. \"-FS\" prints S-form.\n");
-	printf("    -FT : prints T-form.\n");
-	printf("    -FS : prints S-form.\n");
-	printf("    -Fh : prints hierarchical-form.\n");
-	printf("    -Fst : prints import status.\n");
-	printf("    -Fhst : prints import status with hierarchical-form.\n");
-	*/
 }
 void function_help(void){
 	printf("  -F<x> : function symbol, e.g. \"-FS\" prints S-form.\n");
@@ -94,7 +85,7 @@ void init_function_options(struct function_options *fopt){
 
 void get_options(int optc, char **optv, struct options *opt){
 	int i = 0;
-	(*opt).f_counter = 0;
+	//(*opt).f_counter = 0;
 	for(i=0;i<optc;i++){
 		if(strcmp(optv[i],"-h") == 0){
 			(*opt).help = 1;
@@ -158,14 +149,14 @@ void check_options(struct options *opt){
 	printf(" opt.buff:%d:\n",(*opt).buff);
 	printf(" opt.in:%s:\n",(*opt).in);
 	printf(" opt.war:%d:\n",(*opt).war);
-	printf(" opt.fcount:%d:\n",(*opt).f_counter);
+	//printf(" opt.fcount:%d:\n",(*opt).f_counter);
 	printf(" opt.FT:%d:\n",(*opt).f_print_T);
 	printf(" opt.FS:%d:\n",(*opt).f_print_S);
 	printf(" opt.Fst:%d:\n",(*opt).f_print_status);
 	printf(" opt.Fh:%d:\n",(*opt).f_print_hierarchy);
 	printf(" opt.Fhst:%d:\n",(*opt).f_print_hierarchy_status);
 }
-void check_function_options(struct options *fopt){
+void check_function_options(struct function_options *fopt){
 	printf(" functions:\n");
 	printf("  opt.fcount:%d:\n",(*fopt).f_counter);
 	printf("  opt.FT:%d:\n",(*fopt).f_print_T);
@@ -211,7 +202,7 @@ int main(int argc, char **argv){
 	}
 	if((*opt).check == 1){
 		check_options(opt);
-		check_function_options(opt);
+		check_function_options(fopt);
 		ie = 1;
 	}
 	if(ie == 1){
