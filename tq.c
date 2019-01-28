@@ -162,7 +162,7 @@ int main(int argc, char **argv){
 	}
 	if((*opt).help == 1){
 		help();
-		function_help();
+		//function_help();
 		ie = 1;
 	}
 	if((*opt).hF == 1){
