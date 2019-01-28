@@ -165,13 +165,11 @@ int main(int argc, char **argv){
 		function_help();
 		ie = 1;
 	}
-	/*
 	if((*opt).hF == 1){
 		help();
 		function_help();
 		ie = 1;
 	}
-	*/
 	if((*opt).stat == 1){
 		status();
 		ie = 1;
