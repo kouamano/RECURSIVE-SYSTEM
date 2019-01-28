@@ -76,9 +76,16 @@ void init_function_options(struct function_options *fopt){
 }
 
 void get_options(int optc, char **optv, struct options *opt){
+	/*
+	char *opstr;
+	if((opstr = calloc(LEN,sizeof(char))) == NULL){
+		perror("[Fail] malloc()@get_options.\n");
+		exit(1);
+	}
+	*/
 	int i = 0;
 	for(i=0;i<optc;i++){
-		if(strcmp(optv[i],"-h") == 0){
+		if(strcmp(optv[i],"-h") == 0 && strlen(optv[i]) == 2){
 			(*opt).help = 1;
 		}else if(strcmp(optv[i],"-s") == 0){
 			(*opt).stat = 1;
