@@ -22,6 +22,7 @@ void help(void){
 	printf("USAGE:\n");
 	printf(" tq [-h] [-s] [-c] buff=<size(int)> in=<input file> w=<print warnning> -F<x>.\n");
 	printf("  -h : help.\n");
+	printf("  -hF : function help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  buff : set integer.\n");
