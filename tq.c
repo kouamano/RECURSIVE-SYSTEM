@@ -97,7 +97,7 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"buff=%d",&(*opt).buff);
 		}else if(strncmp(optv[i],"w=",2) == 0){
 			sscanf(optv[i],"w=%d",&(*opt).war);
-		}else if(strncmp(optv[i],"-hF",3) == 0){
+		}else if(strncmp(optv[i],"-hF",3 && strlen(optv[i]) == 3) == 0){
 			(*opt).hF = 1;
 		}else if(strncmp(optv[i],"in=",3) == 0){
 			sscanf(optv[i],"in=%s",(*opt).in);
@@ -117,10 +117,10 @@ void get_function_options(int optc, char **optv, struct function_options *fopt){
 		}else if(strncmp(optv[i],"-FS",3) == 0){
 			(*fopt).f_print_S = 1;
 			(*fopt).f_counter++;
-		}else if(strncmp(optv[i],"-Fhst",4) == 0){
+		}else if(strncmp(optv[i],"-Fhst",4) == 0 && strlen(optv[i]) == 4){
 			(*fopt).f_print_hierarchy_status = 1;
 			(*fopt).f_counter++;
-		}else if(strncmp(optv[i],"-Fh",3) == 0){
+		}else if(strncmp(optv[i],"-Fh",3) == 0 && strlen(optv[i]) == 3){
 			(*fopt).f_print_hierarchy = 1;
 			(*fopt).f_counter++;
 		}
