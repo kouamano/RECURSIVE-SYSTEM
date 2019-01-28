@@ -7,7 +7,7 @@
 
 //structure
 #include "T-structure.h"
-#include "T-qoptions.h"
+#include "T-options.h"
 
 //basic function
 ////restructure functions

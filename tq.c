@@ -150,11 +150,11 @@ void check_options(struct options *opt){
 	printf(" opt.in:%s:\n",(*opt).in);
 	printf(" opt.war:%d:\n",(*opt).war);
 	//printf(" opt.fcount:%d:\n",(*opt).f_counter);
-	printf(" opt.FT:%d:\n",(*opt).f_print_T);
-	printf(" opt.FS:%d:\n",(*opt).f_print_S);
-	printf(" opt.Fst:%d:\n",(*opt).f_print_status);
-	printf(" opt.Fh:%d:\n",(*opt).f_print_hierarchy);
-	printf(" opt.Fhst:%d:\n",(*opt).f_print_hierarchy_status);
+	//printf(" opt.FT:%d:\n",(*opt).f_print_T);
+	//printf(" opt.FS:%d:\n",(*opt).f_print_S);
+	//printf(" opt.Fst:%d:\n",(*opt).f_print_status);
+	//printf(" opt.Fh:%d:\n",(*opt).f_print_hierarchy);
+	//printf(" opt.Fhst:%d:\n",(*opt).f_print_hierarchy_status);
 }
 void check_function_options(struct function_options *fopt){
 	printf(" functions:\n");
