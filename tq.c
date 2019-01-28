@@ -63,8 +63,9 @@ void init_options(struct options *opt){
 	(*opt).stat = 0;
 	(*opt).check = 0;
 	(*opt).buff = BUFF_LEN;
-	(*opt).in[0] = '\0';
 	(*opt).war = 0;
+	(*opt).in[0] = '\0';
+	(*opt).hF = 0;
 }
 void init_function_options(struct function_options *fopt){
 	(*fopt).f_counter = 0;
@@ -130,6 +131,7 @@ void check_options(struct options *opt){
 	printf(" opt.buff:%d:\n",(*opt).buff);
 	printf(" opt.in:%s:\n",(*opt).in);
 	printf(" opt.war:%d:\n",(*opt).war);
+	printf(" opt.hF:%d:\n",(*opt).hF);
 }
 void check_function_options(struct function_options *fopt){
 	printf(" functions:\n");
@@ -159,6 +161,11 @@ int main(int argc, char **argv){
 	}
 	if((*opt).help == 1){
 		help();
+		function_help();
+		ie = 1;
+	}
+	if((*opt).hF == 1){
+		//help();
 		function_help();
 		ie = 1;
 	}
