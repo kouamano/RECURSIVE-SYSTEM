@@ -334,15 +334,15 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 			}
 			if((*_fopt).f_print_status == 1){
 			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status);
-			printf("\n");
+			//printf("\n");
 			}
 			if((*_fopt).f_print_hierarchy == 1){
 			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchy);
-			printf("\n");
+			//printf("\n");
 			}
 			if((*_fopt).f_print_hierarchy_status == 1){
 			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus);
-			printf("\n");
+			//printf("\n");
 			}
 
 			/* clear tree */
