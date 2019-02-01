@@ -14,7 +14,8 @@ struct Tree *Create_Node(int H_size){
 		exit(1);
 	}
 	(*tree).LVself=0;
-	(*tree).NCself=0;
+	//(*tree).NCself=0;
+	(*tree).NCself=1;
 	(*tree).Conj=0;
 	(*tree).Bopen=0;
 	(*tree).Head = malloc(sizeof(char) * H_size);
