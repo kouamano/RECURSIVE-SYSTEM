@@ -194,11 +194,6 @@ int main(int argc, char **argv){
 	struct Tree *top;
 	top = Create_Node(BUFF_LEN);
 	c = importApp_Tree(IN,top,opt,fopt); // removed mem leak code.
-		/*
-		if(c == '\n'){
-			function();
-		}
-		*/
 
 	// close file
 	if(is_open > 0){
