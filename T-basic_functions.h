@@ -199,9 +199,30 @@ struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)
 	}
 	return(out);
 }
-//complex function
+//administrative function
+int Function_RecursiveFreeForce(struct Tree *tree){
+	int i;
+	if(tree == NULL){
+		return(1);
+	}
+	for(i=0;i<(*tree).NextCount;i++){
+		Function_RecursiveFreeForce((*tree).Next[i]);
+		free((*tree).Next[i]);
+		(*tree).Next[i] = NULL;
+	}
+	(*tree).NextCount = 0;
+	free((*tree).Head);
+	(*tree).Head = NULL;
+	free((*tree).Next);
+	(*tree).Next = NULL;
+	return(0);
+}
+
+
+//Under constructive functions
 ////recursive print function
 void Function_RecursivePrint_Head(struct Tree *tree){
+	//mis-matching code
 	int i;
 	if((*tree).NCself > 0){
 		if((*tree).Conj == 1 && (*tree).NCself > 1){
@@ -249,23 +270,4 @@ int Function_RecursiveFree(struct Tree *tree){
 	}
 	return(0);
 }
-int Function_RecursiveFreeForce(struct Tree *tree){
-	//including bug
-	int i;
-	if(tree == NULL){
-		return(1);
-	}
-	for(i=0;i<(*tree).NextCount;i++){
-		Function_RecursiveFreeForce((*tree).Next[i]);
-		free((*tree).Next[i]);
-		(*tree).Next[i] = NULL;
-	}
-	(*tree).NextCount = 0;
-	free((*tree).Head);
-	(*tree).Head = NULL;
-	free((*tree).Next);
-	(*tree).Next = NULL;
-	return(0);
-}
-
 
