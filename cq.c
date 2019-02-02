@@ -11,7 +11,7 @@
 #endif
 #include "../RECURSIVE-SYSTEM/T-structure.h"
 #include "../RECURSIVE-SYSTEM/T-basic_functions.h"
-#include "../RECURSIVE-SYSTEM/C-import_export.h"
+#include "../RECURSIVE-SYSTEM/T-import_export.h"
 
 void status(void){
 	printf("STATUS:\n");

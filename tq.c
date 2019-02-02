@@ -11,7 +11,7 @@
 #endif
 #include "../RECURSIVE-SYSTEM/T-structure.h"
 #include "../RECURSIVE-SYSTEM/T-basic_functions.h"
-#include "../RECURSIVE-SYSTEM/C-import_export.h"
+#include "../RECURSIVE-SYSTEM/T-import_export.h"
 
 void status(void){
 	printf("STATUS:\n");
@@ -194,6 +194,7 @@ int main(int argc, char **argv){
 	struct Tree *top;
 	top = Create_Node(BUFF_LEN);
 	c = importApp_Tree(IN,top,opt,fopt); // removed mem leak code.
+	//c = importApp_Tree_OLD(IN,top,opt,fopt); // removed mem leak code.
 
 	// close file
 	if(is_open > 0){
