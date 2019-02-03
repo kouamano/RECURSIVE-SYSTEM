@@ -1,4 +1,3 @@
-gcc DictCategory.h
-gcc G-structure.h
-gcc Tree.h
+gcc cts.c -o cts
 gcc tq.c -o tq
+gcc cq.c -o cq
