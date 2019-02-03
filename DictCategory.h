@@ -4,7 +4,7 @@
 #ifndef BUFF_LEN
 #define BUFF_LEN 1024
 #endif
-#include "Tree.h"
+#include "T-structure.h"
 
 struct Triple {
 	int ID;
