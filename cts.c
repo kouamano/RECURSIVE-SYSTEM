@@ -86,16 +86,12 @@ void check_options(struct options *opt){
 
 // function definition
 int store_CHAR(FILE *_IN, struct List *top, int WAR){
-	int i;
-	int itrs;
 	int C;
 	int DLM_ACC = 1;
 	int LIST_LV = 0;
-	int NEXT_COUNT = 0;
 	int ARG_COUNT = 0;
 	char *BUFF;
 	int buf_ptr = 0;
-	struct List *parent;
 	struct List *current;
 	struct List *next;
 	struct List *arg;
@@ -105,7 +101,7 @@ int store_CHAR(FILE *_IN, struct List *top, int WAR){
 		printf("[Fail] malloc.\n");
 		exit(1);
 	}
-	while(C = fgetc(_IN)){
+	while((C = fgetc(_IN))){
 		//check chars
 		if(WAR > 0){
 		printf("\n:C=%c: ",C);
@@ -135,8 +131,8 @@ int store_CHAR(FILE *_IN, struct List *top, int WAR){
 			}
 			if(WAR > 0){
 			printf(":B=%s:",(*current).Head);
-			printf(":Pp=%ld:",(*current).Parent);
-			printf(":Cp=%ld:",current);
+			printf(":Pp=%ld:",(long int)(*current).Parent);
+			printf(":Cp=%ld:",(long int)current);
 			printf(":LVs=%d:",(*current).LVself);
 			printf(":NCs=%d:",(*current).NCself);
 			printf(":ACs=%d:",(*current).ACself);
@@ -160,8 +156,8 @@ int store_CHAR(FILE *_IN, struct List *top, int WAR){
 			}
 			if(WAR > 0){
 			printf(":B=%s:",(*current).Head);
-			printf(":Pp=%ld:",(*current).Parent);
-			printf(":Cp=%ld:",current);
+			printf(":Pp=%ld:",(long int)(*current).Parent);
+			printf(":Cp=%ld:",(long int)current);
 			printf(":LVs=%d:",(*current).LVself);
 			printf(":NCs=%d:",(*current).NCself);
 			printf(":ACs=%d:",(*current).ACself);
@@ -190,8 +186,8 @@ int store_CHAR(FILE *_IN, struct List *top, int WAR){
 			}
 			if(WAR > 0){
 			printf(":B=%s:",(*current).Head);
-			printf(":Pp=%ld:",(*current).Parent);
-			printf(":Cp=%ld:",current);
+			printf(":Pp=%ld:",(long int)(*current).Parent);
+			printf(":Cp=%ld:",(long int)current);
 			printf(":LVs=%d:",(*current).LVself);
 			printf(":NCs=%d:",(*current).NCself);
 			printf(":ACs=%d:",(*current).ACself);
