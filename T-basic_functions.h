@@ -185,6 +185,33 @@ void Function_Print_Head_S(struct Tree *tree){
 		//printf(",");
 	}
 }
+////print JSON-form
+////Under construction
+void Function_Print_Head_J(struct Tree *tree){
+	//debug complete?
+	int i;
+	int countCZ = 0;
+	countCZ = Function_Count_NextConjZero(tree);
+	/* print "," for Conj */
+	if(((*tree).Conj == 1 || (*tree).Bopen > 0)&&(strlen((*tree).Head) > 0)){
+		printf(",");
+	}
+	/* print Bopen */
+	for(i=0;i<countCZ;i++){
+		printf("(");
+	}
+	/* print Head */
+	printf("%s",(*tree).Head);
+	/* print Bclose */
+	for(i=0;i<(*tree).Bclose;i++){
+		printf(")");
+	}
+	/* print "," for Next */
+	if((*tree).NextCount > 0){
+		//printf(",");
+	}
+}
+
 ////recursive meta-function
 struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *) ){
 	int i;
