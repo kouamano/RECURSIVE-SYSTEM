@@ -15,7 +15,7 @@
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" Constructing functions.\n");
+	printf(" Under construction of JSON print.\n");
 }
 
 void help(void){
@@ -33,6 +33,7 @@ void function_help(void){
 	printf("  -F<x> : function symbol, e.g. \"-FS\" prints S-form.\n");
 	printf("   -FT : prints T-form.\n");
 	printf("   -FS : prints S-form.\n");
+	printf("   -FJ : prints JSON (under construction).\n");
 	printf("   -Fh : prints hierarchical-form.\n");
 	printf("   -Fst : prints import status.\n");
 	printf("   -Fhst : prints import status with hierarchical-form.\n");
@@ -72,6 +73,7 @@ void init_function_options(struct function_options *fopt){
 	(*fopt).f_counter = 0;
 	(*fopt).f_print_T = 0;
 	(*fopt).f_print_S = 0;
+	(*fopt).f_print_J = 0;
 	(*fopt).f_print_status = 0;
 	(*fopt).f_print_hierarchy = 0;
 	(*fopt).f_print_hierarchy_status = 0;
@@ -117,6 +119,9 @@ void get_function_options(int optc, char **optv, struct function_options *fopt){
 		}else if(strncmp(optv[i],"-FS",3) == 0){
 			(*fopt).f_print_S = 1;
 			(*fopt).f_counter++;
+		}else if(strncmp(optv[i],"-FJ",3) == 0){
+			(*fopt).f_print_J = 1;
+			(*fopt).f_counter++;
 		}else if(strncmp(optv[i],"-Fhst",4) == 0 && strlen(optv[i]) == 5){
 			(*fopt).f_print_hierarchy_status = 1;
 			(*fopt).f_counter++;
@@ -139,6 +144,7 @@ void check_function_options(struct function_options *fopt){
 	printf("  opt.fcount:%d:\n",(*fopt).f_counter);
 	printf("  opt.FT:%d:\n",(*fopt).f_print_T);
 	printf("  opt.FS:%d:\n",(*fopt).f_print_S);
+	printf("  opt.FJ:%d:\n",(*fopt).f_print_J);
 	printf("  opt.Fst:%d:\n",(*fopt).f_print_status);
 	printf("  opt.Fh:%d:\n",(*fopt).f_print_hierarchy);
 	printf("  opt.Fhst:%d:\n",(*fopt).f_print_hierarchy_status);
