@@ -6,6 +6,47 @@
 #endif
 
 //basic function
+////testing functions
+int Detect_Dim(const char *head){
+	//under construction
+	int len;
+	int dim_s = -1;
+	int dim_e = -1;
+	int esc = 0;
+	int i;
+	int ret = 0;
+	len = strlen(head);
+	//printf(":%d:",len);
+	/*
+	if((_new_head = malloc(sizeof(char) * (len+10))) == NULL){
+		perror("[Fail] malloc @ Reform_DimJ.\n");
+		exit(1);
+	}
+	_new_head[0] = '\0';
+	*/
+	for(i=0;i<len;i++){
+		if(head[i] == '\\'){
+			esc = 1;
+		}else if(head[i] == '[' && esc == 0){
+			dim_s = i;
+			esc = 0;
+		}else if(head[i] == ']' && esc == 0){
+			dim_e = i;
+			esc = 0;
+		}else{
+			esc = 0;
+		}
+	}
+	if(dim_s > -1){
+		ret++;
+	}
+	if(dim_e > -1){
+		ret++;
+	}
+	if(ret == 2){
+	}
+	return(ret);
+}
 ////restructure functions
 struct Tree *Create_Node(int H_size){
 	struct Tree *tree;
@@ -198,13 +239,22 @@ void Function_Print_Head_J(struct Tree *tree){
 	}
 	/* print Bopen */
 	for(i=0;i<countCZ;i++){
-		printf("(");
+		//printf("(");
+		printf("[");
 	}
 	/* print Head */
-	printf("%s",(*tree).Head);
+	char *new_head;
+	int sw = 0;
+	sw = Detect_Dim((*tree).Head);
+	if(sw == 2){
+		;
+	}else{
+		printf("%s",(*tree).Head);
+	}
 	/* print Bclose */
 	for(i=0;i<(*tree).Bclose;i++){
-		printf(")");
+		//printf(")");
+		printf("]");
 	}
 	/* print "," for Next */
 	if((*tree).NextCount > 0){
