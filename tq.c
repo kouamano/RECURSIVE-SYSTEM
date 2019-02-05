@@ -13,9 +13,15 @@
 #include "../RECURSIVE-SYSTEM/T-basic_functions.h"
 #include "../RECURSIVE-SYSTEM/T-import_export.h"
 
+const char cdate[] = __DATE__;
+const char ctime[] = __TIME__;
+
 void status(void){
 	printf("STATUS:\n");
-	printf(" Under construction of JSON print.\n");
+	printf(" Testing of JSON print.\n");
+	printf("COMPILED:\n");
+	printf(" %s\n",ctime);
+	printf(" %s\n",cdate);
 }
 
 void help(void){
