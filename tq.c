@@ -39,7 +39,7 @@ void function_help(void){
 	printf("  -F<x> : function symbol, e.g. \"-FS\" prints S-form.\n");
 	printf("   -FT : prints T-form.\n");
 	printf("   -FS : prints S-form.\n");
-	printf("   -FJ : prints JSON (under construction).\n");
+	printf("   -FJ : prints JSON.\n");
 	printf("   -Fh : prints hierarchical-form.\n");
 	printf("   -Fst : prints import status.\n");
 	printf("   -Fhst : prints import status with hierarchical-form.\n");
