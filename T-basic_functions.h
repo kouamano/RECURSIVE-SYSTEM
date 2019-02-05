@@ -248,6 +248,7 @@ void Function_Print_Head_J(struct Tree *tree){
 	char *new_head;
 	int sw = 0;
 	int *dim_pos;
+	int head_len = 0;
 	if((dim_pos = calloc(2,sizeof(int))) == NULL){
 		perror("[Fail] malloc @ Function_Print_Head_J.\n");
 		exit(1);
@@ -259,7 +260,12 @@ void Function_Print_Head_J(struct Tree *tree){
 		printf("[\"%s\",\"DIM\",",(*tree).Head);
 		printf("%s",(*tree).Head+dim_pos[0]+1);
 	}else{
-		printf("\"%s\"",(*tree).Head);
+		head_len = strlen((*tree).Head);
+		if(head_len > 0){
+			printf("\"%s\"",(*tree).Head);
+		}else{
+			;
+		}
 	}
 	/* print Bclose */
 	for(i=0;i<(*tree).Bclose;i++){
