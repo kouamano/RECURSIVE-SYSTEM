@@ -16,14 +16,6 @@ int Detect_Dim(const char *head, int *pos){
 	int i;
 	int ret = 0;
 	len = strlen(head);
-	//printf(":%d:",len);
-	/*
-	if((_new_head = malloc(sizeof(char) * (len+10))) == NULL){
-		perror("[Fail] malloc @ Reform_DimJ.\n");
-		exit(1);
-	}
-	_new_head[0] = '\0';
-	*/
 	for(i=0;i<len;i++){
 		if(head[i] == '\\'){
 			esc = 1;
@@ -129,26 +121,6 @@ int Function_Count_NextConjZero(struct Tree *tree){
 	}
 	return(count);
 }
-////print-head function
-int Function_Print_Head(struct Tree *tree){
-	int i;
-	int not_print_Bclose = 0;
-	if((*tree).Conj){
-		printf(",");
-	}
-	if((*tree).Bopen){
-		printf("(");
-	}
-	printf("%s",(*tree).Head);
-	if((*tree).Bclose > 0 && (*tree).NextCount == 0){
-		for(i=0;i<((*tree).Bclose);i++){
-			printf(")");
-		}
-	}else if((*tree).Bclose > 0){
-		not_print_Bclose = not_print_Bclose + (*tree).Bclose;
-	}
-	return(not_print_Bclose);
-}
 ////print indent head function
 void Function_Print_HeadHierarchy(struct Tree *tree){
 	int i;
@@ -203,6 +175,75 @@ void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	printf(":Cl=%d:",(*tree).Bclose);
 	printf("\n");
 }
+//print formatting
+////print T-form
+int Function_Print_Head(struct Tree *tree){
+	int i;
+	int not_print_Bclose = 0;
+	if((*tree).Conj){
+		printf(",");
+	}
+	if((*tree).Bopen){
+		printf("(");
+	}
+	printf("%s",(*tree).Head);
+	if((*tree).Bclose > 0 && (*tree).NextCount == 0){
+		for(i=0;i<((*tree).Bclose);i++){
+			printf(")");
+		}
+	}else if((*tree).Bclose > 0){
+		not_print_Bclose = not_print_Bclose + (*tree).Bclose;
+	}
+	return(not_print_Bclose);
+}
+////print W-form
+int Function_Print_Head_W(struct Tree *tree){
+	//under construction
+	int i;
+	int not_print_Bclose = 0;
+	/* print "," for Conj */
+	if((*tree).Conj){
+		printf(",");
+	}
+	/* print Bopen */
+	if((*tree).Bopen){
+		//printf("(");
+		printf("[");
+	}
+
+	/* print Head */
+	//printf("%s",(*tree).Head);
+	int sw = 0;
+	int *dim_pos;
+	int head_len = 0;
+	if((dim_pos = calloc(2,sizeof(int))) == NULL){
+		perror("[Fail] malloc @ Function_Print_Head_J.\n");
+		exit(1);
+	}
+	sw = Detect_Dim((*tree).Head,dim_pos);
+	if(sw == 2){
+		(*tree).Head[dim_pos[0]] = '\0';
+		printf("%s[DIM,",(*tree).Head);
+		printf("%s",(*tree).Head+dim_pos[0]+1);
+	}else{
+		head_len = strlen((*tree).Head);
+		if(head_len > 0){
+			printf("%s",(*tree).Head);
+		}else{
+			;
+		}
+	}
+	/* print Bclose */
+	if((*tree).Bclose > 0 && (*tree).NextCount == 0){
+		for(i=0;i<((*tree).Bclose);i++){
+			//printf(")");
+			printf("]");
+		}
+	}else if((*tree).Bclose > 0){
+		not_print_Bclose = not_print_Bclose + (*tree).Bclose;
+	}
+	return(not_print_Bclose);
+}
 ////print S-form
 void Function_Print_Head_S(struct Tree *tree){
 	//debug complete?
@@ -245,7 +286,6 @@ void Function_Print_Head_J(struct Tree *tree){
 		printf("[");
 	}
 	/* print Head */
-	char *new_head;
 	int sw = 0;
 	int *dim_pos;
 	int head_len = 0;

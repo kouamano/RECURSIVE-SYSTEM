@@ -40,6 +40,7 @@ void function_help(void){
 	printf("   -FT : prints T-form.\n");
 	printf("   -FS : prints S-form.\n");
 	printf("   -FJ : prints JSON.\n");
+	printf("   -FW : prints Wolfram language.\n");
 	printf("   -Fh : prints hierarchical-form.\n");
 	printf("   -Fst : prints import status.\n");
 	printf("   -Fhst : prints import status with hierarchical-form.\n");
@@ -86,13 +87,6 @@ void init_function_options(struct function_options *fopt){
 }
 
 void get_options(int optc, char **optv, struct options *opt){
-	/*
-	char *opstr;
-	if((opstr = calloc(LEN,sizeof(char))) == NULL){
-		perror("[Fail] malloc()@get_options.\n");
-		exit(1);
-	}
-	*/
 	int i = 0;
 	for(i=0;i<optc;i++){
 		if(strcmp(optv[i],"-h") == 0 && strlen(optv[i]) == 2){
@@ -127,6 +121,9 @@ void get_function_options(int optc, char **optv, struct function_options *fopt){
 			(*fopt).f_counter++;
 		}else if(strncmp(optv[i],"-FJ",3) == 0){
 			(*fopt).f_print_J = 1;
+			(*fopt).f_counter++;
+		}else if(strncmp(optv[i],"-FW",3) == 0){
+			(*fopt).f_print_W = 1;
 			(*fopt).f_counter++;
 		}else if(strncmp(optv[i],"-Fhst",4) == 0 && strlen(optv[i]) == 5){
 			(*fopt).f_print_hierarchy_status = 1;

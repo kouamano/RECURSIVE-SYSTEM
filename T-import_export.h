@@ -171,6 +171,10 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_J);
 			printf("\n");
 			}
+			if((*_fopt).f_print_W == 1){
+			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_W);
+			printf("\n");
+			}
 			if((*_fopt).f_print_status == 1){
 			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status);
 			//printf("\n");
