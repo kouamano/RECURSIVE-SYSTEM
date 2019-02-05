@@ -7,7 +7,7 @@
 
 //basic function
 ////testing functions
-int Detect_Dim(const char *head){
+int Detect_Dim(const char *head, int *pos){
 	//under construction
 	int len;
 	int dim_s = -1;
@@ -37,6 +37,8 @@ int Detect_Dim(const char *head){
 			esc = 0;
 		}
 	}
+	pos[0] = dim_s;
+	pos[1] = dim_e;
 	if(dim_s > -1){
 		ret++;
 	}
@@ -245,11 +247,19 @@ void Function_Print_Head_J(struct Tree *tree){
 	/* print Head */
 	char *new_head;
 	int sw = 0;
-	sw = Detect_Dim((*tree).Head);
+	int *dim_pos;
+	if((dim_pos = calloc(2,sizeof(int))) == NULL){
+		perror("[Fail] malloc @ Function_Print_Head_J.\n");
+		exit(1);
+	}
+	sw = Detect_Dim((*tree).Head,dim_pos);
 	if(sw == 2){
-		;
+		//printf(":%d:",dim_pos[0]);
+		(*tree).Head[dim_pos[0]] = '\0';
+		printf("[\"%s\",\"DIM\",",(*tree).Head);
+		printf("%s",(*tree).Head+dim_pos[0]+1);
 	}else{
-		printf("%s",(*tree).Head);
+		printf("\"%s\"",(*tree).Head);
 	}
 	/* print Bclose */
 	for(i=0;i<(*tree).Bclose;i++){
