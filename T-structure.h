@@ -1,5 +1,6 @@
 //structure
 struct Tree {
+	int label;
 	int LVself;
 	int NCself;
 	int Conj;
