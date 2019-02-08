@@ -13,6 +13,7 @@ void status(void){
 	printf("STATUS:\n");
 	printf(" Testing of JSON print.\n");
 	printf(" The option FMa : under construction.\n");
+	printf(" The option form : under construction.\n");
 	printf("COMPILED:\n");
 	printf(" %s\n",ctime);
 	printf(" %s\n",cdate);
@@ -28,9 +29,9 @@ void help(void){
 	printf("  buff : set integer for buffer size to read the nodes.\n");
 	printf("  in : set input file name (length < 1024).\n");
 	printf("  form : decrear input-form\n");
-	printf("   0 singlei : under construction,\n");
-	printf("   1 multi : under construction,\n");
-	printf("   2 individual.\n");
+	printf("   0 singlei: operate whole as single line (under construction),\n");
+	printf("   1 multi: apply reference lines (under construction),\n");
+	printf("   2 individual: operate line by line.\n");
 	printf("  war : set integer for warnnig level.\n");
 }
 void function_help(void){
