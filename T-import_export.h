@@ -159,42 +159,10 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 			close = 0;
 
 			/* pre operation */
-			// label operation
-
 			/* apply functions */
-			if((*_fopt).f_print_T == 1){
-			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head);
-			printf("\n");
-			}
-			if((*_fopt).f_print_S == 1){
-			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_S);
-			printf("\n");
-			}
-			if((*_fopt).f_print_J == 1){
-			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_J);
-			printf("\n");
-			}
-			if((*_fopt).f_print_W == 1){
-			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_W);
-			printf("\n");
-			}
-			if((*_fopt).f_print_status == 1){
-			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status);
-			//printf("\n");
-			}
-			if((*_fopt).f_print_hierarchy == 1){
-			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchy);
-			//printf("\n");
-			}
-			if((*_fopt).f_print_hierarchy_status == 1){
-			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus);
-			//printf("\n");
-			}
-
 			/* clear tree */
-			Function_RecursiveFreeForce(top);
-			free(top);
-			top = Create_Node(BUFF_LEN);
+			#include "T-import_export_app-branch.h"
+
 			ESC = 0;
 		}else if(C == EOF){
 			close = 0;
