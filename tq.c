@@ -29,7 +29,7 @@ void help(void){
 	printf("  buff : set integer for buffer size to read the nodes.\n");
 	printf("  in : set input file name (length < 1024).\n");
 	printf("  form : decrear input-form\n");
-	printf("   0 singlei: operate whole as single line (under construction),\n");
+	printf("   0 single: operate whole as single line (under construction),\n");
 	printf("   1 multi: apply reference lines (under construction),\n");
 	printf("   2 individual: operate line by line.\n");
 	printf("  war : set integer for warnnig level.\n");
