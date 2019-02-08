@@ -1,14 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define LEN 1024
-#define BUFF_LEN 1024
-#ifndef max
-#define max(a,b) (((a)>(b))?(a):(b))
-#endif
-#ifndef min
-#define min(a,b) (((a)<(b))?(a):(b))
-#endif
+#include "../RECURSIVE-SYSTEM/T-definition.h"
 #include "../RECURSIVE-SYSTEM/T-structure.h"
 #include "../RECURSIVE-SYSTEM/T-basic_functions.h"
 #include "../RECURSIVE-SYSTEM/T-import_export.h"
