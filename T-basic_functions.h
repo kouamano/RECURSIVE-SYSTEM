@@ -48,6 +48,8 @@ struct Tree *Create_Node(int H_size){
 		fprintf(stderr,"[Fail] malloc.\n");
 		exit(1);
 	}
+	(*tree).IDX=NULL;
+	(*tree).numIDX=0;
 	(*tree).LVself=0;
 	//(*tree).NCself=0;
 	(*tree).NCself=1;
