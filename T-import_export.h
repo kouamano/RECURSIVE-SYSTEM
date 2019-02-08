@@ -158,6 +158,8 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 			buf_ptr = 0;
 			close = 0;
 
+			/* pre operation */
+			// label operation
 			/* apply functions */
 			if((*_fopt).f_print_T == 1){
 			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head);

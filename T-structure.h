@@ -1,6 +1,6 @@
 //structure
 struct Tree {
-	int label;
+	int *IDX;
 	int LVself;
 	int NCself;
 	int Conj;
