@@ -30,11 +30,11 @@ void help(void){
 	printf(" tq [-h] [-s] [-c] buff=<size(int)> in=<input file> w=<print warnning> -F<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -hF : function help.\n");
-	printf("  -s : stat.\n");
+	printf("  -s : prints status.\n");
 	printf("  -c : check args.\n");
-	printf("  buff : set integer.\n");
-	printf("  in : set *chars (len < 1024).\n");
-	printf("  war : set integer.\n");
+	printf("  buff : set integer for buffer size to read the nodes.\n");
+	printf("  in : set input file name (length < 1024).\n");
+	printf("  war : set integer for warnnig level.\n");
 }
 void function_help(void){
 	printf("  -F<x> : function symbol, e.g. \"-FS\" prints S-form.\n");
