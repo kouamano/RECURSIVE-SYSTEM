@@ -27,10 +27,10 @@ void help(void){
 	printf("  -c : check args.\n");
 	printf("  buff : set integer for buffer size to read the nodes.\n");
 	printf("  in : set input file name (length < 1024).\n");
-	printf("  form : decrear input-form:\n");
-	printf("   0 single\n");
-	printf("   1 multi\n");
-	printf("   2 individual\n");
+	printf("  form : decrear input-form\n");
+	printf("   0 singlei : under construction,\n");
+	printf("   1 multi : under construction,\n");
+	printf("   2 individual.\n");
 	printf("  war : set integer for warnnig level.\n");
 }
 void function_help(void){
