@@ -148,25 +148,23 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 			}
 			close++;
 		}else if(C == LF){
-			/* copy BUFF */
-			BUFF[buf_ptr] = '\0';
-			if(close == 0){
-				strcpy((*current).Head,BUFF);
-			}
-			/* clear BUFF */
-			BUFF[0] = '\0';
-			buf_ptr = 0;
-			close = 0;
-
-			/* pre operation */
-			/* apply functions */
-			/* clear tree */
 			/* 0 single/1 multi/2 individual */
 			if((*_opt).form == 2){
-			#include "T-import_export_app-branch.h"
+				/* copy BUFF */
+				BUFF[buf_ptr] = '\0';
+				if(close == 0){
+					strcpy((*current).Head,BUFF);
+				}
+				/* clear BUFF */
+				BUFF[0] = '\0';
+				buf_ptr = 0;
+				close = 0;
+				/* pre operation ,
+				   apply functions,
+				   clear tree */
+				#include "T-import_export_app-branch.h"
+				ESC = 0;
 			}
-
-			ESC = 0;
 		}else if(C == EOF){
 			close = 0;
 			ESC = 0;
