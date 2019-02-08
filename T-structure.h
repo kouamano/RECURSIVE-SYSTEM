@@ -20,6 +20,7 @@ struct options {
         int buff;
         int war;
         char *in;
+	int form;
         int hF;
 };
 

@@ -73,6 +73,7 @@ void init_options(struct options *opt){
 	(*opt).buff = BUFF_LEN;
 	(*opt).war = 0;
 	(*opt).in[0] = '\0';
+	(*opt).form = 2;
 	(*opt).hF = 0;
 }
 void init_function_options(struct function_options *fopt){
@@ -104,6 +105,13 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).hF = 1;
 		}else if(strncmp(optv[i],"in=",3) == 0){
 			sscanf(optv[i],"in=%s",(*opt).in);
+		}else if(strncmp(optv[i],"form=single",11) == 0){
+			(*opt).form = 0;
+		}else if(strncmp(optv[i],"form=multi",10) == 0){
+			(*opt).form = 1;
+		}else if(strncmp(optv[i],"form=individual",15) == 0){
+			(*opt).form = 2;
+
 		}
 	}
 }
