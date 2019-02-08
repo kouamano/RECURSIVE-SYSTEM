@@ -1,3 +1,4 @@
+#include "../RECURSIVE-SYSTEM/T-definition.h"
 //import/export 
 ////current unctions
 ////import and apply(NEW)
@@ -146,7 +147,7 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 				current = (*current).Parent;
 			}
 			close++;
-		}else if(C == '\n'){
+		}else if(C == LF){
 			/* copy BUFF */
 			BUFF[buf_ptr] = '\0';
 			if(close == 0){
