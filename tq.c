@@ -28,9 +28,9 @@ void help(void){
 	printf("  buff : set integer for buffer size to read the nodes.\n");
 	printf("  in : set input file name (length < 1024).\n");
 	printf("  form : decrear input-form:\n");
-	printf("   single\n");
-	printf("   multi\n");
-	printf("   individual\n");
+	printf("   0 single\n");
+	printf("   1 multi\n");
+	printf("   2 individual\n");
 	printf("  war : set integer for warnnig level.\n");
 }
 void function_help(void){
@@ -153,6 +153,7 @@ void check_options(struct options *opt){
 	printf(" opt.in:%s:\n",(*opt).in);
 	printf(" opt.war:%d:\n",(*opt).war);
 	printf(" opt.hF:%d:\n",(*opt).hF);
+	printf(" opt.form:%d:\n",(*opt).form);
 }
 void check_function_options(struct function_options *fopt){
 	printf(" functions:\n");
