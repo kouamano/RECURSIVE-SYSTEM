@@ -20,13 +20,17 @@ void status(void){
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" tq [-h] [-s] [-c] buff=<size(int)> in=<input file> w=<print warnning> -F<x>.\n");
+	printf(" tq [-h] [-s] [-c] buff=<size(int)> in=<input file> form=<input form> w=<print warnning> -F<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -hF : function help.\n");
 	printf("  -s : prints status.\n");
 	printf("  -c : check args.\n");
 	printf("  buff : set integer for buffer size to read the nodes.\n");
 	printf("  in : set input file name (length < 1024).\n");
+	printf("  form : decrear input-form:\n");
+	printf("   single\n");
+	printf("   multi\n");
+	printf("   individual\n");
 	printf("  war : set integer for warnnig level.\n");
 }
 void function_help(void){
