@@ -21,7 +21,7 @@ void status(void){
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" tq [-h] [-s] [-c] buff=<size(int)> in=<input file> form=<input form> w=<print warnning> -F<x>.\n");
+	printf(" tq [-h|-hF] [-s] [-c] buff=<size(int)> in=<input file> form=<input form> w=<print warnning> -F<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -hF : function help.\n");
 	printf("  -s : prints status.\n");
