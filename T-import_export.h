@@ -149,7 +149,11 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 			close++;
 		}else if(C == LF){
 			/* 0 single/1 multi/2 individual */
-			if((*_opt).form == 2){
+			if((*_opt).form == 0){
+				; // underconstruction
+			}else if((*_opt).form == 1){
+				; // underconstruction
+			}else if((*_opt).form == 2){
 				/* copy BUFF */
 				BUFF[buf_ptr] = '\0';
 				if(close == 0){
