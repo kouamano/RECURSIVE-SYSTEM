@@ -147,9 +147,8 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 			}
 			close++;
 		}else if(C == '\n'){
-			/* print BUFF */
+			/* copy BUFF */
 			BUFF[buf_ptr] = '\0';
-			//printf("%s",BUFF);
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
 			}
@@ -160,6 +159,7 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 
 			/* pre operation */
 			// label operation
+
 			/* apply functions */
 			if((*_fopt).f_print_T == 1){
 			ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head);
