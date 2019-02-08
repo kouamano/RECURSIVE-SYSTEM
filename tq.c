@@ -19,6 +19,7 @@ const char ctime[] = __TIME__;
 void status(void){
 	printf("STATUS:\n");
 	printf(" Testing of JSON print.\n");
+	printf(" The option FMa : under construction.\n");
 	printf("COMPILED:\n");
 	printf(" %s\n",ctime);
 	printf(" %s\n",cdate);
@@ -41,6 +42,7 @@ void function_help(void){
 	printf("   -FS : prints S-form.\n");
 	printf("   -FJ : prints JSON.\n");
 	printf("   -FW : prints Wolfram language.\n");
+	printf("   -FMa : prints Adjacency matrix (under construction).\n");
 	printf("   -Fh : prints hierarchical-form.\n");
 	printf("   -Fst : prints import status.\n");
 	printf("   -Fhst : prints import status with hierarchical-form.\n");
@@ -81,6 +83,8 @@ void init_function_options(struct function_options *fopt){
 	(*fopt).f_print_T = 0;
 	(*fopt).f_print_S = 0;
 	(*fopt).f_print_J = 0;
+	(*fopt).f_print_W = 0;
+	(*fopt).f_print_Ma = 0;
 	(*fopt).f_print_status = 0;
 	(*fopt).f_print_hierarchy = 0;
 	(*fopt).f_print_hierarchy_status = 0;
@@ -125,6 +129,9 @@ void get_function_options(int optc, char **optv, struct function_options *fopt){
 		}else if(strncmp(optv[i],"-FW",3) == 0){
 			(*fopt).f_print_W = 1;
 			(*fopt).f_counter++;
+		}else if(strncmp(optv[i],"-FMa",4) == 0){
+			(*fopt).f_print_Ma = 1;
+			(*fopt).f_counter++;
 		}else if(strncmp(optv[i],"-Fhst",4) == 0 && strlen(optv[i]) == 5){
 			(*fopt).f_print_hierarchy_status = 1;
 			(*fopt).f_counter++;
@@ -148,6 +155,8 @@ void check_function_options(struct function_options *fopt){
 	printf("  opt.FT:%d:\n",(*fopt).f_print_T);
 	printf("  opt.FS:%d:\n",(*fopt).f_print_S);
 	printf("  opt.FJ:%d:\n",(*fopt).f_print_J);
+	printf("  opt.FW:%d:\n",(*fopt).f_print_W);
+	printf("  opt.FMa:%d:\n",(*fopt).f_print_Ma);
 	printf("  opt.Fst:%d:\n",(*fopt).f_print_status);
 	printf("  opt.Fh:%d:\n",(*fopt).f_print_hierarchy);
 	printf("  opt.Fhst:%d:\n",(*fopt).f_print_hierarchy_status);
