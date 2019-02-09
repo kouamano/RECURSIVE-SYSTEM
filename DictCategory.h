@@ -25,6 +25,7 @@ struct Triple *init_Triple_zero(struct Triple *obj){
 	(*obj).Ccount=0;
 	(*obj).Cod = malloc(sizeof(struct Tree *) * 1);
 	if((*obj).Cod == NULL){ printf("[Fail] alloc.\n"); exit(1); }
+	return(obj);
 }
 
 struct Triple *create_Triple_zero(void){
