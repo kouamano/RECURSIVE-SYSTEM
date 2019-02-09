@@ -28,8 +28,9 @@
                         ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus);
                         }
 
-			/* clear tree */
+			/* clear tree
                         Function_RecursiveFreeForce(top);
                         free(top);
                         top = Create_Node(BUFF_LEN);
+			*/
 
