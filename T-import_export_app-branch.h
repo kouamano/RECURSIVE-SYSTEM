@@ -1,6 +1,3 @@
-
-			/* pre-operation */
-
 			/* apply functions */
                         if((*_fopt).f_print_T == 1){
                         ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head);
@@ -27,10 +24,4 @@
                         if((*_fopt).f_print_hierarchy_status == 1){
                         ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus);
                         }
-
-			/* clear tree
-                        Function_RecursiveFreeForce(top);
-                        free(top);
-                        top = Create_Node(BUFF_LEN);
-			*/
 

@@ -163,9 +163,7 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 				BUFF[0] = '\0';
 				buf_ptr = 0;
 				close = 0;
-				/* pre operation ,
-				   apply functions,
-				   clear tree */
+				/* apply functions */
 				#include "T-import_export_app-branch.h"
 				/* clear tree */
 				Function_RecursiveFreeForce(top);
