@@ -150,9 +150,9 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 		}else if(C == LF){
 			/* 0 single/1 multi/2 individual */
 			if((*_opt).form == 0){
-				; // underconstruction
+				; // already executed on highter level
 			}else if((*_opt).form == 1){
-				; // underconstruction
+				; // under construction
 			}else if((*_opt).form == 2){
 				/* copy BUFF */
 				BUFF[buf_ptr] = '\0';
