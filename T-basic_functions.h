@@ -139,7 +139,6 @@ void Function_Print_HeadHierarchy(struct Tree *tree){
 }
 ////print indent head function and status
 void Function_Print_HeadHierarchyStatus(struct Tree *tree){
-	//bug remains.
 	int i;
 	int countCZ = 0;
 	countCZ = Function_Count_NextConjZero(tree);
@@ -200,7 +199,6 @@ int Function_Print_Head(struct Tree *tree){
 }
 ////print W-form
 int Function_Print_Head_W(struct Tree *tree){
-	//under construction
 	int i;
 	int not_print_Bclose = 0;
 	/* print "," for Conj */
@@ -248,7 +246,6 @@ int Function_Print_Head_W(struct Tree *tree){
 }
 ////print S-form
 void Function_Print_Head_S(struct Tree *tree){
-	//debug complete?
 	int i;
 	int countCZ = 0;
 	countCZ = Function_Count_NextConjZero(tree);
@@ -272,9 +269,7 @@ void Function_Print_Head_S(struct Tree *tree){
 	}
 }
 ////print JSON-form
-////Under construction
 void Function_Print_Head_J(struct Tree *tree){
-	//debug complete?
 	int i;
 	int countCZ = 0;
 	countCZ = Function_Count_NextConjZero(tree);
@@ -319,8 +314,8 @@ void Function_Print_Head_J(struct Tree *tree){
 		//printf(",");
 	}
 }
-
-////recursive meta-function
+// meta functions
+////recursive-apply-function
 struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *) ){
 	int i;
 	struct Tree *out = tree;
@@ -334,7 +329,7 @@ struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)
 	}
 	return(out);
 }
-//administrative function
+////GC
 int Function_RecursiveFreeForce(struct Tree *tree){
 	int i;
 	if(tree == NULL){
