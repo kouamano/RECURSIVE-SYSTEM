@@ -154,7 +154,7 @@ void check_options(struct options *opt){
 	printf(" opt.in:%s:\n",(*opt).in);
 	printf(" opt.war:%d:\n",(*opt).war);
 	printf(" opt.hF:%d:\n",(*opt).hF);
-	printf(" opt.form:%d:\n",(*opt).form);
+	printf(" opt.form:%d: (under construction) \n",(*opt).form);
 }
 void check_function_options(struct function_options *fopt){
 	printf(" functions:\n");
@@ -163,7 +163,7 @@ void check_function_options(struct function_options *fopt){
 	printf("  opt.FS:%d:\n",(*fopt).f_print_S);
 	printf("  opt.FJ:%d:\n",(*fopt).f_print_J);
 	printf("  opt.FW:%d:\n",(*fopt).f_print_W);
-	printf("  opt.FMa:%d:\n",(*fopt).f_print_Ma);
+	printf("  opt.FMa:%d: (under construction) \n",(*fopt).f_print_Ma);
 	printf("  opt.Fst:%d:\n",(*fopt).f_print_status);
 	printf("  opt.Fh:%d:\n",(*fopt).f_print_hierarchy);
 	printf("  opt.Fhst:%d:\n",(*fopt).f_print_hierarchy_status);
@@ -218,7 +218,7 @@ int main(int argc, char **argv){
 	c = 1;
 	struct Tree *top;
 	top = Create_Node(BUFF_LEN);
-	c = importApp_Tree(IN,top,opt,fopt); // removed mem leak code.
+	c = importApp_Tree(IN,top,opt,fopt);
 	if((*opt).form == 0){
 		struct function_options *_fopt;
 		_fopt = fopt;
