@@ -22,6 +22,7 @@ struct options {
         char *in;
 	int form;
         int hF;
+        int hC;
 };
 
 struct function_options {
@@ -34,5 +35,10 @@ struct function_options {
         int f_print_status;
         int f_print_hierarchy;
         int f_print_hierarchy_status;
+};
+
+struct compile_options {
+	int c_counter;
+        int c_wolfram;
 };
 
