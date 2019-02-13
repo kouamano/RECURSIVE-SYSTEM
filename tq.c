@@ -286,7 +286,7 @@ int main(int argc, char **argv){
 	c = 1;
 	struct Tree *top;
 	top = Create_Node(BUFF_LEN);
-	c = importApp_Tree(IN,top,opt,fopt);
+	c = importApp_Tree(IN,top,opt,fopt,copt);
 	if((*opt).form == 0){
 		struct function_options *_fopt;
 		_fopt = fopt;

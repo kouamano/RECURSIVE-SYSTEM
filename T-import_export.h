@@ -2,7 +2,7 @@
 //import/export 
 ////current unctions
 ////import and apply(NEW)
-int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct function_options *_fopt){
+int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
 	int WAR;
 	int C;
 	int DLM_ACC = 1;
