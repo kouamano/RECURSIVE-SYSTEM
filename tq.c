@@ -290,6 +290,8 @@ int main(int argc, char **argv){
 	if((*opt).form == 0){
 		struct function_options *_fopt;
 		_fopt = fopt;
+		struct compile_options *_copt;
+		_copt = copt;
 		#include "T-import_export_app-branch.h"
 	}else if((*opt).form == 1){
 		; //under construction
