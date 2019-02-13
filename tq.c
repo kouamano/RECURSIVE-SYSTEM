@@ -4,6 +4,7 @@
 #include "../RECURSIVE-SYSTEM/T-definition.h"
 #include "../RECURSIVE-SYSTEM/T-structure.h"
 #include "../RECURSIVE-SYSTEM/T-basic_functions.h"
+#include "../RECURSIVE-SYSTEM/T-compiler.h"
 #include "../RECURSIVE-SYSTEM/T-import_export.h"
 
 const char cdate[] = __DATE__;
