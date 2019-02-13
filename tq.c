@@ -19,11 +19,13 @@ void status(void){
 	printf(" %s\n",cdate);
 }
 
+/*help*/
 void help(void){
 	printf("USAGE:\n");
 	printf(" tq [-h|-hF] [-s] [-c] buff=<size(int)> in=<input file> form=<input form> w=<print warnning> -F<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -hF : function help.\n");
+	printf("  -hC : compile help.\n");
 	printf("  -s : prints status.\n");
 	printf("  -c : check args.\n");
 	printf("  buff : set integer for buffer size to read the nodes.\n");
@@ -45,7 +47,12 @@ void function_help(void){
 	printf("   -Fst : prints import status.\n");
 	printf("   -Fhst : prints import status with hierarchical-form.\n");
 }
+void compile_help(void){
+	printf("  -C<x> : compile symbol, e.g. \"-CW\" compiles to Wolfram.\n");
+	printf("   -CW : to Wolfram language (under construction).\n");
+}
 
+/*allocation*/
 struct options *alloc_options(void){
 	struct options *p;
 	if((p = malloc(sizeof(struct options) * 1)) == NULL){
@@ -67,6 +74,7 @@ struct function_options *alloc_function_options(void){
 	return(p);
 }
 
+/*initialize*/
 void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
@@ -76,6 +84,7 @@ void init_options(struct options *opt){
 	(*opt).in[0] = '\0';
 	(*opt).form = 2;
 	(*opt).hF = 0;
+	(*opt).hC = 0;
 }
 void init_function_options(struct function_options *fopt){
 	(*fopt).f_counter = 0;
@@ -88,7 +97,12 @@ void init_function_options(struct function_options *fopt){
 	(*fopt).f_print_hierarchy = 0;
 	(*fopt).f_print_hierarchy_status = 0;
 }
+void init_compile_options(struct compile_options *copt){
+        (*copt).c_counter = 0;
+        (*copt).c_wolfram = 0;
+}
 
+/*get options*/
 void get_options(int optc, char **optv, struct options *opt){
 	int i = 0;
 	for(i=0;i<optc;i++){
@@ -104,6 +118,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"w=%d",&(*opt).war);
 		}else if(strncmp(optv[i],"-hF",3) == 0){
 			(*opt).hF = 1;
+		}else if(strncmp(optv[i],"-hC",3) == 0){
+			(*opt).hC = 1;
 		}else if(strncmp(optv[i],"in=",3) == 0){
 			sscanf(optv[i],"in=%s",(*opt).in);
 		}else if(strncmp(optv[i],"form=single",11) == 0){
@@ -144,6 +160,16 @@ void get_function_options(int optc, char **optv, struct function_options *fopt){
 		}else if(strncmp(optv[i],"-Fh",3) == 0 && strlen(optv[i]) == 3){
 			(*fopt).f_print_hierarchy = 1;
 			(*fopt).f_counter++;
+		}
+	}
+}
+void get_compile_options(int optc, char **optv, struct compile_options *copt){
+	int i = 0;
+	(*copt).c_counter = 0;
+	for(i=0;i<optc;i++){
+		if(strncmp(optv[i],"-CW",3) == 0){
+			(*copt).c_wolfram = 1;
+			(*copt).c_counter++;
 		}
 	}
 }
