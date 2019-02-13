@@ -214,8 +214,8 @@ void check_compile_options(struct compile_options *copt){
 /*main*/
 int main(int argc, char **argv){
 	struct options *opt;
-	struct function_options *fopt;
-	struct compile_options *copt;
+	struct function_options *_fopt;
+	struct compile_options *_copt;
 	int ie = 0;
 	FILE *IN;
 	int is_open = 0;
@@ -227,13 +227,13 @@ int main(int argc, char **argv){
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
 	// function opt
-	fopt = alloc_function_options();
-	init_function_options(fopt);
-	get_function_options(argc-1, argv+1, fopt);
+	_fopt = alloc_function_options();
+	init_function_options(_fopt);
+	get_function_options(argc-1, argv+1, _fopt);
 	// compile opt
-	copt = alloc_compile_options();
-	init_compile_options(copt);
-	get_compile_options(argc-1, argv+1, copt);
+	_copt = alloc_compile_options();
+	init_compile_options(_copt);
+	get_compile_options(argc-1, argv+1, _copt);
 
 	/*exit/print help operation*/
 	if(argc == 1){
@@ -267,8 +267,8 @@ int main(int argc, char **argv){
 	}
 	if((*opt).check == 1){
 		check_options(opt);
-		check_function_options(fopt);
-		check_compile_options(copt);
+		check_function_options(_fopt);
+		check_compile_options(_copt);
 		ie = 1;
 	}
 	if(ie == 1){
@@ -286,12 +286,8 @@ int main(int argc, char **argv){
 	c = 1;
 	struct Tree *top;
 	top = Create_Node(BUFF_LEN);
-	c = importApp_Tree(IN,top,opt,fopt,copt);
+	c = importApp_Tree(IN,top,opt,_fopt,_copt);
 	if((*opt).form == 0){
-		struct function_options *_fopt;	// for reamane
-		_fopt = fopt;
-		struct compile_options *_copt;	// for reaname
-		_copt = copt;
 		#include "T-import_export_app-branch.h"
 	}else if((*opt).form == 1){
 		; //under construction
