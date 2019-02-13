@@ -288,9 +288,9 @@ int main(int argc, char **argv){
 	top = Create_Node(BUFF_LEN);
 	c = importApp_Tree(IN,top,opt,fopt,copt);
 	if((*opt).form == 0){
-		struct function_options *_fopt;
+		struct function_options *_fopt;	// for reamane
 		_fopt = fopt;
-		struct compile_options *_copt;
+		struct compile_options *_copt;	// for reaname
 		_copt = copt;
 		#include "T-import_export_app-branch.h"
 	}else if((*opt).form == 1){
