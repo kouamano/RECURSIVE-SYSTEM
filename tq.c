@@ -22,7 +22,7 @@ void status(void){
 /*help*/
 void help(void){
 	printf("USAGE:\n");
-	printf(" tq [-h|-hF] [-s] [-c] buff=<size(int)> in=<input file> form=<input form> w=<print warnning> -F<x>.\n");
+	printf(" tq [-h|-hF|-hC] [-s] [-c] buff=<size(int)> in=<input file> form=<input form> w=<warnning level> -F<x> -C<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -hF : function help.\n");
 	printf("  -hC : compile help.\n");
@@ -238,17 +238,25 @@ int main(int argc, char **argv){
 	if(argc == 1){
 		(*opt).help = 1;
 	}
+	if((*opt).hF == 1){
+		(*opt).help = 1;
+		//function_help();
+		ie = 1;
+	}
+	if((*opt).hC == 1){
+		(*opt).help = 1;
+		//compile_help();
+		ie = 1;
+	}
 	if((*opt).help == 1){
 		help();
 		ie = 1;
 	}
 	if((*opt).hF == 1){
-		help();
 		function_help();
 		ie = 1;
 	}
 	if((*opt).hC == 1){
-		help();
 		compile_help();
 		ie = 1;
 	}
