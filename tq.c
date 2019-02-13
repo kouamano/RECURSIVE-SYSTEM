@@ -234,7 +234,7 @@ int main(int argc, char **argv){
 	init_compile_options(copt);
 	get_compile_options(argc-1, argv+1, copt);
 
-	/*exit operation*/
+	/*exit/print help operation*/
 	if(argc == 1){
 		(*opt).help = 1;
 	}
@@ -259,6 +259,7 @@ int main(int argc, char **argv){
 	if((*opt).check == 1){
 		check_options(opt);
 		check_function_options(fopt);
+		check_compile_options(copt);
 		ie = 1;
 	}
 	if(ie == 1){
