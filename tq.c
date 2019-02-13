@@ -174,6 +174,7 @@ void get_compile_options(int optc, char **optv, struct compile_options *copt){
 	}
 }
 
+/*checking*/
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	printf(" opt.buff:%d:\n",(*opt).buff);
@@ -194,7 +195,13 @@ void check_function_options(struct function_options *fopt){
 	printf("  opt.Fh:%d:\n",(*fopt).f_print_hierarchy);
 	printf("  opt.Fhst:%d:\n",(*fopt).f_print_hierarchy_status);
 }
+void check_compile_options(struct compile_options *copt){
+	printf(" compilers:\n");
+	printf("  opt.fcount:%d:\n",(*copt).c_counter);
+	printf("  opt.wolfram:%d:\n",(*copt).c_wolfram);
+}
 
+/*main*/
 int main(int argc, char **argv){
 	struct options *opt;
 	struct function_options *fopt;
@@ -218,6 +225,11 @@ int main(int argc, char **argv){
 	if((*opt).hF == 1){
 		help();
 		function_help();
+		ie = 1;
+	}
+	if((*opt).hC == 1){
+		help();
+		compile_help();
 		ie = 1;
 	}
 	if((*opt).stat == 1){
