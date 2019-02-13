@@ -1,4 +1,4 @@
-			/* apply functions */
+			/* apply functions @ T-basic_functions.h */
                         if((*_fopt).f_print_T == 1){
                         ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head);
                         printf("\n");
@@ -25,4 +25,4 @@
                         ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus);
                         }
 
-			/* apply compiler */
+			/* apply compiler @ T-compiler.h */
