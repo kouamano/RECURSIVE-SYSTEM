@@ -73,6 +73,15 @@ struct function_options *alloc_function_options(void){
 	}
 	return(p);
 }
+struct compile_options *alloc_compile_options(void){
+	struct compile_options *p;
+	if((p = malloc(sizeof(struct compile_options) * 1)) == NULL){
+		printf("failed : malloc() in alloc_options().\n");
+		exit(1);
+	}
+	return(p);
+}
+
 
 /*initialize*/
 void init_options(struct options *opt){
@@ -205,16 +214,27 @@ void check_compile_options(struct compile_options *copt){
 int main(int argc, char **argv){
 	struct options *opt;
 	struct function_options *fopt;
+	struct compile_options *copt;
 	int ie = 0;
 	FILE *IN;
 	int is_open = 0;
 	int c;
+
+	/*options*/
+	// main opt
 	opt = alloc_options();
-	fopt = alloc_function_options();
 	init_options(opt);
-	init_function_options(fopt);
 	get_options(argc-1, argv+1, opt);
+	// function opt
+	fopt = alloc_function_options();
+	init_function_options(fopt);
 	get_function_options(argc-1, argv+1, fopt);
+	// compile opt
+	copt = alloc_compile_options();
+	init_compile_options(copt);
+	get_compile_options(argc-1, argv+1, copt);
+
+	/*exit operation*/
 	if(argc == 1){
 		(*opt).help = 1;
 	}
@@ -244,14 +264,15 @@ int main(int argc, char **argv){
 	if(ie == 1){
 		exit(0);
 	}
-	// open file
+
+	/*open file*/
 	if((IN = fopen((*opt).in,"r")) == NULL){
 		perror((*opt).in);
 		exit(1);
 	}
 	is_open = 1;
 
-	// main function
+	/*main function*/
 	c = 1;
 	struct Tree *top;
 	top = Create_Node(BUFF_LEN);
@@ -266,11 +287,11 @@ int main(int argc, char **argv){
 		; //already executed @ importApp_Tree
 	}
 
-	// close file
+	/*close file*/
 	if(is_open > 0){
 		fclose(IN);
 	}
 
-	// finish
+	/*finish*/
 	return(c);
 }
