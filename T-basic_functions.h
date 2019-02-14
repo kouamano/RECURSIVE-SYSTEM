@@ -4,6 +4,9 @@
 #ifndef BUFF_LEN
 #define BUFF_LEN 1024
 #endif
+#ifndef INDENT
+#define INDENT "  "
+#endif
 
 //basic function
 ////testing functions
@@ -127,7 +130,7 @@ int Function_Count_NextConjZero(struct Tree *tree){
 void Function_Print_HeadHierarchy(struct Tree *tree){
 	int i;
 	for(i=0;i<(*tree).LVself;i++){
-		printf("  ");
+		printf(INDENT);
 	}
 	if((*tree).Conj == 1 && (*tree).NCself > 1){
 		printf("+");
@@ -143,7 +146,7 @@ void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	int countCZ = 0;
 	countCZ = Function_Count_NextConjZero(tree);
 	for(i=0;i<(*tree).LVself;i++){
-		printf("  ");
+		printf(INDENT);
 	}
 	if((*tree).Conj == 1 && (*tree).NCself > 1){
 		printf("+");
