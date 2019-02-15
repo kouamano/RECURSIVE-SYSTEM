@@ -348,6 +348,10 @@ int Function_RecursiveFreeForce(struct Tree *tree){
 	(*tree).Head = NULL;
 	free((*tree).Next);
 	(*tree).Next = NULL;
+	free((*tree).IDX);
+	(*tree).IDX = NULL;
+	(*tree).numIDX = 0;
+	/* you must not free (*tree).Parent!! */
 	return(0);
 }
 
