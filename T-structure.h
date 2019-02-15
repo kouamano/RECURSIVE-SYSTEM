@@ -1,7 +1,7 @@
 //structure
 struct Tree {
-	int *IDX;
 	int numIDX;
+	int *IDX;
 	int LVself;
 	int NCself;
 	int Conj;
@@ -10,7 +10,7 @@ struct Tree {
 	int Bclose;
 	int NextCount;
 	struct Tree **Next;
-	struct Tree *Parent;
+	struct Tree *Parent;	// must not free !!
 };
 
 struct options {

@@ -338,20 +338,22 @@ int Function_RecursiveFreeForce(struct Tree *tree){
 	if(tree == NULL){
 		return(1);
 	}
+	/* you must not free (*tree).Parent!! */
 	for(i=0;i<(*tree).NextCount;i++){
 		Function_RecursiveFreeForce((*tree).Next[i]);
 		free((*tree).Next[i]);
 		(*tree).Next[i] = NULL;
 	}
-	(*tree).NextCount = 0;
-	free((*tree).Head);
-	(*tree).Head = NULL;
 	free((*tree).Next);
 	(*tree).Next = NULL;
+	(*tree).NextCount = 0;
+
+	free((*tree).Head);
+	(*tree).Head = NULL;
+
 	free((*tree).IDX);
 	(*tree).IDX = NULL;
 	(*tree).numIDX = 0;
-	/* you must not free (*tree).Parent!! */
 	return(0);
 }
 
