@@ -27,10 +27,10 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 		printf("\n:C=%c: ",C);
 		}
 		/* set conditions */
-		if(C == '['){
+		if(C == '[' && ESC == 0){
 			DLM_ACC--;
 		}
-		if(C == ']'){
+		if(C == ']' && ESC == 0){
 			DLM_ACC++;
 		}
 		if(C == ',' && DLM_ACC > 0){
