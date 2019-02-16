@@ -154,6 +154,7 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 			}else if((*_opt).form == 1){
 				; // under construction
 			}else if((*_opt).form == 2){
+				//int EC; // for T-import_export_app-branch.h
 				/* copy BUFF */
 				BUFF[buf_ptr] = '\0';
 				if(close == 0){
@@ -166,6 +167,7 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 				/* apply functions */
 				// basic formatter,
 				// compiler.
+				//EC = C; // for T-import_export_app-branch.h
 				#include "T-import_export_app-branch.h"
 				/* clear tree */
 				Function_RecursiveFreeForce(top);
