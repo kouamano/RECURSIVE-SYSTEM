@@ -13,3 +13,6 @@
 #ifndef LF
 #define LF '\n'
 #endif
+#ifndef TAB
+#define TAB '\t'
+#endif

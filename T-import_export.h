@@ -147,7 +147,7 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 				current = (*current).Parent;
 			}
 			close++;
-		}else if(C == LF){
+		}else if(C == LF || C == TAB){
 			/* 0 single/1 multi/2 individual */
 			if((*_opt).form == 0){
 				; // already executed on highter level
