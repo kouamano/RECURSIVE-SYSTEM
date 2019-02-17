@@ -19,12 +19,12 @@
 
 			}
 			if((*_fopt).f_print_J == 1){
-                   		ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_J);
+				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_J);
 				if(C == LF || C == TAB){
-	                        	printf("%c",C);
+					printf("%c",C);
 				}
 
-                        }
+			}
 
 
                         if((*_fopt).f_print_status == 1){
