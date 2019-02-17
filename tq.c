@@ -283,9 +283,9 @@ int main(int argc, char **argv){
 	is_open = 1;
 
 	/*main function*/
-	c = 1;
 	struct Tree *top;
 	top = Create_Node(BUFF_LEN);
+	c = 1;
 	c = importApp_Tree(IN,top,opt,_fopt,_copt);	// @ T-import_export.h
 	if((*opt).form == 0){
 		#include "T-import_export_app-branch.h"
