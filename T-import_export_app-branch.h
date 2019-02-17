@@ -1,5 +1,4 @@
 			/* apply functions @ T-basic_functions.h */
-			//extern int EC; // compile error
                         if((*_fopt).f_print_T == 1){
                         ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head);
                         printf("\n");
