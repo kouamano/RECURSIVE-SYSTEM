@@ -96,22 +96,6 @@ int Add_Bclose_To_Next(struct Tree *tree){
 	}
 }
 ////status-check functions
-void Function_Print_Status(struct Tree *tree){
-	struct Tree *parent = (*tree).Parent;
-	printf(":LVs=%d:",(*tree).LVself);
-	printf(":NCs=%d:",(*tree).NCself);
-	printf(":Cj=%d:",(*tree).Conj);
-	printf(":BO=%d:",(*tree).Bopen);
-	printf(":H=%s:",(*tree).Head);
-	printf(":BC=%d:",(*tree).Bclose);
-	printf(":NC=%d:",(*tree).NextCount);
-	if(parent != NULL){
-		printf(":Pa=%s:",(*parent).Head);
-	}else{
-		printf(":Pa=%s:","");
-	}
-	printf("\n");
-}
 int Function_Count_NextConjZero(struct Tree *tree){
 	int i;
 	int count = 0;
@@ -129,6 +113,22 @@ int Function_Count_NextConjZero(struct Tree *tree){
 
 // formated print functions
 //// hierarchical print
+void Function_Print_Status(struct Tree *tree){
+	struct Tree *parent = (*tree).Parent;
+	printf(":LVs=%d:",(*tree).LVself);
+	printf(":NCs=%d:",(*tree).NCself);
+	printf(":Cj=%d:",(*tree).Conj);
+	printf(":BO=%d:",(*tree).Bopen);
+	printf(":H=%s:",(*tree).Head);
+	printf(":BC=%d:",(*tree).Bclose);
+	printf(":NC=%d:",(*tree).NextCount);
+	if(parent != NULL){
+		printf(":Pa=%s:",(*parent).Head);
+	}else{
+		printf(":Pa=%s:","");
+	}
+	printf("\n");
+}
 void Function_Print_HeadHierarchy(struct Tree *tree){
 	int i;
 	for(i=0;i<(*tree).LVself;i++){
