@@ -126,7 +126,9 @@ int Function_Count_NextConjZero(struct Tree *tree){
 	}
 	return(count);
 }
-////print indent head function
+
+// formated print functions
+//// hierarchical print
 void Function_Print_HeadHierarchy(struct Tree *tree){
 	int i;
 	for(i=0;i<(*tree).LVself;i++){
@@ -140,7 +142,6 @@ void Function_Print_HeadHierarchy(struct Tree *tree){
 
 	printf("%s\n",(*tree).Head);
 }
-////print indent head function and status
 void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	int i;
 	int countCZ = 0;
@@ -179,7 +180,6 @@ void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	printf(":Cl=%d:",(*tree).Bclose);
 	printf("\n");
 }
-//print formatting
 ////print T-form
 int Function_Print_Head(struct Tree *tree){
 	int i;
@@ -360,6 +360,7 @@ int Function_RecursiveFreeForce(struct Tree *tree){
 
 //Under constructive functions
 ////recursive print function
+/*
 void Function_RecursivePrint_Head(struct Tree *tree){
 	//mis-matching code
 	int i;
@@ -379,7 +380,9 @@ void Function_RecursivePrint_Head(struct Tree *tree){
 		printf(")");
 	}
 }
+*/
 ////recursive print function
+/*
 int Function_RecursiveFree(struct Tree *tree){
 	//including bug
 	int i;
@@ -409,4 +412,4 @@ int Function_RecursiveFree(struct Tree *tree){
 	}
 	return(0);
 }
-
+*/
