@@ -49,8 +49,8 @@ void function_help(void){
 	printf("   -Fhst : prints import status with hierarchical-form.\n");
 }
 void compile_help(void){
-	printf("  -C<x> : compile symbol, e.g. \"-CW\" compiles to Wolfram.\n");
-	printf("   -CW : to executable Wolfram language (under construction).\n");
+	printf("  -C : print compiled (exectable script) form.\n");
+	//printf("   -CW : to executable Wolfram language (under construction).\n");
 }
 
 /*allocation*/
@@ -179,6 +179,8 @@ void get_compile_options(int optc, char **optv, struct compile_options *copt){
 	for(i=0;i<optc;i++){
 		if(strncmp(optv[i],"-CW",3) == 0){
 			(*copt).c_wolfram = 1;
+			(*copt).c_counter++;
+		}else if(strncmp(optv[i],"-C",2) == 0){
 			(*copt).c_counter++;
 		}
 	}
