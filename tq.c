@@ -109,7 +109,6 @@ void init_function_options(struct function_options *fopt){
 }
 void init_compile_options(struct compile_options *copt){
         (*copt).c_counter = 0;
-        (*copt).c_wolfram = 0;
 }
 
 /*get options*/
@@ -177,10 +176,7 @@ void get_compile_options(int optc, char **optv, struct compile_options *copt){
 	int i = 0;
 	(*copt).c_counter = 0;
 	for(i=0;i<optc;i++){
-		if(strncmp(optv[i],"-CW",3) == 0){
-			(*copt).c_wolfram = 1;
-			(*copt).c_counter++;
-		}else if(strncmp(optv[i],"-C",2) == 0){
+		if(strncmp(optv[i],"-C",2) == 0){
 			(*copt).c_counter++;
 		}
 	}
@@ -210,7 +206,6 @@ void check_function_options(struct function_options *fopt){
 void check_compile_options(struct compile_options *copt){
 	printf(" compilers:\n");
 	printf("  opt.fcount:%d:\n",(*copt).c_counter);
-	printf("  opt.wolfram:%d:\n",(*copt).c_wolfram);
 }
 
 /*main*/

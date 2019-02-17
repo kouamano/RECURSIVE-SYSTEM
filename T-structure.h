@@ -39,6 +39,5 @@ struct function_options {
 
 struct compile_options {
 	int c_counter;
-        int c_wolfram;
 };
 
