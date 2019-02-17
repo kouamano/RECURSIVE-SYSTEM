@@ -318,6 +318,8 @@ void Function_Print_Head_J(struct Tree *tree){
 	}
 }
 // meta functions
+void null_func(void){
+}
 ////recursive-apply-function
 struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *) ){
 	int i;
