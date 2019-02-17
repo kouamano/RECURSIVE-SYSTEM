@@ -1,4 +1,4 @@
 gcc cts.c -o cts
-gcc tq.c -o tq
+gcc -O2 tq.c -o tq
 gcc cq.c -o cq
 gcc DictCategory.h
