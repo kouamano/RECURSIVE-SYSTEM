@@ -1,3 +1,7 @@
+			/* apply compiler @ T-basic_functions.h */
+			if((*_copt).c_counter > 0){
+				//printf("hoge");
+			}
 			/* apply functions @ T-basic_functions.h */
 			if((*_fopt).f_print_T == 1){
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head);
@@ -37,4 +41,3 @@
                         ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus);
                         }
 
-			/* apply compiler @ T-compiler.h */

@@ -8,10 +8,9 @@
 #define INDENT "  "
 #endif
 
-//basic function
-////testing functions
+//administrative functions
+////testing function
 int Detect_Dim(const char *head, int *pos){
-	//under construction
 	int len;
 	int dim_s = -1;
 	int dim_e = -1;
