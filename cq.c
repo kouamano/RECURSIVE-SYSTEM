@@ -41,16 +41,16 @@ void function_help(void){
 	printf("  -F<x> : function symbol, e.g. \"-FS\" prints S-form.\n");
 	printf("   -FT : prints T-form.\n");
 	printf("   -FS : prints S-form.\n");
-	printf("   -FJ : prints JSON.\n");
-	printf("   -FW : prints Wolfram language.\n");
-	printf("   -FMa : prints Adjacency matrix (under construction).\n");
+	printf("   -FJ : prints JSON form.\n");
+	printf("   -FW : prints Wolfram language form.\n");
+	printf("   -FMa : prints Adjacency matrix form (under construction).\n");
 	printf("   -Fh : prints hierarchical-form.\n");
 	printf("   -Fst : prints import status.\n");
 	printf("   -Fhst : prints import status with hierarchical-form.\n");
 }
 void compile_help(void){
-	printf("  -C<x> : compile symbol, e.g. \"-CW\" compiles to Wolfram.\n");
-	printf("   -CW : to Wolfram language (under construction).\n");
+	printf("  -C : print compiled (exectable script) form.\n");
+	//printf("   -CW : to executable Wolfram language (under construction).\n");
 }
 
 /*allocation*/
@@ -180,6 +180,8 @@ void get_compile_options(int optc, char **optv, struct compile_options *copt){
 		if(strncmp(optv[i],"-CW",3) == 0){
 			(*copt).c_wolfram = 1;
 			(*copt).c_counter++;
+		}else if(strncmp(optv[i],"-C",2) == 0){
+			(*copt).c_counter++;
 		}
 	}
 }
@@ -214,8 +216,8 @@ void check_compile_options(struct compile_options *copt){
 /*main*/
 int main(int argc, char **argv){
 	struct options *opt;
-	struct function_options *fopt;
-	struct compile_options *copt;
+	struct function_options *_fopt;
+	struct compile_options *_copt;
 	int ie = 0;
 	FILE *IN;
 	int is_open = 0;
@@ -227,13 +229,13 @@ int main(int argc, char **argv){
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
 	// function opt
-	fopt = alloc_function_options();
-	init_function_options(fopt);
-	get_function_options(argc-1, argv+1, fopt);
+	_fopt = alloc_function_options();
+	init_function_options(_fopt);
+	get_function_options(argc-1, argv+1, _fopt);
 	// compile opt
-	copt = alloc_compile_options();
-	init_compile_options(copt);
-	get_compile_options(argc-1, argv+1, copt);
+	_copt = alloc_compile_options();
+	init_compile_options(_copt);
+	get_compile_options(argc-1, argv+1, _copt);
 
 	/*exit/print help operation*/
 	if(argc == 1){
@@ -267,8 +269,8 @@ int main(int argc, char **argv){
 	}
 	if((*opt).check == 1){
 		check_options(opt);
-		check_function_options(fopt);
-		check_compile_options(copt);
+		check_function_options(_fopt);
+		check_compile_options(_copt);
 		ie = 1;
 	}
 	if(ie == 1){
@@ -283,14 +285,12 @@ int main(int argc, char **argv){
 	is_open = 1;
 
 	/*main function*/
-	c = 1;
 	struct Tree *top;
 	top = Create_Node(BUFF_LEN);
-	c = importApp_Tree(IN,top,opt,fopt,copt);
+	c = 1;
+	c = importApp_Tree(IN,top,opt,_fopt,_copt);	// @ T-import_export.h
 	if((*opt).form == 0){
-		struct function_options *_fopt;
-		_fopt = fopt;
-		#include "T-import_export_app-branch.h"
+		; //already executed @ importApp_Tree
 	}else if((*opt).form == 1){
 		; //under construction
 	}else if((*opt).form == 2){
