@@ -50,7 +50,7 @@ void function_help(void){
 }
 void compile_help(void){
 	printf("  -C<x> : compile symbol, e.g. \"-CW\" compiles to Wolfram.\n");
-	printf("   -CW : to Wolfram language (under construction).\n");
+	printf("   -CW : to executable Wolfram language (under construction).\n");
 }
 
 /*allocation*/
