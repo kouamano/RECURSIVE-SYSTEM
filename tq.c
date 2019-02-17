@@ -289,13 +289,6 @@ int main(int argc, char **argv){
 	top = Create_Node(BUFF_LEN);
 	c = 1;
 	c = importApp_Tree(IN,top,opt,_fopt,_copt);	// @ T-import_export.h
-	if((*opt).form == 0){
-		; //already executed @ importApp_Tree
-	}else if((*opt).form == 1){
-		; //under construction
-	}else if((*opt).form == 2){
-		; //already executed @ importApp_Tree
-	}
 
 	/*close file*/
 	if(is_open > 0){
