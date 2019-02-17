@@ -150,7 +150,7 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 		}else if(C == LF || C == TAB){
 			/* 0 single/1 multi/2 individual */
 			if((*_opt).form == 0){
-				; // already executed on highter level
+				; // executed bellow
 			}else if((*_opt).form == 1){
 				; // under construction
 			}else if((*_opt).form == 2){
@@ -174,6 +174,9 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 		}else if(C == EOF){
 			close = 0;
 			ESC = 0;
+			if((*_opt).form == 0){
+				#include "T-import_export_app-branch.h"
+			}
 			return(C);
 		}else{
 			/* buffering */
