@@ -3,6 +3,10 @@
                         ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head);
                         printf("\n");
                         }
+                        if((*_fopt).f_print_W == 1){
+                        ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_W);
+                        printf("\n");
+                        }
                         if((*_fopt).f_print_S == 1){
                         ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_S);
                         printf("\n");
@@ -11,10 +15,8 @@
                         ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_J);
                         printf("\n");
                         }
-                        if((*_fopt).f_print_W == 1){
-                        ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_W);
-                        printf("\n");
-                        }
+
+
                         if((*_fopt).f_print_status == 1){
                         ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status);
                         }
