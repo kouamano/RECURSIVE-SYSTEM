@@ -6,6 +6,7 @@
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Dot_Head);
 			}
 			if((*_copt).c_counter == 1){
+				ExFunction_Recursive(top,(struct Tree *(*)())Function_Compile_Head);
 			}
 			/* apply functions @ T-basic_functions.h */
 			if((*_fopt).f_print_T == 1){

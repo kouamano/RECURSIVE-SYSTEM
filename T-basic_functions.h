@@ -124,6 +124,7 @@ int Function_Dot_Head(struct Tree *tree){
 	}
 }
 int Function_Compile_Head(struct Tree *tree){
+	//Under construction
 	char *tmp_head;
 	int len = 0;
 	len = strlen((*tree).Head);
@@ -132,6 +133,24 @@ int Function_Compile_Head(struct Tree *tree){
 		exit(1);
 	}
 	strcpy(tmp_head,(*tree).Head);
+	if(strncmp(tmp_head,"$``",3) == 0){ //quating tree
+		; //under construction
+	}else if(strncmp(tmp_head,"$`",2) == 0){ //quating Head
+		; //under construction
+	}else if(strncmp(tmp_head,"$;",2) == 0){ //move suffix
+		//add to suffix member
+		if((*tree).suffix == NULL){
+			if(((*tree).suffix = malloc(sizeof(char) * 2)) == NULL){
+				perror("[Fail]:malloc@Function_Compile_Head");
+				exit(1);
+			}
+			(*tree).suffix[0] = ';';
+			(*tree).suffix[1] = '\0';
+		}
+		//clear in-head-suffix
+		tmp_head[1] = '$';
+		strcpy((*tree).Head,tmp_head+1);
+	}
 	
 }
 
