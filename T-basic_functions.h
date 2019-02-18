@@ -112,6 +112,15 @@ int Add_Bclose_To_Next(struct Tree *tree){
 }
 
 // compile functions
+int is_reteral(char *string){
+	// under construction
+	char *tmpstr;
+	if((tmpstr = malloc(sizeof(char) * 5)) == NULL){
+		perror("[Fail]:malloc@is_reteral.\n");
+		exit(1);
+	}
+	strncpy(tmpstr,string,4);
+}
 int Function_Clear_Head(struct Tree *tree){
 	(*tree).Head[0] = '\0';
 	//printf("%s",(*tree).Head);
@@ -124,7 +133,7 @@ int Function_Dot_Head(struct Tree *tree){
 	}
 }
 int Function_Compile_Head(struct Tree *tree){
-	//Under construction
+	int ra;
 	char *tmp_head;
 	int len = 0;
 	len = strlen((*tree).Head);
@@ -134,25 +143,20 @@ int Function_Compile_Head(struct Tree *tree){
 	}
 	strcpy(tmp_head,(*tree).Head);
 	if(strncmp(tmp_head,"$``",3) == 0){ //quating tree
-		; //under construction
+		; // outer function
 	}else if(strncmp(tmp_head,"$`",2) == 0){ //quating Head
-		; //under construction
-	}else if(strncmp(tmp_head,"$;",2) == 0){ //move suffix
-		//add to suffix member
-		if((*tree).suffix == NULL){
-			if(((*tree).suffix = malloc(sizeof(char) * 2)) == NULL){
-				perror("[Fail]:malloc@Function_Compile_Head");
-				exit(1);
-			}
-			(*tree).suffix[0] = ';';
-			(*tree).suffix[1] = '\0';
+		(*tree).Head=realloc((*tree).Head, (sizeof(char) * (len+1)));
+		if((*tree).Head == NULL){
+			perror("[Fail]:realloc@Function_Compile_Head.\n");
+			exit(1);
 		}
-		//clear in-head-suffix
-		tmp_head[1] = '$';
-		strcpy((*tree).Head,tmp_head+1);
-		strcpy(tmp_head,(*tree).Head);
+		(*tree).Head[0]='"';
+		strcpy((*tree).Head+1,tmp_head+2);
+		(*tree).Head[len-1]='"';
+		(*tree).Head[len]='\0';
+	}else if(strncmp(tmp_head,"$;",2) == 0){ //move/print suffix
+		// outer function
 	}
-	
 }
 
 // formated print functions
@@ -208,6 +212,8 @@ void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	}
 	/* print Head */
 	printf("%s",(*tree).Head);
+	/* print suffix */
+	printf("{%s}",(*tree).suffix);
 	/* print Bclose */
 	for(i=0;i<(*tree).Bclose;i++){
 		//printf(")");
@@ -289,6 +295,8 @@ int Function_Print_Head_W(struct Tree *tree){
 	}else if((*tree).Bclose > 0){
 		not_print_Bclose = not_print_Bclose + (*tree).Bclose;
 	}
+	/*print suffix*/
+	// operate higher level
 	return(not_print_Bclose);
 }
 ////print S-form
@@ -375,6 +383,7 @@ struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)
 	(*e_function)(tree);
 	for(i=0;i<(*tree).NextCount;i++){
 		ExFunction_Recursive((*tree).Next[i],e_function);
+		/* todo: print suffix */
 	}
 	return(out);
 }
