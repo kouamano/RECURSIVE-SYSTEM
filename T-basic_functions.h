@@ -168,6 +168,7 @@ int Function_Compile_Head(struct Tree *tree){
                 tmp_head[1] = '$';
                 strcpy((*tree).Head,tmp_head+1);
                 strcpy(tmp_head,(*tree).Head);
+		// todo : print suffix
 	}
 	if(strncmp(tmp_head,"$X$",3) == 0){
 		strcpy((*tree).Head,tmp_head+3);
