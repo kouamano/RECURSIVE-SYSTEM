@@ -150,6 +150,7 @@ int Function_Compile_Head(struct Tree *tree){
 		//clear in-head-suffix
 		tmp_head[1] = '$';
 		strcpy((*tree).Head,tmp_head+1);
+		strcpy(tmp_head,(*tree).Head);
 	}
 	
 }
@@ -403,58 +404,3 @@ int Function_RecursiveFreeForce(struct Tree *tree){
 }
 
 
-//Under constructive functions
-////recursive print function
-/*
-void Function_RecursivePrint_Head(struct Tree *tree){
-	//mis-matching code
-	int i;
-	if((*tree).NCself > 0){
-		if((*tree).Conj == 1 && (*tree).NCself > 1){
-			printf(",");
-		}else if((*tree).NCself > 1){
-			printf(")(");
-		}
-	}
-	printf("%s",(*tree).Head);
-	if((*tree).NextCount > 0){
-		printf("(");
-		for(i=0;i<(*tree).NextCount;i++){
-			Function_RecursivePrint_Head((*tree).Next[i]);
-		}
-		printf(")");
-	}
-}
-*/
-////recursive print function
-/*
-int Function_RecursiveFree(struct Tree *tree){
-	//including bug
-	int i;
-	if(tree == NULL){
-		return(1);
-	}
-	if((*tree).NextCount > 0){
-		for(i=0;i<(*tree).NextCount;i++){
-			Function_RecursiveFree((*tree).Next[i]);
-			free((*tree).Next[i]);
-			(*tree).Next[i] = NULL;
-		}
-		(*tree).NextCount = 0;
-		free((*tree).Head);
-		(*tree).Head = NULL;
-		free((*tree).Next);
-		(*tree).Next = NULL;
-	}else{
-		if((*tree).Head != NULL){
-			free((*tree).Head);
-			(*tree).Head = NULL;
-		}
-		if((*tree).Next != NULL){
-			free((*tree).Next);
-			(*tree).Next = NULL;
-		}
-	}
-	return(0);
-}
-*/
