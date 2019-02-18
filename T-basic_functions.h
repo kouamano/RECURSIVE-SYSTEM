@@ -321,6 +321,7 @@ int Function_Print_Head_W(struct Tree *tree){
 	/* print Bclose */
 	if((*tree).Bclose > 0 && (*tree).NextCount == 0){
 		for(i=0;i<((*tree).Bclose);i++){
+			// todo: print suffix
 			//printf(")");
 			printf("]");
 		}
@@ -415,7 +416,6 @@ struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)
 	(*e_function)(tree);
 	for(i=0;i<(*tree).NextCount;i++){
 		ExFunction_Recursive((*tree).Next[i],e_function);
-		/* todo: print suffix */
 	}
 	return(out);
 }
