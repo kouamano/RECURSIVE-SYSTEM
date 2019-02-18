@@ -168,7 +168,7 @@ int Function_Compile_Head(struct Tree *tree){
                 tmp_head[1] = '$';
                 strcpy((*tree).Head,tmp_head+1);
                 strcpy(tmp_head,(*tree).Head);
-		// todo : print suffix
+		// todo : print suffix => each print function at Bclose section
 	}
 	if(strncmp(tmp_head,"$X$",3) == 0){
 		strcpy((*tree).Head,tmp_head+3);
@@ -322,14 +322,11 @@ int Function_Print_Head_W(struct Tree *tree){
 	if((*tree).Bclose > 0 && (*tree).NextCount == 0){
 		for(i=0;i<((*tree).Bclose);i++){
 			// todo: print suffix
-			//printf(")");
 			printf("]");
 		}
 	}else if((*tree).Bclose > 0){
 		not_print_Bclose = not_print_Bclose + (*tree).Bclose;
 	}
-	/*print suffix*/
-	// operate higher level
 	return(not_print_Bclose);
 }
 ////print S-form
