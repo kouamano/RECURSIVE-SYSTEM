@@ -109,6 +109,25 @@ int Function_Count_NextConjZero(struct Tree *tree){
 	}
 	return(count);
 }
+// compile function
+int Function_Clear_Head(struct Tree *tree){
+	(*tree).Head[0] = '\0';
+	//printf("%s",(*tree).Head);
+	
+}
+int Function_Dot_Head(struct Tree *tree){
+	if((*tree).Head[0] != '\0'){
+		(*tree).Head[0] = '.';
+		(*tree).Head[1] = '\0';
+	}
+}
+
+int Function_Compile_Head(struct Tree *tree){
+	char *tmp_head;
+	int len = 0;
+	len = strlen((*tree).Head);
+	
+}
 
 // formated print functions
 //// hierarchical print

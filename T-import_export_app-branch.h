@@ -1,6 +1,11 @@
 			/* apply compiler @ T-basic_functions.h */
-			if((*_copt).c_counter > 0){
+			if((*_copt).c_clear == 1){
 				//printf("hoge");
+				ExFunction_Recursive(top,(struct Tree *(*)())Function_Clear_Head);
+			}else if((*_copt).c_dot){
+				ExFunction_Recursive(top,(struct Tree *(*)())Function_Dot_Head);
+			}
+			if((*_copt).c_counter == 1){
 			}
 			/* apply functions @ T-basic_functions.h */
 			if((*_fopt).f_print_T == 1){
