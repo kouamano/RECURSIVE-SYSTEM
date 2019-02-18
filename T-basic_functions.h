@@ -120,6 +120,8 @@ int is_reteral(char *string){
 		fails++;
 	}else if(strncmp(string,"$#",2) == 0){
 		fails++;
+	}else if(strncmp(string,"$R",2) == 0){
+		fails++;
 	}else if(strncmp(string,"$E",2) == 0){
 		fails++;
 	}else if(strncmp(string,"$X",2) == 0){
