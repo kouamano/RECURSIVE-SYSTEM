@@ -77,6 +77,7 @@ struct Tree *Create_Node(int H_size){
 		fprintf(stderr,"[Fail] malloc.\n");
 		exit(1);
 	}
+	(*tree).suffix=NULL;
 	(*tree).Bclose=0;
 	(*tree).NextCount=0;
 	(*tree).Next = malloc((size_t)sizeof(struct Tree *) * 1);
@@ -126,6 +127,11 @@ int Function_Compile_Head(struct Tree *tree){
 	char *tmp_head;
 	int len = 0;
 	len = strlen((*tree).Head);
+	if((tmp_head = malloc(sizeof(char) * (len+1))) == NULL){
+		perror("[Fail]:malloc()@Function_Compile_Head.\n");
+		exit(1);
+	}
+	strcpy(tmp_head,(*tree).Head);
 	
 }
 

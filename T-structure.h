@@ -7,6 +7,7 @@ struct Tree {
 	int Conj;
 	int Bopen;
 	char *Head;
+	char *suffix;
 	int Bclose;
 	int NextCount;
 	struct Tree **Next;
