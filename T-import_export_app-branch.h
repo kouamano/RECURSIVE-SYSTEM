@@ -38,12 +38,12 @@
 
 
                         if((*_fopt).f_print_status == 1){
-                        ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status);
+				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status);
                         }
                         if((*_fopt).f_print_hierarchy == 1){
-                        ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchy);
+				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchy);
                         }
                         if((*_fopt).f_print_hierarchy_status == 1){
-                        ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus);
+				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus);
                         }
 
