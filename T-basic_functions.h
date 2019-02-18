@@ -114,12 +114,21 @@ int Add_Bclose_To_Next(struct Tree *tree){
 // compile functions
 int is_reteral(char *string){
 	// under construction
-	char *tmpstr;
-	if((tmpstr = malloc(sizeof(char) * 5)) == NULL){
-		perror("[Fail]:malloc@is_reteral.\n");
-		exit(1);
+	int fails = 0;
+	if(strncmp(string,"$#",2) == 0){
+		fails++;
+	}else if(strncmp(string,"$E",2) == 0){
+		fails++;
+	}else if(strncmp(string,"$X",2) == 0){
+		fails++;
+	}else if(strncmp(string,"$;",2) == 0){
+		fails++;
+	}else if(strncmp(string,"$$",2) == 0){
+		fails++;
+	}else if(strncmp(string,"$`",2) == 0){
+		fails++;
 	}
-	strncpy(tmpstr,string,4);
+	return(fails);
 }
 int Function_Clear_Head(struct Tree *tree){
 	(*tree).Head[0] = '\0';
