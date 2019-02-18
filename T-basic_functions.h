@@ -153,19 +153,6 @@ int Function_Compile_Head(struct Tree *tree){
 		exit(1);
 	}
 	strcpy(tmp_head,(*tree).Head);
-	if(strncmp(tmp_head,"$;",2) == 0){ //move to suffix => pending
-		if((*tree).suffix == NULL){
-			if(((*tree).suffix = malloc(sizeof(char) * 2)) == NULL){
-				perror("[Fail]:malloc@Function_Compile_Head");
-				exit(1);
-			}
-			(*tree).suffix[0] = ';';
-			(*tree).suffix[1] = '\0';
-		}
-		tmp_head[1] = '$';
-		strcpy((*tree).Head,tmp_head+1);
-		strcpy(tmp_head,(*tree).Head);
-	}
 	if(strncmp(tmp_head,"$X$",3) == 0){
 		strcpy((*tree).Head,tmp_head+3);
 		strcpy(tmp_head,(*tree).Head);
@@ -241,7 +228,7 @@ void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	/* print Head */
 	printf("%s",(*tree).Head);
 	/* print suffix */
-	printf("{%s}",(*tree).suffix);
+	//printf("{%s}",(*tree).suffix); // currently not used
 	/* print Bclose */
 	for(i=0;i<(*tree).Bclose;i++){
 		//printf(")");
