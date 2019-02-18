@@ -68,7 +68,6 @@ struct Tree *Create_Node(int H_size){
 	(*tree).IDX=NULL;
 	(*tree).numIDX=0;
 	(*tree).LVself=0;
-	//(*tree).NCself=0;
 	(*tree).NCself=1;
 	(*tree).Conj=0;
 	(*tree).Bopen=0;
@@ -113,7 +112,6 @@ int Add_Bclose_To_Next(struct Tree *tree){
 
 // compile functions
 int is_reteral(char *string){
-	// under construction
 	int fails = 0;
 	if(strlen(string) < 2){
 		fails++;
@@ -137,7 +135,6 @@ int is_reteral(char *string){
 }
 int Function_Clear_Head(struct Tree *tree){
 	(*tree).Head[0] = '\0';
-	//printf("%s",(*tree).Head);
 	
 }
 int Function_Dot_Head(struct Tree *tree){
@@ -156,19 +153,18 @@ int Function_Compile_Head(struct Tree *tree){
 		exit(1);
 	}
 	strcpy(tmp_head,(*tree).Head);
-	if(strncmp(tmp_head,"$;",2) == 0){ //move to suffix
-                if((*tree).suffix == NULL){
-                        if(((*tree).suffix = malloc(sizeof(char) * 2)) == NULL){
-                                perror("[Fail]:malloc@Function_Compile_Head");
-                                exit(1);
-                        }
-                        (*tree).suffix[0] = ';';
-                        (*tree).suffix[1] = '\0';
-                }
-                tmp_head[1] = '$';
-                strcpy((*tree).Head,tmp_head+1);
-                strcpy(tmp_head,(*tree).Head);
-		// todo : print suffix => each print function at Bclose section
+	if(strncmp(tmp_head,"$;",2) == 0){ //move to suffix => pending
+		if((*tree).suffix == NULL){
+			if(((*tree).suffix = malloc(sizeof(char) * 2)) == NULL){
+				perror("[Fail]:malloc@Function_Compile_Head");
+				exit(1);
+			}
+			(*tree).suffix[0] = ';';
+			(*tree).suffix[1] = '\0';
+		}
+		tmp_head[1] = '$';
+		strcpy((*tree).Head,tmp_head+1);
+		strcpy(tmp_head,(*tree).Head);
 	}
 	if(strncmp(tmp_head,"$X$",3) == 0){
 		strcpy((*tree).Head,tmp_head+3);
@@ -321,7 +317,6 @@ int Function_Print_Head_W(struct Tree *tree){
 	/* print Bclose */
 	if((*tree).Bclose > 0 && (*tree).NextCount == 0){
 		for(i=0;i<((*tree).Bclose);i++){
-			// todo: print suffix
 			printf("]");
 		}
 	}else if((*tree).Bclose > 0){
@@ -377,7 +372,6 @@ void Function_Print_Head_J(struct Tree *tree){
 	}
 	sw = Detect_Dim((*tree).Head,dim_pos);
 	if(sw == 2){
-		//printf(":%d:",dim_pos[0]);
 		(*tree).Head[dim_pos[0]] = '\0';
 		printf("[\"%s\",\"DIM\",",(*tree).Head);
 		printf("%s",(*tree).Head+dim_pos[0]+1);
@@ -391,7 +385,6 @@ void Function_Print_Head_J(struct Tree *tree){
 	}
 	/* print Bclose */
 	for(i=0;i<(*tree).Bclose;i++){
-		//printf(")");
 		printf("]");
 	}
 	/* print "," for Next */
@@ -403,7 +396,7 @@ void Function_Print_Head_J(struct Tree *tree){
 void null_func(void){
 }
 ////recursive-apply-function
-struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *) ){
+struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct compile_options *_copt ){
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL || e_function == NULL){
@@ -412,7 +405,7 @@ struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)
 	}
 	(*e_function)(tree);
 	for(i=0;i<(*tree).NextCount;i++){
-		ExFunction_Recursive((*tree).Next[i],e_function);
+		ExFunction_Recursive((*tree).Next[i],e_function,_copt);
 	}
 	return(out);
 }
