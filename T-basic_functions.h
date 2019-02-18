@@ -115,7 +115,9 @@ int Add_Bclose_To_Next(struct Tree *tree){
 int is_reteral(char *string){
 	// under construction
 	int fails = 0;
-	if(strncmp(string,"$#",2) == 0){
+	if(strncmp(string,"$",1) != 0){
+		fails++;
+	}else if(strncmp(string,"$#",2) == 0){
 		fails++;
 	}else if(strncmp(string,"$E",2) == 0){
 		fails++;
@@ -151,7 +153,9 @@ int Function_Compile_Head(struct Tree *tree){
 		exit(1);
 	}
 	strcpy(tmp_head,(*tree).Head);
-	if(strncmp(tmp_head,"$``",3) == 0){ //quating tree
+	if(strncmp(tmp_head,"$;",2) == 0){
+		; // outer function
+	}else if(strncmp(tmp_head,"$``",3) == 0){ //quating tree
 		; // outer function
 	}else if(strncmp(tmp_head,"$`",2) == 0){ //quating Head
 		(*tree).Head=realloc((*tree).Head, (sizeof(char) * (len+1)));
@@ -163,8 +167,6 @@ int Function_Compile_Head(struct Tree *tree){
 		strcpy((*tree).Head+1,tmp_head+2);
 		(*tree).Head[len-1]='"';
 		(*tree).Head[len]='\0';
-	}else if(strncmp(tmp_head,"$;",2) == 0){ //move/print suffix
-		// outer function
 	}
 }
 
