@@ -9,7 +9,7 @@
 #endif
 
 //administrative functions
-////testing function
+////dimension-check function
 int Detect_Dim(const char *head, int *pos){
 	int len;
 	int dim_s = -1;
@@ -42,6 +42,21 @@ int Detect_Dim(const char *head, int *pos){
 	if(ret == 2){
 	}
 	return(ret);
+}
+////status-check function
+int Function_Count_NextConjZero(struct Tree *tree){
+	int i;
+	int count = 0;
+	if((*tree).NextCount == 0){
+		return(0);
+	}else{
+		for(i=0;i<(*tree).NextCount;i++){
+			if((*tree).Next[i]->Conj == 0){
+				count++;
+			}
+		}
+	}
+	return(count);
 }
 ////restructure functions
 struct Tree *Create_Node(int H_size){
@@ -94,22 +109,8 @@ int Add_Bclose_To_Next(struct Tree *tree){
 		return(0);
 	}
 }
-////status-check functions
-int Function_Count_NextConjZero(struct Tree *tree){
-	int i;
-	int count = 0;
-	if((*tree).NextCount == 0){
-		return(0);
-	}else{
-		for(i=0;i<(*tree).NextCount;i++){
-			if((*tree).Next[i]->Conj == 0){
-				count++;
-			}
-		}
-	}
-	return(count);
-}
-// compile function
+
+// compile functions
 int Function_Clear_Head(struct Tree *tree){
 	(*tree).Head[0] = '\0';
 	//printf("%s",(*tree).Head);
@@ -121,7 +122,6 @@ int Function_Dot_Head(struct Tree *tree){
 		(*tree).Head[1] = '\0';
 	}
 }
-
 int Function_Compile_Head(struct Tree *tree){
 	char *tmp_head;
 	int len = 0;
