@@ -115,6 +115,9 @@ int Add_Bclose_To_Next(struct Tree *tree){
 int is_reteral(char *string){
 	// under construction
 	int fails = 0;
+	if(strlen(string) < 2){
+		fails++;
+	}
 	if(strncmp(string,"$",1) != 0){
 		fails++;
 	}else if(strncmp(string,"$#",2) == 0){
@@ -153,8 +156,22 @@ int Function_Compile_Head(struct Tree *tree){
 		exit(1);
 	}
 	strcpy(tmp_head,(*tree).Head);
-	if(strncmp(tmp_head,"$;",2) == 0){
-		; // outer function
+	if(strncmp(tmp_head,"$;",2) == 0){ //move to suffix
+                if((*tree).suffix == NULL){
+                        if(((*tree).suffix = malloc(sizeof(char) * 2)) == NULL){
+                                perror("[Fail]:malloc@Function_Compile_Head");
+                                exit(1);
+                        }
+                        (*tree).suffix[0] = ';';
+                        (*tree).suffix[1] = '\0';
+                }
+                tmp_head[1] = '$';
+                strcpy((*tree).Head,tmp_head+1);
+                strcpy(tmp_head,(*tree).Head);
+	}
+	if(strncmp(tmp_head,"$X$",3) == 0){
+		strcpy((*tree).Head,tmp_head+3);
+		strcpy(tmp_head,(*tree).Head);
 	}else if(strncmp(tmp_head,"$``",3) == 0){ //quating tree
 		; // outer function
 	}else if(strncmp(tmp_head,"$`",2) == 0){ //quating Head
@@ -167,6 +184,9 @@ int Function_Compile_Head(struct Tree *tree){
 		strcpy((*tree).Head+1,tmp_head+2);
 		(*tree).Head[len-1]='"';
 		(*tree).Head[len]='\0';
+	}else if(is_reteral((*tree).Head) == 0){
+		strcpy((*tree).Head,tmp_head+1);
+		strcpy(tmp_head,(*tree).Head);
 	}
 }
 
