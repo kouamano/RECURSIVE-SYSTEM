@@ -1,4 +1,7 @@
 #!/bin/bash
+# this is a tq meta command
+# operates tq.o and tq.pl
+# {.ddf , .dsz , .ddl} => .frl => .dry => dry.fed => .dry.fed.<exe>
 if [ $# -eq 0 ]; then
   ./tq.o
   exit;
