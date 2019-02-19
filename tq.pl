@@ -1,4 +1,4 @@
-#!/bin/perl
+#!/bin/env perl
 $head = "";
 $rls = ();
 $script = ();
