@@ -39,11 +39,14 @@
 
                         if((*_fopt).f_print_status == 1){
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status,_copt);
+				printf("\n");
                         }
                         if((*_fopt).f_print_hierarchy == 1){
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchy,_copt);
+				printf("\n");
                         }
                         if((*_fopt).f_print_hierarchy_status == 1){
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus,_copt);
+				printf("\n");
                         }
 

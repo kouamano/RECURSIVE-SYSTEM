@@ -65,8 +65,8 @@ struct Tree *Create_Node(int H_size){
 		fprintf(stderr,"[Fail] malloc.\n");
 		exit(1);
 	}
-	(*tree).IDX=NULL;
 	(*tree).numIDX=0;
+	(*tree).IDX=NULL;
 	(*tree).LVself=0;
 	(*tree).NCself=1;
 	(*tree).Conj=0;
@@ -158,8 +158,6 @@ int Function_Compile_Head(struct Tree *tree){
 	if(strncmp(tmp_head,"$X$",3) == 0){
 		strcpy((*tree).Head,tmp_head+3);
 		strcpy(tmp_head,(*tree).Head);
-	}else if(strncmp(tmp_head,"$``",3) == 0){ //quating tree
-		; // outer function
 	}else if(strncmp(tmp_head,"$`",2) == 0){ //quating Head
 		(*tree).Head=realloc((*tree).Head, (sizeof(char) * (len+1)));
 		if((*tree).Head == NULL){
@@ -178,7 +176,7 @@ int Function_Compile_Head(struct Tree *tree){
 
 // formated print functions
 //// hierarchical print
-void Function_Print_Status(struct Tree *tree){
+void Function_Print_Smems(struct Tree *tree){
 	struct Tree *parent = (*tree).Parent;
 	printf(":LVs=%d:",(*tree).LVself);
 	printf(":NCs=%d:",(*tree).NCself);
@@ -192,6 +190,9 @@ void Function_Print_Status(struct Tree *tree){
 	}else{
 		printf(":Pa=%s:","");
 	}
+}
+void Function_Print_Status(struct Tree *tree){
+	Function_Print_Smems(tree);
 	printf("\n");
 }
 void Function_Print_HeadHierarchy(struct Tree *tree){
@@ -239,14 +240,10 @@ void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	if((*tree).NextCount > 0 && strlen((*tree).Next[(*tree).NextCount-1]->Head) > 0){
 		//printf(",");
 	}
-	printf("  :LV=%d:",(*tree).LVself);
-	printf(":NCs=%d:",(*tree).NCself);
-	printf(":C0=%d:",countCZ);
-	printf(":NC=%d:",(*tree).NextCount);
-	printf(":Cj=%d:",(*tree).Conj);
-	printf(":Op=%d:",(*tree).Bopen);
-	printf(":Cl=%d:",(*tree).Bclose);
+	printf("  ");
+	Function_Print_Smems(tree);
 	printf("\n");
+
 }
 ////print T-form
 int Function_Print_Head(struct Tree *tree){
