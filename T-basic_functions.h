@@ -204,8 +204,8 @@ void Function_Print_HeadHierarchy(struct Tree *tree){
 	}else{
 		printf("-");
 	}
-
 	printf("%s\n",(*tree).Head);
+
 }
 void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	int i;
@@ -244,6 +244,7 @@ void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	printf(":C0=%d:",countCZ);
 	printf(":NC=%d:",(*tree).NextCount);
 	printf(":Cj=%d:",(*tree).Conj);
+	printf(":Op=%d:",(*tree).Bopen);
 	printf(":Cl=%d:",(*tree).Bclose);
 	printf("\n");
 }
@@ -386,6 +387,8 @@ void null_func(void){
 }
 ////recursive-apply-function
 struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct compile_options *_copt ){
+	// かっこのprint処理をprint系関数に押し込んでいるため、
+	// T-import_export.h でAdd_Bclose_To_Next()を行っている。
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL || e_function == NULL){
