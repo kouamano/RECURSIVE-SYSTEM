@@ -50,9 +50,9 @@ void function_help(void){
 }
 void compile_help(void){
 	printf("  -C : print compiled (exectable script) form.\n");
+	printf("   -Cr : prints the \"print-restrict\" char at the end of line.\n");
 	printf("   -Cc : clear head.\n");
 	printf("   -Cd : rewite head to dot.\n");
-	//printf("   -CW : to executable Wolfram language (under construction).\n");
 }
 
 /*allocation*/
@@ -111,6 +111,7 @@ void init_function_options(struct function_options *fopt){
 }
 void init_compile_options(struct compile_options *copt){
         (*copt).c_counter = 0;
+        (*copt).c_restrict = 0;
         (*copt).c_clear = 0;
         (*copt).c_dot = 0;
 }
@@ -183,7 +184,10 @@ void get_compile_options(int optc, char **optv, struct compile_options *copt){
 		if(strncmp(optv[i],"-C",2) == 0){
 			(*copt).c_counter++;
 		}
-		if(strncmp(optv[i],"-Cc",3) == 0){
+		if(strncmp(optv[i],"-Cr",3) == 0){
+			(*copt).c_restrict = 1;
+			(*copt).c_counter++;
+		}else if(strncmp(optv[i],"-Cc",3) == 0){
 			(*copt).c_clear = 1;
 			(*copt).c_counter++;
 		}else if(strncmp(optv[i],"-Cd",3) == 0){
