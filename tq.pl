@@ -16,6 +16,21 @@ while(<>){
 		push(@script,$_);
 	}
 }
+# header
+$conv = $head;
+$conv =~ s/\(.*$//;
+$conv =~ s/DRY/FED/;
+print "$conv";
+
+# for target application
+if( "$rls{'$X$Application'}" eq '$X$Mathematica' ){
+	print '($`-FW,$`-Cr)';
+	print "\n";
+	print '$X$Get($`~/gitsrc/MATH_SCRIPT/SCRIPTS/DataFederation.m)';
+	print "\n";
+}
+
+# application scripts
 $head =~ s/[^(]+//;
 $head =~ s/^\(//;
 $head =~ s/\)$//;
