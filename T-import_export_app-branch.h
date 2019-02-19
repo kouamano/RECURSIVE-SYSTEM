@@ -5,7 +5,7 @@
 			}else if((*_copt).c_dot){
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Dot_Head,_copt);
 			}
-			if((*_copt).c_counter == 1){
+			if((*_copt).c_counter > 0){
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Compile_Head,_copt);
 			}
 			/* apply functions @ T-basic_functions.h */

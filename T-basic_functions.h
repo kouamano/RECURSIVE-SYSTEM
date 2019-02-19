@@ -380,6 +380,7 @@ void Function_Print_Head_J(struct Tree *tree){
 	}
 }
 // meta functions
+//// null function
 void null_func(void){
 }
 ////recursive-apply-function
@@ -437,5 +438,3 @@ int Function_RecursiveFreeForce(struct Tree *tree){
 	(*tree).numIDX = 0;
 	return(0);
 }
-
-
