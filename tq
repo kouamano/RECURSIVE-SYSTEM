@@ -1,0 +1,19 @@
+#!/bin/bash
+if [ $# -eq 0 ]; then
+  ./tq.o
+  exit;
+fi
+
+tgt=${1#target=}
+
+if [ -e $tgt ]; then
+  echo "Target file:"
+  echo "  $tgt"
+  echo "  ${tgt}.dsz"
+  echo "  ${tgt}.ddf"
+  echo "  ${tgt}.ddl"
+  cat ${tgt}.ddl ${tgt}.ddf ${tgt}.dsz > ${tgt}.frl
+  echo "Create ${tgt}.frl"
+else
+  echo "no target file"
+fi
