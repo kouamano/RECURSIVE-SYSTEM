@@ -3,7 +3,8 @@
 # operates tq.o and tq.pl
 # {.ddf , .dsz , .ddl} => .frl => .dry => dry.fed => .dry.fed.<exe>
 if [ $# -eq 0 ]; then
-  ./tq.o
+  echo "Usage:"
+  echo "  tq target=<file>"
   exit;
 fi
 
