@@ -2,6 +2,18 @@
 //import/export 
 ////current unctions
 ////import and apply(NEW)
+void print_war(char _C, struct Tree *_tree, int level){
+	printf("\n:C=%c: ",_C);
+	printf(":Pp=%ld:",(long int)(*_tree).Parent);
+	printf(":Cp=%ld:",(long int)_tree);
+	printf(":Cj=%d:",(*_tree).Conj);
+	printf(":Op=%d:",(*_tree).Bopen);
+	printf(":current=%s:",(*_tree).Head);
+	printf(":Cl=%d:",(*_tree).Bclose);
+	printf(":LV=%d:",(*_tree).LVself);
+	printf(":NCs=%d:",(*_tree).NCself);
+	printf(":NC=%d:",(*_tree).NextCount);
+}
 int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
 	int WAR;
 	int C;
@@ -24,7 +36,7 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 	while((C = fgetc(_IN))){
 		/* check chars */
 		if(WAR > 0){
-		printf("\n:C=%c: ",C);
+			print_war(C,current,WAR);
 		}
 		/* set conditions */
 		if(C == '[' && ESC == 0){
@@ -55,15 +67,7 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 			(*current).Bclose = 0;
 			/* check */
 			if(WAR > 0){
-			printf(":Pp=%ld:",(long int)(*current).Parent);
-			printf(":Cp=%ld:",(long int)current);
-			printf(":Cj=%d:",(*current).Conj);
-			printf(":Op=%d:",(*current).Bopen);
-			printf(":current=%s:",(*current).Head);
-			printf(":Cl=%d:",(*current).Bclose);
-			printf(":LV=%d:",(*current).LVself);
-			printf(":NCs=%d:",(*current).NCself);
-			printf(":NC=%d:",(*current).NextCount);
+				print_war(C,current,WAR);
 			}
 			/* create next */
 			next = Create_Node(BUFF_LEN);
@@ -90,15 +94,7 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 			(*current).Bclose = 0;
 			/* check */
 			if(WAR > 0){
-			printf(":Pp=%ld:",(long int)(*current).Parent);
-			printf(":Cp=%ld:",(long int)current);
-			printf(":Cj=%d:",(*current).Conj);
-			printf(":Op=%d:",(*current).Bopen);
-			printf(":current=%s:",(*current).Head);
-			printf(":Cl=%d:",(*current).Bclose);
-			printf(":LV=%d:",(*current).LVself);
-			printf(":NCs=%d:",(*current).NCself);
-			printf(":NC=%d:",(*current).NextCount);
+				print_war(C,current,WAR);
 			}
 			/* create next */
 			next = Create_Node(BUFF_LEN);
@@ -130,15 +126,7 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 			}
 			/* check */
 			if(WAR > 0){
-			printf(":Pp=%ld:",(long int)(*current).Parent);
-			printf(":Cp=%ld:",(long int)current);
-			printf(":Cj=%d:",(*current).Conj);
-			printf(":Op=%d:",(*current).Bopen);
-			printf(":current=%s:",(*current).Head);
-			printf(":Cl=%d:",(*current).Bclose);
-			printf(":LV=%d:",(*current).LVself);
-			printf(":NCs=%d:",(*current).NCself);
-			printf(":NC=%d:",(*current).NextCount);
+				print_war(C,current,WAR);
 			}
 			/* clear BUFF */
 			BUFF[0] = '\0';
