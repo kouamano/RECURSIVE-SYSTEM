@@ -8,16 +8,19 @@ if [ $# -eq 0 ]; then
   exit;
 fi
 
-if [ $# -eq 1 ]; then
-  if [ $1 = "-R" ]; then
-      ./tq.o
-    exit
-  elif [ $1 = "-P" ]; then
-      ./tqR2D.pl
-    exit
-  else
-    tgt=${1#target=}
-  fi
+#declare -a array=()
+array=$@
+#echo $array
+#echo ${array#-R}
+
+if [ $1 = "-R" ]; then
+  ./tq.o ${array#-R}
+  exit;
+elif [ $1 = "-P" ]; then
+  ./tqR2D.pl ${array#-P}
+  exit;
+else
+  tgt=${1#target=}
 fi
 
 if [ -e $tgt ]; then
