@@ -8,15 +8,26 @@ if [ $# -eq 0 ]; then
   exit;
 fi
 
-tgt=${1#target=}
+if [ $# -eq 1 ]; then
+  if [ $1 = "-R" ]; then
+      ./tq.o
+    exit
+  elif [ $1 = "-P" ]; then
+      ./tqR2D.pl
+    exit
+  else
+    tgt=${1#target=}
+  fi
+fi
 
 if [ -e $tgt ]; then
   echo "Target file:"
   echo "  $tgt"
+  echo "  ${tgt}.tgt"
   echo "  ${tgt}.dsz"
   echo "  ${tgt}.ddf"
   echo "  ${tgt}.ddl"
-  cat ${tgt}.ddl ${tgt}.ddf ${tgt}.dsz > ${tgt}.frl
+  cat ${tgt}.ddl ${tgt}.ddf ${tgt}.dsz ${tgt}.tgt > ${tgt}.frl
   echo "Create ${tgt}.frl"
 else
   echo "no target file"
