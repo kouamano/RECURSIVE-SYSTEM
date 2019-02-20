@@ -38,7 +38,7 @@ $str = `$comm`;
 $ofile = $file.".fed";
 #print $ofile;
 
-open(DATA,">",$ofile);
+open(DATA,">",$ofile,O_EXECL);
 print DATA $str;
 close(DATA);
 
