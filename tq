@@ -33,6 +33,7 @@ if [ -e $tgt ]; then
   echo "Create ${tgt}.frl"
 else
   echo "no target file"
+  exit;
 fi
 
 ## FRL => DRY
