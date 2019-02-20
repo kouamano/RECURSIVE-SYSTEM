@@ -45,6 +45,7 @@ echo "Create ${tgt}.frl.dry.fed"
 ## FED => EXEC
 ## EXEC
 chmod 755 ./${tgt}.frl.dry.fed.com
+echo "Exec integration..."
 ./${tgt}.frl.dry.fed.com
-
-
+## post op
+echo "Done"
