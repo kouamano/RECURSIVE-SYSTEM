@@ -160,6 +160,9 @@ int Function_Compile_Head(struct Tree *tree){
 	if(strncmp(tmp_head,"$X$",3) == 0){
 		strcpy((*tree).Head,tmp_head+3);
 		strcpy(tmp_head,(*tree).Head);
+	}else if(strncmp(tmp_head,"$M$",3) == 0){
+		strcpy((*tree).Head,tmp_head+3);
+		strcpy(tmp_head,(*tree).Head);
 	}else if(strncmp(tmp_head,"$`",2) == 0){ //quating Head
 		(*tree).Head=realloc((*tree).Head, (sizeof(char) * (len+1)));
 		if((*tree).Head == NULL){
