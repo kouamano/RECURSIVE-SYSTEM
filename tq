@@ -10,11 +10,21 @@ fi
 
 array=$@
 
-if [ $1 = "-B" ]; then
+if [ $1 = "-h" ]; then
+  echo "tq [-h|-B|-R|-D] | target=<file>"
+  echo "  -h: print help"
+  echo "  -B: call tq.o"
+  echo "  -R: call tqR2D.pl"
+  echo "  -D: call tqD2F.pl"
+  exit;
+elif [ $1 = "-B" ]; then
   ./tq.o ${array#-B}
   exit;
-elif [ $1 = "-P" ]; then
-  ./tqR2D.pl ${array#-P}
+elif [ $1 = "-R" ]; then
+  ./tqR2D.pl ${array#-R}
+  exit;
+elif [ $1 = "-D" ]; then
+  ./tqD2F.pl ${array#-D}
   exit;
 else
   tgt=${1#target=}
@@ -43,9 +53,12 @@ echo "Create ${tgt}.frl.dry , ${tgt}.frl.dry.fed.com"
 echo "Create ${tgt}.frl.dry.fed"
 ./tqD2F.pl ${tgt}.frl.dry # => toSheet.dry.fed
 ## FED => EXEC
+### already created @ FRL => DRY
 ## EXEC
 chmod 755 ./${tgt}.frl.dry.fed.com
 echo "Exec integration..."
 ./${tgt}.frl.dry.fed.com
 ## post op
 echo "Done"
+
+
