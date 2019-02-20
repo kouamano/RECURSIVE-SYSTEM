@@ -18,6 +18,15 @@
 					printf("%c",C);
 				}
 			}
+			if((*_fopt).f_print_C == 1){
+				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_C,_copt);
+				if(C == LF && (*_copt).c_restrict == 1){
+					printf(";");
+				}
+				if(C == LF || C == TAB){
+					printf("%c",C);
+				}
+			}
 			if((*_fopt).f_print_W == 1){
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_W,_copt);
 				if(C == LF && (*_copt).c_restrict == 1){

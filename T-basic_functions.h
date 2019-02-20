@@ -267,6 +267,26 @@ int Function_Print_Head(struct Tree *tree){
 	}
 	return(not_print_Bclose);
 }
+////print csh-form
+int Function_Print_Head_C(struct Tree *tree){
+	int i;
+	int not_print_Bclose = 0;
+	if((*tree).Conj){
+		printf(" ");
+	}
+	if((*tree).Bopen){
+		printf(" ");
+	}
+	printf("%s",(*tree).Head);
+	if((*tree).Bclose > 0 && (*tree).NextCount == 0){
+		for(i=0;i<((*tree).Bclose);i++){
+			printf("\n");
+		}
+	}else if((*tree).Bclose > 0){
+		not_print_Bclose = not_print_Bclose + (*tree).Bclose;
+	}
+	return(not_print_Bclose);
+}
 ////print W-form
 int Function_Print_Head_W(struct Tree *tree){
 	int i;
