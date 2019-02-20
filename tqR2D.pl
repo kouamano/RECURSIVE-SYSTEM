@@ -1,4 +1,5 @@
 #!/bin/env perl
+$file = $ARGV[0];
 $head = "";
 %rls = ();
 @script = ();
@@ -27,7 +28,13 @@ print "$next\n";
 
 # for target application
 if( "$rls{'$X$Application'}" eq '$X$Mathematica' ){
-	print '$M$TQ($`-FW,$`-Cr)';
+	$tfile = $file.".dry.fed";
+	$ofile = $file.".dry.fed.com";
+	open(DATA,">",$ofile);
+	print DATA "cat ".$tfile." | "."math";
+	close(DATA);
+
+	print '$M$./tq.o($-FW,$-Cr)';
 	print "\n";
 	print '$X$Get($`~/gitsrc/MATH_SCRIPT/SCRIPTS/DataFederation.m)';
 	print "\n";
