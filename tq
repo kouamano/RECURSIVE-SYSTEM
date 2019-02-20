@@ -33,7 +33,17 @@ if [ -e $tgt ]; then
   echo "Create ${tgt}.frl"
 else
   echo "no target file"
-  exit;
 fi
+
+## FRL => DRY
+echo "Create ${tgt}.frl.dry , ${tgt}.frl.dry.fed.com"
+./tqR2D.pl ${tgt}.frl > ${tgt}.frl.dry
+## DRY => FED
+echo "Create ${tgt}.frl.dry.fed"
+./tqD2F.pl ${tgt}.frl.dry # => toSheet.dry.fed
+## FED => EXEC
+## EXEC
+chmod 755 ./${tgt}.frl.dry.fed.com
+./${tgt}.frl.dry.fed.com
 
 
