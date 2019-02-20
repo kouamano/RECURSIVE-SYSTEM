@@ -17,14 +17,17 @@ while(<>){
 	}
 }
 # header
-$conv = $head;
-$conv =~ s/\(.*$//;
-$conv =~ s/DRY/FED/;
-print "$conv";
+$stage = $head;
+$stage =~ s/\(.*$//;
+if($stage =~ /DRY/){
+	$next = $stage;
+	$next =~ s/DRY/FED/;
+}
+print "$next\n";
 
 # for target application
 if( "$rls{'$X$Application'}" eq '$X$Mathematica' ){
-	print '($`-FW,$`-Cr)';
+	print '$M$TQ($`-FW,$`-Cr)';
 	print "\n";
 	print '$X$Get($`~/gitsrc/MATH_SCRIPT/SCRIPTS/DataFederation.m)';
 	print "\n";
