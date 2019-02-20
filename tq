@@ -1,7 +1,7 @@
 #!/bin/bash
 # this is a tq meta command
 # Needs: tq.o , tqR2D.pl , tqD2F.pl
-# {.tgt , .ddf , .dsz , .ddl} =cat=> .frl =perl=> frl.dry =perl=> frl.dry.fed => .frl.dry.fed.com
+# {.tgt , .ddf , .dsz , .ddl} =cat=> .frl =perl=> frl.dry =perl=> frl.dry.fed =perl=> .frl.dry.fed.com
 if [ $# -eq 0 ]; then
   echo "Usage:"
   echo "  tq target=<file>"
