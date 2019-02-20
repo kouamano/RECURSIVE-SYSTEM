@@ -13,7 +13,7 @@ array=$@
 #echo $array
 #echo ${array#-R}
 
-if [ $1 = "-R" ]; then
+if [ $1 = "-B" ]; then
   ./tq.o ${array#-R}
   exit;
 elif [ $1 = "-P" ]; then
