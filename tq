@@ -14,7 +14,7 @@ array=$@
 #echo ${array#-R}
 
 if [ $1 = "-B" ]; then
-  ./tq.o ${array#-R}
+  ./tq.o ${array#-B}
   exit;
 elif [ $1 = "-P" ]; then
   ./tqR2D.pl ${array#-P}
