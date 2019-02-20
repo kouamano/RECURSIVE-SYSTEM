@@ -1,17 +1,14 @@
 #!/bin/bash
 # this is a tq meta command
 # operates tq.o and tq.pl
-# {.ddf , .dsz , .ddl} =cat=> .frl =perl=> .dry => dry.fed => .dry.fed.<exe>
+# {.tgt , .ddf , .dsz , .ddl} =cat=> .frl =perl=> .dry => dry.fed => .dry.fed.<exe>
 if [ $# -eq 0 ]; then
   echo "Usage:"
   echo "  tq target=<file>"
   exit;
 fi
 
-#declare -a array=()
 array=$@
-#echo $array
-#echo ${array#-R}
 
 if [ $1 = "-B" ]; then
   ./tq.o ${array#-B}
@@ -23,6 +20,8 @@ else
   tgt=${1#target=}
 fi
 
+
+## create FRL
 if [ -e $tgt ]; then
   echo "Target file:"
   echo "  $tgt"
@@ -34,4 +33,7 @@ if [ -e $tgt ]; then
   echo "Create ${tgt}.frl"
 else
   echo "no target file"
+  exit;
 fi
+
+
