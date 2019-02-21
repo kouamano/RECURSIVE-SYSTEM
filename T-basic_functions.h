@@ -109,7 +109,20 @@ int Add_Bclose_To_Next(struct Tree *tree){
 		return(0);
 	}
 }
-void Add_seq(struct Tree *tree){
+void Alloc_IDX(struct Tree *tree,int sz){
+	if((*tree).numIDX == 0){
+		if(((*tree).IDX = malloc(sizeof(int) * sz)) == NULL){
+			perror("[Fail]:malloc@Alloc_IDX");
+			exit(1);
+		}
+		(*tree).numIDX = sz;
+	}else{
+		if(((*tree).IDX = malloc(sizeof(int) * (sz + (*tree).numIDX))) == NULL){
+			perror("[Fail]:malloc@Alloc_IDX");
+			exit(1);
+		}
+		(*tree).numIDX = (sz + (*tree).numIDX);
+	}
 }
 
 // compile functions
