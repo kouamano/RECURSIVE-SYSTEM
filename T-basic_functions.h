@@ -282,7 +282,7 @@ int Function_Print_Seq(struct Tree *tree){
 	if((*tree).Bopen){
 		printf("(");
 	}
-	printf("#%d",(*tree).IDX[(*tree).numIDX-1]);
+	printf("%d",(*tree).IDX[(*tree).numIDX-1]);
 	if((*tree).Bclose > 0 && (*tree).NextCount == 0){
 		for(i=0;i<((*tree).Bclose);i++){
 			printf(")");
