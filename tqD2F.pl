@@ -1,6 +1,5 @@
 #!/bin/env perl
 $file = $ARGV[0];
-#print $file;
 $head = "";
 %rls = ();
 @script = ();
@@ -18,26 +17,26 @@ while(<>){
                 push(@script,$_);
         }
 }
+
+# meta command operation
 $l = "";
 while($l !~ /^\$M\$/){
 	$l = shift(@script);
 }
-$comm = "echo '".$l."'"." | ./tq.o -C -FC in=/dev/stdin";
-#print $comm;
-$exe = `$comm`;
-$exe =~ s/\s*$//;
-#print $exe;
+if(length($l) > 0){
+	$comm = "echo '".$l."'"." | ./tq.o -C -FC in=/dev/stdin";
+	$exe = `$comm`;
+	$exe =~ s/\s*$//;
+	$script = join("\n",@script);
+	$comm = "echo '".$script."'"." | ".$exe." in=/dev/stdin";
+	$str = `$comm`;
+	$ofile = $file.".fed";
+}else{	# no metacomannd
+	$str = join("\n",@script);
+	$ofile = $file.".fed";
+}
 
-$script = join("\n",@script);
-#$comm = "echo '".$script."'"." | ./tq.o in=/dev/stdin -Cr -FW";
-#$comm = "echo '".$script."'"." | "."./tq.o -Cr -FW"." in=/dev/stdin";
-$comm = "echo '".$script."'"." | ".$exe." in=/dev/stdin";
-#print $comm;
-$str = `$comm`;
-#print $str;
-$ofile = $file.".fed";
-#print $ofile;
-
+# output
 open(DATA,">",$ofile);
 print DATA $str;
 close(DATA);

@@ -33,7 +33,7 @@ if( "$rls{'$X$Application'}" eq '$X$Mathematica' ){
 	open(DATA,">",$ofile);
 	print DATA "cat ".$tfile." | "."math";
 	close(DATA);
-
+	# create metacomannd
 	print '$M$./tq.o($-FW,$-Cr)';
 	print "\n";
 	print '$X$Get($`~/gitsrc/MATH_SCRIPT/SCRIPTS/DataFederation.m)';
