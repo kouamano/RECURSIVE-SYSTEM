@@ -16,3 +16,6 @@
 #ifndef TAB
 #define TAB '\t'
 #endif
+#ifndef SER	//for serial node No.
+#define SER 0
+#endif
