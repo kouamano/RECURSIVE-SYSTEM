@@ -18,6 +18,7 @@ if [ $1 = "-h" ]; then
   echo "  -B: call tq.o"
   echo "  -R: call tqR2D.pl"
   echo "  -D: call tqD2F.pl"
+  echo "  -F: create rule file only."
   exit;
 elif [ $1 = "-B" ]; then
   ./tq.o ${array#-B}
@@ -28,7 +29,7 @@ elif [ $1 = "-R" ]; then
 elif [ $1 = "-D" ]; then
   ./tqD2F.pl ${array#-D}
   exit;
-elif [ $1 = "-FRL" ]; then
+elif [ $1 = "-F" ]; then
   FRL=1
   tgt=${2#target=}
 else
