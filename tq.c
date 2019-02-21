@@ -310,7 +310,7 @@ int main(int argc, char **argv){
 
 	/*main function*/
 	struct Tree *top;
-	top = Create_Node(BUFF_LEN);
+	top = Create_Node(0,BUFF_LEN);
 	c = 1;
 	c = importApp_Tree(IN,top,opt,_fopt,_copt);	// @ T-import_export.h
 

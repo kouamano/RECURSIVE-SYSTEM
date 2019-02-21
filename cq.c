@@ -42,6 +42,8 @@ void function_help(void){
 	printf("   -FS : prints S-form.\n");
 	printf("   -FJ : prints JSON form.\n");
 	printf("   -FW : prints Wolfram language form.\n");
+	printf("   -FC : prints shell script form.\n");
+	printf("   -FN : prints seq node-no.\n");
 	printf("   -FMa : prints Adjacency matrix form (under construction).\n");
 	printf("   -Fh : prints hierarchical-form.\n");
 	printf("   -Fst : prints import status.\n");
@@ -49,9 +51,9 @@ void function_help(void){
 }
 void compile_help(void){
 	printf("  -C : print compiled (exectable script) form.\n");
+	printf("   -Cr : prints the \"print-restrict\" char at the end of line.\n");
 	printf("   -Cc : clear head.\n");
 	printf("   -Cd : rewite head to dot.\n");
-	//printf("   -CW : to executable Wolfram language (under construction).\n");
 }
 
 /*allocation*/
@@ -103,6 +105,8 @@ void init_function_options(struct function_options *fopt){
 	(*fopt).f_print_S = 0;
 	(*fopt).f_print_J = 0;
 	(*fopt).f_print_W = 0;
+	(*fopt).f_print_C = 0;
+	(*fopt).f_print_N = 0;
 	(*fopt).f_print_Ma = 0;
 	(*fopt).f_print_status = 0;
 	(*fopt).f_print_hierarchy = 0;
@@ -110,6 +114,7 @@ void init_function_options(struct function_options *fopt){
 }
 void init_compile_options(struct compile_options *copt){
         (*copt).c_counter = 0;
+        (*copt).c_restrict = 0;
         (*copt).c_clear = 0;
         (*copt).c_dot = 0;
 }
@@ -163,6 +168,12 @@ void get_function_options(int optc, char **optv, struct function_options *fopt){
 		}else if(strncmp(optv[i],"-FW",3) == 0){
 			(*fopt).f_print_W = 1;
 			(*fopt).f_counter++;
+		}else if(strncmp(optv[i],"-FC",3) == 0){
+			(*fopt).f_print_C = 1;
+			(*fopt).f_counter++;
+		}else if(strncmp(optv[i],"-FN",3) == 0){
+			(*fopt).f_print_N = 1;
+			(*fopt).f_counter++;
 		}else if(strncmp(optv[i],"-FMa",4) == 0){
 			(*fopt).f_print_Ma = 1;
 			(*fopt).f_counter++;
@@ -182,7 +193,10 @@ void get_compile_options(int optc, char **optv, struct compile_options *copt){
 		if(strncmp(optv[i],"-C",2) == 0){
 			(*copt).c_counter++;
 		}
-		if(strncmp(optv[i],"-Cc",3) == 0){
+		if(strncmp(optv[i],"-Cr",3) == 0){
+			(*copt).c_restrict = 1;
+			(*copt).c_counter++;
+		}else if(strncmp(optv[i],"-Cc",3) == 0){
 			(*copt).c_clear = 1;
 			(*copt).c_counter++;
 		}else if(strncmp(optv[i],"-Cd",3) == 0){
@@ -208,6 +222,8 @@ void check_function_options(struct function_options *fopt){
 	printf("  opt.FS:%d:\n",(*fopt).f_print_S);
 	printf("  opt.FJ:%d:\n",(*fopt).f_print_J);
 	printf("  opt.FW:%d:\n",(*fopt).f_print_W);
+	printf("  opt.FC:%d:\n",(*fopt).f_print_C);
+	printf("  opt.FN:%d:\n",(*fopt).f_print_N);
 	printf("  opt.FMa:%d: (under construction) \n",(*fopt).f_print_Ma);
 	printf("  opt.Fst:%d:\n",(*fopt).f_print_status);
 	printf("  opt.Fh:%d:\n",(*fopt).f_print_hierarchy);
@@ -216,6 +232,7 @@ void check_function_options(struct function_options *fopt){
 void check_compile_options(struct compile_options *copt){
 	printf(" compilers:\n");
 	printf("  opt.fcount:%d:\n",(*copt).c_counter);
+	printf("  opt.c_restrict:%d:\n",(*copt).c_restrict);
 	printf("  opt.c_clear:%d:\n",(*copt).c_clear);
 	printf("  opt.c_dot:%d:\n",(*copt).c_dot);
 }
@@ -293,7 +310,7 @@ int main(int argc, char **argv){
 
 	/*main function*/
 	struct Tree *top;
-	top = Create_Node(BUFF_LEN);
+	top = Create_Node(0,BUFF_LEN);
 	c = 1;
 	c = importApp_Tree(IN,top,opt,_fopt,_copt);	// @ T-import_export.h
 

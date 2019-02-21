@@ -26,6 +26,7 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 	struct Tree *next;
 	int close = 0;
 	int ESC = 0;
+	int SN = 1;
 	WAR = (*_opt).war;
 	current = top;
 	next = NULL;
@@ -70,7 +71,8 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 				print_war(C,current,WAR);
 			}
 			/* create next */
-			next = Create_Node(BUFF_LEN);
+			next = Create_Node(SN,BUFF_LEN);
+			SN++;
 			/* add next to current / current.NextCount / next.LVself, NCself */
 			Add_Next(current,next);
 			/* set properties of next */
@@ -97,7 +99,8 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 				print_war(C,current,WAR);
 			}
 			/* create next */
-			next = Create_Node(BUFF_LEN);
+			next = Create_Node(SN,BUFF_LEN);
+			SN++;
 			/* add next */
 			Add_Next((*current).Parent,next);
 			/* set properties of next */
@@ -159,7 +162,8 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 				/* clear tree */
 				Function_RecursiveFreeForce(top);
 				free(top);
-				top = Create_Node(BUFF_LEN);
+				top = Create_Node(SN,BUFF_LEN);
+				SN++;
 				ESC = 0;
 			}
 		}else if(C == EOF){

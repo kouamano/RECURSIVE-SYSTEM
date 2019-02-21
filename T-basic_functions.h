@@ -59,12 +59,13 @@ int Function_Count_NextConjZero(struct Tree *tree){
 	return(count);
 }
 ////restructure functions
-struct Tree *Create_Node(int H_size){
+struct Tree *Create_Node(int _ser, int H_size){
 	struct Tree *tree;
 	if((tree = malloc(sizeof(struct Tree) * 1)) == NULL){
 		fprintf(stderr,"[Fail] malloc.\n");
 		exit(1);
 	}
+	(*tree).ser=_ser;
 	(*tree).numIDX=1;
 	(*tree).IDX=malloc(sizeof(int) * 1);
 	if((*tree).IDX == NULL){
@@ -287,7 +288,7 @@ int Function_Print_Seq(struct Tree *tree){
 	if((*tree).Bopen){
 		printf("(");
 	}
-	printf("%d",(*tree).IDX[(*tree).numIDX-1]);
+	printf("%d",(*tree).ser);
 	if((*tree).Bclose > 0 && (*tree).NextCount == 0){
 		for(i=0;i<((*tree).Bclose);i++){
 			printf(")");

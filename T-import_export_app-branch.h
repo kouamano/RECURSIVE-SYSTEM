@@ -1,8 +1,3 @@
-			/* apply pre-functions @ T-basic_functions.h */
-			if((*_fopt).f_print_N == 1){
-
-				ExFunction_Recursive_Seq(top,(int (*)())Add_IDX_seq,0,_copt);
-			}
 			/* apply compiler @ T-basic_functions.h */
 			if((*_copt).c_clear == 1){
 				//printf("hoge");
