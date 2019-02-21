@@ -1,3 +1,8 @@
+			/* apply pre-functions @ T-basic_functions.h */
+			if((*_fopt).f_print_N == 1){
+
+				ExFunction_Recursive_Seq(top,(int (*)())Add_IDX_seq,0,_copt);
+			}
 			/* apply compiler @ T-basic_functions.h */
 			if((*_copt).c_clear == 1){
 				//printf("hoge");
@@ -8,7 +13,16 @@
 			if((*_copt).c_counter > 0){
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Compile_Head,_copt);
 			}
-			/* apply functions @ T-basic_functions.h */
+			/* apply print-functions @ T-basic_functions.h */
+			if((*_fopt).f_print_N == 1){
+				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Seq,_copt);
+				if(C == LF && (*_copt).c_restrict == 1){
+					printf(";");
+				}
+				if(C == LF || C == TAB){
+					printf("%c",C);
+				}
+			}
 			if((*_fopt).f_print_T == 1){
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head,_copt);
 				if(C == LF && (*_copt).c_restrict == 1){

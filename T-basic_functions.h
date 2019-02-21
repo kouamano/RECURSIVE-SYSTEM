@@ -124,7 +124,11 @@ void Alloc_IDX(struct Tree *tree,int sz){
 		(*tree).numIDX = (sz + (*tree).numIDX);
 	}
 }
-
+int Add_IDX_seq(struct Tree *tree, int num){
+	Alloc_IDX(tree,1);
+	(*tree).IDX[(*tree).numIDX - 1] = num;
+	return(num + 1);
+}
 // compile functions
 int is_reteral(char *string){
 	int fails = 0;
@@ -267,6 +271,26 @@ void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	Function_Print_Smems(tree);
 	printf("\n");
 
+}
+////print seq no
+int Function_Print_Seq(struct Tree *tree){
+	int i;
+	int not_print_Bclose = 0;
+	if((*tree).Conj){
+		printf(",");
+	}
+	if((*tree).Bopen){
+		printf("(");
+	}
+	printf("#%d",(*tree).IDX[(*tree).numIDX-1]);
+	if((*tree).Bclose > 0 && (*tree).NextCount == 0){
+		for(i=0;i<((*tree).Bclose);i++){
+			printf(")");
+		}
+	}else if((*tree).Bclose > 0){
+		not_print_Bclose = not_print_Bclose + (*tree).Bclose;
+	}
+	return(not_print_Bclose);
 }
 ////print T-form
 int Function_Print_Head(struct Tree *tree){
@@ -442,6 +466,23 @@ struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)
 	}
 	return(out);
 }
+struct Tree *ExFunction_Recursive_Seq( struct Tree *tree, int (*e_function)(struct Tree *,int seq), int _init, struct compile_options *_copt ){
+	// かっこのprint処理をprint系関数に押し込んでいるため、
+	// T-import_export.h でAdd_Bclose_To_Next()を行っている。
+	int i;
+	int _seq = _init;
+	struct Tree *out = tree;
+	if(tree == NULL || e_function == NULL){
+		fprintf(stderr,"NULL.\n");
+		exit(1);
+	}
+	_seq = (*e_function)(tree,_seq);
+	for(i=0;i<(*tree).NextCount;i++){
+		ExFunction_Recursive_Seq((*tree).Next[i],e_function,_seq+i,_copt);
+	}
+	return(out);
+}
+
 struct Tree *ExFunction_Recursive_Ex(void (*pre_function)(void), struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct compile_options *_copt, void (*post_function)(void) ){
 	// かっこのprint処理をprint系関数に押し込んでいるため、
 	// T-import_export.h でAdd_Bclose_To_Next()を行っている。
