@@ -2,6 +2,8 @@
 # this is a tq meta command
 # Needs: tq.o , tqR2D.pl , tqD2F.pl
 # {.tgt , .ddf , .dsz , .ddl} =cat=> .frl =perl=> frl.dry =perl=> frl.dry.fed =perl=> .frl.dry.fed.com
+declare -i FRL
+
 if [ $# -eq 0 ]; then
   echo "Usage:"
   echo "  tq target=<file>"
@@ -26,13 +28,16 @@ elif [ $1 = "-R" ]; then
 elif [ $1 = "-D" ]; then
   ./tqD2F.pl ${array#-D}
   exit;
+elif [ $1 = "-FRL" ]; then
+  FRL=1
+  tgt=${2#target=}
 else
   tgt=${1#target=}
 fi
 
 
 ## create FRL
-if [ -e $tgt ]; then
+if [ -e ${tgt}.tgt ]; then
   echo "Target file:"
   echo "  $tgt"
   echo "  ${tgt}.tgt"
@@ -43,6 +48,9 @@ if [ -e $tgt ]; then
   echo "Create ${tgt}.frl"
 else
   echo "no target file"
+  exit;
+fi
+if [ $FRL -eq 1 ]; then
   exit;
 fi
 
