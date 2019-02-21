@@ -109,6 +109,8 @@ int Add_Bclose_To_Next(struct Tree *tree){
 		return(0);
 	}
 }
+void Add_seq(struct Tree *tree){
+}
 
 // compile functions
 int is_reteral(char *string){

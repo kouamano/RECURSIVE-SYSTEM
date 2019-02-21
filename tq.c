@@ -43,6 +43,7 @@ void function_help(void){
 	printf("   -FJ : prints JSON form.\n");
 	printf("   -FW : prints Wolfram language form.\n");
 	printf("   -FC : prints shell script form.\n");
+	printf("   -FN : prints seq node-no.\n");
 	printf("   -FMa : prints Adjacency matrix form (under construction).\n");
 	printf("   -Fh : prints hierarchical-form.\n");
 	printf("   -Fst : prints import status.\n");
@@ -105,6 +106,7 @@ void init_function_options(struct function_options *fopt){
 	(*fopt).f_print_J = 0;
 	(*fopt).f_print_W = 0;
 	(*fopt).f_print_C = 0;
+	(*fopt).f_print_N = 0;
 	(*fopt).f_print_Ma = 0;
 	(*fopt).f_print_status = 0;
 	(*fopt).f_print_hierarchy = 0;
@@ -169,6 +171,9 @@ void get_function_options(int optc, char **optv, struct function_options *fopt){
 		}else if(strncmp(optv[i],"-FC",3) == 0){
 			(*fopt).f_print_C = 1;
 			(*fopt).f_counter++;
+		}else if(strncmp(optv[i],"-FN",3) == 0){
+			(*fopt).f_print_N = 1;
+			(*fopt).f_counter++;
 		}else if(strncmp(optv[i],"-FMa",4) == 0){
 			(*fopt).f_print_Ma = 1;
 			(*fopt).f_counter++;
@@ -218,6 +223,7 @@ void check_function_options(struct function_options *fopt){
 	printf("  opt.FJ:%d:\n",(*fopt).f_print_J);
 	printf("  opt.FW:%d:\n",(*fopt).f_print_W);
 	printf("  opt.FC:%d:\n",(*fopt).f_print_C);
+	printf("  opt.FN:%d:\n",(*fopt).f_print_N);
 	printf("  opt.FMa:%d: (under construction) \n",(*fopt).f_print_Ma);
 	printf("  opt.Fst:%d:\n",(*fopt).f_print_status);
 	printf("  opt.Fh:%d:\n",(*fopt).f_print_hierarchy);
