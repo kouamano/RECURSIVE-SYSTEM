@@ -3,14 +3,13 @@
 # Needs: tq.o , tqR2D.pl , tqD2F.pl
 # {.tgt , .ddf , .dsz , .ddl} =cat=> .frl =perl=> frl.dry =perl=> frl.dry.fed =perl=> .frl.dry.fed.com
 declare -i FRL=0;
+array=$@
 
 if [ $# -eq 0 ]; then
   echo "Usage:"
   echo "  tq target=<file>"
   exit;
 fi
-
-array=$@
 
 if [ $1 = "-h" ]; then
   echo "tq [-h|-B|-R|-D] | target=<file>"
@@ -54,6 +53,7 @@ fi
 if [ $FRL -eq 1 ]; then
   exit;
 fi
+
 
 ## FRL => DRY
 echo "Create ${tgt}.frl.dry , ${tgt}.frl.dry.fed.com"
