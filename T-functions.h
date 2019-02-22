@@ -444,6 +444,22 @@ struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)
 	}
 	return(out);
 }
+struct Tree *ExFunction_Recursive_Arg( struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int), struct compile_options *_copt, int arg ){
+	// かっこのprint処理をprint系関数に押し込んでいるため、
+	// T-import_export.h でAdd_Bclose_To_Next()を行っている。
+	int i;
+	struct Tree *out = tree;
+	if(tree == NULL || e_function == NULL){
+		fprintf(stderr,"NULL.\n");
+		exit(1);
+	}
+	(*e_function)(tree,arg);
+	for(i=0;i<(*tree).NextCount;i++){
+		ExFunction_Recursive_Arg((*tree).Next[i],e_function,_copt,arg);
+	}
+	return(out);
+}
+
 struct Tree *ExFunction_Recursive_Ex(void (*pre_function)(void), struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct compile_options *_copt, void (*post_function)(void) ){
 	// かっこのprint処理をprint系関数に押し込んでいるため、
 	// T-import_export.h でAdd_Bclose_To_Next()を行っている。
