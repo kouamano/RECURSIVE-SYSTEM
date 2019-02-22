@@ -299,7 +299,7 @@ int Function_Print_Head_C(struct Tree *tree){
 		printf(" ");
 	}
 	if((*tree).Bopen){
-		printf(" ");
+		printf("  ");
 	}
 	printf("%s",(*tree).Head);
 	if((*tree).Bclose > 0 && (*tree).NextCount == 0){
