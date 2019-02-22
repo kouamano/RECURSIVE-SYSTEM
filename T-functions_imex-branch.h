@@ -1,6 +1,5 @@
 			/* apply compiler @ T-basic_functions.h */
 			if((*_copt).c_clear == 1){
-				//printf("hoge");
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Clear_Head,_copt);
 			}else if((*_copt).c_dot){
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Dot_Head,_copt);
@@ -73,6 +72,13 @@
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus,_copt);
 				printf("\n");
                         }
+
+
+                        if((*_fopt).f_print_Ma == 1){
+				ExFunction_Recursive_Arg(top,(struct Tree *(*)())Function_Print_Adj,_copt,SN);
+				printf("\n");
+                        }
+
 			/* post-check code*/
 			#ifdef DB
 			printf("nodes_in_branch:%d:\n",*ncount);

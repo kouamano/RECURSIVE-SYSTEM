@@ -270,6 +270,13 @@ int Function_Print_Seq(struct Tree *tree){
 	}
 	return(not_print_Bclose);
 }
+////print matrix
+int Function_Print_Adj(struct Tree *tree, int nodes){
+	int i;
+	int j;
+	return(nodes);
+}
+
 ////print T-form
 int Function_Print_Head(struct Tree *tree){
 	int i;
