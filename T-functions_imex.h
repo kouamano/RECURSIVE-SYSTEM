@@ -14,7 +14,7 @@ void print_war(char _C, struct Tree *_tree, int level){
 	printf(":NCs=%d:",(*_tree).NCself);
 	printf(":NC=%d:",(*_tree).NextCount);
 }
-int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
+int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int *ncount){
 	int WAR;
 	int C;
 	int DLM_ACC = 1;
@@ -73,6 +73,7 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 			/* create next */
 			next = Create_Node(SN,BUFF_LEN);
 			SN++;
+			*ncount = SN;
 			/* add next to current / current.NextCount / next.LVself, NCself */
 			Add_Next(current,next);
 			/* set properties of next */
@@ -101,6 +102,7 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 			/* create next */
 			next = Create_Node(SN,BUFF_LEN);
 			SN++;
+			*ncount = SN;
 			/* add next */
 			Add_Next((*current).Parent,next);
 			/* set properties of next */
@@ -164,6 +166,7 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 				free(top);
 				top = Create_Node(SN,BUFF_LEN);
 				SN++;
+				*ncount = SN;
 				ESC = 0;
 			}
 		}else if(C == EOF){
