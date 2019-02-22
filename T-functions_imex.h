@@ -158,7 +158,7 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 				buf_ptr = 0;
 				close = 0;
 				/* apply functions */
-				#include "T-import_export_app-branch.h"
+				#include "T-functions_imex-branch.h"
 				/* clear tree */
 				Function_RecursiveFreeForce(top);
 				free(top);
@@ -170,7 +170,7 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 			close = 0;
 			ESC = 0;
 			if((*_opt).form == 0){
-				#include "T-import_export_app-branch.h"
+				#include "T-functions_imex-branch.h"
 			}
 			return(C);
 		}else{
