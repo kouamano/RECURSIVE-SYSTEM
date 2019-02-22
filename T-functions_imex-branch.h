@@ -73,4 +73,8 @@
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus,_copt);
 				printf("\n");
                         }
+			/* post-check code*/
+			#ifdef DB
+			printf("nodes_in_branch:%d:\n",*ncount);
+			#endif
 

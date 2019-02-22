@@ -169,6 +169,10 @@ int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct fun
 				*ncount = SN;
 				ESC = 0;
 			}
+			/* post-check code */
+			#ifdef DB
+			printf("nodes_in_importAPP:%d:\n",*ncount);
+			#endif
 		}else if(C == EOF){
 			close = 0;
 			ESC = 0;
