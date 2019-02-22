@@ -236,8 +236,7 @@ void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	}
 	/* print Head */
 	printf("%s",(*tree).Head);
-	/* print suffix */
-	//printf("{%s}",(*tree).suffix); // currently not used
+
 	/* print Bclose */
 	for(i=0;i<(*tree).Bclose;i++){
 		//printf(")");
