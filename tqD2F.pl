@@ -20,8 +20,11 @@ while(<>){
 
 # meta command operation
 $l = "";
-while($l !~ /^\$M\$/){
+$ct = 0;
+$ctmax = @script;
+while($l !~ /^\$M\$/ && $ct <= $ctmax){
 	$l = shift(@script);
+	$ct++;
 }
 if(length($l) > 0){
 	$comm = "echo '".$l."'"." | ./tq.o -C -FC in=/dev/stdin";
