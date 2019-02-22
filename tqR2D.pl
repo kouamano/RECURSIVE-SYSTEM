@@ -28,10 +28,10 @@ print "$next\n";
 
 # for target application
 if( "$rls{'$X$Application'}" eq '$X$Mathematica' ){
-	$tfile = $file.".dry.fed";
-	$ofile = $file.".dry.fed.com";
-	open(DATA,">",$ofile);
-	print DATA "cat ".$tfile." | "."math";
+	$fedfile = $file.".dry.fed";
+	$comfile = $file.".dry.fed.com";
+	open(DATA,">",$comfile);
+	print DATA "cat ".$fedfile." | "."math";
 	close(DATA);
 	# create metacomannd
 	print '$M$./tq.o($-FW,$-Cr)';
@@ -39,11 +39,11 @@ if( "$rls{'$X$Application'}" eq '$X$Mathematica' ){
 	print '$X$Get($`~/gitsrc/MATH_SCRIPT/SCRIPTS/DataFederation.m)';
 	print "\n";
 }elsif( "$rls{'$X$Application'}" eq '$X$Python' && "$rls{'$X$DDF'}" eq '$X$PackedData'){
-	$tfile = $file.".dry.fed";
-	$ofile = $file.".dry.fed.com";
+	$fedfile = $file.".dry.fed";
+	$comfile = $file.".dry.fed.com";
 	$target = $rls{'$X$Target'};
 	$target =~ s/^\$`//;
-	open(DATA,">",$ofile);
+	open(DATA,">",$comfile);
 	print DATA "python"." convert_jpeg_to_json.py"," $target";
 	close(DATA);
 }
