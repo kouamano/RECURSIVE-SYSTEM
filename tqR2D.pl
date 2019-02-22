@@ -42,7 +42,7 @@ if( "$metacomm{'$CM$Application'}" eq '$X$Mathematica' ){
 	print "\n";
 	print '$X$Get($`~/gitsrc/MATH_SCRIPT/SCRIPTS/DataFederation.m)';
 	print "\n";
-}elsif( "$rls{'$CM$Application'}" eq '$X$Python' && "$rls{'$X$DDF'}" eq '$X$PackedData'){
+}elsif( "$metacomm{'$CM$Application'}" eq '$X$Python' && "$rls{'$X$DDF'}" eq '$X$PackedData'){
 	$fedfile = $file.".dry.fed";
 	$comfile = $file.".dry.fed.com";
 	$target = $rls{'$X$Target'};
