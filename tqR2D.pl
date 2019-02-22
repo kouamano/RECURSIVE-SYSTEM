@@ -27,7 +27,7 @@ if($stage =~ /DRY/){
 print "$next\n";
 
 # for target application
-if( "$rls{'$X$Application'}" eq '$X$Mathematica' ){
+if( "$rls{'$CM$Application'}" eq '$X$Mathematica' ){
 	$fedfile = $file.".dry.fed";
 	$comfile = $file.".dry.fed.com";
 	open(DATA,">",$comfile);
@@ -38,7 +38,7 @@ if( "$rls{'$X$Application'}" eq '$X$Mathematica' ){
 	print "\n";
 	print '$X$Get($`~/gitsrc/MATH_SCRIPT/SCRIPTS/DataFederation.m)';
 	print "\n";
-}elsif( "$rls{'$X$Application'}" eq '$X$Python' && "$rls{'$X$DDF'}" eq '$X$PackedData'){
+}elsif( "$rls{'$CM$Application'}" eq '$X$Python' && "$rls{'$X$DDF'}" eq '$X$PackedData'){
 	$fedfile = $file.".dry.fed";
 	$comfile = $file.".dry.fed.com";
 	$target = $rls{'$X$Target'};
