@@ -65,9 +65,9 @@ echo "Create ${tgt}.frl.dry.fed"
 ### already created @ FRL => DRY
 ## EXEC
 chmod 755 ./${tgt}.frl.dry.fed.com
-echo "Exec integration..."
+echo "Exec ${tgt}.frl.dry.fed.com ..."
 ./${tgt}.frl.dry.fed.com
 ## post op
-echo "Done"
+echo "... Done"
 
 
