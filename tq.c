@@ -3,8 +3,8 @@
 #include <string.h>
 #include "../RECURSIVE-SYSTEM/T-definition.h"
 #include "../RECURSIVE-SYSTEM/T-structure.h"
-#include "../RECURSIVE-SYSTEM/T-basic_functions.h"
-#include "../RECURSIVE-SYSTEM/T-import_export.h"
+#include "../RECURSIVE-SYSTEM/T-functions.h"
+#include "../RECURSIVE-SYSTEM/T-functions_imex.h"
 
 const char cdate[] = __DATE__;
 const char ctime[] = __TIME__;
