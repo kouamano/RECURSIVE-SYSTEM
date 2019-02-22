@@ -66,13 +66,6 @@ struct Tree *Create_Node(int _ser, int H_size){
 		exit(1);
 	}
 	(*tree).ser=_ser;
-	(*tree).numIDX=1;
-	(*tree).IDX=malloc(sizeof(int) * 1);
-	if((*tree).IDX == NULL){
-		fprintf(stderr,"[Fail] malloc.\n");
-		exit(1);
-	}
-	(*tree).IDX[0] = 0;
 	(*tree).LVself=0;
 	(*tree).NCself=1;
 	(*tree).Conj=0;
@@ -114,26 +107,6 @@ int Add_Bclose_To_Next(struct Tree *tree){
 		Add_Bclose_To_Next((*tree).Next[(*tree).NextCount-1]);
 		return(0);
 	}
-}
-void Alloc_IDX(struct Tree *tree,int sz){
-	if((*tree).numIDX == 0){
-		if(((*tree).IDX = malloc(sizeof(int) * sz)) == NULL){
-			perror("[Fail]:malloc@Alloc_IDX");
-			exit(1);
-		}
-		(*tree).numIDX = sz;
-	}else{
-		if(((*tree).IDX = malloc(sizeof(int) * (sz + (*tree).numIDX))) == NULL){
-			perror("[Fail]:malloc@Alloc_IDX");
-			exit(1);
-		}
-		(*tree).numIDX = (sz + (*tree).numIDX);
-	}
-}
-int Add_IDX_seq(struct Tree *tree, int num){
-	Alloc_IDX(tree,1);
-	(*tree).IDX[(*tree).numIDX - 1] = num;
-	return(num + 1);
 }
 // compile functions
 int is_reteral(char *string){
@@ -523,8 +496,5 @@ int Function_RecursiveFreeForce(struct Tree *tree){
 	free((*tree).Head);
 	(*tree).Head = NULL;
 
-	free((*tree).IDX);
-	(*tree).IDX = NULL;
-	(*tree).numIDX = 0;
 	return(0);
 }

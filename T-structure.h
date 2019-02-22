@@ -1,8 +1,6 @@
 //structure
 struct Tree {
 	int ser;
-	int numIDX;
-	int *IDX;
 	int LVself;
 	int NCself;
 	int Conj;
