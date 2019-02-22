@@ -6,10 +6,14 @@ $head = "";
 @vals = ();
 while(<>){
 	chomp;
-	if($_ =~ /\$RE\$/){
+	if($_ =~ /^\$RE\$/){
 		$head = $_;
-	}elsif($_ =~ /\$E\$/){
+	}elsif($_ =~ /^\$E\$/){
 		$head = $_;
+	}elsif($_ =~ /^\$CM\$/){
+		($meta,$app) = split(/\(/,$_);
+		$app =~ s/\)$//;
+		$metacomm{$meta} = $app;
 	}elsif($_ =~ /\t->\t/){
 		($k,$v) = split(/\t->\t/,$_);
 		$rls{$k} = $v;
@@ -27,7 +31,7 @@ if($stage =~ /DRY/){
 print "$next\n";
 
 # for target application
-if( "$rls{'$CM$Application'}" eq '$X$Mathematica' ){
+if( "$metacomm{'$CM$Application'}" eq '$X$Mathematica' ){
 	$fedfile = $file.".dry.fed";
 	$comfile = $file.".dry.fed.com";
 	open(DATA,">",$comfile);
