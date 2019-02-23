@@ -12,7 +12,7 @@ const char ctime[] = __TIME__;
 void status(void){
 	printf("STATUS:\n");
 	printf(" Testing of JSON print.\n");
-	printf(" The option FMa : under construction.\n");
+	printf(" The option FMa.\n");
 	printf(" The option form : under construction.\n");
 	printf("COMPILED:\n");
 	printf(" %s\n",ctime);
@@ -44,7 +44,7 @@ void function_help(void){
 	printf("   -FW : prints Wolfram language form.\n");
 	printf("   -FC : prints shell script form.\n");
 	printf("   -FN : prints seq node-no.\n");
-	printf("   -FMa : prints Adjacency matrix form (under construction).\n");
+	printf("   -FMa : prints Adjacency matrix form.\n");
 	printf("   -Fh : prints hierarchical-form.\n");
 	printf("   -Fst : prints import status.\n");
 	printf("   -Fhst : prints import status with hierarchical-form.\n");
@@ -224,7 +224,7 @@ void check_function_options(struct function_options *fopt){
 	printf("  opt.FW:%d:\n",(*fopt).f_print_W);
 	printf("  opt.FC:%d:\n",(*fopt).f_print_C);
 	printf("  opt.FN:%d:\n",(*fopt).f_print_N);
-	printf("  opt.FMa:%d: (under construction) \n",(*fopt).f_print_Ma);
+	printf("  opt.FMa:%d:\n",(*fopt).f_print_Ma);
 	printf("  opt.Fst:%d:\n",(*fopt).f_print_status);
 	printf("  opt.Fh:%d:\n",(*fopt).f_print_hierarchy);
 	printf("  opt.Fhst:%d:\n",(*fopt).f_print_hierarchy_status);

@@ -137,6 +137,7 @@ int is_reteral(char *string){
 }
 int Function_Clear_Head(struct Tree *tree){
 	(*tree).Head[0] = '\0';
+	return(0);
 	
 }
 int Function_Dot_Head(struct Tree *tree){
@@ -144,9 +145,9 @@ int Function_Dot_Head(struct Tree *tree){
 		(*tree).Head[0] = '.';
 		(*tree).Head[1] = '\0';
 	}
+	return(0);
 }
 int Function_Compile_Head(struct Tree *tree){
-	int ra;
 	char *tmp_head;
 	int len = 0;
 	len = strlen((*tree).Head);
@@ -178,6 +179,7 @@ int Function_Compile_Head(struct Tree *tree){
 		strcpy((*tree).Head,tmp_head+1);
 		strcpy(tmp_head,(*tree).Head);
 	}
+	return(0);
 }
 
 // formated print functions
