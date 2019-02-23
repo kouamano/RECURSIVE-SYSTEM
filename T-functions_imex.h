@@ -14,7 +14,7 @@ void print_war(char _C, struct Tree *_tree, int level){
 	printf(":NCs=%d:",(*_tree).NCself);
 	printf(":NC=%d:",(*_tree).NextCount);
 }
-int importApp_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int *ncount){
+int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int *ncount){
 	int WAR;
 	int C;
 	int DLM_ACC = 1;
