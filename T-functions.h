@@ -450,7 +450,7 @@ void Function_Print_Head_J(struct Tree *tree){
 void null_func(void){
 }
 ////recursive-apply-function
-struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct compile_options *_copt ){
+struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct function_options *_fopt, struct compile_options *_copt ){
 	// かっこのprint処理をprint系関数に押し込んでいるため、
 	// T-import_export.h でAdd_Bclose_To_Next()を行っている。
 	int i;
@@ -461,11 +461,11 @@ struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)
 	}
 	(*e_function)(tree);
 	for(i=0;i<(*tree).NextCount;i++){
-		ExFunction_Recursive((*tree).Next[i],e_function,_copt);
+		ExFunction_Recursive((*tree).Next[i],e_function,_fopt,_copt);
 	}
 	return(out);
 }
-struct Tree *ExFunction_Recursive_Ser( struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int), struct compile_options *_copt, int ser ){
+struct Tree *ExFunction_Recursive_Ser( struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int), struct function_options *_fopt, struct compile_options *_copt, int ser ){
 	// かっこのprint処理をprint系関数に押し込んでいるため、
 	// T-import_export.h でAdd_Bclose_To_Next()を行っている。
 	int i;
@@ -476,7 +476,7 @@ struct Tree *ExFunction_Recursive_Ser( struct Tree *tree, struct Tree *(*e_funct
 	}
 	(*e_function)(tree,ser);
 	for(i=0;i<(*tree).NextCount;i++){
-		ExFunction_Recursive_Ser((*tree).Next[i],e_function,_copt,ser);
+		ExFunction_Recursive_Ser((*tree).Next[i],e_function,_fopt,_copt,ser);
 	}
 	return(out);
 }
