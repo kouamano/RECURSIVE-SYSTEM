@@ -465,7 +465,7 @@ struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)
 	}
 	return(out);
 }
-struct Tree *ExFunction_Recursive_Arg( struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int), struct compile_options *_copt, int arg ){
+struct Tree *ExFunction_Recursive_Ser( struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int), struct compile_options *_copt, int ser ){
 	// かっこのprint処理をprint系関数に押し込んでいるため、
 	// T-import_export.h でAdd_Bclose_To_Next()を行っている。
 	int i;
@@ -474,9 +474,9 @@ struct Tree *ExFunction_Recursive_Arg( struct Tree *tree, struct Tree *(*e_funct
 		fprintf(stderr,"NULL.\n");
 		exit(1);
 	}
-	(*e_function)(tree,arg);
+	(*e_function)(tree,ser);
 	for(i=0;i<(*tree).NextCount;i++){
-		ExFunction_Recursive_Arg((*tree).Next[i],e_function,_copt,arg);
+		ExFunction_Recursive_Ser((*tree).Next[i],e_function,_copt,ser);
 	}
 	return(out);
 }

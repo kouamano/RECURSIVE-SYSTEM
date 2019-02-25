@@ -75,7 +75,7 @@
 
 
                         if((*_fopt).f_print_Ma == 1){
-				ExFunction_Recursive_Arg(top,(struct Tree *(*)())Function_Print_Adj,_copt,SN);
+				ExFunction_Recursive_Ser(top,(struct Tree *(*)())Function_Print_Adj,_copt,SN);
 				printf("\n");
                         }
 
