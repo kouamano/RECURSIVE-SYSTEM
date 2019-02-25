@@ -18,7 +18,6 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 	int WAR;
 	int C;
 	int DLM_ACC = 1;
-	int ARG_COUNT = 0;
 	char *BUFF;
 	int buf_ptr = 0;
 	struct Tree *current;
@@ -44,9 +43,6 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 		}
 		if(C == ']' && ESC == 0){
 			DLM_ACC++;
-		}
-		if(C == ',' && DLM_ACC > 0){
-			ARG_COUNT++;
 		}
 		if(C == '\\'){
 			ESC = 1;
