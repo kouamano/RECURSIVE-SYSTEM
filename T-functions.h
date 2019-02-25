@@ -482,6 +482,7 @@ struct Tree *ExFunction_Recursive_Ser( struct Tree *tree, struct Tree *(*e_funct
 }
 struct Tree *ExFunction_Recursive_Ser_Print( struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int), struct function_options *_fopt, struct compile_options *_copt, int ser ){
 	//Add_Bclose_To_Next()をつかわずにprintする。
+	//under tune
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL || e_function == NULL){
