@@ -79,6 +79,19 @@
 				printf("\n");
                         }
 
+			/*test code*/
+			//printf("hoge1");
+                        if((*_fopt).f_print_test == 1){
+			//printf("hoge2");
+				ExFunction_Recursive_Ser_Print(top,(struct Tree *(*)())Function_Print_Adj,_fopt,_copt,SN);
+				if(C == LF && (*_copt).c_restrict == 1){
+					printf(";");
+				}
+				if(C == LF || C == TAB){
+					printf("%c",C);
+				}
+                        }
+
 			/* post-check code*/
 			#ifdef DB
 			printf("nodes_in_branch:%d:\n",*ncount);

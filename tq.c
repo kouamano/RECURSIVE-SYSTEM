@@ -48,6 +48,7 @@ void function_help(void){
 	printf("   -Fh : prints hierarchical-form.\n");
 	printf("   -Fst : prints import status.\n");
 	printf("   -Fhst : prints import status with hierarchical-form.\n");
+	printf("   -Ftest : prints from test function.\n");
 }
 void compile_help(void){
 	printf("  -C : print compiled (exectable script) form.\n");
@@ -111,6 +112,7 @@ void init_function_options(struct function_options *fopt){
 	(*fopt).f_print_status = 0;
 	(*fopt).f_print_hierarchy = 0;
 	(*fopt).f_print_hierarchy_status = 0;
+	(*fopt).f_print_test = 0;
 }
 void init_compile_options(struct compile_options *copt){
         (*copt).c_counter = 0;
@@ -153,7 +155,10 @@ void get_function_options(int optc, char **optv, struct function_options *fopt){
 	int i = 0;
 	(*fopt).f_counter = 0;
 	for(i=0;i<optc;i++){
-		if(strncmp(optv[i],"-FT",3) == 0){
+		if(strncmp(optv[i],"-Ftest",6) == 0){
+			(*fopt).f_print_test = 1;
+			(*fopt).f_counter++;
+		}else if(strncmp(optv[i],"-FT",3) == 0){
 			(*fopt).f_print_T = 1;
 			(*fopt).f_counter++;
 		}else if(strncmp(optv[i],"-Fst",4) == 0){
@@ -228,6 +233,7 @@ void check_function_options(struct function_options *fopt){
 	printf("  opt.Fst:%d:\n",(*fopt).f_print_status);
 	printf("  opt.Fh:%d:\n",(*fopt).f_print_hierarchy);
 	printf("  opt.Fhst:%d:\n",(*fopt).f_print_hierarchy_status);
+	printf("  opt.Ftest:%d:\n",(*fopt).f_print_test);
 }
 void check_compile_options(struct compile_options *copt){
 	printf(" compilers:\n");
