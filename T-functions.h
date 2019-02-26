@@ -451,11 +451,32 @@ void null_func(void){
 }
 ////print primitives
 struct Tree *Function_Print_Conj(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	if((*_fopt).f_print_T == 0){
+		if((*tree).Conj==1){
+			printf(",");
+		}else if((*tree).NCself > 1){
+			printf(")(");
+		}
+	}
 }
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	printf("%s",(*tree).Head);
 }
-struct Tree *Function_Print_Tail(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+struct Tree *Function_Print_Bopen(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	if((*_fopt).f_print_T == 0){
+		if((*tree).NextCount != 0){
+			printf("(");
+		}
+	}
 }
+struct Tree *Function_Print_Bclose(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	if((*_fopt).f_print_T == 0){
+		if((*tree).NextCount != 0){
+			printf(")");
+		}
+	}
+}
+
 ////recursive-apply-function
 struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct function_options *_fopt, struct compile_options *_copt ){
 	// かっこのprint処理をprint系関数に押し込んでいるため、
@@ -488,7 +509,7 @@ struct Tree *ExFunction_Recursive_Ser( struct Tree *tree, struct Tree *(*e_funct
 	return(out);
 }
 
-struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree *(*conj_function)(struct Tree *, int), struct Tree *(*head_function)(struct Tree *, int), struct Tree *(*tail_function)(struct Tree *, int), struct function_options *_fopt, struct compile_options *_copt, int ser ){
+struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree *(*conj_function)(struct Tree *, int), struct Tree *(*head_function)(struct Tree *, int), struct Tree *(*bopen_function)(struct Tree *, int),  struct Tree *(*bclose_function)(struct Tree *, int),  struct function_options *_fopt, struct compile_options *_copt, int ser ){
 	//Add_Bclose_To_Next()をつかわずにprintする。
 	//under tune
 	int i;
@@ -511,7 +532,7 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree
 		printf("(");
 	}
 	for(i=0;i<(*tree).NextCount;i++){
-		ExFunction_Recursive_Ser_MultiPrint((*tree).Next[i],conj_function,head_function,tail_function,_fopt,_copt,ser);
+		ExFunction_Recursive_Ser_MultiPrint((*tree).Next[i],conj_function,head_function,bopen_function,bclose_function,_fopt,_copt,ser);
 	}
 	/*print Bclose*/
 	if((*tree).NextCount != 0){
