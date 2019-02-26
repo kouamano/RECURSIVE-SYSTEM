@@ -516,7 +516,7 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree
 	//under tune
 	int i;
 	struct Tree *out = tree;
-	if(tree == NULL || head_function == NULL){
+	if(tree == NULL){
 		fprintf(stderr,"NULL.\n");
 		exit(1);
 	}
