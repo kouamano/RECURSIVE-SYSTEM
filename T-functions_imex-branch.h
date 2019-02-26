@@ -80,10 +80,8 @@
                         }
 
 			/*test code*/
-			//printf("hoge1");
                         if((*_fopt).f_print_test == 1){
-			//printf("hoge2");
-				ExFunction_Recursive_Ser_Print(top,(struct Tree *(*)())Function_Print_Adj,_fopt,_copt,SN);
+				ExFunction_Recursive_Ser_Print(top,(struct Tree *(*)())null_func,_fopt,_copt,SN);
 				if(C == LF && (*_copt).c_restrict == 1){
 					printf(";");
 				}
