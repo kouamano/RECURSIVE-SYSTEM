@@ -82,7 +82,7 @@
 			/*test code*/
                         if((*_fopt).f_print_test == 1){
 				//ExFunction_Recursive_Ser_Print(top, (struct Tree *(*)())null_func, _fopt, _copt, SN);
-				ExFunction_Recursive_Ser_MultiPrint(top, (struct Tree *(*)())null_func, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())null_func,  (struct Tree *(*)())null_func,  _fopt, _copt, SN);
+				ExFunction_Recursive_Ser_MultiPrint(top, (struct Tree *(*)())Function_Print_Conj, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())null_func,  (struct Tree *(*)())null_func,  _fopt, _copt, SN);
 				if(C == LF && (*_copt).c_restrict == 1){
 					printf(";");
 				}

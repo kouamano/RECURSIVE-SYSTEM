@@ -451,7 +451,7 @@ void null_func(void){
 }
 ////print primitives
 struct Tree *Function_Print_Conj(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	if((*_fopt).f_print_T == 0){
+	if((*_fopt).f_print_T == 1){
 		if((*tree).Conj==1){
 			printf(",");
 		}else if((*tree).NCself > 1){
@@ -463,14 +463,14 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	printf("%s",(*tree).Head);
 }
 struct Tree *Function_Print_Bopen(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	if((*_fopt).f_print_T == 0){
+	if((*_fopt).f_print_T == 1){
 		if((*tree).NextCount != 0){
 			printf("(");
 		}
 	}
 }
 struct Tree *Function_Print_Bclose(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	if((*_fopt).f_print_T == 0){
+	if((*_fopt).f_print_T == 1){
 		if((*tree).NextCount != 0){
 			printf(")");
 		}
@@ -519,11 +519,14 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree
 		exit(1);
 	}
 	/*print conj*/
+	/*
 	if((*tree).Conj==1){
 		printf(",");
 	}else if((*tree).NCself > 1){
 		printf(")(");
 	}
+	*/
+	conj_function(tree,_fopt);
 	/*print head*/
 	head_function(tree,_fopt);
 	/*print Bopen*/
