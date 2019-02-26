@@ -511,6 +511,37 @@ struct Tree *ExFunction_Recursive_Ser_Print( struct Tree *tree, struct Tree *(*e
 	}
 	return(out);
 }
+struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree *(*conj_function)(struct Tree *, int), struct Tree *(*head_function)(struct Tree *, int), struct Tree *(*tail_function)(struct Tree *, int), struct function_options *_fopt, struct compile_options *_copt, int ser ){
+	//Add_Bclose_To_Next()をつかわずにprintする。
+	//under tune
+	int i;
+	struct Tree *out = tree;
+	if(tree == NULL || head_function == NULL){
+		fprintf(stderr,"NULL.\n");
+		exit(1);
+	}
+	/*print conj*/
+	if((*tree).Conj==1){
+		printf(",");
+	}else if((*tree).NCself > 1){
+		printf(")(");
+	}
+	/*print head*/
+	//(*e_function)(tree,ser);
+	printf("%s",(*tree).Head);
+	/*print Bopen*/
+	if((*tree).NextCount != 0){
+		printf("(");
+	}
+	for(i=0;i<(*tree).NextCount;i++){
+		ExFunction_Recursive_Ser_MultiPrint((*tree).Next[i],conj_function,head_function,tail_function,_fopt,_copt,ser);
+	}
+	/*print Bclose*/
+	if((*tree).NextCount != 0){
+		printf(")");
+	}
+	return(out);
+}
 
 ////GC
 int Function_RecursiveFreeForce(struct Tree *tree){
