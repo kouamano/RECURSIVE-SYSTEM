@@ -292,7 +292,7 @@ int Function_Print_Adj(struct Tree *tree, int nodes){
 }
 
 ////print T-form
-int Function_Print_Head(struct Tree *tree){
+int Function_Print_Head_T(struct Tree *tree){
 	int i;
 	int not_print_Bclose = 0;
 	if((*tree).Conj){

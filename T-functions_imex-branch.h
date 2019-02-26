@@ -18,7 +18,7 @@
 				}
 			}
 			if((*_fopt).f_print_T == 1){
-				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head,_fopt,_copt);
+				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_T,_fopt,_copt);
 				if(C == LF && (*_copt).c_restrict == 1){
 					printf(";");
 				}
