@@ -225,8 +225,9 @@ int store_CHAR(FILE *_IN, struct List *top, int WAR){
 			//final putput
 			ExFunction_Recursive_S_Print(top,(struct List *(*)())Function_Print_Status,0,NULL,2); printf("\n");
 			//clear tree
-			//Function_Free_List(top,0);
-			init_List_zero(top);
+			Function_Free_List(top);
+			free(top);
+			top=Function_Create_Node();
 			close = 0;
 		}else if(C == EOF){
 			return(C);
