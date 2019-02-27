@@ -38,7 +38,7 @@ if( "$metacomm{'$CM$Application'}" eq '$X$Mathematica' ){
 	print DATA "cat ".$fedfile." | "."math";
 	close(DATA);
 	# create metacomannd
-	print '$M$./tq.o($-FW,$-Cr)';
+	print '$M$./tconv($-FW,$-Cr)';
 	print "\n";
 	print '$X$Get($`~/gitsrc/MATH_SCRIPT/SCRIPTS/DataFederation.m)';
 	print "\n";
