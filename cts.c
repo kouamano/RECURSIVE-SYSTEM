@@ -9,7 +9,9 @@
 #ifndef min
 #define min(a,b) (((a)<(b))?(a):(b))
 #endif
-#include "../RECURSIVE-SYSTEM/list.h"
+#include "../RECURSIVE-SYSTEM/List-definition.h"
+#include "../RECURSIVE-SYSTEM/List-structure.h"
+#include "../RECURSIVE-SYSTEM/List-functions.h"
 
 struct options {
 	int help;
