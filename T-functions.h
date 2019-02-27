@@ -449,7 +449,7 @@ void Function_Print_Head_J(struct Tree *tree){
 //// null function
 void null_func(void){
 }
-////print primitives
+////print primitives (testing)
 struct Tree *Function_Print_Conj(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*_fopt).f_print_T == 1){
 		if((*tree).Conj==1){
@@ -510,8 +510,8 @@ struct Tree *ExFunction_Recursive_Ser( struct Tree *tree, struct Tree *(*e_funct
 }
 
 struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree *(*conj_function)(struct Tree *, struct function_options *), struct Tree *(*head_function)(struct Tree *, struct function_options *), struct Tree *(*bopen_function)(struct Tree *, struct function_options *),  struct Tree *(*bclose_function)(struct Tree *, struct function_options *),  struct function_options *_fopt, struct compile_options *_copt, int ser ){
-	//Add_Bclose_To_Next()をつかわずにprintする。
-	//under tune
+	// testting
+	// Add_Bclose_To_Next()をつかわずにprintする。
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL){
