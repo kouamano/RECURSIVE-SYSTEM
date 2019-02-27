@@ -550,14 +550,14 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree
 }
 
 ////GC
-int Function_RecursiveFreeForce(struct Tree *tree){
+int Function_Recursive_FreeForce_Tree(struct Tree *tree){
 	int i;
 	if(tree == NULL){
 		return(1);
 	}
 	/* you must not free (*tree).Parent!! */
 	for(i=0;i<(*tree).NextCount;i++){
-		Function_RecursiveFreeForce((*tree).Next[i]);
+		Function_Recursive_FreeForce_Tree((*tree).Next[i]);
 		free((*tree).Next[i]);
 		(*tree).Next[i] = NULL;
 	}

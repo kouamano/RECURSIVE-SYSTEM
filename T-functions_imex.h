@@ -151,7 +151,7 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 				/* apply functions */
 				#include "T-functions_imex-branch.h"
 				/* clear tree */
-				Function_RecursiveFreeForce(top);
+				Function_Recursive_FreeForce_Tree(top);
 				free(top);
 				top = Create_Node(SN,BUFF_LEN);
 				SN++;
