@@ -9,6 +9,19 @@
 #endif
 
 //administrative functions
+////check-code
+void print_war(char _C, struct Tree *_tree, int level){
+        printf("\n:C=%c: ",_C);
+        printf(":Pp=%ld:",(long int)(*_tree).Parent);
+        printf(":Cp=%ld:",(long int)_tree);
+        printf(":Cj=%d:",(*_tree).Conj);
+        printf(":Op=%d:",(*_tree).Bopen);
+        printf(":current=%s:",(*_tree).Head);
+        printf(":Cl=%d:",(*_tree).Bclose);
+        printf(":LV=%d:",(*_tree).LVself);
+        printf(":NCs=%d:",(*_tree).NCself);
+        printf(":NC=%d:",(*_tree).NextCount);
+}
 ////dimension-check function
 int Detect_Dim(const char *head, int *pos){
 	int len;

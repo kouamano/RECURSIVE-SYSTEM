@@ -1,19 +1,4 @@
-#include "../RECURSIVE-SYSTEM/T-definition.h"
-//import/export 
-////current unctions
-////import and apply(NEW)
-void print_war(char _C, struct Tree *_tree, int level){
-	printf("\n:C=%c: ",_C);
-	printf(":Pp=%ld:",(long int)(*_tree).Parent);
-	printf(":Cp=%ld:",(long int)_tree);
-	printf(":Cj=%d:",(*_tree).Conj);
-	printf(":Op=%d:",(*_tree).Bopen);
-	printf(":current=%s:",(*_tree).Head);
-	printf(":Cl=%d:",(*_tree).Bclose);
-	printf(":LV=%d:",(*_tree).LVself);
-	printf(":NCs=%d:",(*_tree).NCself);
-	printf(":NC=%d:",(*_tree).NextCount);
-}
+//import tree script
 int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int *ncount){
 	int WAR;
 	int C;
@@ -184,5 +169,4 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 	}
 	return(C);
 }
-
 
