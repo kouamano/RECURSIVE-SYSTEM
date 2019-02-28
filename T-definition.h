@@ -19,3 +19,6 @@
 #ifndef SER	//for serial node No.
 #define SER 0
 #endif
+#ifndef INDENT
+#define INDENT "  "
+#endif

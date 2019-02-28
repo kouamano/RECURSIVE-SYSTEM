@@ -1,13 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#ifndef BUFF_LEN
-#define BUFF_LEN 1024
-#endif
-#ifndef INDENT
-#define INDENT "  "
-#endif
-
 //administrative functions
 ////check-code
 void print_war(char _C, struct Tree *_tree, int level){
