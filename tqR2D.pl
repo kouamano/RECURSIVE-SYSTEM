@@ -10,10 +10,6 @@ while(<>){
 		$head = $_;
 	}elsif($_ =~ /^\$E\$/){
 		$head = $_;
-	}elsif($_ =~ /^\$CM\$/){
-		($meta,$app) = split(/\(/,$_);
-		$app =~ s/\)$//;
-		$metacomm{$meta} = $app;
 	}elsif($_ =~ /\t->\t/){
 		($k,$v) = split(/\t->\t/,$_);
 		$rls{$k} = $v;
@@ -31,7 +27,7 @@ if($stage =~ /DRY/){
 print "$next\n";
 
 # for target application
-if( "$metacomm{'$CM$Application'}" eq '$X$Mathematica' ){
+if( "$rls{'$X$Application'}" eq '$X$Mathematica' ){
 	$fedfile = $file.".dry.fed";
 	$comfile = $file.".dry.fed.com";
 	open(DATA,">",$comfile);
@@ -42,7 +38,7 @@ if( "$metacomm{'$CM$Application'}" eq '$X$Mathematica' ){
 	print "\n";
 	print '$X$Get($`~/gitsrc/MATH_SCRIPT/SCRIPTS/DataFederation.m)';
 	print "\n";
-}elsif( "$metacomm{'$CM$Application'}" eq '$X$Python' && "$rls{'$X$DDF'}" eq '$X$PackedData'){
+}elsif( "$rls{'$X$Application'}" eq '$X$Python' && "$rls{'$X$DDF'}" eq '$X$PackedData'){
 	$fedfile = $file.".dry.fed";
 	$comfile = $file.".dry.fed.com";
 	$target = $rls{'$X$Target'};
