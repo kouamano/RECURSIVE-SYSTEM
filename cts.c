@@ -87,7 +87,7 @@ void check_options(struct options *opt){
 }
 
 // function definition
-int store_CHAR(FILE *_IN, struct List *top, int WAR){
+int scan_char(FILE *_IN, struct List *top, int WAR){
 	int C;
 	int DLM_ACC = 1;
 	int LIST_LV = 0;
@@ -286,7 +286,7 @@ int main(int argc, char **argv){
 	}
 	init_List_zero(top);
 	while(c != EOF){
-		c = store_CHAR(IN,top,(*opt).war);
+		c = scan_char(IN,top,(*opt).war);
 	}
 
 	// close file
