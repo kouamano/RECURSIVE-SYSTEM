@@ -216,6 +216,7 @@ struct List *Function_Create_ArgRtd(struct List *parent, struct List *list){
 }
 ////free
 int Function_Free_List(struct List *list){
+	//printf("free...\n");
 	int i;
 	if(list == NULL){
 		return(1);
