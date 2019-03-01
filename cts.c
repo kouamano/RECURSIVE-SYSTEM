@@ -13,14 +13,6 @@
 #include "../RECURSIVE-SYSTEM/List-structure.h"
 #include "../RECURSIVE-SYSTEM/List-functions.h"
 
-struct options {
-	int help;
-	int stat;
-	int check;
-	int buff;
-	int war;
-	char *in;
-};
 
 void help(void){
 	printf("USAGE:\n");

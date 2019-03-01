@@ -1,4 +1,14 @@
 //structure
+struct options {
+        int help;
+        int stat;
+        int check;
+        int buff;
+        int war;
+        char *in;
+};
+
+
 struct List {
 	int ID;
 	int LVself;
