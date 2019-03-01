@@ -454,7 +454,13 @@ void null_func(void){
 }
 ////print primitives (testing)
 struct Tree *Function_Print_Conj(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	if((*_fopt).f_print_T == 1){
+	if((*_fopt).f_print_T == 1){	//OK
+		if((*tree).Conj==1){
+			printf(",");
+		}else if((*tree).NCself > 1){
+			printf(")(");
+		}
+	}else if((*_fopt).f_print_S == 1){	//under construction
 		if((*tree).Conj==1){
 			printf(",");
 		}else if((*tree).NCself > 1){
@@ -466,14 +472,24 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	printf("%s",(*tree).Head);
 }
 struct Tree *Function_Print_Bopen(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
-	if((*_fopt).f_print_T == 1 && pos == 1){
+	if((*_fopt).f_print_T == 1 && pos == 1){	//OK
 		if((*tree).NextCount != 0){
 			printf("(");
 		}
+	}else if((*_fopt).f_print_S == 1 && pos == 0){	//under construction
+		if((*tree).NextCount != 0){
+			printf("(");
+		}
+		int head_open = 0;
+		
 	}
 }
 struct Tree *Function_Print_Bclose(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	if((*_fopt).f_print_T == 1){
+	if((*_fopt).f_print_T == 1){	//OK
+		if((*tree).NextCount != 0){
+			printf(")");
+		}
+	}else if((*_fopt).f_print_S == 1){	//under construction
 		if((*tree).NextCount != 0){
 			printf(")");
 		}
