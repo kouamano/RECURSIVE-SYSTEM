@@ -42,9 +42,10 @@ if( "$rls{'$X$Application'}" eq '$X$Mathematica' ){
 	$fedfile = $file.".dry.fed";
 	$comfile = $file.".dry.fed.com";
 	$target = $rls{'$X$Target'};
+	$fedfile = $rls{'$X$FederationFile'};
 	$target =~ s/^\$`//;
 	open(DATA,">",$comfile);
-	print DATA "python"." convert_jpeg_to_json.py"," $target";
+	print DATA "python"." $fedfile"," $target";
 	close(DATA);
 }
 
