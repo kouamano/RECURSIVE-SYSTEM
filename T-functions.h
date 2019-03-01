@@ -522,32 +522,15 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree
 		exit(1);
 	}
 	/*print conj*/
-	/*
-	if((*tree).Conj==1){
-		printf(",");
-	}else if((*tree).NCself > 1){
-		printf(")(");
-	}
-	*/
 	conj_function(tree,_fopt,_copt);
 	/*print head*/
 	head_function(tree,_fopt,_copt);
 	/*print Bopen*/
-	/*
-	if((*tree).NextCount != 0){
-		printf("(");
-	}
-	*/
 	bopen_function(tree,_fopt,_copt);
 	for(i=0;i<(*tree).NextCount;i++){
 		ExFunction_Recursive_Ser_MultiPrint((*tree).Next[i],conj_function,head_function,bopen_function,bclose_function,_fopt,_copt,ser);
 	}
 	/*print Bclose*/
-	/*
-	if((*tree).NextCount != 0){
-		printf(")");
-	}
-	*/
 	bclose_function(tree,_fopt,_copt);
 	return(out);
 }
