@@ -465,8 +465,8 @@ struct Tree *Function_Print_Conj(struct Tree *tree, struct function_options *_fo
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	printf("%s",(*tree).Head);
 }
-struct Tree *Function_Print_Bopen(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	if((*_fopt).f_print_T == 1){
+struct Tree *Function_Print_Bopen(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
+	if((*_fopt).f_print_T == 1 && pos == 1){
 		if((*tree).NextCount != 0){
 			printf("(");
 		}
@@ -512,7 +512,7 @@ struct Tree *ExFunction_Recursive_Ser( struct Tree *tree, struct Tree *(*e_funct
 	return(out);
 }
 
-struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree *(*conj_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*head_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*bopen_function)(struct Tree *, struct function_options *, struct compile_options *),  struct Tree *(*bclose_function)(struct Tree *, struct function_options *, struct compile_options *),  struct function_options *_fopt, struct compile_options *_copt, int ser ){
+struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree *(*conj_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*head_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*bopen_function)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*bclose_function)(struct Tree *, struct function_options *, struct compile_options *),  struct function_options *_fopt, struct compile_options *_copt, int ser ){
 	// testting
 	// Add_Bclose_To_Next()をつかわずにprintする。
 	int i;
@@ -523,10 +523,12 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree
 	}
 	/*print conj*/
 	conj_function(tree,_fopt,_copt);
+	/*print Bopen pre*/
+	bopen_function(tree,_fopt,_copt,0);
 	/*print head*/
 	head_function(tree,_fopt,_copt);
-	/*print Bopen*/
-	bopen_function(tree,_fopt,_copt);
+	/*print Bopen post*/
+	bopen_function(tree,_fopt,_copt,1);
 	for(i=0;i<(*tree).NextCount;i++){
 		ExFunction_Recursive_Ser_MultiPrint((*tree).Next[i],conj_function,head_function,bopen_function,bclose_function,_fopt,_copt,ser);
 	}
