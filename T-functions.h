@@ -386,7 +386,7 @@ void Function_Print_Head_S(struct Tree *tree){
 	int countCZ = 0;
 	countCZ = Function_Count_NextConjZero(tree);
 	/* print "," for Conj */
-	if(((*tree).Conj == 1 || (*tree).Bopen > 0)&&(strlen((*tree).Head) > 0)){
+	if(((*tree).Conj == 1 || (*tree).Bopen > 0) && (strlen((*tree).Head) > 0)){
 		printf(",");
 	}
 	/* print Bopen */
@@ -410,7 +410,7 @@ void Function_Print_Head_J(struct Tree *tree){
 	int countCZ = 0;
 	countCZ = Function_Count_NextConjZero(tree);
 	/* print "," for Conj */
-	if(((*tree).Conj == 1 || (*tree).Bopen > 0)&&(strlen((*tree).Head) > 0)){
+	if(((*tree).Conj == 1 || (*tree).Bopen > 0) && (strlen((*tree).Head) > 0)){
 		printf(",");
 	}
 	/* print Bopen */
@@ -455,7 +455,7 @@ void null_func(void){
 ////print primitives (testing)
 struct Tree *Function_Print_Conj(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*_fopt).f_print_T == 1){			//OK
-		if((*tree).Conj==1){
+		if((*tree).Conj == 1){
 			printf(",");
 		}else if((*tree).NCself > 1){
 			printf(")(");
