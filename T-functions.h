@@ -467,11 +467,12 @@ struct Tree *Function_Print_Conj(struct Tree *tree, struct function_options *_fo
 		if((*tree).LVself != 0 && strlen((*tree).Head) != 0){
 			printf(",");
 		} 
-
 	}
+	return(tree);
 }
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	printf("%s",(*tree).Head);
+	return(tree);
 }
 struct Tree *Function_Print_Bopen(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
 	if((*_fopt).f_print_T == 1 && pos == 1){	//OK
@@ -486,8 +487,8 @@ struct Tree *Function_Print_Bopen(struct Tree *tree, struct function_options *_f
 				printf("(");
 			}
 		}
-		
 	}
+	return(tree);
 }
 struct Tree *Function_Print_Bclose(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*_fopt).f_print_T == 1){		//OK
@@ -499,6 +500,7 @@ struct Tree *Function_Print_Bclose(struct Tree *tree, struct function_options *_
 			printf(")");
 		}
 	}
+	return(tree);
 }
 
 ////recursive-apply-function
