@@ -11,8 +11,6 @@ const char ctime[] = __TIME__;
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" Testing of JSON print.\n");
-	printf(" The option FMa.\n");
 	printf(" The option form : under construction.\n");
 	printf("COMPILED:\n");
 	printf(" %s\n",ctime);
