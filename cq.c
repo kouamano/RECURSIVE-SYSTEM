@@ -20,7 +20,7 @@ void status(void){
 /*help*/
 void help(void){
 	printf("USAGE:\n");
-	printf(" tq [-h|-hF|-hC] [-s] [-c] buff=<size(int)> in=<input file> form=<input form> w=<warnning level> -F<x> -C<x>.\n");
+	printf(" cq [-h|-hF|-hC] [-s] [-c] buff=<size(int)> in=<input file> form=<input form> w=<warnning level> -F<x> -C<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -hF : function help.\n");
 	printf("  -hC : compile help.\n");
