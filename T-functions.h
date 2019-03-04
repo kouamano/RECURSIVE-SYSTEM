@@ -523,7 +523,6 @@ struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *
 struct Tree *Function_Print_Bopen_S(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
 	if(pos == 0){	// testing
 		int i;
-		int head_open = 0;
 		for(i=0;i<(*tree).NextCount;i++){
 			if((*tree).Next[i]->Conj == 0){
 				printf("(");
@@ -532,7 +531,6 @@ struct Tree *Function_Print_Bopen_S(struct Tree *tree, struct function_options *
 	}
 	return(tree);
 }
-
 struct Tree *Function_Print_Bclose(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
 		printf(")");
