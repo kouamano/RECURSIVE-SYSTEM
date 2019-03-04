@@ -1,4 +1,4 @@
-			/* apply compiler @ T-basic_functions.h */
+			/* apply compiler */
 			if((*_copt).c_clear == 1){
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Clear_Head,_fopt,_copt);
 			}else if((*_copt).c_dot){
@@ -7,7 +7,9 @@
 			if((*_copt).c_counter > 0){
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Compile_Head,_fopt,_copt);
 			}
-			/* apply print-functions @ T-basic_functions.h */
+
+
+			/* apply formated print */
 			if((*_fopt).f_print_N == 1){
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Seq,_fopt,_copt);
 				if(C == LF && (*_copt).c_restrict == 1){
@@ -84,6 +86,7 @@
 			}
 
 
+			/* apply formated print */
                         if((*_fopt).f_print_status == 1){
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status,_fopt,_copt);
 				printf("\n");
@@ -98,9 +101,9 @@
                         }
 
 
+			/* apply conjugation-table print */
                         if((*_fopt).f_print_Ma == 1){
 				ExFunction_Recursive_Ser(top,(struct Tree *(*)())Function_Print_Adj,_fopt,_copt,SN);
 				printf("\n");
                         }
-
 
