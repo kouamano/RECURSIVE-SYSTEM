@@ -328,7 +328,7 @@ struct List *ExFunction_Recursive_List(struct List *list, struct List *(*e_funct
 }
 
 //complex function (print&apply)
-struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e_function)(struct List *),int WAR, struct List *Parent, int p_opt){
+struct List *ExFunction_Recursive_T_Print(struct List *list, struct List *(*e_function)(struct List *),int WAR, struct List *Parent, int p_opt){
 	int i;
 	int j;
 	struct List *out = list;
@@ -363,14 +363,14 @@ struct List *ExFunction_Recursive_Tree_Print(struct List *list, struct List *(*e
 	//Next
 	for(i=0;i<(*list).NextCount;i++){
 		printf("(");
-		ExFunction_Recursive_Tree_Print((*list).Next[i],e_function,WAR,list,p_opt);
+		ExFunction_Recursive_T_Print((*list).Next[i],e_function,WAR,list,p_opt);
 		printf(")");
 	}
 
 	//Arg
 	for(j=0;j<(*list).ArgCount;j++){
 		printf(",");
-		ExFunction_Recursive_Tree_Print((*list).Arg[j],e_function,WAR,list,p_opt);
+		ExFunction_Recursive_T_Print((*list).Arg[j],e_function,WAR,list,p_opt);
 	}
 	return(out);
 }
@@ -564,10 +564,10 @@ int scan_char(FILE *_IN, struct List *top, int WAR){
 			//print check code
 			if(WAR > 1){
 			printf("\n-----\n");
-			ExFunction_Recursive_Tree_Print(top,(struct List *(*)())Function_Print_Status,0,NULL,1);
-			printf("\n#T "); ExFunction_Recursive_Tree_Print(top,(struct List *(*)())Function_Print_Status,0,NULL,2);
+			ExFunction_Recursive_T_Print(top,(struct List *(*)())Function_Print_Status,0,NULL,1);
+			printf("\n#T "); ExFunction_Recursive_T_Print(top,(struct List *(*)())Function_Print_Status,0,NULL,2);
 			printf("\n#S "); ExFunction_Recursive_S_Print(top,(struct List *(*)())Function_Print_Status,0,NULL,2);
-			ExFunction_Recursive_Tree_Print(top,(struct List *(*)())Function_Print_Status,1,NULL,3);
+			ExFunction_Recursive_T_Print(top,(struct List *(*)())Function_Print_Status,1,NULL,3);
 			printf("\n-----\n");
 			}
 			//final putput
