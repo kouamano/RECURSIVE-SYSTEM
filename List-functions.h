@@ -339,16 +339,6 @@ struct List *ExFunction_Recursive_T_Print(struct List *list, struct List *(*e_fu
 
 	/* (* check */
 	if(WAR>0){
-	if(Parent == NULL){
-		printf("\n$$%ld:::$%ld:sLV=%d:pNC=%ld:pAC=%ld:sNC=%d:sAC=%d:NC=%d:AC=%d::: ",(long int)NULL,(long int)list,(*list).LVself,(long int)NULL,(long int)NULL,(*list).NCself,(*list).ACself,(*list).NextCount,(*list).ArgCount);
-	}else{
-		printf("\n$$%ld:::$%ld:sLV=%d:pNC=%d:pAC=%d:sNC=%d:sAC=%d:NC=%d:AC=%d::: ",(long int)Parent,(long int)list,(*list).LVself,(*Parent).NextCount,(*Parent).ArgCount,(*list).NCself,(*list).ACself,(*list).NextCount,(*list).ArgCount);
-	}
-	if((*list).Parent == NULL){
-		printf("\n$$%ld: :$%ld:sLV=%d:pNC=%ld:pAC=%ld:sNC=%d:sAC=%d:NC=%d:AC=%d::: ",(long int)NULL,(long int)list,(*list).LVself,(long int)NULL,(long int)NULL,(*list).NCself,(*list).ACself,(*list).NextCount,(*list).ArgCount);
-	}else{
-		printf("\n$$%ld: :$%ld:sLV=%d:pNC=%d:pAC=%d:sNC=%d:sAC=%d:NC=%d:AC=%d::: ",(long int)(*list).Parent,(long int)list,(*list).LVself,(*(*list).Parent).NextCount,(*(*list).Parent).ArgCount,(*list).NCself,(*list).ACself,(*list).NextCount,(*list).ArgCount);
-	}
 	}
 	/* *) */
 
@@ -385,16 +375,6 @@ struct List *ExFunction_Recursive_S_Print(struct List *list, struct List *(*e_fu
 
 	/* (* check */
 	if(WAR>0){
-	if(Parent == NULL){
-		printf("\n$$%ld:::$%ld:sLV=%d:pNC=%ld:pAC=%ld:sNC=%d:sAC=%d:NC=%d:AC=%d::: ",(long int)NULL,(long int)list,(*list).LVself,(long int)NULL,(long int)NULL,(*list).NCself,(*list).ACself,(*list).NextCount,(*list).ArgCount);
-	}else{
-		printf("\n$$%ld:::$%ld:sLV=%d:pNC=%d:pAC=%d:sNC=%d:sAC=%d:NC=%d:AC=%d::: ",(long int)Parent,(long int)list,(*list).LVself,(*Parent).NextCount,(*Parent).ArgCount,(*list).NCself,(*list).ACself,(*list).NextCount,(*list).ArgCount);
-	}
-	if((*list).Parent == NULL){
-		printf("\n$$%ld: :$%ld:sLV=%d:pNC=%ld:pAC=%ld:sNC=%d:sAC=%d:NC=%d:AC=%d::: ",(long int)NULL,(long int)list,(*list).LVself,(long int)NULL,(long int)NULL,(*list).NCself,(*list).ACself,(*list).NextCount,(*list).ArgCount);
-	}else{
-		printf("\n$$%ld: :$%ld:sLV=%d:pNC=%d:pAC=%d:sNC=%d:sAC=%d:NC=%d:AC=%d::: ",(long int)(*list).Parent,(long int)list,(*list).LVself,(*(*list).Parent).NextCount,(*(*list).Parent).ArgCount,(*list).NCself,(*list).ACself,(*list).NextCount,(*list).ArgCount);
-	}
 	}
 	/* *) */
 
@@ -480,13 +460,6 @@ int scan_char(FILE *_IN, struct List *top, int WAR){
 				strcpy((*current).Head,BUFF);
 			}
 			if(WAR > 0){
-			printf(":B=%s:",(*current).Head);
-			printf(":Pp=%ld:",(long int)(*current).Parent);
-			printf(":Cp=%ld:",(long int)current);
-			printf(":LVs=%d:",(*current).LVself);
-			printf(":NCs=%d:",(*current).NCself);
-			printf(":ACs=%d:",(*current).ACself);
-			printf(":Cl=%d:",close);
 			}
 			//alloc next
 			next = Function_Create_Node();
@@ -535,13 +508,6 @@ int scan_char(FILE *_IN, struct List *top, int WAR){
 				strcpy((*current).Head,BUFF);
 			}
 			if(WAR > 0){
-			printf(":B=%s:",(*current).Head);
-			printf(":Pp=%ld:",(long int)(*current).Parent);
-			printf(":Cp=%ld:",(long int)current);
-			printf(":LVs=%d:",(*current).LVself);
-			printf(":NCs=%d:",(*current).NCself);
-			printf(":ACs=%d:",(*current).ACself);
-			printf(":Cl=%d:",close);
 			}
 			//clear BUFF
 			BUFF[0] = '\0';
@@ -563,12 +529,6 @@ int scan_char(FILE *_IN, struct List *top, int WAR){
 			buf_ptr = 0;
 			//print check code
 			if(WAR > 1){
-			printf("\n-----\n");
-			ExFunction_Recursive_T_Print(top,(struct List *(*)())Function_Print_Status,0,NULL,1);
-			printf("\n#T "); ExFunction_Recursive_T_Print(top,(struct List *(*)())Function_Print_Status,0,NULL,2);
-			printf("\n#S "); ExFunction_Recursive_S_Print(top,(struct List *(*)())Function_Print_Status,0,NULL,2);
-			ExFunction_Recursive_T_Print(top,(struct List *(*)())Function_Print_Status,1,NULL,3);
-			printf("\n-----\n");
 			}
 			//final putput
 			ExFunction_Recursive_S_Print(top,(struct List *(*)())Function_Print_Status,0,NULL,2); printf("\n");
