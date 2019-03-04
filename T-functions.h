@@ -453,6 +453,7 @@ void Function_Print_Head_J(struct Tree *tree){
 void null_func(void){
 }
 ////print primitives (testing)
+/*
 struct Tree *Function_Print_Conj(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*_fopt).f_print_T == 1){			//OK
 		if((*tree).Conj == 1){
@@ -470,10 +471,30 @@ struct Tree *Function_Print_Conj(struct Tree *tree, struct function_options *_fo
 	}
 	return(tree);
 }
+*/
+struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+		if((*tree).Conj == 1){
+			printf(",");
+		}else if((*tree).NCself > 1){
+			printf(")(");
+		}
+	return(tree);
+}
+struct Tree *Function_Print_Conj_S(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+		if((*tree).NCself > 1 && (*tree).Conj != 1){
+			printf(")");
+		}
+		if((*tree).LVself != 0 && strlen((*tree).Head) != 0){
+			printf(",");
+		} 
+	return(tree);
+}
+
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	printf("%s",(*tree).Head);
 	return(tree);
 }
+/*
 struct Tree *Function_Print_Bopen(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
 	if((*_fopt).f_print_T == 1 && pos == 1){	//OK
 		if((*tree).NextCount != 0){
@@ -490,15 +511,31 @@ struct Tree *Function_Print_Bopen(struct Tree *tree, struct function_options *_f
 	}
 	return(tree);
 }
+*/
+struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
+	if(pos == 1){	//OK
+		if((*tree).NextCount != 0){
+			printf("(");
+		}
+	}
+	return(tree);
+}
+struct Tree *Function_Print_Bopen_S(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
+	if(pos == 0){	// testing
+		int i;
+		int head_open = 0;
+		for(i=0;i<(*tree).NextCount;i++){
+			if((*tree).Next[i]->Conj == 0){
+				printf("(");
+			}
+		}
+	}
+	return(tree);
+}
+
 struct Tree *Function_Print_Bclose(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	if((*_fopt).f_print_T == 1){		//OK
-		if((*tree).NextCount != 0){
-			printf(")");
-		}
-	}else if((*_fopt).f_print_S == 1){	// testing
-		if((*tree).NextCount != 0){
-			printf(")");
-		}
+	if((*tree).NextCount != 0){
+		printf(")");
 	}
 	return(tree);
 }
