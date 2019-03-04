@@ -14,7 +14,7 @@ void help(void){
 	printf("  -c : check args.\n");
 	printf("  buff : set integer.\n");
 	printf("  in : set *chars (len < 1024).\n");
-	printf("  war : set integer.\n");
+	printf("  w : set integer.\n");
 }
 
 void status(void){
