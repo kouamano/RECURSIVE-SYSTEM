@@ -103,8 +103,4 @@
 				printf("\n");
                         }
 
-			/* post-check code*/
-			#ifdef DB
-			printf("nodes_in_branch:%d:\n",*ncount);
-			#endif
 
