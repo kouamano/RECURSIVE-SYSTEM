@@ -90,7 +90,7 @@ int print_CHAR(FILE *_IN, int *_LIST_LV, int *_DLM_ACC, int *_R_COUNT, int *_BRK
 	int C;
 	int DLM_ACC = 1;
 	int ARG_COUNT = 0;
-	while(C = fgetc(_IN)){
+	while((C = fgetc(_IN))){
 
 		if(C == '['){
 			DLM_ACC--;
@@ -155,8 +155,8 @@ int print_CHAR(FILE *_IN, int *_LIST_LV, int *_DLM_ACC, int *_R_COUNT, int *_BRK
 			if(WAR > 0){ fprintf(stderr,"\n:::LV:%d:::DLM:%d::ARG:%d:::R:%d:::BRK:%d:::C:%c:::",*_LIST_LV,DLM_ACC,ARG_COUNT,*_R_COUNT,*_BRK_REMAIN,C); }
 			putchar(C);
 		}
-	//return(C);
 	}
+	return(C);
 }
 
 
