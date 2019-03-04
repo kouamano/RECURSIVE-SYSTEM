@@ -20,6 +20,7 @@ struct List *init_List_zero(struct List *list){
 	(*list).Parent=NULL;
 	return(list);
 }
+/*
 struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_size, int v, struct List *(*fun)(), int NC, int AC){
 	(*list).ID=_ID;
 	(*list).LVself=lv;
@@ -42,6 +43,7 @@ struct List *init_List(struct List *list, int _ID, int lv, int ac, size_t head_s
 	(*list).Parent=NULL;
 	return(list);
 }
+*/
 struct List *Function_Create_Node(void){
 	struct List *node;
 	if((node = malloc(sizeof(struct List) * 1)) == NULL){
@@ -54,6 +56,7 @@ struct List *Function_Create_Node(void){
 
 //restructure function
 ////restructure Next
+/*
 struct List *Function_Add_Next(struct List *list, struct List *next_list){
 	(*list).Next = realloc((*list).Next,(size_t)sizeof(struct List *) * (*list).NextCount+1);
 	if((*list).Next == NULL){
@@ -67,6 +70,7 @@ struct List *Function_Add_Next(struct List *list, struct List *next_list){
 	(*list).NextCount++;
 	return(next_list);
 }
+*/
 struct List *Function_Add_NextRtd(struct List *parent, struct List *list, struct List *next_list){
 	(*list).Next = realloc((*list).Next,(size_t)sizeof(struct List *) * (*list).NextCount+1);
 	if((*list).Next == NULL){
@@ -84,6 +88,7 @@ struct List *Function_Add_NextRtd(struct List *parent, struct List *list, struct
 	}
 	return(next_list);
 }
+/*
 struct List *Function_Create_Next(struct List *list){
 	struct List *next_list;
 	next_list = malloc((size_t)sizeof(struct List) * 1);
@@ -104,6 +109,7 @@ struct List *Function_Create_Next(struct List *list){
 	(*list).NextCount++;
 	return(next_list);
 }
+*/
 struct List *Function_Create_NextRtd(struct List *parent, struct List *list){
 	struct List *next_list;
 	next_list = malloc((size_t)sizeof(struct List) * 1);
@@ -128,6 +134,7 @@ struct List *Function_Create_NextRtd(struct List *parent, struct List *list){
 	return(next_list);
 }
 ////restructure Arg
+/*
 struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
 	(*list).Arg = realloc((*list).Arg,(size_t)sizeof(struct List *) * (*list).ArgCount+1);
 	if((*list).Arg == NULL){
@@ -140,6 +147,7 @@ struct List *Function_Add_Arg(struct List *list, struct List *arg_list){
 	(*list).ArgCount++;
 	return(arg_list);
 }
+*/
 struct List *Function_Add_ArgRtd(struct List *parent, struct List *list, struct List *arg_list){
 	if((*list).ACself > 0){
 		fprintf(stderr,"[Err] Restriction: tandem argument alloc.\n");
@@ -164,6 +172,7 @@ struct List *Function_Add_ArgRtd(struct List *parent, struct List *list, struct 
 	}
 	return(arg_list);
 }
+/*
 struct List *Function_Create_Arg(struct List *list){
 	struct List *arg_list;
 	arg_list = malloc((size_t)sizeof(struct List) * 1);
@@ -183,6 +192,7 @@ struct List *Function_Create_Arg(struct List *list){
 	(*list).ArgCount++;
 	return(arg_list);
 }
+*/
 struct List *Function_Create_ArgRtd(struct List *parent, struct List *list){
 	if((*list).ACself > 0){
 		fprintf(stderr,"[Err] Restriction: tandem argument alloc.\n");
@@ -216,7 +226,6 @@ struct List *Function_Create_ArgRtd(struct List *parent, struct List *list){
 }
 ////free
 int Function_Free_List(struct List *list){
-	//printf("free...\n");
 	int i;
 	if(list == NULL){
 		return(1);
