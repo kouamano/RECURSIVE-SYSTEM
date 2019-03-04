@@ -1,3 +1,5 @@
+/* cst.c                      */
+/*  converts S-form to T-form */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -84,7 +86,6 @@ void check_options(struct options *opt){
 }
 
 // function definition
-
 int print_CHAR(FILE *_IN, int *_LIST_LV, int *_DLM_ACC, int *_R_COUNT, int *_BRK_REMAIN, int WAR){
 	int RC = 0;
 	int C;
@@ -109,18 +110,13 @@ int print_CHAR(FILE *_IN, int *_LIST_LV, int *_DLM_ACC, int *_R_COUNT, int *_BRK
 		}
 	
 		if(C == '('){
-			//printf("\n  :::R:::");
-			//putchar(C);
-			//if(ARG_COUNT == 0){
 			(*_BRK_REMAIN)++;
-			//}
 			if(WAR > 0){ fprintf(stderr,"\n:::LV:%d:::DLM:%d::ARG:%d:::R:%d:::BRK:%d:::C:%c:::",*_LIST_LV,DLM_ACC,ARG_COUNT,*_R_COUNT,*_BRK_REMAIN,C); }
 			if(WAR > 0){ fprintf(stderr,"\n  :::+R:::"); }
 			(*_R_COUNT)++;
 			RC = print_CHAR(_IN,_LIST_LV,_DLM_ACC,_R_COUNT,_BRK_REMAIN,WAR);
 		}else if(C == ','){
 			if(DLM_ACC <= 0){
-				//putchar('(');
 				if(WAR > 0){ fprintf(stderr,"\n:::LV:%d:::DLM:%d::ARG:%d:::R:%d:::BRK:%d:::C:%c:::",*_LIST_LV,DLM_ACC,ARG_COUNT,*_R_COUNT,*_BRK_REMAIN,C); }
 				putchar(C);
 			}else if(DLM_ACC > 0 && ARG_COUNT <= 1){
@@ -133,7 +129,6 @@ int print_CHAR(FILE *_IN, int *_LIST_LV, int *_DLM_ACC, int *_R_COUNT, int *_BRK
 			}
 		}else if(C == ')'){
 			if(*_BRK_REMAIN > 0 && ARG_COUNT == 0){
-			//if(*_BRK_REMAIN > 0){
 				putchar('(');
 				(*_BRK_REMAIN)--;
 			}
