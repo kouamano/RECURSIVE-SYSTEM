@@ -97,6 +97,7 @@ struct List *Function_Add_ArgRtd(struct List *parent, struct List *list, struct 
 	}
 	return(arg_list);
 }
+/*
 struct List *Function_Create_ArgRtd(struct List *parent, struct List *list){
 	if((*list).ACself > 0){
 		fprintf(stderr,"[Err] Restriction: tandem argument alloc.\n");
@@ -128,6 +129,7 @@ struct List *Function_Create_ArgRtd(struct List *parent, struct List *list){
 	(*list).ArgCount++;
 	return(arg_list);
 }
+*/
 ////free
 int Function_Free_List(struct List *list){
 	int i;
