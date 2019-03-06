@@ -1,4 +1,16 @@
 //structure
+struct Link {
+	int startSN;
+	int SN;
+	int *LinkVC;
+	int **LinkV;
+};
+struct LinkHead {
+	char **Head;
+	int *LV;
+	int *Conj;
+};
+
 struct Tree {
 	int ser;
 	int LVself;
