@@ -1,4 +1,5 @@
 //structure
+//// Conj-table
 struct Link {
 	int startSN;
 	int SN;
