@@ -1,6 +1,6 @@
 //structure
 //// Conj-table
-struct Link {
+struct LinkTable {
 	int startSN;
 	int SN;
 	int *LinkVC;

@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../RECURSIVE-SYSTEM/C-structure.h"
+#include "../RECURSIVE-SYSTEM/C-functions.h"
 #include "../RECURSIVE-SYSTEM/T-definition.h"
 #include "../RECURSIVE-SYSTEM/T-structure.h"
-#include "../RECURSIVE-SYSTEM/C-structure.h"
 #include "../RECURSIVE-SYSTEM/T-functions.h"
 #include "../RECURSIVE-SYSTEM/T-functions_imex.h"
 
