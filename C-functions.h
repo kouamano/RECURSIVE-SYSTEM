@@ -1,3 +1,22 @@
+int Function_Print_LinkTable(struct LinkTable *LT){
+	int i,j;
+	printf("Global.offset_SN:%d:\n",(*LT).offset_SN);
+	printf("Global.SN:%d:\n",(*LT).SN);
+	for(i=0;i<(*LT).SN;i++){
+		printf("Each[%d].:Head=%s:",i,(*LT).Head[i]);
+		printf(":Parent=%d:",(*LT).parent_SN[i]);
+		printf(":Lv=%d:",(*LT).Lv[i]);
+		printf(":Cj=%d:",(*LT).Conj[i]);
+		printf(":VC=%d:",(*LT).LinkVC[i]);
+		printf(":V");
+		for(j=0;j<(*LT).LinkVC[i];j++){
+			printf(",%d",(*LT).LinkV[i][j]);
+		}
+		printf(":\n");
+	}
+	return(0);
+}
+
 int Alloc_Link_V(struct LinkTable *LT){
 	int size = (*LT).SN;
 	(*LT).Head = realloc((*LT).Head, sizeof(*(*LT).Head) * (size + 1));

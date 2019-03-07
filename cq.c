@@ -324,7 +324,7 @@ int main(int argc, char **argv){
 	//CQ test
 	struct LinkTable *lt;
 	lt = Create_LinkTable(lt,0);
-	printf("SN:%d:\n",(*lt).SN);
+	Function_Print_LinkTable(lt);
 
 	/*close file*/
 	if(is_open > 0){
