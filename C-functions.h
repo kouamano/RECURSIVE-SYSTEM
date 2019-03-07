@@ -106,7 +106,7 @@ struct LinkTable *Create_LinkTable(struct LinkTable *LT, int _offset_SN){
 
 	stat = Alloc_Link_V(LT);
 
-	printf("LT.SN:%d:\n",(*LT).SN);
+	//printf("LT.SN:%d:\n",(*LT).SN);
 	return(LT);
 }
 
