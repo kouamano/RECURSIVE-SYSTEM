@@ -319,10 +319,10 @@ int Function_Print_Head_C(struct Tree *tree){
 	int i;
 	int not_print_Bclose = 0;
 	if((*tree).Conj){
-		printf(" ");
+		printf(INDENT);
 	}
 	if((*tree).Bopen){
-		printf("  ");
+		printf(INDENT);
 	}
 	printf("%s",(*tree).Head);
 	if((*tree).Bclose > 0 && (*tree).NextCount == 0){
