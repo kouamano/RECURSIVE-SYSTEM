@@ -8,7 +8,7 @@ struct LinkTable {
 };
 struct LinkHead {
 	char **Head;
-	int *LV;
+	int *Lv;
 	int *Conj;
 };
 
