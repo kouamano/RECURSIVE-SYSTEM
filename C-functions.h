@@ -68,14 +68,14 @@ int Add_Link_V(struct LinkTable *LT, struct LinkHead *LH){
 	return(0);
 }
 
-int Create_Link(struct LinkTable *LT, struct LinkHead *LH){
+int Create_LinkTable(struct LinkTable *LT, struct LinkHead *LH, int _startSN){
 	int stat;
 	LT = malloc(sizeof(struct LinkTable) * 1);
 	if(LT == NULL){
 		perror("[Fail]:malloc@Create_Link.\n");
 		exit(1);
 	}
-	(*LT).startSN = 0;
+	(*LT).startSN = _startSN;
 	(*LT).SN = 0;
 	(*LT).LinkVC = NULL;
 	(*LT).LinkV = NULL;
@@ -92,7 +92,6 @@ int Create_Link(struct LinkTable *LT, struct LinkHead *LH){
 	stat = Alloc_Link_V(LT,LH);
 	return(stat);
 }
-
 
 int Add_Link_Memb(struct LinkTable *LT, struct LinkHead *LH, int parent_SN, int _SN){
 	(*LT).LinkVC[parent_SN]++;
