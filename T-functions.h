@@ -65,7 +65,7 @@ int Function_Count_NextConjZero(struct Tree *tree){
 struct Tree *Create_Node(int _ser, int H_size){
 	struct Tree *tree;
 	if((tree = malloc(sizeof(struct Tree) * 1)) == NULL){
-		fprintf(stderr,"[Fail] malloc.\n");
+		fprintf(stderr,"[Fail]:malloc@Create_Node.\n");
 		exit(1);
 	}
 	(*tree).ser=_ser;
@@ -75,7 +75,7 @@ struct Tree *Create_Node(int _ser, int H_size){
 	(*tree).Bopen=0;
 	(*tree).Head = malloc(sizeof(char) * H_size);
 	if((*tree).Head == NULL){
-		fprintf(stderr,"[Fail] malloc.\n");
+		fprintf(stderr,"[Fail]:malloc@Create_Node.\n");
 		exit(1);
 	}
 	(*tree).suffix=NULL;
@@ -83,7 +83,7 @@ struct Tree *Create_Node(int _ser, int H_size){
 	(*tree).NextCount=0;
 	(*tree).Next = malloc((size_t)sizeof(struct Tree *) * 1);
 	if((*tree).Next == NULL){
-		fprintf(stderr,"[Fail] malloc.\n");
+		fprintf(stderr,"[Fail]:malloc@Create_Node.\n");
 		exit(1);
 	}
 	(*tree).Parent=NULL;
@@ -92,7 +92,7 @@ struct Tree *Create_Node(int _ser, int H_size){
 struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 	(*parent).Next = realloc((*parent).Next,(size_t)sizeof(struct Tree *) * (*parent).NextCount+1);
 	if((*parent).Next == NULL){
-		fprintf(stderr,"[Fail] malloc.\n");
+		fprintf(stderr,"[Fail]malloc@Add_Next.\n");
 	}
 	(*parent).Next[(*parent).NextCount] = next;
 	(*parent).Next[(*parent).NextCount]->LVself = (*parent).LVself+1;
@@ -155,7 +155,7 @@ int Function_Compile_Head(struct Tree *tree){
 	int len = 0;
 	len = strlen((*tree).Head);
 	if((tmp_head = malloc(sizeof(char) * (len+1))) == NULL){
-		perror("[Fail]:malloc()@Function_Compile_Head.\n");
+		perror("[Fail]:malloc@Function_Compile_Head.\n");
 		exit(1);
 	}
 	strcpy(tmp_head,(*tree).Head);
@@ -354,7 +354,7 @@ int Function_Print_Head_W(struct Tree *tree){
 	int *dim_pos;
 	int head_len = 0;
 	if((dim_pos = calloc(2,sizeof(int))) == NULL){
-		perror("[Fail] malloc @ Function_Print_Head_J.\n");
+		perror("[Fail]:calloc@Function_Print_Head_W.\n");
 		exit(1);
 	}
 	sw = Detect_Dim((*tree).Head,dim_pos);
@@ -423,7 +423,7 @@ void Function_Print_Head_J(struct Tree *tree){
 	int *dim_pos;
 	int head_len = 0;
 	if((dim_pos = calloc(2,sizeof(int))) == NULL){
-		perror("[Fail] malloc @ Function_Print_Head_J.\n");
+		perror("[Fail]:calloc@Function_Print_Head_J.\n");
 		exit(1);
 	}
 	sw = Detect_Dim((*tree).Head,dim_pos);
