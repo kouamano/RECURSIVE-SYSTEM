@@ -32,6 +32,42 @@ int Alloc_Link_V(struct LinkTable *LT, struct LinkHead *LH){
 	return(0);
 }
 
+int Add_Link_V(struct LinkTable *LT, struct LinkHead *LH){
+	/* alloc LinkTable */
+	(*LT).LinkVC = realloc((*LT).LinkVC, sizeof(*(*LT).LinkVC) * ((*LT).SN + 2));
+	if((*LT).LinkVC == NULL){
+		perror("[Fail]:realloc@Add_Link_V.\n");
+		exit(1);
+	}
+	(*LT).LinkV = realloc((*LT).LinkV, sizeof(*(*LT).LinkV) * ((*LT).SN + 2));
+	if((*LT).LinkV == NULL){
+		perror("[Fail]:realloc@Add_Link_V.\n");
+		exit(1);
+	}
+	(*LT).LinkV[(*LT).SN] = NULL;
+
+	/* alloc Head */
+	(*LH).Head = realloc((*LH).Head, sizeof(*(*LH).Head) * ((*LT).SN + 2));
+	if((*LH).Head == NULL){
+		perror("[Fail]:realloc@Alloc_Link_V.^\n");
+		exit(1);
+	}
+	(*LH).Lv = realloc((*LH).Lv, sizeof(*(*LH).Lv) * ((*LT).SN + 2));
+	if((*LH).Lv == NULL){
+		perror("[Fail]:realloc@Alloc_Link_V.^\n");
+		exit(1);
+	}
+	(*LH).Conj = realloc((*LH).Conj, sizeof(*(*LH).Conj) * ((*LT).SN + 2));
+	if((*LH).Conj == NULL){
+		perror("[Fail]:realloc@Alloc_Link_V.^\n");
+		exit(1);
+	}
+
+	(*LT).SN++;
+
+	return(0);
+}
+
 int Create_Link(struct LinkTable *LT, struct LinkHead *LH){
 	int stat;
 	LT = malloc(sizeof(struct LinkTable) * 1);
@@ -58,6 +94,8 @@ int Create_Link(struct LinkTable *LT, struct LinkHead *LH){
 }
 
 
-int Add_Link_Node(struct LinkTable *LT, struct LinkHead *LH, int _SN){
+int Add_Link_Memb(struct LinkTable *LT, struct LinkHead *LH, int _SN){
+	(*LT).LinkVC[_SN]++;
+	*(*LT).LinkV = realloc(*(*LT).LinkV, sizeof(**(*LT).LinkV) * (*LT).LinkVC[_SN] );
 	return(0);
 }
