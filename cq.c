@@ -315,11 +315,16 @@ int main(int argc, char **argv){
 	is_open = 1;
 
 	/*main function*/
+	//TQ
 	struct Tree *top;
 	int node_count = 0;
 	top = Create_Node(0,BUFF_LEN);
 	c = 1;
 	c = import_Tree(IN,top,opt,_fopt,_copt,&node_count);	// @ T-import_export.h
+	//CQ test
+	struct LinkTable *lt;
+	lt = Create_LinkTable(lt,0);
+	printf("SN:%d:\n",(*lt).SN);
 
 	/*close file*/
 	if(is_open > 0){

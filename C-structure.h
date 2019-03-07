@@ -1,14 +1,15 @@
 //structure
 //// Conj-table
 struct LinkTable {
+	// global
 	int startSN;
 	int SN;
-	int *LinkVC;
-	int **LinkV;
-};
-struct LinkHead {
+	// each node
 	char **Head;
 	int *Lv;
 	int *Conj;
+	int *LinkVC;
+	int **LinkV;
+	int *parent_SN;
 };
 
