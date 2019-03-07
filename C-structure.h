@@ -2,7 +2,7 @@
 //// Conj-table
 struct LinkTable {
 	// global
-	int startSN;
+	int offset_SN;
 	int SN;
 	// each node
 	char **Head;
