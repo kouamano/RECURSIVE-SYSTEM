@@ -10,7 +10,7 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 	int close = 0;
 	int ESC = 0;
 	int SN = 1;
-	int parent_SN = 0;
+	//int parent_SN = 0;
 	WAR = (*_opt).war;
 	current = top;
 	next = NULL;
