@@ -1,5 +1,5 @@
 //import tree script
-int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int *ncount){
+int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int *ncount, struct LinkTable *_LT){
 	int WAR;
 	int C;
 	int DLM_ACC = 1;

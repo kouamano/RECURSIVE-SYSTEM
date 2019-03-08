@@ -317,13 +317,16 @@ int main(int argc, char **argv){
 	/*main function*/
 	//TQ
 	struct Tree *top;
-	int node_count = 0;
+	//int node_count = 0;
 	top = Create_Node(0,BUFF_LEN);
-	c = 1;
-	c = import_Tree(IN,top,opt,_fopt,_copt,&node_count);	// @ T-import_export.h
+	//c = 1;
+	//c = import_Tree(IN,top,opt,_fopt,_copt,&node_count);	// @ T-import_export.h
 	//CQ test
 	struct LinkTable *lt;
+	int node_count = 0;
 	lt = Create_LinkTable(lt,0);
+	c = 1;
+	c = import_LinkTable(IN,top,opt,_fopt,_copt,&node_count,lt);	// @ T-import_export.h
 	Function_Print_LinkTable(lt);
 
 	/*close file*/
