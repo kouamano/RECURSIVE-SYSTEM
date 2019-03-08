@@ -151,14 +151,21 @@ struct LinkTable *Create_LinkTable(struct LinkTable *LT, int _offset_SN){
 		perror("[Fail]:malloc@Create_Link.\n");
 		exit(1);
 	}
-	
+	if(((*LT).parent_SN = malloc(sizeof(int) * 1)) == NULL){
+		perror("[Fail]:malloc@Create_LinkTable");
+		exit(1);
+	}
+	if(((*LT).Lv = malloc(sizeof(int) * 1)) == NULL){
+		perror("[Fail]:malloc@Create_LinkTable");
+		exit(1);
+	}
 
 
 
 	(*LT).offset_SN = _offset_SN;
 	(*LT).SN = 0;
-	(*LT).parent_SN = NULL;
-	(*LT).Lv = NULL;
+	(*LT).parent_SN[0] = -1;
+	(*LT).Lv[0] = 0;
 	(*LT).Head = NULL;
 	(*LT).Conj = NULL;
 	(*LT).LinkVC = NULL;
