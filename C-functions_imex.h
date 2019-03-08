@@ -10,6 +10,7 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 	int close = 0;
 	int ESC = 0;
 	int SN = 1;
+	int parent_SN = 0;
 	WAR = (*_opt).war;
 	current = top;
 	next = NULL;
@@ -45,6 +46,7 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 				print_war(C,current,WAR);
 			}
 			/* create next */
+			Add_Link_V(_LT);
 			next = Create_Node(SN,BUFF_LEN);
 			SN++;
 			*ncount = SN;

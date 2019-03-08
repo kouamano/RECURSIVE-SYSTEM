@@ -59,7 +59,6 @@ int Alloc_Link_V(struct LinkTable *LT){
 int Add_Link_V(struct LinkTable *LT){
 	int size = (*LT).SN;
 
-	/* alloc Head */
 	(*LT).Head = realloc((*LT).Head, sizeof(*(*LT).Head) * (size + 2));
 	if((*LT).Head == NULL){
 		perror("[Fail]:realloc@Alloc_Link_V.^\n");
@@ -75,8 +74,6 @@ int Add_Link_V(struct LinkTable *LT){
 		perror("[Fail]:realloc@Alloc_Link_V.^\n");
 		exit(1);
 	}
-
-	/* alloc LinkTable */
 	(*LT).LinkVC = realloc((*LT).LinkVC, sizeof(*(*LT).LinkVC) * (size + 2));
 	if((*LT).LinkVC == NULL){
 		perror("[Fail]:realloc@Add_Link_V.\n");
