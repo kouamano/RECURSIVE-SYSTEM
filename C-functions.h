@@ -64,32 +64,43 @@ int Add_Link_V(struct LinkTable *LT){
 		perror("[Fail]:realloc@Alloc_Link_V.^\n");
 		exit(1);
 	}
-	(*LT).Lv = realloc((*LT).Lv, sizeof(*(*LT).Lv) * (size + 2));
-	if((*LT).Lv == NULL){
-		perror("[Fail]:realloc@Alloc_Link_V.^\n");
-		exit(1);
-	}
-	(*LT).Conj = realloc((*LT).Conj, sizeof(*(*LT).Conj) * (size + 2));
-	if((*LT).Conj == NULL){
-		perror("[Fail]:realloc@Alloc_Link_V.^\n");
-		exit(1);
-	}
-	(*LT).LinkVC = realloc((*LT).LinkVC, sizeof(*(*LT).LinkVC) * (size + 2));
-	if((*LT).LinkVC == NULL){
-		perror("[Fail]:realloc@Add_Link_V.\n");
-		exit(1);
-	}
-	(*LT).LinkV = realloc((*LT).LinkV, sizeof(*(*LT).LinkV) * (size + 2));
-	if((*LT).LinkV == NULL){
-		perror("[Fail]:realloc@Add_Link_V.\n");
-		exit(1);
-	}
-	(*LT).LinkV[(*LT).SN] = NULL;
+	(*LT).Head[size+1] = NULL;
+
 	(*LT).parent_SN = realloc((*LT).parent_SN, sizeof(*(*LT).parent_SN) * (size + 2));
 	if((*LT).parent_SN == NULL){
 		perror("[Fail]:realloc@Add_Link_V.\n");
 		exit(1);
 	}
+	(*LT).parent_SN[size+1] = -1;
+
+	(*LT).Lv = realloc((*LT).Lv, sizeof(*(*LT).Lv) * (size + 2));
+	if((*LT).Lv == NULL){
+		perror("[Fail]:realloc@Alloc_Link_V.^\n");
+		exit(1);
+	}
+	(*LT).Lv[size+1] = -1;
+
+	(*LT).Conj = realloc((*LT).Conj, sizeof(*(*LT).Conj) * (size + 2));
+	if((*LT).Conj == NULL){
+		perror("[Fail]:realloc@Alloc_Link_V.^\n");
+		exit(1);
+	}
+	(*LT).Conj[size+1] = 0;
+
+	(*LT).LinkVC = realloc((*LT).LinkVC, sizeof(*(*LT).LinkVC) * (size + 2));
+	if((*LT).LinkVC == NULL){
+		perror("[Fail]:realloc@Add_Link_V.\n");
+		exit(1);
+	}
+	(*LT).LinkVC[size+1] = 0;
+
+	(*LT).LinkV = realloc((*LT).LinkV, sizeof(*(*LT).LinkV) * (size + 2));
+	if((*LT).LinkV == NULL){
+		perror("[Fail]:realloc@Add_Link_V.\n");
+		exit(1);
+	}
+	(*LT).LinkV[size+1] = NULL;
+
 
 	(*LT).SN++;
 

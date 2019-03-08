@@ -6,8 +6,8 @@ struct LinkTable {
 	int SN;
 	// each node
 	int *parent_SN;
-	char **Head;
 	int *Lv;
+	char **Head;
 	int *Conj;
 	int *LinkVC;
 	int **LinkV;
