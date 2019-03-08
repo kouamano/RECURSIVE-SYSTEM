@@ -76,6 +76,7 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 				print_war(C,current,WAR);
 			}
 			/* create next */
+			Add_Link_V(_LT);
 			next = Create_Node(SN,BUFF_LEN);
 			SN++;
 			*ncount = SN;
