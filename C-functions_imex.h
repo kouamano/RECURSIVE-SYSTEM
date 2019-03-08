@@ -138,6 +138,7 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 				buf_ptr = 0;
 				close = 0;
 				/* apply functions */
+				Add_Link_V(_LT);
 				#include "T-functions_imex-branch.h"
 				/* clear tree */
 				Function_Recursive_FreeForce_Tree(top);
@@ -151,6 +152,7 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 			close = 0;
 			ESC = 0;
 			if((*_opt).form == 0){
+				Add_Link_V(_LT);
 				#include "T-functions_imex-branch.h"
 			}
 			return(C);
