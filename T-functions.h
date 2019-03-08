@@ -189,18 +189,19 @@ int Function_Compile_Head(struct Tree *tree){
 //// hierarchical print
 void Function_Print_Smems(struct Tree *tree){
 	struct Tree *parent = (*tree).Parent;
-	printf(":LVs=%d:",(*tree).LVself);
-	printf(":NCs=%d:",(*tree).NCself);
-	printf(":Cj=%d:",(*tree).Conj);
-	printf(":BO=%d:",(*tree).Bopen);
+	printf(":SN=%d:",(*tree).ser);
 	printf(":H=%s:",(*tree).Head);
-	printf(":BC=%d:",(*tree).Bclose);
-	printf(":NC=%d:",(*tree).NextCount);
 	if(parent != NULL){
 		printf(":Pa=%s:",(*parent).Head);
 	}else{
 		printf(":Pa=%s:","");
 	}
+	printf(":LVs=%d:",(*tree).LVself);
+	printf(":Cj=%d:",(*tree).Conj);
+	printf(":NCs=%d:",(*tree).NCself);
+	printf(":BO=%d:",(*tree).Bopen);
+	printf(":BC=%d:",(*tree).Bclose);
+	printf(":NC=%d:",(*tree).NextCount);
 }
 void Function_Print_Status(struct Tree *tree){
 	Function_Print_Smems(tree);
