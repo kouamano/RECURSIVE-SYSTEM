@@ -47,7 +47,7 @@ int Free_LinkTable(struct LinkTable *LT, int _offset_SN){
 	return(0);
 }
 
-int Alloc_Link_V(struct LinkTable *LT){
+struct LinkTable *Alloc_Link_V(struct LinkTable *LT){
 	int size = (*LT).SN;
 	(*LT).Head = realloc((*LT).Head, sizeof(*(*LT).Head) * (size + 1));
 	if((*LT).Head == NULL){
@@ -83,7 +83,7 @@ int Alloc_Link_V(struct LinkTable *LT){
 		exit(1);
 	}
 
-	return(0);
+	return(LT);
 }
 
 int Add_Link_V(struct LinkTable *LT){
@@ -101,7 +101,7 @@ int Add_Link_V(struct LinkTable *LT){
 		perror("[Fail]:realloc@Add_Link_V.\n");
 		exit(1);
 	}
-	(*LT).parent_SN[size+1] = -1;
+	(*LT).parent_SN[size+1] = (*LT).SN;
 
 	(*LT).Lv = realloc((*LT).Lv, sizeof(*(*LT).Lv) * (size + 2));
 	if((*LT).Lv == NULL){
@@ -145,11 +145,16 @@ int Add_Link_Memb(struct LinkTable *LT, int parent_SN, int _SN){
 }
 
 struct LinkTable *Create_LinkTable(struct LinkTable *LT, int _offset_SN){
+	// under construction
 	LT = malloc(sizeof(struct LinkTable) * 1);
 	if(LT == NULL){
 		perror("[Fail]:malloc@Create_Link.\n");
 		exit(1);
 	}
+	
+
+
+
 	(*LT).offset_SN = _offset_SN;
 	(*LT).SN = 0;
 	(*LT).parent_SN = NULL;
