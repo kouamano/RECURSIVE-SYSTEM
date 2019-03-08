@@ -17,6 +17,36 @@ int Function_Print_LinkTable(struct LinkTable *LT){
 	return(0);
 }
 
+int Free_LinkTable(struct LinkTable *LT, int _offset_SN){
+	int i;
+	for(i=0;i<(*LT).SN;i++){
+		free((*LT).Head[i]);
+		//free((*LT).parent_SN);
+		//free((*LT).Lv);
+		//free((*LT).Conj);
+		//free((*LT).LinkVC);
+		free((*LT).LinkV[i]);
+	}
+
+	free((*LT).parent_SN);
+	free((*LT).Lv);
+	free((*LT).Conj);
+	free((*LT).LinkVC);
+	free((*LT).Head);
+	free((*LT).LinkV);
+
+	(*LT).offset_SN = _offset_SN;
+	(*LT).SN = 0;
+	(*LT).parent_SN = NULL;
+	(*LT).Lv = NULL;
+	(*LT).Conj = NULL;
+	(*LT).LinkVC = NULL;
+	(*LT).Head = NULL;
+	(*LT).LinkV = NULL;
+
+	return(0);
+}
+
 int Alloc_Link_V(struct LinkTable *LT){
 	int size = (*LT).SN;
 	(*LT).Head = realloc((*LT).Head, sizeof(*(*LT).Head) * (size + 1));
@@ -115,7 +145,6 @@ int Add_Link_Memb(struct LinkTable *LT, int parent_SN, int _SN){
 }
 
 struct LinkTable *Create_LinkTable(struct LinkTable *LT, int _offset_SN){
-	//int stat;
 	LT = malloc(sizeof(struct LinkTable) * 1);
 	if(LT == NULL){
 		perror("[Fail]:malloc@Create_Link.\n");
@@ -133,7 +162,6 @@ struct LinkTable *Create_LinkTable(struct LinkTable *LT, int _offset_SN){
 
 	Alloc_Link_V(LT);
 
-	//printf("LT.SN:%d:\n",(*LT).SN);
 	return(LT);
 }
 
