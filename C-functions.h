@@ -86,7 +86,7 @@ struct LinkTable *Alloc_Link_V(struct LinkTable *LT){
 	return(LT);
 }
 
-int Add_Link_V(struct LinkTable *LT){
+int Add_Link_V(struct LinkTable *LT, int _parent_SN){
 	int size = (*LT).SN;
 
 	(*LT).Head = realloc((*LT).Head, sizeof(*(*LT).Head) * (size + 2));
