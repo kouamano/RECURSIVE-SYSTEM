@@ -192,9 +192,9 @@ void Function_Print_Smems(struct Tree *tree){
 	printf(":SN=%d:",(*tree).ser);
 	printf(":H=%s:",(*tree).Head);
 	if(parent != NULL){
-		printf(":Pa=%s:",(*parent).Head);
+		printf(":Pa=%d:",(*parent).ser);
 	}else{
-		printf(":Pa=%s:","");
+		printf(":Pa=%d:",-1);
 	}
 	printf(":LVs=%d:",(*tree).LVself);
 	printf(":Cj=%d:",(*tree).Conj);
