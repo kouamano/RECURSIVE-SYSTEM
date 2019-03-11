@@ -36,6 +36,10 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 		}
 		/* function code */
 		if(C == '(' && ESC == 0){
+			// CQ
+			Add_Link_V(_LT,SN);
+
+			// TQ
 			/* confirm current */
 			BUFF[buf_ptr] = '\0';
 			if(close == 0){
@@ -47,7 +51,6 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 				print_war(C,current,WAR);
 			}
 			/* create next */
-			Add_Link_V(_LT,SN);
 			next = Create_Node(SN,BUFF_LEN);
 			SN++;
 			*ncount = SN;
@@ -66,6 +69,10 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 			current = next;
 			close = 0;
 		}else if(C == ',' && DLM_ACC > 0 && ESC == 0){
+			// CQ
+			Add_Link_V(_LT,SN);
+
+			// TQ
 			/* confirm current */
 			BUFF[buf_ptr] = '\0';
 			if(close == 0){
@@ -77,7 +84,6 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 				print_war(C,current,WAR);
 			}
 			/* create next */
-			Add_Link_V(_LT,SN);
 			next = Create_Node(SN,BUFF_LEN);
 			SN++;
 			*ncount = SN;
@@ -128,6 +134,10 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 			}else if((*_opt).form == 1){
 				; // under construction
 			}else if((*_opt).form == 2){
+				// CQ
+				Add_Link_V(_LT,SN);
+
+				// TQ
 				/* copy BUFF */
 				BUFF[buf_ptr] = '\0';
 				if(close == 0){
@@ -138,7 +148,6 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 				buf_ptr = 0;
 				close = 0;
 				/* apply functions */
-				Add_Link_V(_LT,SN);
 				#include "T-functions_imex-branch.h"
 				/* clear tree */
 				Function_Recursive_FreeForce_Tree(top);
@@ -152,7 +161,10 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 			close = 0;
 			ESC = 0;
 			if((*_opt).form == 0){
+				// CQ
 				Add_Link_V(_LT,SN);
+
+				// TQ
 				#include "T-functions_imex-branch.h"
 			}
 			return(C);
