@@ -139,7 +139,7 @@ int Add_Link_V(struct LinkTable *LT, int _parent_SN){
 
 int Add_Link_Memb(struct LinkTable *LT, int parent_SN, int _SN){
 	(*LT).LinkVC[parent_SN]++;
-	(*LT).LinkV[parent_SN] = realloc((*LT).LinkV[parent_SN], sizeof(**(*LT).LinkV) * (*LT).LinkVC[_SN] );
+	(*LT).LinkV[parent_SN] = realloc((*LT).LinkV[parent_SN], sizeof(**(*LT).LinkV) * (*LT).LinkVC[parent_SN] );
 	(*LT).LinkV[parent_SN][(*LT).LinkVC[parent_SN]] = _SN;
 	return(0);
 }
