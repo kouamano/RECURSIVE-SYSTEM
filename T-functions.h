@@ -243,15 +243,8 @@ void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	/* print Head */
 	printf("%s",(*tree).Head);
 
-	/* print Bclose */
-	for(i=0;i<(*tree).Bclose;i++){
-		//printf(")");
-	}
-	/* print "," for Next */
-	if((*tree).NextCount > 0 && strlen((*tree).Next[(*tree).NextCount-1]->Head) > 0){
-		//printf(",");
-	}
-	printf("  ");
+	/* print members */
+	printf(INDENT);
 	Function_Print_Smems(tree);
 	printf("\n");
 
@@ -259,7 +252,7 @@ void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 ////print seq no
 int Function_Print_Seq(struct Tree *tree){
 	int i;
-	int not_print_Bclose = 0;
+	//int not_print_Bclose = 0;
 	if((*tree).Conj){
 		printf(",");
 	}
@@ -272,9 +265,10 @@ int Function_Print_Seq(struct Tree *tree){
 			printf(")");
 		}
 	}else if((*tree).Bclose > 0){
-		not_print_Bclose = not_print_Bclose + (*tree).Bclose;
+		//not_print_Bclose = not_print_Bclose + (*tree).Bclose;
 	}
-	return(not_print_Bclose);
+	//return(not_print_Bclose);
+	return(0);
 }
 ////print matrix
 int Function_Print_Adj(struct Tree *tree, int nodes){
