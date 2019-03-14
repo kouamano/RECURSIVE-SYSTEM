@@ -11,7 +11,7 @@
 
 			/* apply formated print */
 			if((*_fopt).f_print_N == 1){
-				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Seq,_fopt,_copt);
+				ExFunction_Recursive_Ser_MultiPrint(top, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head_SN, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose,  _fopt, _copt, SN);
 				if(C == LF && (*_copt).c_restrict == 1){
 					printf(";");
 				}
