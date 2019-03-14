@@ -79,7 +79,8 @@
 
 			}
 			if((*_fopt).f_print_J == 1){
-				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_J,_fopt,_copt);
+				//ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_J,_fopt,_copt);
+				ExFunction_Recursive_Ser_MultiPrint(top, (struct Tree *(*)())Function_Print_Conj_JS, (struct Tree *(*)())Function_Print_Head_JS, (struct Tree *(*)())Function_Print_Bopen_JS,  (struct Tree *(*)())Function_Print_Bclose_WL,  _fopt, _copt, SN);
 				if(C == LF || C == TAB){
 					printf("%c",C);
 				}

@@ -472,7 +472,6 @@ struct Tree *Function_Print_Conj_WL(struct Tree *tree, struct function_options *
 		}
 	return(tree);
 }
-
 struct Tree *Function_Print_Conj_S(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 		if((*tree).NCself > 1 && (*tree).Conj != 1){
 			printf(")");
@@ -482,9 +481,51 @@ struct Tree *Function_Print_Conj_S(struct Tree *tree, struct function_options *_
 		} 
 	return(tree);
 }
+struct Tree *Function_Print_Conj_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+		if((*tree).NCself > 1 && (*tree).Conj != 1){
+			printf("]");
+		}
+		if((*tree).LVself != 0 && strlen((*tree).Head) != 0){
+			printf(",");
+		} 
+	return(tree);
+}
 
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	printf("%s",(*tree).Head);
+	return(tree);
+}
+struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	int sw = 0;
+	int *dim_pos;
+	int head_len = 0;
+	char *head_str;
+	if((dim_pos = calloc(2,sizeof(int))) == NULL){
+		perror("[Fail]:calloc@Function_Print_Head_J.\n");
+		exit(1);
+	}
+	sw = Detect_Dim((*tree).Head,dim_pos);
+	if(sw == 2){
+		head_len = strlen((*tree).Head);
+		if((head_str = malloc(sizeof(char) * (head_len+1))) == NULL){
+			perror("[Fail]:calloc@Function_Print_Head_W.\n");
+			exit(1);
+		}
+		strcpy(head_str,(*tree).Head);
+		//(*tree).Head[dim_pos[0]] = '\0';
+		head_str[dim_pos[0]] = '\0';
+		//printf("[\"%s\",\"DIM\",",(*tree).Head);
+		printf("[\"%s\",\"DIM\",",head_str);
+		//printf("%s",(*tree).Head+dim_pos[0]+1);
+		printf("%s",head_str+dim_pos[0]+1);
+	}else{
+		head_len = strlen((*tree).Head);
+		if(head_len > 0){
+			printf("\"%s\"",(*tree).Head);
+		}else{
+			;
+		}
+	}
 	return(tree);
 }
 struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
@@ -549,6 +590,18 @@ struct Tree *Function_Print_Bopen_S(struct Tree *tree, struct function_options *
 	}
 	return(tree);
 }
+struct Tree *Function_Print_Bopen_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
+	if(pos == 0){	// testing
+		int i;
+		for(i=0;i<(*tree).NextCount;i++){
+			if((*tree).Next[i]->Conj == 0){
+				printf("[");
+			}
+		}
+	}
+	return(tree);
+}
+
 struct Tree *Function_Print_Bclose(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
 		printf(")");
