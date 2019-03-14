@@ -136,8 +136,7 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 				/* apply functions */
 				#ifdef TQ
 				#include "T-functions_imex-branch.h"
-				#else
-				#define TCONV
+				#elif defined( TCONV )
 				#include "T-convFunctions_imex-branch.h"
 				#endif
 				/* clear tree */
@@ -154,8 +153,7 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 			if((*_opt).form == 0){
 				#ifdef TQ
 				#include "T-functions_imex-branch.h"
-				#else
-				#define TCONV
+				#elif defined( TCONV )
 				#include "T-convFunctions_imex-branch.h"
 				#endif
 			}
