@@ -20,15 +20,15 @@
 				}
 			}
 			if((*_fopt).f_print_T == 1){
-				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_T,_fopt,_copt);
-				if(C == LF && (*_copt).c_restrict == 1){
-					printf(";");
-				}
-				if(C == LF || C == TAB){
-					printf("%c",C);
-				}
-	                        if((*_fopt).f_print_test == 1){
-					printf("\\/ TEST\n");
+				//ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_T,_fopt,_copt);
+				//if(C == LF && (*_copt).c_restrict == 1){
+				//	printf(";");
+				//}
+				//if(C == LF || C == TAB){
+				//	printf("%c",C);
+				//}
+	                        //if((*_fopt).f_print_test == 1){
+					//printf("\\/ TEST\n");
 					ExFunction_Recursive_Ser_MultiPrint(top, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose,  _fopt, _copt, SN);
 					if(C == LF && (*_copt).c_restrict == 1){
 						printf(";");
@@ -36,8 +36,8 @@
 					if(C == LF || C == TAB){
 						printf("%c",C);
 					}
-					printf("\n");
-	                        }
+					//printf("\n");
+	                        //}
 
 			}
 			if((*_fopt).f_print_C == 1){
@@ -59,12 +59,12 @@
 				}
 			}
 			if((*_fopt).f_print_S == 1){
-				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_S,_fopt,_copt);
-				if(C == LF || C == TAB){
-					printf("%c",C);
-				}
-	                        if((*_fopt).f_print_test == 1){
-					printf("\\/ TEST\n");
+				//ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_S,_fopt,_copt);
+				//if(C == LF || C == TAB){
+				//	printf("%c",C);
+				//}
+	                        //if((*_fopt).f_print_test == 1){
+					//printf("\\/ TEST\n");
 					ExFunction_Recursive_Ser_MultiPrint(top, (struct Tree *(*)())Function_Print_Conj_S, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_S,  (struct Tree *(*)())Function_Print_Bclose,  _fopt, _copt, SN);
 					if(C == LF && (*_copt).c_restrict == 1){
 						printf(";");
@@ -72,8 +72,8 @@
 					if(C == LF || C == TAB){
 						printf("%c",C);
 					}
-					printf("\n");
-	                        }
+					//printf("\n");
+	                        //}
 
 
 			}
