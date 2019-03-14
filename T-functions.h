@@ -501,6 +501,10 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	printf("%s",(*tree).Head);
 	return(tree);
 }
+struct Tree *Function_Print_Head_SN(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	printf("%d",(*tree).ser);
+	return(tree);
+}
 struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	int sw = 0;
 	int *dim_pos;
