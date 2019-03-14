@@ -63,7 +63,7 @@
 			}
 
 
-			/* apply formated print */
+			/* apply status print */
                         if((*_fopt).f_print_status == 1){
 				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status,_fopt,_copt);
 				printf("\n");
