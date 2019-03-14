@@ -453,26 +453,9 @@ void Function_Print_Head_J(struct Tree *tree){
 //// null function
 void null_func(void){
 }
+
+// for TQ
 ////print primitives (testing)
-/*
-struct Tree *Function_Print_Conj(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	if((*_fopt).f_print_T == 1){			//OK
-		if((*tree).Conj == 1){
-			printf(",");
-		}else if((*tree).NCself > 1){
-			printf(")(");
-		}
-	}else if((*_fopt).f_print_S == 1){		// testing
-		if((*tree).NCself > 1 && (*tree).Conj != 1){
-			printf(")");
-		}
-		if((*tree).LVself != 0 && strlen((*tree).Head) != 0){
-			printf(",");
-		} 
-	}
-	return(tree);
-}
-*/
 struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 		if((*tree).Conj == 1){
 			printf(",");
@@ -495,24 +478,6 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	printf("%s",(*tree).Head);
 	return(tree);
 }
-/*
-struct Tree *Function_Print_Bopen(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
-	if((*_fopt).f_print_T == 1 && pos == 1){	//OK
-		if((*tree).NextCount != 0){
-			printf("(");
-		}
-	}else if((*_fopt).f_print_S == 1 && pos == 0){	// testing
-		int i;
-		int head_open = 0;
-		for(i=0;i<(*tree).NextCount;i++){
-			if((*tree).Next[i]->Conj == 0){
-				printf("(");
-			}
-		}
-	}
-	return(tree);
-}
-*/
 struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
 	if(pos == 1){	//OK
 		if((*tree).NextCount != 0){
@@ -539,7 +504,7 @@ struct Tree *Function_Print_Bclose(struct Tree *tree, struct function_options *_
 	return(tree);
 }
 
-////recursive-apply-function
+//recursive-apply-function
 struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct function_options *_fopt, struct compile_options *_copt ){
 	// かっこのprint処理をprint系関数に押し込んでいるため、
 	// T-import_export.h でAdd_Bclose_To_Next()を行っている。
