@@ -134,7 +134,12 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 				buf_ptr = 0;
 				close = 0;
 				/* apply functions */
+				#ifdef TQ
 				#include "T-functions_imex-branch.h"
+				#else
+				#define TCONV
+				#include "T-convFunctions_imex-branch.h"
+				#endif
 				/* clear tree */
 				Function_Recursive_FreeForce_Tree(top);
 				free(top);
@@ -147,7 +152,12 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 			close = 0;
 			ESC = 0;
 			if((*_opt).form == 0){
+				#ifdef TQ
 				#include "T-functions_imex-branch.h"
+				#else
+				#define TCONV
+				#include "T-convFunctions_imex-branch.h"
+				#endif
 			}
 			return(C);
 		}else{
