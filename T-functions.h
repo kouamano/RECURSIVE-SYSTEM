@@ -491,15 +491,25 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 	int sw = 0;
 	int *dim_pos;
 	int head_len = 0;
+	char *head_str;
 	if((dim_pos = calloc(2,sizeof(int))) == NULL){
 		perror("[Fail]:calloc@Function_Print_Head_W.\n");
 		exit(1);
 	}
 	sw = Detect_Dim((*tree).Head,dim_pos);
 	if(sw == 2){
-		(*tree).Head[dim_pos[0]] = '\0';
-		printf("%s[DIM,",(*tree).Head);
-		printf("%s",(*tree).Head+dim_pos[0]+1);
+		head_len = strlen((*tree).Head);
+		if((head_str = malloc(sizeof(char) * (head_len+1))) == NULL){
+			perror("[Fail]:calloc@Function_Print_Head_W.\n");
+			exit(1);
+		}
+		strcpy(head_str,(*tree).Head);
+		//(*tree).Head[dim_pos[0]] = '\0';
+		head_str[dim_pos[0]] = '\0';
+		//printf("%s[DIM,",(*tree).Head);
+		printf("%s[DIM,",head_str);
+		//printf("%s",(*tree).Head+dim_pos[0]+1);
+		printf("%s",head_str+dim_pos[0]+1);
 	}else{
 		head_len = strlen((*tree).Head);
 		if(head_len > 0){
