@@ -464,6 +464,15 @@ struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_
 		}
 	return(tree);
 }
+struct Tree *Function_Print_Conj_WL(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+		if((*tree).Conj == 1){
+			printf(",");
+		}else if((*tree).NCself > 1){
+			printf("][");
+		}
+	return(tree);
+}
+
 struct Tree *Function_Print_Conj_S(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 		if((*tree).NCself > 1 && (*tree).Conj != 1){
 			printf(")");
@@ -478,6 +487,30 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	printf("%s",(*tree).Head);
 	return(tree);
 }
+struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	int sw = 0;
+	int *dim_pos;
+	int head_len = 0;
+	if((dim_pos = calloc(2,sizeof(int))) == NULL){
+		perror("[Fail]:calloc@Function_Print_Head_W.\n");
+		exit(1);
+	}
+	sw = Detect_Dim((*tree).Head,dim_pos);
+	if(sw == 2){
+		(*tree).Head[dim_pos[0]] = '\0';
+		printf("%s[DIM,",(*tree).Head);
+		printf("%s",(*tree).Head+dim_pos[0]+1);
+	}else{
+		head_len = strlen((*tree).Head);
+		if(head_len > 0){
+			printf("%s",(*tree).Head);
+		}else{
+			;
+		}
+	}
+	return(tree);
+}
+
 struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
 	if(pos == 1){	//OK
 		if((*tree).NextCount != 0){
@@ -486,6 +519,15 @@ struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *
 	}
 	return(tree);
 }
+struct Tree *Function_Print_Bopen_WL(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
+	if(pos == 1){	//OK
+		if((*tree).NextCount != 0){
+			printf("[");
+		}
+	}
+	return(tree);
+}
+
 struct Tree *Function_Print_Bopen_S(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
 	if(pos == 0){	// testing
 		int i;
@@ -500,6 +542,12 @@ struct Tree *Function_Print_Bopen_S(struct Tree *tree, struct function_options *
 struct Tree *Function_Print_Bclose(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
 		printf(")");
+	}
+	return(tree);
+}
+struct Tree *Function_Print_Bclose_WL(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	if((*tree).NextCount != 0){
+		printf("]");
 	}
 	return(tree);
 }

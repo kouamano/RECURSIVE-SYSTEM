@@ -50,7 +50,8 @@
 				}
 			}
 			if((*_fopt).f_print_W == 1){
-				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_W,_fopt,_copt);
+				//ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Head_W,_fopt,_copt);
+				ExFunction_Recursive_Ser_MultiPrint(top, (struct Tree *(*)())Function_Print_Conj_WL, (struct Tree *(*)())Function_Print_Head_WL, (struct Tree *(*)())Function_Print_Bopen_WL,  (struct Tree *(*)())Function_Print_Bclose_WL,  _fopt, _copt, SN);
 				if(C == LF && (*_copt).c_restrict == 1){
 					printf(";");
 				}
