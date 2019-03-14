@@ -318,7 +318,6 @@ int Function_Print_Head_T(struct Tree *tree){
 ////print csh-form
 int Function_Print_Head_C(struct Tree *tree){
 	int i;
-	int not_print_Bclose = 0;
 	if((*tree).Conj){
 		printf(INDENT);
 	}
@@ -326,14 +325,10 @@ int Function_Print_Head_C(struct Tree *tree){
 		printf(INDENT);
 	}
 	printf("%s",(*tree).Head);
-	if((*tree).Bclose > 0 && (*tree).NextCount == 0){
-		for(i=0;i<((*tree).Bclose);i++){
-			printf("\n");
-		}
-	}else if((*tree).Bclose > 0){
-		not_print_Bclose = not_print_Bclose + (*tree).Bclose;
+	for(i=0;i<((*tree).Bclose);i++){
+		printf("\n");
 	}
-	return(not_print_Bclose);
+	return(0);
 }
 ////print W-form
 int Function_Print_Head_W(struct Tree *tree){
