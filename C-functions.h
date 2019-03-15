@@ -17,7 +17,7 @@ int Function_Print_LinkTable(struct LinkTable *LT){
 	return(0);
 }
 
-int Free_LinkTable(struct LinkTable *LT, int _offset_SN){
+int Free_LinkTable(struct LinkTable *LT){
 	int i;
 	for(i=0;i<(*LT).SN;i++){
 		free((*LT).Head[i]);
@@ -35,7 +35,7 @@ int Free_LinkTable(struct LinkTable *LT, int _offset_SN){
 	free((*LT).Head);
 	free((*LT).LinkV);
 
-	(*LT).offset_SN = _offset_SN;
+	(*LT).offset_SN = 0;
 	(*LT).SN = 0;
 	(*LT).parent_SN = NULL;
 	(*LT).Lv = NULL;
