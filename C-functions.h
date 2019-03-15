@@ -144,8 +144,9 @@ int Add_Link_Memb(struct LinkTable *LT, int _parent_SN, int _SN){
 	return(0);
 }
 
-struct LinkTable *Create_LinkTable(struct LinkTable *LT, int _offset_SN){
+struct LinkTable *Create_LinkTable(int _offset_SN){
 	// under construction
+	struct LinkTable *LT;
 	LT = malloc(sizeof(struct LinkTable) * 1);
 	if(LT == NULL){
 		perror("[Fail]:malloc@Create_Link.\n");

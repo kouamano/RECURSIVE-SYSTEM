@@ -321,7 +321,7 @@ int main(int argc, char **argv){
 	/* CQ */
 	struct LinkTable *lt;
 	int node_count = 0;
-	lt = Create_LinkTable(lt,0);
+	lt = Create_LinkTable(0);
 	c = 1;
 	c = import_LinkTable(IN,top,opt,_fopt,_copt,&node_count,lt);	// @ T-import_export.h
 	Function_Print_LinkTable(lt);
