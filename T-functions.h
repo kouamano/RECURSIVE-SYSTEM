@@ -101,6 +101,7 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 	(*parent).NextCount++;
 	return(next);
 }
+/*
 int Add_Bclose_To_Next(struct Tree *tree){
 	//Bcloseの回数を、Closeしていない親からCloseしている子に加算する
 	if((*tree).NextCount == 0){
@@ -111,6 +112,7 @@ int Add_Bclose_To_Next(struct Tree *tree){
 		return(0);
 	}
 }
+*/
 // compile functions
 int is_reteral(char *string){
 	int fails = 0;
@@ -250,6 +252,7 @@ void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 
 }
 ////print seq no
+/*
 int Function_Print_Seq(struct Tree *tree){
 	int i;
 	//int not_print_Bclose = 0;
@@ -270,6 +273,7 @@ int Function_Print_Seq(struct Tree *tree){
 	//return(not_print_Bclose);
 	return(0);
 }
+*/
 ////print matrix
 int Function_Print_Adj(struct Tree *tree, int nodes){
 	int i;
@@ -289,7 +293,7 @@ int Function_Print_Adj(struct Tree *tree, int nodes){
 	return(nodes);
 }
 
-///print T-form
+/*
 int Function_Print_Head_T(struct Tree *tree){
 	int i;
 	int not_print_Bclose = 0;
@@ -309,7 +313,8 @@ int Function_Print_Head_T(struct Tree *tree){
 	}
 	return(not_print_Bclose);
 }
-////print csh-form
+*/
+/*
 int Function_Print_Head_C(struct Tree *tree){
 	int i;
 	if((*tree).Conj){
@@ -324,21 +329,19 @@ int Function_Print_Head_C(struct Tree *tree){
 	}
 	return(0);
 }
-////print W-form
+*/
+/*
 int Function_Print_Head_W(struct Tree *tree){
 	int i;
 	int not_print_Bclose = 0;
-	/* print "," for Conj */
 	if((*tree).Conj){
 		printf(",");
 	}
-	/* print Bopen */
 	if((*tree).Bopen){
 		//printf("(");
 		printf("[");
 	}
 
-	/* print Head */
 	//printf("%s",(*tree).Head);
 	int sw = 0;
 	int *dim_pos;
@@ -360,7 +363,6 @@ int Function_Print_Head_W(struct Tree *tree){
 			;
 		}
 	}
-	/* print Bclose */
 	if((*tree).Bclose > 0 && (*tree).NextCount == 0){
 		for(i=0;i<((*tree).Bclose);i++){
 			printf("]");
@@ -370,45 +372,40 @@ int Function_Print_Head_W(struct Tree *tree){
 	}
 	return(not_print_Bclose);
 }
-////print S-form
+*/
+/*
 void Function_Print_Head_S(struct Tree *tree){
 	int i;
 	int countCZ = 0;
 	countCZ = Function_Count_NextConjZero(tree);
-	/* print "," for Conj */
 	if(((*tree).Conj == 1 || (*tree).Bopen > 0) && (strlen((*tree).Head) > 0)){
 		printf(",");
 	}
-	/* print Bopen */
 	for(i=0;i<countCZ;i++){
 		printf("(");
 	}
-	/* print Head */
 	printf("%s",(*tree).Head);
-	/* print Bclose */
 	for(i=0;i<(*tree).Bclose;i++){
 		printf(")");
 	}
-	/* print "," for Next */
 	if((*tree).NextCount > 0){
 		//printf(",");
 	}
 }
+*/
 ////print JSON-form
+/*
 void Function_Print_Head_J(struct Tree *tree){
 	int i;
 	int countCZ = 0;
 	countCZ = Function_Count_NextConjZero(tree);
-	/* print "," for Conj */
 	if(((*tree).Conj == 1 || (*tree).Bopen > 0) && (strlen((*tree).Head) > 0)){
 		printf(",");
 	}
-	/* print Bopen */
 	for(i=0;i<countCZ;i++){
 		//printf("(");
 		printf("[");
 	}
-	/* print Head */
 	int sw = 0;
 	int *dim_pos;
 	int head_len = 0;
@@ -429,15 +426,14 @@ void Function_Print_Head_J(struct Tree *tree){
 			;
 		}
 	}
-	/* print Bclose */
 	for(i=0;i<(*tree).Bclose;i++){
 		printf("]");
 	}
-	/* print "," for Next */
 	if((*tree).NextCount > 0){
 		//printf(",");
 	}
 }
+*/
 // meta functions
 //// null function
 void null_func(void){
