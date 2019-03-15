@@ -1,5 +1,4 @@
-//administrative functions
-////check-code
+/* administrative functions */
 void print_war(char _C, struct Tree *_tree, int level){
         printf("\n:C=%c: ",_C);
         printf(":Pp=%ld:",(long int)(*_tree).Parent);
@@ -12,7 +11,6 @@ void print_war(char _C, struct Tree *_tree, int level){
         printf(":NCs=%d:",(*_tree).NCself);
         printf(":NC=%d:",(*_tree).NextCount);
 }
-////dimension-check function
 int Detect_Dim(const char *head, int *pos){
 	int len;
 	int dim_s = -1;
@@ -46,24 +44,8 @@ int Detect_Dim(const char *head, int *pos){
 	}
 	return(ret);
 }
-////status-check function
-/*
-int Function_Count_NextConjZero(struct Tree *tree){
-	int i;
-	int count = 0;
-	if((*tree).NextCount == 0){
-		return(0);
-	}else{
-		for(i=0;i<(*tree).NextCount;i++){
-			if((*tree).Next[i]->Conj == 0){
-				count++;
-			}
-		}
-	}
-	return(count);
-}
-*/
-////restructure functions
+
+/* restructure functions */
 struct Tree *Create_Node(int _ser, int H_size){
 	struct Tree *tree;
 	if((tree = malloc(sizeof(struct Tree) * 1)) == NULL){
@@ -103,7 +85,8 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 	(*parent).NextCount++;
 	return(next);
 }
-// compile functions
+
+/* compile functions */
 int is_reteral(char *string){
 	int fails = 0;
 	if(strlen(string) < 2){
@@ -177,8 +160,7 @@ int Function_Compile_Head(struct Tree *tree){
 	return(0);
 }
 
-// formated print functions
-//// hierarchical print
+/* formated print functions */
 void Function_Print_Smems(struct Tree *tree){
 	struct Tree *parent = (*tree).Parent;
 	printf(":SN=%d:",(*tree).ser);
@@ -213,8 +195,6 @@ void Function_Print_HeadHierarchy(struct Tree *tree){
 }
 void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	int i;
-	//int countCZ = 0;
-	//countCZ = Function_Count_NextConjZero(tree);
 	for(i=0;i<(*tree).LVself;i++){
 		printf(INDENT);
 	}
@@ -232,7 +212,6 @@ void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	Function_Print_Smems(tree);
 	printf("\n");
 }
-////print matrix
 int Function_Print_Adj(struct Tree *tree, int nodes){
 	int i;
 	int j;
@@ -251,13 +230,12 @@ int Function_Print_Adj(struct Tree *tree, int nodes){
 	return(nodes);
 }
 
-// meta functions
-//// null function
+/* meta functions */
 void null_func(void){
 }
 
-// for TQ
-////print primitives (testing)
+/* TQ */
+//* print primitives */
 struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 		if((*tree).Conj == 1){
 			printf(",");
@@ -473,7 +451,7 @@ struct Tree *Function_Print_Bclose_X(struct Tree *tree, struct function_options 
 	return(tree);
 }
 
-//recursive-apply-function
+/* recursive-apply-function */
 struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct function_options *_fopt, struct compile_options *_copt ){
 	int i;
 	struct Tree *out = tree;
@@ -501,8 +479,6 @@ struct Tree *ExFunction_Recursive_Ser( struct Tree *tree, struct Tree *(*e_funct
 	return(out);
 }
 struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree *(*conj_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*head_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*bopen_function)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*bclose_function)(struct Tree *, struct function_options *, struct compile_options *),  struct function_options *_fopt, struct compile_options *_copt, int ser ){
-	// testting
-	// Add_Bclose_To_Next()をつかわずにprintする。
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL){
@@ -525,7 +501,7 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree
 	return(out);
 }
 
-////GC
+/* GC */
 int Function_Recursive_FreeForce_Tree(struct Tree *tree){
 	int i;
 	if(tree == NULL){
