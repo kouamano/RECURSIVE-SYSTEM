@@ -18,7 +18,7 @@ void status(void){
 	printf(" %s\n",cdate);
 }
 
-/*help*/
+/* help */
 void help(void){
 	printf("USAGE:\n");
 	printf(" tconv [-h|-hF|-hC] [-s] [-c] buff=<size(int)> in=<input file> form=<input form> w=<warnning level> -F<x> -C<x>.\n");
@@ -56,7 +56,7 @@ void compile_help(void){
 	printf("   -Cd : rewite head to dot.\n");
 }
 
-/*allocation*/
+/* allocation */
 struct options *alloc_options(void){
 	struct options *p;
 	if((p = malloc(sizeof(struct options) * 1)) == NULL){
@@ -87,7 +87,7 @@ struct compile_options *alloc_compile_options(void){
 }
 
 
-/*initialize*/
+/* initialize */
 void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
@@ -120,7 +120,7 @@ void init_compile_options(struct compile_options *copt){
         (*copt).c_dot = 0;
 }
 
-/*get options*/
+/* get options */
 void get_options(int optc, char **optv, struct options *opt){
 	int i = 0;
 	for(i=0;i<optc;i++){
@@ -210,7 +210,7 @@ void get_compile_options(int optc, char **optv, struct compile_options *copt){
 	}
 }
 
-/*checking*/
+/* checking */
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	printf(" opt.buff:%d:\n",(*opt).buff);
@@ -242,7 +242,7 @@ void check_compile_options(struct compile_options *copt){
 	printf("  opt.c_dot:%d:\n",(*copt).c_dot);
 }
 
-/*main*/
+/* main */
 int main(int argc, char **argv){
 	struct options *opt;
 	struct function_options *_fopt;
@@ -252,32 +252,30 @@ int main(int argc, char **argv){
 	int is_open = 0;
 	int c;
 
-	/*options*/
-	// main opt
+	/* options */
+	//* main opt */
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
-	// function opt
+	//* function opt */
 	_fopt = alloc_function_options();
 	init_function_options(_fopt);
 	get_function_options(argc-1, argv+1, _fopt);
-	// compile opt
+	//* compile opt */
 	_copt = alloc_compile_options();
 	init_compile_options(_copt);
 	get_compile_options(argc-1, argv+1, _copt);
 
-	/*exit/print help operation*/
+	/* print help operation */
 	if(argc == 1){
 		(*opt).help = 1;
 	}
 	if((*opt).hF == 1){
 		(*opt).help = 1;
-		//function_help();
 		ie = 1;
 	}
 	if((*opt).hC == 1){
 		(*opt).help = 1;
-		//compile_help();
 		ie = 1;
 	}
 	if((*opt).help == 1){
@@ -306,25 +304,25 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 
-	/*open file*/
+	/* open file */
 	if((IN = fopen((*opt).in,"r")) == NULL){
 		perror((*opt).in);
 		exit(1);
 	}
 	is_open = 1;
 
-	/*main function*/
+	/* main function */
 	struct Tree *top;
 	int node_count = 0;
 	top = Create_Node(0,BUFF_LEN);
 	c = 1;
 	c = import_Tree(IN,top,opt,_fopt,_copt,&node_count);	// @ T-import_export.h
 
-	/*close file*/
+	/* close file */
 	if(is_open > 0){
 		fclose(IN);
 	}
 
-	/*finish*/
+	/* finish */
 	return(c);
 }
