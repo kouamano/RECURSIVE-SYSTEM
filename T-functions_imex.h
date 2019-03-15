@@ -94,9 +94,6 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 		}else if(C == ')' && ESC == 0){
 			/* confirm current */
 			BUFF[buf_ptr] = '\0';
-			/* Bclose transfar */
-			//再帰呼び出し関数ではかっこをprintしないので、
-			//かっこのprint情報を子に移す。
 			#ifdef TQ
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
@@ -106,6 +103,9 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 			}
 			(*current).Bclose++;
 			#elif defined( TCONV )
+			/* Bclose transfar */
+			//再帰呼び出し関数ではかっこをprintしないので、
+			//かっこのprint情報を子に移す。
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
 				(*current).Bclose = 1;
