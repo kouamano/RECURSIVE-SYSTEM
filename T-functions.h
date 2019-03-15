@@ -208,7 +208,6 @@ void Function_Print_HeadHierarchy(struct Tree *tree){
 		printf("-");
 	}
 	printf("%s\n",(*tree).Head);
-
 }
 void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	int i;
@@ -265,6 +264,7 @@ struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_
 		}
 	return(tree);
 }
+
 struct Tree *Function_Print_Conj_C(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 		if((*tree).Conj == 1){
 			//printf(",");

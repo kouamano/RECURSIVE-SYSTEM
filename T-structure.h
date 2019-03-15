@@ -32,6 +32,7 @@ struct function_options {
         int f_print_S;
         int f_print_J;
         int f_print_W;
+        int f_print_X;
         int f_print_C;
         int f_print_N;
         int f_print_Ma;
