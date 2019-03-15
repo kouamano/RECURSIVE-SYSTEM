@@ -68,6 +68,7 @@
 					printf("%c",C);
 				}
 			}
+
 			if((*_fopt).f_print_S == 1){
 				ExFunction_Recursive_Ser_MultiPrint(top, (struct Tree *(*)())Function_Print_Conj_S, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_S,  (struct Tree *(*)())Function_Print_Bclose,  _fopt, _copt, SN);
 				if(C == LF && (*_copt).c_restrict == 1){

@@ -264,7 +264,6 @@ struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_
 		}
 	return(tree);
 }
-
 struct Tree *Function_Print_Conj_C(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 		if((*tree).Conj == 1){
 			//printf(",");
@@ -281,6 +280,14 @@ struct Tree *Function_Print_Conj_WL(struct Tree *tree, struct function_options *
 			printf(",");
 		}else if((*tree).NCself > 1){
 			printf("][");
+		}
+	return(tree);
+}
+struct Tree *Function_Print_Conj_X(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+		if((*tree).Conj == 1){
+			printf(" ");
+		}else if((*tree).NCself > 1){
+			printf(" ");
 		}
 	return(tree);
 }
@@ -377,6 +384,12 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 	}
 	return(tree);
 }
+struct Tree *Function_Print_Head_X(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	if((*tree).NextCount == 0){
+		printf("%s",(*tree).Head);
+	}
+	return(tree);
+}
 
 struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
 	if(pos == 1){	//OK
@@ -443,11 +456,15 @@ struct Tree *Function_Print_Bclose_WL(struct Tree *tree, struct function_options
 	}
 	return(tree);
 }
+struct Tree *Function_Print_Bclose_X(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	if((*tree).NextCount != 0){
+		printf("</%s>",(*tree).Head);
+	}
+	return(tree);
+}
 
 //recursive-apply-function
 struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct function_options *_fopt, struct compile_options *_copt ){
-	// かっこのprint処理をprint系関数に押し込んでいるため、
-	// T-import_export.h でAdd_Bclose_To_Next()を行っている。
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL || e_function == NULL){
@@ -461,8 +478,6 @@ struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)
 	return(out);
 }
 struct Tree *ExFunction_Recursive_Ser( struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int), struct function_options *_fopt, struct compile_options *_copt, int ser ){
-	// かっこのprint処理をprint系関数に押し込んでいるため、
-	// T-import_export.h でAdd_Bclose_To_Next()を行っている。
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL || e_function == NULL){
