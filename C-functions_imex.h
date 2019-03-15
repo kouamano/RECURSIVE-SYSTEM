@@ -39,7 +39,6 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 			// CQ
 			Add_Link_V(_LT,SN);
 
-			// TQ
 			/* confirm current */
 			BUFF[buf_ptr] = '\0';
 			if(close == 0){
@@ -72,7 +71,6 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 			// CQ
 			Add_Link_V(_LT,SN);
 
-			// TQ
 			/* confirm current */
 			BUFF[buf_ptr] = '\0';
 			if(close == 0){
@@ -137,7 +135,6 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 				// CQ
 				Add_Link_V(_LT,SN);
 
-				// TQ
 				/* copy BUFF */
 				BUFF[buf_ptr] = '\0';
 				if(close == 0){
@@ -164,7 +161,6 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 				// CQ
 				Add_Link_V(_LT,SN);
 
-				// TQ
 				#include "T-functions_imex-branch.h"
 			}
 			return(C);
