@@ -148,7 +148,7 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 				buf_ptr = 0;
 				close = 0;
 				/* apply functions */
-				#include "T-functions_imex-branch.h"
+				#include "T-convFunctions_imex-branch.h"
 				/* clear tree */
 				Function_Recursive_FreeForce_Tree(top);
 				free(top);
@@ -164,7 +164,7 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 				// CQ
 				Add_Link_V(_LT,SN);
 
-				#include "T-functions_imex-branch.h"
+				#include "T-convFunctions_imex-branch.h"
 			}
 			return(C);
 		}else{

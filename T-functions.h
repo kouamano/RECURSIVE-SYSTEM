@@ -415,6 +415,14 @@ struct Tree *Function_Print_Bopen_WL(struct Tree *tree, struct function_options 
 	}
 	return(tree);
 }
+struct Tree *Function_Print_Bopen_X(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
+	if(pos == 1){	//OK
+		if((*tree).NextCount != 0){
+			printf("<%s>",(*tree).Head);
+		}
+	}
+	return(tree);
+}
 struct Tree *Function_Print_Bopen_S(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
 	if(pos == 0){	// testing
 		int i;
