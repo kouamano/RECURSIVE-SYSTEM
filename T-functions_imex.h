@@ -101,7 +101,11 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 				strcpy((*current).Head,BUFF);
 				(*current).Bclose = 1;
 			}else{
+			#ifdef TQ
+				;
+			#elif defined( TCONV )
 				Add_Bclose_To_Next(current);
+			#endif
 			}
 			/* check */
 			if(WAR > 0){
