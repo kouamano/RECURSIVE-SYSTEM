@@ -222,14 +222,7 @@ void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	}else{
 		printf("-");
 	}
-	/* print "," for Conj */
-	if((*tree).Conj == 1){
-		//printf(",");
-	}
-	/* print Bopen */
-	for(i=0;i<countCZ;i++){
-		//printf("(");
-	}
+
 	/* print Head */
 	printf("%s",(*tree).Head);
 
@@ -237,7 +230,6 @@ void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	printf(INDENT);
 	Function_Print_Smems(tree);
 	printf("\n");
-
 }
 ////print matrix
 int Function_Print_Adj(struct Tree *tree, int nodes){

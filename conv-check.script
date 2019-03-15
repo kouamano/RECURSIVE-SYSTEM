@@ -32,3 +32,9 @@ echo "N"
 ./tq.o in=test.t -FN > tmp.tq.N
 diff tmp.tcnv.N tmp.tq.N
 
+echo "h"
+./tconv in=test.t -Fh > tmp.tcnv.h
+./tq.o in=test.t -Fh > tmp.tq.h
+diff tmp.tcnv.h tmp.tq.h
+
+
