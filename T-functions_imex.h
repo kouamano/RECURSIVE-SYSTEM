@@ -97,16 +97,22 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 			/* Bclose transfar */
 			//再帰呼び出し関数ではかっこをprintしないので、
 			//かっこのprint情報を子に移す。
+			#ifdef TQ
+			if(close == 0){
+				strcpy((*current).Head,BUFF);
+				//(*current).Bclose = 1;
+			}else{
+				//Add_Bclose_To_Next(current);
+			}
+			(*current).Bclose++;
+			#elif defined( TCONV )
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
 				(*current).Bclose = 1;
 			}else{
-			#ifdef TQ
-				;
-			#elif defined( TCONV )
 				Add_Bclose_To_Next(current);
-			#endif
 			}
+			#endif
 			/* check */
 			if(WAR > 0){
 				print_war(C,current,WAR);
