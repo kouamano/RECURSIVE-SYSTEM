@@ -62,7 +62,6 @@ struct Tree *Create_Node(int _ser, int H_size){
 		fprintf(stderr,"[Fail]:malloc@Create_Node.\n");
 		exit(1);
 	}
-	//(*tree).suffix=NULL;
 	//(*tree).Bclose=0;
 	(*tree).NextCount=0;
 	(*tree).Next = malloc((size_t)sizeof(struct Tree *) * 1);
@@ -246,10 +245,8 @@ struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_
 }
 struct Tree *Function_Print_Conj_C(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 		if((*tree).Conj == 1){
-			//printf(",");
 			printf(INDENT);
 		}else if((*tree).NCself > 1){
-			//printf(")(");
 			printf("\n");
 			printf(INDENT);
 		}
@@ -315,11 +312,8 @@ struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *
 			exit(1);
 		}
 		strcpy(head_str,(*tree).Head);
-		//(*tree).Head[dim_pos[0]] = '\0';
 		head_str[dim_pos[0]] = '\0';
-		//printf("[\"%s\",\"DIM\",",(*tree).Head);
 		printf("[\"%s\",\"DIM\",",head_str);
-		//printf("%s",(*tree).Head+dim_pos[0]+1);
 		printf("%s",head_str+dim_pos[0]+1);
 	}else{
 		head_len = strlen((*tree).Head);
@@ -348,11 +342,8 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 			exit(1);
 		}
 		strcpy(head_str,(*tree).Head);
-		//(*tree).Head[dim_pos[0]] = '\0';
 		head_str[dim_pos[0]] = '\0';
-		//printf("%s[DIM,",(*tree).Head);
 		printf("%s[DIM,",head_str);
-		//printf("%s",(*tree).Head+dim_pos[0]+1);
 		printf("%s",head_str+dim_pos[0]+1);
 	}else{
 		head_len = strlen((*tree).Head);
@@ -372,7 +363,7 @@ struct Tree *Function_Print_Head_X(struct Tree *tree, struct function_options *_
 }
 
 struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
-	if(pos == 1){	//OK
+	if(pos == 1){
 		if((*tree).NextCount != 0){
 			printf("(");
 		}
@@ -380,7 +371,7 @@ struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *
 	return(tree);
 }
 struct Tree *Function_Print_Bopen_C(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
-	if(pos == 1){	//OK
+	if(pos == 1){
 		if((*tree).NextCount != 0){
 			printf(INDENT);
 		}
@@ -388,7 +379,7 @@ struct Tree *Function_Print_Bopen_C(struct Tree *tree, struct function_options *
 	return(tree);
 }
 struct Tree *Function_Print_Bopen_WL(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
-	if(pos == 1){	//OK
+	if(pos == 1){
 		if((*tree).NextCount != 0){
 			printf("[");
 		}
@@ -396,7 +387,7 @@ struct Tree *Function_Print_Bopen_WL(struct Tree *tree, struct function_options 
 	return(tree);
 }
 struct Tree *Function_Print_Bopen_X(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
-	if(pos == 1){	//OK
+	if(pos == 1){
 		if((*tree).NextCount != 0){
 			int sw = 0;
 			int *dim_pos;
@@ -432,7 +423,7 @@ struct Tree *Function_Print_Bopen_X(struct Tree *tree, struct function_options *
 	return(tree);
 }
 struct Tree *Function_Print_Bopen_S(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
-	if(pos == 0){	// testing
+	if(pos == 0){
 		int i;
 		for(i=0;i<(*tree).NextCount;i++){
 			if((*tree).Next[i]->Conj == 0){
@@ -443,7 +434,7 @@ struct Tree *Function_Print_Bopen_S(struct Tree *tree, struct function_options *
 	return(tree);
 }
 struct Tree *Function_Print_Bopen_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
-	if(pos == 0){	// testing
+	if(pos == 0){
 		int i;
 		for(i=0;i<(*tree).NextCount;i++){
 			if((*tree).Next[i]->Conj == 0){
