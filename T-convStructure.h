@@ -5,10 +5,10 @@ struct Tree {
 	int LVself;
 	int NCself;
 	int Conj;
-	//int Bopen;
+	int Bopen;
 	char *Head;
 	char *suffix;
-	//int Bclose;
+	int Bclose;
 	int NextCount;
 	struct Tree **Next;
 	struct Tree *Parent;	// must not free !!

@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../RECURSIVE-SYSTEM/T-definition.h"
-#include "../RECURSIVE-SYSTEM/T-structure.h"
+#include "../RECURSIVE-SYSTEM/T-convStructure.h"
 #include "../RECURSIVE-SYSTEM/T-convFunctions.h"
 #include "../RECURSIVE-SYSTEM/T-convFunctions_imex.h"
 

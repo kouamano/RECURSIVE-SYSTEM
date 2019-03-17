@@ -39,7 +39,7 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
 			}
-			(*current).Bclose = 0;
+			//(*current).Bclose = 0;
 			/* check */
 			if(WAR > 0){
 				print_war(C,current,WAR);
@@ -51,8 +51,8 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 			/* add next to current / current.NextCount / next.LVself, NCself */
 			Add_Next(current,next);
 			/* set properties of next */
-			(*next).Bclose = 0;
-			(*next).Bopen = 1;
+			//(*next).Bclose = 0;
+			//(*next).Bopen = 1;
 			(*next).Conj = 0;
 			/* clear BUFF */
 			BUFF[0] = '\0';
@@ -68,7 +68,7 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
 			}
-			(*current).Bclose = 0;
+			//(*current).Bclose = 0;
 			/* check */
 			if(WAR > 0){
 				print_war(C,current,WAR);
@@ -80,8 +80,8 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 			/* add next */
 			Add_Next((*current).Parent,next);
 			/* set properties of next */
-			(*next).Bclose = 0;
-			(*next).Bopen = 0;
+			//(*next).Bclose = 0;
+			//(*next).Bopen = 0;
 			(*next).Conj = 1;
 			/* clear BUFF */
 			BUFF[0] = '\0';
@@ -100,7 +100,7 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 			}else{
 				//Add_Bclose_To_Next(current);
 			}
-			(*current).Bclose++;
+			//(*current).Bclose++;
 			/* check */
 			if(WAR > 0){
 				print_war(C,current,WAR);
