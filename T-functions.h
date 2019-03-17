@@ -62,7 +62,7 @@ struct Tree *Create_Node(int _ser, int H_size){
 		fprintf(stderr,"[Fail]:malloc@Create_Node.\n");
 		exit(1);
 	}
-	(*tree).suffix=NULL;
+	//(*tree).suffix=NULL;
 	//(*tree).Bclose=0;
 	(*tree).NextCount=0;
 	(*tree).Next = malloc((size_t)sizeof(struct Tree *) * 1);
