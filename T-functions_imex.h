@@ -94,7 +94,6 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 		}else if(C == ')' && ESC == 0){
 			/* confirm current */
 			BUFF[buf_ptr] = '\0';
-			#ifdef TQ
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
 				//(*current).Bclose = 1;
@@ -102,17 +101,6 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 				//Add_Bclose_To_Next(current);
 			}
 			(*current).Bclose++;
-			#elif defined( TCONV )
-			/* Bclose transfar */
-			//再帰呼び出し関数ではかっこをprintしないので、
-			//かっこのprint情報を子に移す。
-			if(close == 0){
-				strcpy((*current).Head,BUFF);
-				(*current).Bclose = 1;
-			}else{
-				Add_Bclose_To_Next(current);
-			}
-			#endif
 			/* check */
 			if(WAR > 0){
 				print_war(C,current,WAR);
@@ -144,11 +132,7 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 				buf_ptr = 0;
 				close = 0;
 				/* apply functions */
-				#ifdef TQ
 				#include "T-functions_imex-branch.h"
-				#elif defined( TCONV )
-				#include "T-convFunctions_imex-branch.h"
-				#endif
 				/* clear tree */
 				Function_Recursive_FreeForce_Tree(top);
 				free(top);
@@ -161,11 +145,7 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 			close = 0;
 			ESC = 0;
 			if((*_opt).form == 0){
-				#ifdef TQ
 				#include "T-functions_imex-branch.h"
-				#elif defined( TCONV )
-				#include "T-convFunctions_imex-branch.h"
-				#endif
 			}
 			return(C);
 		}else{
