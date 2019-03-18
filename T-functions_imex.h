@@ -114,7 +114,7 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 			}
 			close++;
 		}else if(C == LF || C == TAB){
-			/* 0 single/1 multi/2 individual */
+			/* 0:single / 1:multi / 2:individual */
 			if((*_opt).form == 0){
 				; // executed bellow
 			}else if((*_opt).form == 1){
