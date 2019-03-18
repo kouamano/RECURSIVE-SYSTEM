@@ -4,9 +4,7 @@ void print_war(char _C, struct Tree *_tree, int level){
         printf(":Pp=%ld:",(long int)(*_tree).Parent);
         printf(":Cp=%ld:",(long int)_tree);
         printf(":Cj=%d:",(*_tree).Conj);
-        //printf(":Op=%d:",(*_tree).Bopen);
         printf(":current=%s:",(*_tree).Head);
-        //printf(":Cl=%d:",(*_tree).Bclose);
         printf(":LV=%d:",(*_tree).LVself);
         printf(":NCs=%d:",(*_tree).NCself);
         printf(":NC=%d:",(*_tree).NextCount);
@@ -56,13 +54,11 @@ struct Tree *Create_Node(int _ser, int H_size){
 	(*tree).LVself=0;
 	(*tree).NCself=1;
 	(*tree).Conj=0;
-	//(*tree).Bopen=0;
 	(*tree).Head = malloc(sizeof(char) * H_size);
 	if((*tree).Head == NULL){
 		fprintf(stderr,"[Fail]:malloc@Create_Node.\n");
 		exit(1);
 	}
-	//(*tree).Bclose=0;
 	(*tree).NextCount=0;
 	(*tree).Next = malloc((size_t)sizeof(struct Tree *) * 1);
 	if((*tree).Next == NULL){
@@ -172,8 +168,6 @@ void Function_Print_Smems(struct Tree *tree){
 	printf(":LVs=%d:",(*tree).LVself);
 	printf(":Cj=%d:",(*tree).Conj);
 	printf(":NCs=%d:",(*tree).NCself);
-	//printf(":BO=%d:",(*tree).Bopen);
-	//printf(":BC=%d:",(*tree).Bclose);
 	printf(":NC=%d:",(*tree).NextCount);
 }
 void Function_Print_Status(struct Tree *tree){
