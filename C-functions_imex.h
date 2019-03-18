@@ -10,10 +10,11 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 	int close = 0;
 	int ESC = 0;
 	int SN = 1;
+	int vSN = 1;
 	// CQ(
-	int current_SN = SN;
-	int parent_SN = SN-1;
-	int next_SN = SN+1;
+	int current_SN = vSN;
+	int parent_SN = vSN-1;
+	int next_SN = vSN+1;
 	// )
 	WAR = (*_opt).war;
 	current = top;
@@ -40,7 +41,8 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 		/* function code */
 		if(C == '(' && ESC == 0){
 			// CQ
-			Add_Link_V(_LT,SN);
+			Add_Link_V(_LT,vSN);
+			vSN++;
 
 			/* confirm current */
 			BUFF[buf_ptr] = '\0';
@@ -72,7 +74,8 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 			close = 0;
 		}else if(C == ',' && DLM_ACC > 0 && ESC == 0){
 			// CQ
-			Add_Link_V(_LT,SN);
+			Add_Link_V(_LT,vSN);
+			vSN++;
 
 			/* confirm current */
 			BUFF[buf_ptr] = '\0';
@@ -136,7 +139,8 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 				; // under construction
 			}else if((*_opt).form == 2){
 				// CQ
-				Add_Link_V(_LT,SN);
+				Add_Link_V(_LT,vSN);
+				vSN++;
 
 				/* copy BUFF */
 				BUFF[buf_ptr] = '\0';
@@ -162,7 +166,7 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 			ESC = 0;
 			if((*_opt).form == 0){
 				// CQ
-				Add_Link_V(_LT,SN);
+				Add_Link_V(_LT,vSN);
 
 				#include "T-convFunctions_imex-branch.h"
 			}
