@@ -12,7 +12,7 @@ const char ctime[] = __TIME__;
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" The option form : under construction.\n");
+	printf(" option form 1 (multi): under construction.\n");
 	printf("COMPILED:\n");
 	printf(" %s\n",ctime);
 	printf(" %s\n",cdate);
@@ -222,7 +222,7 @@ void check_options(struct options *opt){
 	printf(" opt.in:%s:\n",(*opt).in);
 	printf(" opt.war:%d:\n",(*opt).war);
 	printf(" opt.hF:%d:\n",(*opt).hF);
-	printf(" opt.form:%d: (under construction) \n",(*opt).form);
+	printf(" opt.form:%d:\n",(*opt).form);
 }
 void check_function_options(struct function_options *fopt){
 	printf(" functions:\n");
