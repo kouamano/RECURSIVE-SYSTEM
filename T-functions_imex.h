@@ -97,8 +97,6 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
 				//(*current).Bclose = 1;
-			}else{
-				//Add_Bclose_To_Next(current);
 			}
 			//(*current).Bclose++;
 			/* check */
