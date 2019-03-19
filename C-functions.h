@@ -70,6 +70,7 @@ struct LinkTable *Alloc_Link_V(struct LinkTable *LT){
 		perror("[Fail]:realloc@Alloc_Link_V.\n");
 		exit(1);
 	}
+	(*LT).LinkVC[0] = 0;
 	(*LT).LinkV = realloc((*LT).LinkV, sizeof(*(*LT).LinkV) * (size + 1));
 	if((*LT).LinkV == NULL){
 		perror("[Fail]:realloc@Alloc_Link_V.\n");
