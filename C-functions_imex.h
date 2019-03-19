@@ -6,19 +6,19 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 	char *BUFF;
 	int buf_ptr = 0;
 	//struct Tree *current;
-	struct Tree *next;
+	//struct Tree *next;
 	int close = 0;
 	int ESC = 0;
-	int SN = 1;
-	int vSN = 1;
+	//int SN = 1;
 	// CQ(
+	int vSN = 1;
 	int current_SN = vSN;
 	int parent_SN = vSN-1;
 	int next_SN = vSN+1;
 	// )
 	WAR = (*_opt).war;
 	//current = top;
-	next = NULL;
+	//next = NULL;
 	if((BUFF = malloc(sizeof(char) * BUFF_LEN)) == NULL){
 		printf("[Fail] malloc.\n");
 		exit(1);
@@ -55,15 +55,15 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 				//print_war(C,current,WAR);
 			}
 			/* create next */
-			next = Create_Node(SN,BUFF_LEN);
-			SN++;
-			*ncount = SN;
+			//next = Create_Node(SN,BUFF_LEN);
+			//SN++;
+			//*ncount = SN;
 			/* add next to current / current.NextCount / next.LVself, NCself */
 			//Add_Next(current,next);
 			/* set properties of next */
-			(*next).Bclose = 0;
-			(*next).Bopen = 1;
-			(*next).Conj = 0;
+			//(*next).Bclose = 0;
+			//(*next).Bopen = 1;
+			//(*next).Conj = 0;
 			/* clear BUFF */
 			BUFF[0] = '\0';
 			buf_ptr = 0;
@@ -88,15 +88,15 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 				//print_war(C,current,WAR);
 			}
 			/* create next */
-			next = Create_Node(SN,BUFF_LEN);
-			SN++;
-			*ncount = SN;
+			//next = Create_Node(SN,BUFF_LEN);
+			//SN++;
+			//*ncount = SN;
 			/* add next */
 			//Add_Next((*current).Parent,next);
 			/* set properties of next */
-			(*next).Bclose = 0;
-			(*next).Bopen = 0;
-			(*next).Conj = 1;
+			//(*next).Bclose = 0;
+			//(*next).Bopen = 0;
+			//(*next).Conj = 1;
 			/* clear BUFF */
 			BUFF[0] = '\0';
 			buf_ptr = 0;
@@ -152,13 +152,13 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 				buf_ptr = 0;
 				close = 0;
 				/* apply functions */
-				#include "T-convFunctions_imex-branch.h"
+				//#include "T-convFunctions_imex-branch.h"
 				/* clear tree */
 				//Function_Recursive_FreeForce_Tree(top);
 				//free(top);
 				//top = Create_Node(SN,BUFF_LEN);
-				SN++;
-				*ncount = SN;
+				//SN++;
+				//*ncount = SN;
 				ESC = 0;
 			}
 		}else if(C == EOF){
@@ -168,7 +168,7 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 				// CQ
 				Add_Link_V(_LT,vSN);
 
-				#include "T-convFunctions_imex-branch.h"
+				//#include "T-convFunctions_imex-branch.h"
 			}
 			return(C);
 		}else{
