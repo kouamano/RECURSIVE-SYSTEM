@@ -160,6 +160,7 @@ char *Function_Compile_Head(struct Tree *tree){
 		strcpy(out_head+1,tmp_head+2);
 		out_head[len-1]='"';
 		out_head[len]='\0';
+		strcpy(tmp_head,out_head);
 	}else if(is_reteral((*tree).Head) == 0){
 		strcpy(out_head,tmp_head+1);
 		strcpy(tmp_head,out_head);
