@@ -156,6 +156,7 @@ char *Function_Compile_Head(struct Tree *tree){
 }
 
 /* formated print functions */
+//* structure members */
 void Function_Print_Smems(struct Tree *tree){
 	struct Tree *parent = (*tree).Parent;
 	printf(":SN=%d:",(*tree).ser);
@@ -227,8 +228,8 @@ int Function_Print_Adj(struct Tree *tree, int nodes){
 void null_func(void){
 }
 
-/* TQ */
-//* print primitives */
+/* print primitives */
+//* Conj */
 struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 		if((*tree).Conj == 1){
 			printf(",");
@@ -281,6 +282,8 @@ struct Tree *Function_Print_Conj_JS(struct Tree *tree, struct function_options *
 	return(tree);
 }
 
+
+//* Head */
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	printf("%s",(*tree).Head);
 	return(tree);
@@ -356,6 +359,7 @@ struct Tree *Function_Print_Head_X(struct Tree *tree, struct function_options *_
 	return(tree);
 }
 
+//* Bopen */
 struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
 	if(pos == 1){
 		if((*tree).NextCount != 0){
@@ -439,6 +443,7 @@ struct Tree *Function_Print_Bopen_JS(struct Tree *tree, struct function_options 
 	return(tree);
 }
 
+//* Bopen */
 struct Tree *Function_Print_Bclose(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
 		printf(")");
