@@ -9,27 +9,6 @@
 			}
 
 
-			/* apply status print */
-                        if((*_fopt).f_print_status == 1){
-				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status,_fopt,_copt);
-				printf("\n");
-                        }
-                        if((*_fopt).f_print_hierarchy == 1){
-				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchy,_fopt,_copt);
-				printf("\n");
-                        }
-                        if((*_fopt).f_print_hierarchy_status == 1){
-				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus,_fopt,_copt);
-				printf("\n");
-                        }
-
-
-			/* apply conjugation-table print */
-                        if((*_fopt).f_print_Ma == 1){
-				ExFunction_Recursive_Ser(top,(struct Tree *(*)())Function_Print_Adj,_fopt,_copt,SN);
-				printf("\n");
-                        }
-
 
 			/* apply formated print */
 			if((*_fopt).f_print_N == 1){
@@ -94,5 +73,26 @@
 				}
 			}
 
+
+			/* apply status print */
+                        if((*_fopt).f_print_status == 1){
+				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_Status,_fopt,_copt);
+				printf("\n");
+                        }
+                        if((*_fopt).f_print_hierarchy == 1){
+				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchy,_fopt,_copt);
+				printf("\n");
+                        }
+                        if((*_fopt).f_print_hierarchy_status == 1){
+				ExFunction_Recursive(top,(struct Tree *(*)())Function_Print_HeadHierarchyStatus,_fopt,_copt);
+				printf("\n");
+                        }
+
+
+			/* apply conjugation-table print */
+                        if((*_fopt).f_print_Ma == 1){
+				ExFunction_Recursive_Ser(top,(struct Tree *(*)())Function_Print_Adj,_fopt,_copt,SN);
+				printf("\n");
+                        }
 
 
