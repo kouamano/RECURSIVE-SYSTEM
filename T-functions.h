@@ -120,33 +120,39 @@ int Function_Dot_Head(struct Tree *tree){
 	}
 	return(0);
 }
-int Function_Compile_Head(struct Tree *tree){
+char *Function_Compile_Head(struct Tree *tree){
 	char *tmp_head;
+	char *out_head;
 	int len = 0;
 	len = strlen((*tree).Head);
 	if((tmp_head = malloc(sizeof(char) * (len+1))) == NULL){
 		perror("[Fail]:malloc@Function_Compile_Head.\n");
 		exit(1);
 	}
+	if((out_head = malloc(sizeof(char) * (len+1))) == NULL){
+		perror("[Fail]:malloc@Function_Compile_Head.\n");
+		exit(1);
+	}
+
 	strcpy(tmp_head,(*tree).Head);
 	if(strncmp(tmp_head,"$~",2) == 0){
-		strcpy((*tree).Head,tmp_head+2);
-		strcpy(tmp_head,(*tree).Head);
+		strcpy(out_head,tmp_head+2);
+		strcpy(tmp_head,out_head);
 	}else if(strncmp(tmp_head,"$`",2) == 0){ //quating Head
-		(*tree).Head=realloc((*tree).Head, (sizeof(char) * (len+1)));
-		if((*tree).Head == NULL){
+		out_head=realloc(out_head, (sizeof(char) * (len+1)));
+		if(out_head == NULL){
 			perror("[Fail]:realloc@Function_Compile_Head.\n");
 			exit(1);
 		}
-		(*tree).Head[0]='"';
-		strcpy((*tree).Head+1,tmp_head+2);
-		(*tree).Head[len-1]='"';
-		(*tree).Head[len]='\0';
+		out_head[0]='"';
+		strcpy(out_head+1,tmp_head+2);
+		out_head[len-1]='"';
+		out_head[len]='\0';
 	}else if(is_reteral((*tree).Head) == 0){
-		strcpy((*tree).Head,tmp_head+1);
-		strcpy(tmp_head,(*tree).Head);
+		strcpy(out_head,tmp_head+1);
+		strcpy(tmp_head,out_head);
 	}
-	return(0);
+	return(out_head);
 }
 
 /* formated print functions */
