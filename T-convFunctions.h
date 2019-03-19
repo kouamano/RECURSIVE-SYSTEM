@@ -233,13 +233,7 @@ void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 		printf("-");
 	}
 	/* print "," for Conj */
-	if((*tree).Conj == 1){
-		//printf(",");
-	}
 	/* print Bopen */
-	for(i=0;i<countCZ;i++){
-		//printf("(");
-	}
 	/* print Head */
 	printf("%s",(*tree).Head);
 
@@ -264,10 +258,7 @@ int Function_Print_Seq(struct Tree *tree){
 		for(i=0;i<((*tree).Bclose);i++){
 			printf(")");
 		}
-	}else if((*tree).Bclose > 0){
-		//not_print_Bclose = not_print_Bclose + (*tree).Bclose;
 	}
-	//return(not_print_Bclose);
 	return(0);
 }
 ////print matrix
@@ -334,12 +325,10 @@ int Function_Print_Head_W(struct Tree *tree){
 	}
 	/* print Bopen */
 	if((*tree).Bopen){
-		//printf("(");
 		printf("[");
 	}
 
 	/* print Head */
-	//printf("%s",(*tree).Head);
 	int sw = 0;
 	int *dim_pos;
 	int head_len = 0;
@@ -390,9 +379,6 @@ void Function_Print_Head_S(struct Tree *tree){
 		printf(")");
 	}
 	/* print "," for Next */
-	if((*tree).NextCount > 0){
-		//printf(",");
-	}
 }
 ////print JSON-form
 void Function_Print_Head_J(struct Tree *tree){
@@ -405,7 +391,6 @@ void Function_Print_Head_J(struct Tree *tree){
 	}
 	/* print Bopen */
 	for(i=0;i<countCZ;i++){
-		//printf("(");
 		printf("[");
 	}
 	/* print Head */
@@ -434,9 +419,6 @@ void Function_Print_Head_J(struct Tree *tree){
 		printf("]");
 	}
 	/* print "," for Next */
-	if((*tree).NextCount > 0){
-		//printf(",");
-	}
 }
 // meta functions
 //// null function
@@ -455,10 +437,8 @@ struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_
 }
 struct Tree *Function_Print_Conj_C(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 		if((*tree).Conj == 1){
-			//printf(",");
 			printf(INDENT);
 		}else if((*tree).NCself > 1){
-			//printf(")(");
 			printf("\n");
 			printf(INDENT);
 		}
@@ -516,11 +496,8 @@ struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *
 			exit(1);
 		}
 		strcpy(head_str,(*tree).Head);
-		//(*tree).Head[dim_pos[0]] = '\0';
 		head_str[dim_pos[0]] = '\0';
-		//printf("[\"%s\",\"DIM\",",(*tree).Head);
 		printf("[\"%s\",\"DIM\",",head_str);
-		//printf("%s",(*tree).Head+dim_pos[0]+1);
 		printf("%s",head_str+dim_pos[0]+1);
 	}else{
 		head_len = strlen((*tree).Head);
@@ -549,11 +526,8 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 			exit(1);
 		}
 		strcpy(head_str,(*tree).Head);
-		//(*tree).Head[dim_pos[0]] = '\0';
 		head_str[dim_pos[0]] = '\0';
-		//printf("%s[DIM,",(*tree).Head);
 		printf("%s[DIM,",head_str);
-		//printf("%s",(*tree).Head+dim_pos[0]+1);
 		printf("%s",head_str+dim_pos[0]+1);
 	}else{
 		head_len = strlen((*tree).Head);
