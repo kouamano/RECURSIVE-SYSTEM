@@ -108,17 +108,29 @@ int is_reteral(char *string){
 	}
 	return(fails);
 }
-int Function_Clear_Head(struct Tree *tree){
-	(*tree).Head[0] = '\0';
-	return(0);
+char *Function_Clear_Head(struct Tree *tree){
+	char *tmp_head;
+	if((tmp_head = malloc(sizeof(char) * 1)) == NULL){
+		perror("[Fail]:malloc@Function_Clear_Head\n");
+		exit(1);
+	}
+	tmp_head[0] = '\0';
+	return(tmp_head);
 	
 }
-int Function_Dot_Head(struct Tree *tree){
+char *Function_Dot_Head(struct Tree *tree){
 	if((*tree).Head[0] != '\0'){
-		(*tree).Head[0] = '.';
-		(*tree).Head[1] = '\0';
+		char *tmp_head;
+		if((tmp_head = malloc(sizeof(char) * 2)) == NULL){
+			perror("[Fail]:malloc@Function_Clear_Head\n");
+			exit(1);
+		}
+		tmp_head[0] = '.';
+		tmp_head[1] = '\0';
+		return(tmp_head);
+	}else{
+		return((*tree).Head);
 	}
-	return(0);
 }
 char *Function_Compile_Head(struct Tree *tree){
 	char *tmp_head;
