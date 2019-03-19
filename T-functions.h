@@ -152,7 +152,7 @@ char *Function_Compile_Head(struct Tree *tree){
 		strcpy(out_head,tmp_head+1);
 		strcpy(tmp_head,out_head);
 	}
-	return(out_head);
+	return(tmp_head);
 }
 
 /* formated print functions */
@@ -285,7 +285,13 @@ struct Tree *Function_Print_Conj_JS(struct Tree *tree, struct function_options *
 
 //* Head */
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	printf("%s",(*tree).Head);
+	if((*_copt).c_counter > 0){
+		char *head_str;
+		head_str = Function_Compile_Head(tree);
+		printf("%s",head_str);
+	}else{
+		printf("%s",(*tree).Head);
+	}
 	return(tree);
 }
 struct Tree *Function_Print_Head_SN(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
