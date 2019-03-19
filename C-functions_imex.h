@@ -141,6 +141,7 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 				// CQ
 				Add_Link_V(_LT,vSN);
 				vSN++;
+				Function_Print_LinkTable(_LT);
 
 				/* copy BUFF */
 				BUFF[buf_ptr] = '\0';
@@ -167,6 +168,7 @@ int import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct f
 			if((*_opt).form == 0){
 				// CQ
 				Add_Link_V(_LT,vSN);
+				Function_Print_LinkTable(_LT);
 
 				//#include "T-convFunctions_imex-branch.h"
 			}

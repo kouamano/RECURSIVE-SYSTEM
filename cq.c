@@ -324,7 +324,7 @@ int main(int argc, char **argv){
 	lt = Create_LinkTable(0);
 	c = 1;
 	c = import_LinkTable(IN,top,opt,_fopt,_copt,&node_count,lt);	// @ T-import_export.h
-	Function_Print_LinkTable(lt);
+	//Function_Print_LinkTable(lt);
 
 	/* close file */
 	if(is_open > 0){
