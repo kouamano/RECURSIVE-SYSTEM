@@ -1,11 +1,11 @@
 			/* apply compiler */
 			if((*_copt).c_clear == 1){
-				ExFunction_Recursive(top,(struct Tree *(*)())Function_Clear_Head,_fopt,_copt);
+				//ExFunction_Recursive(top,(struct Tree *(*)())Function_Clear_Head,_fopt,_copt);
 			}else if((*_copt).c_dot){
-				ExFunction_Recursive(top,(struct Tree *(*)())Function_Dot_Head,_fopt,_copt);
+				//ExFunction_Recursive(top,(struct Tree *(*)())Function_Dot_Head,_fopt,_copt);
 			}
 			if((*_copt).c_counter > 0){
-				ExFunction_Recursive(top,(struct Tree *(*)())Function_Compile_Head,_fopt,_copt);
+				//ExFunction_Recursive(top,(struct Tree *(*)())Function_Compile_Head,_fopt,_copt);
 			}
 
 
