@@ -132,7 +132,7 @@ char *Function_Dot_Head(struct Tree *tree){
 		return((*tree).Head);
 	}
 }
-char *Function_Compile_Head(struct Tree *tree){
+char *Function_Compile_Head(struct Tree *tree, struct compile_options *_copt){
 	char *tmp_head;
 	char *out_head;
 	int len = 0;
@@ -147,7 +147,12 @@ char *Function_Compile_Head(struct Tree *tree){
 	}
 
 	strcpy(tmp_head,(*tree).Head);
-	if(strncmp(tmp_head,"$~",2) == 0){
+
+	if((*_copt).c_clear > 0){
+		tmp_head = Function_Clear_Head(tree);
+	}else if((*_copt).c_dot > 0){
+		tmp_head = Function_Dot_Head(tree);
+	}else if(strncmp(tmp_head,"$~",2) == 0){
 		strcpy(out_head,tmp_head+2);
 		strcpy(tmp_head,out_head);
 	}else if(strncmp(tmp_head,"$`",2) == 0){ //quating Head
@@ -300,7 +305,7 @@ struct Tree *Function_Print_Conj_JS(struct Tree *tree, struct function_options *
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*_copt).c_counter > 0){
 		char *head_str;
-		head_str = Function_Compile_Head(tree);
+		head_str = Function_Compile_Head(tree,_copt);
 		printf("%s",head_str);
 	}else{
 		printf("%s",(*tree).Head);
