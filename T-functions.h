@@ -291,10 +291,18 @@ struct Tree *Function_Print_Conj_S(struct Tree *tree, struct function_options *_
 			printf(")");
 		}
 		if((*tree).LVself != 0 && strlen((*tree).Head) != 0){
-			printf(",");
+			/* for unpack */
+			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
+				if(strlen((*tree).Head) > 3){
+					printf(",");
+				}
+			}else{
+				printf(",");	//normal case
+			}
 		} 
 	return(tree);
 }
+
 struct Tree *Function_Print_Conj_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 		if((*tree).NCself > 1 && (*tree).Conj != 1){
 			printf("]");
