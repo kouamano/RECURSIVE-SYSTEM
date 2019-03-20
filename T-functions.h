@@ -383,6 +383,8 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 	if((*_copt).c_counter > 0){
 		char *head_str;
 		tmp_str = Function_Compile_Head(tree,_copt);
+	}else{
+		strcpy(tmp_str,(*tree).Head);
 	}
 	/* conversion */
 	sw = Detect_Dim(tmp_str,dim_pos);
