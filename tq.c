@@ -379,7 +379,7 @@ int main(int argc, char **argv){
 	int node_count = 0;
 	top = Create_Node(0,BUFF_LEN);
 	c = 1;
-	c = import_Tree(IN,top,opt,_fopt,_copt,&node_count);	// @ T-import_export.h
+	c = import_Tree(IN,top,opt,_fopt,_copt,_sopt,&node_count);	// @ T-import_export.h
 
 	/* close file */
 	if(is_open > 0){

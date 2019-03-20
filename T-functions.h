@@ -70,10 +70,10 @@ struct Tree *get_node(char *pos_str, struct Tree *tree){
 		printf(":%d:",list[i]);
 	}
 	*/
-	if(list[0] == 1){
+	if(list[0] == 0){
 		current = tree;
 		for(i=1;i<count;i++){
-			if((*current).NextCount >= list[i]){
+			if((*current).NextCount > list[i]){
 				current = current->Next[list[i]];
 			}else{
 				current = NULL;

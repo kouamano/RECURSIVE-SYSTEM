@@ -1,6 +1,11 @@
 			/* search */
 			struct Tree *hit_tree;
-			hit_tree = top;
+			if((*_sopt).s_counter){
+			hit_tree = get_node((*_sopt).pos,top);
+			if(hit_tree == NULL){
+				hit_tree = top;
+			}
+			}
 
 			/* apply formated print */
 			if((*_fopt).f_print_N == 1){
