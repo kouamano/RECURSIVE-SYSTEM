@@ -118,7 +118,6 @@ char *Function_Clear_Head(struct Tree *tree){
 	}
 	tmp_head[0] = '\0';
 	return(tmp_head);
-	
 }
 char *Function_Dot_Head(struct Tree *tree){
 	if((*tree).Head[0] != '\0'){
@@ -283,13 +282,13 @@ struct Tree *Function_Print_Conj_S(struct Tree *tree, struct function_options *_
 		} 
 	return(tree);
 }
-struct Tree *Function_Print_Conj_C(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-		if((*tree).Conj == 1){
-			printf(INDENT);
-		}else if((*tree).NCself > 1){
-			printf("\n");
-			printf(INDENT);
+struct Tree *Function_Print_Conj_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+		if((*tree).NCself > 1 && (*tree).Conj != 1){
+			printf("]");
 		}
+		if((*tree).LVself != 0 && strlen((*tree).Head) != 0){
+			printf(",");
+		} 
 	return(tree);
 }
 struct Tree *Function_Print_Conj_WL(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
@@ -297,6 +296,15 @@ struct Tree *Function_Print_Conj_WL(struct Tree *tree, struct function_options *
 			printf(",");
 		}else if((*tree).NCself > 1){
 			printf("][");
+		}
+	return(tree);
+}
+struct Tree *Function_Print_Conj_C(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+		if((*tree).Conj == 1){
+			printf(INDENT);
+		}else if((*tree).NCself > 1){
+			printf("\n");
+			printf(INDENT);
 		}
 	return(tree);
 }
@@ -308,15 +316,7 @@ struct Tree *Function_Print_Conj_X(struct Tree *tree, struct function_options *_
 		}
 	return(tree);
 }
-struct Tree *Function_Print_Conj_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-		if((*tree).NCself > 1 && (*tree).Conj != 1){
-			printf("]");
-		}
-		if((*tree).LVself != 0 && strlen((*tree).Head) != 0){
-			printf(",");
-		} 
-	return(tree);
-}
+
 
 
 //* Head */
@@ -328,10 +328,6 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	}else{
 		printf("%s",(*tree).Head);
 	}
-	return(tree);
-}
-struct Tree *Function_Print_Head_SN(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	printf("%d",(*tree).ser);
 	return(tree);
 }
 struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
@@ -411,6 +407,10 @@ struct Tree *Function_Print_Head_X(struct Tree *tree, struct function_options *_
 	if((*tree).NextCount == 0){
 		printf("%s",(*tree).Head);
 	}
+	return(tree);
+}
+struct Tree *Function_Print_Head_SN(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	printf("%d",(*tree).ser);
 	return(tree);
 }
 
