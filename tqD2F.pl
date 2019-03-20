@@ -27,7 +27,7 @@ while($l !~ /^\$M\$/ && $ct <= $ctmax){
 	$ct++;
 }
 if(length($l) > 0){
-	$comm = "echo '".$l."'"." | ./tconv -C -FC in=/dev/stdin";
+	$comm = "echo '".$l."'"." | ./tq.o -C -FC in=/dev/stdin";
 	$exe = `$comm`;
 	$exe =~ s/\s*$//;
 	$script = join("\n",@script);

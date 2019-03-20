@@ -154,6 +154,12 @@ char *Function_Compile_Head(struct Tree *tree, struct compile_options *_copt){
 		tmp_head = Function_Clear_Head(tree);
 	}else if((*_copt).c_dot > 0){
 		tmp_head = Function_Dot_Head(tree);
+	}else if(strncmp(tmp_head,"$X$",3) == 0){
+		strcpy(out_head,tmp_head+3);
+		strcpy(tmp_head,out_head);
+	}else if(strncmp(tmp_head,"$M$",3) == 0){
+		strcpy(out_head,tmp_head+3);
+		strcpy(tmp_head,out_head);
 	}else if(strncmp(tmp_head,"$U$",3) == 0){
 		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
