@@ -392,6 +392,7 @@ struct Tree *Function_Print_Head_X(struct Tree *tree, struct function_options *_
 struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
 	if(pos == 1){
 		if((*tree).NextCount != 0){
+			/* for  unpack */
 			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
 				if(strlen((*tree).Head) > 3){
 					printf(",");
@@ -403,6 +404,27 @@ struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *
 	}
 	return(tree);
 }
+struct Tree *Function_Print_Bopen_S(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
+	if(pos == 0){
+		int i;
+		for(i=0;i<(*tree).NextCount;i++){
+			if((*tree).Next[i]->Conj == 0){
+				/* for unpack */
+				if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
+					if(strlen((*tree).Head) > 3){
+						//printf(",");
+						printf("");
+					}
+				}else{
+					printf("(");	//normal case
+				}
+			}
+		}
+	}
+	return(tree);
+}
+
+
 struct Tree *Function_Print_Bopen_C(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
 	if(pos == 1){
 		if((*tree).NextCount != 0){
@@ -455,17 +477,8 @@ struct Tree *Function_Print_Bopen_X(struct Tree *tree, struct function_options *
 	}
 	return(tree);
 }
-struct Tree *Function_Print_Bopen_S(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
-	if(pos == 0){
-		int i;
-		for(i=0;i<(*tree).NextCount;i++){
-			if((*tree).Next[i]->Conj == 0){
-				printf("(");
-			}
-		}
-	}
-	return(tree);
-}
+
+
 struct Tree *Function_Print_Bopen_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
 	if(pos == 0){
 		int i;
