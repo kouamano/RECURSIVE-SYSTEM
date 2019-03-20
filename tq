@@ -22,14 +22,16 @@ if [ $1 = "-h" ]; then
 elif [ $1 = "-f" ]; then
   echo "tq Flow:"
   echo "|file|  +exec+"
-  echo "|tgt|   +cat+"
-  echo "|dsz|   +   +"
-  echo "|ddf|   +   +"
-  echo "|ddl|   +   +"
-  echo "        +   +  |frl|  +tqR2D+"
-  echo "                      +     +                         |com|  +com+"
-  echo "                      +     +  |dry|  +tqD2F+                +   +"
-  echo "                                      +     +  |fed|         +   +"
+  echo ""
+  echo "+tq+"
+  echo "     |tgt|   +cat+"
+  echo "     |dsz|   +   +"
+  echo "     |ddf|   +   +"
+  echo "     |ddl|   +   +"
+  echo "             +   +  |frl|  +tqR2D+"
+  echo "                           +     +                         |com|  +com+"
+  echo "                           +     +  |dry|  +tqD2F+                +   +"
+  echo "                                           +     +  |fed|         +   +"
   exit;
 elif [ $1 = "-B" ]; then
   ./tq.o ${array#-B}
