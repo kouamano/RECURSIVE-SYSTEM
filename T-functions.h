@@ -479,7 +479,7 @@ struct Tree *Function_Print_Bopen_JS(struct Tree *tree, struct function_options 
 }
 
 //* Bclose */
-struct Tree *Function_Print_Bclose(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
 			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
 				printf("");
@@ -491,6 +491,19 @@ struct Tree *Function_Print_Bclose(struct Tree *tree, struct function_options *_
 	}
 	return(tree);
 }
+struct Tree *Function_Print_Bclose_S(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	if((*tree).NextCount != 0){
+			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
+				printf("");
+			}else{
+				printf(")");	//normal case
+			}
+
+		//printf(")");
+	}
+	return(tree);
+}
+
 struct Tree *Function_Print_Bclose_C(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
 		printf("\n");

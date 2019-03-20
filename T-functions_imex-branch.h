@@ -1,6 +1,6 @@
 			/* apply formated print */
 			if((*_fopt).f_print_N == 1){
-				ExFunction_Recursive_Ser_MultiPrint(top, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head_SN, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose,  _fopt, _copt, SN);
+				ExFunction_Recursive_Ser_MultiPrint(top, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head_SN, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,  _fopt, _copt, SN);
 				if(C == LF && (*_copt).c_restrict == 1){
 					printf(";");
 				}
@@ -9,7 +9,7 @@
 				}
 			}
 			if((*_fopt).f_print_T == 1){
-				ExFunction_Recursive_Ser_MultiPrint(top, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose,  _fopt, _copt, SN);
+				ExFunction_Recursive_Ser_MultiPrint(top, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,  _fopt, _copt, SN);
 				if(C == LF && (*_copt).c_restrict == 1){
 					printf(";");
 				}
@@ -46,7 +46,7 @@
 			}
 
 			if((*_fopt).f_print_S == 1){
-				ExFunction_Recursive_Ser_MultiPrint(top, (struct Tree *(*)())Function_Print_Conj_S, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_S,  (struct Tree *(*)())Function_Print_Bclose,  _fopt, _copt, SN);
+				ExFunction_Recursive_Ser_MultiPrint(top, (struct Tree *(*)())Function_Print_Conj_S, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_S,  (struct Tree *(*)())Function_Print_Bclose_S,  _fopt, _copt, SN);
 				if(C == LF && (*_copt).c_restrict == 1){
 					printf(";");
 				}
