@@ -9,6 +9,7 @@ while(<>){
 	chomp;
 	if($_ =~ /^\$ER\$/){
 		$head = $_;
+		$copt = '$-Cr';
 	}elsif($_ =~ /^\$E\$/){
 		$head = $_;
 	}elsif($_ =~ /\t->\t/){
@@ -35,7 +36,8 @@ if( "$rls{'$X$Application'}" eq '$X$Mathematica' ){
 	print DATA "cat ".$fedfile." | "."math";
 	close(DATA);
 	# create metacomannd
-	print '$M$./tq.o ($-FW,$-Cr)';
+	$meta = '$M$./tq.o ($-FW,'.$copt.')';
+	print $meta;
 	print "\n";
 	print '$X$Get($`~/gitsrc/MATH_SCRIPT/SCRIPTS/DataFederation.m)';
 	print "\n";
