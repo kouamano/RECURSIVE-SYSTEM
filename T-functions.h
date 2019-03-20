@@ -43,6 +43,30 @@ int Detect_Dim(const char *head, int *pos){
 	return(ret);
 }
 struct Tree *get_node(char *pos_str, struct Tree *tree){
+	int len = 0;
+	int list_len = 0;
+	int i;
+	int count = 0;
+	int *list;
+	len = strlen(pos_str);
+	for(i=0;i<len;i++){
+		if(pos_str[i] == ','){
+			list_len++;
+		}
+	}
+	list_len++;
+	list = malloc(sizeof(int) * list_len);
+	sscanf(pos_str,"%d",&list[count]);
+	for(i=0;i<len;i++){
+		if(pos_str[i] == ','){
+			count++;
+			sscanf(pos_str+i+1,"%d",&list[count]);
+		}
+	}
+	count++;
+	for(i=0;i<count;i++){
+		printf(":%d:",list[i]);
+	}
 }
 
 /* restructure functions */
