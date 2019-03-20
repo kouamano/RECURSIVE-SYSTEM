@@ -364,25 +364,34 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 	int *dim_pos;
 	int head_len = 0;
 	char *head_str;
+	char *tmp_str;
 	if((dim_pos = calloc(2,sizeof(int))) == NULL){
 		perror("[Fail]:calloc@Function_Print_Head_W.\n");
 		exit(1);
 	}
-	sw = Detect_Dim((*tree).Head,dim_pos);
+	head_len = strlen((*tree).Head);
+	if((tmp_str = malloc(sizeof(char) * (head_len+1))) == NULL){
+		perror("[Fail]:calloc@Function_Print_Head_W.\n");
+		exit(1);
+	}
+	strcpy(tmp_str,(*tree).Head);
+
+
+	sw = Detect_Dim(tmp_str,dim_pos);
 	if(sw == 2){
-		head_len = strlen((*tree).Head);
+		//head_len = strlen((*tree).Head);
 		if((head_str = malloc(sizeof(char) * (head_len+1))) == NULL){
 			perror("[Fail]:calloc@Function_Print_Head_W.\n");
 			exit(1);
 		}
-		strcpy(head_str,(*tree).Head);
+		strcpy(head_str,tmp_str);
 		head_str[dim_pos[0]] = '\0';
 		printf("%s[DIM,",head_str);
 		printf("%s",head_str+dim_pos[0]+1);
 	}else{
-		head_len = strlen((*tree).Head);
+		head_len = strlen(tmp_str);
 		if(head_len > 0){
-			printf("%s",(*tree).Head);
+			printf("%s",tmp_str);
 		}else{
 			;
 		}
