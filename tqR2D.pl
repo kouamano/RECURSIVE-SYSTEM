@@ -4,6 +4,7 @@ $head = "";
 %rls = ();
 @script = ();
 @vals = ();
+$copt = "";
 while(<>){
 	chomp;
 	if($_ =~ /^\$ER\$/){
