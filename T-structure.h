@@ -46,3 +46,8 @@ struct compile_options {
 	int c_dot;
 };
 
+struct search_options {
+	int s_counter;
+	char *pos;
+};
+
