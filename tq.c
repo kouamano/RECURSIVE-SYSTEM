@@ -76,7 +76,7 @@ struct options *alloc_options(void){
 struct function_options *alloc_function_options(void){
 	struct function_options *p;
 	if((p = malloc(sizeof(struct function_options) * 1)) == NULL){
-		printf("failed : malloc() in alloc_options().\n");
+		printf("failed : malloc() in alloc_function_options().\n");
 		exit(1);
 	}
 	return(p);
@@ -84,7 +84,15 @@ struct function_options *alloc_function_options(void){
 struct compile_options *alloc_compile_options(void){
 	struct compile_options *p;
 	if((p = malloc(sizeof(struct compile_options) * 1)) == NULL){
-		printf("failed : malloc() in alloc_options().\n");
+		printf("failed : malloc() in alloc_compile_options().\n");
+		exit(1);
+	}
+	return(p);
+}
+struct search_options *alloc_search_options(void){
+	struct search_options *p;
+	if((p = malloc(sizeof(struct search_options) * 1)) == NULL){
+		printf("failed : malloc() in alloc_search_options().\n");
 		exit(1);
 	}
 	return(p);
