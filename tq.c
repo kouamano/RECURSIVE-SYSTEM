@@ -231,10 +231,17 @@ void get_compile_options(int optc, char **optv, struct compile_options *copt){
 }
 void get_search_options(int optc, char **optv, struct search_options *sopt){
 	int i = 0;
+	int opt_len = 0;
 	(*sopt).s_counter = 0;
 	for(i=0;i<optc;i++){
 		if(strncmp(optv[i],"Sp=",3) == 0){
 			(*sopt).s_counter++;
+			opt_len = strlen(optv[i])-3;
+			(*sopt).pos = malloc(sizeof(char) * (opt_len + 1));
+			if((*sopt).pos == NULL){
+				perror("[Fail]malloc@get_search_options.\n");
+				exit(1);
+			}
 		}
 	}
 }
@@ -271,6 +278,11 @@ void check_compile_options(struct compile_options *copt){
 	printf("  opt.c_restrict:%d:\n",(*copt).c_restrict);
 	printf("  opt.c_clear:%d:\n",(*copt).c_clear);
 	printf("  opt.c_dot:%d:\n",(*copt).c_dot);
+}
+void check_search_options(struct search_options *sopt){
+	printf(" searchs:\n");
+	printf("  opt.scount:%d:\n",(*sopt).s_counter);
+	printf("  opt.pos:%s:\n",(*sopt).pos);
 }
 
 /* main */
