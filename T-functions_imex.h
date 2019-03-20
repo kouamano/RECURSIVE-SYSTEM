@@ -7,6 +7,7 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 	int buf_ptr = 0;
 	struct Tree *current;
 	struct Tree *next;
+	struct Tree *null_tree;
 	int close = 0;
 	int ESC = 0;
 	int SN = 1;
