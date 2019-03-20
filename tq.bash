@@ -1,0 +1,83 @@
+#!/bin/bash
+# this is a tq meta command
+# Needs: tq.o , tqR2D.pl , tqD2F.pl
+# {.tgt , .ddf , .dsz , .ddl} =cat=> .frl =perl=> frl.dry =perl=> frl.dry.fed =perl=> .frl.dry.fed.com
+declare -i FRL=0;
+array=$@
+
+if [ $# -eq 0 ]; then
+  echo "Usage:"
+  echo "  tq target=<file>"
+  exit;
+fi
+
+if [ $1 = "-h" ]; then
+  echo "tq [-h|-B|-R|-D|-F] | target=<file>"
+  echo "  -h: print help"
+  echo "  -B: call tq.o"
+  echo "  -R: call tqR2D.pl"
+  echo "  -D: call tqD2F.pl"
+  echo "  -F: create rule file only."
+  echo "Flow:"
+  echo "|file|  +command+"
+  echo "|tgt|   +cat+"
+  echo "|dsz|   +   +"
+  echo "|ddf|   +   +"
+  echo "|ddl|   +   +"
+  echo "        +   +  |frl|  +tqR2D+"
+  echo "                      +     +                         |com|  +com+"
+  echo "                      +     +  |dry|  +tqD2F+                +   +"
+  echo "                                      +     +  |fed|         +   +"
+  exit;
+elif [ $1 = "-B" ]; then
+  ./tq.o ${array#-B}
+  exit;
+elif [ $1 = "-R" ]; then
+  ./tqR2D.pl ${array#-R}
+  exit;
+elif [ $1 = "-D" ]; then
+  ./tqD2F.pl ${array#-D}
+  exit;
+elif [ $1 = "-F" ]; then
+  FRL=1
+  tgt=${2#target=}
+else
+  tgt=${1#target=}
+fi
+
+
+## create FRL
+if [ -e ${tgt}.tgt ]; then
+  echo "Target file:"
+  echo "  $tgt"
+  echo "  ${tgt}.tgt"
+  echo "  ${tgt}.dsz"
+  echo "  ${tgt}.ddf"
+  echo "  ${tgt}.ddl"
+  cat ${tgt}.ddl ${tgt}.ddf ${tgt}.dsz ${tgt}.tgt > ${tgt}.frl
+  echo "Create ${tgt}.frl"
+else
+  echo "no target file"
+  exit;
+fi
+if [ $FRL -eq 1 ]; then
+  exit;
+fi
+
+
+## FRL => DRY
+echo "Create ${tgt}.frl.dry , ${tgt}.frl.dry.fed.com"
+./tqR2D.pl ${tgt}.frl > ${tgt}.frl.dry
+## DRY => FED
+echo "Create ${tgt}.frl.dry.fed"
+./tqD2F.pl ${tgt}.frl.dry # => toSheet.dry.fed
+## FED => EXEC
+### already created @ FRL => DRY
+## EXEC
+chmod 755 ./${tgt}.frl.dry.fed.com
+echo "Exec ${tgt}.frl.dry.fed.com ..."
+./${tgt}.frl.dry.fed.com
+## post op
+echo "... Done"
+
+
