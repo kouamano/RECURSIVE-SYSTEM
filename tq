@@ -21,7 +21,7 @@ if [ $1 = "-h" ]; then
   echo "  -F: create rule file only."
 elif [ $1 = "-f" ]; then
   echo "tq Flow:"
-  echo "|file|  +command+"
+  echo "|file|  +exec+"
   echo "|tgt|   +cat+"
   echo "|dsz|   +   +"
   echo "|ddf|   +   +"
