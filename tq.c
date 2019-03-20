@@ -387,9 +387,6 @@ int main(int argc, char **argv){
 	}
 
 	/* test code */
-	if((*_fopt).f_print_test == 1){
-	get_node((*_sopt).pos,top);
-	}
 
 	/* finish */
 	return(c);
