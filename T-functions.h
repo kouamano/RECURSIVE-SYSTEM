@@ -42,7 +42,7 @@ int Detect_Dim(const char *head, int *pos){
 	}
 	return(ret);
 }
-struct Tree *get_node(char *pos_str){
+struct Tree *get_node(char *pos_str, struct Tree *tree){
 }
 
 /* restructure functions */
