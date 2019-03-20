@@ -380,16 +380,13 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 		perror("[Fail]:calloc@Function_Print_Head_W.\n");
 		exit(1);
 	}
-	//strcpy(tmp_str,(*tree).Head);
 	/* compile */
 	if((*_copt).c_counter > 0){
 		char *head_str;
 		tmp_str = Function_Compile_Head(tree,_copt);
-		//printf("%s",head_str);
 	}
 	sw = Detect_Dim(tmp_str,dim_pos);
 	if(sw == 2){
-		//head_len = strlen((*tree).Head);
 		if((head_str = malloc(sizeof(char) * (head_len+1))) == NULL){
 			perror("[Fail]:calloc@Function_Print_Head_W.\n");
 			exit(1);
