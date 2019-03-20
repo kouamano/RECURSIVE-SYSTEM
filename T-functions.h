@@ -327,7 +327,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		tmp_str = Function_Compile_Head(tree,_copt);
 		printf("%s",tmp_str);
 	}else{
-		printf("%s",(*tree).Head);
+		printf("%s",(*tree).Head);	//normal
 	}
 	return(tree);
 }
@@ -352,23 +352,22 @@ struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *
 	}else{
 		strcpy(tmp_str,(*tree).Head);
 	}
-
-	sw = Detect_Dim((*tree).Head,dim_pos);
-
+	/* conversion */
+	sw = Detect_Dim(tmp_str,dim_pos);
 	if(sw == 2){
-		head_len = strlen((*tree).Head);
+		head_len = strlen(tmp_str);
 		if((head_str = malloc(sizeof(char) * (head_len+1))) == NULL){
 			perror("[Fail]:calloc@Function_Print_Head_W.\n");
 			exit(1);
 		}
-		strcpy(head_str,(*tree).Head);
+		strcpy(head_str,tmp_str);
 		head_str[dim_pos[0]] = '\0';
 		printf("[\"%s\",\"DIM\",",head_str);
 		printf("%s",head_str+dim_pos[0]+1);
 	}else{
-		head_len = strlen((*tree).Head);
+		head_len = strlen(tmp_str);
 		if(head_len > 0){
-			printf("\"%s\"",(*tree).Head);
+			printf("\"%s\"",tmp_str);
 		}else{
 			;
 		}
@@ -420,7 +419,14 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 }
 struct Tree *Function_Print_Head_X(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount == 0){
-		printf("%s",(*tree).Head);
+		/* compile */
+		if((*_copt).c_counter > 0){
+			char *tmp_str;
+			tmp_str = Function_Compile_Head(tree,_copt);
+			printf("%s",tmp_str);
+		}else{
+			printf("%s",(*tree).Head);	//normal
+		}
 	}
 	return(tree);
 }
