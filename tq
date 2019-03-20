@@ -20,6 +20,7 @@ if [ $1 = "-h" ]; then
   echo "  -R: call tqR2D.pl"
   echo "  -D: call tqD2F.pl"
   echo "  -F: create rule file only."
+  exit;
 elif [ $1 = "-f" ]; then
   echo "tq Flow:"
   echo "|file|  +exec+"
