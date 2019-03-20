@@ -449,12 +449,13 @@ struct Tree *Function_Print_Bopen_S(struct Tree *tree, struct function_options *
 	}
 	return(tree);
 }
-
-
-struct Tree *Function_Print_Bopen_C(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
-	if(pos == 1){
-		if((*tree).NextCount != 0){
-			printf(INDENT);
+struct Tree *Function_Print_Bopen_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
+	if(pos == 0){
+		int i;
+		for(i=0;i<(*tree).NextCount;i++){
+			if((*tree).Next[i]->Conj == 0){
+				printf("[");
+			}
 		}
 	}
 	return(tree);
@@ -503,19 +504,16 @@ struct Tree *Function_Print_Bopen_X(struct Tree *tree, struct function_options *
 	}
 	return(tree);
 }
-
-
-struct Tree *Function_Print_Bopen_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
-	if(pos == 0){
-		int i;
-		for(i=0;i<(*tree).NextCount;i++){
-			if((*tree).Next[i]->Conj == 0){
-				printf("[");
-			}
+struct Tree *Function_Print_Bopen_C(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
+	if(pos == 1){
+		if((*tree).NextCount != 0){
+			printf(INDENT);
 		}
 	}
 	return(tree);
 }
+
+
 
 //* Bclose */
 struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
@@ -539,13 +537,6 @@ struct Tree *Function_Print_Bclose_S(struct Tree *tree, struct function_options 
 			}
 
 		//printf(")");
-	}
-	return(tree);
-}
-
-struct Tree *Function_Print_Bclose_C(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	if((*tree).NextCount != 0){
-		printf("\n");
 	}
 	return(tree);
 }
@@ -586,6 +577,12 @@ struct Tree *Function_Print_Bclose_X(struct Tree *tree, struct function_options 
 				}
 			}
 
+	}
+	return(tree);
+}
+struct Tree *Function_Print_Bclose_C(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	if((*tree).NextCount != 0){
+		printf("\n");
 	}
 	return(tree);
 }
