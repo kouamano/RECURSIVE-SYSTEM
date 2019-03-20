@@ -58,8 +58,8 @@ void compile_help(void){
 	printf("   -Cd : rewite head to dot.\n");
 }
 void search_help(void){
-	printf("  Search: Under construction.\n");
-	printf("  Sp=<position>.\n");
+	printf("  Search option: Under construction.\n");
+	printf("   Sp=<position>.\n");
 }
 
 /* allocation */
