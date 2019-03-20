@@ -243,7 +243,7 @@ void check_function_options(struct function_options *fopt){
 }
 void check_compile_options(struct compile_options *copt){
 	printf(" compilers:\n");
-	printf("  opt.fcount:%d:\n",(*copt).c_counter);
+	printf("  opt.ccount:%d:\n",(*copt).c_counter);
 	printf("  opt.c_restrict:%d:\n",(*copt).c_restrict);
 	printf("  opt.c_clear:%d:\n",(*copt).c_clear);
 	printf("  opt.c_dot:%d:\n",(*copt).c_dot);
