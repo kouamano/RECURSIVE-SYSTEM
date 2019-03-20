@@ -6,7 +6,7 @@ $head = "";
 @vals = ();
 while(<>){
 	chomp;
-	if($_ =~ /^\$RE\$/){
+	if($_ =~ /^\$ER\$/){
 		$head = $_;
 	}elsif($_ =~ /^\$E\$/){
 		$head = $_;
