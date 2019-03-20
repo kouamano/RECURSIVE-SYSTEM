@@ -52,8 +52,4 @@ struct search_options {
 	char *pos;
 };
 
-struct search_pos {
-	int count;
-	int *pos;
-};
 
