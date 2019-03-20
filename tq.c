@@ -222,6 +222,7 @@ void check_options(struct options *opt){
 	printf(" opt.in:%s:\n",(*opt).in);
 	printf(" opt.war:%d:\n",(*opt).war);
 	printf(" opt.hF:%d:\n",(*opt).hF);
+	printf(" opt.hC:%d:\n",(*opt).hC);
 	printf(" opt.form:%d:\n",(*opt).form);
 }
 void check_function_options(struct function_options *fopt){
