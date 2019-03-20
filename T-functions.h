@@ -48,6 +48,7 @@ struct Tree *get_node(char *pos_str, struct Tree *tree){
 	int i;
 	int count = 0;
 	int *list;
+	struct Tree *current;
 	len = strlen(pos_str);
 	for(i=0;i<len;i++){
 		if(pos_str[i] == ','){
@@ -64,10 +65,24 @@ struct Tree *get_node(char *pos_str, struct Tree *tree){
 		}
 	}
 	count++;
-	//under construction
+	/*
 	for(i=0;i<count;i++){
 		printf(":%d:",list[i]);
 	}
+	*/
+	if(list[0] == 1){
+		current = tree;
+		for(i=1;i<count;i++){
+			if((*current).NextCount >= list[i]){
+				current = current->Next[list[i]];
+			}else{
+				current = NULL;
+			}
+		}
+	}else{
+		current = NULL;
+	}
+	return(current);
 }
 
 /* restructure functions */
