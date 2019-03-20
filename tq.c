@@ -58,6 +58,7 @@ void compile_help(void){
 	printf("   -Cd : rewite head to dot.\n");
 }
 void search_help(void){
+	printf("  Search: Under construction.\n");
 	printf("  Sp=<position>.\n");
 }
 
@@ -111,6 +112,7 @@ void init_options(struct options *opt){
 	(*opt).form = 2;
 	(*opt).hF = 0;
 	(*opt).hC = 0;
+	(*opt).hS = 0;
 }
 void init_function_options(struct function_options *fopt){
 	(*fopt).f_counter = 0;
@@ -156,6 +158,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).hF = 1;
 		}else if(strncmp(optv[i],"-hC",3) == 0){
 			(*opt).hC = 1;
+		}else if(strncmp(optv[i],"-hS",3) == 0){
+			(*opt).hS = 1;
 		}else if(strncmp(optv[i],"in=",3) == 0){
 			sscanf(optv[i],"in=%s",(*opt).in);
 		}else if(strncmp(optv[i],"form=single",11) == 0){
@@ -327,6 +331,10 @@ int main(int argc, char **argv){
 		(*opt).help = 1;
 		ie = 1;
 	}
+	if((*opt).hS == 1){
+		(*opt).help = 1;
+		ie = 1;
+	}
 	if((*opt).help == 1){
 		help();
 		ie = 1;
@@ -337,6 +345,10 @@ int main(int argc, char **argv){
 	}
 	if((*opt).hC == 1){
 		compile_help();
+		ie = 1;
+	}
+	if((*opt).hS == 1){
+		search_help();
 		ie = 1;
 	}
 	if((*opt).stat == 1){
