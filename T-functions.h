@@ -297,7 +297,7 @@ struct Tree *Function_Print_Conj_S(struct Tree *tree, struct function_options *_
 					printf(",");
 				}
 			}else{
-				printf(",");	//normal case
+			printf(",");	//normal case
 			}
 		} 
 	return(tree);
@@ -406,7 +406,7 @@ struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *
 					printf(",");
 				}
 			}else{
-				printf("(");	//normal case
+			printf("(");	//normal case
 			}
 		}
 	}
@@ -424,7 +424,7 @@ struct Tree *Function_Print_Bopen_S(struct Tree *tree, struct function_options *
 						printf("");
 					}
 				}else{
-					printf("(");	//normal case
+				printf("(");	//normal case
 				}
 			}
 		}
