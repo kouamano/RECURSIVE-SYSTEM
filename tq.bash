@@ -8,6 +8,7 @@ array=$@
 if [ $# -eq 0 ]; then
   echo "Usage:"
   echo "  tq target=<file>"
+  echo "  tq -h"
   exit;
 fi
 
@@ -19,17 +20,20 @@ if [ $1 = "-h" ]; then
   echo "  -R: call tqR2D.pl"
   echo "  -D: call tqD2F.pl"
   echo "  -F: create rule file only."
+  exit;
 elif [ $1 = "-f" ]; then
   echo "tq Flow:"
   echo "|file|  +exec+"
-  echo "|tgt|   +cat+"
-  echo "|dsz|   +   +"
-  echo "|ddf|   +   +"
-  echo "|ddl|   +   +"
-  echo "        +   +  |frl|  +tqR2D+"
-  echo "                      +     +                         |com|  +com+"
-  echo "                      +     +  |dry|  +tqD2F+                +   +"
-  echo "                                      +     +  |fed|         +   +"
+  echo ""
+  echo "+tq+"
+  echo "     |tgt|   +cat+"
+  echo "     |dsz|   +   +"
+  echo "     |ddf|   +   +"
+  echo "     |ddl|   +   +"
+  echo "             +   +  |frl|  +tqR2D+"
+  echo "                           +     +                         |com|  +com+"
+  echo "                           +     +  |dry|  +tqD2F+                +   +"
+  echo "                                           +     +  |fed|         +   +"
   exit;
 elif [ $1 = "-B" ]; then
   ./tq.o ${array#-B}
