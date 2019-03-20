@@ -226,7 +226,7 @@ void check_options(struct options *opt){
 	printf(" opt.form:%d:\n",(*opt).form);
 }
 void check_function_options(struct function_options *fopt){
-	printf(" functions:\n");
+	printf(" converters:\n");
 	printf("  opt.fcount:%d:\n",(*fopt).f_counter);
 	printf("  opt.FT:%d:\n",(*fopt).f_print_T);
 	printf("  opt.FS:%d:\n",(*fopt).f_print_S);
