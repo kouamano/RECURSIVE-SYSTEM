@@ -21,6 +21,7 @@ struct options {
 	int form;
         int hF;
         int hC;
+        int hS;
 };
 
 struct function_options {

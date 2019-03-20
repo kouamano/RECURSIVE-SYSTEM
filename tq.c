@@ -25,6 +25,7 @@ void help(void){
 	printf("  -h : help.\n");
 	printf("  -hF : function help.\n");
 	printf("  -hC : compile help.\n");
+	printf("  -hS : search help.\n");
 	printf("  -s : prints status.\n");
 	printf("  -c : check args.\n");
 	printf("  buff : set integer for buffer size to read the nodes.\n");
@@ -290,6 +291,7 @@ int main(int argc, char **argv){
 	struct options *opt;
 	struct function_options *_fopt;
 	struct compile_options *_copt;
+	struct search_options *_sopt;
 	int ie = 0;
 	FILE *IN;
 	int is_open = 0;
@@ -308,6 +310,10 @@ int main(int argc, char **argv){
 	_copt = alloc_compile_options();
 	init_compile_options(_copt);
 	get_compile_options(argc-1, argv+1, _copt);
+	//* search opt */
+	_sopt = alloc_search_options();
+	init_search_options(_sopt);
+	get_search_options(argc-1, argv+1, _sopt);
 
 	/* print help operation */
 	if(argc == 1){
