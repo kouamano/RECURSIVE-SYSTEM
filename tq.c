@@ -56,6 +56,9 @@ void compile_help(void){
 	printf("   -Cc : clear head.\n");
 	printf("   -Cd : rewite head to dot.\n");
 }
+void search_help(void){
+	printf("  Sp=<position>.\n");
+}
 
 /* allocation */
 struct options *alloc_options(void){
