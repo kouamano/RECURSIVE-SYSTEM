@@ -347,7 +347,7 @@ struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *
 	}
 	/* compile */
 	if((*_copt).c_counter > 0){
-		char *head_str;
+		//char *head_str;
 		tmp_str = Function_Compile_Head(tree,_copt);
 	}else{
 		strcpy(tmp_str,(*tree).Head);
@@ -391,7 +391,7 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 	}
 	/* compile */
 	if((*_copt).c_counter > 0){
-		char *head_str;
+		//char *head_str;
 		tmp_str = Function_Compile_Head(tree,_copt);
 	}else{
 		strcpy(tmp_str,(*tree).Head);
@@ -459,8 +459,7 @@ struct Tree *Function_Print_Bopen_S(struct Tree *tree, struct function_options *
 				/* for unpack */
 				if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
 					if(strlen((*tree).Head) > 3){
-						//printf(",");
-						printf("");
+						;
 					}
 				}else{
 				printf("(");	//normal case
@@ -540,7 +539,8 @@ struct Tree *Function_Print_Bopen_C(struct Tree *tree, struct function_options *
 struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
 			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
-				printf("");
+				//printf("");
+				;
 			}else{
 				printf(")");	//normal case
 			}
@@ -552,7 +552,8 @@ struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options 
 struct Tree *Function_Print_Bclose_S(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
 			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
-				printf("");
+				//printf("");
+				;
 			}else{
 				printf(")");	//normal case
 			}
