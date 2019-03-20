@@ -336,10 +336,16 @@ struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *
 	int *dim_pos;
 	int head_len = 0;
 	char *head_str;
+	char *tmp_str;
 	if((dim_pos = calloc(2,sizeof(int))) == NULL){
 		perror("[Fail]:calloc@Function_Print_Head_J.\n");
 		exit(1);
 	}
+	if((tmp_str = malloc(sizeof(char) * (head_len+1))) == NULL){
+		perror("[Fail]:calloc@Function_Print_Head_W.\n");
+		exit(1);
+	}
+
 	sw = Detect_Dim((*tree).Head,dim_pos);
 	if(sw == 2){
 		head_len = strlen((*tree).Head);
