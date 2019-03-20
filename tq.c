@@ -247,6 +247,7 @@ void get_search_options(int optc, char **optv, struct search_options *sopt){
 				perror("[Fail]malloc@get_search_options.\n");
 				exit(1);
 			}
+			strcpy((*sopt).pos,optv[i]+3);
 		}
 	}
 }
@@ -359,6 +360,7 @@ int main(int argc, char **argv){
 		check_options(opt);
 		check_function_options(_fopt);
 		check_compile_options(_copt);
+		check_search_options(_sopt);
 		ie = 1;
 	}
 	if(ie == 1){
