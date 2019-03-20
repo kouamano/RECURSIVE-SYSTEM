@@ -229,6 +229,15 @@ void get_compile_options(int optc, char **optv, struct compile_options *copt){
 		}
 	}
 }
+void get_search_options(int optc, char **optv, struct search_options *sopt){
+	int i = 0;
+	(*sopt).s_counter = 0;
+	for(i=0;i<optc;i++){
+		if(strncmp(optv[i],"Sp=",3) == 0){
+			(*sopt).s_counter++;
+		}
+	}
+}
 
 /* checking */
 void check_options(struct options *opt){
