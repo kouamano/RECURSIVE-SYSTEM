@@ -1,10 +1,12 @@
 			/* search */
 			struct Tree *hit_tree;
 			if((*_sopt).s_counter){
-			hit_tree = get_node((*_sopt).pos,top);
-			if(hit_tree == NULL){
+				hit_tree = get_node((*_sopt).pos,top);
+				if(hit_tree == NULL){
+					hit_tree = top;
+				}
+			}else{
 				hit_tree = top;
-			}
 			}
 
 			/* apply formated print */
