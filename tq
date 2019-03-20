@@ -8,6 +8,7 @@ array=$@
 if [ $# -eq 0 ]; then
   echo "Usage:"
   echo "  tq target=<file>"
+  echo "  tq -h"
   exit;
 fi
 
