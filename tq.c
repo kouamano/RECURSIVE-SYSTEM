@@ -132,6 +132,10 @@ void init_compile_options(struct compile_options *copt){
         (*copt).c_clear = 0;
         (*copt).c_dot = 0;
 }
+void init_search_options(struct search_options *sopt){
+        (*sopt).s_counter = 0;
+        (*sopt).pos = NULL;
+}
 
 /* get options */
 void get_options(int optc, char **optv, struct options *opt){
