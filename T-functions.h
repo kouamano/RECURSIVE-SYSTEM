@@ -385,6 +385,7 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 		char *head_str;
 		tmp_str = Function_Compile_Head(tree,_copt);
 	}
+	/* conversion */
 	sw = Detect_Dim(tmp_str,dim_pos);
 	if(sw == 2){
 		if((head_str = malloc(sizeof(char) * (head_len+1))) == NULL){
