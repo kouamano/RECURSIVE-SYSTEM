@@ -42,6 +42,8 @@ int Detect_Dim(const char *head, int *pos){
 	}
 	return(ret);
 }
+struct Tree *get_node(char *pos_str){
+}
 
 /* restructure functions */
 struct Tree *Create_Node(int _ser, int H_size){
