@@ -64,6 +64,7 @@ struct Tree *get_node(char *pos_str, struct Tree *tree){
 		}
 	}
 	count++;
+	//under construction
 	for(i=0;i<count;i++){
 		printf(":%d:",list[i]);
 	}
