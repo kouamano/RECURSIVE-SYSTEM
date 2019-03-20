@@ -12,13 +12,15 @@ if [ $# -eq 0 ]; then
 fi
 
 if [ $1 = "-h" ]; then
-  echo "tq [-h|-B|-R|-D|-F] | target=<file>"
+  echo "tq [-h|-f|-B|-R|-D|-F] | target=<file>"
   echo "  -h: print help"
+  echo "  -f: print operation flow"
   echo "  -B: call tq.o"
   echo "  -R: call tqR2D.pl"
   echo "  -D: call tqD2F.pl"
   echo "  -F: create rule file only."
-  echo "Flow:"
+elif [ $1 = "-f" ]; then
+  echo "tq Flow:"
   echo "|file|  +command+"
   echo "|tgt|   +cat+"
   echo "|dsz|   +   +"
