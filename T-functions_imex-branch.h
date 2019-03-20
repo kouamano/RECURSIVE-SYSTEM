@@ -1,3 +1,7 @@
+			/* search */
+			struct Tree *hit_tree;
+			hit_tree = top;
+
 			/* apply formated print */
 			if((*_fopt).f_print_N == 1){
 				ExFunction_Recursive_Ser_MultiPrint(top, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head_SN, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,  _fopt, _copt, SN);
