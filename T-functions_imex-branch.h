@@ -4,8 +4,8 @@
 			if((*_sopt).s_counter){
 				hit_tree = get_node((*_sopt).pos,top);
 				if(hit_tree == NULL){
-					hit_tree = top;
-					//hit_tree = null_tree;
+					//hit_tree = top;
+					hit_tree = null_node;
 				}
 			}else{
 				hit_tree = top;
