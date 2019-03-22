@@ -16,6 +16,7 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
         struct Tree *hit_node;
         struct Tree *null_node;
 	null_node = Create_Node(-1,(*_opt).buff);
+	strcpy((*null_node).Head,"$NULL$");
 
 	WAR = (*_opt).war;
 	current = top;
