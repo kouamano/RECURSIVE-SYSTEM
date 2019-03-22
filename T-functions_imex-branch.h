@@ -4,6 +4,7 @@
 			if((*_sopt).s_counter){
 				hit_node = get_node((*_sopt).pos,top);
 				hit_tree = hit_node;
+				//hit_tree = Copy_Node(hit_tree,hit_node);
 				if(hit_tree == NULL){
 					//hit_tree = top;
 					hit_tree = null_node;
