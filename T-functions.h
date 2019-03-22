@@ -77,6 +77,7 @@ struct Tree *get_node(char *pos_str, struct Tree *tree){
 				current = current->Next[list[i]];
 			}else{
 				current = NULL;
+				break;
 			}
 		}
 	}else{
