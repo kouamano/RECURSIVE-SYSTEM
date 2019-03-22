@@ -3,11 +3,11 @@
 			//struct Tree *hit_tree;
 			if((*_sopt).s_counter){
 				hit_node = get_node((*_sopt).pos,top);
-				hit_tree = hit_node;
-				//hit_tree = Copy_Node(hit_tree,hit_node);
-				if(hit_tree == NULL){
-					//hit_tree = top;
+				if(hit_node == NULL){
 					hit_tree = null_node;
+				}else{
+					//hit_tree = Copy_Node(hit_tree,hit_node);
+					hit_tree = hit_node;
 				}
 			}else{
 				hit_tree = top;
