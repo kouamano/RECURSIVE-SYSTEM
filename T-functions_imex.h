@@ -11,6 +11,9 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 	int close = 0;
 	int ESC = 0;
 	int SN = 1;
+	/* for search function */
+        struct Tree *hit_tree;
+
 	WAR = (*_opt).war;
 	current = top;
 	next = NULL;
