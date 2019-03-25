@@ -15,8 +15,8 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
         struct Tree *hit_tree;
         struct Tree *hit_node;
         struct Tree *null_node;
-	hit_tree = Create_Node(-1,(*_opt).buff);
-	hit_node = Create_Node(-1,(*_opt).buff);
+	//hit_tree = Create_Node(-1,(*_opt).buff);
+	//hit_node = Create_Node(-1,(*_opt).buff);
 	null_node = Create_Node(-1,(*_opt).buff);
 	strcpy((*null_node).Head,"$NULL$");
 	(*null_node).LVself = -1;
