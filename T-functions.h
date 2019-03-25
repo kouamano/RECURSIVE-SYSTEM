@@ -83,6 +83,7 @@ struct Tree *get_node(char *pos_str, struct Tree *tree){
 	}else{
 		current = NULL;
 	}
+	free(list);
 	return(current);
 }
 
