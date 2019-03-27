@@ -1,7 +1,5 @@
 # tq
-コードは古い。
-最新は以下にある。
-https://github.com/kouamano/RECURSIVE-SYSTEM
+
 ## 再帰処理
 再帰ラッパーと処理関数を完全に分離している。
 再帰ラッパーが若干複雑である。
