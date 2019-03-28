@@ -1,7 +1,7 @@
 /* include into T-functions_imex.h */
 			/* search */
 			//struct Tree *hit_tree;
-			if((*_sopt).s_counter){
+			if((*_sopt).s_counter > 0){
 				hit_node = get_node((*_sopt).pos,top);
 				if(hit_node == NULL){
 					hit_tree = null_node;
