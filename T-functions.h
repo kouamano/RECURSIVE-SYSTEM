@@ -65,11 +65,6 @@ struct Tree *get_node(char *pos_str, struct Tree *tree){
 		}
 	}
 	count++;
-	/*
-	for(i=0;i<count;i++){
-		printf(":%d:",list[i]);
-	}
-	*/
 	if(list[0] == 0){
 		current = tree;
 		for(i=1;i<count;i++){
@@ -148,8 +143,6 @@ int is_reteral(char *string){
 		fails++;
 	}else if(strncmp(string,"$M",2) == 0){
 		fails++;
-	//}else if(strncmp(string,"$R",2) == 0){
-	//	fails++;
 	}else if(strncmp(string,"$E",2) == 0){
 		fails++;
 	}else if(strncmp(string,"$X",2) == 0){
@@ -373,9 +366,6 @@ struct Tree *Function_Print_Conj_X(struct Tree *tree, struct function_options *_
 		}
 	return(tree);
 }
-
-
-
 //* Head */
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	/* compile */
@@ -491,7 +481,6 @@ struct Tree *Function_Print_Head_SN(struct Tree *tree, struct function_options *
 	printf("%d",(*tree).ser);
 	return(tree);
 }
-
 //* Bopen */
 struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
 	if(pos == 1){
@@ -589,9 +578,6 @@ struct Tree *Function_Print_Bopen_C(struct Tree *tree, struct function_options *
 	}
 	return(tree);
 }
-
-
-
 //* Bclose */
 struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
