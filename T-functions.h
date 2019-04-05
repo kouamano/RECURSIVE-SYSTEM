@@ -243,8 +243,8 @@ char *Function_Compile_Head(struct Tree *tree, struct compile_options *_copt){
 //* structure members */
 void Function_Print_Smems(struct Tree *tree){
 	struct Tree *parent = (*tree).Parent;
-	printf(":SN=%d:",(*tree).ser);
 	printf(":Adr=%ld:",(long int)tree);
+	printf(":SN=%d:",(*tree).ser);
 	printf(":H=%s:",(*tree).Head);
 	if(parent != NULL){
 		printf(":Pa=%d:",(*parent).ser);
