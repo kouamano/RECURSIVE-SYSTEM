@@ -1,5 +1,5 @@
 //import tree script
-int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *ncount){
+int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *ncount){
 	int WAR;
 	int C;
 	int DLM_ACC = 1;
@@ -29,7 +29,7 @@ int import_Tree(FILE *_IN, struct Tree *top, struct options *_opt, struct functi
 		printf("[Fail] malloc.\n");
 		exit(1);
 	}
-	while((C = fgetc(_IN))){
+	while((C = fgetc(IN))){
 		/* check chars */
 		if(WAR > 0){
 			print_war(C,current,WAR);

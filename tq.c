@@ -378,7 +378,6 @@ int main(int argc, char **argv){
 	struct Tree *top;
 	int node_count = 0;
 	top = Create_Node(0,BUFF_LEN);
-	c = 1;
 	c = import_Tree(IN,top,opt,_fopt,_copt,_sopt,&node_count);	// @ T-import_export.h
 
 	/* close file */
