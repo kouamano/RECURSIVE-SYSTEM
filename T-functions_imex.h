@@ -25,7 +25,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 	WAR = (*_opt).war;
 	current = top;
 	next = NULL;
-	if((BUFF = malloc(sizeof(char) * BUFF_LEN)) == NULL){
+	if((BUFF = malloc(sizeof(char) * (*_opt).buff)) == NULL){
 		printf("[Fail] malloc.\n");
 		exit(1);
 	}
@@ -56,7 +56,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 				print_war(C,current,WAR);
 			}
 			/* create next */
-			next = Create_Node(SN,BUFF_LEN);
+			next = Create_Node(SN,(*_opt).buff);
 			SN++;
 			*ncount = SN;
 			/* add next to current / current.NextCount / next.LVself, NCself */
@@ -82,7 +82,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 				print_war(C,current,WAR);
 			}
 			/* create next */
-			next = Create_Node(SN,BUFF_LEN);
+			next = Create_Node(SN,(*_opt).buff);
 			SN++;
 			*ncount = SN;
 			/* add next */
@@ -138,7 +138,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 				/* clear tree */
 				Function_Recursive_FreeForce_Tree(top);
 				free(top);
-				top = Create_Node(SN,BUFF_LEN);
+				top = Create_Node(SN,(*_opt).buff);
 				SN++;
 				*ncount = SN;
 				ESC = 0;
