@@ -1,4 +1,4 @@
-/* include into T-functions_imex.h */
+			/* include into T-functions_imex.h */
 			/* search */
 			//struct Tree *hit_tree;
 			if((*_sopt).s_counter > 0){
@@ -6,12 +6,12 @@
 				if(hit_node == NULL){
 					hit_tree = null_node;
 				}else{
-					//hit_tree = Copy_Node(hit_tree,hit_node);
 					hit_tree = hit_node;
 				}
 			}else{
 				hit_tree = top;
 			}
+
 
 			/* apply formated print */
 			if((*_fopt).f_print_N == 1){
@@ -62,7 +62,7 @@
 			if((*_fopt).f_print_X == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_X, (struct Tree *(*)())Function_Print_Head_X, (struct Tree *(*)())Function_Print_Bopen_X,  (struct Tree *(*)())Function_Print_Bclose_X, _fopt, _copt, SN);
 				if(C == LF && (*_copt).c_restrict == 1){
-					//printf(";");
+					printf("");
 				}
 				if(C == LF || C == TAB){
 					printf("%c",C);
