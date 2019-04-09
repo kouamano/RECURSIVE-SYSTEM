@@ -1,13 +1,13 @@
 /* administrative functions */
-void print_war(char _C, struct Tree *_tree, int level){
-        printf("\n:C=%c: ",_C);
-        printf(":Pp=%ld:",(long int)(*_tree).Parent);
-        printf(":Cp=%ld:",(long int)_tree);
-        printf(":Cj=%d:",(*_tree).Conj);
-        printf(":current=%s:",(*_tree).Head);
-        printf(":LV=%d:",(*_tree).LVself);
-        printf(":NCs=%d:",(*_tree).NCself);
-        printf(":NC=%d:",(*_tree).NextCount);
+void print_war(char C, struct Tree *tree, int level){
+        printf("\n:C=%c: ",C);
+        printf(":Pp=%ld:",(long int)(*tree).Parent);
+        printf(":Cp=%ld:",(long int)tree);
+        printf(":Cj=%d:",(*tree).Conj);
+        printf(":current=%s:",(*tree).Head);
+        printf(":LV=%d:",(*tree).LVself);
+        printf(":NCs=%d:",(*tree).NCself);
+        printf(":NC=%d:",(*tree).NextCount);
 }
 int Detect_Dim(const char *head, int *pos){
 	int len;
@@ -565,7 +565,6 @@ struct Tree *Function_Print_Bopen_X(struct Tree *tree, struct function_options *
 					;
 				}
 			}
-
 		}
 	}
 	return(tree);
@@ -600,7 +599,6 @@ struct Tree *Function_Print_Bclose_S(struct Tree *tree, struct function_options 
 			}else{
 				printf(")");	//normal case
 			}
-
 		//printf(")");
 	}
 	return(tree);
@@ -613,7 +611,6 @@ struct Tree *Function_Print_Bclose_WL(struct Tree *tree, struct function_options
 }
 struct Tree *Function_Print_Bclose_X(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
-
 			int sw = 0;
 			int *dim_pos;
 			int head_len = 0;
@@ -641,7 +638,6 @@ struct Tree *Function_Print_Bclose_X(struct Tree *tree, struct function_options 
 					;
 				}
 			}
-
 	}
 	return(tree);
 }
@@ -666,20 +662,20 @@ struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)
 	}
 	return(out);
 }
-struct Tree *ExFunction_Recursive_Ser( struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int), struct function_options *_fopt, struct compile_options *_copt, int ser ){
+struct Tree *ExFunction_Recursive_Ser( struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int), struct function_options *_fopt, struct compile_options *_copt, int _ser ){
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL || e_function == NULL){
 		fprintf(stderr,"NULL.\n");
 		exit(1);
 	}
-	(*e_function)(tree,ser);
+	(*e_function)(tree,_ser);
 	for(i=0;i<(*tree).NextCount;i++){
-		ExFunction_Recursive_Ser((*tree).Next[i],e_function,_fopt,_copt,ser);
+		ExFunction_Recursive_Ser((*tree).Next[i],e_function,_fopt,_copt,_ser);
 	}
 	return(out);
 }
-struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree *(*conj_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*head_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*bopen_function)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*bclose_function)(struct Tree *, struct function_options *, struct compile_options *),  struct function_options *_fopt, struct compile_options *_copt, int ser ){
+struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree *(*conj_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*head_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*bopen_function)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*bclose_function)(struct Tree *, struct function_options *, struct compile_options *),  struct function_options *_fopt, struct compile_options *_copt, int _ser ){
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL){
@@ -695,7 +691,7 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree
 	/*print Bopen post*/
 	bopen_function(tree,_fopt,_copt,1);
 	for(i=0;i<(*tree).NextCount;i++){
-		ExFunction_Recursive_Ser_MultiPrint((*tree).Next[i],conj_function,head_function,bopen_function,bclose_function,_fopt,_copt,ser);
+		ExFunction_Recursive_Ser_MultiPrint((*tree).Next[i],conj_function,head_function,bopen_function,bclose_function,_fopt,_copt,_ser);
 	}
 	/*print Bclose*/
 	bclose_function(tree,_fopt,_copt);
