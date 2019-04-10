@@ -1,0 +1,79 @@
+1	VocId	returns voc_id if the domain has its VocId
+2	Class	returns class to which the domain belongs
+3	Property	returns property which the domain has
+4	Datum	(value) is a Class for numerical or charcter or array of it
+5	DataType	data(value) type : e.g. string / integer
+6	NimsDatumDefinition	definition of triple(<Property><Unit><DataType>) in NIMS-homoginied-spread-sheet.
+101	DictionaryEntry
+102	CategoryEntry
+103	Derive
+104	ExtraExpression	: flag for definition by Expression Table Definition only (definition not in VOC_C Table)
+105	DRY	dry federation form
+106	Import	from file
+107	DataSet
+108	DimensionSize	Dimension size of dataset or value
+109	DimensionDefinition	Dimension definition of dataset or value
+110	FED	Federation form
+111	FunctionDefinition	definition for function
+112	FunctionArg	declare argment for FunctionDefinition
+113	EXEC	executable form
+114	FedRule	Federation Rule : 'Dom\t->\tCod' is same as '$X$FedRule(<Dom>,<Cod>)'.
+1001	List
+1002	Association
+1003	Rule
+1004	Prime	primal calculation set
+1005	If
+1006	For
+2009	TreeMatch
+2001	Quantity
+2002	Unit	returns unit which a given property should have
+2003	UnitDimension	returns physiacal dimensions which a given unit should have
+2004	Real
+2005	Integer
+2006	Complex
+2007	String
+2008	2DImage
+2009	3DImage
+2010	MultiDimensionalImage
+2011	StructuralFormat
+2012	DescriptiveFormat
+3001	QItem	for wikibase
+3002	ExpressionType
+3003	FormDefinition	definition of voc with treeform
+3012	WolframLanguage
+3013	Lisp
+3014	JSON
+3015	JPEG
+3016	PNG
+3017	TIFF
+3018	EPS
+3019	PDF
+3020	XLSX
+3021	FunctionObject	declare function
+5001	energy
+5002	tempalature
+5003	coulomb
+5004	mass
+5005	length
+5006	time
+5001	energy
+5002	tempalature
+5003	coulomb
+5004	mass
+5005	length
+5006	time
+5007	pressure
+5008	Fe concentration
+5009	Gibbs energy of BCC phase
+5010	Enthalpy of BCC phase
+5011	Entropy of BCC phase
+5012	heat capacity at constant pressure
+5013	Chemical potential of Fe in BCC phase
+10001	J
+10002	K
+10003	Pascal
+10004	mole
+10005	J/mole
+10006	mole/mole
+10007	J/(mole K)
+30001	toPartitionSheet
