@@ -12,15 +12,15 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 	int ESC = 0;
 	int SN = 1;
 	/* for search function */
-        struct Tree *hit_tree;
-        struct Tree *hit_node;
-        struct Tree *null_node;
+        //struct Tree *hit_tree;
+        //struct Tree *hit_node;
+        //struct Tree *null_node;
 	//hit_tree = Create_Node(-1,(*_opt).buff);
 	//hit_node = Create_Node(-1,(*_opt).buff);
-	null_node = Create_Node(-1,(*_opt).buff);
-	strcpy((*null_node).Head,"$NULL$");
-	(*null_node).LVself = -1;
-	(*null_node).NCself = 1;
+	//null_node = Create_Node(-1,(*_opt).buff);
+	//strcpy((*null_node).Head,"$NULL$");
+	//(*null_node).LVself = -1;
+	//(*null_node).NCself = 1;
 
 	WAR = (*_opt).war;
 	current = top;
