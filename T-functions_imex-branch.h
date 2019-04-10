@@ -1,6 +1,16 @@
 			/* include into T-functions_imex.h */
 			/* search */
 			//struct Tree *hit_tree;
+		void Executor(struct Tree *top, int C, int SN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt){
+		        struct Tree *hit_tree;
+		        struct Tree *hit_node;
+		        struct Tree *null_node;
+		        null_node = Create_Node(-1,(*_opt).buff);
+		        strcpy((*null_node).Head,"$NULL$");
+		        (*null_node).LVself = -1;
+		        (*null_node).NCself = 1;
+
+
 			if((*_sopt).s_counter > 0){
 				hit_node = get_node((*_sopt).pos,top);
 				if(hit_node == NULL){
@@ -97,5 +107,5 @@
 				ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Function_Print_Adj,_fopt,_copt,SN);
 				printf("\n");
                         }
-
+		}
 

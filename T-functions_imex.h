@@ -134,7 +134,8 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 				buf_ptr = 0;
 				close = 0;
 				/* apply functions */
-				#include "T-functions_imex-branch.h"
+				//#include "T-functions_imex-branch.h"
+				Executor();
 				/* clear tree */
 				Function_Recursive_FreeForce_Tree(top);
 				free(top);
@@ -147,7 +148,8 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 			close = 0;
 			ESC = 0;
 			if((*_opt).form == 0){
-				#include "T-functions_imex-branch.h"
+				//#include "T-functions_imex-branch.h"
+				Executor();
 			}
 			return(C);
 		}else{
