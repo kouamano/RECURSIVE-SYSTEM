@@ -62,7 +62,7 @@
 			if((*_fopt).f_print_X == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_X, (struct Tree *(*)())Function_Print_Head_X, (struct Tree *(*)())Function_Print_Bopen_X,  (struct Tree *(*)())Function_Print_Bclose_X, _fopt, _copt, SN);
 				if(C == LF && (*_copt).c_restrict == 1){
-					printf("");
+					//printf("");
 				}
 				if(C == LF || C == TAB){
 					printf("%c",C);
