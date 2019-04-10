@@ -1,0 +1,16 @@
+echo 'START EE'
+
+#T
+cat test.eet | ./t
+#S
+cat test.ees | ./s
+
+#tq
+./tq.o in=test.eet  -FS > test.eet.ees
+./cst in=test.eet.ees > test.eet.ees.eet
+diff test.ees test.eet.ees
+diff test.eet test.eet.ees.eet
+
+#S/T comp
+
+echo 'END'

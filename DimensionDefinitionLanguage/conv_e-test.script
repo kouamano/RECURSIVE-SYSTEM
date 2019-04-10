@@ -1,0 +1,16 @@
+echo 'START E'
+
+#T
+cat test.et | ./t
+#S
+cat test.es | ./s
+
+#tq
+./tq.o in=test.et -FS > test.et.es
+./cst in=test.et.es > test.et.es.et
+diff test.es test.et.es
+diff test.et test.et.es.et
+
+#S/T comp
+
+echo 'END'

@@ -1,0 +1,117 @@
+echo 'START'
+
+#T
+echo 'T'
+cat test.t | ./t
+#S
+echo 'S'
+cat test.s | ./s
+
+#tq
+echo 'tq.o: self check'
+./tq.o in=test.t -FT > test.t.t
+diff test.t test.t.t
+
+#S/T comp
+echo 'S/T'
+./tq.o in=test.t -FS > test.t.s
+diff test.t.s test.s
+./cst in=test.s > test.s.t
+diff test.s.t test.t
+
+#T2S##1
+echo 'T2S'
+cat test.t | t2mM.pl | mM2j.swl | j2s.pl > test.t.mM.j.s
+cat test.t.mM.j.s | cst in=/dev/stdin > test.t.mM.j.s.t
+diff test.t test.t.mM.j.s.t
+#T2S##2
+cat test.t | ./cts in=/dev/stdin > test.t.s
+cat test.t.s | ./cst in=/dev/stdin > test.t.s.t
+diff test.t test.t.s.t
+#T2S##3
+cat test.t | ./tq.o in=/dev/stdin -FS > test.t.S
+cat test.t.S | ./cst in=/dev/stdin > test.t.S.t
+diff test.t test.t.S.t
+
+#T2J##1
+echo 'T2J'
+cat test.t | t2mM.pl | mM2j.swl > test.t.mM.j
+cat test.t.mM.j | j2mM.swl | mM2t.pl > test.t.mM.j.mM.t
+diff test.t test.t.mM.j.mM.t
+#T2J##2
+cat test.t | ./tq.o in=/dev/stdin -FJ > test.t.J
+cat test.t.J | j2mM.swl | mM2t.pl > test.t.J.mM.t
+diff test.t test.t.J.mM.t
+
+#T2M##1
+echo 'T2M'
+cat test.t | t2mM.pl > test.t.mM
+cat test.t.mM | mM2t.pl > test.t.mM.t
+diff test.t test.t.mM.t
+#T2M##2
+cat test.t | ./tq.o in=/dev/stdin -FW | to_mMseq.pl > test.t.M
+cat test.t.M | mM2t.pl > test.t.M.t
+
+#S2T
+echo 'S2T'
+cat test.s | ./cst in=/dev/stdin > test.s.t
+cat test.s.t | t2mM.pl | mM2j.swl | j2s.pl > test.s.t.mM.j.s
+diff test.s test.s.t.mM.j.s
+
+#S2J##1
+echo 'S2J'
+cat test.s | cst in=/dev/stdin | t2mM.pl | mM2j.swl > test.s.t.mM.j
+cat test.s.t.mM.j | j2s.pl > test.s.t.mM.j.s
+diff test.s test.s.t.mM.j.s
+#S2J##2
+cat test.s | ./cst in=/dev/stdin | ./tq.o in=/dev/stdin -FJ > test.s.t.j
+cat test.s.t.j | ./j2s.pl > test.s.t.j.s
+diff test.s test.s.t.j.s
+
+#S2M##1
+echo 'S2M'
+cat test.s | cst in=/dev/stdin | t2mM.pl > test.s.t.mM
+cat test.s.t.mM | mM2j.swl | j2s.pl > test.s.t.mM.j.s
+diff test.s test.s.t.mM.j.s
+#S2M##1
+cat test.s | cst in=/dev/stdin | ./tq.o in=/dev/stdin -FW | to_mMseq.pl > test.s.t.M
+cat test.s.t.M | mM2j.swl | j2s.pl > test.s.t.M.j.s
+diff test.s test.s.t.M.j.s
+
+#J2T
+echo 'J2T'
+cat test.s.t.mM.j | ./j2mM.swl | ./mM2t.pl > test.s.t.mM.j.mM.t
+cat test.s.t.mM.j.mM.t | t2mM.pl | mM2j.swl > test.s.t.mM.j.mM.t.mM.j
+diff test.s.t.mM.j test.s.t.mM.j.mM.t.mM.j
+#J2S
+echo 'J2S'
+cat test.s.t.mM.j | ./j2s.pl > test.s.t.mM.j.s
+cat test.s.t.mM.j.s | ./cst in=/dev/stdin | ./t2mM.pl | ./mM2j.swl > test.s.t.mM.j.s.t.mM.j
+diff test.s.t.mM.j test.s.t.mM.j.s.t.mM.j
+#J2M
+echo 'J2M'
+cat test.s.t.mM.j | j2mM.swl > test.s.t.mM.j.mM
+cat test.s.t.mM.j.mM | mM2j.swl > test.s.t.mM.j.mM.j
+diff test.s.t.mM.j test.s.t.mM.j.mM.j
+
+#M2T
+echo 'M2T'
+cat test.s.t.mM | ./mM2t.pl > test.s.t.mM.t
+cat test.s.t.mM.t | t2mM.pl > test.s.t.mM.t.mM
+diff test.s.t.mM test.s.t.mM.t.mM
+#M2S
+echo 'M2S'
+cat test.s.t.mM | mM2j.swl | j2s.pl > test.s.t.mM.j.s
+cat test.s.t.mM.j.s | cst in=/dev/stdin | t2mM.pl > test.s.t.mM.j.s.t.mM
+diff test.s.t.mM test.s.t.mM.j.s.t.mM
+#M2J
+echo 'M2J'
+cat test.s.t.mM | mM2j.swl > test.s.t.mM.j
+cat test.s.t.mM.j | j2mM.swl > test.s.t.mM.j.mM
+diff test.s.t.mM test.s.t.mM.j.mM
+
+#json format check
+echo 'json ckeck'
+for file in test*.j; do cat $file | ./to_jseq.pl | jq . 1>/dev/null; done
+
+echo 'END'
