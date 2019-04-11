@@ -5,6 +5,8 @@ struct Tree {
 	int LVself;
 	int NCself;
 	int Conj;
+	char *Label;
+	char *Category;
 	char *Head;
 	int NextCount;
 	struct Tree **Next;
