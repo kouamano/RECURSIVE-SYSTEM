@@ -78,5 +78,5 @@ int main(void)
     if (yyparse()) {
         exit(1);
     }
-    printf("::T:CLEAR::\n");
+    printf("::ET:CLEAR::\n");
 }

@@ -6,11 +6,11 @@ int yylex(void);
 extern char *yytext;
 %}
 
-%token ARGEX ALPH NUM DIM LIST FUNC_S FUNC_E RULE REW REF REF_S REF_E LABEL END ERR
+%token DIM ARGEX FUNC_S FUNC_E RULE LIST REF ALPH NUM REF_S REF_E SET SP LABEL END ERR
 %left ARGEX
+%left LIST
 %right FUNC_S
 %left FUNC_E
-%right LIST
 
 %%
 line_list
@@ -27,30 +27,25 @@ dimension_expression
 	| arg RULE list				{printf(":In->Out:");}
 	| list RULE arg				{printf(":In->Out:");}
 	| list RULE list			{printf(":In->Out:");}
-	| arg RULE arg REW arg			{printf(":In->Out=>REW:");}
-	| arg RULE arg REW list			{printf(":In->Out=>REW:");}
-	| arg RULE list REW arg			{printf(":In->Out=>REW:");}
-	| arg RULE list REW list		{printf(":In->Out=>REW:");}
-	| list RULE arg REW arg			{printf(":In->Out=>REW:");}
-	| list RULE arg REW list		{printf(":In->Out=>REW:");}
-	| list RULE list REW arg		{printf(":In->Out=>REW:");}
-	| list RULE list REW list		{printf(":In->Out=>REW:");}
 
 list
-	: FUNC_S func FUNC_E
+	: arg func_b
 
-func
+func_b
+	: FUNC_S argm FUNC_E
+
+argm
+	: args
+	| arg func_b
+	| argm argm
+	| argm LIST argm
+
+args
 	: arg
-	| FUNC_S func FUNC_E
-	| func LIST func
-
+	| args LIST arg
 arg
 	: ARGEX
 	| ARGEX DIM
-	| LABEL ARGEX
-	| LABEL ARGEX DIM
-	| '$' LABEL ARGEX
-	| '$' LABEL ARGEX DIM
 
 %%
 int yyerror(char const *str)
@@ -69,5 +64,5 @@ int main(void)
     if (yyparse()) {
         exit(1);
     }
-    printf("::ES:CLEAR::\n");
+    printf("::CLEAR::\n");
 }
