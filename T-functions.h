@@ -489,7 +489,7 @@ struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *
 					printf(",");
 				}
 			}else{
-			printf("(");	//normal case
+				printf("(");	//normal case
 			}
 		}
 	}
@@ -506,7 +506,7 @@ struct Tree *Function_Print_Bopen_S(struct Tree *tree, struct function_options *
 						;
 					}
 				}else{
-				printf("(");	//normal case
+					printf("(");	//normal case
 				}
 			}
 		}
@@ -578,25 +578,25 @@ struct Tree *Function_Print_Bopen_C(struct Tree *tree, struct function_options *
 //* Bclose */
 struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
+			/* for unpack */
 			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
 				//printf("");
 				;
 			}else{
 				printf(")");	//normal case
 			}
-		//printf(")");
 	}
 	return(tree);
 }
 struct Tree *Function_Print_Bclose_S(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
+			/* for unpack */
 			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
 				//printf("");
 				;
 			}else{
 				printf(")");	//normal case
 			}
-		//printf(")");
 	}
 	return(tree);
 }
