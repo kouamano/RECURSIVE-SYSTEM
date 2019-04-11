@@ -337,7 +337,7 @@ struct Tree *Function_Print_Conj_S(struct Tree *tree, struct function_options *_
 					printf(",");
 				}
 			}else{
-			printf(",");	//normal case
+				printf(",");	//normal case
 			}
 		} 
 	return(tree);
@@ -615,7 +615,6 @@ struct Tree *Function_Print_Bclose_S(struct Tree *tree, struct function_options 
 			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$``",3) == 0){
 				printf("\"");
 			}
-
 	}
 	return(tree);
 }
@@ -632,8 +631,6 @@ struct Tree *Function_Print_Bclose_WL(struct Tree *tree, struct function_options
 			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$``",3) == 0){
 				printf("\"");
 			}
-
-		//printf("]");
 	}
 	return(tree);
 }
