@@ -93,6 +93,9 @@ struct Tree *Create_Node(int _ser, int H_size){
 	(*tree).LVself=0;
 	(*tree).NCself=1;
 	(*tree).Conj=0;
+	(*tree).LabelFlag='\0';
+	(*tree).Label=-1;
+	(*tree).Category=NULL;
 	(*tree).Head = malloc(sizeof(char) * H_size);
 	if((*tree).Head == NULL){
 		fprintf(stderr,"[Fail]:malloc@Create_Node.\n");
