@@ -5,6 +5,7 @@ struct Tree {
 	int LVself;
 	int NCself;
 	int Conj;
+	char LabelFlag;
 	int Label;
 	char *Category;
 	char *Head;
