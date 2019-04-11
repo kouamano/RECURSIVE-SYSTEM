@@ -394,7 +394,6 @@ struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *
 	}
 	/* compile */
 	if((*_copt).c_counter > 0){
-		//char *head_str;
 		tmp_str = Function_Compile_Head(tree,_copt);
 	}else{
 		strcpy(tmp_str,(*tree).Head);
@@ -438,7 +437,6 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 	}
 	/* compile */
 	if((*_copt).c_counter > 0){
-		//char *head_str;
 		tmp_str = Function_Compile_Head(tree,_copt);
 	}else{
 		strcpy(tmp_str,(*tree).Head);
@@ -586,7 +584,6 @@ struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options 
 			}else{
 				printf(")");	//normal case
 			}
-
 		//printf(")");
 	}
 	return(tree);
