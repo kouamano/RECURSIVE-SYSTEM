@@ -14,6 +14,11 @@ struct Tree {
 	struct Tree *Parent;	// must not free !!
 };
 
+struct Label{
+	char flag;
+	int label;
+};
+
 struct HeadParts{
 	char *label;
 	char *category;
