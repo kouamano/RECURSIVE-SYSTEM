@@ -595,6 +595,10 @@ struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options 
 			}else{
 				printf(")");	//normal case
 			}
+			/* for quating */
+			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$``",3) == 0){
+				printf("\"");
+			}
 	}
 	return(tree);
 }
@@ -607,12 +611,29 @@ struct Tree *Function_Print_Bclose_S(struct Tree *tree, struct function_options 
 			}else{
 				printf(")");	//normal case
 			}
+			/* for quating */
+			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$``",3) == 0){
+				printf("\"");
+			}
+
 	}
 	return(tree);
 }
 struct Tree *Function_Print_Bclose_WL(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
-		printf("]");
+			/* for unpack */
+			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
+				//printf("");
+				;
+			}else{
+				printf("]");	//normal case
+			}
+			/* for quating */
+			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$``",3) == 0){
+				printf("\"");
+			}
+
+		//printf("]");
 	}
 	return(tree);
 }
