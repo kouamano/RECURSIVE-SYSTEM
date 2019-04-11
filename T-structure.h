@@ -11,6 +11,12 @@ struct Tree {
 	struct Tree *Parent;	// must not free !!
 };
 
+struct HeadParts{
+	char *label;
+	char *category;
+	char *name;
+};
+
 struct options {
         int help;
         int stat;
