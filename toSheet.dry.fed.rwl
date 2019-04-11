@@ -1,6 +1,0 @@
-$RE$FED;
-./tq[-FW,-Cr];
-Get["~/gitsrc/MATH_SCRIPT/SCRIPTS/DataFederation.m"];
-Set[xlsx,Import["toSheet.xlsx"]];
-Set[sheet,toPartitionSheet[List["$$$3[DIM,]","$$$2002[DIM,]","$$$2004[DIM,,]"]]["$$3020"][xlsx]];
-Export["export.sheet",FullForm[sheet],"String"];
