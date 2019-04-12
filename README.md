@@ -36,6 +36,7 @@ compile_all.n007.sh
 - ees
 
 # convert test
+```
 cd RECURSIVE-SYSTEM
 bash conv-check.script
 cd DimensionDefinitionLanguage
@@ -59,6 +60,7 @@ bash cat-example.script | tconv -FT in=/dev/stdin -C > tmp.o
 bash cat-example.script | tconv -FT in=/dev/stdin -C | ./tq.o -FT in=/dev/stdin -C > tmp2.o
 diff tmp.o tmp2.o
 tconv in=single-test.t form=single -FT
+```
 
 ##performance
 ### time: 80 sec.; mem in use:540Byte @ N007
@@ -104,6 +106,7 @@ cd DimensionDefinitionLanguage
 ./toSheet.frl.dry.fed.com
 
 ## file transition
+```
 |file| +exec+
 |tgt|  +cat+
 |dsz|  +   + 
@@ -113,3 +116,4 @@ cd DimensionDefinitionLanguage
                      +     +                         |com|  +com+
                      +     +  |dry|  +tqD2F+                +   +
                                      +     +  |fed|         +   +
+```
