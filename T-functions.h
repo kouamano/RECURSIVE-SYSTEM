@@ -10,6 +10,10 @@ void print_war(char C, struct Tree *tree, int level){
         printf(":NC=%d:",(*tree).NextCount);
 }
 int AnalyzeTree(struct Tree *tree){
+	/* label type */
+	if((*tree).Head[0] == '#' && (*tree).Head[1] == '#'){
+		
+	}
 }
 int Detect_Dim(const char *head, int *pos){
 	int len;
@@ -95,7 +99,7 @@ struct Tree *Create_Node(int _ser, int H_size){
 	(*tree).LVself=0;
 	(*tree).NCself=1;
 	(*tree).Conj=0;
-	(*tree).LabelFlag='\0';
+	(*tree).LabelType='\0';
 	(*tree).Label=-1;
 	(*tree).Category=NULL;
 	(*tree).Head = malloc(sizeof(char) * H_size);
