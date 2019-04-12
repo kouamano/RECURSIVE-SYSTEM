@@ -476,6 +476,10 @@ struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *
 		strcpy(head_str,tmp_str);
 		head_str[dim_pos[0]] = '\0';
 		printf("[\"%s\",\"DIM\",",head_str);
+		//printf("--%c--",head_str[dim_pos[0]+1]);
+		if(head_str[dim_pos[0]+1] == ']'){
+			printf("\"\"");
+		}
 		printf("%s",head_str+dim_pos[0]+1);
 	}else{
 		head_len = strlen(tmp_str);
