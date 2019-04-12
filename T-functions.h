@@ -28,7 +28,7 @@ int AnalyzeHead(struct Tree *tree){
 		for(i=labelreadprt;30 <= (*tree).Head[i] && (*tree).Head[i] >= 39;i++){
 			labelnumlen++;
 		}
-		printf(":%d:",labelnumlen);
+		//printf(":%d:",labelnumlen);
 		if((labelnumstr = malloc(sizeof(char) * (labelnumlen + 1))) == NULL){
 			perror("[Fail]malloc@AnalyzeHead\n");
 			exit(1);
