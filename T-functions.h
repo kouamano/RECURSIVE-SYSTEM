@@ -10,23 +10,32 @@ void print_war(char C, struct Tree *tree, int level){
         printf(":NC=%d:",(*tree).NextCount);
 }
 int AnalyzeHead(struct Tree *tree){
+	printf("IN:AnalyzeHead");
 	int i = 0;
 	int labelreadprt = 0;
 	int labelnumlen = 0;
 	char *labelnumstr;
 	/* label type */
+	printf("-%c-",(*tree).Head[0]);
 	if((*tree).Head[0] == '#' && (*tree).Head[1] == '#'){
+		printf("--in:##--");
 		(*tree).LabelType = 't';
 		labelreadprt = 2;
 	}else if((*tree).Head[0] == '#' && (*tree).Head[1] != '#'){
+		printf("--in:#--");
 		(*tree).LabelType = 'h';
 		labelreadprt = 1;
 	}
+	//(*tree).LabelType = 'y';
+	printf(":LT=%c:",(*tree).LabelType);
 	/* label */
-	for(i=labelreadprt;30 <= (*tree).Head[i] && (*tree).Head[i] >= 39;i++){
+	if((*tree).LabelType != '\0'){
+		for(i=labelreadprt;30 <= (*tree).Head[i] && (*tree).Head[i] >= 39;i++){
+			labelnumlen++;
+		}
+		printf(":%d:",labelnumlen);
 	}
-	labelnumlen = i;
-	printf(":%d:",labelnumlen);
+	printf("Out:AnalyzeHead\n");
 	return(0);
 }
 int Detect_Dim(const char *head, int *pos){
