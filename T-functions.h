@@ -9,6 +9,8 @@ void print_war(char C, struct Tree *tree, int level){
         printf(":NCs=%d:",(*tree).NCself);
         printf(":NC=%d:",(*tree).NextCount);
 }
+int AnalyzeTree(struct Tree *tree){
+}
 int Detect_Dim(const char *head, int *pos){
 	int len;
 	int dim_s = -1;
