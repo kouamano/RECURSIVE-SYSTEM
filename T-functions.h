@@ -167,7 +167,7 @@ struct Tree *Create_Node(int _ser, int H_size){
 	(*tree).Conj=0;
 	(*tree).LabelType='\0';
 	(*tree).Label=-1;
-	(*tree).Catstart=-1;
+	(*tree).Catstart=0;
 	(*tree).Head = malloc(sizeof(char) * H_size);
 	if((*tree).Head == NULL){
 		fprintf(stderr,"[Fail]:malloc@Create_Node.\n");
