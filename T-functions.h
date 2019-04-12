@@ -333,6 +333,7 @@ void Function_Print_Smems(struct Tree *tree){
 	printf(":Cj=%d:",(*tree).Conj);
 	printf(":LT=%c:",(*tree).LabelType);
 	printf(":Lb=%d:",(*tree).Label);
+	printf(":Cs=%d:",(*tree).Catstart);
 	printf(":NCs=%d:",(*tree).NCself);
 	printf(":NC=%d:",(*tree).NextCount);
 }
