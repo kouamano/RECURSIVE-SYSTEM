@@ -277,14 +277,14 @@ char *Function_Compile_Head(struct Tree *tree, struct compile_options *_copt){
 	}else if((*_copt).c_dot > 0){
 		tmp_head = Function_Dot_Head(tree);
 	}else if(strncmp(tmp_head,"$NULL$",6) == 0){
-	}else if(strncmp(tmp_head,"$X$",3) == 0){
-		strcpy(out_head,tmp_head+3);
+	}else if(strncmp(tmp_head+(*tree).Catstart,"$X$",3) == 0){
+		strcpy(out_head,tmp_head+(*tree).Catstart+3);
 		strcpy(tmp_head,out_head);
-	}else if(strncmp(tmp_head,"$M$",3) == 0){
-		strcpy(out_head,tmp_head+3);
+	}else if(strncmp(tmp_head+(*tree).Catstart,"$M$",3) == 0){
+		strcpy(out_head,tmp_head+(*tree).Catstart+3);
 		strcpy(tmp_head,out_head);
-	}else if(strncmp(tmp_head,"$U$",3) == 0){
-		strcpy(out_head,tmp_head+3);
+	}else if(strncmp(tmp_head+(*tree).Catstart,"$U$",3) == 0){
+		strcpy(out_head,tmp_head+(*tree).Catstart+3);
 		strcpy(tmp_head,out_head);
 	}else if(strncmp(tmp_head,"$``",3) == 0){ //quating tree
 		out_head=realloc(out_head, (sizeof(char) * (len+1)));
@@ -410,7 +410,7 @@ struct Tree *Function_Print_Conj_S(struct Tree *tree, struct function_options *_
 		}
 		if((*tree).LVself != 0 && strlen((*tree).Head) != 0){
 			/* for unpack */
-			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
+			if((*_copt).c_counter > 0 && strncmp((*tree).Head+(*tree).Catstart,"$U$",3) == 0){
 				if(strlen((*tree).Head) > 3){
 					printf(",");
 				}
@@ -426,7 +426,7 @@ struct Tree *Function_Print_Conj_JS(struct Tree *tree, struct function_options *
 		}
 		if((*tree).LVself != 0 && strlen((*tree).Head) != 0){
 			/* for unpack */
-			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
+			if((*_copt).c_counter > 0 && strncmp((*tree).Head+(*tree).Catstart,"$U$",3) == 0){
 				if(strlen((*tree).Head) > 3){
 					printf(",");
 				}
@@ -579,7 +579,7 @@ struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *
 	if(pos == 1){
 		if((*tree).NextCount != 0){
 			/* for  unpack */
-			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
+			if((*_copt).c_counter > 0 && strncmp((*tree).Head+(*tree).Catstart,"$U$",3) == 0){
 				if(strlen((*tree).Head) > 3){
 					printf(",");
 				}
@@ -596,7 +596,7 @@ struct Tree *Function_Print_Bopen_S(struct Tree *tree, struct function_options *
 		for(i=0;i<(*tree).NextCount;i++){
 			if((*tree).Next[i]->Conj == 0){
 				/* for unpack */
-				if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
+				if((*_copt).c_counter > 0 && strncmp((*tree).Head+(*tree).Catstart,"$U$",3) == 0){
 					if(strlen((*tree).Head) > 3){
 						;
 					}
@@ -614,7 +614,7 @@ struct Tree *Function_Print_Bopen_JS(struct Tree *tree, struct function_options 
 		for(i=0;i<(*tree).NextCount;i++){
 			if((*tree).Next[i]->Conj == 0){
 				/* for unpack */
-				if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
+				if((*_copt).c_counter > 0 && strncmp((*tree).Head+(*tree).Catstart,"$U$",3) == 0){
 					if(strlen((*tree).Head) > 3){
 						;
 					}
@@ -684,7 +684,7 @@ struct Tree *Function_Print_Bopen_C(struct Tree *tree, struct function_options *
 struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
 			/* for unpack */
-			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
+			if((*_copt).c_counter > 0 && strncmp((*tree).Head+(*tree).Catstart,"$U$",3) == 0){
 				//printf("");
 				;
 			}else{
@@ -700,7 +700,7 @@ struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options 
 struct Tree *Function_Print_Bclose_S(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
 			/* for unpack */
-			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
+			if((*_copt).c_counter > 0 && strncmp((*tree).Head+(*tree).Catstart,"$U$",3) == 0){
 				//printf("");
 				;
 			}else{
@@ -716,7 +716,7 @@ struct Tree *Function_Print_Bclose_S(struct Tree *tree, struct function_options 
 struct Tree *Function_Print_Bclose_WL(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
 			/* for unpack */
-			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$U$",3) == 0){
+			if((*_copt).c_counter > 0 && strncmp((*tree).Head+(*tree).Catstart,"$U$",3) == 0){
 				//printf("");
 				;
 			}else{
