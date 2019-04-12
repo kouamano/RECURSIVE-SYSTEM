@@ -37,6 +37,7 @@ int AnalyzeHead(struct Tree *tree){
 		sscanf(labelnumstr,"%d",&(*tree).Label);
 	}
 	//printf("Out:AnalyzeHead\n");
+	free(labelnumstr);
 	return(0);
 }
 int Detect_Dim(const char *head, int *pos){
