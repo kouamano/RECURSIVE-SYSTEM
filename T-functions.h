@@ -68,9 +68,11 @@ int AnalyzeHead(struct Tree *tree){
 		}
 		strncpy(labelnumstr,(*tree).Head+labelreadprt,labelnumlen);
 		sscanf(labelnumstr,"%d",&(*tree).Label);
+		free(labelnumstr);
 	}
 	/* Category */
-	catrange = SearchCategoryStr((*tree).Head);
+	//catrange = SearchCategoryStr((*tree).Head);
+	/*
 	if(catrange != NULL){
 		catrangelen = catrange[1] - catrange[0] + 2;
 		if(((*tree).Category = malloc(sizeof(char) * catrangelen)) == NULL){
@@ -79,9 +81,9 @@ int AnalyzeHead(struct Tree *tree){
 		}
 		strncpy((*tree).Category,(*tree).Head+catrange[0],catrangelen-1);
 		(*tree).Category[catrangelen-1] = '\0';
+		free(catrange);
 	}
-	free(labelnumstr);
-	free(catrange);
+	*/
 	return(0);
 }
 int Detect_Dim(const char *head, int *pos){
@@ -170,7 +172,7 @@ struct Tree *Create_Node(int _ser, int H_size){
 	(*tree).Conj=0;
 	(*tree).LabelType='\0';
 	(*tree).Label=-1;
-	(*tree).Category=NULL;
+	//(*tree).Category=NULL;
 	(*tree).Head = malloc(sizeof(char) * H_size);
 	if((*tree).Head == NULL){
 		fprintf(stderr,"[Fail]:malloc@Create_Node.\n");
@@ -326,11 +328,6 @@ void Function_Print_Smems(struct Tree *tree){
 	struct Tree *parent = (*tree).Parent;
 	printf(":Adr=%ld:",(long int)tree);
 	printf(":SN=%d:",(*tree).ser);
-	if((*tree).Category != NULL){
-		printf(":Cat=%s:",(*tree).Category);
-	}else{
-		printf(":Cat=%s:",'\0');
-	}
 	printf(":H=%s:",(*tree).Head);
 	if(parent != NULL){
 		printf(":Pa=%d:",(*parent).ser);
@@ -841,8 +838,8 @@ int Function_Recursive_FreeForce_Tree(struct Tree *tree){
 	(*tree).Next = NULL;
 	(*tree).NextCount = 0;
 
-	free((*tree).Category);
-	(*tree).Category = NULL;
+	//free((*tree).Category);
+	//(*tree).Category = NULL;
 
 	free((*tree).Head);
 	(*tree).Head = NULL;

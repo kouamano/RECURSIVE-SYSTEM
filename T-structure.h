@@ -7,7 +7,7 @@ struct Tree {
 	int Conj;
 	char LabelType;		//t -> tree, h -> head
 	int Label;
-	char *Category;
+	int Catstart;
 	char *Head;
 	int NextCount;
 	struct Tree **Next;
