@@ -9,11 +9,25 @@ void print_war(char C, struct Tree *tree, int level){
         printf(":NCs=%d:",(*tree).NCself);
         printf(":NC=%d:",(*tree).NextCount);
 }
-int AnalyzeTree(struct Tree *tree){
+int AnalyzeHead(struct Tree *tree){
+	int i = 0;
+	int labelreadprt = 0;
+	int labelnumlen = 0;
+	char *labelnumstr;
 	/* label type */
 	if((*tree).Head[0] == '#' && (*tree).Head[1] == '#'){
-		
+		(*tree).LabelType = 't';
+		labelreadprt = 2;
+	}else if((*tree).Head[0] == '#' && (*tree).Head[1] != '#'){
+		(*tree).LabelType = 'h';
+		labelreadprt = 1;
 	}
+	/* label */
+	for(i=labelreadprt;30 <= (*tree).Head[i] && (*tree).Head[i] >= 39;i++){
+	}
+	labelnumlen = i;
+	printf(":%d:",labelnumlen);
+	return(0);
 }
 int Detect_Dim(const char *head, int *pos){
 	int len;
