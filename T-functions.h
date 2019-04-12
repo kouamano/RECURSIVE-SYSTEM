@@ -212,23 +212,31 @@ int is_reteral(char *string){
 	if(strlen(string) < 2){
 		fails++;
 	}
-	if(strncmp(string,"$",1) != 0){
+	//if(strncmp(string,"$",1) != 0){
+		//fails++;
+	//}else 
+	if(strncmp(string,"$#",2) == 0){
 		fails++;
-	}else if(strncmp(string,"$#",2) == 0){
+	} 
+	if(strncmp(string,"$M",2) == 0){
 		fails++;
-	}else if(strncmp(string,"$M",2) == 0){
+	} 
+	if(strncmp(string,"$E",2) == 0){
 		fails++;
-	}else if(strncmp(string,"$E",2) == 0){
+	} 
+	if(strncmp(string,"$X",2) == 0){
 		fails++;
-	}else if(strncmp(string,"$X",2) == 0){
+	} 
+	if(strncmp(string,"$U",2) == 0){
 		fails++;
-	}else if(strncmp(string,"$U",2) == 0){
+	} 
+	if(strncmp(string,"$;",2) == 0){
 		fails++;
-	}else if(strncmp(string,"$;",2) == 0){
+	}
+	if(strncmp(string,"$$",2) == 0){
 		fails++;
-	}else if(strncmp(string,"$$",2) == 0){
-		fails++;
-	}else if(strncmp(string,"$`",2) == 0){
+	} 
+	if(strncmp(string,"$`",2) == 0){
 		fails++;
 	}
 	return(fails);
