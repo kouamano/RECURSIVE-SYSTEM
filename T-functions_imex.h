@@ -147,6 +147,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 			ESC = 0;
 			if((*_opt).form == 0){
 				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt);
+				printf("\n");
 			}
 			return(C);
 		}else{
