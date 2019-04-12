@@ -36,6 +36,7 @@ int AnalyzeHead(struct Tree *tree){
 		strncpy(labelnumstr,(*tree).Head+labelreadprt,labelnumlen);
 		sscanf(labelnumstr,"%d",&(*tree).Label);
 	}
+	/* Category */
 	//printf("Out:AnalyzeHead\n");
 	free(labelnumstr);
 	return(0);
