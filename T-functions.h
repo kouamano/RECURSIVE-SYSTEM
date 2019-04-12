@@ -78,6 +78,7 @@ int AnalyzeHead(struct Tree *tree){
 			exit(1);
 		}
 		strncpy((*tree).Category,(*tree).Head+catrange[0],catrangelen-1);
+		(*tree).Category[catrangelen-1] = '\0';
 	}
 	free(labelnumstr);
 	return(0);
