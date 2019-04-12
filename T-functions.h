@@ -31,7 +31,7 @@ int *SearchCategoryStr(char *str){
 			end = i;
 		}
 	}
-	printf(":s=%d,e=%d:\n",start,end);
+	//printf(":s=%d,e=%d:\n",start,end);
 	if(start != -1 && end != -1){
 		if((pair = malloc(sizeof(int) * 2)) == NULL){
 			perror("[Fail]malloc@SearchCategoryStr\n");
@@ -43,11 +43,12 @@ int *SearchCategoryStr(char *str){
 	return(pair);
 }
 int AnalyzeHead(struct Tree *tree){
-	//printf("IN:AnalyzeHead");
 	int i = 0;
 	int labelreadprt = 0;
 	int labelnumlen = 0;
 	char *labelnumstr;
+	int *catrange;
+	int catrangelen = -1;
 	/* label type */
 	if((*tree).Head[0] == '#' && (*tree).Head[1] == '#'){
 		(*tree).LabelType = 't';
@@ -61,7 +62,6 @@ int AnalyzeHead(struct Tree *tree){
 		for(i=labelreadprt;30 <= (*tree).Head[i] && (*tree).Head[i] >= 39;i++){
 			labelnumlen++;
 		}
-		//printf(":%d:",labelnumlen);
 		if((labelnumstr = malloc(sizeof(char) * (labelnumlen + 1))) == NULL){
 			perror("[Fail]malloc@AnalyzeHead\n");
 			exit(1);
@@ -70,8 +70,15 @@ int AnalyzeHead(struct Tree *tree){
 		sscanf(labelnumstr,"%d",&(*tree).Label);
 	}
 	/* Category */
-	//printf("Out:AnalyzeHead\n");
-	SearchCategoryStr((*tree).Head);
+	catrange = SearchCategoryStr((*tree).Head);
+	if(catrange != NULL){
+		catrangelen = catrange[1] - catrange[0] + 2;
+		if(((*tree).Category = malloc(sizeof(char) * catrangelen)) == NULL){
+			perror("[Fail]malloc@AnalyzeHead\n");
+			exit(1);
+		}
+		strncpy((*tree).Category,(*tree).Head+catrange[0],catrangelen-1);
+	}
 	free(labelnumstr);
 	return(0);
 }
@@ -317,6 +324,11 @@ void Function_Print_Smems(struct Tree *tree){
 	struct Tree *parent = (*tree).Parent;
 	printf(":Adr=%ld:",(long int)tree);
 	printf(":SN=%d:",(*tree).ser);
+	if((*tree).Category != NULL){
+		printf(":Cat=%s:",(*tree).Category);
+	}else{
+		printf(":Cat=%s:",'\0');
+	}
 	printf(":H=%s:",(*tree).Head);
 	if(parent != NULL){
 		printf(":Pa=%d:",(*parent).ser);
