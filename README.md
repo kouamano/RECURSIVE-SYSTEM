@@ -48,20 +48,9 @@ bash check-example.script
 bash cat-example.script | tq.o -FT in=/dev/stdin > tmp
 bash cat-example.script | tq.o -FT in=/dev/stdin | ./tq.o -FT in=/dev/stdin > tmp2
 diff tmp tmp2
-bash cat-example.script | tq.o -FT in=/dev/stdin -C > tmp.o
-bash cat-example.script | tq.o -FT in=/dev/stdin -C | ./tq.o -FT in=/dev/stdin -C > tmp2.o
-diff tmp.o tmp2.o
 tq.o in=single-test.t form=single -FT
 
-bash cat-example.script | tconv -FT in=/dev/stdin > tmp
-bash cat-example.script | tconv -FT in=/dev/stdin | ./tq.o -FT in=/dev/stdin > tmp2
-diff tmp tmp2
-bash cat-example.script | tconv -FT in=/dev/stdin -C > tmp.o
-bash cat-example.script | tconv -FT in=/dev/stdin -C | ./tq.o -FT in=/dev/stdin -C > tmp2.o
-diff tmp.o tmp2.o
-tconv in=single-test.t form=single -FT
 ```
-
 ##performance
 ### time: 80 sec.; mem in use:540Byte @ N007
 ### time: 55 sec.; mem in use:360Byte @ G005
