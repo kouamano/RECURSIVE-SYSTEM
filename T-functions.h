@@ -47,8 +47,9 @@ int AnalyzeHead(struct Tree *tree){
 	int labelreadprt = 0;
 	int labelnumlen = 0;
 	char *labelnumstr;
-	int *catrange;
-	int catrangelen = -1;
+	int headlen = 0;
+	//int *catrange;
+	//int catrangelen = -1;
 	/* label type */
 	if((*tree).Head[0] == '#' && (*tree).Head[1] == '#'){
 		(*tree).LabelType = 't';
@@ -71,19 +72,13 @@ int AnalyzeHead(struct Tree *tree){
 		free(labelnumstr);
 	}
 	/* Category */
-	//catrange = SearchCategoryStr((*tree).Head);
-	/*
-	if(catrange != NULL){
-		catrangelen = catrange[1] - catrange[0] + 2;
-		if(((*tree).Category = malloc(sizeof(char) * catrangelen)) == NULL){
-			perror("[Fail]malloc@AnalyzeHead\n");
-			exit(1);
+	headlen = strlen((*tree).Head);
+	for(i=0;i<headlen;i++){
+		if((*tree).Head[i] == '$'){
+			(*tree).Catstart = i;
+			break;
 		}
-		strncpy((*tree).Category,(*tree).Head+catrange[0],catrangelen-1);
-		(*tree).Category[catrangelen-1] = '\0';
-		free(catrange);
 	}
-	*/
 	return(0);
 }
 int Detect_Dim(const char *head, int *pos){
