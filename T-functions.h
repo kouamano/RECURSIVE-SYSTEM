@@ -81,6 +81,7 @@ int AnalyzeHead(struct Tree *tree){
 		(*tree).Category[catrangelen-1] = '\0';
 	}
 	free(labelnumstr);
+	free(catrange);
 	return(0);
 }
 int Detect_Dim(const char *head, int *pos){
@@ -839,6 +840,9 @@ int Function_Recursive_FreeForce_Tree(struct Tree *tree){
 	free((*tree).Next);
 	(*tree).Next = NULL;
 	(*tree).NextCount = 0;
+
+	free((*tree).Category);
+	(*tree).Category = NULL;
 
 	free((*tree).Head);
 	(*tree).Head = NULL;
