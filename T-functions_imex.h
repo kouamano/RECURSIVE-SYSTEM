@@ -45,6 +45,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 			BUFF[buf_ptr] = '\0';
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
+				AnalyzeHead(current);
 			}
 			/* check */
 			if(WAR > 0){
@@ -71,6 +72,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 			BUFF[buf_ptr] = '\0';
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
+				AnalyzeHead(current);
 			}
 			/* check */
 			if(WAR > 0){
@@ -97,6 +99,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 			BUFF[buf_ptr] = '\0';
 			if(close == 0){
 				strcpy((*current).Head,BUFF);
+				AnalyzeHead(current);
 			}
 			/* check */
 			if(WAR > 0){
@@ -123,6 +126,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 				BUFF[buf_ptr] = '\0';
 				if(close == 0){
 					strcpy((*current).Head,BUFF);
+					AnalyzeHead(current);
 				}
 				/* clear BUFF */
 				BUFF[0] = '\0';
