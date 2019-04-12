@@ -9,47 +9,12 @@ void print_war(char C, struct Tree *tree, int level){
         printf(":NCs=%d:",(*tree).NCself);
         printf(":NC=%d:",(*tree).NextCount);
 }
-/*
-int *SearchCategoryStr(char *str){
-	int *pair = NULL;
-	int len = 0;
-	int i;
-	int start = -1;
-	int end = -1;
-	len = strlen(str);
-	for(i=0;i<len;i++){
-		//printf(":c=%c:",str[i]);
-		if(str[i] == '$'){
-			start = i;
-			break;
-		}
-	}
-	for(i=start;i<len;i++){
-		//printf(":c=%c:",str[i]);
-		if(str[i] == '$'){
-			end = i;
-		}
-	}
-	//printf(":s=%d,e=%d:\n",start,end);
-	if(start != -1 && end != -1){
-		if((pair = malloc(sizeof(int) * 2)) == NULL){
-			perror("[Fail]malloc@SearchCategoryStr\n");
-			exit(1);
-		}
-		pair[0] = start;
-		pair[1] = end;
-	}
-	return(pair);
-}
-*/
 int AnalyzeHead(struct Tree *tree){
 	int i = 0;
 	int labelreadprt = 0;
 	int labelnumlen = 0;
 	char *labelnumstr;
 	int headlen = 0;
-	//int *catrange;
-	//int catrangelen = -1;
 	/* label type */
 	if((*tree).Head[0] == '#' && (*tree).Head[1] == '#'){
 		(*tree).LabelType = 't';
@@ -212,9 +177,6 @@ int is_reteral(char *string){
 	if(strlen(string) < 2){
 		fails++;
 	}
-	//if(strncmp(string,"$",1) != 0){
-		//fails++;
-	//}else 
 	if(strncmp(string,"$#",2) == 0){
 		fails++;
 	} 
