@@ -22,7 +22,7 @@ void status(void){
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" tq.o [-h|-hF|-hC] [-s] [-c] buff=<size(int)> in=<input file> form=<input form> w=<warnning level> -F<x> -C<x>.\n");
+	printf(" tq.o [-h|-hF|-hC] [-s] [-c] buff=<size(int)> in=<file name of input form> out=<file name of outout form> it=<input form type> ot=<output form type> w=<warnning level> -F<x> -C<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -hF : function help.\n");
 	printf("  -hC : compile help.\n");
@@ -162,11 +162,11 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).hS = 1;
 		}else if(strncmp(optv[i],"in=",3) == 0){
 			sscanf(optv[i],"in=%s",(*opt).in);
-		}else if(strncmp(optv[i],"form=single",11) == 0){
+		}else if(strncmp(optv[i],"it=single",9) == 0){
 			(*opt).form = 0;
-		}else if(strncmp(optv[i],"form=multi",10) == 0){
+		}else if(strncmp(optv[i],"it=multi",8) == 0){
 			(*opt).form = 1;
-		}else if(strncmp(optv[i],"form=individual",15) == 0){
+		}else if(strncmp(optv[i],"it=individual",13) == 0){
 			(*opt).form = 2;
 
 		}

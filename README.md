@@ -48,7 +48,7 @@ bash check-example.script
 bash cat-example.script | tq.o -FT in=/dev/stdin > tmp
 bash cat-example.script | tq.o -FT in=/dev/stdin | ./tq.o -FT in=/dev/stdin > tmp2
 diff tmp tmp2
-tq.o in=single-test.t form=single -FT
+tq.o in=single-test.t it=single -FT
 
 ```
 ##performance
@@ -72,7 +72,7 @@ time tq.o in=llarge-test.t -FT > /dev/null
 time tq.o in=llarge-test.t -FN > /dev/null
 
 ### time: 75 sec. ; mem: 89G. @ N007 ; 13M nodes
-time tq.o in=llarge-single-test.t -FT form=single > /dev/null
+time tq.o in=llarge-single-test.t -FT it=single > /dev/null
 ### 参考 jq 80 sec. ; mem: 17G @ N007 ; 11M nodes
 time cat llarge-single-test.t.j | jq . > tmp.json
 ### 参考 mathematica 20 sec. ; mem: 4G @ N007
