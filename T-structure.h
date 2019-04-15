@@ -12,6 +12,8 @@ struct Tree {
 	int NextCount;
 	struct Tree **Next;
 	struct Tree *Parent;	// must not free !!
+	int nval;
+	char **vals;
 };
 
 struct Label{
