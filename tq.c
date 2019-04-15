@@ -369,18 +369,18 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 
-	/* open file */
+	/* open inout-form file */
 	if((IN = fopen((*opt).in,"r")) == NULL){
 		perror((*opt).in);
 		exit(1);
 	}
 	is_open = 1;
 
-	/* main function */
+	/* import function */
 	struct Tree *top;
 	int node_count = 0;
 	top = Create_Node(0,BUFF_LEN);
-	c = import_Tree(IN,top,opt,_fopt,_copt,_sopt,&node_count);	// @ T-import_export.h
+	c = import_Tree(IN,top,opt,_fopt,_copt,_sopt,&node_count,0);	// @ T-import_export.h
 
 	/* close file */
 	if(is_open > 0){

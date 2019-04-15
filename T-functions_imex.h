@@ -1,5 +1,5 @@
 //import tree script
-int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *ncount){
+int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *ncount, int INOUT){
 	int WAR;
 	int C;
 	int DLM_ACC = 1;
@@ -117,6 +117,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 			close++;
 		}else if(C == LF || C == TAB){
 			/* 0:single / 1:multi / 2:individual */
+			if(INOUT == 0){
 			if((*_opt).in_form == 0){
 				; // executed bellow
 			}else if((*_opt).in_form == 1){
@@ -142,12 +143,46 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 				*ncount = SN;
 				ESC = 0;
 			}
+			}else if(INOUT == 1){
+			if((*_opt).in_form == 0){
+				; // executed bellow
+			}else if((*_opt).in_form == 1){
+				; // under construction
+			}else if((*_opt).in_form == 2){
+				/* copy BUFF */
+				BUFF[buf_ptr] = '\0';
+				if(close == 0){
+					strcpy((*current).Head,BUFF);
+					AnalyzeHead(current);
+				}
+				/* clear BUFF */
+				BUFF[0] = '\0';
+				buf_ptr = 0;
+				close = 0;
+				/* apply functions */
+				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt);
+				/* clear tree */
+				Function_Recursive_FreeForce_Tree(top);
+				free(top);
+				top = Create_Node(SN,(*_opt).buff);
+				SN++;
+				*ncount = SN;
+				ESC = 0;
+			}
+			}
 		}else if(C == EOF){
 			close = 0;
 			ESC = 0;
+			if(INOUT == 0){
 			if((*_opt).in_form == 0){
 				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt);
 				printf("\n");
+			}
+			}else if(INOUT == 1){
+			if((*_opt).in_form == 0){
+				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt);
+				printf("\n");
+			}
 			}
 			return(C);
 		}else{
