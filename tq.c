@@ -30,11 +30,13 @@ void help(void){
 	printf("  -s : prints status.\n");
 	printf("  -c : check args.\n");
 	printf("  buff : set integer for buffer size to read the nodes.\n");
-	printf("  in : set input file name (length < 1024).\n");
+	printf("  in : set input-form file name (length < 1024).\n");
 	printf("  it : decrear input-type\n");
 	printf("   0 single: operate whole as single line,\n");
 	printf("   1 multi: apply reference lines (under construction),\n");
 	printf("   2 individual: operate line by line.\n");
+	printf("  out : set output-form file name (length < 1024).\n");
+	printf("  ot : decrear output-type\n");
 	printf("  war : set integer for warnnig level.\n");
 }
 void function_help(void){
