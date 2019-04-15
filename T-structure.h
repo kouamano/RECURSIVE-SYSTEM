@@ -68,4 +68,5 @@ struct search_options {
 	char *pos;
 };
 
-
+struct reform_options {
+};
