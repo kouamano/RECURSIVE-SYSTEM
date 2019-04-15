@@ -46,7 +46,7 @@ int AnalyzeHead(struct Tree *tree){
 	}
 	return(0);
 }
-int Detect_Dim(const char *head, int *pos){
+int Detect_DimRegion(const char *head, int *pos){
 	int len;
 	int dim_s = -1;
 	int dim_e = -1;
@@ -466,7 +466,7 @@ struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *
 		strcpy(tmp_str,(*tree).Head);
 	}
 	/* conversion */
-	sw = Detect_Dim(tmp_str,dim_pos);
+	sw = Detect_DimRegion(tmp_str,dim_pos);
 	if(sw == 2){
 		head_len = strlen(tmp_str);
 		if((head_str = malloc(sizeof(char) * (head_len+1))) == NULL){
@@ -514,7 +514,7 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 		strcpy(tmp_str,(*tree).Head);
 	}
 	/* conversion */
-	sw = Detect_Dim(tmp_str,dim_pos);
+	sw = Detect_DimRegion(tmp_str,dim_pos);
 	if(sw == 2){
 		if((head_str = malloc(sizeof(char) * (head_len+1))) == NULL){
 			perror("[Fail]:calloc@Function_Print_Head_W.\n");
@@ -625,7 +625,7 @@ struct Tree *Function_Print_Bopen_X(struct Tree *tree, struct function_options *
 				perror("[Fail]:calloc@Function_Print_Head_W.\n");
 				exit(1);
 			}
-			sw = Detect_Dim((*tree).Head,dim_pos);
+			sw = Detect_DimRegion((*tree).Head,dim_pos);
 			if(sw == 2){
 				head_len = strlen((*tree).Head);
 				if((head_str = malloc(sizeof(char) * (head_len+2))) == NULL){
@@ -716,7 +716,7 @@ struct Tree *Function_Print_Bclose_X(struct Tree *tree, struct function_options 
 				perror("[Fail]:calloc@Function_Print_Head_W.\n");
 				exit(1);
 			}
-			sw = Detect_Dim((*tree).Head,dim_pos);
+			sw = Detect_DimRegion((*tree).Head,dim_pos);
 			if(sw == 2){
 				head_len = strlen((*tree).Head);
 				if((head_str = malloc(sizeof(char) * (head_len+2))) == NULL){
