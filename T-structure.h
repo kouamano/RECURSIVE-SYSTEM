@@ -32,7 +32,9 @@ struct options {
         int buff;
         int war;
         char *in;
-	int form;
+        char *out;
+	int in_form;
+	int out_form;
         int hF;
         int hC;
         int hS;

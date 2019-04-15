@@ -111,7 +111,7 @@ void init_options(struct options *opt){
 	(*opt).buff = BUFF_LEN;
 	(*opt).war = 0;
 	(*opt).in[0] = '\0';
-	(*opt).form = 2;
+	(*opt).in_form = 2;
 	(*opt).hF = 0;
 	(*opt).hC = 0;
 	(*opt).hS = 0;
@@ -165,11 +165,11 @@ void get_options(int optc, char **optv, struct options *opt){
 		}else if(strncmp(optv[i],"in=",3) == 0){
 			sscanf(optv[i],"in=%s",(*opt).in);
 		}else if(strncmp(optv[i],"it=single",9) == 0){
-			(*opt).form = 0;
+			(*opt).in_form = 0;
 		}else if(strncmp(optv[i],"it=multi",8) == 0){
-			(*opt).form = 1;
+			(*opt).in_form = 1;
 		}else if(strncmp(optv[i],"it=individual",13) == 0){
-			(*opt).form = 2;
+			(*opt).in_form = 2;
 
 		}
 	}
@@ -262,7 +262,7 @@ void check_options(struct options *opt){
 	printf(" opt.war:%d:\n",(*opt).war);
 	printf(" opt.hF:%d:\n",(*opt).hF);
 	printf(" opt.hC:%d:\n",(*opt).hC);
-	printf(" opt.form:%d:\n",(*opt).form);
+	printf(" opt.in\form:%d:\n",(*opt).in_form);
 }
 void check_function_options(struct function_options *fopt){
 	printf(" converters:\n");

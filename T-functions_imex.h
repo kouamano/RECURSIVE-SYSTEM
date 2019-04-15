@@ -117,11 +117,11 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 			close++;
 		}else if(C == LF || C == TAB){
 			/* 0:single / 1:multi / 2:individual */
-			if((*_opt).form == 0){
+			if((*_opt).in_form == 0){
 				; // executed bellow
-			}else if((*_opt).form == 1){
+			}else if((*_opt).in_form == 1){
 				; // under construction
-			}else if((*_opt).form == 2){
+			}else if((*_opt).in_form == 2){
 				/* copy BUFF */
 				BUFF[buf_ptr] = '\0';
 				if(close == 0){
@@ -145,7 +145,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 		}else if(C == EOF){
 			close = 0;
 			ESC = 0;
-			if((*_opt).form == 0){
+			if((*_opt).in_form == 0){
 				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt);
 				printf("\n");
 			}
