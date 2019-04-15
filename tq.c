@@ -375,19 +375,16 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	is_open = 1;
-
-	/* import function */
-	struct Tree *top;
+	//* import function */
+	struct Tree *itop;
 	int node_count = 0;
-	top = Create_Node(0,BUFF_LEN);
-	c = import_Tree(IN,top,opt,_fopt,_copt,_sopt,&node_count,0);	// @ T-import_export.h
-
-	/* close file */
+	itop = Create_Node(0,BUFF_LEN);
+	c = import_Tree(IN,itop,opt,_fopt,_copt,_sopt,&node_count,0);	// @ T-import_export.h
+	//* close file */
 	if(is_open > 0){
 		fclose(IN);
 	}
 
-	/* test code */
 
 	/* finish */
 	return(c);
