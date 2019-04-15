@@ -76,6 +76,10 @@ struct options *alloc_options(void){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
+	if(((*p).out = malloc(sizeof(char) * LEN)) == NULL){
+		printf("failed : malloc() in alloc_options().\n");
+		exit(1);
+	}
 	return(p);
 }
 struct function_options *alloc_function_options(void){
@@ -112,6 +116,8 @@ void init_options(struct options *opt){
 	(*opt).war = 0;
 	(*opt).in[0] = '\0';
 	(*opt).in_form = 2;
+	(*opt).out[0] = '\0';
+	(*opt).out_form = 2;
 	(*opt).hF = 0;
 	(*opt).hC = 0;
 	(*opt).hS = 0;
@@ -170,7 +176,14 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).in_form = 1;
 		}else if(strncmp(optv[i],"it=individual",13) == 0){
 			(*opt).in_form = 2;
-
+		}else if(strncmp(optv[i],"out=",4) == 0){
+			sscanf(optv[i],"out=%s",(*opt).out);
+		}else if(strncmp(optv[i],"ot=single",9) == 0){
+			(*opt).in_form = 0;
+		}else if(strncmp(optv[i],"ot=multi",8) == 0){
+			(*opt).in_form = 1;
+		}else if(strncmp(optv[i],"ot=individual",13) == 0){
+			(*opt).in_form = 2;
 		}
 	}
 }
@@ -259,10 +272,12 @@ void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	printf(" opt.buff:%d:\n",(*opt).buff);
 	printf(" opt.in:%s:\n",(*opt).in);
+	printf(" opt.in-form:%d:\n",(*opt).in_form);
+	printf(" opt.out:%s:\n",(*opt).out);
+	printf(" opt.out-form:%d:\n",(*opt).out_form);
 	printf(" opt.war:%d:\n",(*opt).war);
 	printf(" opt.hF:%d:\n",(*opt).hF);
 	printf(" opt.hC:%d:\n",(*opt).hC);
-	printf(" opt.in\form:%d:\n",(*opt).in_form);
 }
 void check_function_options(struct function_options *fopt){
 	printf(" converters:\n");
