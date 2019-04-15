@@ -369,7 +369,8 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 
-	/* open inout-form file */
+	/* inout-form file */
+	//* open */
 	if((IN = fopen((*opt).in,"r")) == NULL){
 		perror((*opt).in);
 		exit(1);
