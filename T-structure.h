@@ -61,7 +61,6 @@ struct function_options {
         int f_print_hierarchy;
         int f_print_hierarchy_status;
         int f_print_test;
-	int f_work_buff_size;
 };
 
 struct compile_options {

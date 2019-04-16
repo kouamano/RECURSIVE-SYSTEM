@@ -86,6 +86,7 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 	int i;
 	int sw = 0;
 	int *dim_pos = NULL;
+	char *buff;
 	if((*tree).NextCount != 0){
 		return(NULL);
 	}
@@ -97,7 +98,13 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 	if(sw != 2){
 		return(NULL);
 	}
-	ExFunction_UpRecursive(tree,NULL,_fopt,_copt,NULL);
+	//printf("blen:%d:",BUFF_LEN);
+	if((buff = malloc(sizeof(char) * BUFF_LEN)) == NULL){
+		perror("");
+		exit(1);
+	}
+
+	ExFunction_UpRecursive(tree,NULL,_fopt,_copt,buff);
 	// under construction
 
 	//printf("{%d-%d:",dim_pos[0],dim_pos[1]);
