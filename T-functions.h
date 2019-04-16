@@ -79,6 +79,18 @@ int Detect_DimRegion(const char *head, int *pos){
 	}
 	return(ret);
 }
+struct DimBlock *Detect_DimBlock(struct Tree *tree){
+	int sw = 0;
+	int *dim_pos = NULL;
+	if((*tree).NextCount == 0){
+		return(NULL);
+	}
+	sw = Detect_DimRegion((*tree).Head,dim_pos);
+	if(sw != 2){
+		return(NULL);
+	}
+	// under construction
+}
 struct Tree *get_node(char *pos_str, struct Tree *tree){
 	int len = 0;
 	int list_len = 0;
