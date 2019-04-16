@@ -153,10 +153,11 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 	//snprintf(buff+len,dim_pos[1]-dim_pos[0]+1,"%s",(*tree).Head+dim_pos[0]);
 	//Add_DimStr(tree,dim_pos,buff);
 	//ExFunction_UpRecursive(tree,(struct Tree *(*)())Add_DimStr,_fopt,_copt,buff);
+	
 	/* test */
-	printf("  ");
-	Print_UpR_Head(tree);
-	printf("\n");
+	//printf("  ");
+	//Print_UpR_Head(tree);
+	//printf("\n");
 	
 	//Add_UpR_DimStr(tree,buff);
 	//printf(":dim=%s:",buff);
