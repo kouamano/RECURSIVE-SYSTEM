@@ -84,6 +84,7 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 	int i;
 	int sw = 0;
 	int *dim_pos = NULL;
+	struct Tree *parent;
 	if((*tree).NextCount != 0){
 		return(NULL);
 	}
@@ -92,15 +93,16 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 		exit(1);
 	}
 	sw = Detect_DimRegion((*tree).Head,dim_pos);
-	printf("sw:%d:",sw);
+	//printf("sw:%d:",sw);
 	if(sw != 2){
 		return(NULL);
 	}
-	printf("{%d-%d:",dim_pos[0],dim_pos[1]);
+	//printf("{%d-%d:",dim_pos[0],dim_pos[1]);
 	for(i=dim_pos[0];i<dim_pos[1];i++){
-		putchar((*tree).Head[i]);
+		//putchar((*tree).Head[i]);
 	}
-	printf("}\n");
+	//printf("}\n");
+	//UpTree
 	//printf("o\n");
 	// under construction
 }
