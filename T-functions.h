@@ -79,7 +79,7 @@ int Detect_DimRegion(const char *head, int *pos){
 	}
 	return(ret);
 }
-struct DimBlock *Detect_DimBlock(struct Tree *tree){
+struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fopt){
 	//printf("\ni");
 	int i;
 	int sw = 0;
