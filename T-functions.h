@@ -1,4 +1,7 @@
 /* administrative functions */
+//* prottype */
+struct Tree *ExFunction_UpRecursive( struct Tree *, struct Tree *(*)(struct Tree *), struct function_options *, struct compile_options *, char *);
+
 void print_war(char C, struct Tree *tree, int level){
         printf("\n:C=%c: ",C);
         printf(":Pp=%ld:",(long int)(*tree).Parent);
@@ -83,7 +86,6 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 	int i;
 	int sw = 0;
 	int *dim_pos = NULL;
-	struct Tree *parent;
 	if((*tree).NextCount != 0){
 		return(NULL);
 	}
@@ -95,6 +97,7 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 	if(sw != 2){
 		return(NULL);
 	}
+	ExFunction_UpRecursive(tree,NULL,_fopt,_copt,NULL);
 	//printf("{%d-%d:",dim_pos[0],dim_pos[1]);
 	//for(i=dim_pos[0];i<dim_pos[1];i++){
 		//putchar((*tree).Head[i]);
