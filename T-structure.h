@@ -12,6 +12,7 @@ struct Tree {
 	int NextCount;
 	struct Tree **Next;
 	struct Tree *Parent;	// must not free !!
+	char *dimstr;
 	int nval;
 	char **vals;
 };
