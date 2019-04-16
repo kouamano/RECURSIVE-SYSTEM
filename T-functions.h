@@ -88,33 +88,58 @@ int Add_DimStr(struct Tree *tree, int *dim_pos, char *buff){
 	snprintf(buff+len,dim_pos[1]-dim_pos[0]+1,"%s",(*tree).Head+dim_pos[0]);
 	return(len);
 }
+int Print_UpR_Head(struct Tree *tree){
+	int sw;
+	int dim_pos[2];
+	if((*tree).Parent == NULL){
+		sw = Detect_DimRegion((*tree).Head,dim_pos);
+		if(sw == 2){
+			printf("%s",(*tree).Head);
+		}
+		return(0);
+	}else{
+		sw = Detect_DimRegion((*tree).Head,dim_pos);
+		if(sw == 2){
+			printf("%s",(*tree).Head);
+		}
+		Print_UpR_Head((*tree).Parent);
+	}
+}
 int Add_UpR_DimStr(struct Tree *tree, char *buff){
 	//Under construction
+	int sw;
 	int dim_pos[2];
-	struct Tree *parent;
-	parent = (*tree).Parent;
-	if((*parent).ser == -1){
+	int len;
+	//struct Tree *parent;
+	if((*tree).ser == -1){
 		return(0);
 	}
-	int len;
-	len = strlen(buff);
-	snprintf(buff+len,dim_pos[1]-dim_pos[0]+1,"%s",(*tree).Head+dim_pos[0]);
+	if((*(*tree).Parent).ser == -1){
+		return(0);
+	}
+	sw = Detect_DimRegion((*tree).Head,dim_pos);
+	if(sw == 2){
+		int len;
+		len = strlen(buff);
+		snprintf(buff+len,dim_pos[1]-dim_pos[0]+1,"%s",(*tree).Head+dim_pos[0]);
+	}
+	Add_UpR_DimStr((*tree).Parent,buff);
 	return(len);
 }
 struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	int i;
 	int sw = 0;
-	//int dim_pos[2];
+	int dim_pos[2];
 	char *buff;
 	//int len;
 	//int len;
 	if((*tree).NextCount != 0){
 		return(NULL);
 	}
-	//sw = Detect_DimRegion((*tree).Head,dim_pos);
-	//if(sw != 2){
-	//	return(NULL);
-	//}
+	sw = Detect_DimRegion((*tree).Head,dim_pos);
+	if(sw != 2){
+		return(NULL);
+	}
 	//printf("blen:%d:",BUFF_LEN);
 	if((buff = malloc(sizeof(char) * BUFF_LEN)) == NULL){
 		perror("[Fail]malloc@Detect_DimBlock.\n");
@@ -128,9 +153,16 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 	//snprintf(buff+len,dim_pos[1]-dim_pos[0]+1,"%s",(*tree).Head+dim_pos[0]);
 	//Add_DimStr(tree,dim_pos,buff);
 	//ExFunction_UpRecursive(tree,(struct Tree *(*)())Add_DimStr,_fopt,_copt,buff);
-	Add_UpR_DimStr(tree,buff);
-	printf(":dim=%s:",buff);
+	/* test */
+	printf("  ");
+	Print_UpR_Head(tree);
+	printf("\n");
+	
+	//Add_UpR_DimStr(tree,buff);
+	//printf(":dim=%s:",buff);
+	//printf("@%s\n",(*tree).Head);
 	//len = strlen(buff);
+	
 	free(buff);
 	//for(i=dim_pos[0];i<dim_pos[1];i++){
 		//putchar((*tree).Head[i]);
