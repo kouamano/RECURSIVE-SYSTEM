@@ -13,7 +13,8 @@
 			}else{
 				hit_tree = top;
 			}
-
+			/* pre */
+			ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Detect_DimBlock,_fopt,_copt,SN);
 			/* apply formated print */
 			if((*_fopt).f_print_N == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head_SN, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,  _fopt, _copt, SN);
@@ -97,6 +98,5 @@
                         }
 
 			/* test */
-				ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Detect_DimBlock,_fopt,_copt,SN);
 		}
 

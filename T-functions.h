@@ -127,13 +127,13 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 		exit(1);
 	}
 	buff[0] = '\0';
-	
-	/* tmp */
-	//printf("  *");
+	/* tmp */	
 	len = Print_UpR_Head(tree,buff);
-	(*tree).dimstr = malloc(sizeof(char) * (len + 1));
-	//printf("\n");
-	//printf("==%s==",buff);
+	if(((*tree).dimstr = malloc(sizeof(char) * (len + 1))) == NULL){
+		perror("[Fail]malloc@Detect_DimBlock.\n");
+		exit(1);
+	}
+	strcpy((*tree).dimstr,buff);
 	free(buff);
 	
 	return(NULL);
@@ -203,6 +203,7 @@ struct Tree *Create_Node(int _ser, int H_size){
 		fprintf(stderr,"[Fail]:malloc@Create_Node.\n");
 		exit(1);
 	}
+	(*tree).dimstr = NULL;
 	(*tree).nval = 0;
 	(*tree).Parent=NULL;
 	return(tree);
@@ -355,6 +356,7 @@ void Function_Print_Smems(struct Tree *tree){
 	printf(":Adr=%ld:",(long int)tree);
 	printf(":SN=%d:",(*tree).ser);
 	printf(":H=%s:",(*tree).Head);
+	printf(":D=%s:",(*tree).dimstr);
 	printf(":nval=%d:",(*tree).nval);
 	if(parent != NULL){
 		printf(":Pa=%d:",(*parent).ser);
@@ -884,6 +886,8 @@ int Function_Recursive_FreeForce_Tree(struct Tree *tree){
 
 	free((*tree).Head);
 	(*tree).Head = NULL;
+	free((*tree).dimstr);
+	(*tree).dimstr = NULL;
 
 	return(0);
 }
