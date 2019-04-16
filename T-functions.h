@@ -98,6 +98,8 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 		return(NULL);
 	}
 	ExFunction_UpRecursive(tree,NULL,_fopt,_copt,NULL);
+	// under construction
+
 	//printf("{%d-%d:",dim_pos[0],dim_pos[1]);
 	//for(i=dim_pos[0];i<dim_pos[1];i++){
 		//putchar((*tree).Head[i]);
@@ -105,7 +107,6 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 	//printf("}\n");
 	/* UpTree */
 	//printf("o\n");
-	// under construction
 }
 struct Tree *get_node(char *pos_str, struct Tree *tree){
 	int len = 0;
@@ -823,7 +824,7 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree
 struct Tree *ExFunction_UpRecursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct function_options *_fopt, struct compile_options *_copt, char *buff){
 	struct Tree *parent;
 	parent = (*tree).Parent;
-	if((*tree).ser == -1 || (*parent).ser == -1){
+	if((*tree).ser == -1 || (*parent).ser == -1 || e_function == NULL){
 		return(NULL);
 	}
 	ExFunction_UpRecursive(parent,e_function,_fopt,_copt,buff);
