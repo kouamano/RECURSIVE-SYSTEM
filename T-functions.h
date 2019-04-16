@@ -95,6 +95,7 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 		exit(1);
 	}
 	sw = Detect_DimRegion((*tree).Head,dim_pos);
+	free(dim_pos);
 	if(sw != 2){
 		return(NULL);
 	}
@@ -103,8 +104,8 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 		perror("");
 		exit(1);
 	}
-
 	ExFunction_UpRecursive(tree,NULL,_fopt,_copt,buff);
+	free(buff);
 	// under construction
 
 	//printf("{%d-%d:",dim_pos[0],dim_pos[1]);
