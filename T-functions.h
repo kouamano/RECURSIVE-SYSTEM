@@ -80,6 +80,8 @@ int Detect_DimRegion(const char *head, int *pos){
 	return(ret);
 }
 struct DimBlock *Detect_DimBlock(struct Tree *tree){
+	//printf("i");
+	int i;
 	int sw = 0;
 	int *dim_pos = NULL;
 	if((*tree).NextCount == 0){
@@ -90,9 +92,15 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree){
 		exit(1);
 	}
 	sw = Detect_DimRegion((*tree).Head,dim_pos);
+	//printf("sw:%d:",sw);
 	if(sw != 2){
 		return(NULL);
 	}
+	//printf("%d-%d:",dim_pos[0],dim_pos[1]);
+	for(i=dim_pos[0];i<dim_pos[1];i++){
+		putchar((*tree).Head[i]);
+	}
+	//printf("o");
 	// under construction
 }
 struct Tree *get_node(char *pos_str, struct Tree *tree){
