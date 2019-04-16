@@ -79,7 +79,7 @@ int Detect_DimRegion(const char *head, int *pos){
 	}
 	return(ret);
 }
-struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fopt){
+struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	int i;
 	int sw = 0;
 	int *dim_pos = NULL;
@@ -100,7 +100,7 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 		//putchar((*tree).Head[i]);
 	//}
 	//printf("}\n");
-	//UpTree
+	/* UpTree */
 	//printf("o\n");
 	// under construction
 }
@@ -767,6 +767,7 @@ struct Tree *Function_Print_Bclose_C(struct Tree *tree, struct function_options 
 }
 
 /* recursive-apply-function */
+//* Down tree */
 struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct function_options *_fopt, struct compile_options *_copt ){
 	int i;
 	struct Tree *out = tree;
@@ -814,6 +815,16 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree
 	/*print Bclose*/
 	bclose_function(tree,_fopt,_copt);
 	return(out);
+}
+//* Up tree */
+struct Tree *ExFunction_UpRecursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct function_options *_fopt, struct compile_options *_copt, char *buff){
+	struct Tree *parent;
+	parent = (*tree).Parent;
+	if((*tree).ser == -1 || (*parent).ser == -1){
+		return(NULL);
+	}
+	ExFunction_UpRecursive(parent,e_function,_fopt,_copt,buff);
+	return(parent);
 }
 
 /* GC */
