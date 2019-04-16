@@ -110,34 +110,10 @@ int Print_UpR_Head(struct Tree *tree, char *buff){
 	len = strlen(buff);
 	return(len);
 }
-/*
-int Add_UpR_DimStr(struct Tree *tree, char *buff){
-	int sw;
-	int dim_pos[2];
-	int len;
-	if((*tree).ser == -1){
-		return(0);
-	}
-	if((*(*tree).Parent).ser == -1){
-		return(0);
-	}
-	sw = Detect_DimRegion((*tree).Head,dim_pos);
-	if(sw == 2){
-		int len;
-		len = strlen(buff);
-		snprintf(buff+len,dim_pos[1]-dim_pos[0]+1,"%s",(*tree).Head+dim_pos[0]);
-	}
-	Add_UpR_DimStr((*tree).Parent,buff);
-	return(len);
-}
-*/
 struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	//int i;
 	int sw = 0;
 	int dim_pos[2];
 	char *buff;
-	//int len;
-	//int len;
 	if((*tree).NextCount != 0){
 		return(NULL);
 	}
@@ -145,19 +121,17 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 	if(sw != 2){
 		return(NULL);
 	}
-	//printf("blen:%d:",BUFF_LEN);
 	if((buff = malloc(sizeof(char) * BUFF_LEN)) == NULL){
 		perror("[Fail]malloc@Detect_DimBlock.\n");
 		exit(1);
 	}
 	buff[0] = '\0';
-	// under construction
 	
 	/* tmp */
-	printf("  *");
+	//printf("  *");
 	Print_UpR_Head(tree,buff);
-	printf("\n");
-	printf("==%s==",buff);
+	//printf("\n");
+	//printf("==%s==",buff);
 	free(buff);
 	
 	return(NULL);
