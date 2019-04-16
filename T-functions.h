@@ -758,17 +758,6 @@ struct Tree *Function_Print_Bclose_C(struct Tree *tree, struct function_options 
 }
 
 /* recursive-apply-function */
-struct Tree *ExVoidFunction_Recursive( struct Tree *tree, void *(*e_function)(void *), struct function_options *_fopt, struct compile_options *_copt ){
-	int i;
-	if(tree == NULL || e_function == NULL){
-		return(NULL);
-	}
-	(*e_function)(tree);
-	for(i=0;i<(*tree).NextCount;i++){
-		ExVoidFunction_Recursive((*tree).Next[i],e_function,_fopt,_copt);
-	}
-	return(tree);
-}
 struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct function_options *_fopt, struct compile_options *_copt ){
 	int i;
 	struct Tree *out = tree;
