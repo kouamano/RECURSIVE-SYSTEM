@@ -99,11 +99,13 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 		perror("");
 		exit(1);
 	}
+	buff[0] = '\0';
 	// under construction
 
 	//printf("{%d-%d:",dim_pos[0],dim_pos[1]);
-	snprintf(buff,dim_pos[1]-dim_pos[0],"%s",(*tree).Head);
+	snprintf(buff,dim_pos[1]-dim_pos[0]+1,"%s",(*tree).Head+dim_pos[0]);
 	ExFunction_UpRecursive(tree,NULL,_fopt,_copt,buff);
+	printf(":dim=%s:",buff);
 	free(buff);
 	//for(i=dim_pos[0];i<dim_pos[1];i++){
 		//putchar((*tree).Head[i]);
