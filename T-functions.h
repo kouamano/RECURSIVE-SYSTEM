@@ -85,6 +85,10 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree){
 	if((*tree).NextCount == 0){
 		return(NULL);
 	}
+	if((dim_pos = malloc(sizeof(int) * 2)) == NULL){
+		perror("[Fail]malloc@Detect_DimBlock");
+		exit(1);
+	}
 	sw = Detect_DimRegion((*tree).Head,dim_pos);
 	if(sw != 2){
 		return(NULL);
