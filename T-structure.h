@@ -16,6 +16,11 @@ struct Tree {
 	char **vals;
 };
 
+struct DataBlock{
+	int depth;
+	int *dims;
+};
+
 struct Label{
 	char flag;
 	int label;
