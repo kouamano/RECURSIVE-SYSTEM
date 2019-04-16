@@ -114,6 +114,7 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 	int sw = 0;
 	int dim_pos[2];
 	char *buff;
+	int len = 0;
 	if((*tree).NextCount != 0){
 		return(NULL);
 	}
@@ -129,7 +130,8 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 	
 	/* tmp */
 	//printf("  *");
-	Print_UpR_Head(tree,buff);
+	len = Print_UpR_Head(tree,buff);
+	(*tree).dimstr = malloc(sizeof(char) * (len + 1));
 	//printf("\n");
 	//printf("==%s==",buff);
 	free(buff);
