@@ -85,17 +85,12 @@ int Detect_DimRegion(const char *head, int *pos){
 struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	int i;
 	int sw = 0;
-	int *dim_pos = NULL;
+	int dim_pos[2];
 	char *buff;
 	if((*tree).NextCount != 0){
 		return(NULL);
 	}
-	if((dim_pos = malloc(sizeof(int) * 2)) == NULL){
-		perror("[Fail]malloc@Detect_DimBlock");
-		exit(1);
-	}
 	sw = Detect_DimRegion((*tree).Head,dim_pos);
-	free(dim_pos);
 	if(sw != 2){
 		return(NULL);
 	}
@@ -104,11 +99,12 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 		perror("");
 		exit(1);
 	}
-	ExFunction_UpRecursive(tree,NULL,_fopt,_copt,buff);
-	free(buff);
 	// under construction
 
 	//printf("{%d-%d:",dim_pos[0],dim_pos[1]);
+	snprintf(buff,dim_pos[1]-dim_pos[0],"%s",(*tree).Head);
+	ExFunction_UpRecursive(tree,NULL,_fopt,_copt,buff);
+	free(buff);
 	//for(i=dim_pos[0];i<dim_pos[1];i++){
 		//putchar((*tree).Head[i]);
 	//}
