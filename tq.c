@@ -446,6 +446,13 @@ int main(int argc, char **argv){
 	}
 
 	/* input-form file */
+	int array_count = 0;	//for data bind
+	struct Tree **TA;	//for data bind
+	if((TA = malloc(sizeof(*TA) * 1)) == NULL){
+		perror("[Fail]:malloc@main");
+		exit(1);
+	}
+	
 	int node_count;
 	struct Tree *itop;
 	if(strlen((*opt).in) > 0){
