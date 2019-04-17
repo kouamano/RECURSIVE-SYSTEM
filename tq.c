@@ -410,7 +410,7 @@ int main(int argc, char **argv){
 	is_open = 1;
 	//* import function */
 	struct Tree *otop;
-	node_count = 0;
+	//node_count = 0;
 	otop = Create_Node(0,BUFF_LEN);
 	c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,0);	// @ T-import_export.h
 	//* close file */
