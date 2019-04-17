@@ -88,6 +88,21 @@ int Add_DimStr(struct Tree *tree, int *dim_pos, char *buff){
 	snprintf(buff+len,dim_pos[1]-dim_pos[0]+1,"%s",(*tree).Head+dim_pos[0]);
 	return(len);
 }
+int Ins_DimStr(struct Tree *tree, int *dim_pos, char *buff){
+	int len;
+	char *minibuff;
+	if((minibuff = malloc(sizeof(char) * LEN)) == NULL){
+		perror("[Fail]malloc@Ins_DimStr");
+		exit(1);
+	}
+	/* currentbuff -> minibuff */
+	strcpy(minibuff,buff);
+	snprintf(buff,dim_pos[1]-dim_pos[0]+1,"%s",(*tree).Head+dim_pos[0]);
+	len = strlen(buff);
+	strcpy(buff+len,minibuff);
+	free(minibuff);
+	return(len);
+}
 int Print_UpR_Head(struct Tree *tree, char *buff){
 	int sw;
 	int dim_pos[2];
@@ -96,14 +111,14 @@ int Print_UpR_Head(struct Tree *tree, char *buff){
 		sw = Detect_DimRegion((*tree).Head,dim_pos);
 		if(sw == 2){
 			//printf("%s",(*tree).Head);
-			Add_DimStr(tree,dim_pos,buff);
+			Ins_DimStr(tree,dim_pos,buff);
 		}
 		return(0);
 	}else{
 		sw = Detect_DimRegion((*tree).Head,dim_pos);
 		if(sw == 2){
 			//printf("%s",(*tree).Head);
-			Add_DimStr(tree,dim_pos,buff);
+			Ins_DimStr(tree,dim_pos,buff);
 		}
 		Print_UpR_Head((*tree).Parent,buff);
 	}
