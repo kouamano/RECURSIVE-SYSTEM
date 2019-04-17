@@ -37,7 +37,7 @@ void help(void){
 	printf("   2 individual: operate line by line.\n");
 	printf("  out : set output-form file name (length < 1024).\n");
 	printf("  ot : decrear output-type.\n");
-	printf("  data : TSV data file name.\n");
+	printf("  data : CSV data file name.\n");
 	printf("  war : set integer for warnnig level.\n");
 }
 void function_help(void){
