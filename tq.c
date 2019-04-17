@@ -63,6 +63,7 @@ void compile_help(void){
 }
 void search_help(void){
 	printf("  Search option: Under construction.\n");
+	printf("   -Sv : search node which has value.\n");
 	printf("   Sp=<position>.\n");
 }
 

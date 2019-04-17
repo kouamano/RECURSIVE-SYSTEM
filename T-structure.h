@@ -76,6 +76,7 @@ struct compile_options {
 struct search_options {
 	int s_counter;
 	char *pos;
+	int s_has_value;
 };
 
 struct reform_options {
