@@ -141,7 +141,7 @@ int get_nval(char *str){
 	}
 	return(count);
 }
-struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+struct Tree *Detect_DimBlock(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	int sw = 0;
 	int dim_pos[2];
 	char *buff;
@@ -168,7 +168,7 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 	(*tree).nval = get_nval(buff);
 	free(buff);
 	
-	return(NULL);
+	return(tree);
 }
 struct Tree *get_node(char *pos_str, struct Tree *tree){
 	int len = 0;
