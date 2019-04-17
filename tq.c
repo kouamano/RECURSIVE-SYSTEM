@@ -192,6 +192,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).hC = 1;
 		}else if(strncmp(optv[i],"-hS",3) == 0){
 			(*opt).hS = 1;
+		}else if(strncmp(optv[i],"-hD",3) == 0){
+			(*opt).hD = 1;
 		}else if(strncmp(optv[i],"in=",3) == 0){
 			sscanf(optv[i],"in=%s",(*opt).in);
 		}else if(strncmp(optv[i],"it=single",9) == 0){
@@ -292,6 +294,17 @@ void get_search_options(int optc, char **optv, struct search_options *sopt){
 		}
 	}
 }
+void get_data_options(int optc, char **optv, struct data_options *dopt){
+	int i = 0;
+	int opt_len = 0;
+	(*dopt).d_counter = 0;
+	for(i=0;i<optc;i++){
+		if(strncmp(optv[i],"-Db",3) == 0){
+			(*dopt).d_counter++;
+			(*dopt).bind = 1;
+		}
+	}
+}
 
 /* checking */
 void check_options(struct options *opt){
@@ -334,6 +347,11 @@ void check_search_options(struct search_options *sopt){
 	printf("  opt.scount:%d:\n",(*sopt).s_counter);
 	printf("  opt.pos:%s:\n",(*sopt).pos);
 }
+void check_data_options(struct data_options *dopt){
+	printf(" data:\n");
+	printf("  opt.dcount:%d:\n",(*dopt).d_counter);
+	printf("  opt.bind:%d:\n",(*dopt).bind);
+}
 
 /* main */
 int main(int argc, char **argv){
@@ -341,6 +359,7 @@ int main(int argc, char **argv){
 	struct function_options *_fopt;
 	struct compile_options *_copt;
 	struct search_options *_sopt;
+	struct data_options *_dopt;
 	int ie = 0;
 	FILE *IN;
 	int is_open = 0;
@@ -363,6 +382,10 @@ int main(int argc, char **argv){
 	_sopt = alloc_search_options();
 	init_search_options(_sopt);
 	get_search_options(argc-1, argv+1, _sopt);
+	//* data opt */
+	_dopt = alloc_data_options();
+	init_data_options(_dopt);
+	get_data_options(argc-1, argv+1, _dopt);
 
 	/* print help operation */
 	if(argc == 1){
@@ -380,6 +403,11 @@ int main(int argc, char **argv){
 		(*opt).help = 1;
 		ie = 1;
 	}
+	if((*opt).hD == 1){
+		(*opt).help = 1;
+		ie = 1;
+	}
+
 	if((*opt).help == 1){
 		help();
 		ie = 1;
@@ -396,6 +424,11 @@ int main(int argc, char **argv){
 		search_help();
 		ie = 1;
 	}
+	if((*opt).hD == 1){
+		data_help();
+		ie = 1;
+	}
+
 	if((*opt).stat == 1){
 		status();
 		ie = 1;
@@ -405,14 +438,16 @@ int main(int argc, char **argv){
 		check_function_options(_fopt);
 		check_compile_options(_copt);
 		check_search_options(_sopt);
+		check_data_options(_dopt);
 		ie = 1;
 	}
 	if(ie == 1){
 		exit(0);
 	}
 
-	int node_count;
 	/* input-form file */
+	int node_count;
+	struct Tree *itop;
 	if(strlen((*opt).in) > 0){
 	//* open */
 	if((IN = fopen((*opt).in,"r")) == NULL){
@@ -421,7 +456,6 @@ int main(int argc, char **argv){
 	}
 	is_open = 1;
 	//* import function */
-	struct Tree *itop;
 	node_count = 0;
 	itop = Create_Node(0,BUFF_LEN);
 	c = import_Tree(IN,itop,opt,_fopt,_copt,_sopt,&node_count,0);	// @ T-import_export.h
@@ -432,6 +466,7 @@ int main(int argc, char **argv){
 	}
 
 	/* outout-form file */
+	struct Tree *otop;
 	if(strlen((*opt).out) > 0){
 	//* open */
 	if((IN = fopen((*opt).out,"r")) == NULL){
@@ -440,7 +475,6 @@ int main(int argc, char **argv){
 	}
 	is_open = 1;
 	//* import function */
-	struct Tree *otop;
 	node_count = 0;
 	otop = Create_Node(0,BUFF_LEN);
 	c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,0);	// @ T-import_export.h
@@ -457,6 +491,7 @@ int main(int argc, char **argv){
 		perror((*opt).csv);
 		exit(1);
 	}
+	c = bind_data(IN,itop);
 	//* close file */
 	is_open = 1;
 	if(is_open > 0){

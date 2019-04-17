@@ -50,6 +50,7 @@ struct options {
         int hF;
         int hC;
         int hS;
+        int hD;
 };
 
 struct data_options {
