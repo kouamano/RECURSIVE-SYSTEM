@@ -491,7 +491,7 @@ int main(int argc, char **argv){
 		perror((*opt).csv);
 		exit(1);
 	}
-	c = bind_data(IN,itop);
+	c = bind_data(IN,itop,_fopt,_copt,node_count);
 	//* close file */
 	is_open = 1;
 	if(is_open > 0){

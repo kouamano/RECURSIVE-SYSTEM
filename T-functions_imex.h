@@ -202,6 +202,15 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 }
 
 /* data bind*/
-int bind_data(FILE *IN, struct Tree *tree){
+int bind_data(FILE *IN, struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int SN){
+	int C;
+	//ExFunction_Recursive_Ser
+	while((C = fgetc(IN))){
+		if(C == EOF){
+			return(0);
+		}else{
+			putchar(C);
+		}
+	}
 	return(0);
 }
