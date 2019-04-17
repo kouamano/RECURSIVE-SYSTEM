@@ -22,7 +22,7 @@ void status(void){
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" tq.o [-h|-hF|-hC] [-s] [-c] buff=<size(int)> in=<file name of input form> out=<file name of outout form> data=<data file> it=<input form type> ot=<output form type> w=<warnning level> -F<x> -C<x>.\n");
+	printf(" tq.o [-h|-hF|-hC] [-s] [-c] buff=<size(int)> in=<file name of input form> out=<file name of outout form> csv=<data file> it=<input form type> ot=<output form type> w=<warnning level> -F<x> -C<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -hF : function help.\n");
 	printf("  -hC : compile help.\n");
@@ -37,7 +37,7 @@ void help(void){
 	printf("   2 individual: operate line by line.\n");
 	printf("  out : set output-form file name (length < 1024).\n");
 	printf("  ot : decrear output-type.\n");
-	printf("  data : CSV data file name.\n");
+	printf("  csv : CSV data file name.\n");
 	printf("  war : set integer for warnnig level.\n");
 }
 void function_help(void){
@@ -82,7 +82,7 @@ struct options *alloc_options(void){
 		perror("[Fail]malloc@alloc_options().\n");
 		exit(1);
 	}
-	if(((*p).data = malloc(sizeof(char) * LEN)) == NULL){
+	if(((*p).csv = malloc(sizeof(char) * LEN)) == NULL){
 		perror("[Fail]malloc@alloc_options().\n");
 		exit(1);
 	}
@@ -124,7 +124,7 @@ void init_options(struct options *opt){
 	(*opt).in_form = 2;
 	(*opt).out[0] = '\0';
 	(*opt).out_form = 2;
-	(*opt).data[0] = '\0';
+	(*opt).csv[0] = '\0';
 	(*opt).hF = 0;
 	(*opt).hC = 0;
 	(*opt).hS = 0;
@@ -282,6 +282,7 @@ void check_options(struct options *opt){
 	printf(" opt.in-form:%d:\n",(*opt).in_form);
 	printf(" opt.out:%s:\n",(*opt).out);
 	printf(" opt.out-form:%d:\n",(*opt).out_form);
+	printf(" opt.csv:%s:\n",(*opt).csv);
 	printf(" opt.war:%d:\n",(*opt).war);
 	printf(" opt.hF:%d:\n",(*opt).hF);
 	printf(" opt.hC:%d:\n",(*opt).hC);
@@ -431,10 +432,10 @@ int main(int argc, char **argv){
 	}
 
 	/* bind data */
-	if(strlen((*opt).data) > 0){
+	if(strlen((*opt).csv) > 0){
 	//* open */
-	if((IN = fopen((*opt).data,"r")) == NULL){
-		perror((*opt).data);
+	if((IN = fopen((*opt).csv,"r")) == NULL){
+		perror((*opt).csv);
 		exit(1);
 	}
 	//* close file */
