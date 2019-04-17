@@ -201,3 +201,6 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 	return(C);
 }
 
+/* data bind*/
+int bind_data(FILE *IN, struct Tree *tree){
+}
