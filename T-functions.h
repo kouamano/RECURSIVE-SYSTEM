@@ -133,8 +133,9 @@ int get_nval(char *str){
 	len = strlen(str);
 	for(i=0;i<len;i++){
 		if(str[i] == '[' || str[i] == ','){
+			tmpval = 1;
 			sscanf(str+i+1,"%d",&tmpval);
-			printf("==%d==",tmpval);
+			//printf("==%d==",tmpval);
 			count = count*tmpval;
 		}
 	}
