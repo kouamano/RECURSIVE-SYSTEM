@@ -125,6 +125,18 @@ int Print_UpR_Head(struct Tree *tree, char *buff){
 	len = strlen(buff);
 	return(len);
 }
+int get_nval(char *str){
+	int i;
+	int len;
+	int count = 0;
+	len = strlen(str);
+	for(i=0;i<len;i++){
+		if(str[i] == '[' || str[i] == ','){
+			count++;
+		}
+	}
+	return(count);
+}
 struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	int sw = 0;
 	int dim_pos[2];
@@ -149,6 +161,7 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 		exit(1);
 	}
 	strcpy((*tree).dimstr,buff);
+	(*tree).nval = get_nval((*tree).dimstr);
 	free(buff);
 	
 	return(NULL);
