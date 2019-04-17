@@ -851,7 +851,7 @@ struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)
 	}
 	return(out);
 }
-struct Tree *ExFunction_Recursive_Ser( struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int), struct function_options *_fopt, struct compile_options *_copt, int _ser ){
+struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int), struct function_options *_fopt, struct compile_options *_copt, int _ser){
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL || e_function == NULL){
