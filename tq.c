@@ -66,6 +66,10 @@ void search_help(void){
 	printf("   -Sv : search node which has value.\n");
 	printf("   Sp=<position>.\n");
 }
+void data_help(void){
+	printf("  Data option: Under construction.\n");
+	printf("   -Db : bind data into leaf-node which has array.\n");
+}
 
 /* allocation */
 struct options *alloc_options(void){
