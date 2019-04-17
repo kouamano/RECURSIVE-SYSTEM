@@ -446,7 +446,7 @@ int main(int argc, char **argv){
 	}
 
 	/* input-form file */
-	int array_count = 0;	//for data bind
+	int t_array_count = 0;	//for data bind
 	struct Tree **TA;	//for data bind
 	if((TA = malloc(sizeof(*TA) * 1)) == NULL){
 		perror("[Fail]:malloc@main");
@@ -465,7 +465,7 @@ int main(int argc, char **argv){
 	//* import function */
 	node_count = 0;
 	itop = Create_Node(0,BUFF_LEN);
-	c = import_Tree(IN,itop,opt,_fopt,_copt,_sopt,&node_count,0);	// @ T-import_export.h
+	c = import_Tree(IN,itop,opt,_fopt,_copt,_sopt,&node_count,0,&t_array_count,TA);	// @ T-import_export.h
 	//* close file */
 	if(is_open > 0){
 		fclose(IN);
@@ -484,7 +484,7 @@ int main(int argc, char **argv){
 	//* import function */
 	node_count = 0;
 	otop = Create_Node(0,BUFF_LEN);
-	c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,0);	// @ T-import_export.h
+	c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,0,0,NULL);	// @ T-import_export.h
 	//* close file */
 	if(is_open > 0){
 		fclose(IN);
