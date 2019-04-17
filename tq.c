@@ -400,6 +400,24 @@ int main(int argc, char **argv){
 	if(is_open > 0){
 		fclose(IN);
 	}
+	/* outout-form file */
+	if(strlen((*opt).out) > 0){
+	//* open */
+	if((IN = fopen((*opt).out,"r")) == NULL){
+		perror((*opt).out);
+		exit(1);
+	}
+	is_open = 1;
+	//* import function */
+	struct Tree *otop;
+	node_count = 0;
+	otop = Create_Node(0,BUFF_LEN);
+	c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,0);	// @ T-import_export.h
+	//* close file */
+	if(is_open > 0){
+		fclose(IN);
+	}
+	}
 
 
 	/* finish */
