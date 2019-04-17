@@ -431,6 +431,18 @@ int main(int argc, char **argv){
 	}
 
 	/* bind data */
+	if(strlen((*opt).data) > 0){
+	//* open */
+	if((IN = fopen((*opt).data,"r")) == NULL){
+		perror((*opt).data);
+		exit(1);
+	}
+	//* close file */
+	is_open = 1;
+	if(is_open > 0){
+		fclose(IN);
+	}
+	}
 
 
 	/* finish */
