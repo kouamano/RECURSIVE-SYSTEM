@@ -128,11 +128,14 @@ int Print_UpR_Head(struct Tree *tree, char *buff){
 int get_nval(char *str){
 	int i;
 	int len;
-	int count = 0;
+	int count = 1;
+	int tmpval = 1;
 	len = strlen(str);
 	for(i=0;i<len;i++){
 		if(str[i] == '[' || str[i] == ','){
-			count++;
+			sscanf(str+i+1,"%d",&tmpval);
+			printf("==%d==",tmpval);
+			count = count*tmpval;
 		}
 	}
 	return(count);
