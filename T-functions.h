@@ -161,7 +161,7 @@ struct DimBlock *Detect_DimBlock(struct Tree *tree, struct function_options *_fo
 		exit(1);
 	}
 	strcpy((*tree).dimstr,buff);
-	(*tree).nval = get_nval((*tree).dimstr);
+	(*tree).nval = get_nval(buff);
 	free(buff);
 	
 	return(NULL);
