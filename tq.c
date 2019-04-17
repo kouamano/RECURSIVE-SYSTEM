@@ -22,7 +22,7 @@ void status(void){
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" tq.o [-h|-hF|-hC] [-s] [-c] buff=<size(int)> in=<file name of input form> out=<file name of outout form> it=<input form type> ot=<output form type> w=<warnning level> -F<x> -C<x>.\n");
+	printf(" tq.o [-h|-hF|-hC] [-s] [-c] buff=<size(int)> in=<file name of input form> out=<file name of outout form> data=<data file> it=<input form type> ot=<output form type> w=<warnning level> -F<x> -C<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -hF : function help.\n");
 	printf("  -hC : compile help.\n");
@@ -31,12 +31,13 @@ void help(void){
 	printf("  -c : check args.\n");
 	printf("  buff : set integer for buffer size to read the nodes.\n");
 	printf("  in : set input-form file name (length < 1024).\n");
-	printf("  it : decrear input-type\n");
+	printf("  it : decrear input-type.\n");
 	printf("   0 single: operate whole as single line,\n");
 	printf("   1 multi: apply reference lines (under construction),\n");
 	printf("   2 individual: operate line by line.\n");
 	printf("  out : set output-form file name (length < 1024).\n");
-	printf("  ot : decrear output-type\n");
+	printf("  ot : decrear output-type.\n");
+	printf("  data : TSV data file name.\n");
 	printf("  war : set integer for warnnig level.\n");
 }
 void function_help(void){
@@ -69,15 +70,19 @@ void search_help(void){
 struct options *alloc_options(void){
 	struct options *p;
 	if((p = malloc(sizeof(struct options) * 1)) == NULL){
-		printf("failed : malloc() in alloc_options().\n");
+		perror("[Fail]malloc@alloc_options().\n");
 		exit(1);
 	}
 	if(((*p).in = malloc(sizeof(char) * LEN)) == NULL){
-		printf("failed : malloc() in alloc_options().\n");
+		perror("[Fail]malloc@alloc_options().\n");
 		exit(1);
 	}
 	if(((*p).out = malloc(sizeof(char) * LEN)) == NULL){
-		printf("failed : malloc() in alloc_options().\n");
+		perror("[Fail]malloc@alloc_options().\n");
+		exit(1);
+	}
+	if(((*p).data = malloc(sizeof(char) * LEN)) == NULL){
+		perror("[Fail]malloc@alloc_options().\n");
 		exit(1);
 	}
 	return(p);
@@ -85,7 +90,7 @@ struct options *alloc_options(void){
 struct function_options *alloc_function_options(void){
 	struct function_options *p;
 	if((p = malloc(sizeof(struct function_options) * 1)) == NULL){
-		printf("failed : malloc() in alloc_function_options().\n");
+		printf("[Fail]malloc@alloc_function_options().\n");
 		exit(1);
 	}
 	return(p);
@@ -93,7 +98,7 @@ struct function_options *alloc_function_options(void){
 struct compile_options *alloc_compile_options(void){
 	struct compile_options *p;
 	if((p = malloc(sizeof(struct compile_options) * 1)) == NULL){
-		printf("failed : malloc() in alloc_compile_options().\n");
+		printf("[Fail]malloc@alloc_compile_options().\n");
 		exit(1);
 	}
 	return(p);
@@ -101,7 +106,7 @@ struct compile_options *alloc_compile_options(void){
 struct search_options *alloc_search_options(void){
 	struct search_options *p;
 	if((p = malloc(sizeof(struct search_options) * 1)) == NULL){
-		printf("failed : malloc() in alloc_search_options().\n");
+		printf("[Fail]malloc@alloc_search_options().\n");
 		exit(1);
 	}
 	return(p);
@@ -118,6 +123,7 @@ void init_options(struct options *opt){
 	(*opt).in_form = 2;
 	(*opt).out[0] = '\0';
 	(*opt).out_form = 2;
+	(*opt).data[0] = '\0';
 	(*opt).hF = 0;
 	(*opt).hC = 0;
 	(*opt).hS = 0;
@@ -418,6 +424,8 @@ int main(int argc, char **argv){
 		fclose(IN);
 	}
 	}
+
+	/* bind data */
 
 
 	/* finish */
