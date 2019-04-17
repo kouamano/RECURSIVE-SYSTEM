@@ -191,6 +191,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).in_form = 1;
 		}else if(strncmp(optv[i],"ot=individual",13) == 0){
 			(*opt).in_form = 2;
+		}else if(strncmp(optv[i],"csv=",4) == 0){
+			sscanf(optv[i],"csv=%s",(*opt).csv);
 		}
 	}
 }
