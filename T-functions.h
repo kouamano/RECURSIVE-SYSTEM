@@ -385,7 +385,11 @@ void Function_Print_HeadHierarchy(struct Tree *tree){
 	}else{
 		printf("-");
 	}
-	printf("%s\n",(*tree).Head);
+	printf("%s",(*tree).Head);
+	if((*tree).dimstr != NULL){
+		printf("*");
+	}
+	printf("\n");
 }
 void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	int i;
