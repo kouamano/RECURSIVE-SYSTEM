@@ -17,11 +17,12 @@ struct Tree {
 	int valstrlen;
 	char *valstr;
 };
-
+/*
 struct DataBlock{
 	int depth;
 	int *dims;
 };
+
 
 struct Label{
 	char flag;
@@ -33,6 +34,7 @@ struct HeadParts{
 	char *category;
 	char *name;
 };
+*/
 
 struct options {
         int help;
@@ -48,6 +50,11 @@ struct options {
         int hF;
         int hC;
         int hS;
+};
+
+struct data_options {
+	int d_counter;
+	int bind;
 };
 
 struct function_options {
