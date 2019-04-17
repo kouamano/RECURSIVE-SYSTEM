@@ -22,11 +22,12 @@ void status(void){
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" tq.o [-h|-hF|-hC] [-s] [-c] buff=<size(int)> in=<file name of input form> out=<file name of outout form> csv=<data file> it=<input form type> ot=<output form type> w=<warnning level> -F<x> -C<x>.\n");
+	printf(" tq.o [-h|-hF|-hC|-hS|-hD] [-s] [-c] buff=<size(int)> in=<file name of input form> out=<file name of outout form> csv=<data file> it=<input form type> ot=<output form type> w=<warnning level> -F<x> -C<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -hF : function help.\n");
 	printf("  -hC : compile help.\n");
 	printf("  -hS : search help.\n");
+	printf("  -hD : data help.\n");
 	printf("  -s : prints status.\n");
 	printf("  -c : check args.\n");
 	printf("  buff : set integer for buffer size to read the nodes.\n");
@@ -116,6 +117,14 @@ struct search_options *alloc_search_options(void){
 	}
 	return(p);
 }
+struct data_options *alloc_data_options(void){
+	struct data_options *p;
+	if((p = malloc(sizeof(struct data_options) * 1)) == NULL){
+		printf("[Fail]malloc@alloc_data_options().\n");
+		exit(1);
+	}
+	return(p);
+}
 
 /* initialize */
 void init_options(struct options *opt){
@@ -157,6 +166,10 @@ void init_compile_options(struct compile_options *copt){
 void init_search_options(struct search_options *sopt){
         (*sopt).s_counter = 0;
         (*sopt).pos = NULL;
+}
+void init_data_options(struct data_options *dopt){
+        (*dopt).d_counter = 0;
+        (*dopt).bind = 1;
 }
 
 /* get options */
