@@ -390,7 +390,9 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 
-	/* inout-form file */
+	int node_count;
+	/* input-form file */
+	if(strlen((*opt).in) > 0){
 	//* open */
 	if((IN = fopen((*opt).in,"r")) == NULL){
 		perror((*opt).in);
@@ -399,13 +401,15 @@ int main(int argc, char **argv){
 	is_open = 1;
 	//* import function */
 	struct Tree *itop;
-	int node_count = 0;
+	node_count = 0;
 	itop = Create_Node(0,BUFF_LEN);
 	c = import_Tree(IN,itop,opt,_fopt,_copt,_sopt,&node_count,0);	// @ T-import_export.h
 	//* close file */
 	if(is_open > 0){
 		fclose(IN);
 	}
+	}
+
 	/* outout-form file */
 	if(strlen((*opt).out) > 0){
 	//* open */
@@ -416,7 +420,7 @@ int main(int argc, char **argv){
 	is_open = 1;
 	//* import function */
 	struct Tree *otop;
-	//node_count = 0;
+	node_count = 0;
 	otop = Create_Node(0,BUFF_LEN);
 	c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,0);	// @ T-import_export.h
 	//* close file */
