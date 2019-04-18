@@ -362,7 +362,8 @@ int main(int argc, char **argv){
 	struct data_options *_dopt;
 	int ie = 0;
 	FILE *IN;
-	int is_open = 0;
+	int is_iopen = 0;
+	int is_oopen = 0;
 	int c;
 
 	/* options */
@@ -445,29 +446,30 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 
-	/* input-form file */
+	/* data file */
 	int t_array_count = 0;	//for data bind
 	struct Tree **TA;	//for data bind
 	if((TA = malloc(sizeof(*TA) * 1)) == NULL){
 		perror("[Fail]:malloc@main");
 		exit(1);
 	}
-	
 	int node_count;
 	struct Tree *itop;
+
+	/* input-form file */
 	if(strlen((*opt).in) > 0){
 	//* open */
 	if((IN = fopen((*opt).in,"r")) == NULL){
 		perror((*opt).in);
 		exit(1);
 	}
-	is_open = 1;
+	is_iopen = 1;
 	//* import function */
 	node_count = 0;
 	itop = Create_Node(0,BUFF_LEN);
 	c = import_Tree(IN,itop,opt,_fopt,_copt,_sopt,&node_count,0,&t_array_count,TA);	// @ T-import_export.h
 	//* close file */
-	if(is_open > 0){
+	if(is_iopen > 0){
 		fclose(IN);
 	}
 	}
@@ -480,13 +482,13 @@ int main(int argc, char **argv){
 		perror((*opt).out);
 		exit(1);
 	}
-	is_open = 1;
+	is_oopen = 1;
 	//* import function */
 	node_count = 0;
 	otop = Create_Node(0,BUFF_LEN);
 	c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,0,0,NULL);	// @ T-import_export.h
 	//* close file */
-	if(is_open > 0){
+	if(is_oopen > 0){
 		fclose(IN);
 	}
 	}
