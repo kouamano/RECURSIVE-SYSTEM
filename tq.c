@@ -364,6 +364,7 @@ int main(int argc, char **argv){
 	FILE *IN;
 	FILE *DATA;
 	int is_iopen = 0;
+	int is_dopen = 0;
 	int is_oopen = 0;
 	int c;
 
@@ -456,6 +457,13 @@ int main(int argc, char **argv){
 	}
 	int node_count;
 	struct Tree *itop;
+	if(strlen((*opt).csv) > 0){
+	if((IN = fopen((*opt).csv,"r")) == NULL){
+		perror((*opt).csv);
+		exit(1);
+	}
+	is_dopen = 1;
+	}
 
 	/* input-form file */
 	if(strlen((*opt).in) > 0){
@@ -475,6 +483,11 @@ int main(int argc, char **argv){
 	}
 	}
 
+	/* data file close */
+	if(is_dopen > 0){
+		fclose(DATA);
+	}
+
 	/* outout-form file */
 	struct Tree *otop;
 	if(strlen((*opt).out) > 0){
@@ -487,7 +500,7 @@ int main(int argc, char **argv){
 	//* import function */
 	node_count = 0;
 	otop = Create_Node(0,BUFF_LEN);
-	c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,0,0,NULL,DATA);	// @ T-import_export.h
+	c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,0,0,NULL,NULL);	// @ T-import_export.h
 	//* close file */
 	if(is_oopen > 0){
 		fclose(IN);
