@@ -296,7 +296,7 @@ void get_search_options(int optc, char **optv, struct search_options *sopt){
 }
 void get_data_options(int optc, char **optv, struct data_options *dopt){
 	int i = 0;
-	int opt_len = 0;
+	//int opt_len = 0;
 	(*dopt).d_counter = 0;
 	for(i=0;i<optc;i++){
 		if(strncmp(optv[i],"-Db",3) == 0){
