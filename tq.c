@@ -485,7 +485,7 @@ int main(int argc, char **argv){
 
 	/* data file close */
 	if(is_dopen > 0){
-		//fclose(DATA);
+		fclose(DATA);
 	}
 
 	/* outout-form file */
