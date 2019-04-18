@@ -134,7 +134,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 				buf_ptr = 0;
 				close = 0;
 				/* apply functions */
-				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt);
+				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA);
 				/* clear tree */
 				Function_Recursive_FreeForce_Tree(top);
 				free(top);
@@ -160,7 +160,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 				buf_ptr = 0;
 				close = 0;
 				/* apply functions */
-				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt);
+				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA);
 				/* clear tree */
 				Function_Recursive_FreeForce_Tree(top);
 				free(top);
@@ -175,12 +175,12 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 			ESC = 0;
 			if(EXEC_FLAG == 0){
 			if((*_opt).in_form == 0){
-				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt);
+				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA);
 				printf("\n");
 			}
 			}else if(EXEC_FLAG == 1){
 			if((*_opt).in_form == 0){
-				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt);
+				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA);
 				printf("\n");
 			}
 			}
@@ -202,7 +202,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 }
 
 /* data bind*/
-int bind_data(FILE *IN, struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	int C;
 	int bn_count = 0;
 	int delim_count = 0;
@@ -211,7 +211,7 @@ int bind_data(FILE *IN, struct Tree *tree, struct function_options *_fopt, struc
 	Function_Recursive_Search_BindNode(tree,&bn_count,bn_table);
 	printf(":bncount=%d:\n",bn_count);
 	//* search bind node */
-	while((C = fgetc(IN))){
+	while((C = fgetc(DATA))){
 		if(C == EOF){
 			return(0);
 		}else{

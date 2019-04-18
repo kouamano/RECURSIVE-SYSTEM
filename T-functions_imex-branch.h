@@ -1,5 +1,5 @@
 			/* include into T-functions_imex.h */
-		void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt){
+		void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *t_array_count, struct Tree **TA, FILE *DATA){
 			/* for search */
 		        struct Tree *hit_tree;
 		        struct Tree *hit_node;
@@ -15,9 +15,7 @@
 			}
 			/* pre */
 			//* detect dim */
-			//if(strlen((*_opt).csv) > 0){
-				ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Detect_DimBlock,_fopt,_copt,SN,1);
-			//}
+			ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Detect_DimBlock,_fopt,_copt,SN,1);
 
 			/* apply formated print */
 			if((*_fopt).f_print_N == 1){
