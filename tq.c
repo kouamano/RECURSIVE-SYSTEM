@@ -458,7 +458,7 @@ int main(int argc, char **argv){
 	int node_count;
 	struct Tree *itop;
 	if(strlen((*opt).csv) > 0){
-	if((IN = fopen((*opt).csv,"r")) == NULL){
+	if((DATA = fopen((*opt).csv,"r")) == NULL){
 		perror((*opt).csv);
 		exit(1);
 	}
@@ -485,7 +485,7 @@ int main(int argc, char **argv){
 
 	/* data file close */
 	if(is_dopen > 0){
-		fclose(DATA);
+		//fclose(DATA);
 	}
 
 	/* outout-form file */
