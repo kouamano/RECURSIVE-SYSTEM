@@ -1,5 +1,5 @@
 //import tree script
-int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *ncount, int INOUT, int *t_array_count, struct Tree **TA){
+int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *ncount, int EXEC_FLAG, int *t_array_count, struct Tree **TA){
 	int WAR;
 	int C;
 	int DLM_ACC = 1;
@@ -117,7 +117,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 			close++;
 		}else if(C == LF || C == TAB){
 			/* 0:single / 1:multi / 2:individual */
-			if(INOUT == 0){
+			if(EXEC_FLAG == 0){
 			if((*_opt).in_form == 0){
 				; // executed bellow
 			}else if((*_opt).in_form == 1){
@@ -143,7 +143,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 				*ncount = SN;
 				ESC = 0;
 			}
-			}else if(INOUT == 1){
+			}else if(EXEC_FLAG == 1){
 			if((*_opt).in_form == 0){
 				; // executed bellow
 			}else if((*_opt).in_form == 1){
@@ -173,12 +173,12 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 		}else if(C == EOF){
 			close = 0;
 			ESC = 0;
-			if(INOUT == 0){
+			if(EXEC_FLAG == 0){
 			if((*_opt).in_form == 0){
 				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt);
 				printf("\n");
 			}
-			}else if(INOUT == 1){
+			}else if(EXEC_FLAG == 1){
 			if((*_opt).in_form == 0){
 				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt);
 				printf("\n");
