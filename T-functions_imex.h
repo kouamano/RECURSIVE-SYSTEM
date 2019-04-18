@@ -205,7 +205,9 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 int bind_data(FILE *IN, struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	int C;
 	int bn_count = 0;
-	struct Tree **bn_table;
+	int delim_count = 0;
+	struct Tree **bn_table = NULL;
+	Function_Recursive_Search_BindNode(tree,&bn_count,bn_table);
 	//* search bind node */
 	while((C = fgetc(IN))){
 		if(C == EOF){

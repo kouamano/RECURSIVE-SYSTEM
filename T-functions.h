@@ -170,7 +170,8 @@ struct Tree *Detect_DimBlock(struct Tree *tree, struct function_options *_fopt, 
 	
 	return(tree);
 }
-struct Tree *Function_Recursive_Search_BindNode(struct Tree *top){
+struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *node_count, struct Tree **node_table){
+	node_table = realloc(node_table,(sizeof(struct Tree *) * (*node_count + 1)));
 }
 struct Tree *get_node(char *pos_str, struct Tree *tree){
 	int len = 0;
