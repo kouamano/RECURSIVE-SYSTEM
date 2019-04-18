@@ -15,9 +15,9 @@
 			}
 			/* pre */
 			//* detect dim */
-			if(strlen((*_opt).csv) > 0){
+			//if(strlen((*_opt).csv) > 0){
 				ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Detect_DimBlock,_fopt,_copt,SN,1);
-			}
+			//}
 
 			/* apply formated print */
 			if((*_fopt).f_print_N == 1){
