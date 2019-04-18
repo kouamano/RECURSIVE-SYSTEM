@@ -362,6 +362,7 @@ int main(int argc, char **argv){
 	struct data_options *_dopt;
 	int ie = 0;
 	FILE *IN;
+	FILE *DATA;
 	int is_iopen = 0;
 	int is_oopen = 0;
 	int c;
@@ -467,7 +468,7 @@ int main(int argc, char **argv){
 	//* import function */
 	node_count = 0;
 	itop = Create_Node(0,BUFF_LEN);
-	c = import_Tree(IN,itop,opt,_fopt,_copt,_sopt,&node_count,0,&t_array_count,TA);	// @ T-import_export.h
+	c = import_Tree(IN,itop,opt,_fopt,_copt,_sopt,&node_count,0,&t_array_count,TA,DATA);	// @ T-import_export.h
 	//* close file */
 	if(is_iopen > 0){
 		fclose(IN);
@@ -486,7 +487,7 @@ int main(int argc, char **argv){
 	//* import function */
 	node_count = 0;
 	otop = Create_Node(0,BUFF_LEN);
-	c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,0,0,NULL);	// @ T-import_export.h
+	c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,0,0,NULL,DATA);	// @ T-import_export.h
 	//* close file */
 	if(is_oopen > 0){
 		fclose(IN);
