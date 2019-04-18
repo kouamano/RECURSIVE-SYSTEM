@@ -492,19 +492,19 @@ int main(int argc, char **argv){
 	}
 
 	/* bind data すでにfreeされているので失敗する*/
+	/*
 	if(strlen((*opt).csv) > 0){
-	//* open */
 	if((IN = fopen((*opt).csv,"r")) == NULL){
 		perror((*opt).csv);
 		exit(1);
 	}
 	c = bind_data(IN,itop,_fopt,_copt);
-	//* close file */
 	is_open = 1;
 	if(is_open > 0){
 		fclose(IN);
 	}
 	}
+	*/
 
 
 	/* finish */
