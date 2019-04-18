@@ -134,7 +134,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 				buf_ptr = 0;
 				close = 0;
 				/* apply functions */
-				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA);
+				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,0);
 				/* clear tree */
 				Function_Recursive_FreeForce_Tree(top);
 				free(top);
@@ -160,7 +160,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 				buf_ptr = 0;
 				close = 0;
 				/* apply functions */
-				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA);
+				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,0);
 				/* clear tree */
 				Function_Recursive_FreeForce_Tree(top);
 				free(top);
@@ -175,12 +175,12 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 			ESC = 0;
 			if(EXEC_FLAG == 0){
 			if((*_opt).in_form == 0){
-				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA);
+				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,0);
 				printf("\n");
 			}
 			}else if(EXEC_FLAG == 1){
 			if((*_opt).in_form == 0){
-				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA);
+				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,0);
 				printf("\n");
 			}
 			}

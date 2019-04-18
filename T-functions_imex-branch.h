@@ -1,5 +1,5 @@
 			/* include into T-functions_imex.h */
-		void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *t_array_count, struct Tree **TA, FILE *DATA){
+		void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *t_array_count, struct Tree **TA, FILE *DATA, int EXEC_FLAG){
 			/* for search */
 		        struct Tree *hit_tree;
 		        struct Tree *hit_node;
