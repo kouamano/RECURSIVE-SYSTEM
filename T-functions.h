@@ -171,7 +171,18 @@ struct Tree *Detect_DimBlock(struct Tree *tree, struct function_options *_fopt, 
 	return(tree);
 }
 struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *node_count, struct Tree **node_table){
-	node_table = realloc(node_table,(sizeof(struct Tree *) * (*node_count + 1)));
+	int i;
+	struct Tree *current;
+	current = top;
+	if((*current).nval > 0){
+		node_table = realloc(node_table,(sizeof(struct Tree *) * (*node_count + 1)));
+		node_table[(*node_count)] = current;
+		(*node_count)++;
+	}
+	for(i=0;i<(*current).NextCount;i++){
+		Function_Recursive_Search_BindNode((*current).Next[i],node_count,node_table);
+	}
+	return(NULL);
 }
 struct Tree *get_node(char *pos_str, struct Tree *tree){
 	int len = 0;
