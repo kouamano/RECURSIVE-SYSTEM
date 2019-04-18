@@ -174,7 +174,11 @@ struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *node_coun
 	int i;
 	struct Tree *current;
 	current = top;
+	printf(":cur=%ld:",current);
+	printf(":ser=%d:",(*top).ser);
+	printf(":nc=%d:",(*top).NextCount);
 	if((*current).nval > 0){
+		printf(":nval=%d:",(*current).nval);
 		node_table = realloc(node_table,(sizeof(struct Tree *) * (*node_count + 1)));
 		node_table[(*node_count)] = current;
 		(*node_count)++;

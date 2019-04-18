@@ -491,7 +491,7 @@ int main(int argc, char **argv){
 	}
 	}
 
-	/* bind data */
+	/* bind data すでにfreeされているので失敗する*/
 	if(strlen((*opt).csv) > 0){
 	//* open */
 	if((IN = fopen((*opt).csv,"r")) == NULL){

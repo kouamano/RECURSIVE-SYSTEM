@@ -207,7 +207,9 @@ int bind_data(FILE *IN, struct Tree *tree, struct function_options *_fopt, struc
 	int bn_count = 0;
 	int delim_count = 0;
 	struct Tree **bn_table = NULL;
+	printf(":tree=%ld:",tree);
 	Function_Recursive_Search_BindNode(tree,&bn_count,bn_table);
+	printf(":bncount=%d:\n",bn_count);
 	//* search bind node */
 	while((C = fgetc(IN))){
 		if(C == EOF){
