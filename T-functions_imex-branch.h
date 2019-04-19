@@ -7,7 +7,7 @@
 			/* pre */
 			//* detect dim */
 			//printf(":EXEC=%d:",EXEC_FLAG);
-			if(EXEC_FLAG == 1){
+			if((EXEC_FLAG&1) == 1){
 			ExFunction_Recursive_Ser(top,(struct Tree *(*)())Detect_DimBlock,_fopt,_copt,SN,1);
 			if(strlen((*_opt).data) > 0){
 				bind_data(DATA,top,_fopt,_copt);
