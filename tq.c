@@ -476,7 +476,7 @@ int main(int argc, char **argv){
 	//* import function */
 	node_count = 0;
 	itop = Create_Node(0,BUFF_LEN);
-	c = import_Tree(IN,itop,opt,_fopt,_copt,_sopt,&node_count,0,&t_array_count,TA,DATA);
+	c = import_Tree(IN,itop,opt,_fopt,_copt,_sopt,&node_count,1,&t_array_count,TA,DATA);
 	//* close file */
 	if(is_iopen > 0){
 		fclose(IN);
