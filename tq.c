@@ -22,7 +22,7 @@ void status(void){
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" tq.o [-h|-hF|-hC|-hS|-hD] [-s] [-c] buff=<size(int)> in=<file name of input form> out=<file name of outout form> csv=<data file> it=<input form type> ot=<output form type> w=<warnning level> -F<x> -C<x>.\n");
+	printf(" tq.o [-h|-hF|-hC|-hS|-hD] [-s] [-c] buff=<size(int)> in=<file name of input form> out=<file name of outout form> data=<data file> it=<input form type> ot=<output form type> w=<warnning level> -F<x> -C<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -hF : function help.\n");
 	printf("  -hC : compile help.\n");
@@ -38,7 +38,7 @@ void help(void){
 	printf("   2 individual: operate line by line.\n");
 	printf("  out : set output-form file name (length < 1024).\n");
 	printf("  ot : decrear output-type.\n");
-	printf("  csv : CSV data file name.\n");
+	printf("  data : CSV data file name.\n");
 	printf("  war : set integer for warnnig level.\n");
 }
 void function_help(void){
@@ -87,7 +87,7 @@ struct options *alloc_options(void){
 		perror("[Fail]malloc@alloc_options().\n");
 		exit(1);
 	}
-	if(((*p).csv = malloc(sizeof(char) * LEN)) == NULL){
+	if(((*p).data = malloc(sizeof(char) * LEN)) == NULL){
 		perror("[Fail]malloc@alloc_options().\n");
 		exit(1);
 	}
@@ -137,7 +137,7 @@ void init_options(struct options *opt){
 	(*opt).in_form = 2;
 	(*opt).out[0] = '\0';
 	(*opt).out_form = 2;
-	(*opt).csv[0] = '\0';
+	(*opt).data[0] = '\0';
 	(*opt).hF = 0;
 	(*opt).hC = 0;
 	(*opt).hS = 0;
@@ -210,8 +210,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).in_form = 1;
 		}else if(strncmp(optv[i],"ot=individual",13) == 0){
 			(*opt).in_form = 2;
-		}else if(strncmp(optv[i],"csv=",4) == 0){
-			sscanf(optv[i],"csv=%s",(*opt).csv);
+		}else if(strncmp(optv[i],"data=",5) == 0){
+			sscanf(optv[i],"data=%s",(*opt).data);
 		}
 	}
 }
@@ -314,7 +314,7 @@ void check_options(struct options *opt){
 	printf(" opt.in-form:%d:\n",(*opt).in_form);
 	printf(" opt.out:%s:\n",(*opt).out);
 	printf(" opt.out-form:%d:\n",(*opt).out_form);
-	printf(" opt.csv:%s:\n",(*opt).csv);
+	printf(" opt.data:%s:\n",(*opt).data);
 	printf(" opt.war:%d:\n",(*opt).war);
 	printf(" opt.hF:%d:\n",(*opt).hF);
 	printf(" opt.hC:%d:\n",(*opt).hC);
@@ -457,9 +457,9 @@ int main(int argc, char **argv){
 	}
 	int node_count;
 	struct Tree *itop;
-	if(strlen((*opt).csv) > 0){
-	if((DATA = fopen((*opt).csv,"r")) == NULL){
-		perror((*opt).csv);
+	if(strlen((*opt).data) > 0){
+	if((DATA = fopen((*opt).data,"r")) == NULL){
+		perror((*opt).data);
 		exit(1);
 	}
 	is_dopen = 1;
@@ -509,9 +509,9 @@ int main(int argc, char **argv){
 
 	/* bind data すでにfreeされているので失敗する*/
 	/*
-	if(strlen((*opt).csv) > 0){
-	if((IN = fopen((*opt).csv,"r")) == NULL){
-		perror((*opt).csv);
+	if(strlen((*opt).data) > 0){
+	if((IN = fopen((*opt).data,"r")) == NULL){
+		perror((*opt).data);
 		exit(1);
 	}
 	c = bind_data(IN,itop,_fopt,_copt);

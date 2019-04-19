@@ -44,7 +44,7 @@ struct options {
         int war;
         char *in;
         char *out;
-	char *csv;
+	char *data;
 	int in_form;
 	int out_form;
         int hF;
