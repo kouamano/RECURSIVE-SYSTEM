@@ -1,7 +1,11 @@
-/* administrative functions */
-//* prottype */
-struct Tree *ExFunction_UpRecursive( struct Tree *, struct Tree *(*)(struct Tree *), struct function_options *, struct compile_options *, char *);
+/* prottype */
+//struct Tree *ExFunction_UpRecursive( struct Tree *, struct Tree *(*)(struct Tree *), struct function_options *, struct compile_options *, char *);
 
+/* meta functions */
+void null_func(void){
+}
+
+/* status-check functions */
 void print_war(char C, struct Tree *tree, int level){
         printf("\n:C=%c: ",C);
         printf(":Pp=%ld:",(long int)(*tree).Parent);
@@ -49,6 +53,45 @@ int AnalyzeHead(struct Tree *tree){
 	}
 	return(0);
 }
+struct Tree *get_node(char *pos_str, struct Tree *tree){
+	int len = 0;
+	int list_len = 0;
+	int i;
+	int count = 0;
+	int *list;
+	struct Tree *current;
+	len = strlen(pos_str);
+	for(i=0;i<len;i++){
+		if(pos_str[i] == ','){
+			list_len++;
+		}
+	}
+	list_len++;
+	list = malloc(sizeof(int) * list_len);
+	sscanf(pos_str,"%d",&list[count]);
+	for(i=0;i<len;i++){
+		if(pos_str[i] == ','){
+			count++;
+			sscanf(pos_str+i+1,"%d",&list[count]);
+		}
+	}
+	count++;
+	if(list[0] == 0){
+		current = tree;
+		for(i=1;i<count;i++){
+			if((*current).NextCount > list[i]){
+				current = current->Next[list[i]];
+			}else{
+				current = NULL;
+				break;
+			}
+		}
+	}else{
+		current = NULL;
+	}
+	free(list);
+	return(current);
+}
 int Detect_DimRegion(const char *head, int *pos){
 	int len;
 	int dim_s = -1;
@@ -82,6 +125,8 @@ int Detect_DimRegion(const char *head, int *pos){
 	}
 	return(ret);
 }
+
+/* restructure functions */
 int Add_DimStr(struct Tree *tree, int *dim_pos, char *buff){
 	int len;
 	len = strlen(buff);
@@ -205,48 +250,6 @@ int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, str
         }
         return(0);
 }
-
-struct Tree *get_node(char *pos_str, struct Tree *tree){
-	int len = 0;
-	int list_len = 0;
-	int i;
-	int count = 0;
-	int *list;
-	struct Tree *current;
-	len = strlen(pos_str);
-	for(i=0;i<len;i++){
-		if(pos_str[i] == ','){
-			list_len++;
-		}
-	}
-	list_len++;
-	list = malloc(sizeof(int) * list_len);
-	sscanf(pos_str,"%d",&list[count]);
-	for(i=0;i<len;i++){
-		if(pos_str[i] == ','){
-			count++;
-			sscanf(pos_str+i+1,"%d",&list[count]);
-		}
-	}
-	count++;
-	if(list[0] == 0){
-		current = tree;
-		for(i=1;i<count;i++){
-			if((*current).NextCount > list[i]){
-				current = current->Next[list[i]];
-			}else{
-				current = NULL;
-				break;
-			}
-		}
-	}else{
-		current = NULL;
-	}
-	free(list);
-	return(current);
-}
-
-/* restructure functions */
 struct Tree *Create_Node(int _ser, int H_size){
 	struct Tree *tree;
 	if((tree = malloc(sizeof(struct Tree) * 1)) == NULL){
@@ -417,8 +420,8 @@ char *Function_Compile_Head(struct Tree *tree, struct compile_options *_copt){
 	return(tmp_head);
 }
 
-/* formated print functions */
-//* structure members */
+/* print functions */
+//* status */
 void Function_Print_Smems(struct Tree *tree){
 	struct Tree *parent = (*tree).Parent;
 	printf(":Adr=%ld:",(long int)tree);
@@ -496,11 +499,7 @@ int Function_Print_Adj(struct Tree *tree, int nodes){
 	return(nodes);
 }
 
-/* meta functions */
-void null_func(void){
-}
-
-/* print primitives */
+/* formated print primitives */
 //* Conj */
 struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 		if((*tree).Conj == 1){
