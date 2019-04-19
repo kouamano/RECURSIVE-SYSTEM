@@ -188,6 +188,24 @@ struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *node_coun
 	}
 	return(NULL);
 }
+
+int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+        int C;
+        int bn_count = 0;
+        struct Tree **bn_table = NULL;
+        printf(":tree=%ld:",(long int)tree);
+        Function_Recursive_Search_BindNode(tree,&bn_count,bn_table);
+        printf(":bncount=%d:\n",bn_count);
+        while((C = fgetc(DATA))){
+                if(C == EOF){
+                        return(0);
+                }else{
+                        putchar(C);
+                }
+        }
+        return(0);
+}
+
 struct Tree *get_node(char *pos_str, struct Tree *tree){
 	int len = 0;
 	int list_len = 0;

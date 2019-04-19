@@ -3,9 +3,13 @@
 			/*
  			* EXEC_FLAG : controls GC or other functions
 			*/
+
 			/* pre */
 			//* detect dim */
 			ExFunction_Recursive_Ser(top,(struct Tree *(*)())Detect_DimBlock,_fopt,_copt,SN,1);
+			if(strlen((*_opt).csv) > 0){
+				bind_data(DATA,top,_fopt,_copt);
+			}
 
 
 			/* for search */
