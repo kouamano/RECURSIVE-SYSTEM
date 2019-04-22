@@ -1,0 +1,6 @@
+$ER$FED
+$M$./tq.o ($-FW,$-Cr)
+$X$Get($`~/gitsrc/MATH_SCRIPT/SCRIPTS/DataFederation.m)
+$Set($xlsx,$Import($`toSheet.xlsx))
+$Set($sheet,$toPartitionSheet($X$List($``$X$List($$$3[]),$``$X$List($$$2002[]),$``$X$List[]($$$2004[])))($`$$3020)($xlsx))
+$Export($`export.sheet,$FullForm($sheet),$`String)

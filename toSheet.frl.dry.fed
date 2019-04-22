@@ -1,0 +1,4 @@
+Get["~/gitsrc/MATH_SCRIPT/SCRIPTS/DataFederation.m"];
+Set[xlsx,Import["toSheet.xlsx"]];
+Set[sheet,toPartitionSheet[List["$X$List[$$$3[DIM,]]","$X$List[$$$2002[DIM,]]","$X$List[DIM,][$$$2004[DIM,]]"]]["$$3020"][xlsx]];
+$Export["export.sheet",FullForm[sheet],"String"];
