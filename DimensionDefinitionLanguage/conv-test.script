@@ -22,7 +22,7 @@ diff test.s.t test.t
 #T2S##1
 echo 'T2S'
 cat test.t | ../t2mM.pl | ../mM2j.swl | ../j2s.pl > test.t.mM.j.s
-cat test.t.mM.j.s | cst in=/dev/stdin > test.t.mM.j.s.t
+cat test.t.mM.j.s | ../cst in=/dev/stdin > test.t.mM.j.s.t
 diff test.t test.t.mM.j.s.t
 #T2S##2
 cat test.t | ../cts in=/dev/stdin > test.t.s
@@ -102,7 +102,7 @@ diff test.s.t.mM test.s.t.mM.t.mM
 #M2S
 echo 'M2S'
 cat test.s.t.mM | ../mM2j.swl | ../j2s.pl > test.s.t.mM.j.s
-cat test.s.t.mM.j.s | cst in=/dev/stdin | ../t2mM.pl > test.s.t.mM.j.s.t.mM
+cat test.s.t.mM.j.s | ../cst in=/dev/stdin | ../t2mM.pl > test.s.t.mM.j.s.t.mM
 diff test.s.t.mM test.s.t.mM.j.s.t.mM
 #M2J
 echo 'M2J'
