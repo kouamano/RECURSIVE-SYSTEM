@@ -45,10 +45,10 @@ bash conv_e-test.script
 bash conv_ee-test.script
 bash check-example.script
 
-bash cat-example.script | tq.o -FT in=/dev/stdin > tmp
-bash cat-example.script | tq.o -FT in=/dev/stdin | ./tq.o -FT in=/dev/stdin > tmp2
+bash cat-example.script | ./tq.o -FT in=/dev/stdin > tmp
+bash cat-example.script | ./tq.o -FT in=/dev/stdin | ./tq.o -FT in=/dev/stdin > tmp2
 diff tmp tmp2
-tq.o in=single-test.t it=single -FT
+./tq.o in=single-test.t it=single -FT
 
 ```
 ##performance
