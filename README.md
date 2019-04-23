@@ -24,7 +24,7 @@ Cons-cellを用いているのでメモリー消費が大きい。
 ./DimensionDefinitionLanguage/README
 ##compile
 cd DimensionDefinitionLanguage
-compile_all.n007.sh
+compile_checker.n007.sh
 ## 言語
 ### t系
 - t
