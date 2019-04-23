@@ -54,25 +54,25 @@ diff tmp tmp2
 ##performance
 ### time: 80 sec.; mem in use:540Byte @ N007
 ### time: 55 sec.; mem in use:360Byte @ G005
-time tq.o in=lllarge-test.t
+time ./tq.o in=lllarge-test.t
 
 ### time: 1m 24sec.; mem in use:560Byte @ N007
-time tq.o in=lllarge-test.t Sp=0,1
+time ./tq.o in=lllarge-test.t Sp=0,1
 
 ### time: 1m43sec.; mem in use:560Byte @ N007
-time tq.o in=lllarge-test.t -FS > /dev/null
+time ./tq.o in=lllarge-test.t -FS > /dev/null
 
 ### time: 14 sec.; mem in use:520Byte @ N007
-time tq.o in=llarge-test.t
+time ./tq.o in=llarge-test.t
 
 ### time: 20 sec. ; mem in use:570Byte @ N007
-time tq.o in=llarge-test.t -FT > /dev/null
+time ./tq.o in=llarge-test.t -FT > /dev/null
 
 ### time: 20 sec. ; mem in use:570Byte @ N007
-time tq.o in=llarge-test.t -FN > /dev/null
+time ./tq.o in=llarge-test.t -FN > /dev/null
 
 ### time: 75 sec. ; mem: 89G. @ N007 ; 13M nodes
-time tq.o in=llarge-single-test.t -FT it=single > /dev/null
+time ./tq.o in=llarge-single-test.t -FT it=single > /dev/null
 ### 参考 jq 80 sec. ; mem: 17G @ N007 ; 11M nodes
 time cat llarge-single-test.t.j | jq . > tmp.json
 ### 参考 mathematica 20 sec. ; mem: 4G @ N007
