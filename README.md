@@ -51,9 +51,9 @@ diff tmp tmp2
 ./tq.o in=single-test.t it=single -FT
 
 ```
-##performance
-### time: 80 sec.; mem in use:540Byte @ N007
-### time: 55 sec.; mem in use:360Byte @ G005
+## performance
+### time: 80 sec.; mem in use:640Byte @ N007
+### time: 55 sec.; mem in use:612Byte @ G005
 time ./tq.o in=lllarge-test.t
 
 ### time: 1m 24sec.; mem in use:560Byte @ N007
