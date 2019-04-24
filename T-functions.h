@@ -246,11 +246,31 @@ int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, str
 	for(i=0;i<bn_count;i++){
 		printf(":bn=%ld:",bn_table[i]);
 	}
+	int delim_count = 0;
+	int node_count = 0;
+	int buff_ptr = 0;
+	char *buff;
+	buff = malloc(sizeof(char) * LEN);
         while((C = fgetc(DATA))){
+		if(node_count >= bn_count){
+			break;
+		}
                 if(C == EOF){
                         return(0);
                 }else{
                         putchar(C);
+			buff[buff_ptr] = C;
+			buff_ptr++;
+			if(C == ',' || C == '\n'){
+				delim_count++;
+			}
+			if(bn_table[node_count]->nval == delim_count){
+				buff[buff_ptr] = '\0';
+				printf("BUFF[%s]",buff);
+				delim_count = 0;
+				node_count++;
+				buff_ptr = 0;
+			}
                 }
         }
         return(0);
