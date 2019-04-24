@@ -242,10 +242,12 @@ int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, str
 		exit(1);
 	}
         Function_Recursive_Search_BindNode(tree,&bn_count,bn_table);
-        printf(":bncount=%d:\n",bn_count);
+        //printf(":bncount=%d:\n",bn_count);
+        /*
 	for(i=0;i<bn_count;i++){
 		printf(":bn=%ld:",bn_table[i]);
 	}
+	*/
 	int delim_count = 0;
 	int node_count = 0;
 	int buff_ptr = 0;
@@ -259,7 +261,7 @@ int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, str
                 if(C == EOF){
                         return(0);
                 }else{
-                        putchar(C);
+                        //putchar(C);
 			buff[buff_ptr] = C;
 			buff_ptr++;
 			if(C == ',' || C == '\n'){
@@ -267,13 +269,29 @@ int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, str
 			}
 			if(bn_table[node_count]->nval == delim_count){
 				buff[buff_ptr] = '\0';
-				printf("BUFF[%s]",buff);
+				buff_len = strlen(buff);
+				for(i=0;i<buff_len;i++){
+					if(buff[i] == '\n'){
+						//printf("n");
+						buff[i] = ',';
+					}
+				}
+				if(buff[buff_len-1] == ',' || buff[buff_len-1] == '\n'){
+					buff[buff_len-1] = '\0';
+				}
+				//printf("BUFF[%s]",buff);
+				buff_len = strlen(buff);
+				bn_table[node_count]->valstr = malloc(sizeof(char) * (buff_len + 1));
+				//strcpy(bn_table[node_count]->valstr,buff);
+				strcpy((*bn_table[node_count]).valstr,buff);
+				//printf("@(%s)",(*bn_table[node_count]).valstr);
 				delim_count = 0;
 				node_count++;
 				buff_ptr = 0;
 			}
                 }
         }
+	free(buff);
         return(0);
 }
 struct Tree *Create_Node(int _ser, int H_size){
