@@ -249,6 +249,7 @@ int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, str
 	int delim_count = 0;
 	int node_count = 0;
 	int buff_ptr = 0;
+	int buff_len = 0;
 	char *buff;
 	buff = malloc(sizeof(char) * LEN);
         while((C = fgetc(DATA))){
