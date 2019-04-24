@@ -315,6 +315,7 @@ struct Tree *Create_Node(int _ser, int H_size){
 	}
 	(*tree).dimstr = NULL;
 	(*tree).nval = 0;
+	(*tree).valstr = NULL;
 	(*tree).Parent=NULL;
 	return(tree);
 }
