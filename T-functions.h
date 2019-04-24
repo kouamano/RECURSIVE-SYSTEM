@@ -223,7 +223,7 @@ struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *node_coun
 	//printf(":nc=%d:",(*top).NextCount);
 	if((*current).nval > 0){
 		//printf(":nval=%d:",(*current).nval);
-		node_table = realloc(node_table,(sizeof(struct Tree *) * (*node_count + 1)));
+		node_table = realloc(node_table,(sizeof(struct Tree *) * (*node_count + 2)));
 		node_table[(*node_count)] = current;
 		(*node_count)++;
 	}
@@ -233,12 +233,19 @@ struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *node_coun
 	return(NULL);
 }
 int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	int i;
         int C;
         int bn_count = 0;
         struct Tree **bn_table = NULL;
-        printf(":tree=%ld:",(long int)tree);
+	if((bn_table = malloc(sizeof(struct Tree *) * 1)) == NULL){
+		perror("[]malloc@bind_data");
+		exit(1);
+	}
         Function_Recursive_Search_BindNode(tree,&bn_count,bn_table);
         printf(":bncount=%d:\n",bn_count);
+	for(i=0;i<bn_count;i++){
+		printf(":bn=%ld:",bn_table[i]);
+	}
         while((C = fgetc(DATA))){
                 if(C == EOF){
                         return(0);
