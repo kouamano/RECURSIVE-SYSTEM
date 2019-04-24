@@ -1,5 +1,4 @@
 /* prottype */
-//struct Tree *ExFunction_UpRecursive( struct Tree *, struct Tree *(*)(struct Tree *), struct function_options *, struct compile_options *, char *);
 
 /* meta functions */
 void null_func(void){
