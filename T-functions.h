@@ -248,7 +248,11 @@ int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, str
 	int buff_ptr = 0;
 	int buff_len = 0;
 	char *buff;
-	buff = malloc(sizeof(char) * LEN);
+	if((buff = malloc(sizeof(char) * LEN)) == NULL){
+		perror("[]malloc@bind_data.\n");
+		exit(1);
+	}
+	buff[0] = '\0';
         while((C = fgetc(DATA))){
 		if(node_count >= bn_count){
 			break;
