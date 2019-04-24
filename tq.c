@@ -467,20 +467,20 @@ int main(int argc, char **argv){
 
 	/* input-form file */
 	if(strlen((*opt).in) > 0){
-	//* open */
-	if((IN = fopen((*opt).in,"r")) == NULL){
-		perror((*opt).in);
-		exit(1);
-	}
-	is_iopen = 1;
-	//* import function */
-	node_count = 0;
-	itop = Create_Node(0,BUFF_LEN);
-	c = import_Tree(IN,itop,opt,_fopt,_copt,_sopt,&node_count,1,&t_array_count,TA,DATA);
-	//* close file */
-	if(is_iopen > 0){
-		fclose(IN);
-	}
+		//* open */
+		if((IN = fopen((*opt).in,"r")) == NULL){
+			perror((*opt).in);
+			exit(1);
+		}
+		is_iopen = 1;
+		//* import function */
+		node_count = 0;
+		itop = Create_Node(0,BUFF_LEN);
+		c = import_Tree(IN,itop,opt,_fopt,_copt,_sopt,&node_count,1,&t_array_count,TA,DATA);
+		//* close file */
+		if(is_iopen > 0){
+			fclose(IN);
+		}
 	}
 
 	/* data file close */
@@ -491,36 +491,21 @@ int main(int argc, char **argv){
 	/* outout-form file */
 	struct Tree *otop;
 	if(strlen((*opt).out) > 0){
-	//* open */
-	if((IN = fopen((*opt).out,"r")) == NULL){
-		perror((*opt).out);
-		exit(1);
+		//* open */
+		if((IN = fopen((*opt).out,"r")) == NULL){
+			perror((*opt).out);
+			exit(1);
+		}
+		is_oopen = 1;
+		//* import function */
+		node_count = 0;
+		otop = Create_Node(0,BUFF_LEN);
+		c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,0,NULL,NULL,NULL);
+		//* close file */
+		if(is_oopen > 0){
+			fclose(IN);
+		}
 	}
-	is_oopen = 1;
-	//* import function */
-	node_count = 0;
-	otop = Create_Node(0,BUFF_LEN);
-	c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,0,NULL,NULL,NULL);
-	//* close file */
-	if(is_oopen > 0){
-		fclose(IN);
-	}
-	}
-
-	/* bind data すでにfreeされているので失敗する*/
-	/*
-	if(strlen((*opt).data) > 0){
-	if((IN = fopen((*opt).data,"r")) == NULL){
-		perror((*opt).data);
-		exit(1);
-	}
-	c = bind_data(IN,itop,_fopt,_copt);
-	is_open = 1;
-	if(is_open > 0){
-		fclose(IN);
-	}
-	}
-	*/
 
 
 	/* finish */

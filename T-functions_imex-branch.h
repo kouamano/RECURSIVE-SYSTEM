@@ -5,13 +5,13 @@ void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct op
 			*/
 
 			/* pre */
-			//printf(":EXEC=%d:",EXEC_FLAG);
+			printf(":EXEC=%d:",EXEC_FLAG);
 			if((EXEC_FLAG&1) == 1){
 				//* detect dim */
 				ExFunction_Recursive_Ser(top,(struct Tree *(*)())Detect_DimBlock,_fopt,_copt,SN,1);
 				if(strlen((*_opt).data) > 0){
-				//* bind data */
-				bind_data(DATA,top,_fopt,_copt);
+					//* bind data */
+					bind_data(DATA,top,_fopt,_copt);
 				}
 			}
 
