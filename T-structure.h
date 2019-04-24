@@ -17,24 +17,6 @@ struct Tree {
 	int valstrlen;
 	char *valstr;
 };
-/*
-struct DataBlock{
-	int depth;
-	int *dims;
-};
-
-
-struct Label{
-	char flag;
-	int label;
-};
-
-struct HeadParts{
-	char *label;
-	char *category;
-	char *name;
-};
-*/
 
 struct options {
         int help;

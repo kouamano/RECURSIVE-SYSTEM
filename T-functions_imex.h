@@ -117,8 +117,6 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 			close++;
 		}else if(C == LF || C == TAB){
 			/* 0:single / 1:multi / 2:individual */
-			//if(EXEC_FLAG == 0){
-
 			if((*_opt).in_form == 0){
 				; // executed bellow
 			}else if((*_opt).in_form == 1){
@@ -134,7 +132,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 				BUFF[0] = '\0';
 				buf_ptr = 0;
 				close = 0;
-				/* apply functions */
+				/* apply functions, bind data */
 				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,EXEC_FLAG);
 				/* clear tree */
 				Function_Recursive_FreeForce_Tree(top);
@@ -144,49 +142,13 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 				*ncount = SN;
 				ESC = 0;
 			}
-/*
-			}else if(EXEC_FLAG == 1){
-			if((*_opt).in_form == 0){
-				; // executed bellow
-			}else if((*_opt).in_form == 1){
-				; // under construction
-			}else if((*_opt).in_form == 2){
-				BUFF[buf_ptr] = '\0';
-				if(close == 0){
-					strcpy((*current).Head,BUFF);
-					AnalyzeHead(current);
-				}
-				BUFF[0] = '\0';
-				buf_ptr = 0;
-				close = 0;
-				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,EXEC_FLAG);
-				Function_Recursive_FreeForce_Tree(top);
-				free(top);
-				top = Create_Node(SN,(*_opt).buff);
-				SN++;
-				*ncount = SN;
-				ESC = 0;
-			}
-			}
-*/
-
 		}else if(C == EOF){
 			close = 0;
 			ESC = 0;
-			//if(EXEC_FLAG == 0){
-
 			if((*_opt).in_form == 0){
 				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,EXEC_FLAG);
 				printf("\n");
 			}
-/*
-			}else if(EXEC_FLAG == 1){
-			if((*_opt).in_form == 0){
-				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,EXEC_FLAG);
-				printf("\n");
-			}
-			}
-*/
 			return(C);
 		}else{
 			/* buffering */
