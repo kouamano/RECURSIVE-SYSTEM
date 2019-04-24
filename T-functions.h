@@ -243,12 +243,6 @@ int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, str
 		exit(1);
 	}
         Function_Recursive_Search_BindNode(tree,&bn_count,bn_table);
-        //printf(":bncount=%d:\n",bn_count);
-        /*
-	for(i=0;i<bn_count;i++){
-		printf(":bn=%ld:",bn_table[i]);
-	}
-	*/
 	int delim_count = 0;
 	int node_count = 0;
 	int buff_ptr = 0;
@@ -262,7 +256,6 @@ int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, str
                 if(C == EOF){
                         return(0);
                 }else{
-                        //putchar(C);
 			buff[buff_ptr] = C;
 			buff_ptr++;
 			if(C == ',' || C == '\n'){
@@ -273,7 +266,6 @@ int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, str
 				buff_len = strlen(buff);
 				for(i=0;i<buff_len;i++){
 					if(buff[i] == '\n'){
-						//printf("n");
 						buff[i] = ',';
 					}
 				}
