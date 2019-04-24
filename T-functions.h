@@ -473,6 +473,7 @@ void Function_Print_Smems(struct Tree *tree){
 	printf(":H=%s:",(*tree).Head);
 	printf(":D=%s:",(*tree).dimstr);
 	printf(":nval=%d:",(*tree).nval);
+	printf(":vstr=%s:",(*tree).valstr);
 	if(parent != NULL){
 		printf(":Pa=%d:",(*parent).ser);
 	}else{
@@ -503,6 +504,7 @@ void Function_Print_HeadHierarchy(struct Tree *tree){
 	printf("%s",(*tree).Head);
 	if((*tree).dimstr != NULL){
 		printf("*%d",(*tree).nval);
+		printf("@(%s)",(*tree).valstr);
 	}
 	printf("\n");
 }
@@ -613,6 +615,7 @@ struct Tree *Function_Print_Conj_X(struct Tree *tree, struct function_options *_
 //* Head */
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	/* compile */
+	//int val_len = 0;
 	if((*_copt).c_counter > 0){
 		char *tmp_str;
 		tmp_str = Function_Compile_Head(tree,_copt);
@@ -620,6 +623,10 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		free(tmp_str);	//test
 	}else{
 		printf("%s",(*tree).Head);	//normal
+	}
+	
+	if(strlen((*tree).valstr) > 0 && (*tree).valstr != NULL){
+		//printf("@()");
 	}
 	return(tree);
 }
