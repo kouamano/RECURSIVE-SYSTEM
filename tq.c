@@ -500,7 +500,7 @@ int main(int argc, char **argv){
 	//* import function */
 	node_count = 0;
 	otop = Create_Node(0,BUFF_LEN);
-	c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,0,0,NULL,NULL);
+	c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,0,NULL,NULL,NULL);
 	//* close file */
 	if(is_oopen > 0){
 		fclose(IN);
