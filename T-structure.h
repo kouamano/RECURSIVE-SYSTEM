@@ -14,7 +14,7 @@ struct Tree {
 	struct Tree *Parent;	// must not free !!
 	char *dimstr;
 	int nval;
-	int valstrlen;
+	//int valstrlen;
 	char *valstr;
 };
 
