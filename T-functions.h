@@ -283,9 +283,7 @@ int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, str
 				//printf("BUFF[%s]",buff);
 				buff_len = strlen(buff);
 				bn_table[node_count]->valstr = malloc(sizeof(char) * (buff_len + 1));
-				//strcpy(bn_table[node_count]->valstr,buff);
 				strcpy((*bn_table[node_count]).valstr,buff);
-				//printf("@(%s)",(*bn_table[node_count]).valstr);
 				delim_count = 0;
 				node_count++;
 				buff_ptr = 0;
@@ -626,6 +624,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		printf("%s",(*tree).Head);	//normal
 	}
 	if((*tree).valstr != NULL){
+		/* UNDER CONSTRUCTION : must be initialize valstr */
 		printf("@(%s)",(*tree).valstr);
 	}
 	return(tree);
