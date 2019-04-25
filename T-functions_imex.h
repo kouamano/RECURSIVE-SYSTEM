@@ -1,15 +1,17 @@
 //import tree script
-int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *ncount, int EXEC_FLAG, int *t_array_count, struct Tree **TA, FILE *DATA){
+struct Tree *import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *ncount, int EXEC_FLAG, int *t_array_count, struct Tree **TA, FILE *DATA){
 	int WAR;
 	int C;
 	int DLM_ACC = 1;
 	char *BUFF;
 	int buf_ptr = 0;
+	struct Tree *io_top;
 	struct Tree *current;
 	struct Tree *next;
 	int close = 0;
 	int ESC = 0;
 	int SN = 1;
+	io_top = Create_Node(0,BUFF_LEN);
 	/* for search function */
         struct Tree *null_node;
 	null_node = Create_Node(-1,(*_opt).buff);
@@ -18,7 +20,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 	(*null_node).NCself = 1;
 
 	WAR = (*_opt).war;
-	current = top;
+	current = io_top;
 	next = NULL;
 	if((BUFF = malloc(sizeof(char) * (*_opt).buff)) == NULL){
 		printf("[Fail] malloc.\n");
@@ -133,11 +135,11 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 				buf_ptr = 0;
 				close = 0;
 				/* apply functions, bind data */
-				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,EXEC_FLAG);
+				Executor(io_top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,EXEC_FLAG);
 				/* clear tree */
-				Function_Recursive_FreeForce_Tree(top);
-				free(top);
-				top = Create_Node(SN,(*_opt).buff);
+				Function_Recursive_FreeForce_Tree(io_top);
+				free(io_top);
+				io_top = Create_Node(SN,(*_opt).buff);
 				SN++;
 				*ncount = SN;
 				ESC = 0;
@@ -147,10 +149,10 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 			ESC = 0;
 			if((*_opt).in_form == 0){
 				/* apply functions, bind data */
-				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,EXEC_FLAG);
+				Executor(io_top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,EXEC_FLAG);
 				printf("\n");
 			}
-			return(C);
+			return(io_top);
 		}else{
 			/* buffering */
 			BUFF[buf_ptr] = C;
@@ -164,7 +166,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 			}
 		}
 	}
-	return(C);
+	return(io_top);
 }
 
 
