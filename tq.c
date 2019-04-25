@@ -361,6 +361,7 @@ int main(int argc, char **argv){
 	struct search_options *_sopt;
 	struct data_options *_dopt;
 	struct Tree **top_list;
+	int top_list_num = 0;
 	int ie = 0;
 	FILE *IN;
 	FILE *DATA;
@@ -447,6 +448,12 @@ int main(int argc, char **argv){
 	}
 	if(ie == 1){
 		exit(0);
+	}
+
+	/* list */
+	if((top_list = malloc(sizeof(struct Tree *) * 1)) == NULL){
+		perror("[]malloc@main");
+		exit(1);
 	}
 
 	/* EXEC_FLAG */

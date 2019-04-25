@@ -137,12 +137,16 @@ struct Tree *import_Tree(FILE *IN, struct Tree **top_list, struct options *_opt,
 				/* apply functions, bind data */
 				Executor(io_top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,EXEC_FLAG);
 				/* clear tree */
+				/* EXEC_FLAG&4 == 4 */
+				/* 毎回Free */
 				Function_Recursive_FreeForce_Tree(io_top);
 				free(io_top);
 				io_top = Create_Node(SN,(*_opt).buff);
 				SN++;
 				*ncount = SN;
 				ESC = 0;
+				/* EXEC_FLAG&4 != 4 */
+				/* テーブルにとっておく */
 			}
 		}else if(C == EOF){
 			close = 0;
