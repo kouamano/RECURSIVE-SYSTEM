@@ -167,22 +167,4 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 	return(C);
 }
 
-/* data bind*/
-/*
-int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	int C;
-	int bn_count = 0;
-	struct Tree **bn_table = NULL;
-	printf(":tree=%ld:",(long int)tree);
-	Function_Recursive_Search_BindNode(tree,&bn_count,bn_table);
-	printf(":bncount=%d:\n",bn_count);
-	while((C = fgetc(DATA))){
-		if(C == EOF){
-			return(0);
-		}else{
-			putchar(C);
-		}
-	}
-	return(0);
-}
-*/
+

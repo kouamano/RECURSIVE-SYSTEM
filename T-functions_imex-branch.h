@@ -1,23 +1,24 @@
 /* include into T-functions_imex.h */
 void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *t_array_count, struct Tree **TA, FILE *DATA, int EXEC_FLAG){
-			/*
- 			* EXEC_FLAG : controls GC or other functions
-			*/
+		/*
+ 		* EXEC_FLAG : controls GC or other functions
+		*/
 
-			/* pre */
-			//printf(":EXEC=%d:",EXEC_FLAG);
-			if((EXEC_FLAG&1) == 1){
-				//* detect dim */
-				ExFunction_Recursive_Ser(top,(struct Tree *(*)())Detect_DimBlock,_fopt,_copt,SN,1);
-				if((*_opt).data != NULL){
+		/* pre */
+		//printf(":EXEC=%d:",EXEC_FLAG);
+		if((EXEC_FLAG&1) == 1){
+			//* detect dim */
+			ExFunction_Recursive_Ser(top,(struct Tree *(*)())Detect_DimBlock,_fopt,_copt,SN,1);
+			if((*_opt).data != NULL){
 				if(strlen((*_opt).data) > 0){
 					//* bind data */
 					bind_data(DATA,top,_fopt,_copt);
 				}
-				}
 			}
+		}
 
-
+		/* print */
+		if((EXEC_FLAG&2) == 2){
 			/* for search */
 		        struct Tree *hit_tree;
 		        struct Tree *hit_node;
@@ -112,7 +113,7 @@ void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct op
 				ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Function_Print_Adj,_fopt,_copt,SN,1);
 				printf("\n");
                         }
-
+		}
 			/* test */
 			//exit(0);
 }

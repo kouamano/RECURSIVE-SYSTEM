@@ -448,6 +448,13 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 
+	/* EXEC_FLAG */
+	int EFLAG = 0;
+	// 0 : no exec
+	// 1 : bind data
+	// 2 : print
+	// 4 : exec free
+
 	/* data file */
 	int t_array_count = 0;	//for data bind
 	struct Tree **TA;	//for data bind
@@ -458,11 +465,11 @@ int main(int argc, char **argv){
 	int node_count;
 	struct Tree *itop;
 	if(strlen((*opt).data) > 0){
-	if((DATA = fopen((*opt).data,"r")) == NULL){
-		perror((*opt).data);
-		exit(1);
-	}
-	is_dopen = 1;
+		if((DATA = fopen((*opt).data,"r")) == NULL){
+			perror((*opt).data);
+			exit(1);
+		}
+		is_dopen = 1;
 	}
 
 	/* input-form file */
@@ -476,7 +483,8 @@ int main(int argc, char **argv){
 		//* import function */
 		node_count = 0;
 		itop = Create_Node(0,BUFF_LEN);
-		c = import_Tree(IN,itop,opt,_fopt,_copt,_sopt,&node_count,1,&t_array_count,TA,DATA);
+		EFLAG = 1+2+4;
+		c = import_Tree(IN,itop,opt,_fopt,_copt,_sopt,&node_count,EFLAG,&t_array_count,TA,DATA);
 		//* close file */
 		if(is_iopen > 0){
 			fclose(IN);
@@ -500,7 +508,8 @@ int main(int argc, char **argv){
 		//* import function */
 		node_count = 0;
 		otop = Create_Node(0,BUFF_LEN);
-		c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,0,NULL,NULL,NULL);
+		EFLAG = 2+4;
+		c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL,NULL,NULL);
 		//* close file */
 		if(is_oopen > 0){
 			fclose(IN);
