@@ -463,7 +463,7 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	int node_count;
-	//struct Tree *itop;
+	struct Tree *itop;
 	if(strlen((*opt).data) > 0){
 		if((DATA = fopen((*opt).data,"r")) == NULL){
 			perror((*opt).data);
@@ -497,7 +497,7 @@ int main(int argc, char **argv){
 	}
 
 	/* outout-form file */
-	//struct Tree *otop;
+	struct Tree *otop;
 	if(strlen((*opt).out) > 0){
 		//* open */
 		if((IN = fopen((*opt).out,"r")) == NULL){
