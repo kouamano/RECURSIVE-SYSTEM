@@ -139,12 +139,14 @@ struct Tree *import_Tree(FILE *IN, struct Tree **top_list, struct options *_opt,
 				/* clear tree */
 				/* EXEC_FLAG&4 == 4 */
 				/* 毎回Free */
+				if(EXEC_FLAG&4 == 4){
 				Function_Recursive_FreeForce_Tree(io_top);
 				free(io_top);
 				io_top = Create_Node(SN,(*_opt).buff);
 				SN++;
 				*ncount = SN;
 				ESC = 0;
+				}
 				/* EXEC_FLAG&4 != 4 */
 				/* テーブルにとっておく */
 			}
