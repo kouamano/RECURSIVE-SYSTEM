@@ -360,6 +360,7 @@ int main(int argc, char **argv){
 	struct compile_options *_copt;
 	struct search_options *_sopt;
 	struct data_options *_dopt;
+	struct Tree **top_list;
 	int ie = 0;
 	FILE *IN;
 	FILE *DATA;
@@ -463,7 +464,7 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	int node_count;
-	struct Tree *itop;
+	//struct Tree *itop;
 	if(strlen((*opt).data) > 0){
 		if((DATA = fopen((*opt).data,"r")) == NULL){
 			perror((*opt).data);
@@ -484,7 +485,7 @@ int main(int argc, char **argv){
 		node_count = 0;
 		//itop = Create_Node(0,BUFF_LEN);
 		EFLAG = 1+2+4;
-		import_Tree(IN,itop,opt,_fopt,_copt,_sopt,&node_count,EFLAG,&t_array_count,TA,DATA);
+		import_Tree(IN,top_list,opt,_fopt,_copt,_sopt,&node_count,EFLAG,&t_array_count,TA,DATA);
 		//* close file */
 		if(is_iopen > 0){
 			fclose(IN);
@@ -497,7 +498,7 @@ int main(int argc, char **argv){
 	}
 
 	/* outout-form file */
-	struct Tree *otop;
+	//struct Tree *otop;
 	if(strlen((*opt).out) > 0){
 		//* open */
 		if((IN = fopen((*opt).out,"r")) == NULL){
@@ -509,7 +510,7 @@ int main(int argc, char **argv){
 		node_count = 0;
 		//otop = Create_Node(0,BUFF_LEN);
 		EFLAG = 2+4;
-		import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL,NULL,NULL);
+		import_Tree(IN,top_list,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL,NULL,NULL);
 		//* close file */
 		if(is_oopen > 0){
 			fclose(IN);
