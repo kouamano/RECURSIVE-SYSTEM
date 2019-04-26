@@ -317,6 +317,7 @@ struct Tree *Create_Node(int _ser, int H_size){
 	(*tree).nval = 0;
 	(*tree).valstr = NULL;
 	(*tree).Parent=NULL;
+	(*tree).RefNode=NULL;
 	return(tree);
 }
 struct Tree *Copy_Node(struct Tree *dest, const struct Tree *src){
