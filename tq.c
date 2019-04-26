@@ -349,6 +349,8 @@ int main(int argc, char **argv){
 	struct compile_options *_copt;
 	struct search_options *_sopt;
 	struct data_options *_dopt;
+	struct Tree *itop;
+	struct Tree *otop;
 	struct Tree **top_list;
 	int top_list_num = 0;
 	int ie = 0;
@@ -480,7 +482,7 @@ int main(int argc, char **argv){
 		node_count = 0;
 		//itop = Create_Node(0,BUFF_LEN);
 		EFLAG = 1+(*opt).Pin;
-		import_Tree(IN,top_list,opt,_fopt,_copt,_sopt,&node_count,EFLAG,&t_array_count,TA,DATA);
+		itop = import_Tree(IN,top_list,opt,_fopt,_copt,_sopt,&node_count,EFLAG,&t_array_count,TA,DATA);
 		//* close file */
 		if(is_iopen > 0){
 			fclose(IN);
@@ -505,12 +507,14 @@ int main(int argc, char **argv){
 		node_count = 0;
 		//otop = Create_Node(0,BUFF_LEN);
 		EFLAG = (*opt).Pout;
-		import_Tree(IN,top_list,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL,NULL,NULL);
+		otop = import_Tree(IN,top_list,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL,NULL,NULL);
 		//* close file */
 		if(is_oopen > 0){
 			fclose(IN);
 		}
 	}
+	/* check */
+	
 
 
 	/* finish */

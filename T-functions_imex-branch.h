@@ -1,13 +1,12 @@
 /* include into T-functions_imex.h */
 void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *t_array_count, struct Tree **TA, FILE *DATA, int EXEC_FLAG){
 		/* pre */
+		//* bind data */
 		//printf(":EXEC=%d:",EXEC_FLAG);
 		if((EXEC_FLAG&1) == 1){
-			//* detect dim */
 			ExFunction_Recursive_Ser(top,(struct Tree *(*)())Detect_DimBlock,_fopt,_copt,SN,1);
 			if((*_opt).data != NULL){
 				if(strlen((*_opt).data) > 0){
-					//* bind data */
 					bind_data(DATA,top,_fopt,_copt);
 				}
 			}
