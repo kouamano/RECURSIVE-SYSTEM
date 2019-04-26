@@ -469,7 +469,7 @@ int main(int argc, char **argv){
 		//* import function */
 		node_count = 0;
 		//itop = Create_Node(0,BUFF_LEN);
-		EFLAG = 1+2+4;
+		EFLAG = 1+2;
 		import_Tree(IN,top_list,opt,_fopt,_copt,_sopt,&node_count,EFLAG,&t_array_count,TA,DATA);
 		//* close file */
 		if(is_iopen > 0){
@@ -494,7 +494,7 @@ int main(int argc, char **argv){
 		//* import function */
 		node_count = 0;
 		//otop = Create_Node(0,BUFF_LEN);
-		EFLAG = 2+4;
+		EFLAG = 2;
 		import_Tree(IN,top_list,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL,NULL,NULL);
 		//* close file */
 		if(is_oopen > 0){
