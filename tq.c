@@ -438,9 +438,7 @@ int main(int argc, char **argv){
 	/* EXEC_FLAG */
 	int EFLAG = 0;
 	// 0 : no exec
-	// 1 : bind data
-	// 2 : print
-	// 4 : exec free
+	// 1 : print
 
 	/* data file */
 	int t_array_count = 0;	//for data bind
