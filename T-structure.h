@@ -15,7 +15,7 @@ struct Tree {
 	char *dimstr;
 	int nval;
 	char *valstr;
-	struct Tree *Vnode;
+	struct Tree *RefNode;
 };
 
 struct options {
