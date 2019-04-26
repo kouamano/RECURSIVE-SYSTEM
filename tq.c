@@ -462,7 +462,6 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	int node_count;
-	//struct Tree *itop;
 	if(strlen((*opt).data) > 0){
 		if((DATA = fopen((*opt).data,"r")) == NULL){
 			perror((*opt).data);
