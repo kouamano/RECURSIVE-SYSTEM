@@ -118,27 +118,21 @@ struct Tree *import_Tree(FILE *IN, struct Tree **top_list, struct options *_opt,
 			}
 			close++;
 		}else if(C == LF || C == TAB){
-			/* 0:single / 1:multi / 2:individual */
+			/*
 			if((*_opt).in_form == 0){
 				; // executed bellow
 			}else if((*_opt).in_form == 1){
 				; // under construction
 			}else if((*_opt).in_form == 2){
-				/* copy BUFF */
 				BUFF[buf_ptr] = '\0';
 				if(close == 0){
 					strcpy((*current).Head,BUFF);
 					AnalyzeHead(current);
 				}
-				/* clear BUFF */
 				BUFF[0] = '\0';
 				buf_ptr = 0;
 				close = 0;
-				/* apply functions, bind data */
 				Executor(io_top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,EXEC_FLAG);
-				/* clear tree */
-				/* EXEC_FLAG&4 == 4 */
-				/* 毎回Free */
 				if(EXEC_FLAG&4 == 4){
 				Function_Recursive_FreeForce_Tree(io_top);
 				free(io_top);
@@ -147,17 +141,16 @@ struct Tree *import_Tree(FILE *IN, struct Tree **top_list, struct options *_opt,
 				*ncount = SN;
 				ESC = 0;
 				}
-				/* EXEC_FLAG&4 != 4 */
-				/* テーブルにとっておく */
 			}
+			*/
 		}else if(C == EOF){
 			close = 0;
 			ESC = 0;
-			if((*_opt).in_form == 0){
+			//if((*_opt).in_form == 0){
 				/* apply functions, bind data */
 				Executor(io_top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,EXEC_FLAG);
 				printf("\n");
-			}
+			//}
 			return(io_top);
 		}else{
 			/* buffering */
