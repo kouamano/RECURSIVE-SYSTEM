@@ -22,7 +22,7 @@ void status(void){
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" tq.o [-h|-hF|-hC|-hS|-hD] [-s] [-c] buff=<size(int)> in=<file name of input form> out=<file name of outout form> data=<data file> w=<warnning level> -F<x> -C<x>.\n");
+	printf(" tq.o [-h|-hF|-hC|-hS|-hD] [-s] [-c] buff=<size(int)> in=<file name of input form> out=<file name of outout form> data=<data file> w=<warnning level> -F<x> -C<x> -P<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -hF : function help.\n");
 	printf("  -hC : compile help.\n");
@@ -30,6 +30,8 @@ void help(void){
 	printf("  -hD : data help.\n");
 	printf("  -s : prints status.\n");
 	printf("  -c : check args.\n");
+	printf("  -Pin : print input form.\n");
+	printf("  -Pout : print output form.\n");
 	printf("  buff : set integer for buffer size to read the nodes.\n");
 	printf("  in : set input-form file name (length < 1024).\n");
 	printf("  out : set output-form file name (length < 1024).\n");
@@ -131,6 +133,8 @@ void init_options(struct options *opt){
 	(*opt).in[0] = '\0';
 	(*opt).out[0] = '\0';
 	(*opt).data[0] = '\0';
+	(*opt).Pin = 0;
+	(*opt).Pout = 0;
 	(*opt).hF = 0;
 	(*opt).hC = 0;
 	(*opt).hS = 0;
@@ -193,6 +197,10 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"out=%s",(*opt).out);
 		}else if(strncmp(optv[i],"data=",5) == 0){
 			sscanf(optv[i],"data=%s",(*opt).data);
+		}else if(strncmp(optv[i],"-Pin",4) == 0){
+			(*opt).Pin = 2;
+		}else if(strncmp(optv[i],"-Pout",5) == 0){
+			(*opt).Pout = 2;
 		}
 	}
 }
@@ -297,6 +305,8 @@ void check_options(struct options *opt){
 	printf(" opt.war:%d:\n",(*opt).war);
 	printf(" opt.hF:%d:\n",(*opt).hF);
 	printf(" opt.hC:%d:\n",(*opt).hC);
+	printf(" opt.Pin:%d:\n",(*opt).Pin);
+	printf(" opt.Pout:%d:\n",(*opt).Pout);
 }
 void check_function_options(struct function_options *fopt){
 	printf(" converters:\n");
@@ -469,7 +479,7 @@ int main(int argc, char **argv){
 		//* import function */
 		node_count = 0;
 		//itop = Create_Node(0,BUFF_LEN);
-		EFLAG = 1+2;
+		EFLAG = 1+(*opt).Pin;
 		import_Tree(IN,top_list,opt,_fopt,_copt,_sopt,&node_count,EFLAG,&t_array_count,TA,DATA);
 		//* close file */
 		if(is_iopen > 0){
@@ -494,7 +504,7 @@ int main(int argc, char **argv){
 		//* import function */
 		node_count = 0;
 		//otop = Create_Node(0,BUFF_LEN);
-		EFLAG = 2;
+		EFLAG = (*opt).Pout;
 		import_Tree(IN,top_list,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL,NULL,NULL);
 		//* close file */
 		if(is_oopen > 0){
