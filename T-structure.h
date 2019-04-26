@@ -14,8 +14,8 @@ struct Tree {
 	struct Tree *Parent;	// must not free !!
 	char *dimstr;
 	int nval;
-	//int valstrlen;
 	char *valstr;
+	struct Tree *Vnode;
 };
 
 struct options {
