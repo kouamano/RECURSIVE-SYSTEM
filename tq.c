@@ -455,8 +455,8 @@ int main(int argc, char **argv){
 	// 4 : bind ref-node
 
 	/* data file */
-	int t_array_count = 0;	//for data bind
-	struct Tree **TA;	//for data bind
+	int t_array_count = 0;	//for Tree Array
+	struct Tree **TA;	//for Tree Array
 	if((TA = malloc(sizeof(*TA) * 1)) == NULL){
 		perror("[Fail]:malloc@main");
 		exit(1);
