@@ -37,6 +37,7 @@ void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct op
 				if(C == LF || C == TAB){
 					printf("%c",C);
 				}
+				printf("\n");
 			}
 			if((*_fopt).f_print_T == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,  _fopt, _copt, SN);
@@ -66,6 +67,7 @@ void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct op
 				if(C == LF || C == TAB){
 					printf("%c",C);
 				}
+				printf("\n");
 			}
 			if((*_fopt).f_print_W == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_WL, (struct Tree *(*)())Function_Print_Head_WL, (struct Tree *(*)())Function_Print_Bopen_WL,  (struct Tree *(*)())Function_Print_Bclose_WL,  _fopt, _copt, SN);
