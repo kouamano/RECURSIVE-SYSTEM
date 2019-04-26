@@ -438,7 +438,8 @@ int main(int argc, char **argv){
 	/* EXEC_FLAG */
 	int EFLAG = 0;
 	// 0 : no exec
-	// 1 : print
+	// 1 : bind data
+	// 2 : print
 
 	/* data file */
 	int t_array_count = 0;	//for data bind
