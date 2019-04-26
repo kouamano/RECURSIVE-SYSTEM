@@ -27,8 +27,8 @@ struct options {
         char *in;
         char *out;
 	char *data;
-	int in_form;
-	int out_form;
+	//int in_form;
+	//int out_form;
         int hF;
         int hC;
         int hS;

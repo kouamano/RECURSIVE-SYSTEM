@@ -22,7 +22,7 @@ void status(void){
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" tq.o [-h|-hF|-hC|-hS|-hD] [-s] [-c] buff=<size(int)> in=<file name of input form> out=<file name of outout form> data=<data file> it=<input form type> ot=<output form type> w=<warnning level> -F<x> -C<x>.\n");
+	printf(" tq.o [-h|-hF|-hC|-hS|-hD] [-s] [-c] buff=<size(int)> in=<file name of input form> out=<file name of outout form> data=<data file> w=<warnning level> -F<x> -C<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -hF : function help.\n");
 	printf("  -hC : compile help.\n");
@@ -32,12 +32,7 @@ void help(void){
 	printf("  -c : check args.\n");
 	printf("  buff : set integer for buffer size to read the nodes.\n");
 	printf("  in : set input-form file name (length < 1024).\n");
-	printf("  it : decrear input-type.\n");
-	printf("   0 single: operate whole as single line,\n");
-	printf("   1 multi: apply reference lines (under construction),\n");
-	printf("   2 individual: operate line by line.\n");
 	printf("  out : set output-form file name (length < 1024).\n");
-	printf("  ot : decrear output-type.\n");
 	printf("  data : CSV data file name.\n");
 	printf("  war : set integer for warnnig level.\n");
 }
@@ -134,9 +129,7 @@ void init_options(struct options *opt){
 	(*opt).buff = BUFF_LEN;
 	(*opt).war = 0;
 	(*opt).in[0] = '\0';
-	(*opt).in_form = 2;
 	(*opt).out[0] = '\0';
-	(*opt).out_form = 2;
 	(*opt).data[0] = '\0';
 	(*opt).hF = 0;
 	(*opt).hC = 0;
@@ -196,20 +189,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).hD = 1;
 		}else if(strncmp(optv[i],"in=",3) == 0){
 			sscanf(optv[i],"in=%s",(*opt).in);
-		}else if(strncmp(optv[i],"it=single",9) == 0){
-			(*opt).in_form = 0;
-		}else if(strncmp(optv[i],"it=multi",8) == 0){
-			(*opt).in_form = 1;
-		}else if(strncmp(optv[i],"it=individual",13) == 0){
-			(*opt).in_form = 2;
 		}else if(strncmp(optv[i],"out=",4) == 0){
 			sscanf(optv[i],"out=%s",(*opt).out);
-		}else if(strncmp(optv[i],"ot=single",9) == 0){
-			(*opt).in_form = 0;
-		}else if(strncmp(optv[i],"ot=multi",8) == 0){
-			(*opt).in_form = 1;
-		}else if(strncmp(optv[i],"ot=individual",13) == 0){
-			(*opt).in_form = 2;
 		}else if(strncmp(optv[i],"data=",5) == 0){
 			sscanf(optv[i],"data=%s",(*opt).data);
 		}
@@ -311,9 +292,7 @@ void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	printf(" opt.buff:%d:\n",(*opt).buff);
 	printf(" opt.in:%s:\n",(*opt).in);
-	printf(" opt.in-form:%d:\n",(*opt).in_form);
 	printf(" opt.out:%s:\n",(*opt).out);
-	printf(" opt.out-form:%d:\n",(*opt).out_form);
 	printf(" opt.data:%s:\n",(*opt).data);
 	printf(" opt.war:%d:\n",(*opt).war);
 	printf(" opt.hF:%d:\n",(*opt).hF);
