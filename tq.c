@@ -452,6 +452,7 @@ int main(int argc, char **argv){
 	// 0 : no exec
 	// 1 : bind data
 	// 2 : print
+	// 4 : bind ref-node
 
 	/* data file */
 	int t_array_count = 0;	//for data bind
