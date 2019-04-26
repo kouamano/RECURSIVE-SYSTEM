@@ -507,7 +507,7 @@ int main(int argc, char **argv){
 		//* import function */
 		node_count = 0;
 		//otop = Create_Node(0,BUFF_LEN);
-		EFLAG = (*opt).Pout;
+		EFLAG = 4+(*opt).Pout;
 		otop = import_Tree(IN,top_list,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL,NULL,NULL);
 		//* close file */
 		if(is_oopen > 0){
