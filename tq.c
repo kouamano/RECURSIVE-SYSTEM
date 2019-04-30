@@ -515,6 +515,7 @@ int main(int argc, char **argv){
 	}
 	/* check */
 	struct Tree *null_node;
+	Executor(itop, null_node, EOF, node_count, opt, _fopt, _copt, _sopt,&t_array_count,TA,DATA,EFLAG);	
 	Executor(otop, null_node, EOF, node_count, opt, _fopt, _copt, _sopt,&t_array_count,TA,DATA,EFLAG);	
 
 
