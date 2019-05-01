@@ -351,10 +351,8 @@ int main(int argc, char **argv){
 	struct data_options *_dopt;
 	struct Tree *itop;
 	struct Tree *otop;
-	struct Tree **top_list;
 	struct Tree *null_node;
 	int node_count;
-	int top_list_num = 0;
 	int ie = 0;
 	FILE *IN;
 	FILE *DATA;
@@ -444,12 +442,6 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 
-	/* list */
-	if((top_list = malloc(sizeof(struct Tree *) * 1)) == NULL){
-		perror("[]malloc@main");
-		exit(1);
-	}
-
 	/* EXEC_FLAG */
 	int EFLAG = 0;
 	// 0 : no exec
@@ -491,7 +483,7 @@ int main(int argc, char **argv){
 		//* import function */
 		node_count = 0;
 		EFLAG = 1+(*opt).Pin;
-		itop = import_Tree(IN,top_list,opt,_fopt,_copt,_sopt,&node_count,EFLAG,&t_array_count,TA,DATA);
+		itop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,&t_array_count,TA,DATA);
 		Executor(itop, null_node, EOF, node_count, opt, _fopt, _copt, _sopt,&t_array_count,TA,DATA,EFLAG);	
 		//* close file */
 		if(is_iopen > 0){
@@ -517,7 +509,7 @@ int main(int argc, char **argv){
 		//* import function */
 		node_count = 0;
 		EFLAG = 4+(*opt).Pout;
-		otop = import_Tree(IN,top_list,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL,NULL,NULL);
+		otop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL,NULL,NULL);
 		Executor(otop, null_node, EOF, node_count, opt, _fopt, _copt, _sopt,&t_array_count,TA,DATA,EFLAG);	
 		//* close file */
 		if(is_oopen > 0){
