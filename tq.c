@@ -359,8 +359,6 @@ int main(int argc, char **argv){
 	int is_iopen = 0;
 	int is_dopen = 0;
 	int is_oopen = 0;
-	int c;
-
 
 	/* options */
 	//* main opt */
@@ -463,7 +461,6 @@ int main(int argc, char **argv){
         (*null_node).LVself = -1;
         (*null_node).NCself = 1;
 
-
 	/* input-form file */
 	if(strlen((*opt).in) > 0){
 		if(strlen((*opt).data) > 0){
@@ -496,7 +493,6 @@ int main(int argc, char **argv){
 
 	}
 
-
 	/* outout-form file */
 	//struct Tree *otop;
 	if(strlen((*opt).out) > 0){
@@ -520,5 +516,5 @@ int main(int argc, char **argv){
 
 
 	/* finish */
-	return(c);
+	return(0);
 }
