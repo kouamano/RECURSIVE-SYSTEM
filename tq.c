@@ -463,16 +463,18 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	int node_count;
-	if(strlen((*opt).data) > 0){
-		if((DATA = fopen((*opt).data,"r")) == NULL){
-			perror((*opt).data);
-			exit(1);
-		}
-		is_dopen = 1;
-	}
+
 
 	/* input-form file */
 	if(strlen((*opt).in) > 0){
+		if(strlen((*opt).data) > 0){
+			if((DATA = fopen((*opt).data,"r")) == NULL){
+				perror((*opt).data);
+				exit(1);
+			}
+			is_dopen = 1;
+		}
+
 		//* open */
 		if((IN = fopen((*opt).in,"r")) == NULL){
 			perror((*opt).in);
@@ -489,12 +491,13 @@ int main(int argc, char **argv){
 		if(is_iopen > 0){
 			fclose(IN);
 		}
+		/* data file close */
+		if(is_dopen > 0){
+			fclose(DATA);
+		}
+
 	}
 
-	/* data file close */
-	if(is_dopen > 0){
-		fclose(DATA);
-	}
 
 	/* outout-form file */
 	//struct Tree *otop;
