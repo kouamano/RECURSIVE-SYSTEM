@@ -1,5 +1,5 @@
 //import tree script
-struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *ncount, int EXEC_FLAG, int *t_array_count, struct Tree **TA, FILE *DATA){
+struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *ncount, int EXEC_FLAG, FILE *DATA){
 	int WAR;
 	int C;
 	int DLM_ACC = 1;
