@@ -362,6 +362,7 @@ int main(int argc, char **argv){
 	int is_oopen = 0;
 	int c;
 
+
 	/* options */
 	//* main opt */
 	opt = alloc_options();
@@ -463,6 +464,12 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	int node_count;
+
+	/* for search */
+        null_node = Create_Node(-1,(*opt).buff);
+        strcpy((*null_node).Head,"$NULL$");
+        (*null_node).LVself = -1;
+        (*null_node).NCself = 1;
 
 
 	/* input-form file */
