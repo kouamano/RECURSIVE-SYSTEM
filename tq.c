@@ -353,6 +353,7 @@ int main(int argc, char **argv){
 	struct Tree *otop;
 	struct Tree **top_list;
 	struct Tree *null_node;
+	int node_count;
 	int top_list_num = 0;
 	int ie = 0;
 	FILE *IN;
@@ -463,7 +464,6 @@ int main(int argc, char **argv){
 		perror("[Fail]:malloc@main");
 		exit(1);
 	}
-	int node_count;
 
 	/* for search */
         null_node = Create_Node(-1,(*opt).buff);
@@ -490,7 +490,6 @@ int main(int argc, char **argv){
 		is_iopen = 1;
 		//* import function */
 		node_count = 0;
-		//itop = Create_Node(0,BUFF_LEN);
 		EFLAG = 1+(*opt).Pin;
 		itop = import_Tree(IN,top_list,opt,_fopt,_copt,_sopt,&node_count,EFLAG,&t_array_count,TA,DATA);
 		Executor(itop, null_node, EOF, node_count, opt, _fopt, _copt, _sopt,&t_array_count,TA,DATA,EFLAG);	
@@ -517,7 +516,6 @@ int main(int argc, char **argv){
 		is_oopen = 1;
 		//* import function */
 		node_count = 0;
-		//otop = Create_Node(0,BUFF_LEN);
 		EFLAG = 4+(*opt).Pout;
 		otop = import_Tree(IN,top_list,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL,NULL,NULL);
 		Executor(otop, null_node, EOF, node_count, opt, _fopt, _copt, _sopt,&t_array_count,TA,DATA,EFLAG);	
