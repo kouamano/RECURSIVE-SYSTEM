@@ -481,7 +481,7 @@ int main(int argc, char **argv){
 		node_count = 0;
 		EFLAG = 1+(*opt).Pin;
 		itop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,&t_array_count,TA,DATA);
-		Executor(itop, null_node, EOF, node_count, opt, _fopt, _copt, _sopt,&t_array_count,TA,DATA,EFLAG);	
+		Executor(itop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);	
 		//* close file */
 		if(is_iopen > 0){
 			fclose(IN);
@@ -506,7 +506,7 @@ int main(int argc, char **argv){
 		node_count = 0;
 		EFLAG = 4+(*opt).Pout;
 		otop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL,NULL,NULL);
-		Executor(otop, null_node, EOF, node_count, opt, _fopt, _copt, _sopt,&t_array_count,TA,DATA,EFLAG);	
+		Executor(otop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);	
 		//* close file */
 		if(is_oopen > 0){
 			fclose(IN);
