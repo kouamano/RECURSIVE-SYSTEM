@@ -352,6 +352,7 @@ int main(int argc, char **argv){
 	struct Tree *itop;
 	struct Tree *otop;
 	struct Tree **top_list;
+	struct Tree *null_node;
 	int top_list_num = 0;
 	int ie = 0;
 	FILE *IN;
@@ -483,6 +484,7 @@ int main(int argc, char **argv){
 		//itop = Create_Node(0,BUFF_LEN);
 		EFLAG = 1+(*opt).Pin;
 		itop = import_Tree(IN,top_list,opt,_fopt,_copt,_sopt,&node_count,EFLAG,&t_array_count,TA,DATA);
+		Executor(itop, null_node, EOF, node_count, opt, _fopt, _copt, _sopt,&t_array_count,TA,DATA,EFLAG);	
 		//* close file */
 		if(is_iopen > 0){
 			fclose(IN);
@@ -508,15 +510,13 @@ int main(int argc, char **argv){
 		//otop = Create_Node(0,BUFF_LEN);
 		EFLAG = 4+(*opt).Pout;
 		otop = import_Tree(IN,top_list,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL,NULL,NULL);
+		Executor(otop, null_node, EOF, node_count, opt, _fopt, _copt, _sopt,&t_array_count,TA,DATA,EFLAG);	
 		//* close file */
 		if(is_oopen > 0){
 			fclose(IN);
 		}
 	}
 	/* check */
-	struct Tree *null_node;
-	Executor(itop, null_node, EOF, node_count, opt, _fopt, _copt, _sopt,&t_array_count,TA,DATA,EFLAG);	
-	Executor(otop, null_node, EOF, node_count, opt, _fopt, _copt, _sopt,&t_array_count,TA,DATA,EFLAG);	
 
 
 	/* finish */

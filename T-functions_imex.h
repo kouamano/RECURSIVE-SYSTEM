@@ -147,7 +147,7 @@ struct Tree *import_Tree(FILE *IN, struct Tree **top_list, struct options *_opt,
 			close = 0;
 			ESC = 0;
 			/* apply functions, bind data */
-			Executor(io_top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,EXEC_FLAG);
+			//Executor(io_top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,EXEC_FLAG);
 			return(io_top);
 		}else{
 			/* buffering */
