@@ -442,13 +442,6 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 
-	/* EXEC_FLAG */
-	int EFLAG = 0;
-	// 0 : no exec
-	// 1 : bind data
-	// 2 : print
-	// 4 : bind ref-node
-
 	/* for tree array */
 	if((TA = malloc(sizeof(*TA) * 1)) == NULL){
 		perror("[Fail]:malloc@main");
@@ -461,8 +454,16 @@ int main(int argc, char **argv){
         (*null_node).LVself = -1;
         (*null_node).NCself = 1;
 
+	/* EXEC_FLAG */
+	int EFLAG = 0;
+	// 0 : no exec
+	// 1 : bind data
+	// 2 : print
+	// 4 : bind ref-node
+
 	/* input-form file */
 	if(strlen((*opt).in) > 0){
+		//* open data file */
 		if(strlen((*opt).data) > 0){
 			if((DATA = fopen((*opt).data,"r")) == NULL){
 				perror((*opt).data);
@@ -471,7 +472,7 @@ int main(int argc, char **argv){
 			is_dopen = 1;
 		}
 
-		//* open */
+		//* open in-file */
 		if((IN = fopen((*opt).in,"r")) == NULL){
 			perror((*opt).in);
 			exit(1);
@@ -482,19 +483,18 @@ int main(int argc, char **argv){
 		EFLAG = 1+(*opt).Pin;
 		itop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,DATA);
 		Executor(itop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);	
-		//* close file */
+		//* close in-file */
 		if(is_iopen > 0){
 			fclose(IN);
 		}
-		/* data file close */
+
+		//* close data file*/
 		if(is_dopen > 0){
 			fclose(DATA);
 		}
-
 	}
 
 	/* outout-form file */
-	//struct Tree *otop;
 	if(strlen((*opt).out) > 0){
 		//* open */
 		if((IN = fopen((*opt).out,"r")) == NULL){
