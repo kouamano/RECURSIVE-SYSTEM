@@ -349,10 +349,12 @@ int main(int argc, char **argv){
 	struct compile_options *_copt;
 	struct search_options *_sopt;
 	struct data_options *_dopt;
+	int node_count;
 	struct Tree *itop;
 	struct Tree *otop;
 	struct Tree *null_node;
-	int node_count;
+	int t_array_count = 0;	//for Tree Array
+	struct Tree **TA;	//for Tree Array
 	int ie = 0;
 	FILE *IN;
 	FILE *DATA;
@@ -447,9 +449,7 @@ int main(int argc, char **argv){
 	// 2 : print
 	// 4 : bind ref-node
 
-	/* data file */
-	int t_array_count = 0;	//for Tree Array
-	struct Tree **TA;	//for Tree Array
+	/* for tree array */
 	if((TA = malloc(sizeof(*TA) * 1)) == NULL){
 		perror("[Fail]:malloc@main");
 		exit(1);
