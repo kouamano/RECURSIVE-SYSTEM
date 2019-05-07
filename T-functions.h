@@ -164,8 +164,11 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred)
 	int target_label;
 	int stat;
 	stat = get_ref((*binded).Head,&target_type,&target_label);
-	printf(":stat=%d:",stat);
-
+	printf(":stat=%d,",stat);
+	if(stat == 1){
+		printf("%c,%d:",target_type,target_label);
+		Function_Recursive_Find_LabelNode(referred,target_type,target_label);
+	}
 	for(i=0;i<(*binded).NextCount;i++){
 		Function_Recursive_Bind_RefNode((*binded).Next[i],referred);
 	}
