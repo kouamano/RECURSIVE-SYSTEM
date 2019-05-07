@@ -1073,6 +1073,8 @@ int Function_Recursive_FreeForce_Tree(struct Tree *tree){
 	(*tree).Head = NULL;
 	free((*tree).dimstr);
 	(*tree).dimstr = NULL;
+	free((*tree).valstr);
+	(*tree).valstr = NULL;
 
 	return(0);
 }
