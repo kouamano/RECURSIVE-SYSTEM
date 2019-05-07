@@ -133,7 +133,7 @@ struct Tree *Function_Recursive_FindBind_LabelNode(struct Tree *tree, char type,
 		return(NULL);
 	}
 	if((*tree).LabelType == type && (*tree).Label == label){
-		printf("HIT:%ld:Bind:%ld:",tree,binded);
+		//printf("HIT:%ld:Bind:%ld:",tree,binded);
 		(*binded).RefNode = tree;	//bind
 		return(tree);
 	}
@@ -165,13 +165,13 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred)
 	char target_type;
 	int target_label;
 	int stat;
-	struct Tree *addr;
 	stat = get_ref((*binded).Head,&target_type,&target_label);
-	printf(":stat=%d,",stat);
+	//printf(":stat=%d,",stat);
 	if(stat == 1){
-		printf("%c,%d:",target_type,target_label);
+		struct Tree *addr;
+		//printf("%c,%d:",target_type,target_label);
 		addr = Function_Recursive_FindBind_LabelNode(referred,target_type,target_label,binded);
-		printf("refaddr=%ld",(long int)addr);
+		//printf("RefAddr=%ld",(long int)addr);
 	}
 	for(i=0;i<(*binded).NextCount;i++){
 		Function_Recursive_Bind_RefNode((*binded).Next[i],referred);
@@ -527,7 +527,7 @@ void Function_Print_Smems(struct Tree *tree){
 	}else{
 		printf(":Pa=%d:",-1);
 	}
-	printf(":Ref=%ld:",(*tree).RefNode);
+	printf(":Ref=%ld:",(long int)(*tree).RefNode);
 	printf(":LVs=%d:",(*tree).LVself);
 	printf(":Cj=%d:",(*tree).Conj);
 	printf(":LT=%c:",(*tree).LabelType);
