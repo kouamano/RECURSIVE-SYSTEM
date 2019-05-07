@@ -120,6 +120,11 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 		}else if(C == LF || C == TAB){	//ignore case
 			;
 		}else if(C == EOF){
+			BUFF[buf_ptr] = '\0';
+			if(close == 0){
+				strcpy((*current).Head,BUFF);
+				AnalyzeHead(current);
+			}
 			close = 0;
 			ESC = 0;
 			return(io_top);
