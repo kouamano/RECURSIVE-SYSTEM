@@ -133,6 +133,7 @@ struct Tree *Function_Recursive_Find_LabelNode(struct Tree *tree, char type, int
 		return(NULL);
 	}
 	if((*tree).LabelType == type && (*tree).Label == label){
+		printf("HIT:%ld:",tree);
 		return(tree);
 	}
 	for(i=0;i<(*tree).NextCount;i++){
@@ -163,11 +164,13 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred)
 	char target_type;
 	int target_label;
 	int stat;
+	long int addr;
 	stat = get_ref((*binded).Head,&target_type,&target_label);
 	printf(":stat=%d,",stat);
 	if(stat == 1){
 		printf("%c,%d:",target_type,target_label);
-		Function_Recursive_Find_LabelNode(referred,target_type,target_label);
+		addr = (long int)Function_Recursive_Find_LabelNode(referred,target_type,target_label);
+		printf("refaddr=%ld",addr);
 	}
 	for(i=0;i<(*binded).NextCount;i++){
 		Function_Recursive_Bind_RefNode((*binded).Next[i],referred);
