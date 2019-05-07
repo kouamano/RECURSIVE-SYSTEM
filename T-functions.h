@@ -150,7 +150,6 @@ int get_ref(char *head, char *type, int *label){	//for binded
 		return(1);
 	}
 	if(head[2] == '#' && head[3] >= 48 && head[3] <= 57){
-		//test
 		sscanf(head+2,"%d",label);
 		*type = 't';
 		return(1);
@@ -166,6 +165,7 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred)
 	int stat;
 	stat = get_ref((*binded).Head,&target_type,&target_label);
 	printf(":stat=%d:",stat);
+
 	for(i=0;i<(*binded).NextCount;i++){
 		Function_Recursive_Bind_RefNode((*binded).Next[i],referred);
 	}

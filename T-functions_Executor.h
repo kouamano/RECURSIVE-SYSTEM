@@ -13,6 +13,7 @@ void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, in
 		}
 		//* bind ref-node (for output-form) */
 		if((EXEC_FLAG&4) == 4){
+			Function_Recursive_Bind_RefNode(top,refTree);
 		}
 
 		/* print */
