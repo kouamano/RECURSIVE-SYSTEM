@@ -478,6 +478,10 @@ char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 	}else if((*_copt).c_dot > 0){
 		tmp_head = Function_Dot_Head(tree);
 	}else if(strncmp(tmp_head,"$NULL$",6) == 0){
+	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$IP$",4) == 0){	// Inner Product
+		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+4);
+		strcpy(tmp_head,out_head);
+		//Under construction
 	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$X$",3) == 0){
 		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
 		strcpy(tmp_head,out_head);
