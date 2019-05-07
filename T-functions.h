@@ -127,7 +127,7 @@ int Detect_DimRegion(const char *head, int *pos){
 }
 
 /* reference analysis */
-struct Tree *Function_Recursive_Find_RefNode(struct Tree *tree, char type, int label){
+struct Tree *Function_Recursive_Find_LabelNode(struct Tree *tree, char type, int label){	//for referred
 	int i;
 	if(tree == NULL){
 		return(NULL);
@@ -136,11 +136,28 @@ struct Tree *Function_Recursive_Find_RefNode(struct Tree *tree, char type, int l
 		return(tree);
 	}
 	for(i=0;i<(*tree).NextCount;i++){
-		Function_Recursive_Find_RefNode((*tree).Next[i],type,label);
+		Function_Recursive_Find_LabelNode((*tree).Next[i],type,label);
+	}
+}
+int get_ref(char *head, char *type, int *label){	//for binded
+	if(head[0] != '$' || head[1] != '#'){
+		return(0);
+	}
+	if(head[2] >= 48 && head[2] <= 57){
+		sscanf(head+2,"%d",label);
+		*type = 'h';
+		return(1);
+	}
+	if(head[2] == '#' && head[3] >= 48 && head[3] <= 57){
+		sscanf(head+2,"%d",label);
+		*type = 'h';
+		return(1);
 	}
 }
 
 /* restructure functions */
+int bind_refnode(struct Tree *binded, struct Tree *referred){
+}
 int Add_DimStr(struct Tree *tree, int *dim_pos, char *buff){
 	int len;
 	len = strlen(buff);
