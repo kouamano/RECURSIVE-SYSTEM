@@ -152,7 +152,7 @@ int get_ref(char *head, char *type, int *label){	//for binded
 	if(head[2] == '#' && head[3] >= 48 && head[3] <= 57){
 		//test
 		sscanf(head+2,"%d",label);
-		*type = 'h';
+		*type = 't';
 		return(1);
 	}
 	return(0);
@@ -170,6 +170,7 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred)
 		Function_Recursive_Bind_RefNode((*binded).Next[i],referred);
 	}
 }
+
 int Add_DimStr(struct Tree *tree, int *dim_pos, char *buff){
 	int len;
 	len = strlen(buff);
