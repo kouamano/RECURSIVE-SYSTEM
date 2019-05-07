@@ -117,7 +117,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 				current = (*current).Parent;
 			}
 			close++;
-		}else if(C == LF || C == TAB){	//ignore case
+		}else if(C == LF || C == TAB){	//ignore chars 
 			;
 		}else if(C == EOF){
 			BUFF[buf_ptr] = '\0';

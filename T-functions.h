@@ -512,7 +512,7 @@ char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 		out_head[len]='\0';
 		strcpy(tmp_head,out_head);
 	}else if(is_reteral((*tree).Head) == 0){
-		strcpy(out_head,tmp_head+1);
+		strcpy(out_head,tmp_head);
 		strcpy(tmp_head,out_head);
 	}
 	free(out_head);
