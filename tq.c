@@ -353,8 +353,6 @@ int main(int argc, char **argv){
 	struct Tree *itop;
 	struct Tree *otop;
 	struct Tree *null_node;
-	//int t_array_count = 0;	//for Tree Array
-	//struct Tree **TA;	//for Tree Array
 	int ie = 0;
 	FILE *IN;
 	FILE *DATA;
@@ -441,12 +439,6 @@ int main(int argc, char **argv){
 	if(ie == 1){
 		exit(0);
 	}
-
-	/* for tree array */
-	//if((TA = malloc(sizeof(*TA) * 1)) == NULL){
-	//	perror("[Fail]:malloc@main");
-	//	exit(1);
-	//}
 
 	/* for search */
         null_node = Create_Node(-1,(*opt).buff);
