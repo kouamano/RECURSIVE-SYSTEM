@@ -457,17 +457,17 @@ char *Function_Dot_Head(struct Tree *tree){
 		return((*tree).Head);
 	}
 }
-char *Function_Compile_Head(struct Tree *tree, struct compile_options *_copt){
+char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 	char *tmp_head;
 	char *out_head;
 	int len = 0;
 	len = strlen((*tree).Head);
 	if((tmp_head = malloc(sizeof(char) * (len+1))) == NULL){
-		perror("[Fail]:malloc@Function_Compile_Head.\n");
+		perror("[Fail]:malloc@Function_Compile.\n");
 		exit(1);
 	}
 	if((out_head = malloc(sizeof(char) * (len+1))) == NULL){
-		perror("[Fail]:malloc@Function_Compile_Head.\n");
+		perror("[Fail]:malloc@Function_Compile.\n");
 		exit(1);
 	}
 
@@ -490,7 +490,7 @@ char *Function_Compile_Head(struct Tree *tree, struct compile_options *_copt){
 	}else if(strncmp(tmp_head,"$``",3) == 0){ //quating tree
 		out_head=realloc(out_head, (sizeof(char) * (len+1)));
 		if(out_head == NULL){
-			perror("[Fail]:realloc@Function_Compile_Head.\n");
+			perror("[Fail]:realloc@Function_Compile.\n");
 			exit(1);
 		}
 		out_head[0]='"';
@@ -674,7 +674,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	//int val_len = 0;
 	if((*_copt).c_counter > 0){
 		char *tmp_str;
-		tmp_str = Function_Compile_Head(tree,_copt);
+		tmp_str = Function_Compile(tree,_copt);
 		printf("%s",tmp_str);
 		free(tmp_str);	//test
 	}else{
@@ -702,7 +702,7 @@ struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *
 	}
 	/* compile */
 	if((*_copt).c_counter > 0){
-		tmp_str = Function_Compile_Head(tree,_copt);
+		tmp_str = Function_Compile(tree,_copt);
 	}else{
 		strcpy(tmp_str,(*tree).Head);
 	}
@@ -746,7 +746,7 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 	}
 	/* compile */
 	if((*_copt).c_counter > 0){
-		tmp_str = Function_Compile_Head(tree,_copt);
+		tmp_str = Function_Compile(tree,_copt);
 	}else{
 		strcpy(tmp_str,(*tree).Head);
 	}
@@ -776,7 +776,7 @@ struct Tree *Function_Print_Head_X(struct Tree *tree, struct function_options *_
 		/* compile */
 		if((*_copt).c_counter > 0){
 			char *tmp_str;
-			tmp_str = Function_Compile_Head(tree,_copt);
+			tmp_str = Function_Compile(tree,_copt);
 			printf("%s",tmp_str);
 		}else{
 			printf("%s",(*tree).Head);	//normal
