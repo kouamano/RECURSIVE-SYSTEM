@@ -126,6 +126,20 @@ int Detect_DimRegion(const char *head, int *pos){
 	return(ret);
 }
 
+/* reference analysis */
+struct Tree *Function_Recursive_Find_RefNode(struct Tree *tree, char type, int label){
+	int i;
+	if(tree == NULL){
+		return(NULL);
+	}
+	if((*tree).LabelType == type && (*tree).Label == label){
+		return(tree);
+	}
+	for(i=0;i<(*tree).NextCount;i++){
+		Function_Recursive_Find_RefNode((*tree).Next[i],type,label);
+	}
+}
+
 /* restructure functions */
 int Add_DimStr(struct Tree *tree, int *dim_pos, char *buff){
 	int len;
