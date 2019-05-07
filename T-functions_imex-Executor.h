@@ -11,7 +11,7 @@ void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct op
 				}
 			}
 		}
-		//* bind ref-node (for output-form) */
+		//* bind ref-node (input-form to output-form) */
 		if((EXEC_FLAG&4) == 4){
 		}
 
