@@ -127,17 +127,18 @@ int Detect_DimRegion(const char *head, int *pos){
 }
 
 /* reference analysis */
-struct Tree *Function_Recursive_Find_LabelNode(struct Tree *tree, char type, int label){	//for referred
+struct Tree *Function_Recursive_FindBind_LabelNode(struct Tree *tree, char type, int label, struct Tree *binded){	//for referred
 	int i;
 	if(tree == NULL){
 		return(NULL);
 	}
 	if((*tree).LabelType == type && (*tree).Label == label){
-		printf("HIT:%ld:",tree);
+		printf("HIT:%ld:Bind:%ld:",tree,binded);
+		(*binded).RefNode = tree;	//bind
 		return(tree);
 	}
 	for(i=0;i<(*tree).NextCount;i++){
-		Function_Recursive_Find_LabelNode((*tree).Next[i],type,label);
+		Function_Recursive_FindBind_LabelNode((*tree).Next[i],type,label,binded);
 	}
 	return(NULL);
 }
@@ -164,13 +165,13 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred)
 	char target_type;
 	int target_label;
 	int stat;
-	long int addr;
+	struct Tree *addr;
 	stat = get_ref((*binded).Head,&target_type,&target_label);
 	printf(":stat=%d,",stat);
 	if(stat == 1){
 		printf("%c,%d:",target_type,target_label);
-		addr = (long int)Function_Recursive_Find_LabelNode(referred,target_type,target_label);
-		printf("refaddr=%ld",addr);
+		addr = Function_Recursive_FindBind_LabelNode(referred,target_type,target_label,binded);
+		printf("refaddr=%ld",(long int)addr);
 	}
 	for(i=0;i<(*binded).NextCount;i++){
 		Function_Recursive_Bind_RefNode((*binded).Next[i],referred);
@@ -526,6 +527,7 @@ void Function_Print_Smems(struct Tree *tree){
 	}else{
 		printf(":Pa=%d:",-1);
 	}
+	printf(":Ref=%ld:",(*tree).RefNode);
 	printf(":LVs=%d:",(*tree).LVself);
 	printf(":Cj=%d:",(*tree).Conj);
 	printf(":LT=%c:",(*tree).LabelType);
