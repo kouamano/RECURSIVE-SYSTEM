@@ -117,37 +117,11 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 				current = (*current).Parent;
 			}
 			close++;
-		}else if(C == LF || C == TAB){
-			/*
-			if((*_opt).in_form == 0){
-				; // executed bellow
-			}else if((*_opt).in_form == 1){
-				; // under construction
-			}else if((*_opt).in_form == 2){
-				BUFF[buf_ptr] = '\0';
-				if(close == 0){
-					strcpy((*current).Head,BUFF);
-					AnalyzeHead(current);
-				}
-				BUFF[0] = '\0';
-				buf_ptr = 0;
-				close = 0;
-				Executor(io_top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,EXEC_FLAG);
-				if(EXEC_FLAG&4 == 4){
-				Function_Recursive_FreeForce_Tree(io_top);
-				free(io_top);
-				io_top = Create_Node(SN,(*_opt).buff);
-				SN++;
-				*ncount = SN;
-				ESC = 0;
-				}
-			}
-			*/
+		}else if(C == LF || C == TAB){	//ignore case
+			;
 		}else if(C == EOF){
 			close = 0;
 			ESC = 0;
-			/* apply functions, bind data */
-			//Executor(io_top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,EXEC_FLAG);
 			return(io_top);
 		}else{
 			/* buffering */
