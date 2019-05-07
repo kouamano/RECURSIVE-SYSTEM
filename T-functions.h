@@ -138,6 +138,7 @@ struct Tree *Function_Recursive_Find_LabelNode(struct Tree *tree, char type, int
 	for(i=0;i<(*tree).NextCount;i++){
 		Function_Recursive_Find_LabelNode((*tree).Next[i],type,label);
 	}
+	return(NULL);
 }
 int get_ref(char *head, char *type, int *label){	//for binded
 	if(head[0] != '$' || head[1] != '#'){
@@ -149,14 +150,25 @@ int get_ref(char *head, char *type, int *label){	//for binded
 		return(1);
 	}
 	if(head[2] == '#' && head[3] >= 48 && head[3] <= 57){
+		//test
 		sscanf(head+2,"%d",label);
 		*type = 'h';
 		return(1);
 	}
+	return(0);
 }
 
 /* restructure functions */
-int bind_refnode(struct Tree *binded, struct Tree *referred){
+void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred){
+	int i;
+	char target_type;
+	int target_label;
+	int stat;
+	stat = get_ref((*binded).Head,&target_type,&target_label);
+	printf(":stat=%d:",stat);
+	for(i=0;i<(*binded).NextCount;i++){
+		Function_Recursive_Bind_RefNode((*binded).Next[i],referred);
+	}
 }
 int Add_DimStr(struct Tree *tree, int *dim_pos, char *buff){
 	int len;
