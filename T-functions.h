@@ -143,6 +143,11 @@ struct Tree *Function_Recursive_FindBind_LabelNode(struct Tree *tree, char type,
 	return(NULL);
 }
 int get_ref(char *head, char *type, int *label){	//for binded
+	int len;
+	len = strlen(head);
+	if(len < 3){
+		return(0);
+	}
 	if(head[0] != '$' || head[1] != '#'){
 		return(0);
 	}
@@ -151,10 +156,12 @@ int get_ref(char *head, char *type, int *label){	//for binded
 		*type = 'h';
 		return(1);
 	}
-	if(head[2] == '#' && head[3] >= 48 && head[3] <= 57){
-		sscanf(head+2,"%d",label);
-		*type = 't';
-		return(1);
+	if(len > 3){
+		if(head[2] == '#' && head[3] >= 48 && head[3] <= 57){
+			sscanf(head+2,"%d",label);
+			*type = 't';
+			return(1);
+		}
 	}
 	return(0);
 }
