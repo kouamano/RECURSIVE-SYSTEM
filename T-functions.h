@@ -43,10 +43,11 @@ int AnalyzeHead(struct Tree *tree){
 		sscanf(labelnumstr,"%d",&(*tree).Label);
 		free(labelnumstr);
 	}
-	/* Category */
+	/* IndicatorPtr */
 	headlen = strlen((*tree).Head);
 	for(i=0;i<headlen;i++){
-		if((*tree).Head[i] == '$'){
+		//if((*tree).Head[i] == '$'){
+		if((*tree).Head[i] < 48 || (*tree).Head[i] > 57){
 			(*tree).IndicatorPtr = i;
 			break;
 		}
