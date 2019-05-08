@@ -153,15 +153,15 @@ int get_ref(char *head, char *type, int *label){	//for binded
 	if(head[0] != '$' || head[1] != '#'){
 		return(0);
 	}
-	if(head[2] >= 48 && head[2] <= 57){
-	//if(head[2] >= 30 && head[2] <= 39){
+	//if(head[2] >= 48 && head[2] <= 57){
+	if(head[2] >= 0x30 && head[2] <= 0x39){
 		sscanf(head+2,"%d",label);
 		*type = 'h';
 		return(1);
 	}
 	if(len > 3){
-		if(head[2] == '#' && head[3] >= 48 && head[3] <= 57){
-		//if(head[2] == '#' && head[3] >= 30 && head[3] <= 39){
+		//if(head[2] == '#' && head[3] >= 48 && head[3] <= 57){
+		if(head[2] == '#' && head[3] >= 0x30 && head[3] <= 0x39){
 			sscanf(head+2,"%d",label);
 			*type = 't';
 			return(1);
