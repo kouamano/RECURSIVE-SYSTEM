@@ -9,12 +9,12 @@ struct Tree {
 	int Label;
 	int IndicatorPtr;
 	char *Head;
-	int NextCount;
-	struct Tree **Next;
-	struct Tree *Parent;	// must not free !!
 	char *dimstr;
 	int nval;
 	char *valstr;
+	int NextCount;
+	struct Tree **Next;
+	struct Tree *Parent;	// must not free !!
 	struct Tree *RefNode;
 };
 
