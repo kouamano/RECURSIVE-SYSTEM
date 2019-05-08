@@ -14,9 +14,9 @@ $IP$TEST
 $I$TEST
 $E$TEST
 $ER$TEST
+#9$$TEST
 #10$TEST
-#10$$TEST
-##10$$$TEST
+##11$$$TEST
 $#1
 $##1
 $#4[]
