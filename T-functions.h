@@ -136,9 +136,7 @@ struct Tree *Function_Recursive_FindBind_LabelNode(struct Tree *tree, char type,
 		return(NULL);
 	}
 	if((*tree).LabelType == type && (*tree).Label == label){
-		//printf("HIT:%ld:Bind:%ld:",tree,binded);
 		(*binded).RefNode = tree;	//bind
-		return(tree);
 	}
 	for(i=0;i<(*tree).NextCount;i++){
 		Function_Recursive_FindBind_LabelNode((*tree).Next[i],type,label,binded);
@@ -154,14 +152,12 @@ int get_ref(char *head, char *type, int *label){	//for binded
 	if(head[0] != '$' || head[1] != '#'){
 		return(0);
 	}
-	//if(head[2] >= 48 && head[2] <= 57){
 	if(head[2] >= 0x30 && head[2] <= 0x39){
 		sscanf(head+2,"%d",label);
 		*type = 'h';
 		return(1);
 	}
 	if(len > 3){
-		//if(head[2] == '#' && head[3] >= 48 && head[3] <= 57){
 		if(head[2] == '#' && head[3] >= 0x30 && head[3] <= 0x39){
 			sscanf(head+2,"%d",label);
 			*type = 't';
@@ -178,12 +174,9 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred)
 	int target_label;
 	int stat;
 	stat = get_ref((*binded).Head,&target_type,&target_label);
-	//printf(":stat=%d,",stat);
 	if(stat == 1){
 		struct Tree *addr;
-		//printf("%c,%d:",target_type,target_label);
 		addr = Function_Recursive_FindBind_LabelNode(referred,target_type,target_label,binded);
-		//printf("RefAddr=%ld",(long int)addr);
 	}
 	for(i=0;i<(*binded).NextCount;i++){
 		Function_Recursive_Bind_RefNode((*binded).Next[i],referred);
@@ -218,14 +211,12 @@ int Print_UpR_Head(struct Tree *tree, char *buff){
 	if((*tree).Parent == NULL){
 		sw = Detect_DimRegion((*tree).Head,dim_pos);
 		if(sw == 2){
-			//printf("%s",(*tree).Head);
 			Ins_DimStr(tree,dim_pos,buff);
 		}
 		return(0);
 	}else{
 		sw = Detect_DimRegion((*tree).Head,dim_pos);
 		if(sw == 2){
-			//printf("%s",(*tree).Head);
 			Ins_DimStr(tree,dim_pos,buff);
 		}
 		Print_UpR_Head((*tree).Parent,buff);
@@ -243,7 +234,6 @@ int get_nval(char *str){
 		if(str[i] == '[' || str[i] == ','){
 			tmpval = 1;
 			sscanf(str+i+1,"%d",&tmpval);
-			//printf("==%d==",tmpval);
 			count = count*tmpval;
 		}
 	}
@@ -282,11 +272,7 @@ struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *node_coun
 	int i;
 	struct Tree *current;
 	current = top;
-	//printf(":cur=%ld:",(long int)current);
-	//printf(":ser=%d:",(*top).ser);
-	//printf(":nc=%d:",(*top).NextCount);
 	if((*current).nval > 0){
-		//printf(":nval=%d:",(*current).nval);
 		node_table = realloc(node_table,(sizeof(struct Tree *) * (*node_count + 2)));
 		node_table[(*node_count)] = current;
 		(*node_count)++;
@@ -339,7 +325,6 @@ int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, str
 				if(buff[buff_len-1] == ',' || buff[buff_len-1] == '\n'){
 					buff[buff_len-1] = '\0';
 				}
-				//printf("BUFF[%s]",buff);
 				buff_len = strlen(buff);
 				bn_table[node_count]->valstr = malloc(sizeof(char) * (buff_len + 1));
 				strcpy((*bn_table[node_count]).valstr,buff);
@@ -463,7 +448,6 @@ char *Function_Dot_Head(struct Tree *tree){
 	}
 }
 char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
-	//printf("IN Function_Compile\n");
 	char *tmp_head;
 	char *out_head;
 	int len = 0;
@@ -478,7 +462,6 @@ char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 	}
 
 	strcpy(tmp_head,(*tree).Head+(*tree).IndicatorPtr);
-	//printf("%d ",(*tree).IndicatorPtr);
 
 	if((*_copt).c_clear > 0){
 		tmp_head = Function_Clear_Head(tree);
@@ -561,7 +544,6 @@ void Function_Print_Status(struct Tree *tree){
 //* Head */
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	/* compile */
-	//int val_len = 0;
 	if((*_copt).c_counter > 0){
 		char *tmp_str;
 		tmp_str = Function_Compile(tree,_copt);
