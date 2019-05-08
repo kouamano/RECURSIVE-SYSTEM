@@ -46,9 +46,10 @@ int AnalyzeHead(struct Tree *tree){
 	}
 	/* IndicatorPtr */
 	headlen = strlen((*tree).Head);
-	for(i=0;i<headlen;i++){
-		if((*tree).Head[i] == '$'){
-		//if((*tree).Head[i] < 30 || (*tree).Head[i] > 39){
+	//for(i=0;i<headlen;i++){
+	for(i=labelnumlen;i<headlen;i++){
+		//if((*tree).Head[i] == '$'){
+		if((*tree).Head[i] < 0x30 || (*tree).Head[i] > 0x39){
 			(*tree).IndicatorPtr = i;
 			break;
 		}
