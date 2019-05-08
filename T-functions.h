@@ -32,7 +32,7 @@ int AnalyzeHead(struct Tree *tree){
 	/* label */
 	if((*tree).LabelType != '\0'){
 		/* check num char */
-		for(i=labelreadprt;48 <= (*tree).Head[i] && (*tree).Head[i] >= 57;i++){
+		for(i=labelreadprt;30 <= (*tree).Head[i] && (*tree).Head[i] >= 39;i++){
 			labelnumlen++;
 		}
 		if((labelnumstr = malloc(sizeof(char) * (labelnumlen + 1))) == NULL){
