@@ -32,7 +32,7 @@ int AnalyzeHead(struct Tree *tree){
 	/* label */
 	if((*tree).LabelType != '\0'){
 		/* check num char */
-		for(i=labelreadprt;30 <= (*tree).Head[i] && (*tree).Head[i] >= 39;i++){
+		for(i=labelreadprt;48 <= (*tree).Head[i] && (*tree).Head[i] >= 57;i++){
 			labelnumlen++;
 		}
 		if((labelnumstr = malloc(sizeof(char) * (labelnumlen + 1))) == NULL){
@@ -459,6 +459,7 @@ char *Function_Dot_Head(struct Tree *tree){
 	}
 }
 char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
+	//printf("IN Function_Compile\n");
 	char *tmp_head;
 	char *out_head;
 	int len = 0;
@@ -472,7 +473,8 @@ char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 		exit(1);
 	}
 
-	strcpy(tmp_head,(*tree).Head);
+	strcpy(tmp_head,(*tree).Head+(*tree).IndicatorPtr);
+	//printf("%d ",(*tree).IndicatorPtr);
 
 	if((*_copt).c_clear > 0){
 		tmp_head = Function_Clear_Head(tree);
