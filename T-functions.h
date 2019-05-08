@@ -393,6 +393,7 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 }
 
 /* compile functions */
+/*
 int is_reteral(char *string){
 	int fails = 0;
 	if(strlen(string) < 2){
@@ -424,6 +425,7 @@ int is_reteral(char *string){
 	}
 	return(fails);
 }
+*/
 char *Function_Clear_Head(struct Tree *tree){
 	char *tmp_head;
 	if((tmp_head = malloc(sizeof(char) * 1)) == NULL){
@@ -505,9 +507,10 @@ char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 		out_head[len-1]='"';
 		out_head[len]='\0';
 		strcpy(tmp_head,out_head);
-	}else if(is_reteral((*tree).Head) == 0){
-		strcpy(out_head,tmp_head);
-		strcpy(tmp_head,out_head);
+	//}else if(is_reteral((*tree).Head) == 0){
+	//}else{
+		//strcpy(out_head,tmp_head);
+		//strcpy(tmp_head,out_head);
 	}
 	free(out_head);
 	return(tmp_head);
