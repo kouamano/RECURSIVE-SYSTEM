@@ -32,6 +32,7 @@ int AnalyzeHead(struct Tree *tree){
 	/* label */
 	if((*tree).LabelType != '\0'){
 		/* check num char */
+		//for(i=labelreadprt;30 <= (*tree).Head[i] && (*tree).Head[i] >= 39;i++){
 		for(i=labelreadprt;30 <= (*tree).Head[i] && (*tree).Head[i] >= 39;i++){
 		//for(i=labelreadprt;49 <= (*tree).Head[i] && (*tree).Head[i] >= 58;i++){
 			labelnumlen++;
