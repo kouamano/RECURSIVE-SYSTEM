@@ -12,12 +12,6 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 	int ESC = 0;
 	int SN = 1;
 	io_top = Create_Node(0,BUFF_LEN);
-	/* for search function */
-        //struct Tree *null_node;
-	//null_node = Create_Node(-1,(*_opt).buff);
-	//strcpy((*null_node).Head,"$NULL$");
-	//(*null_node).LVself = -1;
-	//(*null_node).NCself = 1;
 
 	WAR = (*_opt).war;
 	current = io_top;
