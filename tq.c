@@ -5,7 +5,7 @@
 #include "../RECURSIVE-SYSTEM/T-definition.h"
 #include "../RECURSIVE-SYSTEM/T-structure.h"
 #include "../RECURSIVE-SYSTEM/T-functions.h"
-#include "../RECURSIVE-SYSTEM/T-functions_imex-branch.h"
+#include "../RECURSIVE-SYSTEM/T-functions_Executor.h"
 #include "../RECURSIVE-SYSTEM/T-functions_imex.h"
 
 const char cdate[] = __DATE__;
@@ -22,7 +22,7 @@ void status(void){
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" tq.o [-h|-hF|-hC|-hS|-hD] [-s] [-c] buff=<size(int)> in=<file name of input form> out=<file name of outout form> data=<data file> it=<input form type> ot=<output form type> w=<warnning level> -F<x> -C<x>.\n");
+	printf(" tq.o [-h|-hF|-hC|-hS|-hD] [-s] [-c] buff=<size(int)> in=<file name of input form> out=<file name of outout form> data=<data file> w=<warnning level> -F<x> -C<x> -P<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -hF : function help.\n");
 	printf("  -hC : compile help.\n");
@@ -30,14 +30,11 @@ void help(void){
 	printf("  -hD : data help.\n");
 	printf("  -s : prints status.\n");
 	printf("  -c : check args.\n");
+	printf("  -Pin : print input form.\n");
+	printf("  -Pout : print output form.\n");
 	printf("  buff : set integer for buffer size to read the nodes.\n");
 	printf("  in : set input-form file name (length < 1024).\n");
-	printf("  it : decrear input-type.\n");
-	printf("   0 single: operate whole as single line,\n");
-	printf("   1 multi: apply reference lines (under construction),\n");
-	printf("   2 individual: operate line by line.\n");
 	printf("  out : set output-form file name (length < 1024).\n");
-	printf("  ot : decrear output-type.\n");
 	printf("  data : CSV data file name.\n");
 	printf("  war : set integer for warnnig level.\n");
 }
@@ -134,10 +131,10 @@ void init_options(struct options *opt){
 	(*opt).buff = BUFF_LEN;
 	(*opt).war = 0;
 	(*opt).in[0] = '\0';
-	(*opt).in_form = 2;
 	(*opt).out[0] = '\0';
-	(*opt).out_form = 2;
 	(*opt).data[0] = '\0';
+	(*opt).Pin = 0;
+	(*opt).Pout = 0;
 	(*opt).hF = 0;
 	(*opt).hC = 0;
 	(*opt).hS = 0;
@@ -196,22 +193,14 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).hD = 1;
 		}else if(strncmp(optv[i],"in=",3) == 0){
 			sscanf(optv[i],"in=%s",(*opt).in);
-		}else if(strncmp(optv[i],"it=single",9) == 0){
-			(*opt).in_form = 0;
-		}else if(strncmp(optv[i],"it=multi",8) == 0){
-			(*opt).in_form = 1;
-		}else if(strncmp(optv[i],"it=individual",13) == 0){
-			(*opt).in_form = 2;
 		}else if(strncmp(optv[i],"out=",4) == 0){
 			sscanf(optv[i],"out=%s",(*opt).out);
-		}else if(strncmp(optv[i],"ot=single",9) == 0){
-			(*opt).in_form = 0;
-		}else if(strncmp(optv[i],"ot=multi",8) == 0){
-			(*opt).in_form = 1;
-		}else if(strncmp(optv[i],"ot=individual",13) == 0){
-			(*opt).in_form = 2;
 		}else if(strncmp(optv[i],"data=",5) == 0){
 			sscanf(optv[i],"data=%s",(*opt).data);
+		}else if(strncmp(optv[i],"-Pin",4) == 0){
+			(*opt).Pin = 2;
+		}else if(strncmp(optv[i],"-Pout",5) == 0){
+			(*opt).Pout = 2;
 		}
 	}
 }
@@ -311,13 +300,13 @@ void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	printf(" opt.buff:%d:\n",(*opt).buff);
 	printf(" opt.in:%s:\n",(*opt).in);
-	printf(" opt.in-form:%d:\n",(*opt).in_form);
 	printf(" opt.out:%s:\n",(*opt).out);
-	printf(" opt.out-form:%d:\n",(*opt).out_form);
 	printf(" opt.data:%s:\n",(*opt).data);
 	printf(" opt.war:%d:\n",(*opt).war);
 	printf(" opt.hF:%d:\n",(*opt).hF);
 	printf(" opt.hC:%d:\n",(*opt).hC);
+	printf(" opt.Pin:%d:\n",(*opt).Pin);
+	printf(" opt.Pout:%d:\n",(*opt).Pout);
 }
 void check_function_options(struct function_options *fopt){
 	printf(" converters:\n");
@@ -360,13 +349,16 @@ int main(int argc, char **argv){
 	struct compile_options *_copt;
 	struct search_options *_sopt;
 	struct data_options *_dopt;
+	int node_count;
+	struct Tree *itop;
+	struct Tree *otop;
+	struct Tree *null_node;
 	int ie = 0;
 	FILE *IN;
 	FILE *DATA;
 	int is_iopen = 0;
 	int is_dopen = 0;
 	int is_oopen = 0;
-	int c;
 
 	/* options */
 	//* main opt */
@@ -448,26 +440,31 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 
-	/* data file */
-	int t_array_count = 0;	//for data bind
-	struct Tree **TA;	//for data bind
-	if((TA = malloc(sizeof(*TA) * 1)) == NULL){
-		perror("[Fail]:malloc@main");
-		exit(1);
-	}
-	int node_count;
-	struct Tree *itop;
-	if(strlen((*opt).data) > 0){
-	if((DATA = fopen((*opt).data,"r")) == NULL){
-		perror((*opt).data);
-		exit(1);
-	}
-	is_dopen = 1;
-	}
+	/* for search */
+        null_node = Create_Node(-1,(*opt).buff);
+        strcpy((*null_node).Head,"$NULL$");
+        (*null_node).LVself = -1;
+        (*null_node).NCself = 1;
+
+	/* EXEC_FLAG */
+	int EFLAG = 0;
+	// 0 : no exec
+	// 1 : bind data
+	// 2 : print
+	// 4 : bind ref-node
 
 	/* input-form file */
 	if(strlen((*opt).in) > 0){
-		//* open */
+		//* open data file */
+		if(strlen((*opt).data) > 0){
+			if((DATA = fopen((*opt).data,"r")) == NULL){
+				perror((*opt).data);
+				exit(1);
+			}
+			is_dopen = 1;
+		}
+
+		//* open in-file */
 		if((IN = fopen((*opt).in,"r")) == NULL){
 			perror((*opt).in);
 			exit(1);
@@ -475,21 +472,21 @@ int main(int argc, char **argv){
 		is_iopen = 1;
 		//* import function */
 		node_count = 0;
-		itop = Create_Node(0,BUFF_LEN);
-		c = import_Tree(IN,itop,opt,_fopt,_copt,_sopt,&node_count,1,&t_array_count,TA,DATA);
-		//* close file */
+		EFLAG = 1+(*opt).Pin;
+		itop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,DATA);
+		Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);	
+		//* close in-file */
 		if(is_iopen > 0){
 			fclose(IN);
 		}
-	}
 
-	/* data file close */
-	if(is_dopen > 0){
-		fclose(DATA);
+		//* close data file*/
+		if(is_dopen > 0){
+			fclose(DATA);
+		}
 	}
 
 	/* outout-form file */
-	struct Tree *otop;
 	if(strlen((*opt).out) > 0){
 		//* open */
 		if((IN = fopen((*opt).out,"r")) == NULL){
@@ -499,15 +496,17 @@ int main(int argc, char **argv){
 		is_oopen = 1;
 		//* import function */
 		node_count = 0;
-		otop = Create_Node(0,BUFF_LEN);
-		c = import_Tree(IN,otop,opt,_fopt,_copt,_sopt,&node_count,0,NULL,NULL,NULL);
+		EFLAG = 4+(*opt).Pout;
+		otop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL);
+		Executor(otop,itop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
 		//* close file */
 		if(is_oopen > 0){
 			fclose(IN);
 		}
 	}
+	/* check */
 
 
 	/* finish */
-	return(c);
+	return(0);
 }

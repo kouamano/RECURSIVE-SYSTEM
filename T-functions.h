@@ -32,9 +32,13 @@ int AnalyzeHead(struct Tree *tree){
 	/* label */
 	if((*tree).LabelType != '\0'){
 		/* check num char */
-		for(i=labelreadprt;30 <= (*tree).Head[i] && (*tree).Head[i] >= 39;i++){
+		//for(i=labelreadprt;49 <= (*tree).Head[i] && (*tree).Head[i] >= 58;i++){
+		//for(i=labelreadprt; (int)(*tree).Head[i] >= 0x30 && (int)(*tree).Head[i] >= 0x39;i++){	//Dec?
+		for(i=labelreadprt; (int)(*tree).Head[i] >= 30 && (int)(*tree).Head[i] >= 39;i++){	//Dec?
+			//printf(":%d:",(*tree).Head[i]);
 			labelnumlen++;
 		}
+		//printf("\n");
 		if((labelnumstr = malloc(sizeof(char) * (labelnumlen + 1))) == NULL){
 			perror("[Fail]malloc@AnalyzeHead\n");
 			exit(1);
@@ -43,10 +47,11 @@ int AnalyzeHead(struct Tree *tree){
 		sscanf(labelnumstr,"%d",&(*tree).Label);
 		free(labelnumstr);
 	}
-	/* Category */
+	/* IndicatorPtr */
 	headlen = strlen((*tree).Head);
 	for(i=0;i<headlen;i++){
 		if((*tree).Head[i] == '$'){
+		//if((*tree).Head[i] < 30 || (*tree).Head[i] > 39){
 			(*tree).IndicatorPtr = i;
 			break;
 		}
@@ -126,7 +131,67 @@ int Detect_DimRegion(const char *head, int *pos){
 	return(ret);
 }
 
+/* reference analysis */
+struct Tree *Function_Recursive_FindBind_LabelNode(struct Tree *tree, char type, int label, struct Tree *binded){	//for referred
+	int i;
+	if(tree == NULL){
+		return(NULL);
+	}
+	if((*tree).LabelType == type && (*tree).Label == label){
+		//printf("HIT:%ld:Bind:%ld:",tree,binded);
+		(*binded).RefNode = tree;	//bind
+		return(tree);
+	}
+	for(i=0;i<(*tree).NextCount;i++){
+		Function_Recursive_FindBind_LabelNode((*tree).Next[i],type,label,binded);
+	}
+	return(NULL);
+}
+int get_ref(char *head, char *type, int *label){	//for binded
+	int len;
+	len = strlen(head);
+	if(len < 3){
+		return(0);
+	}
+	if(head[0] != '$' || head[1] != '#'){
+		return(0);
+	}
+	//if(head[2] >= 48 && head[2] <= 57){
+	if(head[2] >= 0x30 && head[2] <= 0x39){
+		sscanf(head+2,"%d",label);
+		*type = 'h';
+		return(1);
+	}
+	if(len > 3){
+		//if(head[2] == '#' && head[3] >= 48 && head[3] <= 57){
+		if(head[2] == '#' && head[3] >= 0x30 && head[3] <= 0x39){
+			sscanf(head+2,"%d",label);
+			*type = 't';
+			return(1);
+		}
+	}
+	return(0);
+}
+
 /* restructure functions */
+void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred){
+	int i;
+	char target_type;
+	int target_label;
+	int stat;
+	stat = get_ref((*binded).Head,&target_type,&target_label);
+	//printf(":stat=%d,",stat);
+	if(stat == 1){
+		struct Tree *addr;
+		//printf("%c,%d:",target_type,target_label);
+		addr = Function_Recursive_FindBind_LabelNode(referred,target_type,target_label,binded);
+		//printf("RefAddr=%ld",(long int)addr);
+	}
+	for(i=0;i<(*binded).NextCount;i++){
+		Function_Recursive_Bind_RefNode((*binded).Next[i],referred);
+	}
+}
+
 int Add_DimStr(struct Tree *tree, int *dim_pos, char *buff){
 	int len;
 	len = strlen(buff);
@@ -317,6 +382,7 @@ struct Tree *Create_Node(int _ser, int H_size){
 	(*tree).nval = 0;
 	(*tree).valstr = NULL;
 	(*tree).Parent=NULL;
+	(*tree).RefNode=NULL;
 	return(tree);
 }
 struct Tree *Copy_Node(struct Tree *dest, const struct Tree *src){
@@ -398,27 +464,33 @@ char *Function_Dot_Head(struct Tree *tree){
 		return((*tree).Head);
 	}
 }
-char *Function_Compile_Head(struct Tree *tree, struct compile_options *_copt){
+char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
+	//printf("IN Function_Compile\n");
 	char *tmp_head;
 	char *out_head;
 	int len = 0;
 	len = strlen((*tree).Head);
 	if((tmp_head = malloc(sizeof(char) * (len+1))) == NULL){
-		perror("[Fail]:malloc@Function_Compile_Head.\n");
+		perror("[Fail]:malloc@Function_Compile.\n");
 		exit(1);
 	}
 	if((out_head = malloc(sizeof(char) * (len+1))) == NULL){
-		perror("[Fail]:malloc@Function_Compile_Head.\n");
+		perror("[Fail]:malloc@Function_Compile.\n");
 		exit(1);
 	}
 
-	strcpy(tmp_head,(*tree).Head);
+	strcpy(tmp_head,(*tree).Head+(*tree).IndicatorPtr);
+	//printf("%d ",(*tree).IndicatorPtr);
 
 	if((*_copt).c_clear > 0){
 		tmp_head = Function_Clear_Head(tree);
 	}else if((*_copt).c_dot > 0){
 		tmp_head = Function_Dot_Head(tree);
 	}else if(strncmp(tmp_head,"$NULL$",6) == 0){
+	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$IP$",4) == 0){	// Inner Product
+		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+4);
+		strcpy(tmp_head,out_head);
+		//Under construction
 	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$X$",3) == 0){
 		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
 		strcpy(tmp_head,out_head);
@@ -431,7 +503,7 @@ char *Function_Compile_Head(struct Tree *tree, struct compile_options *_copt){
 	}else if(strncmp(tmp_head,"$``",3) == 0){ //quating tree
 		out_head=realloc(out_head, (sizeof(char) * (len+1)));
 		if(out_head == NULL){
-			perror("[Fail]:realloc@Function_Compile_Head.\n");
+			perror("[Fail]:realloc@Function_Compile.\n");
 			exit(1);
 		}
 		out_head[0]='"';
@@ -453,7 +525,7 @@ char *Function_Compile_Head(struct Tree *tree, struct compile_options *_copt){
 		out_head[len]='\0';
 		strcpy(tmp_head,out_head);
 	}else if(is_reteral((*tree).Head) == 0){
-		strcpy(out_head,tmp_head+1);
+		strcpy(out_head,tmp_head);
 		strcpy(tmp_head,out_head);
 	}
 	free(out_head);
@@ -475,6 +547,7 @@ void Function_Print_Smems(struct Tree *tree){
 	}else{
 		printf(":Pa=%d:",-1);
 	}
+	printf(":Ref=%ld:",(long int)(*tree).RefNode);
 	printf(":LVs=%d:",(*tree).LVself);
 	printf(":Cj=%d:",(*tree).Conj);
 	printf(":LT=%c:",(*tree).LabelType);
@@ -486,6 +559,24 @@ void Function_Print_Smems(struct Tree *tree){
 void Function_Print_Status(struct Tree *tree){
 	Function_Print_Smems(tree);
 	printf("\n");
+}
+//* Head */
+struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	/* compile */
+	//int val_len = 0;
+	if((*_copt).c_counter > 0){
+		char *tmp_str;
+		tmp_str = Function_Compile(tree,_copt);
+		printf("%s",tmp_str);
+		free(tmp_str);	//test
+	}else{
+		printf("%s",(*tree).Head);	//normal
+	}
+	if((*tree).valstr != NULL){
+		/* UNDER CONSTRUCTION : must be initialize valstr */
+		printf("@(%s)",(*tree).valstr);
+	}
+	return(tree);
 }
 void Function_Print_HeadHierarchy(struct Tree *tree){
 	int i;
@@ -608,24 +699,6 @@ struct Tree *Function_Print_Conj_X(struct Tree *tree, struct function_options *_
 		}
 	return(tree);
 }
-//* Head */
-struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	/* compile */
-	//int val_len = 0;
-	if((*_copt).c_counter > 0){
-		char *tmp_str;
-		tmp_str = Function_Compile_Head(tree,_copt);
-		printf("%s",tmp_str);
-		free(tmp_str);	//test
-	}else{
-		printf("%s",(*tree).Head);	//normal
-	}
-	if((*tree).valstr != NULL){
-		/* UNDER CONSTRUCTION : must be initialize valstr */
-		printf("@(%s)",(*tree).valstr);
-	}
-	return(tree);
-}
 struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	int sw = 0;
 	int *dim_pos;
@@ -642,7 +715,7 @@ struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *
 	}
 	/* compile */
 	if((*_copt).c_counter > 0){
-		tmp_str = Function_Compile_Head(tree,_copt);
+		tmp_str = Function_Compile(tree,_copt);
 	}else{
 		strcpy(tmp_str,(*tree).Head);
 	}
@@ -686,7 +759,7 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 	}
 	/* compile */
 	if((*_copt).c_counter > 0){
-		tmp_str = Function_Compile_Head(tree,_copt);
+		tmp_str = Function_Compile(tree,_copt);
 	}else{
 		strcpy(tmp_str,(*tree).Head);
 	}
@@ -716,7 +789,7 @@ struct Tree *Function_Print_Head_X(struct Tree *tree, struct function_options *_
 		/* compile */
 		if((*_copt).c_counter > 0){
 			char *tmp_str;
-			tmp_str = Function_Compile_Head(tree,_copt);
+			tmp_str = Function_Compile(tree,_copt);
 			printf("%s",tmp_str);
 		}else{
 			printf("%s",(*tree).Head);	//normal
@@ -1009,6 +1082,8 @@ int Function_Recursive_FreeForce_Tree(struct Tree *tree){
 	(*tree).Head = NULL;
 	free((*tree).dimstr);
 	(*tree).dimstr = NULL;
+	free((*tree).valstr);
+	(*tree).valstr = NULL;
 
 	return(0);
 }

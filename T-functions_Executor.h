@@ -1,23 +1,23 @@
 /* include into T-functions_imex.h */
-void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *t_array_count, struct Tree **TA, FILE *DATA, int EXEC_FLAG){
-			/*
- 			* EXEC_FLAG : controls GC or other functions
-			*/
-
-			/* pre */
-			//printf(":EXEC=%d:",EXEC_FLAG);
-			if((EXEC_FLAG&1) == 1){
-				//* detect dim */
-				ExFunction_Recursive_Ser(top,(struct Tree *(*)())Detect_DimBlock,_fopt,_copt,SN,1);
-				if((*_opt).data != NULL){
+void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, int C, int SN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, FILE *DATA, int EXEC_FLAG){
+		/* pre */
+		//* bind data (for input-form) */
+		//printf(":EXEC=%d:",EXEC_FLAG);
+		if((EXEC_FLAG&1) == 1){
+			ExFunction_Recursive_Ser(top,(struct Tree *(*)())Detect_DimBlock,_fopt,_copt,SN,1);
+			if((*_opt).data != NULL){
 				if(strlen((*_opt).data) > 0){
-					//* bind data */
 					bind_data(DATA,top,_fopt,_copt);
 				}
-				}
 			}
+		}
+		//* bind ref-node (for output-form) */
+		if((EXEC_FLAG&4) == 4){
+			Function_Recursive_Bind_RefNode(top,refTree);
+		}
 
-
+		/* print */
+		if((EXEC_FLAG&2) == 2){
 			/* for search */
 		        struct Tree *hit_tree;
 		        struct Tree *hit_node;
@@ -40,6 +40,7 @@ void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct op
 				if(C == LF || C == TAB){
 					printf("%c",C);
 				}
+				printf("\n");
 			}
 			if((*_fopt).f_print_T == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,  _fopt, _copt, SN);
@@ -49,6 +50,7 @@ void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct op
 				if(C == LF || C == TAB){
 					printf("%c",C);
 				}
+				printf("\n");
 			}
 			if((*_fopt).f_print_S == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_S, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_S,  (struct Tree *(*)())Function_Print_Bclose_S,  _fopt, _copt, SN);
@@ -58,6 +60,7 @@ void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct op
 				if(C == LF || C == TAB){
 					printf("%c",C);
 				}
+				printf("\n");
 			}
 			if((*_fopt).f_print_C == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_C, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_C,  (struct Tree *(*)())Function_Print_Bclose_C,  _fopt, _copt, SN);
@@ -67,6 +70,7 @@ void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct op
 				if(C == LF || C == TAB){
 					printf("%c",C);
 				}
+				printf("\n");
 			}
 			if((*_fopt).f_print_W == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_WL, (struct Tree *(*)())Function_Print_Head_WL, (struct Tree *(*)())Function_Print_Bopen_WL,  (struct Tree *(*)())Function_Print_Bclose_WL,  _fopt, _copt, SN);
@@ -76,6 +80,7 @@ void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct op
 				if(C == LF || C == TAB){
 					printf("%c",C);
 				}
+				printf("\n");
 			}
 			if((*_fopt).f_print_X == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_X, (struct Tree *(*)())Function_Print_Head_X, (struct Tree *(*)())Function_Print_Bopen_X,  (struct Tree *(*)())Function_Print_Bclose_X, _fopt, _copt, SN);
@@ -85,12 +90,14 @@ void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct op
 				if(C == LF || C == TAB){
 					printf("%c",C);
 				}
+				printf("\n");
 			}
 			if((*_fopt).f_print_J == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_JS, (struct Tree *(*)())Function_Print_Head_JS, (struct Tree *(*)())Function_Print_Bopen_JS,  (struct Tree *(*)())Function_Print_Bclose_WL,  _fopt, _copt, SN);
 				if(C == LF || C == TAB){
 					printf("%c",C);
 				}
+				printf("\n");
 			}
 
 			/* apply status print */
@@ -112,7 +119,7 @@ void Executor(struct Tree *top, struct Tree *null_node, int C, int SN, struct op
 				ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Function_Print_Adj,_fopt,_copt,SN,1);
 				printf("\n");
                         }
-
+		}
 			/* test */
 			//exit(0);
 }

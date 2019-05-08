@@ -9,13 +9,13 @@ struct Tree {
 	int Label;
 	int IndicatorPtr;
 	char *Head;
+	char *dimstr;
+	int nval;
+	char *valstr;
 	int NextCount;
 	struct Tree **Next;
 	struct Tree *Parent;	// must not free !!
-	char *dimstr;
-	int nval;
-	//int valstrlen;
-	char *valstr;
+	struct Tree *RefNode;
 };
 
 struct options {
@@ -27,8 +27,8 @@ struct options {
         char *in;
         char *out;
 	char *data;
-	int in_form;
-	int out_form;
+	int Pin;
+	int Pout;
         int hF;
         int hC;
         int hS;

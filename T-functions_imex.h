@@ -1,24 +1,20 @@
 //import tree script
-int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *ncount, int EXEC_FLAG, int *t_array_count, struct Tree **TA, FILE *DATA){
+struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *ncount, int EXEC_FLAG, FILE *DATA){
 	int WAR;
 	int C;
 	int DLM_ACC = 1;
 	char *BUFF;
 	int buf_ptr = 0;
+	struct Tree *io_top;
 	struct Tree *current;
 	struct Tree *next;
 	int close = 0;
 	int ESC = 0;
 	int SN = 1;
-	/* for search function */
-        struct Tree *null_node;
-	null_node = Create_Node(-1,(*_opt).buff);
-	strcpy((*null_node).Head,"$NULL$");
-	(*null_node).LVself = -1;
-	(*null_node).NCself = 1;
+	io_top = Create_Node(0,BUFF_LEN);
 
 	WAR = (*_opt).war;
-	current = top;
+	current = io_top;
 	next = NULL;
 	if((BUFF = malloc(sizeof(char) * (*_opt).buff)) == NULL){
 		printf("[Fail] malloc.\n");
@@ -115,42 +111,17 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 				current = (*current).Parent;
 			}
 			close++;
-		}else if(C == LF || C == TAB){
-			/* 0:single / 1:multi / 2:individual */
-			if((*_opt).in_form == 0){
-				; // executed bellow
-			}else if((*_opt).in_form == 1){
-				; // under construction
-			}else if((*_opt).in_form == 2){
-				/* copy BUFF */
-				BUFF[buf_ptr] = '\0';
-				if(close == 0){
-					strcpy((*current).Head,BUFF);
-					AnalyzeHead(current);
-				}
-				/* clear BUFF */
-				BUFF[0] = '\0';
-				buf_ptr = 0;
-				close = 0;
-				/* apply functions, bind data */
-				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,EXEC_FLAG);
-				/* clear tree */
-				Function_Recursive_FreeForce_Tree(top);
-				free(top);
-				top = Create_Node(SN,(*_opt).buff);
-				SN++;
-				*ncount = SN;
-				ESC = 0;
-			}
+		}else if(C == LF || C == TAB){	//ignore chars 
+			;
 		}else if(C == EOF){
+			BUFF[buf_ptr] = '\0';
+			if(close == 0){
+				strcpy((*current).Head,BUFF);
+				AnalyzeHead(current);
+			}
 			close = 0;
 			ESC = 0;
-			if((*_opt).in_form == 0){
-				/* apply functions, bind data */
-				Executor(top, null_node, C, SN, _opt, _fopt, _copt, _sopt,t_array_count,TA,DATA,EXEC_FLAG);
-				printf("\n");
-			}
-			return(C);
+			return(io_top);
 		}else{
 			/* buffering */
 			BUFF[buf_ptr] = C;
@@ -164,25 +135,7 @@ int import_Tree(FILE *IN, struct Tree *top, struct options *_opt, struct functio
 			}
 		}
 	}
-	return(C);
+	return(io_top);
 }
 
-/* data bind*/
-/*
-int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	int C;
-	int bn_count = 0;
-	struct Tree **bn_table = NULL;
-	printf(":tree=%ld:",(long int)tree);
-	Function_Recursive_Search_BindNode(tree,&bn_count,bn_table);
-	printf(":bncount=%d:\n",bn_count);
-	while((C = fgetc(DATA))){
-		if(C == EOF){
-			return(0);
-		}else{
-			putchar(C);
-		}
-	}
-	return(0);
-}
-*/
+
