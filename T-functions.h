@@ -32,14 +32,13 @@ int AnalyzeHead(struct Tree *tree){
 	/* label */
 	if((*tree).LabelType != '\0'){
 		/* check num char */
-		//for(i=labelreadprt;30 <= (*tree).Head[i] && (*tree).Head[i] >= 39;i++){
-		//for(i=labelreadprt;30 <= (int)(*tree).Head[i] && (int)(*tree).Head[i] >= 39;i++){	//Dec?
 		//for(i=labelreadprt;49 <= (*tree).Head[i] && (*tree).Head[i] >= 58;i++){
+		//for(i=labelreadprt; (int)(*tree).Head[i] >= 0x30 && (int)(*tree).Head[i] >= 0x39;i++){	//Dec?
 		for(i=labelreadprt; (int)(*tree).Head[i] >= 30 && (int)(*tree).Head[i] >= 39;i++){	//Dec?
-			printf(":%d:",(*tree).Head[i]);
+			//printf(":%d:",(*tree).Head[i]);
 			labelnumlen++;
 		}
-		printf("\n");
+		//printf("\n");
 		if((labelnumstr = malloc(sizeof(char) * (labelnumlen + 1))) == NULL){
 			perror("[Fail]malloc@AnalyzeHead\n");
 			exit(1);

@@ -44,6 +44,7 @@ while read line; do echo $line | ./tq.o in=/dev/stdin -FT -Pin ; done < test_hea
   => $X$List($X$List($$X$Property[2]@(Length,Weight)),$X$List($$X$Unit[2]@(mm,kg)),$X$List[4]($$X$Real[2]@(1,2,322,4,5,68,7,81)))
 $X$List($X$List($#1[],$#2[],$#3[]))
 ./tq.o in=test.ddf -Fst out=test.ddl data=test.csv -Pin -Pout
+ OutのRefアドレスが取れているか確認する：
  => :Adr=36763216::SN=0::H=$X$List::D=(null)::nval=0::vstr=(null)::Pa=-1::Ref=0::LVs=0::Cj=0::LT=::Lb=-1::Cs=0::NCs=1::NC=3:
 :Adr=36765440::SN=1::H=$X$List::D=(null)::nval=0::vstr=(null)::Pa=0::Ref=0::LVs=1::Cj=0::LT=::Lb=-1::Cs=0::NCs=1::NC=1:
 :Adr=36766624::SN=2::H=#1$$X$Property[2]::D=[2::nval=2::vstr=Length,Weight::Pa=1::Ref=0::LVs=2::Cj=0::LT=h::Lb=1::Cs=2::NCs=1::NC=0:
