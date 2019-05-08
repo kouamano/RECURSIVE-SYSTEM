@@ -560,6 +560,24 @@ void Function_Print_Status(struct Tree *tree){
 	Function_Print_Smems(tree);
 	printf("\n");
 }
+//* Head */
+struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	/* compile */
+	//int val_len = 0;
+	if((*_copt).c_counter > 0){
+		char *tmp_str;
+		tmp_str = Function_Compile(tree,_copt);
+		printf("%s",tmp_str);
+		free(tmp_str);	//test
+	}else{
+		printf("%s",(*tree).Head);	//normal
+	}
+	if((*tree).valstr != NULL){
+		/* UNDER CONSTRUCTION : must be initialize valstr */
+		printf("@(%s)",(*tree).valstr);
+	}
+	return(tree);
+}
 void Function_Print_HeadHierarchy(struct Tree *tree){
 	int i;
 	for(i=0;i<(*tree).LVself;i++){
@@ -679,24 +697,6 @@ struct Tree *Function_Print_Conj_X(struct Tree *tree, struct function_options *_
 		}else if((*tree).NCself > 1){
 			printf("<c/>");
 		}
-	return(tree);
-}
-//* Head */
-struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	/* compile */
-	//int val_len = 0;
-	if((*_copt).c_counter > 0){
-		char *tmp_str;
-		tmp_str = Function_Compile(tree,_copt);
-		printf("%s",tmp_str);
-		free(tmp_str);	//test
-	}else{
-		printf("%s",(*tree).Head);	//normal
-	}
-	if((*tree).valstr != NULL){
-		/* UNDER CONSTRUCTION : must be initialize valstr */
-		printf("@(%s)",(*tree).valstr);
-	}
 	return(tree);
 }
 struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
