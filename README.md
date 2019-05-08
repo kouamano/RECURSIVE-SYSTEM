@@ -42,6 +42,21 @@ bash conv-check.script
 ./tq.o in=test.ddf -FT out=test.ddl data=test.csv -Pin -Pout
   => $X$List($X$List($$X$Property[2]@(Length,Weight)),$X$List($$X$Unit[2]@(mm,kg)),$X$List[4]($$X$Real[2]@(1,2,322,4,5,68,7,81)))
 $X$List($X$List($#1[],$#2[],$#3[]))
+./tq.o in=test.ddf -Fst out=test.ddl data=test.csv -Pin -Pout
+ => :Adr=36763216::SN=0::H=$X$List::D=(null)::nval=0::vstr=(null)::Pa=-1::Ref=0::LVs=0::Cj=0::LT=::Lb=-1::Cs=0::NCs=1::NC=3:
+:Adr=36765440::SN=1::H=$X$List::D=(null)::nval=0::vstr=(null)::Pa=0::Ref=0::LVs=1::Cj=0::LT=::Lb=-1::Cs=0::NCs=1::NC=1:
+:Adr=36766624::SN=2::H=#1$$X$Property[2]::D=[2::nval=2::vstr=Length,Weight::Pa=1::Ref=0::LVs=2::Cj=0::LT=h::Lb=1::Cs=2::NCs=1::NC=0:
+:Adr=36767840::SN=3::H=$X$List::D=(null)::nval=0::vstr=(null)::Pa=0::Ref=0::LVs=1::Cj=1::LT=::Lb=-1::Cs=0::NCs=2::NC=1:
+:Adr=36768992::SN=4::H=#2$$X$Unit[2]::D=[2::nval=2::vstr=mm,kg::Pa=3::Ref=0::LVs=2::Cj=0::LT=h::Lb=2::Cs=2::NCs=1::NC=0:
+:Adr=36770208::SN=5::H=$X$List[4]::D=(null)::nval=0::vstr=(null)::Pa=0::Ref=0::LVs=1::Cj=1::LT=::Lb=-1::Cs=0::NCs=3::NC=1:
+:Adr=36771360::SN=6::H=#3$$X$Real[2]::D=[4[2::nval=8::vstr=1,2,322,4,5,68,7,81::Pa=5::Ref=0::LVs=2::Cj=0::LT=h::Lb=3::Cs=2::NCs=1::NC=0:
+
+:Adr=36773264::SN=0::H=$X$List::D=(null)::nval=0::vstr=(null)::Pa=-1::Ref=0::LVs=0::Cj=0::LT=::Lb=-1::Cs=0::NCs=1::NC=1:
+:Adr=36773376::SN=1::H=$X$List::D=(null)::nval=0::vstr=(null)::Pa=0::Ref=0::LVs=1::Cj=0::LT=::Lb=-1::Cs=0::NCs=1::NC=3:
+:Adr=36775760::SN=2::H=$#1[]::D=(null)::nval=0::vstr=(null)::Pa=1::Ref=36766624::LVs=2::Cj=0::LT=::Lb=-1::Cs=0::NCs=1::NC=0:
+:Adr=36776912::SN=3::H=$#2[]::D=(null)::nval=0::vstr=(null)::Pa=1::Ref=36768992::LVs=2::Cj=1::LT=::Lb=-1::Cs=0::NCs=2::NC=0:
+:Adr=36778064::SN=4::H=$#3[]::D=(null)::nval=0::vstr=(null)::Pa=1::Ref=36771360::LVs=2::Cj=1::LT=::Lb=-1::Cs=0::NCs=3::NC=0:
+
 cd DimensionDefinitionLanguage
 bash conv-test.script
 bash conv_e-test.script
