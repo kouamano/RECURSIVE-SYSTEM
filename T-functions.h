@@ -33,6 +33,7 @@ int AnalyzeHead(struct Tree *tree){
 	if((*tree).LabelType != '\0'){
 		/* check num char */
 		for(i=labelreadprt;30 <= (*tree).Head[i] && (*tree).Head[i] >= 39;i++){
+		//for(i=labelreadprt;49 <= (*tree).Head[i] && (*tree).Head[i] >= 58;i++){
 			labelnumlen++;
 		}
 		if((labelnumstr = malloc(sizeof(char) * (labelnumlen + 1))) == NULL){
@@ -46,8 +47,8 @@ int AnalyzeHead(struct Tree *tree){
 	/* IndicatorPtr */
 	headlen = strlen((*tree).Head);
 	for(i=0;i<headlen;i++){
-		//if((*tree).Head[i] == '$'){
-		if((*tree).Head[i] < 48 || (*tree).Head[i] > 57){
+		if((*tree).Head[i] == '$'){
+		//if((*tree).Head[i] < 30 || (*tree).Head[i] > 39){
 			(*tree).IndicatorPtr = i;
 			break;
 		}
@@ -153,12 +154,14 @@ int get_ref(char *head, char *type, int *label){	//for binded
 		return(0);
 	}
 	if(head[2] >= 48 && head[2] <= 57){
+	//if(head[2] >= 30 && head[2] <= 39){
 		sscanf(head+2,"%d",label);
 		*type = 'h';
 		return(1);
 	}
 	if(len > 3){
 		if(head[2] == '#' && head[3] >= 48 && head[3] <= 57){
+		//if(head[2] == '#' && head[3] >= 30 && head[3] <= 39){
 			sscanf(head+2,"%d",label);
 			*type = 't';
 			return(1);
