@@ -490,8 +490,14 @@ char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 			exit(1);
 		}
 		out_head[0]='"';
-		strcpy(out_head+1,tmp_head+3);
-		out_head[len-1]='\0';
+		if((*tree).NextCount == 0){
+			strcpy(out_head+1,tmp_head+3);
+			out_head[len-2]='"';
+			out_head[len-1]='\0';
+		}else{
+			strcpy(out_head+1,tmp_head+3);
+			out_head[len-1]='\0';
+		}
 		strcpy(tmp_head,out_head);
 	}else if(strncmp(tmp_head,"$~",2) == 0){
 		strcpy(out_head,tmp_head+2);
