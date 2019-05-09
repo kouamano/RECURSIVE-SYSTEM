@@ -11,11 +11,11 @@ void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, in
 				}
 			}
 		}
-		//* bind self (for input-form) */
+		//* bind self-ref (for input-form) */
 		if((EXEC_FLAG&8) == 8){
 			Function_Recursive_Bind_RefNode(top,top);
 		}
-		//* bind ref-node (for output-form) */
+		//* bind io-ref (for output-form) */
 		if((EXEC_FLAG&4) == 4){
 			Function_Recursive_Bind_RefNode(top,refTree);
 		}
