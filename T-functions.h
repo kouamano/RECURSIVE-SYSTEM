@@ -550,41 +550,6 @@ void Function_Print_Status(struct Tree *tree){
 	Function_Print_Smems(tree);
 	printf("\n");
 }
-//* Head */
-struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	/* print hierarchy */
-	if((*_fopt).f_print_hierarchy == 1){
-		int i;
-		printf("\n");
-		for(i=0;i<(*tree).LVself;i++){
-			printf(INDENT);
-		}
-		if((*tree).Conj == 1 && (*tree).NCself > 1){
-			printf("+");
-		}else{
-			printf("-");
-		}
-	}
-	/* compile */
-	if((*_copt).c_counter > 0){
-		char *tmp_str;
-		tmp_str = Function_Compile(tree,_copt);
-		printf("%s",tmp_str);
-		free(tmp_str);	//test
-	}else{
-		printf("%s",(*tree).Head);	//normal
-	}
-	/* print ref node */
-	if((*tree).RefNode != NULL){
-		printf("@");
-		Function_Print_Head((*tree).RefNode,_fopt,_copt);
-	}
-	/* print binded data */
-	if((*tree).valstr != NULL){
-		printf("@(%s)",(*tree).valstr);
-	}
-	return(tree);
-}
 /*
 void Function_Print_HeadHierarchy(struct Tree *tree){
 	int i;
@@ -696,6 +661,41 @@ struct Tree *Function_Print_Conj_X(struct Tree *tree, struct function_options *_
 		}else if((*tree).NCself > 1){
 			printf("<c/>");
 		}
+	return(tree);
+}
+//* Head */
+struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	/* print hierarchy */
+	if((*_fopt).f_print_hierarchy == 1){
+		int i;
+		printf("\n");
+		for(i=0;i<(*tree).LVself;i++){
+			printf(INDENT);
+		}
+		if((*tree).Conj == 1 && (*tree).NCself > 1){
+			printf("+");
+		}else{
+			printf("-");
+		}
+	}
+	/* compile */
+	if((*_copt).c_counter > 0){
+		char *tmp_str;
+		tmp_str = Function_Compile(tree,_copt);
+		printf("%s",tmp_str);
+		free(tmp_str);	//test
+	}else{
+		printf("%s",(*tree).Head);	//normal
+	}
+	/* print ref node */
+	if((*tree).RefNode != NULL){
+		printf("@");
+		Function_Print_Head((*tree).RefNode,_fopt,_copt);
+	}
+	/* print binded data */
+	if((*tree).valstr != NULL){
+		printf("@(%s)",(*tree).valstr);
+	}
 	return(tree);
 }
 struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
