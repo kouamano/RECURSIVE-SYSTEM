@@ -40,13 +40,14 @@ compile_checker.n007.sh
 cd RECURSIVE-SYSTEM
 - conv
 bash conv-check.script
+- head
+while read line; do echo $line | ./tq.o in=/dev/stdin -FT -Pin ; done < test_head.t
 - self-bind
 echo '#1$1(#2$2(#3$3,$#1),$#3($#1,$#2))' | ./tq.o in=/dev/stdin -FT -Pin
  => #1$1(#2$2(#3$3,$#1@#1$1),$#3@#3$3($#1@#1$1,$#2@#2$2))
 echo '#1$1(#2$2($#3,$#1[2]),#3$3($#1,$#2))' | ./tq.o in=/dev/stdin -FT -Pin data=test.csv
  => #1$1(#2$2($#3@#3$3,$#1[2]@#1$1@(Length,Weight)),#3$3($#1@#1$1,$#2@#2$2))
 - data-bind
-while read line; do echo $line | ./tq.o in=/dev/stdin -FT -Pin ; done < test_head.t
 ./tq.o in=test.ddf -FT out=test.ddl data=test.csv -Pin -Pout
   => $X$List($X$List($$X$Property[2]@(Length,Weight)),$X$List($$X$Unit[2]@(mm,kg)),$X$List[4]($$X$Real[2]@(1,2,322,4,5,68,7,81)))
 $X$List($X$List($#1[],$#2[],$#3[]))
