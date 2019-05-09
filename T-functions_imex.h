@@ -10,7 +10,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 	struct Tree *next;
 	int close = 0;
 	int ESC = 0;
-	int SN = 1;
+	int SN = *ncount+1;
 	io_top = Create_Node(0,BUFF_LEN);
 
 	WAR = (*_opt).war;
