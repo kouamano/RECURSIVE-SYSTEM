@@ -43,6 +43,8 @@ bash conv-check.script
 - self-bind
 echo '#1$1(#2$2(#3$3,$#1),$#3($#1,$#2))' | ./tq.o in=/dev/stdin -FT -Pin
  => #1$1(#2$2(#3$3,$#1@#1$1),$#3@#3$3($#1@#1$1,$#2@#2$2))
+echo '#1$1(#2$2($#3,$#1[2]),#3$3($#1,$#2))' | ./tq.o in=/dev/stdin -FT -Pin data=test.csv
+ => #1$1(#2$2($#3@#3$3,$#1[2]@#1$1@(Length,Weight)),#3$3($#1@#1$1,$#2@#2$2))
 - data-bind
 while read line; do echo $line | ./tq.o in=/dev/stdin -FT -Pin ; done < test_head.t
 ./tq.o in=test.ddf -FT out=test.ddl data=test.csv -Pin -Pout
