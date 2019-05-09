@@ -666,7 +666,7 @@ struct Tree *Function_Print_Conj_X(struct Tree *tree, struct function_options *_
 //* Head */
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	/* print hierarchy */
-	if((*_fopt).f_print_hierarchy == 1){
+	if((*_fopt).f_print_hierarchy == 1 && (*_fopt).f_print_self_stat == 1){
 		int i;
 		printf("\n");
 		for(i=0;i<(*tree).LVself;i++){
@@ -690,7 +690,11 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	/* print ref node */
 	if((*tree).RefNode != NULL){
 		printf("@");
+		(*_fopt).f_print_self_stat = 0;
 		Function_Print_Head((*tree).RefNode,_fopt,_copt);
+	}
+	if((*_fopt).f_print_hierarchy == 1){
+		(*_fopt).f_print_self_stat = 1;
 	}
 	/* print binded data */
 	if((*tree).valstr != NULL){
