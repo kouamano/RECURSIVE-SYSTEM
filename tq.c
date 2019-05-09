@@ -153,6 +153,7 @@ void init_function_options(struct function_options *fopt){
 	(*fopt).f_print_hierarchy = 0;
 	(*fopt).f_print_hierarchy_status = 0;
 	(*fopt).f_print_test = 0;
+	(*fopt).f_print_self_stat = 0;
 }
 void init_compile_options(struct compile_options *copt){
         (*copt).c_counter = 0;
