@@ -555,6 +555,19 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	}else{
 		printf("%s",(*tree).Head);	//normal
 	}
+	/* print hierarchy */
+	if((*_fopt).f_print_hierarchy == 1){
+		int i;
+		printf("\n");
+		for(i=0;i<(*tree).LVself;i++){
+			printf(INDENT);
+		}
+		if((*tree).Conj == 1 && (*tree).NCself > 1){
+			printf("+");
+		}else{
+			printf("-");
+		}
+	}
 	/* print ref node */
 	if((*tree).RefNode != NULL){
 		printf("@");
