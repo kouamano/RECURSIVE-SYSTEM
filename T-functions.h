@@ -603,7 +603,11 @@ int Function_Print_Adj(struct Tree *tree, int nodes){
 	int j;
 	for(i=0;i<nodes;i++){
 		if(i == (*tree).ser){
-			printf("[%d]",i);
+			printf("[%d",i);
+			if((*tree).RefNode != NULL){
+				printf("->%d",((*tree).RefNode)->ser);
+			}
+			printf("]");
 		}
 		for(j=0;j<(*tree).NextCount;j++){
 			if(((*tree).Next[j])->ser == i){
