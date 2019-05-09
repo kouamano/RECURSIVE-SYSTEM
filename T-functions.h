@@ -546,15 +546,6 @@ void Function_Print_Status(struct Tree *tree){
 }
 //* Head */
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	/* compile */
-	if((*_copt).c_counter > 0){
-		char *tmp_str;
-		tmp_str = Function_Compile(tree,_copt);
-		printf("%s",tmp_str);
-		free(tmp_str);	//test
-	}else{
-		printf("%s",(*tree).Head);	//normal
-	}
 	/* print hierarchy */
 	if((*_fopt).f_print_hierarchy == 1){
 		int i;
@@ -568,6 +559,15 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 			printf("-");
 		}
 	}
+	/* compile */
+	if((*_copt).c_counter > 0){
+		char *tmp_str;
+		tmp_str = Function_Compile(tree,_copt);
+		printf("%s",tmp_str);
+		free(tmp_str);	//test
+	}else{
+		printf("%s",(*tree).Head);	//normal
+	}
 	/* print ref node */
 	if((*tree).RefNode != NULL){
 		printf("@");
@@ -579,6 +579,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	}
 	return(tree);
 }
+/*
 void Function_Print_HeadHierarchy(struct Tree *tree){
 	int i;
 	for(i=0;i<(*tree).LVself;i++){
@@ -596,25 +597,7 @@ void Function_Print_HeadHierarchy(struct Tree *tree){
 	}
 	printf("\n");
 }
-void Function_Print_HeadHierarchyStatus(struct Tree *tree){
-	int i;
-	for(i=0;i<(*tree).LVself;i++){
-		printf(INDENT);
-	}
-	if((*tree).Conj == 1 && (*tree).NCself > 1){
-		printf("+");
-	}else{
-		printf("-");
-	}
-
-	/* print Head */
-	printf("%s",(*tree).Head);
-
-	/* print members */
-	printf(INDENT);
-	Function_Print_Smems(tree);
-	printf("\n");
-}
+*/
 int Function_Print_Adj(struct Tree *tree, int nodes){
 	int i;
 	int j;

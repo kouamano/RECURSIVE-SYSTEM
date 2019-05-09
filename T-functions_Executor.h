@@ -108,10 +108,6 @@ void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, in
 				ExFunction_Recursive(hit_tree,(struct Tree *(*)())Function_Print_Status,_fopt,_copt);
 				printf("\n");
                         }
-                        if((*_fopt).f_print_hierarchy_status == 1){
-				ExFunction_Recursive(hit_tree,(struct Tree *(*)())Function_Print_HeadHierarchyStatus,_fopt,_copt);
-				printf("\n");
-                        }
 
 			/* apply conjugation-table print */
                         if((*_fopt).f_print_Ma == 1){
