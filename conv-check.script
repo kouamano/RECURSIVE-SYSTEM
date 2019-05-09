@@ -34,7 +34,7 @@ diff tmp.tcnv.N tmp.tq.N
 
 echo "H"
 ./tconv in=test.t -Fh > tmp.tcnv.H
-./tq.o in=test.t -Fh -Pin > tmp.tq.H
+./tq.o in=test.t -Fh -FT -Pin > tmp.tq.H
 diff tmp.tcnv.H tmp.tq.H
 
 
