@@ -555,14 +555,14 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	}else{
 		printf("%s",(*tree).Head);	//normal
 	}
-	/* print binded data */
-	if((*tree).valstr != NULL){
-		printf("@(%s)",(*tree).valstr);
-	}
 	/* print ref node */
 	if((*tree).RefNode != NULL){
 		printf("@");
 		Function_Print_Head((*tree).RefNode,_fopt,_copt);
+	}
+	/* print binded data */
+	if((*tree).valstr != NULL){
+		printf("@(%s)",(*tree).valstr);
 	}
 	return(tree);
 }
