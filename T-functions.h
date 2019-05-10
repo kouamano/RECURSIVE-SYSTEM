@@ -452,6 +452,7 @@ char *Function_Dot_Head(struct Tree *tree){
 char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 	char *tmp_head;
 	char *out_head;
+	int compiled = 0;
 	int len = 0;
 	len = strlen((*tree).Head);
 	if((tmp_head = malloc(sizeof(char) * (len+1))) == NULL){
@@ -470,19 +471,23 @@ char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 	}else if((*_copt).c_dot > 0){
 		tmp_head = Function_Dot_Head(tree);
 	}else if(strncmp(tmp_head,"$NULL$",6) == 0){
-	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$IP$",4) == 0){	// Inner Product
+	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$PI$",4) == 0){	// Inner Product
 		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+4);
 		strcpy(tmp_head,out_head);
 		//Under construction
+		compiled++;
 	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$X$",3) == 0){
 		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
 		strcpy(tmp_head,out_head);
+		compiled++;
 	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$M$",3) == 0){
 		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
 		strcpy(tmp_head,out_head);
+		compiled++;
 	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$U$",3) == 0){
 		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
 		strcpy(tmp_head,out_head);
+		compiled++;
 	}else if(strncmp(tmp_head,"$``",3) == 0){ //quating tree
 		out_head=realloc(out_head, (sizeof(char) * (len+1)));
 		if(out_head == NULL){
@@ -499,9 +504,11 @@ char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 			out_head[len-1]='\0';
 		}
 		strcpy(tmp_head,out_head);
+		compiled++;
 	}else if(strncmp(tmp_head,"$~",2) == 0){
 		strcpy(out_head,tmp_head+2);
 		strcpy(tmp_head,out_head);
+		compiled++;
 	}else if(strncmp(tmp_head,"$`",2) == 0){ //quating Head
 		out_head=realloc(out_head, (sizeof(char) * (len+1)));
 		if(out_head == NULL){
@@ -517,8 +524,10 @@ char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 	//}else{
 		//strcpy(out_head,tmp_head);
 		//strcpy(tmp_head,out_head);
+		compiled++;
 	}
 	free(out_head);
+	fprintf(stderr,"Compiled:%d.\n",compiled);
 	return(tmp_head);
 }
 
