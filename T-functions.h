@@ -274,6 +274,10 @@ struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *node_coun
 	current = top;
 	if((*current).nval > 0){
 		node_table = realloc(node_table,(sizeof(struct Tree *) * (*node_count + 2)));
+		if(node_table == NULL){
+			perror("[Fail]realloc@Function_Recursive_Search_BindNode");
+			exit(1);
+		}
 		node_table[(*node_count)] = current;
 		(*node_count)++;
 	}
