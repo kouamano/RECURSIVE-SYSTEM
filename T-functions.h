@@ -500,18 +500,18 @@ char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 void Function_Print_Smems(struct Tree *tree){
 	//struct Tree *parent = (*tree).Parent;
 	printf(":SN=%d:",(*tree).ser);
+	printf(":LVs=%d:",(*tree).LVself);
 	printf(":Adr=%ld:",(long int)tree);
+	printf(":PaAdr=%d:",(long int)(*tree).Parent);
+	printf(":Ref=%ld:",(long int)(*tree).RefNode);
+	printf(":LT=%c:",(*tree).LabelType);
+	printf(":Lb=%d:",(*tree).Label);
+	printf(":Hi=%d:",(*tree).IndicatorPtr);
 	printf(":H=%s:",(*tree).Head);
 	printf(":D=%s:",(*tree).dimstr);
 	printf(":nval=%d:",(*tree).nval);
 	printf(":vstr=%s:",(*tree).valstr);
-	printf(":PaAdr=%d:",(long int)(*tree).Parent);
-	printf(":Ref=%ld:",(long int)(*tree).RefNode);
-	printf(":LVs=%d:",(*tree).LVself);
 	printf(":Cj=%d:",(*tree).Conj);
-	printf(":LT=%c:",(*tree).LabelType);
-	printf(":Lb=%d:",(*tree).Label);
-	printf(":Cs=%d:",(*tree).IndicatorPtr);
 	printf(":NCs=%d:",(*tree).NCself);
 	printf(":NC=%d:",(*tree).NextCount);
 }
