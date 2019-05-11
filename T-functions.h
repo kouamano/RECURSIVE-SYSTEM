@@ -507,7 +507,7 @@ void Function_Print_Smems(struct Tree *tree){
 	printf(":SN=%d:",(*tree).ser);
 	printf(":LVs=%d:",(*tree).LVself);
 	printf(":Adr=%ld:",(long int)tree);
-	printf(":PaAdr=%d:",(long int)(*tree).Parent);
+	printf(":PaAdr=%ld:",(long int)(*tree).Parent);
 	printf(":Ref=%ld:",(long int)(*tree).RefNode);
 	printf(":LT=%c:",(*tree).LabelType);
 	printf(":Lb=%d:",(*tree).Label);
