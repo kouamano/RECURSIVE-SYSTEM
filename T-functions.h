@@ -33,7 +33,6 @@ int AnalyzeHead(struct Tree *tree){
 	if((*tree).LabelType != '\0'){
 		/* check num char */
 		for(i=labelreadprt; ((*tree).Head[i] >= 0x30) && ((*tree).Head[i] <= 0x39);i++){	//Hex
-			//printf(":%d:",(*tree).Head[i]);
 			labelnumlen++;
 		}
 		if((labelnumstr = malloc(sizeof(char) * (labelnumlen + 1))) == NULL){
@@ -46,9 +45,7 @@ int AnalyzeHead(struct Tree *tree){
 	}
 	/* IndicatorPtr */
 	headlen = strlen((*tree).Head);
-	//for(i=0;i<headlen;i++){
 	for(i=labelnumlen;i<headlen;i++){
-		//if((*tree).Head[i] == '$'){
 		if((*tree).Head[i] < 0x30 || (*tree).Head[i] > 0x39){
 			(*tree).IndicatorPtr = i;
 			break;
@@ -445,8 +442,8 @@ char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$PI$",4) == 0){	// Inner Product
 		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+4);
 		strcpy(tmp_head,out_head);
-		//Under construction
 		compiled++;
+		//Under construction
 	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$X$",3) == 0){
 		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
 		strcpy(tmp_head,out_head);
@@ -501,18 +498,14 @@ char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 /* print functions */
 //* status */
 void Function_Print_Smems(struct Tree *tree){
-	struct Tree *parent = (*tree).Parent;
-	printf(":Adr=%ld:",(long int)tree);
+	//struct Tree *parent = (*tree).Parent;
 	printf(":SN=%d:",(*tree).ser);
+	printf(":Adr=%ld:",(long int)tree);
 	printf(":H=%s:",(*tree).Head);
 	printf(":D=%s:",(*tree).dimstr);
 	printf(":nval=%d:",(*tree).nval);
 	printf(":vstr=%s:",(*tree).valstr);
-	if(parent != NULL){
-		printf(":Pa=%d:",(*parent).ser);
-	}else{
-		printf(":Pa=%d:",-1);
-	}
+	printf(":PaAdr=%d:",(long int)(*tree).Parent);
 	printf(":Ref=%ld:",(long int)(*tree).RefNode);
 	printf(":LVs=%d:",(*tree).LVself);
 	printf(":Cj=%d:",(*tree).Conj);
