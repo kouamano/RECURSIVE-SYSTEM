@@ -462,7 +462,7 @@ char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 		strcpy(tmp_head,out_head);
 		compiled++;
 	}else if(strncmp(tmp_head,"$``",3) == 0){ //quating tree
-		out_head=realloc(out_head, (sizeof(char) * (len+1)));
+		out_head = realloc(out_head, (sizeof(char) * (len+1)));
 		if(out_head == NULL){
 			perror("[Fail]:realloc@Function_Compile.\n");
 			exit(1);
@@ -483,7 +483,7 @@ char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 		strcpy(tmp_head,out_head);
 		compiled++;
 	}else if(strncmp(tmp_head,"$`",2) == 0){ //quating Head
-		out_head=realloc(out_head, (sizeof(char) * (len+1)));
+		out_head = realloc(out_head, (sizeof(char) * (len+1)));
 		if(out_head == NULL){
 			perror("[Fail]:realloc@Function_Compile_Head.\n");
 			exit(1);
