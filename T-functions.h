@@ -256,7 +256,7 @@ struct Tree *Detect_DimBlock(struct Tree *tree, struct function_options *_fopt, 
 		exit(1);
 	}
 	buff[0] = '\0';
-	/* tmp */	
+	/* tmp -> dim */	
 	len = Print_UpR_Head(tree,buff);
 	if(((*tree).dimstr = malloc(sizeof(char) * (len + 1))) == NULL){
 		perror("[Fail]malloc@Detect_DimBlock.\n");
@@ -397,39 +397,6 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 }
 
 /* compile functions */
-/*
-int is_reteral(char *string){
-	int fails = 0;
-	if(strlen(string) < 2){
-		fails++;
-	}
-	if(strncmp(string,"$#",2) == 0){
-		fails++;
-	} 
-	if(strncmp(string,"$M",2) == 0){
-		fails++;
-	} 
-	if(strncmp(string,"$E",2) == 0){
-		fails++;
-	} 
-	if(strncmp(string,"$X",2) == 0){
-		fails++;
-	} 
-	if(strncmp(string,"$U",2) == 0){
-		fails++;
-	} 
-	if(strncmp(string,"$;",2) == 0){
-		fails++;
-	}
-	if(strncmp(string,"$$",2) == 0){
-		fails++;
-	} 
-	if(strncmp(string,"$`",2) == 0){
-		fails++;
-	}
-	return(fails);
-}
-*/
 char *Function_Clear_Head(struct Tree *tree){
 	char *tmp_head;
 	if((tmp_head = malloc(sizeof(char) * 1)) == NULL){
@@ -524,10 +491,6 @@ char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 		out_head[len-1]='"';
 		out_head[len]='\0';
 		strcpy(tmp_head,out_head);
-	//}else if(is_reteral((*tree).Head) == 0){
-	//}else{
-		//strcpy(out_head,tmp_head);
-		//strcpy(tmp_head,out_head);
 		compiled++;
 	}
 	free(out_head);
@@ -563,25 +526,6 @@ void Function_Print_Status(struct Tree *tree){
 	Function_Print_Smems(tree);
 	printf("\n");
 }
-/*
-void Function_Print_HeadHierarchy(struct Tree *tree){
-	int i;
-	for(i=0;i<(*tree).LVself;i++){
-		printf(INDENT);
-	}
-	if((*tree).Conj == 1 && (*tree).NCself > 1){
-		printf("+");
-	}else{
-		printf("-");
-	}
-	printf("%s",(*tree).Head);
-	if((*tree).dimstr != NULL){
-		printf("*%d",(*tree).nval);
-		printf("@(%s)",(*tree).valstr);
-	}
-	printf("\n");
-}
-*/
 int Function_Print_Adj(struct Tree *tree, int nodes){
 	int i;
 	int j;

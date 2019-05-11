@@ -67,6 +67,9 @@ $X$List($X$List($#1[],$#2[],$#3[]))
 :Adr=36776912::SN=3::H=$#2[]::D=(null)::nval=0::vstr=(null)::Pa=1::Ref=36768992::LVs=2::Cj=1::LT=::Lb=-1::Cs=0::NCs=2::NC=0:
 :Adr=36778064::SN=4::H=$#3[]::D=(null)::nval=0::vstr=(null)::Pa=1::Ref=36771360::LVs=2::Cj=1::LT=::Lb=-1::Cs=0::NCs=3::NC=0:
 
+##multi line
+./tq.o in=test-single.multi.t -Pin -FT 
+
 cd DimensionDefinitionLanguage
 bash conv-test.script
 bash conv_e-test.script
