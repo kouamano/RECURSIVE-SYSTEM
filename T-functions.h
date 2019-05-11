@@ -21,13 +21,16 @@ int AnalyzeHead(struct Tree *tree){
 	int labelnumlen = 0;
 	char *labelnumstr;
 	int headlen = 0;
+	int labeled = 0;
 	/* label type */
 	if((*tree).Head[0] == '#' && (*tree).Head[1] == '#'){
 		(*tree).LabelType = 't';
 		labelreadprt = 2;
+		labeled++;
 	}else if((*tree).Head[0] == '#' && (*tree).Head[1] != '#'){
 		(*tree).LabelType = 'h';
 		labelreadprt = 1;
+		labeled++;
 	}
 	/* label */
 	if((*tree).LabelType != '\0'){
@@ -42,6 +45,7 @@ int AnalyzeHead(struct Tree *tree){
 		strncpy(labelnumstr,(*tree).Head+labelreadprt,labelnumlen);
 		sscanf(labelnumstr,"%d",&(*tree).Label);
 		free(labelnumstr);
+		labeled++;
 	}
 	/* IndicatorPtr */
 	headlen = strlen((*tree).Head);
@@ -51,6 +55,7 @@ int AnalyzeHead(struct Tree *tree){
 			break;
 		}
 	}
+	fprintf(stderr,"labeled:%d.\n",labeled);
 	return(0);
 }
 struct Tree *get_node(char *pos_str, struct Tree *tree){
