@@ -509,5 +509,6 @@ int main(int argc, char **argv){
 
 
 	/* finish */
+	fprintf(stderr,"%d Nodes were operated.\n",node_count);
 	return(0);
 }

@@ -55,7 +55,7 @@ int AnalyzeHead(struct Tree *tree){
 			break;
 		}
 	}
-	fprintf(stderr,"labeled:%d.\n",labeled);
+	//fprintf(stderr,"labeled:%d.\n",labeled);
 	return(0);
 }
 struct Tree *get_node(char *pos_str, struct Tree *tree){
@@ -500,7 +500,7 @@ char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 		compiled++;
 	}
 	free(out_head);
-	fprintf(stderr,"Compiled:%d.\n",compiled);
+	//fprintf(stderr,"Compiled:%d.\n",compiled);
 	return(tmp_head);
 }
 
