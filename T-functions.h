@@ -333,6 +333,10 @@ int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, str
 				}
 				buff_len = strlen(buff);
 				bn_table[node_count]->valstr = malloc(sizeof(char) * (buff_len + 1));
+				if(bn_table[node_count]->valstr == NULL){
+					perror("[Fail]malloc@bind_data().\n");
+					exit(1);
+				}
 				strcpy((*bn_table[node_count]).valstr,buff);
 				delim_count = 0;
 				node_count++;
