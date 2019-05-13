@@ -78,6 +78,22 @@ real    0m41.609s
 user    0m29.708s
 sys     0m11.886s
 
+### another test 28G
+time ./tq.o in=lllarge-single-test.t buff=30 -FJ -Pin > lllarge-single-test.json
+124653854 Nodes were operated.
+
+real    1m14.024s
+user    0m56.709s
+sys     0m17.296s
+
+### compare to jq 36G
+time cat lllarge-single-test.json | jq . > /dev/null
+real    2m33.725s
+user    2m13.524s
+sys     0m21.406s
+
+
+
 ## conv
 cd DimensionDefinitionLanguage
 bash conv-test.script
