@@ -118,6 +118,13 @@ time ./tq.o in=lllarge-single-test_double.t buff=30 -FT -Pin > /dev/null
 ### large tree performance (4) ; 2m33sec; 56G mem @ N007
 time ./tq.o in=lllarge-single-test_double.t buff=30 -Pin -FJ > lllarge-single-test_double.json
 
+### large tree performance (4) vs jq ; 4m43sec; 72G mem @ N007
+time cat lllarge-single-test_double.json | jq . > /dev/null
+
+### large-large tree performance (1): 2m37sec; 83G mem @ N007
+time tq.o in=lllarge-single-test_dd.t buff=30
+498615410 Nodes were operated.
+
 ## format conv
 ```
 cd DimensionDefinitionLanguage
