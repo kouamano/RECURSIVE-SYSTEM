@@ -5,6 +5,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 	int DLM_ACC = 1;
 	char *BUFF;
 	int buf_ptr = 0;
+	int buff_size = 0;
 	struct Tree *io_top;
 	struct Tree *current;
 	struct Tree *next;
@@ -12,8 +13,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 	int ESC = 0;
 	//int SN = *ncount+1;
 	int SN = *ncount;
-	//io_top = Create_Node(0,BUFF_LEN);
-	io_top = Create_Node(SN,BUFF_LEN);
+	io_top = Create_Node(SN,0);
 	SN++;
 	*ncount = SN;
 
@@ -43,7 +43,14 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 		if(C == '(' && ESC == 0){
 			/* confirm current */
 			BUFF[buf_ptr] = '\0';
+			buff_size = 0;
+			buff_size = strlen(BUFF);
+			//printf(";%d;",buff_size);
 			if(close == 0){
+				if(((*current).Head = malloc(sizeof(char) * (buff_size + 1))) == NULL){
+					perror("[Fail]malloc@Head-allocation.\n");
+					exit(1);
+				}
 				strcpy((*current).Head,BUFF);
 				AnalyzeHead(current);
 			}
@@ -52,7 +59,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 				print_war(C,current,WAR);
 			}
 			/* create next */
-			next = Create_Node(SN,(*_opt).buff);
+			next = Create_Node(SN,0);
 			SN++;
 			*ncount = SN;
 			/* add next to current / current.NextCount / next.LVself, NCself */
@@ -70,7 +77,13 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 		}else if(C == ',' && DLM_ACC > 0 && ESC == 0){
 			/* confirm current */
 			BUFF[buf_ptr] = '\0';
+			buff_size = 0;
+			buff_size = strlen(BUFF);
 			if(close == 0){
+				if(((*current).Head = malloc(sizeof(char) * (buff_size + 1))) == NULL){
+					perror("[Fail]malloc@Head-allocation.\n");
+					exit(1);
+				}
 				strcpy((*current).Head,BUFF);
 				AnalyzeHead(current);
 			}
@@ -79,7 +92,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 				print_war(C,current,WAR);
 			}
 			/* create next */
-			next = Create_Node(SN,(*_opt).buff);
+			next = Create_Node(SN,0);
 			SN++;
 			*ncount = SN;
 			/* add next */
@@ -97,7 +110,13 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 		}else if(C == ')' && ESC == 0){
 			/* confirm current */
 			BUFF[buf_ptr] = '\0';
+			buff_size = 0;
+			buff_size = strlen(BUFF);
 			if(close == 0){
+				if(((*current).Head = malloc(sizeof(char) * (buff_size + 1))) == NULL){
+					perror("[Fail]malloc@Head-allocation.\n");
+					exit(1);
+				}
 				strcpy((*current).Head,BUFF);
 				AnalyzeHead(current);
 			}
@@ -119,7 +138,13 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 			;
 		}else if(C == EOF){
 			BUFF[buf_ptr] = '\0';
+			buff_size = 0;
+			buff_size = strlen(BUFF);
 			if(close == 0){
+				if(((*current).Head = malloc(sizeof(char) * (buff_size + 1))) == NULL){
+					perror("[Fail]malloc@Head-allocation.\n");
+					exit(1);
+				}
 				strcpy((*current).Head,BUFF);
 				AnalyzeHead(current);
 			}

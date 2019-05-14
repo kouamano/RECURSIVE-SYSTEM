@@ -360,14 +360,16 @@ struct Tree *Create_Node(int _ser, int H_size){
 	(*tree).LabelType='\0';
 	(*tree).Label=-1;
 	(*tree).IndicatorPtr=0;
-	(*tree).Head = malloc(sizeof(char) * H_size);
-	if((*tree).Head == NULL){
-		fprintf(stderr,"[Fail]:malloc@Create_Node.\n");
-		exit(1);
+	if(H_size < 1){
+		(*tree).Head = NULL;
+	}else{
+		if(((*tree).Head = malloc(sizeof(char) * H_size)) == NULL){
+			fprintf(stderr,"[Fail]:malloc@Create_Node.\n");
+			exit(1);
+		}
 	}
 	(*tree).NextCount=0;
-	(*tree).Next = malloc((size_t)sizeof(struct Tree *) * 1);
-	if((*tree).Next == NULL){
+	if(((*tree).Next = malloc((size_t)sizeof(struct Tree *) * 1)) == NULL){
 		fprintf(stderr,"[Fail]:malloc@Create_Node.\n");
 		exit(1);
 	}
