@@ -77,7 +77,7 @@ $X$List($X$List($#1[],$#2[],$#3[]))
 ./tq.o in=test-single.multi.t -Pin -FT 
 ```
 
-## large tree performance 42 sec / 22G @ N007
+## large tree performance: 42 sec; 22G mem @ N007
 ```
 cd DimensionDefinitionLanguage
 time ./tq.o in=lllarge-single-test.t buff=30
@@ -88,10 +88,7 @@ user    0m29.708s
 sys     0m11.886s
 ```
 
-### large tree performance (2) @ N007
-time ./tq.o in=lllarge-single-test_double.t buff=30
-
-### another test 28G
+### another test print json form: 1m14sec; 28G mem @ N007
 ```
 time ./tq.o in=lllarge-single-test.t buff=30 -FJ -Pin > lllarge-single-test.json
 124653854 Nodes were operated.
@@ -109,6 +106,17 @@ user    2m13.524s
 sys     0m21.406s
 
 ```
+
+
+### large tree performance (2) ; 1m18sec; 41G mem @ N007
+time ./tq.o in=lllarge-single-test_double.t buff=30
+249307706 Nodes were operated.
+
+### large tree performance (3) ; 1m47sec; 41G mem @ N007
+time ./tq.o in=lllarge-single-test_double.t buff=30 -FT -Pin > /dev/null
+
+### large tree performance (4) ; 2m33sec; 56G mem @ N007
+time ./tq.o in=lllarge-single-test_double.t buff=30 -Pin -FJ > lllarge-single-test_double.json
 
 ## format conv
 ```
