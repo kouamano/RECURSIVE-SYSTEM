@@ -392,6 +392,10 @@ struct Tree *Copy_Node(struct Tree *dest, const struct Tree *src){
 	return(dest);
 }
 struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
+	if(parent == NULL){
+		perror("NULL parent detected -- exit.\n");
+		exit(1);
+	}
 	(*parent).Next = realloc((*parent).Next,(size_t)sizeof(struct Tree *) * (*parent).NextCount+1);
 	if((*parent).Next == NULL){
 		fprintf(stderr,"[Fail]malloc@Add_Next.\n");
