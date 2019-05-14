@@ -44,7 +44,6 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 			BUFF[buf_ptr] = '\0';
 			buff_size = 0;
 			buff_size = strlen(BUFF);
-			//printf(";%d;",buff_size);
 			if(close == 0){
 				if(((*current).Head = malloc(sizeof(char) * (buff_size + 1))) == NULL){
 					perror("[Fail]malloc@Head-allocation.\n");
