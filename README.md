@@ -67,9 +67,14 @@ $X$List($X$List($#1[],$#2[],$#3[]))
 :Adr=36776912::SN=3::H=$#2[]::D=(null)::nval=0::vstr=(null)::Pa=1::Ref=36768992::LVs=2::Cj=1::LT=::Lb=-1::Cs=0::NCs=2::NC=0:
 :Adr=36778064::SN=4::H=$#3[]::D=(null)::nval=0::vstr=(null)::Pa=1::Ref=36771360::LVs=2::Cj=1::LT=::Lb=-1::Cs=0::NCs=3::NC=0:
 
+```
+
 ##multi line
+```
 ./tq.o in=test-single.multi.t -Pin -FT 
+```
 ##large tree performance 42 sec / 22G @ N007
+```
 cd DimensionDefinitionLanguage
 ./tq.o in=lllarge-single-test.t buff=30
 124653854 Nodes were operated.
@@ -85,16 +90,19 @@ time ./tq.o in=lllarge-single-test.t buff=30 -FJ -Pin > lllarge-single-test.json
 real    1m14.024s
 user    0m56.709s
 sys     0m17.296s
+```
 
 ### compare to jq 36G
+```
 time cat lllarge-single-test.json | jq . > /dev/null
 real    2m33.725s
 user    2m13.524s
 sys     0m21.406s
 
+```
 
-
-## conv
+## format conv
+```
 cd DimensionDefinitionLanguage
 bash conv-test.script
 bash conv_e-test.script
@@ -106,8 +114,8 @@ bash cat-example.script | ./tq.o -FT -Pin in=/dev/stdin > tmp
 bash cat-example.script | ./tq.o -FT -Pin in=/dev/stdin | ./tq.o -FT in=/dev/stdin > tmp2
 diff tmp tmp2
 ./tq.o in=single-test.t it=single -FT
-
 ```
+
 ## performance
 ### time: 80 sec.; mem in use:640Byte @ N007
 ### time: 55 sec.; mem in use:612Byte @ G005
