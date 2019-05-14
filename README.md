@@ -1,15 +1,17 @@
 # tq
 ## compile
+```
 cd RECURSIVE-SYSTEM
 compile_all.sh
+```
 ## 再帰処理
-再帰ラッパーと処理関数を完全に分離している。
+再帰ラッパーと処理関数を完全に分離している。    
 再帰ラッパーが若干複雑である。
 ## 構造管理
-Cons-cellを用いているのでメモリー消費が大きい。
+Cons-cellを用いているのでメモリー消費が大きい。    
 テーブル管理を試す。
 ## エラートラップ
-いくつかの場合でエラートラップできていない。
+いくつかの場合でエラートラップできていない。    
 => issue
 ## 実装予定機能
 ### Cons-cell -> 項テーブル管理
@@ -36,6 +38,7 @@ compile_checker.n007.sh
 - ees
 
 # convert test
+## single line
 ```
 cd RECURSIVE-SYSTEM
 - conv
@@ -69,11 +72,11 @@ $X$List($X$List($#1[],$#2[],$#3[]))
 
 ```
 
-##multi line
+## multi line
 ```
 ./tq.o in=test-single.multi.t -Pin -FT 
 ```
-##large tree performance 42 sec / 22G @ N007
+## large tree performance 42 sec / 22G @ N007
 ```
 cd DimensionDefinitionLanguage
 ./tq.o in=lllarge-single-test.t buff=30
