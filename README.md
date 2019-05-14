@@ -38,6 +38,12 @@ compile_checker.n007.sh
 - ees
 
 # convert test
+## escape test
+./tq.o in=test_escape.1.t -FT -Pin
+./tq.o in=test_escape.2.t -FT -Pin
+./tq.o in=test_escape.3.t -FT -Pin
+./tq.o in=test_escape.4.t -FT -Pin
+
 ## single line
 ```
 cd RECURSIVE-SYSTEM
