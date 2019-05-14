@@ -4,17 +4,7 @@
 void null_func(void){
 }
 
-/* status-check functions */
-void print_war(char C, struct Tree *tree, int level){
-        printf("\n:C=%c: ",C);
-        printf(":Pp=%ld:",(long int)(*tree).Parent);
-        printf(":Cp=%ld:",(long int)tree);
-        printf(":Cj=%d:",(*tree).Conj);
-        printf(":current=%s:",(*tree).Head);
-        printf(":LV=%d:",(*tree).LVself);
-        printf(":NCs=%d:",(*tree).NCself);
-        printf(":NC=%d:",(*tree).NextCount);
-}
+/* analyzers */
 int AnalyzeHead(struct Tree *tree){
 	int i = 0;
 	int labelreadprt = 0;
@@ -533,6 +523,11 @@ void Function_Print_Smems(struct Tree *tree){
 void Function_Print_Status(struct Tree *tree){
 	Function_Print_Smems(tree);
 	printf("\n");
+}
+void print_war(char C, struct Tree *tree, int level){
+	printf(":C=%c:",C);
+	printf(":DetectLV=%d:",level);
+	Function_Print_Smems(tree);
 }
 int Function_Print_Adj(struct Tree *tree, int nodes){
 	int i;
