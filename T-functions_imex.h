@@ -11,7 +11,6 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 	struct Tree *next;
 	int close = 0;
 	int ESC = 0;
-	//int SN = *ncount+1;
 	int SN = *ncount;
 	io_top = Create_Node(SN,0);
 	SN++;
