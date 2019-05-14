@@ -35,9 +35,6 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 		if(C == ']' && ESC == 0){
 			DLM_ACC++;
 		}
-		if(C == '\\'){
-			ESC = 1;
-		}
 		/* function code */
 		if(C == '(' && ESC == 0){
 			/* confirm current */
@@ -155,8 +152,10 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 			BUFF[buf_ptr+1] = '\0';
 			buf_ptr++;
 			close = 0;
-			if(C == '\\'){
+			if(C == '\\' && ESC == 0){
 				ESC = 1;
+			}else if(C == '\\' && ESC == 1){
+				ESC = 0;
 			}else{
 				ESC = 0;
 			}
