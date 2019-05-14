@@ -20,9 +20,9 @@ Cons-cellを用いているのでメモリー消費が大きい。
 - 項書き換え <= 文字列置換処理
 - パス追加 <= 文字列置換処理を試す、難しければ木構造編集
 
-#チェッカー
+# チェッカー
 ./DimensionDefinitionLanguage/README
-##compile
+## compile
 cd DimensionDefinitionLanguage
 compile_checker.n007.sh
 ## 言語
@@ -82,8 +82,10 @@ cd DimensionDefinitionLanguage
 real    0m41.609s
 user    0m29.708s
 sys     0m11.886s
+```
 
 ### another test 28G
+```
 time ./tq.o in=lllarge-single-test.t buff=30 -FJ -Pin > lllarge-single-test.json
 124653854 Nodes were operated.
 
@@ -118,6 +120,8 @@ diff tmp tmp2
 
 ## performance
 ### time: 80 sec.; mem in use:640Byte @ N007
+time ./tq.o in=lllarge-test.t
+
 ### time: 55 sec.; mem in use:612Byte @ G005
 time ./tq.o in=lllarge-test.t
 
@@ -138,11 +142,12 @@ time ./tq.o in=llarge-test.t -FN > /dev/null
 
 ### time: 75 sec. ; mem: 89G. @ N007 ; 13M nodes
 time ./tq.o in=llarge-single-test.t -FT it=single > /dev/null
+
 ### 参考 jq 80 sec. ; mem: 17G @ N007 ; 11M nodes
 time cat llarge-single-test.t.j | jq . > tmp.json
+
 ### 参考 mathematica 20 sec. ; mem: 4G @ N007
 js=Import["llarge-test-single.t.j","JSON"];
-
 
 # Federation
 cd DimensionDefinitionLanguage
