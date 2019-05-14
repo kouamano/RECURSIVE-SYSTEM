@@ -54,14 +54,14 @@ void function_help(void){
 	printf("   -Ftest : prints from test function.\n");
 }
 void compile_help(void){
-	printf("  -C : print compiled (exectable script) form.\n");
-	printf("   -Cr : prints the \"print-restrict\" char at the end of line.\n");
-	printf("   -Cc : clear head.\n");
-	printf("   -Cd : rewite head to dot.\n");
+	printf("  -C : print compiled form.\n");
+	printf("  -Cr : prints the \"print-restrict\" char at the end of line.\n");
+	printf("  -Cc : clear head.\n");
+	printf("  -Cd : rewite head to dot.\n");
 }
 void search_help(void){
-	printf("  Search option: Under construction.\n");
-	printf("   -Sv : search node which has value.\n");
+	printf("  Search option: \n");
+	printf("   Sh=<head> (Under construction).\n");
 	printf("   Sp=<position>.\n");
 }
 void data_help(void){
@@ -164,6 +164,7 @@ void init_compile_options(struct compile_options *copt){
 void init_search_options(struct search_options *sopt){
         (*sopt).s_counter = 0;
         (*sopt).pos = NULL;
+        (*sopt).head = NULL;
 }
 void init_data_options(struct data_options *dopt){
         (*dopt).d_counter = 0;
@@ -281,6 +282,15 @@ void get_search_options(int optc, char **optv, struct search_options *sopt){
 				exit(1);
 			}
 			strcpy((*sopt).pos,optv[i]+3);
+		}else if(strncmp(optv[i],"Sh=",3) == 0){
+			(*sopt).s_counter++;
+			opt_len = strlen(optv[i])-3;
+			(*sopt).head = malloc(sizeof(char) * (opt_len + 1));
+			if((*sopt).head == NULL){
+				perror("[Fail]malloc@get_search_options.\n");
+				exit(1);
+			}
+			strcpy((*sopt).head,optv[i]+3);
 		}
 	}
 }
@@ -336,6 +346,7 @@ void check_search_options(struct search_options *sopt){
 	printf(" searchs:\n");
 	printf("  opt.scount:%d:\n",(*sopt).s_counter);
 	printf("  opt.pos:%s:\n",(*sopt).pos);
+	printf("  opt.head:%s:\n",(*sopt).head);
 }
 void check_data_options(struct data_options *dopt){
 	printf(" data:\n");
