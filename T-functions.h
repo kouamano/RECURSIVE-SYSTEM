@@ -231,7 +231,7 @@ int get_nval(char *str){
 	}
 	return(count);
 }
-struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
+struct Tree *Detect_DimBlock(struct Tree *tree, int dummy, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
 	int sw = 0;
 	int dim_pos[2];
 	char *buff;
@@ -243,7 +243,8 @@ struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt, struct fun
 	if(sw != 2){
 		return(NULL);
 	}
-	if((buff = malloc(sizeof(char) * BUFF_LEN)) == NULL){
+	//if((buff = malloc(sizeof(char) * BUFF_LEN)) == NULL){
+	if((buff = malloc(sizeof(char) * (*_opt).buff)) == NULL){
 		perror("[Fail]malloc@Detect_DimBlock.\n");
 		exit(1);
 	}
@@ -529,7 +530,7 @@ void print_war(char C, struct Tree *tree, int level){
 	printf(":DetectLV=%d:",level);
 	Function_Print_Smems(tree);
 }
-int Function_Print_Adj(struct Tree *tree, int nodes){
+int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 	int i;
 	int j;
 	for(i=0;i<nodes;i++){
@@ -973,7 +974,7 @@ struct Tree *ExFunction_Recursive(struct Tree *tree, struct Tree *(*e_function)(
 	}
 	return(out);
 }
-struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser, int exec){
+struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int, struct options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser, int exec){
 	if(exec == 0){
 		return(NULL);
 	}
@@ -983,7 +984,7 @@ struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_functi
 		fprintf(stderr,"NULL.\n");
 		exit(1);
 	}
-	(*e_function)(tree,_ser);
+	(*e_function)(tree,_ser,_opt);
 	for(i=0;i<(*tree).NextCount;i++){
 		ExFunction_Recursive_Ser((*tree).Next[i],e_function,_opt,_fopt,_copt,_ser,exec);
 	}
