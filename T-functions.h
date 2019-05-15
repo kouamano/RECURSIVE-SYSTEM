@@ -960,7 +960,7 @@ struct Tree *Function_Print_Bclose_C(struct Tree *tree, struct function_options 
 
 /* recursive-apply-function */
 //* Down tree */
-struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct function_options *_fopt, struct compile_options *_copt ){
+struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt ){
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL || e_function == NULL){
@@ -969,7 +969,7 @@ struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)
 	}
 	(*e_function)(tree);
 	for(i=0;i<(*tree).NextCount;i++){
-		ExFunction_Recursive((*tree).Next[i],e_function,_fopt,_copt);
+		ExFunction_Recursive((*tree).Next[i],e_function,_opt,_fopt,_copt);
 	}
 	return(out);
 }

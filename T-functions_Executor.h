@@ -105,7 +105,7 @@ void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, in
 
 			/* apply status print */
                         if((*_fopt).f_print_status == 1){
-				ExFunction_Recursive(hit_tree,(struct Tree *(*)())Function_Print_Status,_fopt,_copt);
+				ExFunction_Recursive(hit_tree,(struct Tree *(*)())Function_Print_Status,_opt,_fopt,_copt);
 				printf("\n");
                         }
 
