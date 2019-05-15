@@ -29,6 +29,8 @@ echo '$``List' | ./tq.o in=/dev/stdin -FT -C -Pin
 ./tq.o in=test.t Sp=0,1 -FT -Pin
 
 ## データバインド
-上記
-
+- 上記
+- ex.2
+./tq.o in=test_bind.t  data=test.csv -FT -Pin
+ => $TOP($X$List($LEAF[]@(Length),$LEAF[2]@(Weight,mm)),$X$List[2]($LEAF[2]@(kg,1,2,322)))
 
