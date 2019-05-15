@@ -960,7 +960,7 @@ struct Tree *Function_Print_Bclose_C(struct Tree *tree, struct function_options 
 
 /* recursive-apply-function */
 //* Down tree */
-struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt ){
+struct Tree *ExFunction_Recursive(struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL || e_function == NULL){
@@ -989,7 +989,7 @@ struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_functi
 	}
 	return(out);
 }
-struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree *(*conj_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*head_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*bopen_function)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*bclose_function)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser ){
+struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree *(*conj_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*head_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*bopen_function)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*bclose_function)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL){
@@ -1012,7 +1012,7 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree
 	return(out);
 }
 //* Up tree */
-struct Tree *ExFunction_UpRecursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, char *buff){
+struct Tree *ExFunction_UpRecursive(struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, char *buff){
 	struct Tree *parent;
 	parent = (*tree).Parent;
 	if((*tree).ser == -1 || (*parent).ser == -1 || e_function == NULL){
