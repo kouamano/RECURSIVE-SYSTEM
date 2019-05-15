@@ -36,6 +36,5 @@ echo '$``List' | ./tq.o in=/dev/stdin -FT -C -Pin
  => $TOP($X$List($LEAF[]@(Length),$LEAF[2]@(Weight,mm)),$X$List[2]($LEAF[2]@(kg,1,2,322)))
 
 ## 大型配列
-./tq.o in=large-test_bind.t -FT -Pin data=large-test.csv
-
+./tq.o in=large-test_bind.t -FT -Pin data=large-test.csv data_buff=2000000000 | ./tq.o in=/dev/stdin
 
