@@ -29,6 +29,7 @@ echo '$``List' | ./tq.o in=/dev/stdin -FT -C -Pin
 ./tq.o in=test.t Sp=0,1 -FT -Pin
 
 ## データバインド
+## 配列指定のあるリーフノードにバインドされる
 - 上記
 - ex.2
 ./tq.o in=test_bind.t  data=test.csv -FT -Pin
