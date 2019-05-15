@@ -1012,13 +1012,13 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree
 	return(out);
 }
 //* Up tree */
-struct Tree *ExFunction_UpRecursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct function_options *_fopt, struct compile_options *_copt, char *buff){
+struct Tree *ExFunction_UpRecursive( struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, char *buff){
 	struct Tree *parent;
 	parent = (*tree).Parent;
 	if((*tree).ser == -1 || (*parent).ser == -1 || e_function == NULL){
 		return(NULL);
 	}
-	ExFunction_UpRecursive(parent,e_function,_fopt,_copt,buff);
+	ExFunction_UpRecursive(parent,e_function,_opt,_fopt,_copt,buff);
 	return(parent);
 }
 
