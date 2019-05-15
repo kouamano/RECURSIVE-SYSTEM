@@ -989,7 +989,7 @@ struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_functi
 	}
 	return(out);
 }
-struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree *(*conj_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*head_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*bopen_function)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*bclose_function)(struct Tree *, struct function_options *, struct compile_options *),  struct function_options *_fopt, struct compile_options *_copt, int _ser ){
+struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree *(*conj_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*head_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*bopen_function)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*bclose_function)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser ){
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL){
@@ -1005,7 +1005,7 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint( struct Tree *tree, struct Tree
 	/*print Bopen post*/
 	bopen_function(tree,_fopt,_copt,1);
 	for(i=0;i<(*tree).NextCount;i++){
-		ExFunction_Recursive_Ser_MultiPrint((*tree).Next[i],conj_function,head_function,bopen_function,bclose_function,_fopt,_copt,_ser);
+		ExFunction_Recursive_Ser_MultiPrint((*tree).Next[i],conj_function,head_function,bopen_function,bclose_function,_opt,_fopt,_copt,_ser);
 	}
 	/*print Bclose*/
 	bclose_function(tree,_fopt,_copt);
