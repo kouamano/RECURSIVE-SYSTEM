@@ -37,3 +37,20 @@ echo '$``List' | ./tq.o in=/dev/stdin -FT -C -Pin
 ### 大型配列のバインド4億データポイント/1G
 ./tq.o in=large-test_bind.t -FT -Pin data=large-test.csv data_buff=2000000000 | ./tq.o in=/dev/stdin
 
+## レファレンス
+- セルフ
+./tq.o in=test_ref.1.t -FMa -FT -Fh -Pin
+
+- セルフ+ output
+./tq.o in=test_ref.1.t out=test_ref.1.ot -FMa -FT -Fh -Pin -Pout
+
+- セルフ+ output + data : バグあり-> レファレンスによりリーフノードでなくなったノードにデータバインドされている
+./tq.o in=test_ref.1.t out=test_ref.1.ot -FMa -FT -Fh -Pin -Pout data=test.csv
+-#0$0(
+  -$#1[2]@#1$1[2]@(1,2)(
+    -$#0@#0$0,
+    +$#2[2]@#2$2@(Length,Weight,mm,kg)),
+  +#2$2(
+    -$#0@#0$0,
+    +#1$1[2]@(1,2)))
+
