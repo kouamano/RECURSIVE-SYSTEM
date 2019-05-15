@@ -3,7 +3,7 @@ void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, in
 		/* pre */
 		//* bind data (for input-form) */
 		if((EXEC_FLAG&1) == 1){
-			ExFunction_Recursive_Ser(top,(struct Tree *(*)())Detect_DimBlock,_fopt,_copt,SN,1);
+			ExFunction_Recursive_Ser(top,(struct Tree *(*)())Detect_DimBlock,_opt,_fopt,_copt,SN,1);
 			if((*_opt).data != NULL){
 				if(strlen((*_opt).data) > 0){
 					bind_data(DATA,top,_fopt,_copt);
@@ -111,7 +111,7 @@ void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, in
 
 			/* apply conjugation-table print */
                         if((*_fopt).f_print_Ma == 1){
-				ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Function_Print_Adj,_fopt,_copt,SN,1);
+				ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Function_Print_Adj,_opt,_fopt,_copt,SN,1);
 				printf("\n");
                         }
 		}

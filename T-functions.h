@@ -231,7 +231,7 @@ int get_nval(char *str){
 	}
 	return(count);
 }
-struct Tree *Detect_DimBlock(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
 	int sw = 0;
 	int dim_pos[2];
 	char *buff;
@@ -973,7 +973,7 @@ struct Tree *ExFunction_Recursive( struct Tree *tree, struct Tree *(*e_function)
 	}
 	return(out);
 }
-struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int), struct function_options *_fopt, struct compile_options *_copt, int _ser, int exec){
+struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser, int exec){
 	if(exec == 0){
 		return(NULL);
 	}
@@ -985,7 +985,7 @@ struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_functi
 	}
 	(*e_function)(tree,_ser);
 	for(i=0;i<(*tree).NextCount;i++){
-		ExFunction_Recursive_Ser((*tree).Next[i],e_function,_fopt,_copt,_ser,exec);
+		ExFunction_Recursive_Ser((*tree).Next[i],e_function,_opt,_fopt,_copt,_ser,exec);
 	}
 	return(out);
 }
