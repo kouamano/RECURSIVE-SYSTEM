@@ -372,17 +372,6 @@ struct Tree *Create_Node(int _ser, int H_size){
 	(*tree).RefNode=NULL;
 	return(tree);
 }
-struct Tree *Copy_Node(struct Tree *dest, const struct Tree *src){
-	(*dest).ser = (*src).ser;
-	(*dest).LVself = (*src).LVself;
-	(*dest).NCself = (*src).NCself;
-	(*dest).Conj = (*src).Conj;
-	(*dest).Head = (*src).Head;
-	(*dest).NextCount = (*src).NextCount;
-	(*dest).Next = (*src).Next;
-	(*dest).Parent = (*src).Parent;
-	return(dest);
-}
 struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 	if(parent == NULL){
 		perror("NULL parent detected -- exit.\n");
