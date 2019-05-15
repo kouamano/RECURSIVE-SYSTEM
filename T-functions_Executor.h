@@ -38,69 +38,48 @@ void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, in
 			(*_fopt).f_print_self_stat = 1;
 			if((*_fopt).f_print_N == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head_SN, (struct Tree *(*)())Function_Print_Bopen_T, (struct Tree *(*)())Function_Print_Bclose_T, _opt,_fopt,_copt,SN);
-				if(C == LF && (*_copt).c_restrict == 1){
+				if((*_copt).c_restrict == 1){
 					printf(";");
-				}
-				if(C == LF || C == TAB){
-					printf("%c",C);
 				}
 				printf("\n");
 			}
 			if((*_fopt).f_print_T == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,_opt,_fopt,_copt,SN);
-				if(C == LF && (*_copt).c_restrict == 1){
+				if((*_copt).c_restrict == 1){
 					printf(";");
-				}
-				if(C == LF || C == TAB){
-					printf("%c",C);
 				}
 				printf("\n");
 			}
 			if((*_fopt).f_print_S == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_S, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_S, (struct Tree *(*)())Function_Print_Bclose_S, _opt,_fopt,_copt,SN);
-				if(C == LF && (*_copt).c_restrict == 1){
+				if((*_copt).c_restrict == 1){
 					printf(";");
-				}
-				if(C == LF || C == TAB){
-					printf("%c",C);
 				}
 				printf("\n");
 			}
 			if((*_fopt).f_print_C == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_C, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_C, (struct Tree *(*)())Function_Print_Bclose_C, _opt,_fopt,_copt,SN);
-				if(C == LF && (*_copt).c_restrict == 1){
+				if((*_copt).c_restrict == 1){
 					printf(";");
-				}
-				if(C == LF || C == TAB){
-					printf("%c",C);
 				}
 				printf("\n");
 			}
 			if((*_fopt).f_print_W == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_WL, (struct Tree *(*)())Function_Print_Head_WL, (struct Tree *(*)())Function_Print_Bopen_WL, (struct Tree *(*)())Function_Print_Bclose_WL, _opt,_fopt,_copt, SN);
-				if(C == LF && (*_copt).c_restrict == 1){
+				if((*_copt).c_restrict == 1){
 					printf(";");
-				}
-				if(C == LF || C == TAB){
-					printf("%c",C);
 				}
 				printf("\n");
 			}
 			if((*_fopt).f_print_X == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_X, (struct Tree *(*)())Function_Print_Head_X, (struct Tree *(*)())Function_Print_Bopen_X, (struct Tree *(*)())Function_Print_Bclose_X, _opt,_fopt,_copt,SN);
-				if(C == LF && (*_copt).c_restrict == 1){
-					//printf("");
-				}
-				if(C == LF || C == TAB){
-					printf("%c",C);
+				if((*_copt).c_restrict == 1){
+					printf("<;/>");
 				}
 				printf("\n");
 			}
 			if((*_fopt).f_print_J == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_JS, (struct Tree *(*)())Function_Print_Head_JS, (struct Tree *(*)())Function_Print_Bopen_JS, (struct Tree *(*)())Function_Print_Bclose_WL, _opt,_fopt,_copt,SN);
-				if(C == LF || C == TAB){
-					printf("%c",C);
-				}
 				printf("\n");
 			}
 
