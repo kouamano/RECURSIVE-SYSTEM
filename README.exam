@@ -10,6 +10,12 @@ cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 ## コンバート
 上記
 
+## エスケープ処理
+./tq.o in=test_escape.1.t -FT -Pin
+./tq.o in=test_escape.2.t -FT -Pin
+./tq.o in=test_escape.3.t -FT -Pin
+./tq.o in=test_escape.4.t -FT -Pin
+
 ## コンパイル
 - -C
 ./tq.o in=test_compile.t -C -FT -Pin    
@@ -17,5 +23,12 @@ cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 - クオーティング
 echo '$``List' | ./tq.o in=/dev/stdin -FT -C -Pin   
  => "List"
+
+## サーチ
+- ポジション指定
+./tq.o in=test.t Sp=0,1 -FT -Pin
+
+## データバインド
+上記
 
 
