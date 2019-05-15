@@ -27,6 +27,7 @@ struct options {
         char *in;
         char *out;
 	char *data;
+	int data_buff;
 	int Pin;
 	int Pout;
         int hF;

@@ -22,7 +22,7 @@ void status(void){
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" tq.o [-h|-hF|-hC|-hS|-hD] [-s] [-c] buff=<size(int)> in=<file name of input form> out=<file name of outout form> data=<data file> w=<warnning level> -F<x> -C<x> -P<x>.\n");
+	printf(" tq.o [-h|-hF|-hC|-hS|-hD] [-s] [-c] buff=<(int)size> in=<file name of input form> out=<file name of outout form> data=<data file> data_buff=<(int)size> w=<warnning level> -F<x> -C<x> -P<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -hF : function help.\n");
 	printf("  -hC : compile help.\n");
@@ -32,10 +32,11 @@ void help(void){
 	printf("  -c : check args.\n");
 	printf("  -Pin : print input form.\n");
 	printf("  -Pout : print output form.\n");
-	printf("  buff : set integer for buffer size to read the nodes.\n");
+	printf("  buff : set integer for buffer size to read heads.\n");
 	printf("  in : set input-form file name (length < 1024).\n");
 	printf("  out : set output-form file name (length < 1024).\n");
 	printf("  data : CSV data file name.\n");
+	printf("  data_buff : set integer for buffer size to read data.\n");
 	printf("  war : set integer for warnnig level.\n");
 }
 void function_help(void){
@@ -129,6 +130,7 @@ void init_options(struct options *opt){
 	(*opt).stat = 0;
 	(*opt).check = 0;
 	(*opt).buff = BUFF_LEN;
+	(*opt).data_buff = BUFF_LEN;
 	(*opt).war = 0;
 	(*opt).in[0] = '\0';
 	(*opt).out[0] = '\0';
@@ -183,6 +185,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).check = 1;
 		}else if(strncmp(optv[i],"buff=",5) == 0){
 			sscanf(optv[i],"buff=%d",&(*opt).buff);
+		}else if(strncmp(optv[i],"data_buff=",9) == 0){
+			sscanf(optv[i],"data_buff=%d",&(*opt).data_buff);
 		}else if(strncmp(optv[i],"w=",2) == 0){
 			sscanf(optv[i],"w=%d",&(*opt).war);
 		}else if(strncmp(optv[i],"-hF",3) == 0){
@@ -310,6 +314,7 @@ void get_data_options(int optc, char **optv, struct data_options *dopt){
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	printf(" opt.buff:%d:\n",(*opt).buff);
+	printf(" opt.data_buff:%d:\n",(*opt).data_buff);
 	printf(" opt.in:%s:\n",(*opt).in);
 	printf(" opt.out:%s:\n",(*opt).out);
 	printf(" opt.data:%s:\n",(*opt).data);

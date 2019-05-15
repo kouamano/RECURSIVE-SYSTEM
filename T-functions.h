@@ -295,7 +295,7 @@ int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, str
 	int buff_ptr = 0;
 	int buff_len = 0;
 	char *buff;
-	if((buff = malloc(sizeof(char) * LEN)) == NULL){
+	if((buff = malloc(sizeof(char) * LEN )) == NULL){
 		perror("[]malloc@bind_data.\n");
 		exit(1);
 	}
