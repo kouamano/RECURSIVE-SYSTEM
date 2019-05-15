@@ -48,7 +48,7 @@ echo '$``List' | ./tq.o in=/dev/stdin -FT -C -Pin
 -- 正常パターン    
 ./tq.o in=test_ref.2.t out=test_ref.2.ot -FMa -FT -Fh -Pin -Pout data=test.csv
 -- TODO: output形式でレファレンスノードにデータバインドされる場合にもデータをprint
-./tq.o in=test_ref.1.t out=test_ref.1.ot -FMa -FT -Fh -Pin -Pout -C data=test.csv
+./tq.o in=test_ref.1.t out=test_ref.1.ot -FMa -FT -Fh -Pin -Pout data=test.csv
 -$0(
   -$#1[2]@$1[5]@(322,4,5,68,7)(
     -$#0@$0,
