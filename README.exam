@@ -44,7 +44,8 @@ echo '$``List' | ./tq.o in=/dev/stdin -FT -C -Pin
 - セルフ+ output
 ./tq.o in=test_ref.1.t out=test_ref.1.ot -FMa -FT -Fh -Pin -Pout
 
-- セルフ+ output + data : バグあり-> レファレンスによりリーフノードでなくなったノードにデータバインドされている
+- セルフ+ output + data    
+仕様確認 -> レファレンスによりリーフノードでなくなったノードにデータバインドされている、これで良いか？    
 ./tq.o in=test_ref.1.t out=test_ref.1.ot -FMa -FT -Fh -Pin -Pout data=test.csv
 -#0$0(
   -$#1[2]@#1$1[2]@(1,2)(
