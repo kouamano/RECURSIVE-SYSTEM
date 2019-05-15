@@ -231,7 +231,8 @@ int get_nval(char *str){
 	}
 	return(count);
 }
-struct Tree *Detect_DimBlock(struct Tree *tree, int dummy, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
+//struct Tree *Detect_DimBlock(struct Tree *tree, int dummy, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
+struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
 	int sw = 0;
 	int dim_pos[2];
 	char *buff;
