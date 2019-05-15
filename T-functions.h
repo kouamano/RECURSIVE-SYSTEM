@@ -280,7 +280,7 @@ struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *node_coun
 	}
 	return(NULL);
 }
-int bind_data(FILE *DATA, struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+int bind_data(FILE *DATA, struct Tree *tree, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
 	int i;
         int C;
         int bn_count = 0;

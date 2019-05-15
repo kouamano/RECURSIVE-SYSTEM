@@ -7,7 +7,7 @@ void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, in
 			ExFunction_Recursive(top,(struct Tree *(*)())Detect_DimBlock,_opt,_fopt,_copt);
 			if((*_opt).data != NULL){
 				if(strlen((*_opt).data) > 0){
-					bind_data(DATA,top,_fopt,_copt);
+					bind_data(DATA,top,_opt,_fopt,_copt);
 				}
 			}
 		}
