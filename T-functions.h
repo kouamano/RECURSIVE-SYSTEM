@@ -664,6 +664,10 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		//printf("@(%s)",(*tree).valstr);
 		printf("(%s)",(*tree).valstr);
 	}
+	/* print hierarchy */
+	if((*_fopt).f_print_hierarchy == 1 && (*_fopt).f_print_self_stat == 1){
+		printf(":");
+	}
 	return(tree);
 }
 struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
