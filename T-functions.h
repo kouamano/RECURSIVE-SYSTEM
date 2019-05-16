@@ -295,6 +295,7 @@ int bind_data(FILE *DATA, struct Tree *tree, struct options *_opt, struct functi
 	int buff_ptr = 0;
 	int buff_len = 0;
 	char *buff;
+	int ESC = 0;
 	if((buff = malloc(sizeof(char) * (*_opt).data_buff)) == NULL){
 		perror("[]malloc@bind_data.\n");
 		exit(1);
@@ -307,12 +308,13 @@ int bind_data(FILE *DATA, struct Tree *tree, struct options *_opt, struct functi
                 if(C == EOF){
                         return(0);
                 }else{
+
 			buff[buff_ptr] = C;
 			buff_ptr++;
-			if(C == DD || C == '\n'){
+			if((C == DD || C == '\n') && ESC == 0){
 				delim_count++;
 			}
-			if(bn_table[node_count]->nval == delim_count){
+			if(bn_table[node_count]->nval == delim_count && ESC == 0){
 				buff[buff_ptr] = '\0';
 				buff_len = strlen(buff);
 				for(i=0;i<buff_len;i++){
@@ -334,6 +336,15 @@ int bind_data(FILE *DATA, struct Tree *tree, struct options *_opt, struct functi
 				node_count++;
 				buff_ptr = 0;
 			}
+			//* escape */
+                        if(C == '\\' && ESC == 0){
+                                ESC = 1;
+                        }else if(C == '\\' && ESC == 1){
+                                ESC = 0;
+                        }else{
+                                ESC = 0;
+                        }
+
                 }
         }
 	free(buff);

@@ -152,6 +152,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 			BUFF[buf_ptr+1] = '\0';
 			buf_ptr++;
 			close = 0;
+			//* escape */
 			if(C == '\\' && ESC == 0){
 				ESC = 1;
 			}else if(C == '\\' && ESC == 1){
