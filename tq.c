@@ -171,7 +171,7 @@ void init_search_options(struct search_options *sopt){
 }
 void init_data_options(struct data_options *dopt){
 	(*dopt).d_counter = 0;
-	(*dopt).dd = ',';
+	(*dopt).dd = DD;
 }
 
 /* get options */
