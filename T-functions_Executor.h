@@ -19,9 +19,8 @@ void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, in
 		if((EXEC_FLAG&4) == 4){
 			Function_Recursive_Bind_RefNode(top,refTree);
 		}
-		/* print */
+		//* search */
 		if((EXEC_FLAG&2) == 2){
-			/* for search */
 		        struct Tree *hit_tree;
 		        struct Tree *hit_node;
 			if((*_sopt).s_counter > 0){
