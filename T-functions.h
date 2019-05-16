@@ -165,7 +165,8 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred)
 	char target_type;
 	int target_label;
 	int stat;
-	stat = get_ref((*binded).Head,&target_type,&target_label);
+	//stat = get_ref((*binded).Head,&target_type,&target_label);
+	stat = get_ref((*binded).Head+(*binded).IndicatorPtr,&target_type,&target_label);
 	if(stat == 1){
 		struct Tree *addr;
 		addr = Function_Recursive_FindBind_LabelNode(referred,target_type,target_label,binded);
