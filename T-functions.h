@@ -653,6 +653,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	/* print binded data */
 	// testing
 	if((*tree).valstr != NULL){
+		// the bind mark "@" print
 		if(ins_head != NULL){
 			if((*ins_head).valstr == NULL){
 				printf("@");
