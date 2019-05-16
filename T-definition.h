@@ -22,3 +22,6 @@
 #ifndef INDENT
 #define INDENT "  "
 #endif
+#ifdef DD
+#define DD ','
+#endif
