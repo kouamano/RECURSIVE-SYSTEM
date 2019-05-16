@@ -15,6 +15,9 @@ cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 ./tq.o in=test_escape.2.t -FT -Pin
 ./tq.o in=test_escape.3.t -FT -Pin
 ./tq.o in=test_escape.4.t -FT -Pin
+./tq.o in=test_escape.5.t -FT -Pin
+./tq.o in=test_escape.6.t -FT -Pin
+./tq.o in=test_escape.7.t -FT -Pin
 
 ## コンパイル
 - -C
