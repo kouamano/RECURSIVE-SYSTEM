@@ -36,11 +36,6 @@ struct options {
         int hD;
 };
 
-struct data_options {
-	int d_counter;
-	int bind;
-};
-
 struct function_options {
         int f_counter;
         int f_print_T;
@@ -71,5 +66,12 @@ struct search_options {
 	char *head;
 };
 
-struct reform_options {
+struct data_options {
+	int d_counter;
+	int bind;
 };
+
+struct reform_options {
+	int r_counter;
+};
+
