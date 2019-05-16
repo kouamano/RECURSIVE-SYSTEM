@@ -171,7 +171,7 @@ void init_search_options(struct search_options *sopt){
 }
 void init_data_options(struct data_options *dopt){
 	(*dopt).d_counter = 0;
-	(*dopt).DD = ',';
+	(*dopt).dd = ',';
 }
 
 /* get options */
@@ -304,7 +304,7 @@ void get_data_options(int optc, char **optv, struct data_options *dopt){
 	(*dopt).d_counter = 0;
 	for(i=0;i<optc;i++){
 		if(strncmp(optv[i],"DD=",3) == 0){
-			sscanf(optv[i],"DD=%c",&(*dopt).DD);
+			sscanf(optv[i],"DD=%c",&(*dopt).dd);
 		}
 	}
 }
@@ -354,7 +354,7 @@ void check_search_options(struct search_options *sopt){
 }
 void check_data_options(struct data_options *dopt){
 	printf(" data:\n");
-	printf("  opt.DD:%c:\n",(*dopt).DD);
+	printf("  opt.DD:%c:\n",(*dopt).dd);
 }
 
 /* main */

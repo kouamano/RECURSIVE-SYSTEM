@@ -68,7 +68,7 @@ struct search_options {
 
 struct data_options {
 	int d_counter;
-	char DD;
+	char dd;
 };
 
 struct reform_options {

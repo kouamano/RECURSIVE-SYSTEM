@@ -309,7 +309,7 @@ int bind_data(FILE *DATA, struct Tree *tree, struct options *_opt, struct functi
                 }else{
 			buff[buff_ptr] = C;
 			buff_ptr++;
-			if(C == ',' || C == '\n'){
+			if(C == DD || C == '\n'){
 				delim_count++;
 			}
 			if(bn_table[node_count]->nval == delim_count){
@@ -317,10 +317,10 @@ int bind_data(FILE *DATA, struct Tree *tree, struct options *_opt, struct functi
 				buff_len = strlen(buff);
 				for(i=0;i<buff_len;i++){
 					if(buff[i] == '\n'){
-						buff[i] = ',';
+						buff[i] = DD;
 					}
 				}
-				if(buff[buff_len-1] == ',' || buff[buff_len-1] == '\n'){
+				if(buff[buff_len-1] == DD || buff[buff_len-1] == '\n'){
 					buff[buff_len-1] = '\0';
 				}
 				buff_len = strlen(buff);
