@@ -57,13 +57,6 @@ void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, in
 				}
 				printf("\n");
 			}
-			if((*_fopt).f_print_C == 1){
-				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_C, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_C, (struct Tree *(*)())Function_Print_Bclose_C, _opt,_fopt,_copt,SN);
-				if((*_copt).c_restrict == 1){
-					printf(";");
-				}
-				printf("\n");
-			}
 			if((*_fopt).f_print_W == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_WL, (struct Tree *(*)())Function_Print_Head_WL, (struct Tree *(*)())Function_Print_Bopen_WL, (struct Tree *(*)())Function_Print_Bclose_WL, _opt,_fopt,_copt, SN);
 				if((*_copt).c_restrict == 1){
@@ -83,14 +76,21 @@ void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, in
 				printf("\n");
 			}
 
+			if((*_fopt).f_print_C == 1){
+				printf("====multiline====>\n");
+				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_C, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_C, (struct Tree *(*)())Function_Print_Bclose_C, _opt,_fopt,_copt,SN);
+			}
+
 			/* apply status print */
                         if((*_fopt).f_print_status == 1){
+				printf("====multiline====>\n");
 				ExFunction_Recursive(hit_tree,(struct Tree *(*)())Function_Print_Status,_opt,_fopt,_copt);
 				printf("\n");
                         }
 
 			/* apply conjugation-table print */
                         if((*_fopt).f_print_Ma == 1){
+				printf("====multiline====>\n");
 				ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Function_Print_Adj,_opt,_fopt,_copt,SN,1);
 				printf("\n");
                         }
