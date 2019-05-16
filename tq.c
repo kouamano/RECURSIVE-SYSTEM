@@ -27,6 +27,7 @@ void help(void){
 	printf("  -hF : function help.\n");
 	printf("  -hC : compile help.\n");
 	printf("  -hS : search help.\n");
+	printf("  -hD : data help.\n");
 	printf("  -s : prints status.\n");
 	printf("  -c : check args.\n");
 	printf("  -Pin : print input form.\n");
@@ -63,6 +64,10 @@ void search_help(void){
 	printf("  Search option: \n");
 	printf("   Sh=<head> (Under construction).\n");
 	printf("   Sp=<position>.\n");
+}
+void data_help(void){
+	printf("  Data option: \n");
+	printf("   DD=<delimiter> \n");
 }
 
 /* allocation */
@@ -110,6 +115,14 @@ struct search_options *alloc_search_options(void){
 	}
 	return(p);
 }
+struct data_options *alloc_data_options(void){
+	struct data_options *p;
+	if((p = malloc(sizeof(struct data_options) * 1)) == NULL){
+		printf("[Fail]malloc@alloc_data_options().\n");
+		exit(1);
+	}
+	return(p);
+}
 
 /* initialize */
 void init_options(struct options *opt){
@@ -127,6 +140,7 @@ void init_options(struct options *opt){
 	(*opt).hF = 0;
 	(*opt).hC = 0;
 	(*opt).hS = 0;
+	(*opt).hD = 0;
 }
 void init_function_options(struct function_options *fopt){
 	(*fopt).f_counter = 0;
@@ -154,6 +168,10 @@ void init_search_options(struct search_options *sopt){
         (*sopt).s_counter = 0;
         (*sopt).pos = NULL;
         (*sopt).head = NULL;
+}
+void init_data_options(struct data_options *dopt){
+	(*dopt).d_counter = 0;
+	(*dopt).DD = ',';
 }
 
 /* get options */
@@ -281,6 +299,15 @@ void get_search_options(int optc, char **optv, struct search_options *sopt){
 		}
 	}
 }
+void get_data_options(int optc, char **optv, struct data_options *dopt){
+	int i = 0;
+	(*dopt).d_counter = 0;
+	for(i=0;i<optc;i++){
+		if(strncmp(optv[i],"DD=",3) == 0){
+			sscanf(optv[i],"DD=%c",&(*dopt).DD);
+		}
+	}
+}
 
 /* checking */
 void check_options(struct options *opt){
@@ -325,6 +352,10 @@ void check_search_options(struct search_options *sopt){
 	printf("  opt.pos:%s:\n",(*sopt).pos);
 	printf("  opt.head:%s:\n",(*sopt).head);
 }
+void check_data_options(struct data_options *dopt){
+	printf(" data:\n");
+	printf("  opt.DD:%c:\n",(*dopt).DD);
+}
 
 /* main */
 int main(int argc, char **argv){
@@ -332,7 +363,7 @@ int main(int argc, char **argv){
 	struct function_options *_fopt;
 	struct compile_options *_copt;
 	struct search_options *_sopt;
-	//struct data_options *_dopt;
+	struct data_options *_dopt;
 	int node_count;
 	struct Tree *itop;
 	struct Tree *otop;
@@ -361,6 +392,10 @@ int main(int argc, char **argv){
 	_sopt = alloc_search_options();
 	init_search_options(_sopt);
 	get_search_options(argc-1, argv+1, _sopt);
+	//* data opt */
+	_dopt = alloc_data_options();
+	init_data_options(_dopt);
+	get_data_options(argc-1, argv+1, _dopt);
 
 	/* print help operation */
 	if(argc == 1){
@@ -375,6 +410,10 @@ int main(int argc, char **argv){
 		ie = 1;
 	}
 	if((*opt).hS == 1){
+		(*opt).help = 1;
+		ie = 1;
+	}
+	if((*opt).hD == 1){
 		(*opt).help = 1;
 		ie = 1;
 	}
@@ -395,6 +434,10 @@ int main(int argc, char **argv){
 		search_help();
 		ie = 1;
 	}
+	if((*opt).hD == 1){
+		data_help();
+		ie = 1;
+	}
 
 	if((*opt).stat == 1){
 		status();
@@ -405,6 +448,7 @@ int main(int argc, char **argv){
 		check_function_options(_fopt);
 		check_compile_options(_copt);
 		check_search_options(_sopt);
+		check_data_options(_dopt);
 		ie = 1;
 	}
 	if(ie == 1){
