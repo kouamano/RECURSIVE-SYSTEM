@@ -67,7 +67,7 @@ void search_help(void){
 }
 void data_help(void){
 	printf("  Data option: \n");
-	printf("   DD=<delimiter> \n");
+	printf("   DD=<delimiter> currently unused, definded by definition file.\n");
 }
 
 /* allocation */
