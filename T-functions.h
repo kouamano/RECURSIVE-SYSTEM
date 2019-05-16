@@ -151,7 +151,8 @@ int get_ref(char *head, char *type, int *label){	//for binded
 	}
 	if(len > 3){
 		if(head[2] == '#' && head[3] >= 0x30 && head[3] <= 0x39){
-			sscanf(head+2,"%d",label);
+			//sscanf(head+2,"%d",label);
+			sscanf(head+3,"%d",label);
 			*type = 't';
 			return(1);
 		}
