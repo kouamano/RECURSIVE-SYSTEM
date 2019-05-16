@@ -616,6 +616,7 @@ struct Tree *Function_Print_Conj_X(struct Tree *tree, struct function_options *_
 }
 //* Head */
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	struct Tree *ins_head = NULL;
 	/* print hierarchy */
 	if((*_fopt).f_print_hierarchy == 1 && (*_fopt).f_print_self_stat == 1){
 		int i;
@@ -644,14 +645,23 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	if((*tree).RefNode != NULL){
 		printf("@");
 		(*_fopt).f_print_self_stat = 0;
-		Function_Print_Head((*tree).RefNode,_fopt,_copt);
+		ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
 	}
 	if((*_fopt).f_print_hierarchy == 1){
 		(*_fopt).f_print_self_stat = 1;
 	}
 	/* print binded data */
+	// testing
 	if((*tree).valstr != NULL){
-		printf("@(%s)",(*tree).valstr);
+		if(ins_head != NULL){
+			if((*ins_head).valstr == NULL){
+				printf("@");
+			}
+		}else{
+			printf("@");
+		}
+		//printf("@(%s)",(*tree).valstr);
+		printf("(%s)",(*tree).valstr);
 	}
 	return(tree);
 }
