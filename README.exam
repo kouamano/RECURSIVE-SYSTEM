@@ -69,6 +69,8 @@ time ./tq.o in=large-test_bind.t -FT -Pin data=large-test.csv data_buff=20000000
 ### セルフ+ output + data    
 - 正常パターン    
 ./tq.o in=test_ref.2.t out=test_ref.2.ot -FT -Pin -Pout data=test.csv
+- out形式で参照をリストの入れ子に
+./tq.o in=test_ref.2.t out=test_refR.2.ot -FT -Pin -Pout data=test.csv
 - 再帰レファレンス($#9)
 ./tq.o in=test_ref.1.t out=test_ref.1.ot -FT -Pin -Pout data=test.csv
  => $#0@#0$0($#1@#1$1[5]@(322,4,5,68,7)($#0@#0$0,$#2@#2$2),$#2@#2$2($#1@#1$1[5]@(322,4,5,68,7),$#0@#0$0,$#9@#9$#2[3]@(Length,Weight,mm,kg,1,2)))
