@@ -96,7 +96,7 @@ void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, in
 				ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Function_Print_Adj,_opt,_fopt,_copt,SN,1);
 				printf("\n");
                         }
-			////* hit_tree recover */
+			////* recover hit_tree */
 			if((*hit_tree).Conj == 2){
 				(*hit_tree).Conj = 1;
 			}
