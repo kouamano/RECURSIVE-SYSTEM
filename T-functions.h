@@ -566,7 +566,7 @@ int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 		if((*tree).Conj == 1){
 			printf(",");
-		}else if((*tree).NCself > 1){
+		}else if((*tree).NCself > 1 && (*tree).Conj == 0){	// for search
 			printf(")(");
 		}
 	return(tree);

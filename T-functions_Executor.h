@@ -34,6 +34,10 @@ void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, in
 			}else{
 				hit_tree = top;
 			}
+			////* edit hit_tree */
+			if((*hit_tree).Conj == 1){
+				(*hit_tree).Conj = 2;
+			}
 			///* apply formated print */
 			(*_fopt).f_print_self_stat = 1;
 			if((*_fopt).f_print_N == 1){
@@ -92,7 +96,10 @@ void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, in
 				ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Function_Print_Adj,_opt,_fopt,_copt,SN,1);
 				printf("\n");
                         }
-			///* hit_tree recover */
+			////* hit_tree recover */
+			if((*hit_tree).Conj == 2){
+				(*hit_tree).Conj = 1;
+			}
 		}
 			/* test */
 			//exit(0);
