@@ -19,8 +19,9 @@ void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, in
 		if((EXEC_FLAG&4) == 4){
 			Function_Recursive_Bind_RefNode(top,refTree);
 		}
-		//* search */
+		//* print */
 		if((EXEC_FLAG&2) == 2){
+			//* search */
 		        struct Tree *hit_tree;
 		        struct Tree *hit_node;
 			if((*_sopt).s_counter > 0){
@@ -33,7 +34,7 @@ void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, in
 			}else{
 				hit_tree = top;
 			}
-			/* apply formated print */
+			///* apply formated print */
 			(*_fopt).f_print_self_stat = 1;
 			if((*_fopt).f_print_N == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head_SN, (struct Tree *(*)())Function_Print_Bopen_T, (struct Tree *(*)())Function_Print_Bclose_T, _opt,_fopt,_copt,SN);
@@ -80,14 +81,14 @@ void Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, in
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_C, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_C, (struct Tree *(*)())Function_Print_Bclose_C, _opt,_fopt,_copt,SN);
 			}
 
-			/* apply status print */
+			///* apply status print */
                         if((*_fopt).f_print_status == 1){
 				printf("====multiline====>\n");
 				ExFunction_Recursive(hit_tree,(struct Tree *(*)())Function_Print_Status,_opt,_fopt,_copt);
 				printf("\n");
                         }
 
-			/* apply conjugation-table print */
+			///* apply conjugation-table print */
                         if((*_fopt).f_print_Ma == 1){
 				printf("====multiline====>\n");
 				ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Function_Print_Adj,_opt,_fopt,_copt,SN,1);
