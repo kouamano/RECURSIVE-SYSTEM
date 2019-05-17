@@ -33,10 +33,8 @@ echo '$``List' | ./tq.o in=/dev/stdin -FT -C -Pin
 
 ## データバインド
 ### 配列指定のあるリーフノードにバインドされる
-- 上記
-- ex.2
 ./tq.o in=test_bind.t  data=test.csv -FT -Pin
- => $TOP($X$List($LEAF[]@(Length),$LEAF[2]@(Weight,mm)),$X$List[2]($LEAF[2]@(kg,1,2,322)))
+ => $TOP($X$List($LEAF,$LEAF[]@(Length),$LEAF[2]@(Weight,mm)),$X$List[2]($LEAF[2]@(kg,1,2,322)))
 ### 大型配列のバインド4億データポイント/1G
 ./tq.o in=large-test_bind.t -FT -Pin data=large-test.csv data_buff=2000000000 | ./tq.o in=/dev/stdin
 ### エスケープ処理
