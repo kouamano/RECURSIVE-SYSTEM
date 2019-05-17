@@ -355,7 +355,7 @@ int bind_data(FILE *DATA, struct Tree *tree, struct options *_opt, struct functi
 struct Tree *Create_Node(int _ser, int H_size){
 	struct Tree *tree;
 	if((tree = malloc(sizeof(struct Tree) * 1)) == NULL){
-		fprintf(stderr,"[Fail]:malloc@Create_Node.\n");
+		perror("[Fail]:malloc@Create_Node.\n");
 		exit(1);
 	}
 	(*tree).ser=_ser;
@@ -369,13 +369,13 @@ struct Tree *Create_Node(int _ser, int H_size){
 		(*tree).Head = NULL;
 	}else{
 		if(((*tree).Head = malloc(sizeof(char) * H_size)) == NULL){
-			fprintf(stderr,"[Fail]:malloc@Create_Node.\n");
+			perror("[Fail]:malloc@Create_Node.\n");
 			exit(1);
 		}
 	}
 	(*tree).NextCount=0;
 	if(((*tree).Next = malloc((size_t)sizeof(struct Tree *) * 1)) == NULL){
-		fprintf(stderr,"[Fail]:malloc@Create_Node.\n");
+		perror("[Fail]:malloc@Create_Node.\n");
 		exit(1);
 	}
 	(*tree).dimstr = NULL;
@@ -392,7 +392,7 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 	}
 	(*parent).Next = realloc((*parent).Next,(size_t)sizeof(struct Tree *) * (*parent).NextCount+1);
 	if((*parent).Next == NULL){
-		fprintf(stderr,"[Fail]malloc@Add_Next.\n");
+		perror("[Fail]malloc@Add_Next.\n");
 	}
 	(*parent).Next[(*parent).NextCount] = next;
 	(*parent).Next[(*parent).NextCount]->LVself = (*parent).LVself+1;
@@ -989,7 +989,7 @@ struct Tree *ExFunction_Recursive(struct Tree *tree, struct Tree *(*e_function)(
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL || e_function == NULL){
-		fprintf(stderr,"NULL.\n");
+		perror("NULL node detected -- exit.\n");
 		exit(1);
 	}
 	(*e_function)(tree,_opt);
@@ -1005,7 +1005,7 @@ struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_functi
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL || e_function == NULL){
-		fprintf(stderr,"NULL.\n");
+		perror("NULL node detected -- exit.\n");
 		exit(1);
 	}
 	(*e_function)(tree,_ser,_opt);
@@ -1018,7 +1018,7 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree 
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL){
-		fprintf(stderr,"NULL.\n");
+		perror("NULL node detected -- exit.\n");
 		exit(1);
 	}
 	/*print conj*/
