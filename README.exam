@@ -11,6 +11,8 @@ cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 上記
 
 ## エスケープ処理
+### バックスラッシュ
+- T式
 ./tq.o in=test_escape.1.t -FT -Pin
 ./tq.o in=test_escape.2.t -FT -Pin
 ./tq.o in=test_escape.3.t -FT -Pin
@@ -18,6 +20,8 @@ cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 ./tq.o in=test_escape.5.t -FT -Pin
 ./tq.o in=test_escape.6.t -FT -Pin
 ./tq.o in=test_escape.7.t -FT -Pin
+- バインド
+./tq.o in=test.ddf -FT out=test.ddl data=test_esc.csv -Pin -Pout
 
 ## コンパイル
 - -C
