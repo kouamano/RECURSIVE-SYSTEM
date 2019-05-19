@@ -339,6 +339,7 @@ int bind_data(FILE *DATA, struct Tree *tree, struct options *_opt, struct functi
 				buff_ptr = 0;
 			}
 			//* escape */
+			/*
                         if(C == '\\' && ESC == 0){
                                 ESC = 1;
                         }else if(C == '\\' && ESC == 1){
@@ -346,6 +347,8 @@ int bind_data(FILE *DATA, struct Tree *tree, struct options *_opt, struct functi
                         }else{
                                 ESC = 0;
                         }
+			*/
+			#include "escape_sw.c"
 
                 }
         }

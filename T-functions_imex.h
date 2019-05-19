@@ -153,6 +153,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 			buf_ptr++;
 			close = 0;
 			//* escape */
+			/*
 			if(C == '\\' && ESC == 0){
 				ESC = 1;
 			}else if(C == '\\' && ESC == 1){
@@ -160,6 +161,8 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 			}else{
 				ESC = 0;
 			}
+			*/
+			#include "escape_sw.c"
 		}
 	}
 	return(io_top);
