@@ -638,6 +638,9 @@ struct Tree *Function_Print_Conj_X(struct Tree *tree, struct function_options *_
 //* Head */
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	struct Tree *ins_head = NULL;
+	int stat = 0;;
+	char target_type = '\0';
+	int target_label = -1;
 	/* print hierarchy */
 	if((*_fopt).f_print_hierarchy == 1 && (*_fopt).f_print_self_stat == 1){
 		int i;
@@ -663,6 +666,8 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	}else{
 		printf("%s",(*tree).Head);	//normal
 	}
+	/* get stat , type and label */
+	stat = get_ref((*tree).Head+(*tree).IndicatorPtr,&target_type,&target_label);
 	/* print ref node */
 	if((*tree).RefNode != NULL){
 		(*_fopt).f_print_self_stat = 0;
@@ -670,9 +675,13 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		if((*tree).RefNode->LabelType == 'h'){
 			printf("@");
 			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
-		}else if((*tree).RefNode->LabelType == 't'){
+		}else if((*tree).RefNode->LabelType == 't' && target_type == 't'){
+			//printf("T-type:%c:",target_type);
 			printf("@");
 			ins_head = Executor((*tree).RefNode,NULL,NULL,EOF,0,NULL,_fopt,_copt,NULL,NULL,2);
+		}else if((*tree).RefNode->LabelType == 't' && target_type == 'h'){
+			printf("@");
+			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
 		}
 	}
 	if((*_fopt).f_print_hierarchy == 1){
