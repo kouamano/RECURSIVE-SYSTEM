@@ -661,11 +661,13 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	}
 	/* print ref node */
 	if((*tree).RefNode != NULL){
-		printf("@");
 		(*_fopt).f_print_self_stat = 0;
 		//* レファレンスされるノードのLTが't'/'h'により切り替え
 		//* LT:'h' */
-		ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
+		if((*tree).RefNode->LabelType == 'h'){
+			printf("@");
+			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
+		}
 		//* LT:'t' */
 	}
 	if((*_fopt).f_print_hierarchy == 1){
