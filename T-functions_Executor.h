@@ -47,39 +47,39 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 				if((*_copt).c_restrict == 1){
 					printf(";");
 				}
-				printf("\n");
+				//printf("\n");
 			}
 			if((*_fopt).f_print_T == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,_opt,_fopt,_copt,SN);
 				if((*_copt).c_restrict == 1){
 					printf(";");
 				}
-				printf("\n");
+				//printf("\n");
 			}
 			if((*_fopt).f_print_S == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_S, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_S, (struct Tree *(*)())Function_Print_Bclose_S, _opt,_fopt,_copt,SN);
 				if((*_copt).c_restrict == 1){
 					printf(";");
 				}
-				printf("\n");
+				//printf("\n");
 			}
 			if((*_fopt).f_print_W == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_WL, (struct Tree *(*)())Function_Print_Head_WL, (struct Tree *(*)())Function_Print_Bopen_WL, (struct Tree *(*)())Function_Print_Bclose_WL, _opt,_fopt,_copt, SN);
 				if((*_copt).c_restrict == 1){
 					printf(";");
 				}
-				printf("\n");
+				//printf("\n");
 			}
 			if((*_fopt).f_print_X == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_X, (struct Tree *(*)())Function_Print_Head_X, (struct Tree *(*)())Function_Print_Bopen_X, (struct Tree *(*)())Function_Print_Bclose_X, _opt,_fopt,_copt,SN);
 				if((*_copt).c_restrict == 1){
 					printf("<;/>");
 				}
-				printf("\n");
+				//printf("\n");
 			}
 			if((*_fopt).f_print_J == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_JS, (struct Tree *(*)())Function_Print_Head_JS, (struct Tree *(*)())Function_Print_Bopen_JS, (struct Tree *(*)())Function_Print_Bclose_WL, _opt,_fopt,_copt,SN);
-				printf("\n");
+				//printf("\n");
 			}
 
 			if((*_fopt).f_print_C == 1){
