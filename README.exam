@@ -46,6 +46,8 @@ time ./tq.o in=large-test_bind.t -FT -Pin data=large-test.csv data_buff=20000000
  => $1[2]($2[1]@(A,B),$3[2]($4[1]@(C,D,1,2\,3)),$5[4]@(4,5,6,7,\\,19,66,77))
 
 ## レファレンス
+### 木
+./tq.o in=test_ref-tree.ddf -Pin -FT
 ### セルフ
 - 一部
 ./tq.o in=test_ref.1.t -FMa -FT -Fh -Pin

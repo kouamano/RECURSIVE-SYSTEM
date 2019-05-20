@@ -668,6 +668,8 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		if((*tree).RefNode->LabelType == 'h'){
 			printf("@");
 			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
+		}else if((*tree).RefNode->LabelType == 't'){
+			printf("@HOGE");
 		}
 		//* LT:'t' */
 	}
