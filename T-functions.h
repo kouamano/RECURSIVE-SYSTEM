@@ -1,5 +1,6 @@
 /* prottype */
 struct Tree *Executor(struct Tree *, struct Tree *, struct Tree *, int, int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);
+struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser);
 
 /* meta functions */
 void null_func(void){
@@ -636,77 +637,7 @@ struct Tree *Function_Print_Conj_X(struct Tree *tree, struct function_options *_
 	return(tree);
 }
 //* Head */
-struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	struct Tree *ins_head = NULL;
-	int stat = 0;;
-	char target_type = '\0';
-	int target_label = -1;
-	/* print hierarchy */
-	if((*_fopt).f_print_hierarchy == 1 && (*_fopt).f_print_self_stat == 1){
-		int i;
-		printf("\n");
-		for(i=0;i<(*tree).LVself;i++){
-			printf(INDENT);
-		}
-		if((*tree).Conj == 1 && (*tree).NCself > 1){
-			printf("+");
-			printf("%d:",(*tree).ser);
-		}else{
-			printf("-");
-			printf("%d:",(*tree).ser);
-		}
-	}
-	/* print head */
-	if((*_copt).c_counter > 0){
-		//* compile */
-		char *tmp_str;
-		tmp_str = Function_Compile(tree,_copt);
-		printf("%s",tmp_str);
-		free(tmp_str);	//test
-	}else{
-		printf("%s",(*tree).Head);	//normal
-	}
-	/* get stat , type and label */
-	stat = get_ref((*tree).Head+(*tree).IndicatorPtr,&target_type,&target_label);
-	/* print ref node */
-	if((*tree).RefNode != NULL){
-		(*_fopt).f_print_self_stat = 0;
-		//* レファレンスされるノードのLTが't'/'h'により切り替え
-		if((*tree).RefNode->LabelType == 'h'){
-			printf("@");
-			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
-		}else if((*tree).RefNode->LabelType == 't' && target_type == 't'){
-			//printf("T-type:%c:",target_type);
-			printf("@");
-			ins_head = Executor((*tree).RefNode,NULL,NULL,EOF,0,NULL,_fopt,_copt,NULL,NULL,2);
-		}else if((*tree).RefNode->LabelType == 't' && target_type == 'h'){
-			printf("@");
-			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
-		}
-	}
-	if((*_fopt).f_print_hierarchy == 1){
-		(*_fopt).f_print_self_stat = 1;
-	}
-	/* print binded data */
-	// testing
-	if((*tree).valstr != NULL){
-		// the bind mark "@" print
-		if(ins_head != NULL){
-			if((*ins_head).valstr == NULL){
-				printf("@");
-			}
-		}else{
-			printf("@");
-		}
-		//printf("@(%s)",(*tree).valstr);
-		printf("(%s)",(*tree).valstr);
-	}
-	/* print hierarchy */
-	if((*_fopt).f_print_hierarchy == 1 && (*_fopt).f_print_self_stat == 1){
-		printf(":");
-	}
-	return(tree);
-}
+
 struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	int sw = 0;
 	int *dim_pos;
@@ -999,6 +930,80 @@ struct Tree *Function_Print_Bclose_X(struct Tree *tree, struct function_options 
 struct Tree *Function_Print_Bclose_C(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
 		printf("\n");
+	}
+	return(tree);
+}
+struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	struct Tree *ins_head = NULL;
+	int stat = 0;;
+	char target_type = '\0';
+	int target_label = -1;
+	/* print hierarchy */
+	if((*_fopt).f_print_hierarchy == 1 && (*_fopt).f_print_self_stat == 1){
+		int i;
+		printf("\n");
+		for(i=0;i<(*tree).LVself;i++){
+			printf(INDENT);
+		}
+		if((*tree).Conj == 1 && (*tree).NCself > 1){
+			printf("+");
+			printf("%d:",(*tree).ser);
+		}else{
+			printf("-");
+			printf("%d:",(*tree).ser);
+		}
+	}
+	/* print head */
+	if((*_copt).c_counter > 0){
+		//* compile */
+		char *tmp_str;
+		tmp_str = Function_Compile(tree,_copt);
+		printf("%s",tmp_str);
+		free(tmp_str);	//test
+	}else{
+		printf("%s",(*tree).Head);	//normal
+	}
+	/* get stat , type and label */
+	stat = get_ref((*tree).Head+(*tree).IndicatorPtr,&target_type,&target_label);
+	/* print ref node */
+	if((*tree).RefNode != NULL){
+		(*_fopt).f_print_self_stat = 0;
+		//* レファレンスされるノードのLTが't'/'h'により切り替え
+		if((*tree).RefNode->LabelType == 'h'){
+			printf("@");
+			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
+		}else if((*tree).RefNode->LabelType == 't' && target_type == 't'){
+			//printf("T-type:%c:",target_type);
+			printf("@");
+			//ins_head = Executor((*tree).RefNode,NULL,NULL,EOF,0,NULL,_fopt,_copt,NULL,NULL,2);
+
+			ins_head = ExFunction_Recursive_Ser_MultiPrint((*tree).RefNode, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
+		}else if((*tree).RefNode->LabelType == 't' && target_type == 'h'){
+			printf("@");
+			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
+
+		}
+	}
+	if((*_fopt).f_print_hierarchy == 1){
+		(*_fopt).f_print_self_stat = 1;
+	}
+	/* print binded data */
+	// testing
+	if((*tree).valstr != NULL){
+		// the bind mark "@" print
+		if(ins_head != NULL){
+			if((*ins_head).valstr == NULL){
+				printf("@");
+			}
+		}else{
+			printf("@");
+		}
+		//printf("@(%s)",(*tree).valstr);
+		printf("(%s)",(*tree).valstr);
+	}
+	/* print hierarchy */
+	if((*_fopt).f_print_hierarchy == 1 && (*_fopt).f_print_self_stat == 1){
+		printf(":");
 	}
 	return(tree);
 }
