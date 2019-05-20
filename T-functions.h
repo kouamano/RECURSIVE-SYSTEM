@@ -669,7 +669,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
 		}else if((*tree).RefNode->LabelType == 't'){
 			printf("@");
-			Executor((*tree).RefNode,NULL,NULL,EOF,0,NULL,_fopt,_copt,NULL,NULL,2);
+			ins_head = Executor((*tree).RefNode,NULL,NULL,EOF,0,NULL,_fopt,_copt,NULL,NULL,2);
 		}
 	}
 	if((*_fopt).f_print_hierarchy == 1){
