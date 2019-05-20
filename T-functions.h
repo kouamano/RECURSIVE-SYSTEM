@@ -128,8 +128,11 @@ struct Tree *Function_Recursive_FindBind_LabelNode(struct Tree *tree, char type,
 	if(tree == NULL){
 		return(NULL);
 	}
+	if((*tree).LabelType == 't' && (*tree).Label == label){
+		(*binded).RefNode = tree;	//bind tree,head
+	}
 	if((*tree).LabelType == type && (*tree).Label == label){
-		(*binded).RefNode = tree;	//bind
+		(*binded).RefNode = tree;	//bind tree
 	}
 	for(i=0;i<(*tree).NextCount;i++){
 		Function_Recursive_FindBind_LabelNode((*tree).Next[i],type,label,binded);
