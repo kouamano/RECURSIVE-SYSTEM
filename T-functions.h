@@ -122,8 +122,7 @@ int Detect_DimRegion(const char *head, int *pos){
 	}
 	return(ret);
 }
-
-/* reference analysis */
+//* reference analysis */
 struct Tree *Function_Recursive_FindBind_LabelNode(struct Tree *tree, char type, int label, struct Tree *binded){	//for referred
 	int i;
 	if(tree == NULL){
@@ -238,7 +237,6 @@ int get_nval(char *str){
 	}
 	return(count);
 }
-//struct Tree *Detect_DimBlock(struct Tree *tree, int dummy, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
 struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
 	int sw = 0;
 	int dim_pos[2];
@@ -568,8 +566,6 @@ int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 	printf("\n");
 	return(nodes);
 }
-
-/* formated print primitives */
 //* Conj */
 struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 		if((*tree).Conj == 1){
@@ -634,110 +630,6 @@ struct Tree *Function_Print_Conj_X(struct Tree *tree, struct function_options *_
 		}else if((*tree).NCself > 1){
 			printf("<c/>");
 		}
-	return(tree);
-}
-//* Head */
-
-struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	int sw = 0;
-	int *dim_pos;
-	int head_len = 0;
-	char *head_str;
-	char *tmp_str;
-	if((dim_pos = calloc(2,sizeof(int))) == NULL){
-		perror("[Fail]:calloc@Function_Print_Head_J.\n");
-		exit(1);
-	}
-	if((tmp_str = malloc(sizeof(char) * (head_len+1))) == NULL){
-		perror("[Fail]:calloc@Function_Print_Head_W.\n");
-		exit(1);
-	}
-	/* compile */
-	if((*_copt).c_counter > 0){
-		tmp_str = Function_Compile(tree,_copt);
-	}else{
-		strcpy(tmp_str,(*tree).Head);
-	}
-	/* conversion */
-	sw = Detect_DimRegion(tmp_str,dim_pos);
-	if(sw == 2){
-		head_len = strlen(tmp_str);
-		if((head_str = malloc(sizeof(char) * (head_len+1))) == NULL){
-			perror("[Fail]:calloc@Function_Print_Head_W.\n");
-			exit(1);
-		}
-		strcpy(head_str,tmp_str);
-		head_str[dim_pos[0]] = '\0';
-		printf("[\"%s\",\"DIM\",",head_str);
-		//Under construction for multipule comma
-		printf("%s",head_str+dim_pos[0]+1);
-	}else{
-		head_len = strlen(tmp_str);
-		if(head_len > 0){
-			printf("\"%s\"",tmp_str);
-		}else{
-			;
-		}
-	}
-	return(tree);
-}
-struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	int sw = 0;
-	int *dim_pos;
-	int head_len = 0;
-	char *head_str;
-	char *tmp_str;
-	if((dim_pos = calloc(2,sizeof(int))) == NULL){
-		perror("[Fail]:calloc@Function_Print_Head_W.\n");
-		exit(1);
-	}
-	head_len = strlen((*tree).Head);
-	if((tmp_str = malloc(sizeof(char) * (head_len+1))) == NULL){
-		perror("[Fail]:calloc@Function_Print_Head_W.\n");
-		exit(1);
-	}
-	/* compile */
-	if((*_copt).c_counter > 0){
-		tmp_str = Function_Compile(tree,_copt);
-	}else{
-		strcpy(tmp_str,(*tree).Head);
-	}
-	/* conversion */
-	sw = Detect_DimRegion(tmp_str,dim_pos);
-	if(sw == 2){
-		if((head_str = malloc(sizeof(char) * (head_len+1))) == NULL){
-			perror("[Fail]:calloc@Function_Print_Head_W.\n");
-			exit(1);
-		}
-		strcpy(head_str,tmp_str);
-		head_str[dim_pos[0]] = '\0';
-		printf("%s[DIM,",head_str);
-		printf("%s",head_str+dim_pos[0]+1);
-	}else{
-		head_len = strlen(tmp_str);
-		if(head_len > 0){
-			printf("%s",tmp_str);
-		}else{
-			;
-		}
-	}
-	return(tree);
-}
-struct Tree *Function_Print_Head_X(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	if((*tree).NextCount == 0){
-		/* compile */
-		if((*_copt).c_counter > 0){
-			char *tmp_str;
-			tmp_str = Function_Compile(tree,_copt);
-			printf("%s",tmp_str);
-		}else{
-			printf("%s",(*tree).Head);	//normal
-		}
-	}
-	return(tree);
-}
-struct Tree *Function_Print_Head_SN(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	printf("%d",(*tree).ser);
 	return(tree);
 }
 //* Bopen */
@@ -933,6 +825,7 @@ struct Tree *Function_Print_Bclose_C(struct Tree *tree, struct function_options 
 	}
 	return(tree);
 }
+//* Head */
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	struct Tree *ins_head = NULL;
 	int stat = 0;;
@@ -1005,6 +898,108 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	if((*_fopt).f_print_hierarchy == 1 && (*_fopt).f_print_self_stat == 1){
 		printf(":");
 	}
+	return(tree);
+}
+struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	int sw = 0;
+	int *dim_pos;
+	int head_len = 0;
+	char *head_str;
+	char *tmp_str;
+	if((dim_pos = calloc(2,sizeof(int))) == NULL){
+		perror("[Fail]:calloc@Function_Print_Head_J.\n");
+		exit(1);
+	}
+	if((tmp_str = malloc(sizeof(char) * (head_len+1))) == NULL){
+		perror("[Fail]:calloc@Function_Print_Head_W.\n");
+		exit(1);
+	}
+	/* compile */
+	if((*_copt).c_counter > 0){
+		tmp_str = Function_Compile(tree,_copt);
+	}else{
+		strcpy(tmp_str,(*tree).Head);
+	}
+	/* conversion */
+	sw = Detect_DimRegion(tmp_str,dim_pos);
+	if(sw == 2){
+		head_len = strlen(tmp_str);
+		if((head_str = malloc(sizeof(char) * (head_len+1))) == NULL){
+			perror("[Fail]:calloc@Function_Print_Head_W.\n");
+			exit(1);
+		}
+		strcpy(head_str,tmp_str);
+		head_str[dim_pos[0]] = '\0';
+		printf("[\"%s\",\"DIM\",",head_str);
+		//Under construction for multipule comma
+		printf("%s",head_str+dim_pos[0]+1);
+	}else{
+		head_len = strlen(tmp_str);
+		if(head_len > 0){
+			printf("\"%s\"",tmp_str);
+		}else{
+			;
+		}
+	}
+	return(tree);
+}
+struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	int sw = 0;
+	int *dim_pos;
+	int head_len = 0;
+	char *head_str;
+	char *tmp_str;
+	if((dim_pos = calloc(2,sizeof(int))) == NULL){
+		perror("[Fail]:calloc@Function_Print_Head_W.\n");
+		exit(1);
+	}
+	head_len = strlen((*tree).Head);
+	if((tmp_str = malloc(sizeof(char) * (head_len+1))) == NULL){
+		perror("[Fail]:calloc@Function_Print_Head_W.\n");
+		exit(1);
+	}
+	/* compile */
+	if((*_copt).c_counter > 0){
+		tmp_str = Function_Compile(tree,_copt);
+	}else{
+		strcpy(tmp_str,(*tree).Head);
+	}
+	/* conversion */
+	sw = Detect_DimRegion(tmp_str,dim_pos);
+	if(sw == 2){
+		if((head_str = malloc(sizeof(char) * (head_len+1))) == NULL){
+			perror("[Fail]:calloc@Function_Print_Head_W.\n");
+			exit(1);
+		}
+		strcpy(head_str,tmp_str);
+		head_str[dim_pos[0]] = '\0';
+		printf("%s[DIM,",head_str);
+		printf("%s",head_str+dim_pos[0]+1);
+	}else{
+		head_len = strlen(tmp_str);
+		if(head_len > 0){
+			printf("%s",tmp_str);
+		}else{
+			;
+		}
+	}
+	return(tree);
+}
+struct Tree *Function_Print_Head_X(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	if((*tree).NextCount == 0){
+		/* compile */
+		if((*_copt).c_counter > 0){
+			char *tmp_str;
+			tmp_str = Function_Compile(tree,_copt);
+			printf("%s",tmp_str);
+		}else{
+			printf("%s",(*tree).Head);	//normal
+		}
+	}
+	return(tree);
+}
+struct Tree *Function_Print_Head_SN(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	printf("%d",(*tree).ser);
 	return(tree);
 }
 
