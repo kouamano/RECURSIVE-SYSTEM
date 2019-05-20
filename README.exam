@@ -49,7 +49,6 @@ time ./tq.o in=large-test_bind.t -FT -Pin data=large-test.csv data_buff=20000000
 ### 木
 ./tq.o in=test_ref-tree.ddf -Pin -FT
 ### セルフ
-- 一部
 ./tq.o in=test_ref.1.t -FMa -FT -Fh -Pin
 - 完全グラフ
 ./tq.o in=test_ref-graph.4.t -Pin -FT -FMa
