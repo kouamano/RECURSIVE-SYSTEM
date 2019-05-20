@@ -664,15 +664,13 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	if((*tree).RefNode != NULL){
 		(*_fopt).f_print_self_stat = 0;
 		//* レファレンスされるノードのLTが't'/'h'により切り替え
-		//* LT:'h' */
 		if((*tree).RefNode->LabelType == 'h'){
 			printf("@");
 			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
 		}else if((*tree).RefNode->LabelType == 't'){
-			printf("@HOGE");
-			//Executor((*tree).RefNode,NULL,NULL,EOF,0,NULL,_fopt,_copt,NULL,NULL,2);
+			printf("@");
+			Executor((*tree).RefNode,NULL,NULL,EOF,0,NULL,_fopt,_copt,NULL,NULL,2);
 		}
-		//* LT:'t' */
 	}
 	if((*_fopt).f_print_hierarchy == 1){
 		(*_fopt).f_print_self_stat = 1;

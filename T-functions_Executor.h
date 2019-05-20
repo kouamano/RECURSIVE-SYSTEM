@@ -24,6 +24,7 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 			///* search */
 		        struct Tree *hit_tree;
 		        struct Tree *hit_node;
+			if(_sopt != NULL){
 			if((*_sopt).s_counter > 0){
 				hit_node = get_node((*_sopt).pos,top);
 				if(hit_node == NULL){
@@ -31,6 +32,7 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 				}else{
 					hit_tree = hit_node;
 				}
+			}
 			}else{
 				hit_tree = top;
 			}
