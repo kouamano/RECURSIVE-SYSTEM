@@ -649,8 +649,9 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 			printf("%d:",(*tree).ser);
 		}
 	}
-	/* compile */
+	/* print head */
 	if((*_copt).c_counter > 0){
+		//* compile */
 		char *tmp_str;
 		tmp_str = Function_Compile(tree,_copt);
 		printf("%s",tmp_str);
