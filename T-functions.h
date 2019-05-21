@@ -863,20 +863,17 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	/* print ref node */
 	if((*tree).RefNode != NULL){
 		(*_fopt).f_print_self_stat = 0;
-		//* レファレンスされるノードのLTが't'/'h'により切り替え
+		//* switch 't'/'h' /
 		if((*tree).RefNode->LabelType == 'h'){
 			printf("@");
 			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
 		}else if((*tree).RefNode->LabelType == 't' && target_type == 't'){
-			//printf("T-type:%c:",target_type);
 			printf("@");
 			//ins_head = Executor((*tree).RefNode,NULL,NULL,EOF,0,NULL,_fopt,_copt,NULL,NULL,2);
-
 			ins_head = ExFunction_Recursive_Ser_MultiPrint((*tree).RefNode, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
 		}else if((*tree).RefNode->LabelType == 't' && target_type == 'h'){
 			printf("@");
 			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
-
 		}
 	}
 	if((*_fopt).f_print_hierarchy == 1){
@@ -893,7 +890,6 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		}else{
 			printf("@");
 		}
-		//printf("@(%s)",(*tree).valstr);
 		printf("(%s)",(*tree).valstr);
 	}
 	/* print hierarchy */
