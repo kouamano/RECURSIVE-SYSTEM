@@ -1,9 +1,5 @@
 echo 'START'
 
-#compile
-echo 'compile'
-./compile_checker.n007.sh
-
 #T
 echo 'T'
 cat test.t | ./t
