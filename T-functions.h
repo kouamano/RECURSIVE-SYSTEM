@@ -183,7 +183,6 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred)
 		Function_Recursive_Bind_RefNode((*binded).Next[i],referred);
 	}
 }
-
 int Add_DimStr(struct Tree *tree, int *dim_pos, char *buff){
 	int len;
 	len = strlen(buff);
