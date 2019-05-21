@@ -490,7 +490,7 @@ int main(int argc, char **argv){
 		EFLAG = (*opt).Pin+1+8;
 		itop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,DATA);
 		Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);	
-		printf("\n");
+		//printf("\n");
 		//* close in-file */
 		if(is_iopen > 0){
 			fclose(IN);
@@ -515,7 +515,7 @@ int main(int argc, char **argv){
 		EFLAG = (*opt).Pout+4;
 		otop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL);
 		Executor(otop,itop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
-		printf("\n");
+		//printf("\n");
 		//* close file */
 		if(is_oopen > 0){
 			fclose(IN);
