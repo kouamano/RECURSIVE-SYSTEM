@@ -25,14 +25,14 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 		        struct Tree *hit_tree = top;
 		        struct Tree *hit_node = top;
 			if(_sopt != NULL){
-			if((*_sopt).s_counter > 0){
-				hit_node = get_node((*_sopt).pos,top);
-				if(hit_node == NULL){
-					hit_tree = null_node;
-				}else{
-					hit_tree = hit_node;
+				if((*_sopt).s_counter > 0){
+					hit_node = get_node((*_sopt).pos,top);
+					if(hit_node == NULL){
+						hit_tree = null_node;
+					}else{
+						hit_tree = hit_node;
+					}
 				}
-			}
 			}else{
 				hit_tree = top;
 			}
