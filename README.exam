@@ -45,7 +45,7 @@ echo '$``List' | ./tq.o in=/dev/stdin -FT -C -Pin
 ### 配列指定のあるリーフノードにバインドされる
 ./tq.o in=test_bind.t  data=test.csv -FT -Pin
  => $TOP($X$List($LEAF,$LEAF[]@(Length),$LEAF[2]@(Weight,mm)),$X$List[2]($LEAF[2]@(kg,1,2,322)))
-### 大型配列のバインド4億データポイント/1.6G
+### 大型配列のバインド 1.6G => 1.2G(4億データポイント)
 time ./tq.o in=large-test_bind.t -FT -Pin data=large-test.csv data_buff=2000000000 | ./tq.o in=/dev/stdin
 
 4 Nodes were operated.
@@ -53,6 +53,22 @@ time ./tq.o in=large-test_bind.t -FT -Pin data=large-test.csv data_buff=20000000
 real    2m9.090s
 user    1m33.104s
 sys     0m39.314s
+
+### パフォーマンス比較 
+-
+time ./tq.o in=lllarge-single-test.t buff=30 -FJ -Pin > lllarge-single-test.json
+124653854 Nodes were operated.
+real    1m10.332s
+user    0m55.450s
+sys     0m14.859s
+@ 28G
+
+-
+time cat lllarge-single-test.json | jq . > /dev/null
+real    2m25.157s
+user    2m5.473s
+sys     0m20.885s
+@36G
 
 ### エスケープ処理
 ./tq.o in=test_esc.t -FT  -Pin data=test_esc.csv
