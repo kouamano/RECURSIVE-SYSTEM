@@ -64,7 +64,10 @@ struct Tree *get_node(char *pos_str, struct Tree *tree){
 		}
 	}
 	list_len++;
-	list = malloc(sizeof(int) * list_len);
+	if((list = malloc(sizeof(int) * list_len)) == NULL){
+		perror("[Fail]malloc@get_node\n");
+		exit(1);
+	}
 	sscanf(pos_str,"%d",&list[count]);
 	for(i=0;i<len;i++){
 		if(pos_str[i] == ','){
