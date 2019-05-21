@@ -22,8 +22,8 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 		//* print */
 		if((EXEC_FLAG&2) == 2){
 			///* search */
-		        struct Tree *hit_tree;
-		        struct Tree *hit_node;
+		        struct Tree *hit_tree = top;
+		        struct Tree *hit_node = top;
 			if(_sopt != NULL){
 			if((*_sopt).s_counter > 0){
 				hit_node = get_node((*_sopt).pos,top);
