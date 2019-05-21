@@ -3,7 +3,6 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 		/* pre */
 		//* bind data (for input-form) */
 		if((EXEC_FLAG&1) == 1){
-			//ExFunction_Recursive_Ser(top,(struct Tree *(*)())Detect_DimBlock,_opt,_fopt,_copt,SN,1);
 			ExFunction_Recursive(top,(struct Tree *(*)())Detect_DimBlock,_opt,_fopt,_copt);
 			if((*_opt).data != NULL){
 				if(strlen((*_opt).data) > 0){
@@ -106,4 +105,3 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 		/* test */
 		return(top);
 }
-
