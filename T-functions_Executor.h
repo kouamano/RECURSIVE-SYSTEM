@@ -1,7 +1,7 @@
 /* include into T-functions_imex.h */
 struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, int C, int SN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, FILE *DATA, int EXEC_FLAG){
 		/* pre */
-		//* bind data (for input-form) */
+		/** bind data (for input-form) */
 		if((EXEC_FLAG&1) == 1){
 			ExFunction_Recursive(top,(struct Tree *(*)())Detect_DimBlock,_opt,_fopt,_copt);
 			if((*_opt).data != NULL){
@@ -10,17 +10,17 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 				}
 			}
 		}
-		//* bind self-ref (for input-form) */
+		/** bind self-ref (for input-form) */
 		if((EXEC_FLAG&8) == 8){
 			Function_Recursive_Bind_RefNode(top,top);
 		}
-		//* bind io-ref (for output-form) */
+		/** bind io-ref (for output-form) */
 		if((EXEC_FLAG&4) == 4){
 			Function_Recursive_Bind_RefNode(top,refTree);
 		}
-		//* print */
+		/** print */
 		if((EXEC_FLAG&2) == 2){
-			///* search */
+			/*** search */
 		        struct Tree *hit_tree = top;
 		        struct Tree *hit_node = top;
 			if(_sopt != NULL){
@@ -35,11 +35,12 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 			}else{
 				hit_tree = top;
 			}
-			////* edit hit_tree */
+			/**** edit hit_tree */
+			int CONJ_ORG = (*hit_tree).Conj;
 			if((*hit_tree).Conj == 1){
-				(*hit_tree).Conj = 2;
+				(*hit_tree).Conj = CONJ_SW;
 			}
-			///* apply formated print */
+			/*** apply formated print */
 			(*_fopt).f_print_self_stat = 1;
 			if((*_fopt).f_print_N == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head_SN, (struct Tree *(*)())Function_Print_Bopen_T, (struct Tree *(*)())Function_Print_Bclose_T, _opt,_fopt,_copt,SN);
@@ -85,21 +86,21 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 				printf("\n====multiline====>\n");
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_C, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_C, (struct Tree *(*)())Function_Print_Bclose_C, _opt,_fopt,_copt,SN);
 			}
-			///* apply status print */
+			/*** apply status print */
                         if((*_fopt).f_print_status == 1){
 				printf("\n====multiline====>\n");
 				ExFunction_Recursive(hit_tree,(struct Tree *(*)())Function_Print_Status,_opt,_fopt,_copt);
 				printf("\n");
                         }
-			///* apply conjugation-table print */
+			/*** apply conjugation-table print */
                         if((*_fopt).f_print_Ma == 1){
 				printf("\n====multiline====>\n");
 				ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Function_Print_Adj,_opt,_fopt,_copt,SN,1);
 				printf("\n");
                         }
-			////* recover hit_tree */
-			if((*hit_tree).Conj == 2){
-				(*hit_tree).Conj = 1;
+			/**** recover hit_tree */
+			if((*hit_tree).Conj == CONJ_SW){
+				(*hit_tree).Conj = CONJ_ORG;
 			}
 		}
 		/* test */

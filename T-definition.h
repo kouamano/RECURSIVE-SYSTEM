@@ -25,3 +25,6 @@
 #ifndef DD 
 #define DD ','
 #endif
+#ifndef CONJ_SW
+#define CONJ_SW 4096
+#endif
