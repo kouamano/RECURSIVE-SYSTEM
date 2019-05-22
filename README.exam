@@ -104,4 +104,7 @@ sys     0m20.885s
 - 再帰レファレンス($#9)
 ./tq.o in=test_ref.1.t out=test_ref.1.ot -FT -Pin -Pout data=test.csv
  => $#0@#0$0($#1@#1$1[5]@(322,4,5,68,7)($#0@#0$0,$#2@#2$2),$#2@#2$2($#1@#1$1[5]@(322,4,5,68,7),$#0@#0$0,$#9@#9$#2[3]@#2$2@(Length,Weight,mm,kg,1,2)))
+- 複合レファレンス
+./tq.o in=test_ref.3.ddf data=test.csv -FT -Pin
+ => $TOP(#1$1[2](#2$2[2]@(Length,Weight,mm,kg)),$#2[3]@@#2$2[2]@(Length,Weight,mm,kg)(1,2,322))
 
