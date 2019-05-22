@@ -97,8 +97,10 @@ sys     0m20.885s
 ./tq.o in=test_ref.1.t out=test_ref.1.ot -FMa -FT -Fh -Pin -Pout
 
 ### セルフ+ output + data    
-- 正常パターン    
+- フラットパターン    
 ./tq.o in=test_ref.2.t out=test_ref.2.ot -FT -Pin -Pout data=test.csv
+- 入れ子パターン
+./tq.o in=test_ref.2.t out=test_ref.2-1.ot -FT -Pin -Pout data=test.csv
 - out形式で参照をリストの入れ子に
 ./tq.o in=test_ref.2.t out=test_refR.2.ot -FT -Pin -Pout data=test.csv
 - 再帰レファレンス($#9)
