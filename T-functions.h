@@ -698,14 +698,14 @@ struct Tree *Function_Print_Bopen_X(struct Tree *tree, struct function_options *
 			int head_len = 0;
 			char *head_str;
 			if((dim_pos = calloc(2,sizeof(int))) == NULL){
-				perror("[Fail]:calloc@Function_Print_Head_W.\n");
+				perror("[Fail]:calloc@Function_Print_Bopen_X.\n");
 				exit(1);
 			}
 			sw = Detect_DimRegion((*tree).Head,dim_pos);
 			if(sw == 2){
 				head_len = strlen((*tree).Head);
 				if((head_str = malloc(sizeof(char) * (head_len+2))) == NULL){
-					perror("[Fail]:calloc@Function_Print_Head_W.\n");
+					perror("[Fail]:calloc@Function_Print_Bopen_X.\n");
 					exit(1);
 				}
 				strcpy(head_str,(*tree).Head);
@@ -785,14 +785,14 @@ struct Tree *Function_Print_Bclose_X(struct Tree *tree, struct function_options 
 			int head_len = 0;
 			char *head_str;
 			if((dim_pos = calloc(2,sizeof(int))) == NULL){
-				perror("[Fail]:calloc@Function_Print_Head_W.\n");
+				perror("[Fail]:calloc@Function_Print_Bclose_X.\n");
 				exit(1);
 			}
 			sw = Detect_DimRegion((*tree).Head,dim_pos);
 			if(sw == 2){
 				head_len = strlen((*tree).Head);
 				if((head_str = malloc(sizeof(char) * (head_len+2))) == NULL){
-					perror("[Fail]:calloc@Function_Print_Head_W.\n");
+					perror("[Fail]:calloc@Function_Print_Bclose_X.\n");
 					exit(1);
 				}
 				strcpy(head_str,(*tree).Head);
@@ -893,11 +893,11 @@ struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *
 	char *head_str;
 	char *tmp_str;
 	if((dim_pos = calloc(2,sizeof(int))) == NULL){
-		perror("[Fail]:calloc@Function_Print_Head_J.\n");
+		perror("[Fail]:calloc@Function_Print_Head_JS.\n");
 		exit(1);
 	}
 	if((tmp_str = malloc(sizeof(char) * (head_len+1))) == NULL){
-		perror("[Fail]:calloc@Function_Print_Head_W.\n");
+		perror("[Fail]:malloc@Function_Print_Head_JS.\n");
 		exit(1);
 	}
 	/* compile */
@@ -911,7 +911,7 @@ struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *
 	if(sw == 2){
 		head_len = strlen(tmp_str);
 		if((head_str = malloc(sizeof(char) * (head_len+1))) == NULL){
-			perror("[Fail]:calloc@Function_Print_Head_W.\n");
+			perror("[Fail]:malloc@Function_Print_Head_JS.\n");
 			exit(1);
 		}
 		strcpy(head_str,tmp_str);
@@ -936,12 +936,12 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 	char *head_str;
 	char *tmp_str;
 	if((dim_pos = calloc(2,sizeof(int))) == NULL){
-		perror("[Fail]:calloc@Function_Print_Head_W.\n");
+		perror("[Fail]:calloc@Function_Print_Head_WL.\n");
 		exit(1);
 	}
 	head_len = strlen((*tree).Head);
 	if((tmp_str = malloc(sizeof(char) * (head_len+1))) == NULL){
-		perror("[Fail]:calloc@Function_Print_Head_W.\n");
+		perror("[Fail]:malloc@Function_Print_Head_WL.\n");
 		exit(1);
 	}
 	/* compile */
@@ -954,7 +954,7 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 	sw = Detect_DimRegion(tmp_str,dim_pos);
 	if(sw == 2){
 		if((head_str = malloc(sizeof(char) * (head_len+1))) == NULL){
-			perror("[Fail]:calloc@Function_Print_Head_W.\n");
+			perror("[Fail]:malloc@Function_Print_Head_WL.\n");
 			exit(1);
 		}
 		strcpy(head_str,tmp_str);
