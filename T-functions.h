@@ -877,6 +877,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	}
 	/* get type and label */
 	get_ref((*tree).Head+(*tree).IndicatorPtr,&target_type,&target_label);
+	/* print bind mark for binded data */
 	if((*tree).valstr != NULL){
 		printf("@");
 	}
@@ -899,7 +900,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	if((*_fopt).f_print_hierarchy == 1){
 		(*_fopt).f_print_self_stat = 1;
 	}
-	/* print binded data, under test */
+	/* print binded data */
 	if((*tree).valstr != NULL){
 		printf("(%s)",(*tree).valstr);
 	}
