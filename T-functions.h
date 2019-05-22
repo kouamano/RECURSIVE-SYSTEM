@@ -880,9 +880,8 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	if((*tree).valstr != NULL){
 		printf("@");
 	}
-	/* get type and label */
-	get_ref((*tree).Head+(*tree).IndicatorPtr,&target_type,&target_label);
 	/* print ref node */
+	get_ref((*tree).Head+(*tree).IndicatorPtr,&target_type,&target_label);
 	if((*tree).RefNode != NULL){
 		(*_fopt).f_print_self_stat = 0;
 		/* switch 't' 'h' */
