@@ -273,7 +273,7 @@ struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt, struct fun
 }
 struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *node_count, struct Tree **node_table){
 	int i;
-	struct Tree *current;
+	struct Tree *current = NULL;
 	current = top;
 	if((*current).nval > 0){
 		node_table = realloc(node_table,(sizeof(struct Tree *) * (*node_count + 2)));
@@ -291,7 +291,7 @@ struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *node_coun
 }
 int bind_data(FILE *DATA, struct Tree *tree, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
 	int i;
-        int C;
+        int C = '\0';
         int bn_count = 0;
         struct Tree **bn_table = NULL;
 	if((bn_table = malloc(sizeof(struct Tree *) * 1)) == NULL){
@@ -356,7 +356,6 @@ int bind_data(FILE *DATA, struct Tree *tree, struct options *_opt, struct functi
                         }
 			*/
 			#include "escape_sw.c"
-
                 }
         }
 	free(buff);
