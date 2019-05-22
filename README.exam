@@ -70,10 +70,6 @@ user    2m5.473s
 sys     0m20.885s
 @36G
 
-### エスケープ処理
-./tq.o in=test_esc.t -FT  -Pin data=test_esc.csv
- => $1[2]($2[1]@(A,B),$3[2]($4[1]@(C,D,1,2\,3)),$5[4]@(4,5,6,7,\\,19,66,77))
-
 ## レファレンス
 ### 木
 ./tq.o in=test_ref-tree.ddf -Pin -FT
