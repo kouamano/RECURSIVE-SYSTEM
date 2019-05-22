@@ -7,6 +7,50 @@ void null_func(void){
 }
 
 /* analyzers */
+/** tree analysis */
+struct Tree *get_node(char *pos_str, struct Tree *tree){
+	int len = 0;
+	int list_len = 0;
+	int i;
+	int count = 0;
+	int *list;
+	struct Tree *current;
+	len = strlen(pos_str);
+	for(i=0;i<len;i++){
+		if(pos_str[i] == ','){
+			list_len++;
+		}
+	}
+	list_len++;
+	if((list = malloc(sizeof(int) * list_len)) == NULL){
+		perror("[Fail]malloc@get_node\n");
+		exit(1);
+	}
+	sscanf(pos_str,"%d",&list[count]);
+	for(i=0;i<len;i++){
+		if(pos_str[i] == ','){
+			count++;
+			sscanf(pos_str+i+1,"%d",&list[count]);
+		}
+	}
+	count++;
+	if(list[0] == 0){
+		current = tree;
+		for(i=1;i<count;i++){
+			if((*current).NextCount > list[i]){
+				current = current->Next[list[i]];
+			}else{
+				current = NULL;
+				break;
+			}
+		}
+	}else{
+		current = NULL;
+	}
+	free(list);
+	return(current);
+}
+/** head analysis */
 int AnalyzeHead(struct Tree *tree){
 	int i = 0;
 	int labelreadprt = 0;
@@ -50,48 +94,6 @@ int AnalyzeHead(struct Tree *tree){
 	//fprintf(stderr,"labeled:%d.\n",labeled);
 	return(0);
 }
-struct Tree *get_node(char *pos_str, struct Tree *tree){
-	int len = 0;
-	int list_len = 0;
-	int i;
-	int count = 0;
-	int *list;
-	struct Tree *current;
-	len = strlen(pos_str);
-	for(i=0;i<len;i++){
-		if(pos_str[i] == ','){
-			list_len++;
-		}
-	}
-	list_len++;
-	if((list = malloc(sizeof(int) * list_len)) == NULL){
-		perror("[Fail]malloc@get_node\n");
-		exit(1);
-	}
-	sscanf(pos_str,"%d",&list[count]);
-	for(i=0;i<len;i++){
-		if(pos_str[i] == ','){
-			count++;
-			sscanf(pos_str+i+1,"%d",&list[count]);
-		}
-	}
-	count++;
-	if(list[0] == 0){
-		current = tree;
-		for(i=1;i<count;i++){
-			if((*current).NextCount > list[i]){
-				current = current->Next[list[i]];
-			}else{
-				current = NULL;
-				break;
-			}
-		}
-	}else{
-		current = NULL;
-	}
-	free(list);
-	return(current);
-}
 int Detect_DimRegion(const char *head, int *pos){
 	int len;
 	int dim_s = -1;
@@ -125,7 +127,7 @@ int Detect_DimRegion(const char *head, int *pos){
 	}
 	return(ret);
 }
-//* reference analysis */
+/** reference analysis */
 struct Tree *Function_Recursive_FindBind_LabelNode(struct Tree *tree, char type, int label, struct Tree *binded){	//for referred
 	int i;
 	if(tree == NULL){

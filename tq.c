@@ -376,23 +376,23 @@ int main(int argc, char **argv){
 	int is_oopen = 0;
 
 	/* options */
-	//* main opt */
+	/** main opt */
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
-	//* function opt */
+	/** function opt */
 	_fopt = alloc_function_options();
 	init_function_options(_fopt);
 	get_function_options(argc-1, argv+1, _fopt);
-	//* compile opt */
+	/** compile opt */
 	_copt = alloc_compile_options();
 	init_compile_options(_copt);
 	get_compile_options(argc-1, argv+1, _copt);
-	//* search opt */
+	/** search opt */
 	_sopt = alloc_search_options();
 	init_search_options(_sopt);
 	get_search_options(argc-1, argv+1, _sopt);
-	//* data opt */
+	/** data opt */
 	_dopt = alloc_data_options();
 	init_data_options(_dopt);
 	get_data_options(argc-1, argv+1, _dopt);
@@ -470,7 +470,7 @@ int main(int argc, char **argv){
 
 	/* input-form file */
 	if(strlen((*opt).in) > 0){
-		//* open data file */
+		/** open data file */
 		if(strlen((*opt).data) > 0){
 			if((DATA = fopen((*opt).data,"r")) == NULL){
 				perror((*opt).data);
@@ -479,23 +479,23 @@ int main(int argc, char **argv){
 			is_dopen = 1;
 		}
 
-		//* open in-file */
+		/** open in-file */
 		if((IN = fopen((*opt).in,"r")) == NULL){
 			perror((*opt).in);
 			exit(1);
 		}
 		is_iopen = 1;
-		//* import function */
+		/** import tree */
 		node_count = 0;
 		EFLAG = (*opt).Pin+1+8;
 		itop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,DATA);
 		Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);	
-		//* close in-file */
+		/** close in-file */
 		if(is_iopen > 0){
 			fclose(IN);
 		}
 
-		//* close data file*/
+		/** close data file*/
 		if(is_dopen > 0){
 			fclose(DATA);
 		}
@@ -503,17 +503,17 @@ int main(int argc, char **argv){
 
 	/* outout-form file */
 	if(strlen((*opt).out) > 0){
-		//* open */
+		/** open */
 		if((IN = fopen((*opt).out,"r")) == NULL){
 			perror((*opt).out);
 			exit(1);
 		}
 		is_oopen = 1;
-		//* import function */
+		/** import tree */
 		EFLAG = (*opt).Pout+4;
 		otop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL);
 		Executor(otop,itop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
-		//* close file */
+		/** close file */
 		if(is_oopen > 0){
 			fclose(IN);
 		}
