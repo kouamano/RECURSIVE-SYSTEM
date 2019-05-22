@@ -28,7 +28,6 @@ cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 - バインド
 ./tq.o in=test.ddf -FT out=test.ddl data=test_qesc.csv -Pin -Pout
 
-
 ## コンパイル
 - -C
 ./tq.o in=test_compile.t -C -FT -Pin    
@@ -36,6 +35,10 @@ cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 - クオーティング
 echo '$``List' | ./tq.o in=/dev/stdin -FT -C -Pin   
  => "List"
+
+## アンパック
+./tq.o in=test_unpack.t -FT -Pin -C
+ => $($1,$2,List,$1,$2)
 
 ## サーチ
 - ポジション指定
