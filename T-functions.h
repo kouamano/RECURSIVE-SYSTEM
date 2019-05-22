@@ -875,12 +875,13 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	}else{
 		printf("%s",(*tree).Head);	//normal
 	}
-	/* get type and label */
-	get_ref((*tree).Head+(*tree).IndicatorPtr,&target_type,&target_label);
+
 	/* print bind mark for binded data */
 	if((*tree).valstr != NULL){
 		printf("@");
 	}
+	/* get type and label */
+	get_ref((*tree).Head+(*tree).IndicatorPtr,&target_type,&target_label);
 	/* print ref node */
 	if((*tree).RefNode != NULL){
 		(*_fopt).f_print_self_stat = 0;
@@ -904,6 +905,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	if((*tree).valstr != NULL){
 		printf("(%s)",(*tree).valstr);
 	}
+
 	/* print hierarchy */
 	if((*_fopt).f_print_hierarchy == 1 && (*_fopt).f_print_self_stat == 1){
 		printf(":");
