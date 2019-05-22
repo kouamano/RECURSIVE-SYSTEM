@@ -848,7 +848,6 @@ struct Tree *Function_Print_Bclose_C(struct Tree *tree, struct function_options 
 /** Head */
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	struct Tree *ins_head = NULL;
-	int stat = 0;;
 	char target_type = '\0';
 	int target_label = -1;
 	/* print hierarchy */
@@ -876,8 +875,8 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	}else{
 		printf("%s",(*tree).Head);	//normal
 	}
-	/* get stat , type and label */
-	stat = get_ref((*tree).Head+(*tree).IndicatorPtr,&target_type,&target_label);
+	/* get type and label */
+	get_ref((*tree).Head+(*tree).IndicatorPtr,&target_type,&target_label);
 	if((*tree).valstr != NULL){
 		printf("@");
 	}
