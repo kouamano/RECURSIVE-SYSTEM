@@ -6,6 +6,35 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree 
 void null_func(void){
 }
 
+/* GC */
+int Function_Recursive_FreeForce_Tree(struct Tree *tree){
+	int i;
+	if(tree == NULL){
+		return(1);
+	}
+	/* you must not free (*tree).Parent!! */
+	for(i=0;i<(*tree).NextCount;i++){
+		Function_Recursive_FreeForce_Tree((*tree).Next[i]);
+		free((*tree).Next[i]);
+		(*tree).Next[i] = NULL;
+	}
+	free((*tree).Next);
+	(*tree).Next = NULL;
+	(*tree).NextCount = 0;
+
+	//free((*tree).Category);
+	//(*tree).Category = NULL;
+
+	free((*tree).Head);
+	(*tree).Head = NULL;
+	free((*tree).dimstr);
+	(*tree).dimstr = NULL;
+	free((*tree).valstr);
+	(*tree).valstr = NULL;
+
+	return(0);
+}
+
 /* analyzers */
 /** tree analysis */
 struct Tree *get_node(char *pos_str, struct Tree *tree){
@@ -1048,31 +1077,4 @@ struct Tree *ExFunction_UpRecursive(struct Tree *tree, struct Tree *(*e_function
 	return(parent);
 }
 
-/* GC */
-int Function_Recursive_FreeForce_Tree(struct Tree *tree){
-	int i;
-	if(tree == NULL){
-		return(1);
-	}
-	/* you must not free (*tree).Parent!! */
-	for(i=0;i<(*tree).NextCount;i++){
-		Function_Recursive_FreeForce_Tree((*tree).Next[i]);
-		free((*tree).Next[i]);
-		(*tree).Next[i] = NULL;
-	}
-	free((*tree).Next);
-	(*tree).Next = NULL;
-	(*tree).NextCount = 0;
 
-	//free((*tree).Category);
-	//(*tree).Category = NULL;
-
-	free((*tree).Head);
-	(*tree).Head = NULL;
-	free((*tree).dimstr);
-	(*tree).dimstr = NULL;
-	free((*tree).valstr);
-	(*tree).valstr = NULL;
-
-	return(0);
-}
