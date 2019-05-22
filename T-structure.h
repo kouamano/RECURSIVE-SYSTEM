@@ -1,5 +1,4 @@
-//structure
-////Tree
+/* structures */
 struct Tree {
 	int ser;
 	int LVself;
