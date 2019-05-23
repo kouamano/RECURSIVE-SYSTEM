@@ -897,9 +897,6 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
 		}
 	}
-	if((*_fopt).f_print_hierarchy == 1){
-		(*_fopt).f_print_self_stat = 1;
-	}
 	/* print binded data */
 	if((*tree).valstr != NULL){
 		printf("(%s)",(*tree).valstr);
@@ -909,6 +906,10 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	if((*_fopt).f_print_hierarchy == 1 && (*_fopt).f_print_self_stat == 1){
 		printf(":");
 	}
+	if((*_fopt).f_print_hierarchy == 1){
+		(*_fopt).f_print_self_stat = 1;
+	}
+
 	return(tree);
 }
 struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
