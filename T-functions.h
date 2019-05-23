@@ -490,7 +490,7 @@ char *Function_Compile(struct Tree *tree, struct compile_options *_copt){
 		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+4);
 		strcpy(tmp_head,out_head);
 		compiled++;
-		//Under construction
+		// => code in Function_Print_Head()
 	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$X$",3) == 0){
 		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
 		strcpy(tmp_head,out_head);
