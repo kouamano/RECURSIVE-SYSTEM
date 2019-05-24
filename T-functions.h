@@ -157,7 +157,7 @@ int Detect_DimRegion(const char *head, int *pos){
 	return(ret);
 }
 /** reference analysis */
-struct Tree *Function_Recursive_FindBind_LabelNode(struct Tree *tree, char type, int label, struct Tree *binded){	//for referred
+struct Tree *Function_Recursive_SearchBind_LabelNode(struct Tree *tree, char type, int label, struct Tree *binded){	//for referred
 	int i;
 	if(tree == NULL){
 		return(NULL);
@@ -169,7 +169,7 @@ struct Tree *Function_Recursive_FindBind_LabelNode(struct Tree *tree, char type,
 		(*binded).RefNode = tree;	//bind tree
 	}
 	for(i=0;i<(*tree).NextCount;i++){
-		Function_Recursive_FindBind_LabelNode((*tree).Next[i],type,label,binded);
+		Function_Recursive_SearchBind_LabelNode((*tree).Next[i],type,label,binded);
 	}
 	return(NULL);
 }
@@ -208,7 +208,7 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred)
 	stat = get_ref((*binded).Head+(*binded).IndicatorPtr,&target_type,&target_label);
 	if(stat == 1){
 		struct Tree *addr = NULL;
-		addr = Function_Recursive_FindBind_LabelNode(referred,target_type,target_label,binded);
+		addr = Function_Recursive_SearchBind_LabelNode(referred,target_type,target_label,binded);
 	}
 	for(i=0;i<(*binded).NextCount;i++){
 		Function_Recursive_Bind_RefNode((*binded).Next[i],referred);
