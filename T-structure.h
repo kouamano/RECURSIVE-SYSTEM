@@ -10,6 +10,7 @@ struct Tree {
 	char *Head;
 	char *dimstr;
 	int nval;
+	int *valPtr;
 	char *valstr;
 	int NextCount;
 	struct Tree **Next;

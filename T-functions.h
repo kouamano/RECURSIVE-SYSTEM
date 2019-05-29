@@ -197,8 +197,12 @@ int get_ref(char *head, char *type, int *label){	//for binded
 	}
 	return(0);
 }
-
+/** valstr print */
+void Function_Recursive_PrintCascade_Val(struct Tree *tree, int pos){
+}
 /* restructure functions */
+void Function_Recursive_Assign_RefedValPtr(struct Tree *tree){
+}
 void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred){
 	int i;
 	char target_type;
