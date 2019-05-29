@@ -30,6 +30,7 @@ struct options {
 	int data_buff;
 	int Pin;
 	int Pout;
+	int Pprod;
         int hF;
         int hC;
         int hS;

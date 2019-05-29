@@ -32,6 +32,7 @@ void help(void){
 	printf("  -c : check args.\n");
 	printf("  -Pin : print input form.\n");
 	printf("  -Pout : print output form.\n");
+	printf("  -Pprod : print inner production of binded data.\n");
 	printf("  buff : set integer for buffer size to read heads.\n");
 	printf("  in : set input-form file name (length < 1024).\n");
 	printf("  out : set output-form file name (length < 1024).\n");
@@ -137,6 +138,7 @@ void init_options(struct options *opt){
 	(*opt).data[0] = '\0';
 	(*opt).Pin = 0;
 	(*opt).Pout = 0;
+	(*opt).Pprod = 0;
 	(*opt).hF = 0;
 	(*opt).hC = 0;
 	(*opt).hS = 0;
@@ -208,6 +210,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).Pin = 2;
 		}else if(strncmp(optv[i],"-Pout",5) == 0){
 			(*opt).Pout = 2;
+		}else if(strncmp(optv[i],"-Pprod",6) == 0){
+			(*opt).Pprod = 1;
 		}
 	}
 }
@@ -322,6 +326,7 @@ void check_options(struct options *opt){
 	printf(" opt.hC:%d:\n",(*opt).hC);
 	printf(" opt.Pin:%d:\n",(*opt).Pin);
 	printf(" opt.Pout:%d:\n",(*opt).Pout);
+	printf(" opt.Pprod:%d:\n",(*opt).Pprod);
 }
 void check_function_options(struct function_options *fopt){
 	printf(" converters:\n");
@@ -518,6 +523,12 @@ int main(int argc, char **argv){
 			fclose(IN);
 		}
 	}
+	/* inner product */
+	if((*opt).Pprod == 1){
+		EFLAG = 2 + 16;
+		Executor(otop,itop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
+	}
+
 	/* check */
 
 

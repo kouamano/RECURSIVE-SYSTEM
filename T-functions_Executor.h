@@ -18,6 +18,9 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 		if((EXEC_FLAG&4) == 4){
 			Function_Recursive_Bind_RefNode(top,refTree);
 		}
+		/** inner product of binded data */
+		if((EXEC_FLAG&16) == 16){
+		}
 		/** print */
 		if((EXEC_FLAG&2) == 2){
 			/*** search */
