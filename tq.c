@@ -154,6 +154,7 @@ void init_function_options(struct function_options *fopt){
 	(*fopt).f_print_C = 0;
 	(*fopt).f_print_N = 0;
 	(*fopt).f_print_Ma = 0;
+	(*fopt).f_print_production = 0;
 	(*fopt).f_print_status = 0;
 	(*fopt).f_print_hierarchy = 0;
 	(*fopt).f_print_hierarchy_status = 0;
@@ -526,6 +527,7 @@ int main(int argc, char **argv){
 	/* inner product */
 	if((*opt).Pprod == 1){
 		EFLAG = 2 + 16;
+		(*_fopt).f_print_production = 1;
 		Executor(otop,itop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
 	}
 

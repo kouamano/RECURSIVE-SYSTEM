@@ -20,7 +20,7 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 		}
 		/** inner product of binded data */
 		if((EXEC_FLAG&16) == 16){
-			printf("Under construction, return to main routine.\n");
+			printf("Under constructed option (production) was selected:\n");
 			return(NULL);
 		}
 		/** print */
@@ -45,6 +45,7 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 			if((*hit_tree).Conj == 1){
 				(*hit_tree).Conj = CONJ_SW;
 			}
+
 			/*** apply formated print */
 			(*_fopt).f_print_self_stat = 1;
 			if((*_fopt).f_print_N == 1){
@@ -91,6 +92,11 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 				printf("\n====multiline====>\n");
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_C, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_C, (struct Tree *(*)())Function_Print_Bclose_C, _opt,_fopt,_copt,SN);
 			}
+			/*** apply production print */
+			if((*_fopt).f_print_production == 1){
+				printf("\n====production====>\n");
+				printf("Under construction.\n");
+			}
 			/*** apply status print */
                         if((*_fopt).f_print_status == 1){
 				printf("\n====multiline====>\n");
@@ -103,6 +109,7 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 				ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Function_Print_Adj,_opt,_fopt,_copt,SN,1);
 				printf("\n");
                         }
+
 			/**** recover hit_tree */
 			if((*hit_tree).Conj == CONJ_SW){
 				(*hit_tree).Conj = CONJ_ORG;
