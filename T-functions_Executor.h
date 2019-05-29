@@ -20,6 +20,7 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 		}
 		/** inner product of binded data */
 		if((EXEC_FLAG&16) == 16){
+			printf("Under construction.\n");
 		}
 		/** print */
 		if((EXEC_FLAG&2) == 2){
