@@ -526,8 +526,8 @@ int main(int argc, char **argv){
 	}
 	/* inner product */
 	if((*opt).Pprod == 1 && itop != NULL && otop != NULL){
-		if(1){
-		ExFunction_Recursive(itop,(struct Tree *(*)())Assign_RefedValPtr,opt,_fopt,_copt);
+		if(is_dopen > 0){
+			ExFunction_Recursive(itop,(struct Tree *(*)())Assign_RefedValPtr,opt,_fopt,_copt);
 		}
 		EFLAG = 2 + 16;
 		(*_fopt).f_print_production = 1;
