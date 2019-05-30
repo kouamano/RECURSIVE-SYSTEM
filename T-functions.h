@@ -209,20 +209,20 @@ void Assign_RefedValPtr(struct Tree *tree){
 			perror("[Fail]malloc@Assign_RefedValPtr().\n");
 			exit(1);
 		}
-	}
-	len = strlen((*tree).valstr);
-	char C = '\0';
-	int ESC = 0;
-	int count = 0;
-	(*tree).valPtr[count] = 0;
-	count++;
-	for(i=0;i<len;i++){
-		C = (*tree).valstr[i];
-		if(C == DD && ESC == 0){
-			(*tree).valPtr[count] = i + 1;
-			count++;
+		len = strlen((*tree).valstr);
+		char C = '\0';
+		int ESC = 0;
+		int count = 0;
+		(*tree).valPtr[count] = 0;
+		count++;
+		for(i=0;i<len;i++){
+			C = (*tree).valstr[i];
+			if(C == DD && ESC == 0){
+				(*tree).valPtr[count] = i + 1;
+				count++;
+			}
+			#include "escape_sw.c"
 		}
-		#include "escape_sw.c"
 	}
 	//finish??
 }
