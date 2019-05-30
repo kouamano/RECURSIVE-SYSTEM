@@ -373,7 +373,7 @@ int main(int argc, char **argv){
 	int node_count;
 	struct Tree *itop = NULL;
 	struct Tree *otop = NULL;
-	struct Tree *null_node;
+	struct Tree *null_node = NULL;
 	int ie = 0;
 	FILE *IN;
 	FILE *DATA;
