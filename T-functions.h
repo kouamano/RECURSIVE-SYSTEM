@@ -445,6 +445,7 @@ struct Tree *Create_Node(int _ser, int H_size){
 	}
 	(*tree).dimstr = NULL;
 	(*tree).nval = 0;
+	(*tree).valPtr = NULL;
 	(*tree).valstr = NULL;
 	(*tree).Parent=NULL;
 	(*tree).RefNode=NULL;
