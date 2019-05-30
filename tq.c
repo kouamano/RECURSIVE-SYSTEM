@@ -371,8 +371,8 @@ int main(int argc, char **argv){
 	struct search_options *_sopt;
 	struct data_options *_dopt;
 	int node_count;
-	struct Tree *itop;
-	struct Tree *otop;
+	struct Tree *itop = NULL;
+	struct Tree *otop = NULL;
 	struct Tree *null_node;
 	int ie = 0;
 	FILE *IN;
@@ -525,7 +525,7 @@ int main(int argc, char **argv){
 		}
 	}
 	/* inner product */
-	if((*opt).Pprod == 1){
+	if((*opt).Pprod == 1 && itop != NULL && otop != NULL){
 		EFLAG = 2 + 16;
 		ExFunction_Recursive(itop,(struct Tree *(*)())Assign_RefedValPtr,opt,_fopt,_copt);
 		(*_fopt).f_print_production = 1;
