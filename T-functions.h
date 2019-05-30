@@ -202,17 +202,17 @@ void Function_Recursive_PrintCascade_Val(struct Tree *tree, int pos){
 }
 /* restructure functions */
 void Assign_RefedValPtr(struct Tree *tree){
-	int i;
-	int len = 0;
 	if((*tree).nval > 0){
 		if(((*tree).valPtr = malloc(sizeof(int) * (*tree).nval)) == NULL){
 			perror("[Fail]malloc@Assign_RefedValPtr().\n");
 			exit(1);
 		}
-		len = strlen((*tree).valstr);
+		int i;
+		int len = 0;
 		char C = '\0';
 		int ESC = 0;
 		int count = 0;
+		len = strlen((*tree).valstr);
 		(*tree).valPtr[count] = 0;
 		count++;
 		for(i=0;i<len;i++){

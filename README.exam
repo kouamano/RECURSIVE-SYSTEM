@@ -6,6 +6,9 @@ bash conv-check.script
 cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 - バインド
 ./tq.o in=test.ddf -FT out=test.ddl data=test.csv -Pin -Pout
+## 開発中のチェック
+./tq.o in=test.ddf out=test.ddl -Pin -Pout -Pprod -FT
+./tq.o in=test.ddf out=test.ddl -Pin -Pout -Pprod -FT data=test.csv
 
 ## コンバート
 上記
