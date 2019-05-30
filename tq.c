@@ -529,9 +529,9 @@ int main(int argc, char **argv){
 		EFLAG = 2 + 16;
 		(*_fopt).f_print_production = 1;
 		printf("IN@production: ");
-		Executor(otop,itop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
-		printf("OUT@production: ");
 		Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
+		printf("OUT@production: ");
+		Executor(otop,itop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
 	}
 
 	/* check */
