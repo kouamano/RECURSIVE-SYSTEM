@@ -211,15 +211,18 @@ void Assign_RefedValPtr(struct Tree *tree){
 		}
 	}
 	len = strlen((*tree).valstr);
+	char C = '\0';
 	int ESC = 0;
 	int count = 0;
 	(*tree).valPtr[count] = 0;
 	count++;
 	for(i=0;i<len;i++){
-		if((*tree).valstr[i] == DD && ESC == 0){
+		C = (*tree).valstr[i];
+		if(C == DD && ESC == 0){
 			(*tree).valPtr[count] = i + 1;
 			count++;
 		}
+		#include "escape_sw.c"
 	}
 	//finish??
 }
