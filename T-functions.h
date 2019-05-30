@@ -585,7 +585,7 @@ void Function_Print_Smems(struct Tree *tree){
 	printf(":D=%s:",(*tree).dimstr);
 	printf(":nval=%d:",(*tree).nval);
 	printf(":vstr=%s:",(*tree).valstr);
-	printf("vPtrs=");
+	printf(":vPtr=");
 	if((*tree).valPtr != NULL){
 		int i;
 		for(i=0;i<(*tree).nval;i++){
