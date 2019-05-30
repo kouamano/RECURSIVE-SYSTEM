@@ -201,7 +201,27 @@ int get_ref(char *head, char *type, int *label){	//for binded
 void Function_Recursive_PrintCascade_Val(struct Tree *tree, int pos){
 }
 /* restructure functions */
-void Function_Recursive_Assign_RefedValPtr(struct Tree *tree){
+void Assign_RefedValPtr(struct Tree *tree){
+	int i;
+	int len = 0;
+	if((*tree).nval > 0){
+		if(((*tree).valPtr = malloc(sizeof(int) * (*tree).nval)) == NULL){
+			perror("[Fail]malloc@Assign_RefedValPtr().\n");
+			exit(1);
+		}
+	}
+	len = strlen((*tree).valstr);
+	int ESC = 0;
+	int count = 0;
+	(*tree).valPtr[count] = 0;
+	count++;
+	for(i=0;i<len;i++){
+		if((*tree).valstr[i] == DD && ESC == 0){
+			(*tree).valPtr[count] = i + 1;
+			count++;
+		}
+	}
+	//finish??
 }
 void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred){
 	int i;
