@@ -527,6 +527,7 @@ int main(int argc, char **argv){
 	/* inner product */
 	if((*opt).Pprod == 1){
 		EFLAG = 2 + 16;
+		ExFunction_Recursive(itop,(struct Tree *(*)())Assign_RefedValPtr,opt,_fopt,_copt);
 		(*_fopt).f_print_production = 1;
 		Executor(otop,itop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
 	}
