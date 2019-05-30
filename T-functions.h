@@ -201,7 +201,13 @@ int get_ref(char *head, char *type, int *label){	//for binded
 void Function_Recursive_PrintCascade_Val(struct Tree *tree, int pos){
 }
 /* restructure functions */
-void Assign_RefedValPtr(struct Tree *tree){
+int Assign_RefedValPtr(struct Tree *tree){
+	if(tree == NULL){
+		return(0);
+	}
+	if((*tree).valstr == NULL){
+		return(0);
+	}
 	if((*tree).nval > 0){
 		if(((*tree).valPtr = malloc(sizeof(int) * (*tree).nval)) == NULL){
 			perror("[Fail]malloc@Assign_RefedValPtr().\n");

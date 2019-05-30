@@ -526,13 +526,12 @@ int main(int argc, char **argv){
 	}
 	/* inner product */
 	if((*opt).Pprod == 1 && itop != NULL && otop != NULL){
-		if(is_dopen > 0){
-			ExFunction_Recursive(itop,(struct Tree *(*)())Assign_RefedValPtr,opt,_fopt,_copt);
-		}
 		EFLAG = 2 + 16;
 		(*_fopt).f_print_production = 1;
+		printf("IN@production: ");
 		Executor(otop,itop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
-		//Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
+		printf("OUT@production: ");
+		Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
 	}
 
 	/* check */
