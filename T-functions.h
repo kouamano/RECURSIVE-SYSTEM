@@ -197,9 +197,6 @@ int get_ref(char *head, char *type, int *label){	//for binded
 	}
 	return(0);
 }
-/** valstr print */
-void Function_Recursive_PrintCascade_Val(struct Tree *tree, int pos){
-}
 /* restructure functions */
 int Assign_RefedValPtr(struct Tree *tree){
 	if(tree == NULL){
@@ -638,6 +635,28 @@ int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 	}
 	printf("\n");
 	return(nodes);
+}
+/** val */
+int print_singleVal(char *str){
+	int C;
+	int i;
+	int ESC = 0;
+	for(i=0;1;i++){
+		C = (int)str[i];
+		if(C == '\0'){
+			return(0);
+		}
+		if(C == ',' && ESC == 0){
+			return(1);
+		}
+		if(C != ',' && ESC == 0){
+			putchar(C);
+		}
+		#include "escape_sw.c"
+	}
+}
+struct Tree *Function_Print_nthVal(struct Tree *tree, int nth){
+	//Under construction
 }
 /** Conj */
 struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
