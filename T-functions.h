@@ -646,11 +646,14 @@ int print_singleVal(char *str){
 		if(C == '\0'){
 			return(0);
 		}
-		if(C == ',' && ESC == 0){
-			return(1);
+		if(ESC == 1){
+			putchar(C);
 		}
 		if(C != ',' && ESC == 0){
 			putchar(C);
+		}
+		if(C == ',' && ESC == 0){
+			return(0);
 		}
 		#include "escape_sw.c"
 	}

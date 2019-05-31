@@ -535,9 +535,14 @@ int main(int argc, char **argv){
 	}
 
 	/* check */
-	printf("\n===test===:::");
-	print_singleVal((*itop).valstr+(*itop).valPtr[1]);
-	printf(":::===/test===\n");
+	printf("\n===test===:::\n");
+	printf("6 -> ");
+	print_singleVal((*itop).valstr+(*itop).valPtr[6]);
+	printf("\n:::===/test===\n");
+	printf("\n===test===:::\n");
+	printf("8 -> ");
+	print_singleVal((*itop).valstr+(*itop).valPtr[8]);
+	printf("\n:::===/test===\n");
 
 
 	/* finish */
