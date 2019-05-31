@@ -535,6 +535,9 @@ int main(int argc, char **argv){
 	}
 
 	/* check */
+	printf("\n===test===:::");
+	print_singleVal((*itop).valstr+(*itop).valPtr[1]);
+	printf(":::===/test===\n");
 
 
 	/* finish */
