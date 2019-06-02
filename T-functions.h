@@ -348,7 +348,7 @@ struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *node_coun
 	}
 	return(NULL);
 }
-int bind_data(FILE *DATA, struct Tree *tree, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
+int Function_Bind_Data(FILE *DATA, struct Tree *tree, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
 	int i;
         int C = '\0';
         int bn_count = 0;
@@ -910,6 +910,9 @@ int print_singleVal(char *str){
 		}
 		#include "escape_sw.c"
 	}
+}
+int Function_Recursive_Get_nvalMax(struct Tree *tree){
+	//Under construction
 }
 struct Tree *Function_Print_nthVal(struct Tree *tree, int nth){
 	//Under construction
