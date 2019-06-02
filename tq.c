@@ -535,6 +535,7 @@ int main(int argc, char **argv){
 	}
 
 	/* check */
+	printf("It might cause SIGSEGV, because of test for under-construction function.\n");
 	printf("\n===test===:::\n");
 	printf("6 -> ");
 	print_singleVal((*itop).valstr+(*itop).valPtr[6]);
