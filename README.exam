@@ -63,6 +63,14 @@ sys     0m39.314s
 
 ### パフォーマンス比較 
 -
+time ./tq.o in=lllarge-single-test.t buff=30
+124653854 Nodes were operated.
+real    0m41.343s
+user    0m29.955s
+sys     0m11.371s
+@ 20G mem
+
+-
 time ./tq.o in=lllarge-single-test.t buff=30 -FJ -Pin > lllarge-single-test.json
 124653854 Nodes were operated.
 real    1m10.332s
@@ -75,7 +83,7 @@ time cat lllarge-single-test.json | jq . > /dev/null
 real    2m25.157s
 user    2m5.473s
 sys     0m20.885s
-@36G
+@ 36G
 
 ## レファレンス
 ### 木
