@@ -518,10 +518,10 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 		tmp_head = Function_Dot_Head(tree);
 	}else if(strncmp(tmp_head,"$NULL$",6) == 0){
 	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$PI$",4) == 0){	// Inner Product
+		//Under construction
 		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+4);
 		strcpy(tmp_head,out_head);
 		compiled++;
-		// => code in Function_Print_Head()
 	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$X$",3) == 0){
 		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
 		strcpy(tmp_head,out_head);
@@ -549,6 +549,11 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 			strcpy(out_head+1,tmp_head+3);
 			out_head[len-1]='\0';
 		}
+		strcpy(tmp_head,out_head);
+		compiled++;
+	}else if(strncmp(tmp_head,"$~~",3) == 0){
+		//Under construction
+		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
 		compiled++;
 	}else if(strncmp(tmp_head,"$~",2) == 0){
