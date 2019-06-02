@@ -641,31 +641,6 @@ int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 	printf("\n");
 	return(nodes);
 }
-/** val */
-int print_singleVal(char *str){
-	int C;
-	int i;
-	int ESC = 0;
-	for(i=0;1;i++){
-		C = (int)str[i];
-		if(C == '\0'){
-			return(0);
-		}
-		if(ESC == 1){
-			putchar(C);
-		}
-		if(C != ',' && ESC == 0){
-			putchar(C);
-		}
-		if(C == ',' && ESC == 0){
-			return(0);
-		}
-		#include "escape_sw.c"
-	}
-}
-struct Tree *Function_Print_nthVal(struct Tree *tree, int nth){
-	//Under construction
-}
 /** Conj */
 struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 		if((*tree).Conj == 1){
@@ -913,6 +888,31 @@ struct Tree *Function_Print_Bclose_C(struct Tree *tree, struct function_options 
 		printf("\n");
 	}
 	return(tree);
+}
+/** val */
+int print_singleVal(char *str){
+	int C;
+	int i;
+	int ESC = 0;
+	for(i=0;1;i++){
+		C = (int)str[i];
+		if(C == '\0'){
+			return(0);
+		}
+		if(ESC == 1){
+			putchar(C);
+		}
+		if(C != ',' && ESC == 0){
+			putchar(C);
+		}
+		if(C == ',' && ESC == 0){
+			return(0);
+		}
+		#include "escape_sw.c"
+	}
+}
+struct Tree *Function_Print_nthVal(struct Tree *tree, int nth){
+	//Under construction
 }
 /** Head */
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
