@@ -62,7 +62,7 @@ user    1m33.104s
 sys     0m39.314s
 
 ### パフォーマンス比較 
--
+- 酒井さん、パフォーマンスはこれと比べてください。
 time ./tq.o in=lllarge-single-test.t buff=30
 124653854 Nodes were operated.
 real    0m41.343s
