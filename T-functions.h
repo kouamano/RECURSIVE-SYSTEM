@@ -918,6 +918,10 @@ struct Tree *Function_Print_nthVal(struct Tree *tree, int nth){
 	//Under construction
 }
 /** Head */
+struct Tree *Function_Print_ProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	//Under construction
+	//print後は子ノードを切る
+}
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	struct Tree *ins_head = NULL;
 	char target_type = '\0';
@@ -983,6 +987,9 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	}
 
 	return(tree);
+}
+struct Tree *Function_Print_HeadMeta(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	// Under construction for production
 }
 struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	int sw = 0;
