@@ -990,6 +990,9 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 }
 struct Tree *Function_Print_HeadMeta(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	// Under construction for production
+	// 以下を切り替えて使う:
+	// Function_Print_Head
+	// Function_Print_ProductVal
 }
 struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	int sw = 0;
