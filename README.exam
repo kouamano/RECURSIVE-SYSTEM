@@ -62,28 +62,35 @@ user    1m33.104s
 sys     0m39.314s
 
 ### パフォーマンス比較 
-- 酒井さん、パフォーマンスはこれと比べてください。
+#### 1.2億ノード
+- 坂本さん、パフォーマンスはこれと比べてください。
 time ./tq.o in=lllarge-single-test.t buff=30
 124653854 Nodes were operated.
 real    0m41.343s
 user    0m29.955s
 sys     0m11.371s
 @ 20G mem
-
 -
 time ./tq.o in=lllarge-single-test.t buff=30 -FJ -Pin > lllarge-single-test.json
 124653854 Nodes were operated.
 real    1m10.332s
 user    0m55.450s
 sys     0m14.859s
-@ 28G
-
+@ 28G mem
 -
 time cat lllarge-single-test.json | jq . > /dev/null
 real    2m25.157s
 user    2m5.473s
 sys     0m20.885s
-@ 36G
+@ 36G mem
+#### 4.9億ノード
+time ./tq.o in=lllarge-single-test.t.5oku.sak -FT
+498615409 Nodes were operated.
+real    5m37.502s
+user    3m20.310s
+sys     2m17.179s
+@ 83G mem
+
 
 ## レファレンス
 ### 木
