@@ -198,7 +198,7 @@ int get_ref(char *head, char *type, int *label){	//for binded
 	return(0);
 }
 /* restructure functions */
-int Assign_RefedValPtr(struct Tree *tree){
+int Assign_RefedValPtr(struct Tree *tree){	// for product
 	if(tree == NULL){
 		return(0);
 	}
@@ -234,7 +234,6 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred)
 	char target_type;
 	int target_label;
 	int stat;
-	//stat = get_ref((*binded).Head,&target_type,&target_label);
 	stat = get_ref((*binded).Head+(*binded).IndicatorPtr,&target_type,&target_label);
 	if(stat == 1){
 		struct Tree *addr = NULL;
@@ -312,7 +311,6 @@ struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt, struct fun
 	if(sw != 2){
 		return(NULL);
 	}
-	//if((buff = malloc(sizeof(char) * BUFF_LEN)) == NULL){
 	if((buff = malloc(sizeof(char) * (*_opt).buff)) == NULL){
 		perror("[Fail]malloc@Detect_DimBlock.\n");
 		exit(1);
