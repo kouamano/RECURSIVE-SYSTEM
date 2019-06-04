@@ -924,6 +924,8 @@ int Function_Recursive_Get_nvalMax(struct Tree *tree){
 	return(MAX);
 }
 struct Tree *Function_Print_nthVal(struct Tree *tree, int nth){
+	int p = nth%(*tree).nval;
+	printf("\n::%d::\n",8%1);
 	//Under construction
 }
 /** Head */

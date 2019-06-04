@@ -538,6 +538,7 @@ int main(int argc, char **argv){
 	fprintf(stderr,"%d Nodes were operated.\n",node_count);
 
 	/* check */
+	/** 1 */
 	printf("\nIt might cause SIGSEGV, because of test for under-construction function.\n");
 	printf("\n===test===:::\n");
 	printf("6 -> ");
@@ -547,7 +548,8 @@ int main(int argc, char **argv){
 	printf("8 -> ");
 	print_singleVal((*itop).valstr+(*itop).valPtr[8]);
 	printf("\n:::===/test===\n");
-
+	/** 2 */
+	//Function_Print_nthVal(NULL,0);
 
 	return(0);
 }
