@@ -940,11 +940,21 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){
 		Function_Print_nthVal(tree,nth);
 		conjR = 1;
 	}
-	if((*tree).RefNode->nval > 0){
-		if(conjR > 0){
-			printf(",");
+	if((*tree).RefNode != NULL){
+		if((*tree).RefNode->nval > 0){
+			if(conjR > 0){
+				printf(",");
+			}
+			Function_Print_nthVal((*tree).RefNode,nth);
 		}
-		Function_Print_nthVal((*tree).RefNode,nth);
+		if((*tree).RefNode->NextCount > 0){
+			printf("(");
+			for(i=0;i<(*tree).RefNode->NextCount;i++){
+				Function_Recursive_Print_nthVal((*tree).RefNode->Next[i],nth);
+			}
+			printf(")");
+		}
+	
 	}
 	if((*tree).NextCount > 0){
 		printf("(");
@@ -953,6 +963,7 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){
 		}
 		printf(")");
 	}
+	return(tree);
 }
 /** Head */
 struct Tree *Function_RecursiveCyclic_Print_ProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int max_cyc, int current_cyc){

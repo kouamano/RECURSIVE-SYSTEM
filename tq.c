@@ -542,21 +542,23 @@ int main(int argc, char **argv){
 	printf("\nIt might cause SIGSEGV, because of test for under-construction function.\n");
 	printf("\n===test===:::\n");
 	printf("6 -> ");
-	print_singleVal((*itop).valstr+(*itop).valPtr[6]);
+	//print_singleVal((*itop).valstr+(*itop).valPtr[6]);
 	printf(";");
 	Function_Print_nthVal(itop,6);
 	printf("\n:::===/test===\n");
 	printf("\n===test===:::\n");
 	printf("8 -> ");
-	print_singleVal((*itop).valstr+(*itop).valPtr[8]);
+	//print_singleVal((*itop).valstr+(*itop).valPtr[8]);
 	printf(";");
 	Function_Print_nthVal(itop,8);
 	printf("\n:::===/test===\n");
 	printf("\n===test===:::\n");
 	printf("18 -> ");
-	print_singleVal((*itop).valstr+(*itop).valPtr[18]);
+	//print_singleVal((*itop).valstr+(*itop).valPtr[18]);
 	printf(";");
-	Function_Print_nthVal(itop,18);
+	Function_Recursive_Print_nthVal(itop,18);
+	printf(";");
+	Function_Recursive_Print_nthVal(otop,18);
 	printf("\n:::===/test===\n");
 
 	/** 2 */
