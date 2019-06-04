@@ -930,14 +930,51 @@ struct Tree *Function_Print_nthVal(struct Tree *tree, int nth){
 		p = nth%(*tree).nval;
 		print_singleVal((*tree).valstr+(*tree).valPtr[p]);
 	}
-	// finish ?
+}
+struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){
+	// Under test
+	int i;
+	int conjR = 0;
+	printf(" ");
+	if((*tree).nval > 0){
+		Function_Print_nthVal(tree,nth);
+		conjR = 1;
+	}
+	if((*tree).RefNode->nval > 0){
+		if(conjR > 0){
+			printf(",");
+		}
+		Function_Print_nthVal((*tree).RefNode,nth);
+	}
+	if((*tree).NextCount > 0){
+		printf("(");
+		for(i=0;i<(*tree).NextCount;i++){
+			Function_Recursive_Print_nthVal((*tree).Next[i],nth);
+		}
+		printf(")");
+	}
 }
 /** Head */
-struct Tree *Function_RecursiveCyclic_Print_ProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+struct Tree *Function_RecursiveCyclic_Print_ProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int max_cyc, int current_cyc){
 	/* Function_Print_Head の特殊型 */
 	/* 子要素も含めてprint */
+	int i;
+	int j;
+	int max_nval = -1;
+	if(max_cyc == -1){
+		max_nval = Function_Recursive_Get_nvalMax(tree);
+	}
+	for(i=0;i<max_nval;i++){
+		//Function_RecursiveCyclic_Print_ProductVal();
+	}
 	//Under construction
+	
+
+
 	//print後は子ノードを切る
+	if((*tree).extra_stat&2 != 2){
+		(*tree).extra_stat = (*tree).extra_stat = 2;
+	}
 }
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	/* 特殊型にFunction_Print_ProductValあり */
