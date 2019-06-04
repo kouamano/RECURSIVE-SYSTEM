@@ -55,12 +55,12 @@ echo '$``List' | ./tq.o in=/dev/stdin -FT -C -Pin
  => $TOP($X$List($LEAF,$LEAF[]@(Length),$LEAF[2]@(Weight,mm)),$X$List[2]($LEAF[2]@(kg,1,2,322)))
 ### 大型配列のバインド 1.6G => 1.2G(4億データポイント)
 time ./tq.o in=large-test_bind.t -FT -Pin data=large-test.csv data_buff=2000000000 | ./tq.o in=/dev/stdin
-
 4 Nodes were operated.
 400000004 Nodes were operated.
 real    2m9.090s
 user    1m33.104s
 sys     0m39.314s
+@ 74G mem
 
 ### パフォーマンス比較 
 #### 1.2億ノード

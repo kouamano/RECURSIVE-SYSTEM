@@ -539,6 +539,7 @@ int main(int argc, char **argv){
 
 	/* check */
 	/** 1 */
+	/*
 	printf("\nIt might cause SIGSEGV, because of test for under-construction function.\n");
 	printf("\n===test===:::\n");
 	printf("6->");
@@ -561,6 +562,7 @@ int main(int argc, char **argv){
 	printf("\n");
 	}
 	printf("\n:::===/test===\n");
+	*/
 
 	/* finish */
 	return(0);
