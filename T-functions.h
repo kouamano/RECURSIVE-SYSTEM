@@ -1006,11 +1006,11 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 			printf("%d:",(*tree).ser);
 		}
 	}
+	/* interpret */
+	char *tmp_str = NULL;
+	tmp_str = Function_Interpret_Head(tree,_copt);
 	/* print head */
 	if((*_copt).c_counter > 0){
-		/* compile */
-		char *tmp_str;
-		tmp_str = Function_Interpret_Head(tree,_copt);
 		printf("%s",tmp_str);
 		free(tmp_str);	//test
 	}else{
@@ -1054,6 +1054,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	return(tree);
 }
 struct Tree *Function_Print_HeadMeta(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	// この関数を使うか考え中
 	// Under construction for production
 	// 以下を切り替えて使う:
 	// Function_Print_Head
