@@ -549,9 +549,9 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 		strcpy(tmp_head,out_head);
 		compiled++;
 	}else if(strncmp(tmp_head,"$~~",3) == 0){
-		//Under construction
 		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
+		(*tree).extra_stat = (*tree).extra_stat + 1;
 		compiled++;
 	}else if(strncmp(tmp_head,"$~",2) == 0){
 		strcpy(out_head,tmp_head+2);
@@ -601,6 +601,7 @@ void Function_Print_Smems(struct Tree *tree){
 	printf(":Cj=%d:",(*tree).Conj);
 	printf(":NCs=%d:",(*tree).NCself);
 	printf(":NC=%d:",(*tree).NextCount);
+	printf(":stat=%d:",(*tree).extra_stat);
 }
 void Function_Print_Status(struct Tree *tree){
 	Function_Print_Smems(tree);
