@@ -21,10 +21,6 @@ int Function_Recursive_FreeForce_Tree(struct Tree *tree){
 	free((*tree).Next);
 	(*tree).Next = NULL;
 	(*tree).NextCount = 0;
-
-	//free((*tree).Category);
-	//(*tree).Category = NULL;
-
 	free((*tree).Head);
 	(*tree).Head = NULL;
 	free((*tree).dimstr);
@@ -43,7 +39,7 @@ struct Tree *Function_Get_Node(char *pos_str, struct Tree *tree){
 	int i;
 	int count = 0;
 	int *list;
-	struct Tree *current;
+	struct Tree *current = NULL;
 	len = strlen(pos_str);
 	for(i=0;i<len;i++){
 		if(pos_str[i] == ','){
