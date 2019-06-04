@@ -534,8 +534,11 @@ int main(int argc, char **argv){
 		Executor(otop,itop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
 	}
 
+	/* finish */
+	fprintf(stderr,"%d Nodes were operated.\n",node_count);
+
 	/* check */
-	printf("It might cause SIGSEGV, because of test for under-construction function.\n");
+	printf("\nIt might cause SIGSEGV, because of test for under-construction function.\n");
 	printf("\n===test===:::\n");
 	printf("6 -> ");
 	print_singleVal((*itop).valstr+(*itop).valPtr[6]);
@@ -546,7 +549,5 @@ int main(int argc, char **argv){
 	printf("\n:::===/test===\n");
 
 
-	/* finish */
-	fprintf(stderr,"%d Nodes were operated.\n",node_count);
 	return(0);
 }
