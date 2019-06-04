@@ -17,7 +17,7 @@ struct Tree {
 	struct Tree *Parent;	// must not free !!
 	struct Tree *RefNode;
 	int extra_stat;
-		//1: Literal	2: skip next
+		//1: Literal Tree;	2: skip next
 };
 
 struct options {
