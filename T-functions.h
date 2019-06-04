@@ -424,13 +424,13 @@ struct Tree *Create_Node(int _ser, int H_size){
 		perror("[Fail]:malloc@Create_Node.\n");
 		exit(1);
 	}
-	(*tree).ser=_ser;
-	(*tree).LVself=0;
-	(*tree).NCself=1;
-	(*tree).Conj=0;
-	(*tree).LabelType='\0';
-	(*tree).Label=-1;
-	(*tree).IndicatorPtr=0;
+	(*tree).ser = _ser;
+	(*tree).LVself = 0;
+	(*tree).NCself = 1;
+	(*tree).Conj = 0;
+	(*tree).LabelType = '\0';
+	(*tree).Label = -1;
+	(*tree).IndicatorPtr = 0;
 	if(H_size < 1){
 		(*tree).Head = NULL;
 	}else{
@@ -439,7 +439,7 @@ struct Tree *Create_Node(int _ser, int H_size){
 			exit(1);
 		}
 	}
-	(*tree).NextCount=0;
+	(*tree).NextCount = 0;
 	if(((*tree).Next = malloc((size_t)sizeof(struct Tree *) * 1)) == NULL){
 		perror("[Fail]:malloc@Create_Node.\n");
 		exit(1);
@@ -448,8 +448,9 @@ struct Tree *Create_Node(int _ser, int H_size){
 	(*tree).nval = 0;
 	(*tree).valPtr = NULL;
 	(*tree).valstr = NULL;
-	(*tree).Parent=NULL;
-	(*tree).RefNode=NULL;
+	(*tree).Parent = NULL;
+	(*tree).RefNode = NULL;
+	(*tree).extra_stat = 0;
 	return(tree);
 }
 struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
