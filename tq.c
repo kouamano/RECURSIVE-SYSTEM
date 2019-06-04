@@ -563,6 +563,7 @@ int main(int argc, char **argv){
 	}
 	printf("\n:::===/test===\n");
 	*/
+	Function_RecursiveCyclic_Print_IProductVal(otop,_fopt,_copt);
 
 	/* finish */
 	return(0);
