@@ -919,7 +919,7 @@ int Function_Recursive_Get_nvalMax(struct Tree *tree){
 		MAX = max(MAX,(*tree).RefNode->nval);
 	}
 	for(i=0;i<(*tree).NextCount;i++){
-		MAX = max(MAX,Function_Recursive_Get_nvalMax(tree));
+		MAX = max(MAX,Function_Recursive_Get_nvalMax((*tree).Next[i]));
 	}
 	return(MAX);
 }
