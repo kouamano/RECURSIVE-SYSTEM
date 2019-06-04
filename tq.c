@@ -558,7 +558,11 @@ int main(int argc, char **argv){
 	printf(";");
 	Function_Recursive_Print_nthVal(itop,18);
 	printf(";");
-	Function_Recursive_Print_nthVal(otop,18);
+	int i;
+	for(i=0;i<19;i++){
+	Function_Recursive_Print_nthVal(otop,i);
+	printf("\n");
+	}
 	printf("\n:::===/test===\n");
 
 	/** 2 */
