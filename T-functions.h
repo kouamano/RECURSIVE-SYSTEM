@@ -193,6 +193,23 @@ int get_ref(char *head, char *type, int *label){	//for binded
 	}
 	return(0);
 }
+/** detecttion function */
+int get_nval(char *str){
+	int i;
+	int len;
+	int count = 1;
+	int tmpval = 1;
+	len = strlen(str);
+	for(i=0;i<len;i++){
+		if(str[i] == '[' || str[i] == ','){
+			tmpval = 1;
+			sscanf(str+i+1,"%d",&tmpval);
+			count = count*tmpval;
+		}
+	}
+	return(count);
+}
+
 /* restructure functions */
 int Assign_RefedValPtr(struct Tree *tree){	// for product
 	if(tree == NULL){
@@ -279,21 +296,6 @@ int Print_UpR_Head(struct Tree *tree, char *buff){
 	}
 	len = strlen(buff);
 	return(len);
-}
-int get_nval(char *str){
-	int i;
-	int len;
-	int count = 1;
-	int tmpval = 1;
-	len = strlen(str);
-	for(i=0;i<len;i++){
-		if(str[i] == '[' || str[i] == ','){
-			tmpval = 1;
-			sscanf(str+i+1,"%d",&tmpval);
-			count = count*tmpval;
-		}
-	}
-	return(count);
 }
 struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
 	int sw = 0;
