@@ -16,8 +16,8 @@ struct Tree {
 	struct Tree **Next;
 	struct Tree *Parent;	// must not free !!
 	struct Tree *RefNode;
-	int extra_stat;		//1: skip next
-
+	int extra_stat;
+		//1: Literal	2: skip next
 };
 
 struct options {
