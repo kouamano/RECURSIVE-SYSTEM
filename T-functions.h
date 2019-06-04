@@ -957,7 +957,6 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){
 			}
 			printf(")");
 		}
-	
 	}
 	if((*tree).NextCount > 0){
 		printf("(");
@@ -973,22 +972,18 @@ struct Tree *Function_RecursiveCyclic_Print_ProductVal(struct Tree *tree, struct
 	/* Function_Print_Head の特殊型 */
 	/* 子要素も含めてprint */
 	int i;
-	int j;
 	int max_nval = -1;
 	if(max_cyc == -1){
 		max_nval = Function_Recursive_Get_nvalMax(tree);
 	}
 	for(i=0;i<max_nval;i++){
-		//Function_RecursiveCyclic_Print_ProductVal();
+		Function_Recursive_Print_nthVal(tree,i);
 	}
-	//Under construction
-	
-
-
 	//print後は子ノードを切る
 	if((*tree).extra_stat&2 != 2){
 		(*tree).extra_stat = (*tree).extra_stat = 2;
 	}
+	return(tree);
 }
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	/* 特殊型にFunction_Print_ProductValあり */
@@ -1062,6 +1057,7 @@ struct Tree *Function_Print_HeadMeta(struct Tree *tree, struct function_options 
 	// 以下を切り替えて使う:
 	// Function_Print_Head
 	// Function_Print_ProductVal
+	return(tree);
 }
 struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	int sw = 0;
