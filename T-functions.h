@@ -928,10 +928,12 @@ struct Tree *Function_Print_nthVal(struct Tree *tree, int nth){
 }
 /** Head */
 struct Tree *Function_Print_ProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	/* Function_Print_Head の特殊型 */
 	//Under construction
 	//print後は子ノードを切る
 }
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	/* 特殊型にFunction_Print_ProductValあり */
 	struct Tree *ins_head = NULL;
 	char target_type = '\0';
 	int target_label = -1;
