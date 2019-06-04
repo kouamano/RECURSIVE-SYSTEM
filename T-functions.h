@@ -888,6 +888,20 @@ struct Tree *Function_Print_Bclose_C(struct Tree *tree, struct function_options 
 	return(tree);
 }
 /** val */
+int Function_Recursive_Get_nvalMax(struct Tree *tree){
+	int i;
+	int MAX = 0;
+	//Self
+	MAX = max(MAX,(*tree).nval);
+	//Ref
+	if((*tree).RefNode != NULL){
+		MAX = max(MAX,(*tree).RefNode->nval);
+	}
+	for(i=0;i<(*tree).NextCount;i++){
+		MAX = max(MAX,Function_Recursive_Get_nvalMax((*tree).Next[i]));
+	}
+	return(MAX);
+}
 int print_singleVal(char *str){
 	int C;
 	int i;
@@ -909,28 +923,19 @@ int print_singleVal(char *str){
 		#include "escape_sw.c"
 	}
 }
-int Function_Recursive_Get_nvalMax(struct Tree *tree){
-	int i;
-	int MAX = 0;
-	//Self
-	MAX = max(MAX,(*tree).nval);
-	//Ref
-	if((*tree).RefNode != NULL){
-		MAX = max(MAX,(*tree).RefNode->nval);
-	}
-	for(i=0;i<(*tree).NextCount;i++){
-		MAX = max(MAX,Function_Recursive_Get_nvalMax((*tree).Next[i]));
-	}
-	return(MAX);
-}
 struct Tree *Function_Print_nthVal(struct Tree *tree, int nth){
-	int p = nth%(*tree).nval;
-	printf("\n::%d::\n",8%1);
-	//Under construction
+	// nth : loop iterator
+	int p = 0;
+	if((*tree).valstr != NULL){
+		p = nth%(*tree).nval;
+		print_singleVal((*tree).valstr+(*tree).valPtr[p]);
+	}
+	// finish ?
 }
 /** Head */
-struct Tree *Function_Print_ProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+struct Tree *Function_RecursiveCyclic_Print_ProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	/* Function_Print_Head の特殊型 */
+	/* 子要素も含めてprint */
 	//Under construction
 	//print後は子ノードを切る
 }
