@@ -971,7 +971,7 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){
 	return(tree);
 }
 /** Head */
-struct Tree *Function_RecursiveCyclic_Print_ProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int max_cyc, int current_cyc){
+struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int max_cyc, int current_cyc){
 	/* Function_Print_Head の特殊型 */
 	/* 子要素も含めてprint */
 	int i;
