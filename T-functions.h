@@ -240,6 +240,7 @@ int Assign_RefedValPtr(struct Tree *tree){	// for product
 			#include "escape_sw.c"
 		}
 	}
+	return(0);
 	//finish??
 }
 void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred){
@@ -922,6 +923,7 @@ int print_singleVal(char *str){
 		}
 		#include "escape_sw.c"
 	}
+	return(i);
 }
 struct Tree *Function_Print_nthVal(struct Tree *tree, int nth){
 	// nth : loop iterator
@@ -930,6 +932,7 @@ struct Tree *Function_Print_nthVal(struct Tree *tree, int nth){
 		p = nth%(*tree).nval;
 		print_singleVal((*tree).valstr+(*tree).valPtr[p]);
 	}
+	return(tree);
 }
 struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){
 	// Under test
@@ -980,8 +983,8 @@ struct Tree *Function_RecursiveCyclic_Print_ProductVal(struct Tree *tree, struct
 		Function_Recursive_Print_nthVal(tree,i);
 	}
 	//print後は子ノードを切る
-	if((*tree).extra_stat&2 != 2){
-		(*tree).extra_stat = (*tree).extra_stat = 2;
+	if(((*tree).extra_stat&2) != 2){
+		(*tree).extra_stat = (*tree).extra_stat + 2;
 	}
 	return(tree);
 }
