@@ -910,7 +910,18 @@ int print_singleVal(char *str){
 	}
 }
 int Function_Recursive_Get_nvalMax(struct Tree *tree){
-	//Under construction
+	int i;
+	int MAX = 0;
+	//Self
+	MAX = max(MAX,(*tree).nval);
+	//Ref
+	if((*tree).RefNode != NULL){
+		MAX = max(MAX,(*tree).RefNode->nval);
+	}
+	for(i=0;i<(*tree).NextCount;i++){
+		MAX = max(MAX,Function_Recursive_Get_nvalMax(tree));
+	}
+	return(MAX);
 }
 struct Tree *Function_Print_nthVal(struct Tree *tree, int nth){
 	//Under construction

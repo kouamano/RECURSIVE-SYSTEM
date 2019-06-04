@@ -97,6 +97,9 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 			if((*_fopt).f_print_production == 1){
 				printf("\n====production====>\n");
 				printf("Under construction.\n");
+				int MAX = 0;
+				MAX = Function_Recursive_Get_nvalMax(hit_tree);
+				printf("MAX-nval::\n",MAX);
 			}
 			/*** apply status print */
                         if((*_fopt).f_print_status == 1){
