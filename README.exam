@@ -9,8 +9,8 @@ cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 ## 開発中のチェック
 ./tq.o in=test.ddf out=test.ddl -Pin -Pout -Pprod -FT -test
 ./tq.o in=test.ddf out=test.ddl -Pin -Pout -Pprod -FT data=test.csv -test
-./tq.o in=test-small.ddf data=test_escape.csv -FT -Pin -Fst -Pprod -Pout  out=test-small.ddl -test
-./tq.o in=test_prod.ddf data=test_escape.csv -FT -Pin -Fst -Pprod -Pout  out=test_prod.ddl -Fst -test
+./tq.o in=test-small.ddf out=test-small.ddl -Pin -Pout -Pprod -FT data=test_escape.csv  -test
+./tq.o in=test_prod.ddf out=test_prod.ddl -Pin -Pout -Pprod -FT -Fst data=test_escape.csv -test
 
 ## コンバート
 上記
