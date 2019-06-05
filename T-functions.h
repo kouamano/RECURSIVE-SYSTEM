@@ -602,7 +602,7 @@ void Function_Print_Smems(struct Tree *tree){
 			printf(",%d",(*tree).valPtr[i]);
 		}
 	}
-	printf(":\n");
+	printf(":");
 	printf(":Cj=%d:",(*tree).Conj);
 	printf(":NCs=%d:",(*tree).NCself);
 	printf(":NC=%d:",(*tree).NextCount);
