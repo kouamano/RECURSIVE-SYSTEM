@@ -552,7 +552,7 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 	}else if(strncmp(tmp_head,"$~~",3) == 0){
 		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
-		if((*tree).extra_stat&1 != 1){
+		if(((*tree).extra_stat&1) != 1){
 			(*tree).extra_stat = (*tree).extra_stat + 1;
 		}
 		compiled++;
