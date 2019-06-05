@@ -549,30 +549,32 @@ int main(int argc, char **argv){
 
 	/* check */
 	if((*opt).test > 0){
-	/** 1 */
-	printf("\nIt might cause SIGSEGV, because of test for under-construction function.\n");
-	printf("\n===test===:::\n");
-	printf("6->");
-	printf(";");
-	Function_Print_nthVal(itop,6);
-	printf("\n:::===/test===\n");
-	printf("\n===test===:::\n");
-	printf("8->");
-	printf(";");
-	Function_Print_nthVal(itop,8);
-	printf("\n:::===/test===\n");
-	printf("\n===test===:::\n");
-	printf("18->");
-	printf(";");
-	Function_Recursive_Print_nthVal(itop,18);
-	printf(";");
-	int i;
-	for(i=0;i<19;i++){
-	Function_Recursive_Print_nthVal(otop,i);
-	printf("\n");
-	}
-	printf("\n:::===/test===\n");
-	Function_RecursiveCyclic_Print_IProductVal(otop,_fopt,_copt);
+		/** 1 */
+		printf("\nIt might cause SIGSEGV, because of test for under-construction function.\n");
+		printf("\n===test===:::\n");
+		printf("6->");
+		printf(";");
+		Function_Print_nthVal(itop,6);
+		printf("\n:::===/test===\n");
+		printf("\n===test===:::\n");
+		printf("8->");
+		printf(";");
+		Function_Print_nthVal(itop,8);
+		printf("\n:::===/test===\n");
+		printf("\n===test===:::\n");
+		printf("18->");
+		printf(";");
+		Function_Recursive_Print_nthVal(itop,18);
+		printf(";");
+		int i;
+		for(i=0;i<19;i++){
+			Function_Recursive_Print_nthVal(otop,i);
+			printf("\n");
+		}
+		printf("\n:::===/test===\n");
+		/** 1 */
+		Function_RecursiveCyclic_Print_IProductVal(otop,_fopt,_copt);
+		printf("\n");
 	}
 
 	/* finish */
