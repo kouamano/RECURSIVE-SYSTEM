@@ -24,11 +24,12 @@ struct options {
         int help;
         int stat;
         int check;
-        int buff;
         int war;
+	int test;
         char *in;
         char *out;
 	char *data;
+        int buff;
 	int data_buff;
 	int Pin;
 	int Pout;

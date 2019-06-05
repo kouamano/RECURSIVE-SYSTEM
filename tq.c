@@ -22,7 +22,7 @@ void status(void){
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" tq.o [-h|-hF|-hC|-hS|-hD] [-s] [-c] buff=<(int)size> in=<file name of input form> out=<file name of outout form> data=<data file> data_buff=<(int)size> w=<warnning level> -F<x> -C<x> -P<x>.\n");
+	printf(" tq.o [-h|-hF|-hC|-hS|-hD] [-s] [-c] [-test] buff=<(int)size> in=<file name of input form> out=<file name of outout form> data=<data file> data_buff=<(int)size> w=<warnning level> -F<x> -C<x> -P<x>.\n");
 	printf("  -h : help.\n");
 	printf("  -hF : function help.\n");
 	printf("  -hC : compile help.\n");
@@ -30,6 +30,7 @@ void help(void){
 	printf("  -hD : data help.\n");
 	printf("  -s : prints status.\n");
 	printf("  -c : check args.\n");
+	printf("  -test : execute test code.\n");
 	printf("  -Pin : print input form.\n");
 	printf("  -Pout : print output form.\n");
 	printf("  -Pprod : print inner production of binded data.\n");
@@ -130,9 +131,10 @@ void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
 	(*opt).check = 0;
+	(*opt).war = 0;
+	(*opt).test = 0;
 	(*opt).buff = BUFF_LEN;
 	(*opt).data_buff = BUFF_LEN;
-	(*opt).war = 0;
 	(*opt).in[0] = '\0';
 	(*opt).out[0] = '\0';
 	(*opt).data[0] = '\0';
@@ -187,6 +189,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).stat = 1;
 		}else if(strcmp(optv[i],"-c") == 0){
 			(*opt).check = 1;
+		}else if(strcmp(optv[i],"-test") == 0){
+			(*opt).test = 1;
 		}else if(strncmp(optv[i],"buff=",5) == 0){
 			sscanf(optv[i],"buff=%d",&(*opt).buff);
 		}else if(strncmp(optv[i],"data_buff=",9) == 0){
@@ -317,17 +321,23 @@ void get_data_options(int optc, char **optv, struct data_options *dopt){
 /* checking */
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
+	printf(" opt.help:%d:\n",(*opt).help);
+	printf(" opt.stat:%d:\n",(*opt).stat);
+	printf(" opt.check:%d:\n",(*opt).check);
+	printf(" opt.war:%d:\n",(*opt).war);
+	printf(" opt.test:%d:\n",(*opt).test);
 	printf(" opt.buff:%d:\n",(*opt).buff);
 	printf(" opt.data_buff:%d:\n",(*opt).data_buff);
 	printf(" opt.in:%s:\n",(*opt).in);
 	printf(" opt.out:%s:\n",(*opt).out);
 	printf(" opt.data:%s:\n",(*opt).data);
-	printf(" opt.war:%d:\n",(*opt).war);
-	printf(" opt.hF:%d:\n",(*opt).hF);
-	printf(" opt.hC:%d:\n",(*opt).hC);
 	printf(" opt.Pin:%d:\n",(*opt).Pin);
 	printf(" opt.Pout:%d:\n",(*opt).Pout);
 	printf(" opt.Pprod:%d:\n",(*opt).Pprod);
+	printf(" opt.hF:%d:\n",(*opt).hF);
+	printf(" opt.hC:%d:\n",(*opt).hC);
+	printf(" opt.hS:%d:\n",(*opt).hC);
+	printf(" opt.hD:%d:\n",(*opt).hC);
 }
 void check_function_options(struct function_options *fopt){
 	printf(" converters:\n");
@@ -538,6 +548,7 @@ int main(int argc, char **argv){
 	fprintf(stderr,"%d Nodes were operated.\n",node_count);
 
 	/* check */
+	if((*opt).test > 0){
 	/** 1 */
 	printf("\nIt might cause SIGSEGV, because of test for under-construction function.\n");
 	printf("\n===test===:::\n");
@@ -562,6 +573,7 @@ int main(int argc, char **argv){
 	}
 	printf("\n:::===/test===\n");
 	Function_RecursiveCyclic_Print_IProductVal(otop,_fopt,_copt);
+	}
 
 	/* finish */
 	return(0);
