@@ -1013,7 +1013,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	/* interpret */
 	char *tmp_str = NULL;
 	tmp_str = Function_Interpret_Head(tree,_copt);
-	/* if extra_stat&2 == 2 then print IProduct and return() */
+	/* TODO: if extra_stat&2 == 2 then print IProduct and return() */
 	/* print head */
 	if((*_copt).c_counter > 0){
 		printf("%s",tmp_str);
