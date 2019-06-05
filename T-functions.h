@@ -557,6 +557,7 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 		if(((*tree).extra_stat&1) != 1){
 			(*tree).extra_stat = (*tree).extra_stat + 1;
 		}
+		/* TODO: cascade extra_stat */
 		compiled++;
 	}else if(strncmp(tmp_head,"$~",2) == 0){
 		strcpy(out_head,tmp_head+2);
