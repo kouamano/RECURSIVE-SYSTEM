@@ -2,6 +2,12 @@
 struct Tree *Executor(struct Tree *, struct Tree *, struct Tree *, int, int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);
 struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser);
 
+struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *, struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct options *, struct function_options *, struct compile_options *, int);
+
+struct Tree *ExFunction_Recursive_Ser(struct Tree *, struct Tree *(*)(struct Tree *, int, struct options *), struct options *, struct function_options *, struct compile_options *, int , int);
+
+struct Tree *ExFunction_Recursive(struct Tree *, struct Tree *(*)(struct Tree *, struct options *), struct options *, struct function_options *, struct compile_options *);
+
 /* meta functions */
 void null_func(void){
 }
@@ -468,7 +474,12 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 	(*parent).NextCount++;
 	return(next);
 }
-
+struct Tree *Set_status(struct Tree *tree, int bit){
+	if(((*tree).extra_stat&bit) != bit){
+		(*tree).extra_stat = (*tree).extra_stat + bit;
+	}
+	return(tree);
+}
 /* compile functions */
 char *Function_Clear_Head(struct Tree *tree){
 	char *tmp_head;
