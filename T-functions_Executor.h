@@ -94,6 +94,8 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_C, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_C, (struct Tree *(*)())Function_Print_Bclose_C, _opt,_fopt,_copt,SN);
 			}
 			/*** apply production print */
+			/*** 使わないはず */
+			/*
 			if((*_fopt).f_print_production == 1){
 				printf("\n====production====>\n");
 				printf("Under construction.\n");
@@ -101,6 +103,7 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 				MAX = Function_Recursive_Get_nvalMax(hit_tree);
 				printf("MAX-nval:%d:\n",MAX);
 			}
+			*/
 			/*** apply status print */
                         if((*_fopt).f_print_status == 1){
 				printf("\n====multiline====>\n");
