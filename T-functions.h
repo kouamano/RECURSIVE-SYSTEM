@@ -1037,7 +1037,6 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	/* interpret */
 	char *tmp_str = NULL;
 	tmp_str = Function_Interpret_Head(tree,_copt);
-	/* TODO: if extra_stat&2 == 2 then print IProduct and return() */
 	/* print head */
 	if(((*tree).extra_stat&1) == 1){
 		printf("%s",(*tree).Head);	//normal
@@ -1047,6 +1046,8 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	}else{
 		printf("%s",(*tree).Head);	//normal
 	}
+
+	/* TODO: if extra_stat&2 == 2 then print IProduct and return() */
 
 	/* print bind mark for binded data */
 	if((*tree).valstr != NULL){
