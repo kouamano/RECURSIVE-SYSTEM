@@ -544,6 +544,9 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$U$",3) == 0){
 		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
 		strcpy(tmp_head,out_head);
+		if(((*tree).extra_stat&8) != 8){
+			(*tree).extra_stat = (*tree).extra_stat + 8;
+		}
 		compiled++;
 	}else if(strncmp(tmp_head,"$``",3) == 0){ //quating tree
 		out_head = realloc(out_head, (sizeof(char) * (len+1)));
