@@ -957,7 +957,7 @@ int print_singleVal(char *str){
 struct Tree *Function_Print_nthVal(struct Tree *tree, int nth){
 	// nth : loop iterator
 	int p = 0;
-	if((*tree).valstr != NULL){
+	if((*tree).valstr != NULL && (*tree).valPtr != NULL){
 		p = nth%(*tree).nval;
 		print_singleVal((*tree).valstr+(*tree).valPtr[p]);
 	}
