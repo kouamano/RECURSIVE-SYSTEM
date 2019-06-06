@@ -7,6 +7,8 @@ cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 - バインド
 ./tq.o in=test.ddf -FT out=test.ddl data=test.csv -Pin -Pout
 ## 開発中のチェック
+### $~~
+### 内積
 ./tq.o in=test.ddf out=test.ddl -Pin -Pout -Pprod -FT -test
 ./tq.o in=test.ddf out=test.ddl -Pin -Pout -Pprod -FT data=test.csv -test
 ./tq.o in=test-small.ddf out=test-small.ddl -Pin -Pout -Pprod -FT data=test_escape.csv  -test
