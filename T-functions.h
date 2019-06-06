@@ -8,6 +8,8 @@ struct Tree *ExFunction_Recursive_Ser(struct Tree *, struct Tree *(*)(struct Tre
 
 struct Tree *ExFunction_Recursive(struct Tree *, struct Tree *(*)(struct Tree *, struct options *), struct options *, struct function_options *, struct compile_options *);
 
+struct Tree *ExFunction_Recursive_Set_Obj(struct Tree *, struct Tree *(*)(void *), void *);
+
 /* meta functions */
 void null_func(void){
 }
@@ -1206,7 +1208,13 @@ struct Tree *Function_Print_Head_SN(struct Tree *tree, struct function_options *
 
 /* recursive-apply-function */
 /** Down tree */
-struct Tree *ExFunction_Recursive_Set_Obj(struct Tree *tree, void *obj){
+struct Tree *ExFunction_Recursive_Set_Obj(struct Tree *tree, struct Tree *(*e_function)(void *), void *obj){
+	int i;
+	(*e_function)(obj);
+	for(i=0;i<(*tree).NextCount;i++){
+		ExFunction_Recursive_Set_Obj(tree,e_function,obj);
+	}
+	return(tree);
 }
 struct Tree *ExFunction_Recursive(struct Tree *tree, struct Tree *(*e_function)(struct Tree *, struct options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
 	int i;
