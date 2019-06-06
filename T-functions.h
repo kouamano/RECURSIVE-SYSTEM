@@ -1005,14 +1005,14 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 	int i;
 	int max_nval = 1;
 	max_nval = Function_Recursive_Get_nvalMax(tree);
-	printf("(");
+	//printf("(");
 	for(i=0;i<max_nval;i++){
 		if(i != 0){
 			printf(",");
 		}
 		Function_Recursive_Print_nthVal(tree,i);
 	}
-	printf(")");
+	//printf(")");
 	//print後は子ノードを切る
 	if(((*tree).extra_stat&2) != 2){
 		(*tree).extra_stat = (*tree).extra_stat + 2;
