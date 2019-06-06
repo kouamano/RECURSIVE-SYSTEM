@@ -1,5 +1,6 @@
 /* prottype */
 struct Tree *Executor(struct Tree *, struct Tree *, struct Tree *, int, int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);
+
 struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser);
 
 struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *, struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct options *, struct function_options *, struct compile_options *, int);
@@ -193,7 +194,6 @@ int get_ref(char *head, char *type, int *label){	//for binded
 	}
 	if(len > 3){
 		if(head[2] == '#' && head[3] >= 0x30 && head[3] <= 0x39){
-			//sscanf(head+2,"%d",label);
 			sscanf(head+3,"%d",label);
 			*type = 't';
 			return(1);
@@ -306,7 +306,6 @@ int Print_UpR_Head(struct Tree *tree, char *buff){
 	len = strlen(buff);
 	return(len);
 }
-//struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
 struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt){
 	int sw = 0;
 	int dim_pos[2];
@@ -411,15 +410,6 @@ int Function_Bind_Data(FILE *DATA, struct Tree *tree, struct options *_opt, stru
 				buff_ptr = 0;
 			}
 			/* escape */
-			/*
-                        if(C == '\\' && ESC == 0){
-                                ESC = 1;
-                        }else if(C == '\\' && ESC == 1){
-                                ESC = 0;
-                        }else{
-                                ESC = 0;
-                        }
-			*/
 			#include "escape_sw.c"
                 }
         }
@@ -578,8 +568,7 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 			(*tree).extra_stat = (*tree).extra_stat + 1;
 		}
 		int tmp_stat = 1;
-		/* cascading */
-		ExFunction_Recursive_Set_Obj(tree, (struct Tree *(*)())Set_status, (int *)&tmp_stat);
+		ExFunction_Recursive_Set_Obj(tree, (struct Tree *(*)())Set_status, (int *)&tmp_stat);	// set cascading
 		compiled++;
 	}else if(strncmp(tmp_head,"$~",2) == 0){
 		strcpy(out_head,tmp_head+2);
@@ -659,7 +648,6 @@ int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 				printf("%d",((*tree).Next[j])->ser);
 				break;
 			}else if((*tree).Next[j]->RefNode != NULL){
-				//printf("NotNULL");
 				if((*tree).Next[j]->RefNode->ser == i){
 					printf("%d",(*tree).Next[j]->RefNode->ser);
 				}
@@ -979,7 +967,6 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){
 	// Under test
 	int i;
 	int conjR = 0;
-	//printf(" ");
 	if((*tree).NCself > 1){
 		printf(",");
 	}
@@ -1075,7 +1062,6 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
 		}else if((*tree).RefNode->LabelType == 't' && target_type == 't'){
 			printf("@");
-			//ins_head = Executor((*tree).RefNode,NULL,NULL,EOF,0,NULL,_fopt,_copt,NULL,NULL,2);
 			ins_head = ExFunction_Recursive_Ser_MultiPrint((*tree).RefNode, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
 		}else if((*tree).RefNode->LabelType == 't' && target_type == 'h'){
 			printf("@");
