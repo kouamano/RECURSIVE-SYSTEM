@@ -2,8 +2,7 @@
 ## 開発中機能
 - データ内積
   骨子は完成、 調整が必要。
-  Print_Head内でprintすると、"()"が余計にprintされる。
-  ExFunction_Recursive_Ser_MultiPrint()内でprintすると、サイズごとにリスト化できない。
+  リーフノードの配列サイズごとにリスト化されない。
 
 ## compile
 ```
