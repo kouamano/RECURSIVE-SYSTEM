@@ -42,6 +42,10 @@ echo '$``List($4)' | ./tq.o in=/dev/stdin -FT -C -Pin
 ./tq.o in=test_unpack.t -FT -Pin -C
  => $($1,$2,List,$1,$2)
 
+## リテラル
+./tq.o in=test_riteraltree.t -FT -Pin -C
+./tq.o in=test_ritelal-unpack.t -FT -Pin -C
+
 ## サーチ
 - ポジション指定
 ./tq.o in=test.t Sp=0,1 -FT -Pin

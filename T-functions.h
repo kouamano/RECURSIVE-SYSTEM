@@ -1053,7 +1053,9 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	/* TODO: if extra_stat&2 == 2 then print IProduct and return() */
 	/* print head */
 	/* TODO: add condtion for $~~ (estra_stat&1 == 1) */
-	if((*_copt).c_counter > 0){
+	if(((*tree).extra_stat&1) == 1){
+		printf("%s",(*tree).Head);	//normal
+	}else if((*_copt).c_counter > 0){
 		printf("%s",tmp_str);
 		free(tmp_str);	//test
 	}else{
