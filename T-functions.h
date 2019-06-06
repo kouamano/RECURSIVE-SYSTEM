@@ -475,9 +475,9 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 	(*parent).NextCount++;
 	return(next);
 }
-struct Tree *Set_status(struct Tree *tree, int bit){
-	if(((*tree).extra_stat&bit) != bit){
-		(*tree).extra_stat = (*tree).extra_stat + bit;
+struct Tree *Set_status(struct Tree *tree, int *bit){
+	if(((*tree).extra_stat&*bit) != *bit){
+		(*tree).extra_stat = (*tree).extra_stat + *bit;
 	}
 	return(tree);
 }
@@ -1206,6 +1206,8 @@ struct Tree *Function_Print_Head_SN(struct Tree *tree, struct function_options *
 
 /* recursive-apply-function */
 /** Down tree */
+struct Tree *ExFunction_Recursive_Set_Obj(struct Tree *tree, void *obj){
+}
 struct Tree *ExFunction_Recursive(struct Tree *tree, struct Tree *(*e_function)(struct Tree *, struct options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
 	int i;
 	struct Tree *out = tree;
