@@ -2,7 +2,8 @@
 ## 開発中機能
 - データ内積
   骨子は完成、 調整が必要。
-  内積はheadとして扱われるので、"()"が余計にprintされている。
+  Print_Head内でprintすると、"()"が余計にprintされる。
+  ExFunction_Recursive_Ser_MultiPrint()内でprintすると、サイズごとにリスト化できない。
 
 ## compile
 ```
