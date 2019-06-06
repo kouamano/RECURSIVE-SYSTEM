@@ -960,7 +960,7 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){
 	// Under test
 	int i;
 	int conjR = 0;
-	printf(" ");
+	//printf(" ");
 	if((*tree).NCself > 1){
 		printf(",");
 	}
