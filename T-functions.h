@@ -578,7 +578,8 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 			(*tree).extra_stat = (*tree).extra_stat + 1;
 		}
 		/* TODO: cascade extra_stat */
-		//ExFunction_Recursive(tree, (struct Tree *(*)())Set_status, _opt, _fopt, _copt);
+		int tmp_stat = 1;
+		//ExFunction_Recursive_Set_Obj(tree, (struct Tree *(*)())Set_status, (int *)&tmp_stat);
 		compiled++;
 	}else if(strncmp(tmp_head,"$~",2) == 0){
 		strcpy(out_head,tmp_head+2);
