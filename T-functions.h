@@ -1048,6 +1048,10 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	}
 
 	/* TODO: if extra_stat&2 == 2 then print IProduct and return() */
+	if(((*tree).extra_stat&2) == 2){
+		//Under construction: 調整必要
+		Function_RecursiveCyclic_Print_IProductVal(tree,_fopt,_copt);
+	}
 
 	/* print bind mark for binded data */
 	if((*tree).valstr != NULL){
