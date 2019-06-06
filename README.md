@@ -1,4 +1,8 @@
 # tq
+## 開発中機能
+- $~~ によるリテラル処理
+- データ内積
+
 ## compile
 ```
 cd RECURSIVE-SYSTEM
