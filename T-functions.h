@@ -838,7 +838,8 @@ struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options 
 				printf(")");	//normal case
 			}
 			/* for quating */
-			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$``",3) == 0){
+			//if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$``",3) == 0){
+			if((*_copt).c_counter > 0 && ((*tree).extra_stat&4) == 4){
 				printf("\"");
 			}
 	}
@@ -853,7 +854,8 @@ struct Tree *Function_Print_Bclose_S(struct Tree *tree, struct function_options 
 				printf(")");	//normal case
 			}
 			/* for quating */
-			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$``",3) == 0){
+			//if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$``",3) == 0){
+			if((*_copt).c_counter > 0 && ((*tree).extra_stat&4) == 4){
 				printf("\"");
 			}
 	}
@@ -867,7 +869,8 @@ struct Tree *Function_Print_Bclose_WL(struct Tree *tree, struct function_options
 			}else{
 				printf("]");	//normal case
 			}
-			if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$``",3) == 0){	// for quating
+			//if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$``",3) == 0){	// for quating
+			if((*_copt).c_counter > 0 && ((*tree).extra_stat&4) == 4){	// for quating
 				printf("\"");
 			}
 	}
