@@ -1250,8 +1250,10 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree 
 	/*print Bopen post*/
 	bopen_function(tree,_fopt,_copt,1);
 	//TODO: if Tree.extra_stat&2 == 2 then skip for-loop.
+	if(((*tree).extra_stat&2) != 2){
 	for(i=0;i<(*tree).NextCount;i++){
 		ExFunction_Recursive_Ser_MultiPrint((*tree).Next[i],conj_function,head_function,bopen_function,bclose_function,_opt,_fopt,_copt,_ser);
+	}
 	}
 	/*print Bclose*/
 	bclose_function(tree,_fopt,_copt);
