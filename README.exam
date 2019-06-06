@@ -17,13 +17,6 @@ cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 
 ## エスケープ処理
 ### バックスラッシュ
-- T式
-./tq.o in=test_escape.1.t -FT -Pin
-./tq.o in=test_escape.2.t -FT -Pin
-./tq.o in=test_escape.3.t -FT -Pin
-./tq.o in=test_escape.4.t -FT -Pin
-- バインド
-./tq.o in=test.ddf -FT out=test.ddl data=test_esc.csv -Pin -Pout
 ### ダブルクオート
 - T式
 ./tq.o in=test_qescape.1.t -FT -Pin
@@ -40,6 +33,8 @@ cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 - クオーティング
 echo '$``List' | ./tq.o in=/dev/stdin -FT -C -Pin   
  => "List"
+echo '$``List($4)' | ./tq.o in=/dev/stdin -FT -C -Pin   
+ => "List($4)"
 
 ## アンパック
 ./tq.o in=test_unpack.t -FT -Pin -C
