@@ -7,7 +7,6 @@ cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 - バインド
 ./tq.o in=test.ddf -FT out=test.ddl data=test.csv -Pin -Pout
 ## 開発中のチェック
-### $~~
 ### 内積
 ./tq.o in=test.ddf out=test.ddl -Pin -Pout -Pprod -FT -test
 ./tq.o in=test.ddf out=test.ddl -Pin -Pout -Pprod -FT data=test.csv -test
@@ -31,7 +30,7 @@ cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 ## コンパイル
 - -C
 ./tq.o in=test_compile.t -C -FT -Pin    
- => List(List(List,List,List,List))
+ => $~List(List(List,List,List,List))
 - クオーティング
 echo '$``List' | ./tq.o in=/dev/stdin -FT -C -Pin   
  => "List"
@@ -42,7 +41,7 @@ echo '$``List($4)' | ./tq.o in=/dev/stdin -FT -C -Pin
 ./tq.o in=test_unpack.t -FT -Pin -C
  => $($1,$2,List,$1,$2)
 
-## リテラル
+## リテラル化
 ./tq.o in=test_riteraltree.t -FT -Pin -C
 ./tq.o in=test_ritelal-unpack.t -FT -Pin -C
 
