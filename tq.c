@@ -538,9 +538,9 @@ int main(int argc, char **argv){
 	if((*opt).Pprod == 1 && itop != NULL && otop != NULL){
 		EFLAG = 2 + 16;
 		(*_fopt).f_print_production = 1;
-		printf("IN@production: ");
+		//printf("IN@production: ");
 		Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
-		printf("OUT@production: ");
+		//printf("OUT@production: ");
 		Executor(otop,itop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
 	}
 
