@@ -1052,7 +1052,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		printf("%s",(*tree).Head);	//normal
 	}
 
-	/* TODO: if extra_stat&2 == 2 then print IProduct and return() */
+	/* if extra_stat&2 == 2 then return() */
 	if(((*tree).extra_stat&2) == 2){
 		//Under construction: 調整必要
 		//printf("(");
@@ -1259,7 +1259,6 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree 
 	bopen_function(tree,_fopt,_copt,0);
 	/*print head*/
 	head_function(tree,_fopt,_copt);
-	//TODO: get Tree.extra_stat
 	/*print Bopen post*/
 	bopen_function(tree,_fopt,_copt,1);
 	// $PI$ : if Tree.extra_stat&2 == 2 then skip for-loop.
