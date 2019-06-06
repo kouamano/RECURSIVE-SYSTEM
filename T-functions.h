@@ -974,6 +974,9 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){
 		Function_Print_nthVal(tree,nth);
 		conjR = 1;
 	}
+	if((*tree).RefNode == NULL && ((*tree).extra_stat&2) != 2){
+		printf("%s",(*tree).Head+(*tree).IndicatorPtr);
+	}
 	if((*tree).RefNode != NULL){
 		if((*tree).RefNode->nval > 0){
 			if(conjR > 0){
