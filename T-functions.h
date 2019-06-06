@@ -579,7 +579,7 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 		}
 		/* TODO: cascade extra_stat */
 		int tmp_stat = 1;
-		//ExFunction_Recursive_Set_Obj(tree, (struct Tree *(*)())Set_status, (int *)&tmp_stat);
+		ExFunction_Recursive_Set_Obj(tree, (struct Tree *(*)())Set_status, (int *)&tmp_stat);	//testing
 		compiled++;
 	}else if(strncmp(tmp_head,"$~",2) == 0){
 		strcpy(out_head,tmp_head+2);
