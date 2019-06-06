@@ -536,11 +536,12 @@ int main(int argc, char **argv){
 	}
 	/* inner product */
 	if((*opt).Pprod == 1 && itop != NULL && otop != NULL){
-		EFLAG = 2 + 16;
+		EFLAG = 16;
 		(*_fopt).f_print_production = 1;
 		//printf("IN@production: ");
 		Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);	//これを実行しないとなぜか次が正常に実行されない
 		//printf("OUT@production: ");
+		EFLAG = 2 + 16;
 		Executor(otop,itop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
 	}
 
