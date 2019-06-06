@@ -1213,7 +1213,7 @@ struct Tree *ExFunction_Recursive_Set_Obj(struct Tree *tree, struct Tree *(*e_fu
 	int i;
 	(*e_function)(tree,obj);
 	for(i=0;i<(*tree).NextCount;i++){
-		ExFunction_Recursive_Set_Obj(tree,e_function,obj);
+		ExFunction_Recursive_Set_Obj((*tree).Next[i],e_function,obj);
 	}
 	return(tree);
 }
