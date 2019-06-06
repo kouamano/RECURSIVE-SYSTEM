@@ -304,7 +304,8 @@ int Print_UpR_Head(struct Tree *tree, char *buff){
 	len = strlen(buff);
 	return(len);
 }
-struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
+//struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
+struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt){
 	int sw = 0;
 	int dim_pos[2];
 	char *buff;
