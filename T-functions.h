@@ -1005,6 +1005,7 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){
 struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	/* Function_Print_Head の特殊型 */
 	/* 子要素も含めてprint */
+	/* TODO: 配列サイズごとにリスト化 */
 	int i;
 	int max_nval = 1;
 	max_nval = Function_Recursive_Get_nvalMax(tree);
