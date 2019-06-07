@@ -13,7 +13,8 @@ const char ctime[] = __TIME__;
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" option form 1 (multi): under construction.\n");
+	printf(" Under construction:\n");
+	printf("  - Block print (insert blacket) for inner product.\n");
 	printf("COMPILED:\n");
 	printf(" %s\n",ctime);
 	printf(" %s\n",cdate);
