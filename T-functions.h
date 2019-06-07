@@ -946,6 +946,7 @@ int *Function_Recursive_Get_nvalList(struct Tree *tree){
 	//TODO: add VAL to valList
 	//1. check same num
 	//2. add val
+
 	//Ref
 	if((*tree).RefNode != NULL){
 		VAL = (*tree).RefNode->nval;
