@@ -286,7 +286,7 @@ int Ins_DimStr(struct Tree *tree, int *dim_pos, char *buff){
 	free(minibuff);
 	return(len);
 }
-int Print_UpR_Head(struct Tree *tree, char *buff){
+int Print_UpRecursive_Head(struct Tree *tree, char *buff){
 	int sw;
 	int dim_pos[2];
 	int len;
@@ -301,7 +301,7 @@ int Print_UpR_Head(struct Tree *tree, char *buff){
 		if(sw == 2){
 			Ins_DimStr(tree,dim_pos,buff);
 		}
-		Print_UpR_Head((*tree).Parent,buff);
+		Print_UpRecursive_Head((*tree).Parent,buff);
 	}
 	len = strlen(buff);
 	return(len);
@@ -324,7 +324,7 @@ struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt){
 	}
 	buff[0] = '\0';
 	/* tmp -> dim */	
-	len = Print_UpR_Head(tree,buff);
+	len = Print_UpRecursive_Head(tree,buff);
 	if(((*tree).dimstr = malloc(sizeof(char) * (len + 1))) == NULL){
 		perror("[Fail]malloc@Detect_DimBlock.\n");
 		exit(1);
