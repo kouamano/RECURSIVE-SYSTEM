@@ -960,7 +960,6 @@ int *Function_Recursive_Get_nvalList(struct Tree *tree, int *valList, int *valCo
 	//2. add val
 	if(found != 0){
 		if((valList = realloc(valList, sizeof(int) * (*valCount + 1))) == NULL){
-
 			perror("[Fail]realloc@Function_Recursive_Get_nvalList.\n");
 		}
 		valList[*valCount] = VAL;
@@ -992,6 +991,7 @@ int *Function_Recursive_Get_nvalList(struct Tree *tree, int *valList, int *valCo
 			*valCount++;
 		}
 	}
+
 	return(valList);
 	//complete?
 }
