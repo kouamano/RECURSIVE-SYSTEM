@@ -18,6 +18,7 @@ cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 ./tq.o in=test_prd.1.ddf out=test_prd.2.ddl data=test.csv -FT -Pprod  -C
 ./tq.o in=test_prd.1.ddf out=test_prd.3.ddl data=test.csv -FT -Pprod  -C
 ./tq.o in=test_prd.1.ddf out=test_prd.4.ddl data=test.csv -FT -Pprod  -C
+./tq.o in=test_prd.1.ddf out=test_prd.5.ddl data=test.csv -FT -Pprod  -C
 
 ## コンバート
 上記
