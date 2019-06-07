@@ -944,7 +944,7 @@ int *Function_Recursive_Get_nvalList(struct Tree *tree, int *valList, int *valCo
 
 	/* Self */
 	VAL = (*tree).nval;
-	//TODO: add VAL to valList
+	// add VAL to valList
 	if(valList == NULL){
 		if((valList = malloc(sizeof(int) * 1)) == NULL){
 			perror("[Fail]malloc@Function_Recursive_Get_nvalList.\n");
@@ -969,7 +969,7 @@ int *Function_Recursive_Get_nvalList(struct Tree *tree, int *valList, int *valCo
 	/* Ref */
 	if((*tree).RefNode != NULL){
 		VAL = (*tree).RefNode->nval;
-		//TODO: add VAL to valList
+		// add VAL to valList
 		if(valList == NULL){
 			if((valList = malloc(sizeof(int) * 1)) == NULL){
 				perror("[Fail]malloc@Function_Recursive_Get_nvalList.\n");
@@ -1075,7 +1075,7 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 	max_nval = Function_Recursive_Get_nvalMax(tree);
 	for(i=0;i<max_nval;i++){
 		if(i != 0){
-			/*  条件分岐: 配列サイズごとに"),("を挿入する */
+			/* TODO: 条件分岐: 配列サイズごとに"),("を挿入する */
 			printf(",");
 		}
 		Function_Recursive_Print_nthVal(tree,i);
