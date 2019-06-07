@@ -937,7 +937,7 @@ int *Function_Recursive_Get_nvalList(struct Tree *tree){
 	int i;
 	int VAL = 0;
 	int valCount = 0;
-	int *valList;
+	int *valList = NULL;
 	for(i=0;i<(*tree).NextCount;i++){
 		valList = Function_Recursive_Get_nvalList((*tree).Next[i]);
 	}
