@@ -932,28 +932,68 @@ int Function_Recursive_Get_nvalMax(struct Tree *tree){
 	}
 	return(MAX);
 }
-int *Function_Recursive_Get_nvalList(struct Tree *tree){
+int *Function_Recursive_Get_nvalList(struct Tree *tree, int *valList, int *valCount){
 	//Under construction
 	int i;
 	int VAL = 0;
-	int valCount = 0;
-	int *valList = NULL;
+	//int valCount = 0;
+	//int *valList = NULL;
 	for(i=0;i<(*tree).NextCount;i++){
-		valList = Function_Recursive_Get_nvalList((*tree).Next[i]);
+		valList = Function_Recursive_Get_nvalList((*tree).Next[i],valList,valCount);
 	}
-	//Self
+
+	/* Self */
 	VAL = (*tree).nval;
 	//TODO: add VAL to valList
+	if(valList == NULL){
+		if((valList = malloc(sizeof(int) * 1)) == NULL){
+			perror("[Fail]malloc@Function_Recursive_Get_nvalList.\n");
+		}
+	}
 	//1. check same num
+	int found = 0;
+	for(i=0;i<*valCount;i++){
+		if(valList[i] == VAL){
+			found++;
+		}
+	}
 	//2. add val
+	if(found != 0){
+		if((valList = realloc(valList, sizeof(int) * (*valCount + 1))) == NULL){
 
-	//Ref
+			perror("[Fail]realloc@Function_Recursive_Get_nvalList.\n");
+		}
+		valList[*valCount] = VAL;
+		*valCount++;
+	}
+
+	/* Ref */
 	if((*tree).RefNode != NULL){
 		VAL = (*tree).RefNode->nval;
 		//TODO: add VAL to valList
+		if(valList == NULL){
+			if((valList = malloc(sizeof(int) * 1)) == NULL){
+				perror("[Fail]malloc@Function_Recursive_Get_nvalList.\n");
+			}
+		}
+		//1. check same num
+		int found = 0;
+		for(i=0;i<*valCount;i++){
+			if(valList[i] == VAL){
+				found++;
+			}
+		}
+		//2. add val
+		if(found != 0){
+			if((valList = realloc(valList, sizeof(int) * (*valCount + 1))) == NULL){
+				perror("[Fail]realloc@Function_Recursive_Get_nvalList.\n");
+			}
+			valList[*valCount] = VAL;
+			*valCount++;
+		}
 	}
-
 	return(valList);
+	//complete?
 }
 
 int print_singleVal(char *str){
