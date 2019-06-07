@@ -549,6 +549,7 @@ int main(int argc, char **argv){
 	if((*opt).test > 0){
 		/** 1 */
 		printf("\nThis is tests for inner product function.\n");
+		printf("\n====== start ======\n");
 		printf("\n===test===:::\n");
 		printf("6->");
 		printf(";");
@@ -573,6 +574,7 @@ int main(int argc, char **argv){
 		/** 2 */
 		Function_RecursiveCyclic_Print_IProductVal(otop,_fopt,_copt);
 		printf("\n");
+		printf("\n====== end ======\n");
 	}
 
 	/* finish */
