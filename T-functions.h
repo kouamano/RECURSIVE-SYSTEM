@@ -932,6 +932,29 @@ int Function_Recursive_Get_nvalMax(struct Tree *tree){
 	}
 	return(MAX);
 }
+int *Function_Recursive_Get_nvalList(struct Tree *tree){
+	//Under construction
+	int i;
+	int VAL = 0;
+	int valCount = 0;
+	int *valList;
+	for(i=0;i<(*tree).NextCount;i++){
+		valList = Function_Recursive_Get_nvalList((*tree).Next[i]);
+	}
+	//Self
+	VAL = (*tree).nval;
+	//TODO: add VAL to valList
+	//1. check same num
+	//2. add val
+	//Ref
+	if((*tree).RefNode != NULL){
+		VAL = (*tree).RefNode->nval;
+		//TODO: add VAL to valList
+	}
+
+	return(valList);
+}
+
 int print_singleVal(char *str){
 	int C;
 	int i;
