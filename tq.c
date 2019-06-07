@@ -516,7 +516,6 @@ int main(int argc, char **argv){
 			fclose(DATA);
 		}
 	}
-
 	/* outout-form file */
 	if(strlen((*opt).out) > 0){
 		/** open */
@@ -549,7 +548,7 @@ int main(int argc, char **argv){
 	/* check */
 	if((*opt).test > 0){
 		/** 1 */
-		printf("\nIt might cause SIGSEGV, because of test for under-construction function.\n");
+		printf("\nThis is tests for inner product function.\n");
 		printf("\n===test===:::\n");
 		printf("6->");
 		printf(";");
