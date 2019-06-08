@@ -934,6 +934,7 @@ int Function_Recursive_Get_nvalMax(struct Tree *tree){
 }
 int *Function_Recursive_Get_nvalList(struct Tree *tree, int *valList, int *valCount){
 	//Under construction
+	return(0);
 }
 
 int print_singleVal(char *str){
