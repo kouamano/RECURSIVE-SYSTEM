@@ -1015,6 +1015,10 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 	int max_nval = 1;
 	int *nval_list = NULL;
 	int nval_count = 0;
+	if((nval_list = malloc(sizeof(int) * 1)) == NULL){
+		perror("[Fail]malloc@Function_RecursiveCyclic_Print_IProductVal\n");
+		exit(1);
+	}
 	max_nval = Function_Recursive_Get_nvalMax(tree);
 	nval_count = Function_Recursive_Get_nvalList(tree,nval_list); //TODO
 	for(i=0;i<max_nval;i++){
