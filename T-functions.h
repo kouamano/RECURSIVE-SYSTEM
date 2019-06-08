@@ -940,6 +940,17 @@ int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList, int nval_s
 	int nval = 0;
 	int nval_count = nval_start;
 	//Self
+		nval = (*tree).nval;
+		if(nval > 0){
+			nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
+			if(nvalList == NULL){
+				perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
+				exit(1);
+			}
+			nvalList[nval_count] = nval;
+			nval_count++;
+		}
+
 	//Ref
 	nval = 0;
 	if((*tree).RefNode != NULL){
