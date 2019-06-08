@@ -932,23 +932,62 @@ int Function_Recursive_Get_nvalMax(struct Tree *tree){
 	}
 	return(MAX);
 }
-int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList){
+int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList, int nval_start){
 	//Under construction
 	//TODO: create nvalList
 	//TODO: get nval_count
 	int i;
 	int nval = 0;
-	int nval_count = 0;
+	int nval_count = nval_start;
+	int add = 0;
 	//Self
-	nval = (*tree).nval;
 	//Ref
+	nval = 0;
+	add = -1;
 	if((*tree).RefNode != NULL){
 		nval = (*tree).RefNode->nval;
+		printf("nvalr:%d:",nval);
 	}
-	for(i=0;i<(*tree).NextCount;i++){
-		Function_Recursive_Get_nvalList((*tree).Next[i],nvalList);
+	if(nval > 0){
+		printf("=2-1=");
+		for(i=0;i<nval_count;i++){
+			printf("[%dVS%d]",nvalList[i],nval);
+			if(nvalList[i] == nval){
+				add = 0;
+				printf("=2-2=");
+				break;
+			}else{
+				printf("=2-3=");
+				add = 1;
+			}
+		}
+	}
+	if(add == 1){
+				printf("=2-4=");
+		nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
+		if(nvalList == NULL){
+			perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
+			exit(1);
+		}
+		nvalList[nval_count] = nval;
+		nval_count++;
+	}else if(nval_count == 0 && nval > 0){
+		nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
+		if(nvalList == NULL){
+			perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
+			exit(1);
+		}
+		nvalList[nval_count] = nval;
+		nval_count++;
+
 	}
 
+	// Next
+	//int nval_up = 0;
+	for(i=0;i<(*tree).NextCount;i++){
+		nval_count += Function_Recursive_Get_nvalList((*tree).Next[i],nvalList,nval_count);
+	}
+	//nval_count = nval_count + nval_up;
 	return(nval_count);
 }
 
@@ -1035,7 +1074,13 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 		exit(1);
 	}
 	max_nval = Function_Recursive_Get_nvalMax(tree);
-	nval_count = Function_Recursive_Get_nvalList(tree,nval_list); //TODO
+	nval_count = Function_Recursive_Get_nvalList(tree,nval_list,0); //TODO
+	printf("NVALC:%d:",nval_count);	//TEST
+	printf("[");
+	for(i=0;i<nval_count;i++){
+		printf(",%d",nval_list[i]);
+	}
+	printf("]");
 	for(i=0;i<max_nval;i++){
 		if(i != 0){
 			/* TODO: 条件分岐: 配列サイズごとに"),("を挿入する */
