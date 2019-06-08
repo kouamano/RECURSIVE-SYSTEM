@@ -939,53 +939,25 @@ int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList, int nval_s
 	int i;
 	int nval = 0;
 	int nval_count = nval_start;
-	int add = 0;
 	//Self
 	//Ref
 	nval = 0;
-	add = -1;
 	if((*tree).RefNode != NULL){
-		nval = (*tree).RefNode->nval;
-		printf("nvalr:%d:",nval);
-	}
-	if(nval > 0){
-		printf("=2-1=");
-		for(i=0;i<nval_count;i++){
-			printf("[%dVS%d]",nvalList[i],nval);
-			if(nvalList[i] == nval){
-				add = 0;
-				printf("=2-2=");
-				break;
-			}else{
-				printf("=2-3=");
-				add = 1;
+		nval = (*(*tree).RefNode).nval;
+		if(nval > 0){
+			nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
+			if(nvalList == NULL){
+				perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
+				exit(1);
 			}
+			nvalList[nval_count] = nval;
+			nval_count++;
 		}
 	}
-	if(add == 1){
-				printf("=2-4=");
-		nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
-		if(nvalList == NULL){
-			perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
-			exit(1);
-		}
-		nvalList[nval_count] = nval;
-		nval_count++;
-	}else if(nval_count == 0 && nval > 0){
-		nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
-		if(nvalList == NULL){
-			perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
-			exit(1);
-		}
-		nvalList[nval_count] = nval;
-		nval_count++;
-
-	}
-
 	// Next
 	//int nval_up = 0;
 	for(i=0;i<(*tree).NextCount;i++){
-		nval_count += Function_Recursive_Get_nvalList((*tree).Next[i],nvalList,nval_count);
+		nval_count =+ Function_Recursive_Get_nvalList((*tree).Next[i],nvalList,nval_count);
 	}
 	//nval_count = nval_count + nval_up;
 	return(nval_count);
