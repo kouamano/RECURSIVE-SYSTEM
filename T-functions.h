@@ -1013,8 +1013,10 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 	/* TODO: 配列サイズごとにリスト化 */
 	int i;
 	int max_nval = 1;
+	int *nval_list = NULL;
+	int nval_count = 0;
 	max_nval = Function_Recursive_Get_nvalMax(tree);
-	//Function_Recursive_Get_nvalList()
+	nval_count = Function_Recursive_Get_nvalList(tree,nval_list); //TODO
 	for(i=0;i<max_nval;i++){
 		if(i != 0){
 			/* TODO: 条件分岐: 配列サイズごとに"),("を挿入する */
