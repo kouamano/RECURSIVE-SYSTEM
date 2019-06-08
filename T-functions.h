@@ -1059,7 +1059,8 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 	/* Function_Print_Head の特殊型 */
 	/* 子要素も含めてprint */
 	/* TODO: 配列サイズごとにリスト化 */
-	int i;
+	int i;	// for max_nval
+	int j;	// for nval_count
 	int max_nval = 1;
 	int *nval_list = NULL;
 	int nval_count = 0;
