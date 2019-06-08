@@ -942,6 +942,11 @@ int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList, int nval_s
 	//Self
 		nval = (*tree).nval;
 		if(nval > 0){
+			for(i=0;i<nval_count;i++){
+				if(nvalList[i] == nval){
+					goto EXIT_self;
+				}
+			}
 			nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
 			if(nvalList == NULL){
 				perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
@@ -950,12 +955,17 @@ int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList, int nval_s
 			nvalList[nval_count] = nval;
 			nval_count++;
 		}
-
+		EXIT_self:
 	//Ref
 	nval = 0;
 	if((*tree).RefNode != NULL){
 		nval = (*(*tree).RefNode).nval;
 		if(nval > 0){
+			for(i=0;i<nval_count;i++){
+				if(nvalList[i] == nval){
+					goto EXIT_ref;
+				}
+			}
 			nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
 			if(nvalList == NULL){
 				perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
@@ -965,6 +975,7 @@ int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList, int nval_s
 			nval_count++;
 		}
 	}
+	EXIT_ref:
 	// Next
 	//int nval_up = 0;
 	for(i=0;i<(*tree).NextCount;i++){
