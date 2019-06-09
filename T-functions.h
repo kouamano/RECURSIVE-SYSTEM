@@ -1070,19 +1070,45 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 	}
 	max_nval = Function_Recursive_Get_nvalMax(tree);
 	nval_count = Function_Recursive_Get_nvalList(tree,nval_list,0); //TODO
+	/*
 	printf("NVALC:%d:",nval_count);	//TEST
 	printf("[");
 	for(i=0;i<nval_count;i++){
 		printf(",%d",nval_list[i]);
 	}
 	printf("]");
+	*/
+	for(i=0;i<nval_count-1;i++){
+		printf("(");
+	}
 	for(i=0;i<max_nval;i++){
 		if(i != 0){
 			/* TODO: 条件分岐: 配列サイズごとに"),("を挿入する */
+			for(j=0;j<nval_count;j++){
+				//printf("=%d=",nval_list[j]);
+				//printf("=:%d:=",i%nval_list[j]);
+				//printf("=::%d::=",nval_list[j]%i);
+				if(i%nval_list[j] == 0){
+					printf(")");
+				}
+			}
 			printf(",");
+			for(j=0;j<nval_count;j++){
+				//printf("=%d=",nval_list[j]);
+				//printf("=:%d:=",i%nval_list[j]);
+				//printf("=::%d::=",nval_list[j]%i);
+				if(i%nval_list[j] == 0){
+					printf("(");
+				}
+			}
+
 		}
 		Function_Recursive_Print_nthVal(tree,i);
 	}
+	for(i=0;i<nval_count-1;i++){
+		printf(")");
+	}
+
 	//print後は子ノードを切る
 	if(((*tree).extra_stat&2) != 2){
 		(*tree).extra_stat = (*tree).extra_stat + 2;
