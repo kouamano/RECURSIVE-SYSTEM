@@ -5,7 +5,7 @@ bash conv-check.script
 cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 
 ### エスケープ処理
-#### バックスラッシュ
+#### クオーティング
 - T式
 ./tq.o in=test_qescape.1.t -FT -Pin
 ./tq.o in=test_qescape.2.t -FT -Pin
