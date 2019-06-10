@@ -1,12 +1,5 @@
 # tq のテスト
-## クイックチェック
-cd /home/kamano/gitsrc/RECURSIVE-SYSTEM
-- コンバート
-bash conv-check.script
-cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
-- バインド
-./tq.o in=test.ddf -FT out=test.ddl data=test.csv -Pin -Pout
-## 開発中のチェック
+## 単体テスト
 ### 内積
 ./tq.o in=test.ddf out=test.ddl -Pin -Pout -Pprod -FT -test
 ./tq.o in=test.ddf out=test.ddl -Pin -Pout -Pprod -FT data=test.csv -test
@@ -20,12 +13,13 @@ cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 ./tq.o in=test_prd.1.ddf out=test_prd.4.ddl data=test.csv -FT -Pprod  -C
 ./tq.o in=test_prd.1.ddf out=test_prd.5.ddl data=test.csv -FT -Pprod  -C
 
-## コンバート
-上記
+### コンバート
+bash conv-check.script
+cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 
-## エスケープ処理
-### バックスラッシュ
-### ダブルクオート
+
+### エスケープ処理
+#### バックスラッシュ
 - T式
 ./tq.o in=test_qescape.1.t -FT -Pin
 ./tq.o in=test_qescape.2.t -FT -Pin
@@ -34,7 +28,7 @@ cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 - バインド
 ./tq.o in=test.ddf -FT out=test.ddl data=test_qesc.csv -Pin -Pout
 
-## コンパイル
+### コンパイル
 - -C
 ./tq.o in=test_compile.t -C -FT -Pin    
  => $~List(List(List,List,List,List))
@@ -44,41 +38,69 @@ echo '$``List' | ./tq.o in=/dev/stdin -FT -C -Pin
 echo '$``List($4)' | ./tq.o in=/dev/stdin -FT -C -Pin   
  => "List($4)"
 
-## アンパック
+### アンパック
 ./tq.o in=test_unpack.t -FT -Pin -C
  => $($1,$2,List,$1,$2)
 
-## リテラル化
+### リテラル化
 ./tq.o in=test_riteraltree.t -FT -Pin -C
 ./tq.o in=test_ritelal-unpack.t -FT -Pin -C
 
-## サーチ
+### サーチ
 - ポジション指定
 ./tq.o in=test.t Sp=0,1 -FT -Pin
 
-## データバインド
-### 配列指定のあるリーフノードにバインドされる
+### データバインド
+-
+./tq.o in=test.ddf -FT out=test.ddl data=test.csv -Pin -Pout
+- 配列指定のあるリーフノードにバインドされる
 ./tq.o in=test_bind.t  data=test.csv -FT -Pin
  => $TOP($X$List($LEAF,$LEAF[]@(Length),$LEAF[2]@(Weight,mm)),$X$List[2]($LEAF[2]@(kg,1,2,322)))
-### 大型配列のバインド 1.6G => 1.2G(4億データポイント)
--
-time ./tq.o in=large-test_bind.t -FT data=large-test.csv data_buff=2000000000 
-4 Nodes were operated.
-real    0m14.931s
-user    0m14.010s
-sys     0m0.920s
-@ 1.2G mem
--
-time ./tq.o in=large-test_bind.t -FT -Pin data=large-test.csv data_buff=2000000000 | ./tq.o in=/dev/stdin
-4 Nodes were operated.
-400000004 Nodes were operated.
-real    2m9.090s
-user    1m33.104s
-sys     0m39.314s
-@ 74G mem
 
-### パフォーマンス比較 
-#### 1.2億ノード
+### レファレンス
+#### 木
+./tq.o in=test_ref-tree.ddf -Pin -FT
+#### セルフ
+./tq.o in=test_ref.1.t -FMa -FT -Fh -Pin
+- 完全グラフ
+./tq.o in=test_ref-graph.4.t -Pin -FT -FMa
+ => #1$1($#2@#2$2($#1@#1$1,$#3@#3$3,$#4@#4$4),#3$3($#1@#1$1,$#2@#2$2,$#4@#4$4),#4$4($#1@#1$1,#2$2,$#3@#3$3))
+====multiline====>
+[0],1,,,,5,,,,9,,11,,
+0,[1->11],2,3,4,5,,,,9,,,,
+,,[2->0],,,,,,,,,,,
+,,,[3->5],,,,,,,,,,
+,,,,[4->9],,,,,,,,,
+0,,,,,[5],6,7,8,9,,11,,
+,,,,,,[6->0],,,,,,,
+,,,,,,,[7->11],,,,,,
+,,,,,,,,[8->9],,,,,
+0,,,,,5,,,,[9],10,11,12,
+,,,,,,,,,,[10->0],,,
+,,,,,,,,,,,[11],,
+,,,,,,,,,,,,[12->5],
+
+#### セルフ+ output
+./tq.o in=test_ref.1.t out=test_ref.1.ot -FMa -FT -Fh -Pin -Pout
+
+#### セルフ+ output + data    
+- フラットパターン    
+./tq.o in=test_ref.2.t out=test_ref.2.ot -FT -Pin -Pout data=test.csv
+- 入れ子パターン
+./tq.o in=test_ref.2.t out=test_ref.2-1.ot -FT -Pin -Pout data=test.csv
+- out形式で参照をリストの入れ子に
+./tq.o in=test_ref.2.t out=test_refR.2.ot -FT -Pin -Pout data=test.csv
+- 再帰レファレンス($#9)
+./tq.o in=test_ref.1.t out=test_ref.1.ot -FT -Pin -Pout data=test.csv
+ => $#0@#0$0($#1@#1$1[5]@(322,4,5,68,7)($#0@#0$0,$#2@#2$2),$#2@#2$2($#1@#1$1[5]@(322,4,5,68,7),$#0@#0$0,$#9@#9$#2[3]@#2$2@(Length,Weight,mm,kg,1,2)))
+- 複合レファレンス
+./tq.o in=test_ref.3.ddf data=test.csv -FT -Pin
+ => $TOP(#1$1[2](#2$2[2]@(Length,Weight,mm,kg)),$#2[3]@@#2$2[2]@(Length,Weight,mm,kg)(1,2,322))
+- 複合レファレンス(2)
+./tq.o out=test_complex-ref.ddl -Pout -FT in=test_complex-ref.ddf data=test.csv
+
+## パフォーマンス
+### 1.2億ノード
 - 坂本さん、パフォーマンスはこれと比べてください。
 time ./tq.o in=lllarge-single-test.t buff=30
 124653854 Nodes were operated.
@@ -99,54 +121,29 @@ real    2m25.157s
 user    2m5.473s
 sys     0m20.885s
 @ 36G mem
-#### 4.9億ノード
+### 4.9億ノード
 time ./tq.o in=lllarge-single-test.t.5oku.sak -FT
 498615409 Nodes were operated.
 real    5m37.502s
 user    3m20.310s
 sys     2m17.179s
 @ 83G mem
+### 大型配列のバインド 1.6G => 1.2G(4億データポイント)
+-
+time ./tq.o in=large-test_bind.t -FT data=large-test.csv data_buff=2000000000 
+4 Nodes were operated.
+real    0m14.931s
+user    0m14.010s
+sys     0m0.920s
+@ 1.2G mem
+-
+time ./tq.o in=large-test_bind.t -FT -Pin data=large-test.csv data_buff=2000000000 | ./tq.o in=/dev/stdin
+4 Nodes were operated.
+400000004 Nodes were operated.
+real    2m9.090s
+user    1m33.104s
+sys     0m39.314s
+@ 74G mem
 
 
-## レファレンス
-### 木
-./tq.o in=test_ref-tree.ddf -Pin -FT
-### セルフ
-./tq.o in=test_ref.1.t -FMa -FT -Fh -Pin
-- 完全グラフ
-./tq.o in=test_ref-graph.4.t -Pin -FT -FMa
- => #1$1($#2@#2$2($#1@#1$1,$#3@#3$3,$#4@#4$4),#3$3($#1@#1$1,$#2@#2$2,$#4@#4$4),#4$4($#1@#1$1,#2$2,$#3@#3$3))
-====multiline====>
-[0],1,,,,5,,,,9,,11,,
-0,[1->11],2,3,4,5,,,,9,,,,
-,,[2->0],,,,,,,,,,,
-,,,[3->5],,,,,,,,,,
-,,,,[4->9],,,,,,,,,
-0,,,,,[5],6,7,8,9,,11,,
-,,,,,,[6->0],,,,,,,
-,,,,,,,[7->11],,,,,,
-,,,,,,,,[8->9],,,,,
-0,,,,,5,,,,[9],10,11,12,
-,,,,,,,,,,[10->0],,,
-,,,,,,,,,,,[11],,
-,,,,,,,,,,,,[12->5],
-
-### セルフ+ output
-./tq.o in=test_ref.1.t out=test_ref.1.ot -FMa -FT -Fh -Pin -Pout
-
-### セルフ+ output + data    
-- フラットパターン    
-./tq.o in=test_ref.2.t out=test_ref.2.ot -FT -Pin -Pout data=test.csv
-- 入れ子パターン
-./tq.o in=test_ref.2.t out=test_ref.2-1.ot -FT -Pin -Pout data=test.csv
-- out形式で参照をリストの入れ子に
-./tq.o in=test_ref.2.t out=test_refR.2.ot -FT -Pin -Pout data=test.csv
-- 再帰レファレンス($#9)
-./tq.o in=test_ref.1.t out=test_ref.1.ot -FT -Pin -Pout data=test.csv
- => $#0@#0$0($#1@#1$1[5]@(322,4,5,68,7)($#0@#0$0,$#2@#2$2),$#2@#2$2($#1@#1$1[5]@(322,4,5,68,7),$#0@#0$0,$#9@#9$#2[3]@#2$2@(Length,Weight,mm,kg,1,2)))
-- 複合レファレンス
-./tq.o in=test_ref.3.ddf data=test.csv -FT -Pin
- => $TOP(#1$1[2](#2$2[2]@(Length,Weight,mm,kg)),$#2[3]@@#2$2[2]@(Length,Weight,mm,kg)(1,2,322))
-- 複合レファレンス(2)
-./tq.o out=test_complex-ref.ddl -Pout -FT in=test_complex-ref.ddf data=test.csv
 
