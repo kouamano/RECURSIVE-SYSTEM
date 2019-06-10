@@ -128,43 +128,6 @@ int AnalyzeHead(struct Tree *tree){
 	//fprintf(stderr,"labeled:%d.\n",labeled);
 	return(0);
 }
-int Detect_DimRegion(const char *head, int *pos){
-	int len;
-	int dim_s = -1;
-	int dim_e = -1;
-	int esc = 0;
-	int i;
-	int ret = 0;
-	len = strlen(head);
-	for(i=0;i<len;i++){
-		//if(head[i] == '\\'){
-		//	esc = 1;
-		if(head[i] == '"' && esc == 0){
-        		esc = 1;
-		}else if(head[i] == '"' && esc == 1){
-		        esc = 0;
-		}else if(head[i] == '[' && esc == 0){
-			dim_s = i;
-			esc = 0;
-		}else if(head[i] == ']' && esc == 0){
-			dim_e = i;
-			esc = 0;
-		}else{
-			esc = 0;
-		}
-	}
-	pos[0] = dim_s;
-	pos[1] = dim_e;
-	if(dim_s > -1){
-		ret++;
-	}
-	if(dim_e > -1){
-		ret++;
-	}
-	if(ret == 2){
-	}
-	return(ret);
-}
 /** reference analysis */
 struct Tree *Function_Recursive_SearchBind_LabelNode(struct Tree *tree, char type, int label, struct Tree *binded){	//for referred
 	int i;
@@ -206,6 +169,43 @@ int get_ref(char *head, char *type, int *label){	//for binded
 	return(0);
 }
 /** detecttion function */
+int Detect_DimRegion(const char *head, int *pos){
+	int len;
+	int dim_s = -1;
+	int dim_e = -1;
+	int esc = 0;
+	int i;
+	int ret = 0;
+	len = strlen(head);
+	for(i=0;i<len;i++){
+		//if(head[i] == '\\'){
+		//	esc = 1;
+		if(head[i] == '"' && esc == 0){
+        		esc = 1;
+		}else if(head[i] == '"' && esc == 1){
+		        esc = 0;
+		}else if(head[i] == '[' && esc == 0){
+			dim_s = i;
+			esc = 0;
+		}else if(head[i] == ']' && esc == 0){
+			dim_e = i;
+			esc = 0;
+		}else{
+			esc = 0;
+		}
+	}
+	pos[0] = dim_s;
+	pos[1] = dim_e;
+	if(dim_s > -1){
+		ret++;
+	}
+	if(dim_e > -1){
+		ret++;
+	}
+	if(ret == 2){
+	}
+	return(ret);
+}
 int get_nval(char *str){
 	int i;
 	int len;
