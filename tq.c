@@ -548,34 +548,7 @@ int main(int argc, char **argv){
 
 	/* check */
 	if((*opt).test > 0){
-		/** 1 */
-		printf("\nThis is tests for inner product function.\n");
-		printf("\n====== start ======\n");
-		printf("\n===test===:::\n");
-		printf("6->");
-		printf(";");
-		Function_Print_nthVal(itop,6);
-		printf("\n:::===/test===\n");
-		printf("\n===test===:::\n");
-		printf("8->");
-		printf(";");
-		Function_Print_nthVal(itop,8);
-		printf("\n:::===/test===\n");
-		printf("\n===test===:::\n");
-		printf("18->");
-		printf(";");
-		Function_Recursive_Print_nthVal(itop,18);
-		printf(";");
-		int i;
-		for(i=0;i<19;i++){
-			Function_Recursive_Print_nthVal(otop,i);
-			printf("\n");
-		}
-		printf("\n:::===/test===\n");
-		/** 2 */
-		Function_RecursiveCyclic_Print_IProductVal(otop,_fopt,_copt);
-		printf("\n");
-		printf("\n====== end ======\n");
+		printf("No test code.\n");
 	}
 
 	/* finish */

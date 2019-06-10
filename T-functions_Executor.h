@@ -20,9 +20,7 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 		}
 		/** inner product of binded data */
 		if((EXEC_FLAG&16) == 16){
-			//printf("Option under construction (production) was selected:\n");
                         ExFunction_Recursive(top,(struct Tree *(*)())Assign_RefedValPtr,_opt,_fopt,_copt);
-			//return(NULL);
 		}
 		/** print */
 		if((EXEC_FLAG&2) == 2){
@@ -93,17 +91,6 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 				printf("\n====multiline====>\n");
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_C, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_C, (struct Tree *(*)())Function_Print_Bclose_C, _opt,_fopt,_copt,SN);
 			}
-			/*** apply production print */
-			/*** 使わないはず */
-			/*
-			if((*_fopt).f_print_production == 1){
-				printf("\n====production====>\n");
-				printf("Under construction.\n");
-				int MAX = 0;
-				MAX = Function_Recursive_Get_nvalMax(hit_tree);
-				printf("MAX-nval:%d:\n",MAX);
-			}
-			*/
 			/*** apply status print */
                         if((*_fopt).f_print_status == 1){
 				printf("\n====multiline====>\n");
