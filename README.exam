@@ -1,22 +1,8 @@
 # tq のテスト
 ## 単体テスト
-### 内積
-./tq.o in=test.ddf out=test.ddl -Pin -Pout -Pprod -FT -test
-./tq.o in=test.ddf out=test.ddl -Pin -Pout -Pprod -FT data=test.csv -test
-./tq.o in=test-small.ddf out=test-small.ddl -Pin -Pout -Pprod -FT data=test_escape.csv  -test
-./tq.o in=test_prod.ddf out=test_prod.ddl -Pin -Pout -Pprod -FT -Fst data=test_escape.csv -test
-./tq.o in=test_prod.ddf out=test_prod.ddl   -FT  data=test_escape.csv -Pprod
-=====
-./tq.o in=test_prd.1.ddf out=test_prd.1.ddl data=test.csv -FT -Pprod  -C
-./tq.o in=test_prd.1.ddf out=test_prd.2.ddl data=test.csv -FT -Pprod  -C
-./tq.o in=test_prd.1.ddf out=test_prd.3.ddl data=test.csv -FT -Pprod  -C
-./tq.o in=test_prd.1.ddf out=test_prd.4.ddl data=test.csv -FT -Pprod  -C
-./tq.o in=test_prd.1.ddf out=test_prd.5.ddl data=test.csv -FT -Pprod  -C
-
 ### コンバート
 bash conv-check.script
 cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
-
 
 ### エスケープ処理
 #### バックスラッシュ
@@ -45,10 +31,6 @@ echo '$``List($4)' | ./tq.o in=/dev/stdin -FT -C -Pin
 ### リテラル化
 ./tq.o in=test_riteraltree.t -FT -Pin -C
 ./tq.o in=test_ritelal-unpack.t -FT -Pin -C
-
-### サーチ
-- ポジション指定
-./tq.o in=test.t Sp=0,1 -FT -Pin
 
 ### データバインド
 -
@@ -98,6 +80,24 @@ echo '$``List($4)' | ./tq.o in=/dev/stdin -FT -C -Pin
  => $TOP(#1$1[2](#2$2[2]@(Length,Weight,mm,kg)),$#2[3]@@#2$2[2]@(Length,Weight,mm,kg)(1,2,322))
 - 複合レファレンス(2)
 ./tq.o out=test_complex-ref.ddl -Pout -FT in=test_complex-ref.ddf data=test.csv
+
+### 内積
+./tq.o in=test.ddf out=test.ddl -Pin -Pout -Pprod -FT -test
+./tq.o in=test.ddf out=test.ddl -Pin -Pout -Pprod -FT data=test.csv -test
+./tq.o in=test-small.ddf out=test-small.ddl -Pin -Pout -Pprod -FT data=test_escape.csv  -test
+./tq.o in=test_prod.ddf out=test_prod.ddl -Pin -Pout -Pprod -FT -Fst data=test_escape.csv -test
+./tq.o in=test_prod.ddf out=test_prod.ddl   -FT  data=test_escape.csv -Pprod
+=====
+./tq.o in=test_prd.1.ddf out=test_prd.1.ddl data=test.csv -FT -Pprod  -C
+./tq.o in=test_prd.1.ddf out=test_prd.2.ddl data=test.csv -FT -Pprod  -C
+./tq.o in=test_prd.1.ddf out=test_prd.3.ddl data=test.csv -FT -Pprod  -C
+./tq.o in=test_prd.1.ddf out=test_prd.4.ddl data=test.csv -FT -Pprod  -C
+./tq.o in=test_prd.1.ddf out=test_prd.5.ddl data=test.csv -FT -Pprod  -C
+
+### サーチ
+- ポジション指定
+./tq.o in=test.t Sp=0,1 -FT -Pin
+
 
 ## パフォーマンス
 ### 1.2億ノード
