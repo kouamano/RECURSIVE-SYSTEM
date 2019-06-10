@@ -168,7 +168,8 @@ int get_ref(char *head, char *type, int *label){	//for binded
 	}
 	return(0);
 }
-/** detecttion function */
+
+/* restructure functions */
 int Detect_DimRegion(const char *head, int *pos){
 	int len;
 	int dim_s = -1;
@@ -221,8 +222,6 @@ int get_nval(char *str){
 	}
 	return(count);
 }
-
-/* restructure functions */
 int Assign_RefedValPtr(struct Tree *tree){	// for product
 	if(tree == NULL){
 		return(0);
