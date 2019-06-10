@@ -769,7 +769,6 @@ struct Tree *Function_Print_Bopen_JS(struct Tree *tree, struct function_options 
 				}else{
 					printf("[");	//normal case
 				}
-				//printf("[");
 			}
 		}
 	}
@@ -920,9 +919,6 @@ int Function_Recursive_Get_nvalMax(struct Tree *tree){
 	return(MAX);
 }
 int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList, int nval_start){
-	//Under construction
-	//TODO: create nvalList
-	//TODO: get nval_count
 	int i;
 	int nval = 0;
 	int nval_count = nval_start;
@@ -1002,7 +998,6 @@ struct Tree *Function_Print_nthVal(struct Tree *tree, int nth){
 	return(tree);
 }
 struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){
-	// Under test
 	int i;
 	int conjR = 0;
 	if((*tree).NCself > 1){
@@ -1076,7 +1071,6 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 	for(i=0;i<nval_count-1;i++){
 		printf(")");
 	}
-
 	//print後は子ノードを切る
 	if(((*tree).extra_stat&2) != 2){
 		(*tree).extra_stat = (*tree).extra_stat + 2;
@@ -1084,7 +1078,7 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 	return(tree);
 }
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	/* 特殊型にFunction_Print_ProductValあり */
+	/* 特殊型にFunction_Print_ProductValあり、上位関数で切り替え */
 	struct Tree *ins_head = NULL;
 	char target_type = '\0';
 	int target_label = -1;
@@ -1111,7 +1105,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		printf("%s",(*tree).Head);	//normal
 	}else if((*_copt).c_counter > 0){
 		printf("%s",tmp_str);
-		free(tmp_str);	//test
+		free(tmp_str);
 	}else{
 		printf("%s",(*tree).Head);	//normal
 	}
