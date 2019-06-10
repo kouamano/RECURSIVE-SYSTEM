@@ -170,6 +170,42 @@ int get_ref(char *head, char *type, int *label){	//for binded
 }
 
 /* restructure functions */
+int get_nval(char *str){
+	int i;
+	int len;
+	int count = 1;
+	int tmpval = 1;
+	len = strlen(str);
+	for(i=0;i<len;i++){
+		if(str[i] == '[' || str[i] == ','){
+			tmpval = 1;
+			sscanf(str+i+1,"%d",&tmpval);
+			count = count*tmpval;
+		}
+	}
+	return(count);
+}
+int Add_DimStr(struct Tree *tree, int *dim_pos, char *buff){
+	int len;
+	len = strlen(buff);
+	snprintf(buff+len,dim_pos[1]-dim_pos[0]+1,"%s",(*tree).Head+dim_pos[0]);
+	return(len);
+}
+int Ins_DimStr(struct Tree *tree, int *dim_pos, char *buff){
+	int len;
+	char *minibuff;
+	if((minibuff = malloc(sizeof(char) * LEN)) == NULL){
+		perror("[Fail]malloc@Ins_DimStr");
+		exit(1);
+	}
+	/* currentbuff -> minibuff */
+	strcpy(minibuff,buff);
+	snprintf(buff,dim_pos[1]-dim_pos[0]+1,"%s",(*tree).Head+dim_pos[0]);
+	len = strlen(buff);
+	strcpy(buff+len,minibuff);
+	free(minibuff);
+	return(len);
+}
 int Detect_DimRegion(const char *head, int *pos){
 	int len;
 	int dim_s = -1;
@@ -206,42 +242,6 @@ int Detect_DimRegion(const char *head, int *pos){
 	if(ret == 2){
 	}
 	return(ret);
-}
-int get_nval(char *str){
-	int i;
-	int len;
-	int count = 1;
-	int tmpval = 1;
-	len = strlen(str);
-	for(i=0;i<len;i++){
-		if(str[i] == '[' || str[i] == ','){
-			tmpval = 1;
-			sscanf(str+i+1,"%d",&tmpval);
-			count = count*tmpval;
-		}
-	}
-	return(count);
-}
-int Add_DimStr(struct Tree *tree, int *dim_pos, char *buff){
-	int len;
-	len = strlen(buff);
-	snprintf(buff+len,dim_pos[1]-dim_pos[0]+1,"%s",(*tree).Head+dim_pos[0]);
-	return(len);
-}
-int Ins_DimStr(struct Tree *tree, int *dim_pos, char *buff){
-	int len;
-	char *minibuff;
-	if((minibuff = malloc(sizeof(char) * LEN)) == NULL){
-		perror("[Fail]malloc@Ins_DimStr");
-		exit(1);
-	}
-	/* currentbuff -> minibuff */
-	strcpy(minibuff,buff);
-	snprintf(buff,dim_pos[1]-dim_pos[0]+1,"%s",(*tree).Head+dim_pos[0]);
-	len = strlen(buff);
-	strcpy(buff+len,minibuff);
-	free(minibuff);
-	return(len);
 }
 int SPrint_UpRecursive_Head(struct Tree *tree, char *buff){
 	int sw;
