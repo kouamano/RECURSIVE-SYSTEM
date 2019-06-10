@@ -418,6 +418,7 @@ int Function_Bind_Data(FILE *DATA, struct Tree *tree, struct options *_opt, stru
 	free(buff);
         return(0);
 }
+
 struct Tree *Create_Node(int _ser, int H_size){
 	struct Tree *tree;
 	if((tree = malloc(sizeof(struct Tree) * 1)) == NULL){
@@ -475,6 +476,7 @@ struct Tree *Set_status(struct Tree *tree, int *bit){
 	}
 	return(tree);
 }
+
 /* compile functions */
 char *Function_Clear_Head(struct Tree *tree){
 	char *tmp_head;
@@ -964,7 +966,6 @@ int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList, int nval_s
 	}
 	return(nval_count);
 }
-
 int print_singleVal(char *str){
 	int C;
 	int i;
