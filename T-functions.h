@@ -1,3 +1,7 @@
+/* README */
+/* //%P : print-function which contains NO converter. */
+
+/* program */
 /* prottype */
 struct Tree *Executor(struct Tree *, struct Tree *, struct Tree *, int, int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);
 
