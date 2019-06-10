@@ -137,8 +137,12 @@ int Detect_DimRegion(const char *head, int *pos){
 	int ret = 0;
 	len = strlen(head);
 	for(i=0;i<len;i++){
-		if(head[i] == '\\'){
-			esc = 1;
+		//if(head[i] == '\\'){
+		//	esc = 1;
+		if(head[i] == '"' && esc == 0){
+        		esc = 1;
+		}else if(head[i] == '"' && esc == 1){
+		        esc = 0;
 		}else if(head[i] == '[' && esc == 0){
 			dim_s = i;
 			esc = 0;
