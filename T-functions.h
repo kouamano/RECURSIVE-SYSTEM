@@ -253,7 +253,6 @@ int Assign_RefedValPtr(struct Tree *tree){	// for product
 		}
 	}
 	return(0);
-	//finish??
 }
 void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred){
 	int i;
@@ -831,14 +830,11 @@ struct Tree *Function_Print_Bopen_C(struct Tree *tree, struct function_options *
 struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
 			if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8){	// for unpack
-				//printf("");
 				;
 			}else{
 				printf(")");	//normal case
 			}
-			/* for quating */
-			//if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$``",3) == 0){
-			if((*_copt).c_counter > 0 && ((*tree).extra_stat&4) == 4){
+			if((*_copt).c_counter > 0 && ((*tree).extra_stat&4) == 4){	// for quating
 				printf("\"");
 			}
 	}
@@ -847,14 +843,11 @@ struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options 
 struct Tree *Function_Print_Bclose_S(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
 			if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8){	// for unpack
-				//printf("");
 				;
 			}else{
 				printf(")");	//normal case
 			}
-			/* for quating */
-			//if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$``",3) == 0){
-			if((*_copt).c_counter > 0 && ((*tree).extra_stat&4) == 4){
+			if((*_copt).c_counter > 0 && ((*tree).extra_stat&4) == 4){	// for quating
 				printf("\"");
 			}
 	}
@@ -863,12 +856,10 @@ struct Tree *Function_Print_Bclose_S(struct Tree *tree, struct function_options 
 struct Tree *Function_Print_Bclose_WL(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
 			if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8){	// for unpack
-				//printf("");
 				;
 			}else{
 				printf("]");	//normal case
 			}
-			//if((*_copt).c_counter > 0 && strncmp((*tree).Head,"$``",3) == 0){	// for quating
 			if((*_copt).c_counter > 0 && ((*tree).extra_stat&4) == 4){	// for quating
 				printf("\"");
 			}
@@ -973,11 +964,9 @@ int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList, int nval_s
 	}
 	EXIT_ref:
 	// Next
-	//int nval_up = 0;
 	for(i=0;i<(*tree).NextCount;i++){
 		nval_count =+ Function_Recursive_Get_nvalList((*tree).Next[i],nvalList,nval_count);
 	}
-	//nval_count = nval_count + nval_up;
 	return(nval_count);
 }
 
