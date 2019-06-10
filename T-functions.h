@@ -1,5 +1,6 @@
 /* README */
 /* //%P : print-function which contains NO converter. */
+/* //%I : incomplete function. */
 
 /* program */
 /* prottype */
@@ -1001,7 +1002,7 @@ struct Tree *Function_Print_nthVal(struct Tree *tree, int nth){
 	}
 	return(tree);
 }
-struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){
+struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){ //%P
 	int i;
 	int conjR = 0;
 	if((*tree).NCself > 1){
@@ -1039,7 +1040,7 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){
 	return(tree);
 }
 /** Head */
-struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%P
 	/* Function_Print_Head の特殊型 */
 	/* 子要素も含めてprint */
 	int i;	// for max_nval
@@ -1081,7 +1082,7 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 	}
 	return(tree);
 }
-struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%P
 	/* 特殊型にFunction_Print_ProductValあり、上位関数で切り替え */
 	struct Tree *ins_head = NULL;
 	char target_type = '\0';
@@ -1154,7 +1155,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 
 	return(tree);
 }
-struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%I
 	int sw = 0;
 	int *dim_pos;
 	int head_len = 0;
@@ -1197,7 +1198,7 @@ struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *
 	}
 	return(tree);
 }
-struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%I
 	int sw = 0;
 	int *dim_pos;
 	int head_len = 0;
@@ -1239,7 +1240,7 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 	}
 	return(tree);
 }
-struct Tree *Function_Print_Head_X(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+struct Tree *Function_Print_Head_X(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%I
 	if((*tree).NextCount == 0){
 		/* compile */
 		if((*_copt).c_counter > 0){
