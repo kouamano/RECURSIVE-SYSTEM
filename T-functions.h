@@ -222,37 +222,6 @@ int get_nval(char *str){
 	}
 	return(count);
 }
-int Assign_RefedValPtr(struct Tree *tree){	// for product
-	if(tree == NULL){
-		return(0);
-	}
-	if((*tree).valstr == NULL){
-		return(0);
-	}
-	if((*tree).nval > 0){
-		if(((*tree).valPtr = malloc(sizeof(int) * (*tree).nval)) == NULL){
-			perror("[Fail]malloc@Assign_RefedValPtr().\n");
-			exit(1);
-		}
-		int i;
-		int len = 0;
-		char C = '\0';
-		int ESC = 0;
-		int count = 0;
-		len = strlen((*tree).valstr);
-		(*tree).valPtr[count] = 0;
-		count++;
-		for(i=0;i<len;i++){
-			C = (*tree).valstr[i];
-			if(C == DD && ESC == 0){
-				(*tree).valPtr[count] = i + 1;
-				count++;
-			}
-			#include "escape_sw.c"
-		}
-	}
-	return(0);
-}
 void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred){
 	int i;
 	char target_type;
@@ -417,6 +386,37 @@ int Function_Bind_Data(FILE *DATA, struct Tree *tree, struct options *_opt, stru
         }
 	free(buff);
         return(0);
+}
+int Assign_RefedValPtr(struct Tree *tree){	// for product
+	if(tree == NULL){
+		return(0);
+	}
+	if((*tree).valstr == NULL){
+		return(0);
+	}
+	if((*tree).nval > 0){
+		if(((*tree).valPtr = malloc(sizeof(int) * (*tree).nval)) == NULL){
+			perror("[Fail]malloc@Assign_RefedValPtr().\n");
+			exit(1);
+		}
+		int i;
+		int len = 0;
+		char C = '\0';
+		int ESC = 0;
+		int count = 0;
+		len = strlen((*tree).valstr);
+		(*tree).valPtr[count] = 0;
+		count++;
+		for(i=0;i<len;i++){
+			C = (*tree).valstr[i];
+			if(C == DD && ESC == 0){
+				(*tree).valPtr[count] = i + 1;
+				count++;
+			}
+			#include "escape_sw.c"
+		}
+	}
+	return(0);
 }
 
 struct Tree *Create_Node(int _ser, int H_size){
