@@ -1043,7 +1043,6 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){
 struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	/* Function_Print_Head の特殊型 */
 	/* 子要素も含めてprint */
-	/* TODO: 配列サイズごとにリスト化 */
 	int i;	// for max_nval
 	int j;	// for nval_count
 	int max_nval = 1;
@@ -1055,38 +1054,22 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 	}
 	max_nval = Function_Recursive_Get_nvalMax(tree);
 	nval_count = Function_Recursive_Get_nvalList(tree,nval_list,0); //TODO
-	/*
-	printf("NVALC:%d:",nval_count);	//TEST
-	printf("[");
-	for(i=0;i<nval_count;i++){
-		printf(",%d",nval_list[i]);
-	}
-	printf("]");
-	*/
 	for(i=0;i<nval_count-1;i++){
 		printf("(");
 	}
 	for(i=0;i<max_nval;i++){
 		if(i != 0){
-			/* TODO: 条件分岐: 配列サイズごとに"),("を挿入する */
 			for(j=0;j<nval_count;j++){
-				//printf("=%d=",nval_list[j]);
-				//printf("=:%d:=",i%nval_list[j]);
-				//printf("=::%d::=",nval_list[j]%i);
 				if(i%nval_list[j] == 0){
 					printf(")");
 				}
 			}
 			printf(",");
 			for(j=0;j<nval_count;j++){
-				//printf("=%d=",nval_list[j]);
-				//printf("=:%d:=",i%nval_list[j]);
-				//printf("=::%d::=",nval_list[j]%i);
 				if(i%nval_list[j] == 0){
 					printf("(");
 				}
 			}
-
 		}
 		Function_Recursive_Print_nthVal(tree,i);
 	}
@@ -1135,10 +1118,6 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 
 	/* if extra_stat&2 == 2 then return() */
 	if(((*tree).extra_stat&2) == 2){
-		//Under construction: 調整必要
-		//printf("(");
-		//Function_RecursiveCyclic_Print_IProductVal(tree,_fopt,_copt);
-		//printf(")");
 		return(tree);
 	}
 
@@ -1175,14 +1154,6 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		(*_fopt).f_print_self_stat = 1;
 	}
 
-	return(tree);
-}
-struct Tree *Function_Print_HeadMeta(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
-	// この関数を使うか考え中
-	// Under construction for production
-	// 以下を切り替えて使う:
-	// Function_Print_Head
-	// Function_Print_ProductVal
 	return(tree);
 }
 struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
