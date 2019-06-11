@@ -41,7 +41,6 @@ int Function_Recursive_FreeForce_Tree(struct Tree *tree){
 	(*tree).dimstr = NULL;
 	free((*tree).valstr);
 	(*tree).valstr = NULL;
-
 	return(0);
 }
 
@@ -294,7 +293,6 @@ struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt){
 	strcpy((*tree).dimstr,buff);
 	(*tree).nval = get_nval(buff);
 	free(buff);
-	
 	return(tree);
 }
 struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *node_count, struct Tree **node_table){
@@ -1053,7 +1051,7 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 		exit(1);
 	}
 	max_nval = Function_Recursive_Get_nvalMax(tree);
-	nval_count = Function_Recursive_Get_nvalList(tree,nval_list,0); //TODO
+	nval_count = Function_Recursive_Get_nvalList(tree,nval_list,0);
 	for(i=0;i<nval_count-1;i++){
 		printf("(");
 	}
