@@ -26,6 +26,10 @@ echo '$``List($4)' | ./tq.o in=/dev/stdin -FT -C -Pin
 ./tq.o in=test_riteraltree.t -FT -Pin -C
 ./tq.o in=test_ritelal-unpack.t -FT -Pin -C
 
+### 次元取得
+./tq.o in=test_dim.ddf -Pin -Fst
+./tq.o in=test_dim.ddf -Pin -Fst data=vals.csv -FT
+
 ### データバインド
 -
 ./tq.o in=test.ddf -FT out=test.ddl data=test.csv -Pin -Pout
