@@ -4,6 +4,12 @@
 bash conv-check.script
 cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 
+### クオーティング
+echo '#12$`$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst
+echo '$`$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst
+echo '#12$``$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst
+echo '$``$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst
+
 ### エスケープ処理
 #### クオーティング
 bash tq-escape.test
