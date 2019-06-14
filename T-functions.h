@@ -557,11 +557,14 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 		}
 		compiled++;
 	}else if(strncmp(tmp_head,"$``",3) == 0){ //quating tree
+		int tmp_len = 0;
 		out_head = realloc(out_head, (sizeof(char) * (len+1)));
 		if(out_head == NULL){
 			perror("[Fail]:realloc@Function_Interpret_Head.\n");
 			exit(1);
 		}
+
+		/*
 		out_head[0]='"';
 		if((*tree).NextCount == 0){
 			strcpy(out_head+1,tmp_head+3);
@@ -571,6 +574,16 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 			strcpy(out_head+1,tmp_head+3);
 			out_head[len-1]='\0';
 		}
+		*/
+
+		out_head[0]='"';
+		strcpy(out_head+1,tmp_head+3);
+		tmp_len = strlen(out_head);
+		if((*tree).NextCount == 0){
+			out_head[tmp_len]='"';
+			out_head[tmp_len+1]='\0';
+		}
+
 		strcpy(tmp_head,out_head);
 		if(((*tree).extra_stat&4) != 4){
 			(*tree).extra_stat = (*tree).extra_stat + 4;
