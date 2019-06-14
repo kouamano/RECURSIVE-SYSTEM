@@ -1233,7 +1233,7 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 		if(head_len > 0){
 			printf("%s",tmp_str);
 		}else{
-			;
+			printf("List");
 		}
 	}
 	return(tree);
