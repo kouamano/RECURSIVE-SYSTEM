@@ -1,4 +1,7 @@
 # tq
+## 使用例
+- Wolfram Languageに変換   
+./tq.o in=test_prd.1.ddf out=test_prd.5.ddl data=test2.csv -FT -Pprod  -C  | ./tq.o in=/dev/stdin -Pin -FW
 ## 開発中機能
 - コードマージ    
   坂本さんのコードに最新版をマージ
