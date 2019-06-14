@@ -600,8 +600,8 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 		}
 		out_head[0]='"';
 		strcpy(out_head+1,tmp_head+2);
-		out_head[len-1]='"';
-		out_head[len]='\0';
+		out_head[len-3]='"';
+		out_head[len-2]='\0';
 		strcpy(tmp_head,out_head);
 		compiled++;
 	}
