@@ -1226,6 +1226,9 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 		}
 		strcpy(head_str,tmp_str);
 		head_str[dim_pos[0]] = '\0';
+		if(strlen(head_str) == 0){
+			printf("List");
+		}
 		printf("%s[DIM,",head_str);
 		printf("%s",head_str+dim_pos[0]+1);
 	}else{
