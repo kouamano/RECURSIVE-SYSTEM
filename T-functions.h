@@ -593,6 +593,7 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 		}
 		compiled++;
 	}else if(strncmp(tmp_head,"$`",2) == 0){ //quating Head
+		int tmp_len = 0;
 		out_head = realloc(out_head, (sizeof(char) * (len+1)));
 		if(out_head == NULL){
 			perror("[Fail]:realloc@Function_Interpret_Head_Head.\n");
@@ -600,8 +601,12 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 		}
 		out_head[0]='"';
 		strcpy(out_head+1,tmp_head+2);
-		out_head[len-3]='"';
-		out_head[len-2]='\0';
+		//printf("len:%d:",len);
+		//printf("S:%s:",out_head+1);
+		//printf("s:%s:",out_head);
+		tmp_len = strlen(out_head);
+		out_head[tmp_len]='"';
+		out_head[tmp_len+1]='\0';
 		strcpy(tmp_head,out_head);
 		compiled++;
 	}
