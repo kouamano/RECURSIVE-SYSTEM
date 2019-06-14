@@ -526,23 +526,31 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 	}else if((*_copt).c_dot > 0){
 		tmp_head = Function_Dot_Head(tree);
 	}else if(strncmp(tmp_head,"$NULL$",6) == 0){
-	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$PI$",4) == 0){	// Inner Product
-		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+4);
+	//}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$PI$",4) == 0){	// Inner Product
+	}else if(strncmp(tmp_head,"$PI$",4) == 0){	// Inner Product
+		//strcpy(out_head,tmp_head+(*tree).IndicatorPtr+4);
+		strcpy(out_head,tmp_head+4);
 		strcpy(tmp_head,out_head);
 		if(((*tree).extra_stat&2) != 2){
 			(*tree).extra_stat = (*tree).extra_stat + 2;
 		}
 		compiled++;
-	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$X$",3) == 0){
-		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
+	//}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$X$",3) == 0){
+	}else if(strncmp(tmp_head,"$X$",3) == 0){
+		//strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
+		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
 		compiled++;
-	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$M$",3) == 0){
-		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
+	//}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$M$",3) == 0){
+	}else if(strncmp(tmp_head,"$M$",3) == 0){
+		//strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
+		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
 		compiled++;
-	}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$U$",3) == 0){
-		strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
+	//}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$U$",3) == 0){
+	}else if(strncmp(tmp_head,"$U$",3) == 0){
+		//strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
+		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
 		if(((*tree).extra_stat&8) != 8){
 			(*tree).extra_stat = (*tree).extra_stat + 8;
