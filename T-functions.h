@@ -89,7 +89,7 @@ struct Tree *Function_Get_Node(char *pos_str, struct Tree *tree){
 	return(current);
 }
 /** head analysis */
-int AnalyzeHead(struct Tree *tree){
+int AnalyzeHead(struct Tree *tree){ // for labeling
 	int i = 0;
 	int labelreadprt = 0;
 	int labelnumlen = 0;
