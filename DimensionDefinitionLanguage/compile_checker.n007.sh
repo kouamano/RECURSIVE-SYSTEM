@@ -1,5 +1,13 @@
 #!/bin/bash
 # checker
+##g
+echo gt
+lex gt.l
+yacc -dv gt.y
+gcc44 y.tab.c lex.yy.c -lfl -ll
+mv a.out gt
+mv y.output gt.output
+
 ##t
 echo t
 lex t.l
