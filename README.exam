@@ -2,7 +2,9 @@
 ## 単体テスト
 ### コンバート
 bash conv-check.script
-cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
+- with WL
+  cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
+- without WL
 
 ### クオーティング
 echo '#12$`$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst
