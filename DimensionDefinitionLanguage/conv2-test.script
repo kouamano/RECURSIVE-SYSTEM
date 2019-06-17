@@ -67,32 +67,34 @@ diff test.s test.s.t.mM.t.s
 
 #J2T
 echo 'J2T'
-cat test.s.t.mM.j | ../j2mM.swl | ../mM2t.pl > test.s.t.mM.j.mM.t
-cat test.s.t.mM.j.mM.t | ../t2mM.pl | ../mM2j.swl > test.s.t.mM.j.mM.t.mM.j
-diff test.s.t.mM.j test.s.t.mM.j.mM.t.mM.j
+cat test.s.t.j | ../j2s.pl | ../cst in=/dev/stdin > test.s.t.j.s.t
+cat test.s.t.j.s.t | ../tq.o in=/dev/stdin -FJ -Pin > test.s.t.j.s.t.j
+diff test.s.t.j test.s.t.j.s.t.j
 
 #J2S
 echo 'J2S'
 cat test.s.t.mM.j | ../j2s.pl > test.s.t.mM.j.s
-cat test.s.t.mM.j.s | ../cst in=/dev/stdin | ../t2mM.pl | ../mM2j.swl > test.s.t.mM.j.s.t.mM.j
-diff test.s.t.mM.j test.s.t.mM.j.s.t.mM.j
+cat test.s.t.mM.j.s | ../cst in=/dev/stdin | ../tq.o in=/dev/stdin -FJ -Pin > test.s.t.mM.j.s.t.j
+diff test.s.t.mM.j test.s.t.mM.j.s.t.j
 
 #J2M
 echo 'J2M'
-cat test.s.t.mM.j | ../j2mM.swl > test.s.t.mM.j.mM
-cat test.s.t.mM.j.mM | ../mM2j.swl > test.s.t.mM.j.mM.j
-diff test.s.t.mM.j test.s.t.mM.j.mM.j
+cat test.s.t.mM.j | ../j2s.pl | ../cst in=/dev/stdin | ../tq.o in=/dev/stdin -FW -Pin > test.s.t.mM.j.s.t.mM
+cat test.s.t.mM.j.s.t.mM | ../mM2t.pl | ../tq.o in=/dev/stdin -FJ -Pin > test.s.t.mM.j.s.t.mM.t.j
+diff  test.s.t.mM.j test.s.t.mM.j.s.t.mM.t.j
 
 #M2T
 echo 'M2T'
 cat test.s.t.mM | ../mM2t.pl > test.s.t.mM.t
 cat test.s.t.mM.t | ../t2mM.pl > test.s.t.mM.t.mM
 diff test.s.t.mM test.s.t.mM.t.mM
+
 #M2S
 echo 'M2S'
 cat test.s.t.mM | ../mM2j.swl | ../j2s.pl > test.s.t.mM.j.s
 cat test.s.t.mM.j.s | ../cst in=/dev/stdin | ../t2mM.pl > test.s.t.mM.j.s.t.mM
 diff test.s.t.mM test.s.t.mM.j.s.t.mM
+
 #M2J
 echo 'M2J'
 cat test.s.t.mM | ../mM2j.swl > test.s.t.mM.j
