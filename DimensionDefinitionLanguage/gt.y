@@ -7,12 +7,23 @@ extern char *yytext;
 %}
 
 %token FUNC_S FUNC_E DIV HEAD
-%left ARGEX
 %right FUNC_S
 %left FUNC_E
 %right LIST
 
 %%
+list
+	: HEAD
+	| body
+	| HEAD body
+
+body
+	: FUNC_S FUNC_E
+	| FUNC_S arg FUNC_E
+	| FUNC_S body FUNC_E
+	| FUNC_S body DIV body FUNC_E
+	| body body
+
 arg
 	: HEAD
 	| arg DIV HEAD
