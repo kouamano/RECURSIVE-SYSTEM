@@ -5,6 +5,7 @@ bash conv-check.script
 - with WL
   cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 - without WL
+  cd DimensionDefinitionLanguage; bash conv2-test.script; cd ../
 
 ### クオーティング
 echo '#12$`$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst
