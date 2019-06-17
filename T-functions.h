@@ -1253,7 +1253,7 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 		strcpy(head_str,tmp_str);
 		head_str[dim_pos[0]] = '\0';
 		if(strlen(head_str) == 0){
-			printf("List");
+			//printf("List");	//todo or not todo
 		}
 		printf("%s[DIM,",head_str);
 		printf("%s",head_str+dim_pos[0]+1);
@@ -1262,7 +1262,7 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 		if(head_len > 0){
 			printf("%s",tmp_str);
 		}else{
-			printf("List");
+			//printf("List");	//todo or not todo
 		}
 	}
 	return(tree);
