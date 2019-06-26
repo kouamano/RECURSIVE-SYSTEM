@@ -2,26 +2,20 @@
 ## 使用例
 - Wolfram Languageに変換   
 ./tq.o in=test_prd.1.ddf out=test_prd.5.ddl data=test2.csv -FT -Pprod  -C  | ./tq.o in=/dev/stdin -Pin -FW
-## 開発中機能
+## TODO
 - コードマージ    
   坂本さんのコードに最新版をマージ
-- データ内積
-  TODO(ペンディング): Headの内積化 -> Headをバインドデータ化
+  1. T-functionsをアップデート
+  2. マージチェック
+  3. fix
+- その他: issue : https://github.com/kouamano/RECURSIVE-SYSTEM/issues
 
 ## compile
 ```
 cd RECURSIVE-SYSTEM
 compile_all.sh
 ```
-## 再帰処理
-再帰ラッパーと処理関数を完全に分離している。    
-再帰ラッパーが若干複雑である。
-## 構造管理
-Cons-cellを用いているのでメモリー消費が大きい。    
-テーブル管理を試す。
-## エラートラップ
-いくつかの場合でエラートラップできていない。    
-=> issue
+
 ## 実装予定機能
 ### Cons-cell -> 項テーブル管理
 ### ネットワーク(分散)対応
@@ -47,6 +41,7 @@ compile_checker.n007.sh
 - ees
 
 # convert test
+# README.exam も読むこと
 ## escape test
 ./tq.o in=test_escape.1.t -FT -Pin
 ./tq.o in=test_escape.2.t -FT -Pin
@@ -188,7 +183,7 @@ js=Import["llarge-test-single.t.j","JSON"];
 
 # Federation
 cd DimensionDefinitionLanguage
-# test file : toSheet
+- test file : toSheet
 {.tgt , .ddf , .dsz , .ddl} =cat=> .frl =tqR2D=> .frl.dry =tqD2F=> .frl.dry.fed =tqR2D=> .frl.dry.fed.com
 ## create FRL
 ./tq target=toSheet
