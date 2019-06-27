@@ -13,7 +13,7 @@
 ## compile
 ```
 cd RECURSIVE-SYSTEM
-compile_all.sh
+compile-all.sh
 ```
 
 ## 実装予定機能
