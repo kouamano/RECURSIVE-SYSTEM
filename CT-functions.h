@@ -520,7 +520,7 @@ void Function_Recursive_Bind_RefNode(NODE binded, NODE referred){
 	stat = get_ref(head(binded)+indicator_pos(binded),&target_type,&target_label);
 	if(stat == 1){
 		// tq: struct Tree *addr = NULL;
-		NODE addr = NULL;
+		NODE addr = NO_NODE;
 		addr = Function_Recursive_SearchBind_LabelNode(referred,target_type,target_label,binded);
 	}
 	// tq: for(i=0;i<(*binded).NextCount;i++){

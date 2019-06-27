@@ -454,6 +454,7 @@ int label(NODE node)
 		exit(1);
 	}
 	strncpy(labelnumstr,head(node)+labelreadprt,labelnumlen);
+	labelnumstr[labelnumlen] = '\0';						// SAK
 	int wk;
 	sscanf(labelnumstr,"%d",&wk);
 	free(labelnumstr);
