@@ -7,8 +7,6 @@
 // tq: struct Tree *Executor(struct Tree *, struct Tree *, struct Tree *, int, int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);
 NODE Executor(NODE , NODE , NODE , int, int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);
 
-//struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser);
-
 // tq: struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *, struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct options *, struct function_options *, struct compile_options *, int);
 NODE ExFunction_Recursive_Ser_MultiPrint(NODE , NODE (*)(NODE , struct function_options *, struct compile_options *), NODE (*)(NODE , struct function_options *, struct compile_options *), NODE (*)(NODE , struct function_options *, struct compile_options *, int),  NODE (*)(NODE , struct function_options *, struct compile_options *), struct options *, struct function_options *, struct compile_options *, int);
 
@@ -303,8 +301,13 @@ int Detect_DimRegion(const char *head, int *pos){
 // tq: int SPrint_UpRecursive_Head(struct Tree *tree, char *buff){
 int SPrint_UpRecursive_Head(NODE node, char *buff){
 	int sw;
-	int dim_pos[2];
+	//int dim_pos[2];
+	int *dim_pos;
 	int len;
+	if((dim_pos = calloc(2,sizeof(int))) == NULL){
+		perror("[Fail]calloc@SPrint_UpRecursive_Head\n");
+		exit(1);
+	}
 	// tq: if((*tree).Parent == NULL){
 	if(parent(node) == NO_NODE){
 		// tq: sw = Detect_DimRegion((*tree).Head,dim_pos);
@@ -330,9 +333,14 @@ int SPrint_UpRecursive_Head(NODE node, char *buff){
 // tq: struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt){
 NODE Detect_DimBlock(NODE node, struct options *_opt){
 	int sw = 0;
-	int dim_pos[2];
+	//int dim_pos[2];
+	int *dim_pos;
 	char *buff;
 	int len = 0;
+	if((dim_pos = calloc(2,sizeof(int))) == NULL){
+		perror("[Fail]calloc@SPrint_UpRecursive_Head\n");
+		exit(1);
+	}
 	// tq: if((*tree).NextCount != 0){
 	if(child_count(node) != 0){
 		// tq: return(NULL);
@@ -456,7 +464,6 @@ int Function_Bind_Data(FILE *DATA, NODE node, struct options *_opt, struct funct
 				node_count++;
 				buff_ptr = 0;
 			}
-			/* escape */
 			#include "escape_sw.c"
                 }
         }
@@ -1526,6 +1533,8 @@ NODE Function_Print_Head_JS(NODE node, struct function_options *_fopt, struct co
 		perror("[Fail]:calloc@Function_Print_Head_JS.\n");
 		exit(1);
 	}
+	// tq: head_len = strlen((*tree).Head);
+	head_len = strlen(head(node));
 	if((tmp_str = malloc(sizeof(char) * (head_len+1))) == NULL){
 		perror("[Fail]:malloc@Function_Print_Head_JS.\n");
 		exit(1);

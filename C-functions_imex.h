@@ -482,7 +482,7 @@ int indicator_pos(NODE node)
 	}
 
 	for(i=labelreadprt; ((i<strlen(head(node))) && (head(node)[i] >= 0x30) && (head(node)[i] <= 0x39));i++){    //Hex
-		i++;
+		//i++;
 	}
 	if(i<strlen(head(node))) {
 		return i;
@@ -720,6 +720,22 @@ void skip_blank()
 	}
 }
 
+void skip_double_quote()
+{
+	do {
+		append_char(ch);			// '"'
+		next_char();
+		while(ch != EOF && ch != '"') {
+			append_char(ch);
+			next_char();
+		}
+		if(ch != EOF) {
+			append_char(ch);
+			next_char();
+		}
+	} while(ch == '"');
+}
+
 void skip_dim()
 {
 	int DLM_ACC;
@@ -730,24 +746,31 @@ void skip_dim()
 
 		DLM_ACC = 1;
 
-		while(DLM_ACC > 0) {
-			switch(ch) {
-			case '[':
-				DLM_ACC++;
-				break;
-			case ']':
-				DLM_ACC--;
-				break;
-			case '\\':
-				append_char(ch);
-				next_char();	// ignore escape
-				break;
-			default:
-				break;
-			}
+		while(ch != EOF && DLM_ACC > 0) {
+			if(ch == '"') {
+				skip_double_quote();
+			} else {
+				switch(ch) {
+				case '[':
+					DLM_ACC++;
+					break;
+				case ']':
+					DLM_ACC--;
+					break;
+				// case '\\':
+				// 	append_char(ch);
+				// 	next_char();
+				// 	break;
+				default:
+					break;
+				}
 
-			append_char(ch);
-			next_char();
+				append_char(ch);
+				next_char();
+			}
+		}
+		if(DLM_ACC > 0) {
+			error("syntax error");		// EOF before closing ']'
 		}
 	} while(ch == '[');
 }
@@ -763,29 +786,38 @@ void next_token()
 		next_char();
 	}
 
-	if(ident_char(ch) || ch == '\\') {	// identifier
+	if(ident_char(ch) || ch == '\\' || ch == '"') {	// identifier
 		token = 'I';		
 
-		if(ch == '\\') {		// ignore escape
+		if(ch == '"') {
+			skip_double_quote();
+		} else {
+			// if(ch == '\\') {
+			// 	append_char(ch);
+			// 	next_char();
+			// }
 			append_char(ch);
 			next_char();
 		}
-		append_char(ch);
-		next_char();
 
-		while(ident_char(ch) || ch == '\\' || ch == '[') {
-			if(ch == '[') {
-				skip_dim();	// skip to closing ']'
+		while(ident_char(ch) || ch == '\\' || ch == '"' || ch == '[') {
+			
+			if(ch == '"') {
+				skip_double_quote();	// skip to closing '"'
 			} else {
-				if(ch == '\\') {	// skip escape
-					append_char(ch);
+				if(ch == '[') {
+					skip_dim();		// skip to closing ']'
+				} else {
+					// if(ch == '\\') {	// skip escape
+					//	append_char(ch);
+					//	next_char();
+					//}
+					append_char(ch);	// append char to BUFF
 					next_char();
 				}
-				append_char(ch);	// append char to BUFF
-				next_char();
 			}
-			
 		}
+			
 	} else {
 		switch(ch) {
 		case '(' :
