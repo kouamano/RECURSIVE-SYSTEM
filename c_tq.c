@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "../RECURSIVE-SYSTEM/T-definition.h"
 //#include "../RECURSIVE-SYSTEM/T-structure.h"			// SAK
 //#include "../RECURSIVE-SYSTEM/T-functions.h"			// SAK
