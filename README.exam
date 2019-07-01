@@ -105,6 +105,8 @@ TODO: @(1,2) を$PI$の時にディストリビュート-> Headをvalstr化す�
 
 
 ## パフォーマンス
+### 大型の頭部
+TODO
 ### 1.2億ノード
 - 坂本さん、パフォーマンスはこれと比べてください。
 time ./tq.o in=lllarge-single-test.t buff=30
