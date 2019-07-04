@@ -5,9 +5,10 @@
 ## TODO
 - コードマージ    
   坂本さんのコードに最新版をマージ
-  1. T-functionsをアップデート
+  1. T-functionsをアップデート <= tq_base
   2. マージチェック
   3. fix
+  4. tqコード比較・アップデート <= tq_base
 - その他: issue : https://github.com/kouamano/RECURSIVE-SYSTEM/issues
 
 ## compile
@@ -210,26 +211,3 @@ cd DimensionDefinitionLanguage
                      +     +  |dry|  +tqD2F+                +   +
                                      +     +  |fed|         +   +
 ```
-# cq
-## cq関連ソース一覧
-c_tq.c (cq本体)   -> tq.c ベース
-
-T-definition.h      -> そのまま使用
-
-CT-structure.h     -> T-structure.hベース
-
-CT-functions.h	   -> T-functions.hベース
-
-CT-functions_Executor.h	-> T-functions_Executor.h ベース
-
-C-structure.h		-> 新規
-
-C-functions.h		-> 新規
-
-C-functions_imex.h	-> 新規
-
-## cqのコンパイル方法
-最終的にコード整理しますが、現状では「-DMEM_DIMENSION_STR -DMEM_VALUE_COUNT」オプションが必要(メモリ量削減がらみ)。
-
-(例)
-gcc -DMEM_DIMENSION_STR -DMEM_VALUE_COUNT -g -O0 c_tq.c -o c_tq
