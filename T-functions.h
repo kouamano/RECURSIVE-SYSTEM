@@ -998,7 +998,8 @@ int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList, int nval_s
 	EXIT_ref:
 	// Next
 	for(i=0;i<(*tree).NextCount;i++){
-		nval_count =+ Function_Recursive_Get_nvalList((*tree).Next[i],nvalList,nval_count);
+		//nval_count =+ Function_Recursive_Get_nvalList((*tree).Next[i],nvalList,nval_count);
+		nval_count = Function_Recursive_Get_nvalList((*tree).Next[i],nvalList,nval_count);
 	}
 	return(nval_count);
 }
