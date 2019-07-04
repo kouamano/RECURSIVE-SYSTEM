@@ -1282,7 +1282,7 @@ int Function_Recursive_Get_nvalList(NODE node, int *nvalList, int nval_start){
 	// tq: for(i=0;i<(*tree).NextCount;i++){
 	for(i=0;i<child_count(node);i++){
 		// tq: nval_count =+ Function_Recursive_Get_nvalList((*tree).Next[i],nvalList,nval_count);
-		nval_count =+ Function_Recursive_Get_nvalList(child(node,i),nvalList,nval_count);
+		nval_count += Function_Recursive_Get_nvalList(child(node,i),nvalList,nval_count);	// SAK =+ -> +=
 	}
 	return(nval_count);
 }

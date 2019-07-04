@@ -47,6 +47,8 @@ struct LinkTable {
 		//                //4: $`` -> quating tree;       8: $U$
 };
 
+#if 0		// extern -> not needed
+extern void init_tree();
 
 //
 // accessors
@@ -114,4 +116,4 @@ extern int extra_stat(NODE n);
 extern void set_extra_stat(NODE n, int stat);
 
 extern NODE alloc_node();
-
+#endif

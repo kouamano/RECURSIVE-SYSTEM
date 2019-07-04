@@ -203,7 +203,7 @@ typedef int bool;
 
 FILE*	IN;
 
-struct LinkTable*	LT;
+// struct LinkTable*	LT;
 
 int SN;			// node count (excluding null node)
 
@@ -215,21 +215,20 @@ int	buf_ptr;	//
 
 void error(char* msg)
 {
-
-	printf("msg\n");
+	perror("[Fail]:syntax error.\n");
 	exit(1);
 }
 
-char* alloc_buff()
-{
-	char* bf = malloc(sizeof(char) * BUFF_LEN);
-
-	if(bf == NULL) {
-		error("allloc");
-	} else {
-		return bf;
-	}
-}
+//char* alloc_buff()
+//{
+//	char* bf = malloc(sizeof(char) * BUFF_LEN);
+//
+//	if(bf == NULL) {
+//		error("allloc");
+//	} else {
+//		return bf;
+//	}
+//}
 	
 void clear_buff()
 {
@@ -244,442 +243,10 @@ void append_char(char ch)
 	BUFF[buf_ptr] = '\0';
 }	
 
-//
-// accessors
-//
-
-void setLinkTablePtr(struct LinkTable* lt)
-{
-	LT = lt;
-}
-
-int node_count()
-{
-	return (*LT).node_count;
-}
-
-int ser(NODE node)
-{
-#ifdef MEM_SER
-	return ((*LT).ser)[node];
-#else
-	return node-1;
-#endif
-}
-
-void set_ser(NODE node, int ser)
-{
-#ifdef MEM_SER
-	((*LT).ser)[node] = ser;
-#endif
-}
-
-int level(NODE node)
-{
-#ifdef MEM_LEVEL
-	return ((*LT).level)[node];
-#else
-	int i=0;
-	while(parent(node) != NO_NODE) {
-		node=parent(node);
-		i++;
-	}
-	return i;
-#endif
-}
-
-void set_level(NODE node, int level)
-{
-#ifdef MEM_LEVEL
-	((*LT).level)[node] = level;
-#endif
-}
-
-int child_no(NODE node)
-{
-#ifdef MEM_CHILD_NO
-	return (LT->child_no)[node];
-#else
-	NODE p = parent(node);
-	if(p==NO_NODE) {
-		return 1;       // rot node
-	}
-	int i;
-	for(i=0;i<child_count(p);i++) {
-		if(child(p,i) == node)
-			return i+1;
-	}
-	return 1;
-#endif
-}
-
-void set_child_no(NODE n, int no)
-{
-#ifdef MEM_CHILD_NO
-	(LT->child_no)[n] = no;
-#endif
-}
-
-NODE parent(NODE n)			// parent of node n
-{
-	return (LT->parent)[n];
-}
-
-void set_parent(NODE n, NODE parent)
-{
-	(LT->parent)[n] = parent;
-}
-	
-
-char* head(NODE n)			// head string of node n
-{
-	return ((*LT).head)[n];
-}
-
-char* set_head(NODE n, char* head)	// set head string of node n
-{
-	char* ptr;
-
-	if(head == NULL) {
-		ptr = NULL;
-	} else {
-		ptr = malloc(sizeof(char) * (strlen(head)+1));
-
-		if(ptr == NULL) {
-			error("");
-		} else {
-			strcpy(ptr, head);
-		}
-
-	}
-
-	((*LT).head)[n] = ptr;
-
-	return ptr;
-}
-
-char* set_head_ptr(NODE n, char* head)	// set head ptr of node n
-{
-	((*LT).head)[n] = head;
-	return head;
-}
-
-int conjugate(NODE n)			// conj flag of node n  (0: fist node, 1: other nodes)
-{
-	return (LT->conjugate)[n];
-}
-
-void set_conjugate(NODE n, int conj)		// conj flag of node n  (0: fist node, 1: other nodes)
-{
-	(LT->conjugate[n]) = conj;
-}
-
-int child_count(NODE n)			// number of children of node n
-{
-	return (LT->child_count)[n];
-}
-
-int set_child_count(NODE n, int count)			// number of children of node n
-{
-	return (LT->child_count)[n] = count;
-}
-
-NODE* children(NODE n)			// children of node n
-{
-	return (LT->children)[n];
-}
-
-NODE child(NODE n, int i)		// ith child of node n
-{
-	return (LT->children[n])[i];
-}
-
-void set_child(NODE n, int i, NODE child)	// set ith child of node n
-{
-	(LT->children[n])[i]=child;
-}
-
-void add_child(NODE parent, NODE child)	// add child to node parent
-{
-	Add_Link_Memb(LT, parent, child);
-
-	set_parent(child, parent);
-	set_child_no(child, child_count(parent));
-}
-
-char label_type(NODE node)
-{
-#ifdef MEM_LABEL_TYPE
-	return ((*LT).label_type)[node];
-#else
-	if(head(node)[0] == '#' && head(node)[1] == '#') {
-		return 't';
-	} else if(head(node)[0] == '#' && head(node)[1] != '#') {
-		return 'h';
-	} else {
-		return '\0';
-	}
-#endif
-}
-
-void set_label_type(NODE n, char type)
-{
-#ifdef MEM_LABEL_TYPE
-	((*LT).label_type)[n] = type;
-#endif
-}
-
-int label(NODE node)
-{
-#ifdef MEM_LABEL
-	return ((*LT).label)[node];
-#else
-	int labelreadprt = 0;
-	int labelnumlen = 0;
-	int i;
-	char *labelnumstr;
-	if(head(node)[0] == '#' && head(node)[1] == '#') {
-		labelreadprt = 2;
-	} else if(head(node)[0] == '#' && head(node)[1] != '#') {
-		labelreadprt = 1;
-	} else {
-		return -1;
-	}
-
-	for(i=labelreadprt; (head(node)[i] >= 0x30) && (head(node)[i] <= 0x39);i++){    //Hex
-		labelnumlen++;
-	}
-	if((labelnumstr = malloc(sizeof(char) * (labelnumlen + 1))) == NULL){
-		perror("[Fail]malloc@AnalyzeHead\n");
-		exit(1);
-	}
-	strncpy(labelnumstr,head(node)+labelreadprt,labelnumlen);
-	labelnumstr[labelnumlen] = '\0';						// SAK
-	int wk;
-	sscanf(labelnumstr,"%d",&wk);
-	free(labelnumstr);
-	return wk;
-#endif
-}
-
-void set_label(NODE node, int label)
-{
-#ifdef MEM_LABEL
-	((*LT).label)[node] = label;
-#endif
-}
-
-int indicator_pos(NODE node)
-{
-#ifdef MEM_INDICATOR_POS
-	return ((*LT).indicator_pos)[node];
-#else
-	int labelreadprt=0;
-	int i;
-	if(head(node)[0] == '#' && head(node)[1] == '#') {
-		labelreadprt = 2;
-	} else if(head(node)[0] == '#' && head(node)[1] != '#') {
-		labelreadprt = 1;
-	}
-
-	for(i=labelreadprt; ((i<strlen(head(node))) && (head(node)[i] >= 0x30) && (head(node)[i] <= 0x39));i++){    //Hex
-		//i++;
-	}
-	if(i<strlen(head(node))) {
-		return i;
-	} else {
-		return 0;
-	}
-#endif
-}
-	
-void set_indicator_pos(NODE node, int pos)
-{
-#ifdef MEM_INDICATOR_POS
-	((*LT).indicator_pos)[node] = pos;
-#endif
-}
-
-char* dimension_str(NODE node)
-{
-#ifdef MEM_DIMENSION_STR
-	return ((*LT).dimension_str)[node];
-#else
-	int sw = 0;
-	int dim_pos[2];
-	char *buff;
-	int len = 0;
-	if(child_count(node) != 0){			// SAK pending
-		return(NULL);
-	}
-	sw = Detect_DimRegion(head(node),dim_pos);
-	if(sw != 2){
-		return(NULL);
-	}
-
-	// if((buff = malloc(sizeof(char) * (*_opt).buff)) == NULL){
-	if((buff = malloc(sizeof(char) * BUFF_LEN))== NULL){
-		perror("[Fail]malloc@Detect_DimBlock.\n");
-		exit(1);
-	}
-	buff[0] = '\0';
-
-	len = Print_UpR_Head(node,buff);
-
-	return buff;
-#endif
-}
-
-char* set_dimension_str(NODE node, char* str)
-{ 
-#ifdef MEM_DIMENSION_STR
-	char* ptr;
-
-	if(str == NULL) {
-		ptr = NULL;
-	} else {
-		ptr = malloc(sizeof(char) * (strlen(str)+1));
-
-		if(ptr == NULL) {
-			error("");
-		} else {
-			strcpy(ptr, str);
-		}
-
-	}
-
-	((*LT).dimension_str)[node] = ptr;
-
-	return ptr;
-#else
-	return NULL;
-#endif
-}
-
-char* set_dimension_str_ptr(NODE node, char* str)
-{
-#ifdef MEM_DIMENSION_STR
-	((*LT).dimension_str)[node] = str;
-	return str;
-#else
-	return NULL;
-#endif
-}
-
-int value_count(NODE node)
-{
-#ifdef MEM_VALUE_COUNT
-	return ((*LT).value_count)[node];
-#else
-	int sw = 0;
-	int dim_pos[2];
-	char *buff;
-	int len = 0;
-	if(child_count(node) != 0){
-		return(0);
-	}
-	sw = Detect_DimRegion(head(node),dim_pos);
-	if(sw != 2){
-		return(0);
-	}
-	if((buff = malloc(sizeof(char) * BUFF_LEN)) == NULL){
-		perror("[Fail]malloc@Detect_DimBlock.\n");
-		exit(1);
-	}
-	buff[0] = '\0';
-
-	len = Print_UpR_Head(node,buff);
-	int nval = get_nval(buff);
-	free(buff);
-	return nval;
-#endif
-}
-
-void set_value_count(NODE node, int count)
-{
-#ifdef MEM_VALUE_COUNT
-	((*LT).value_count)[node] = count;
-#endif
-}
-
-int value_pos(NODE node, int i)
-{
-	return ((*LT).value_poses)[node][i];
-}
-
-int* value_poses(NODE node)
-{
-	return ((*LT).value_poses)[node];
-}
-
-int* set_value_poses_ptr(NODE node, int* poses)
-{
-	((*LT).value_poses)[node] = poses;
-	return poses;
-}
-
-void set_value_pos(NODE node, int i, int pos)
-{
-	((*LT).value_poses)[node][i] = pos;
-}
-
-char* values_str(NODE node)
-{
-	return ((*LT).values_str)[node];
-}
-
-char* set_values_str(NODE node, char* str)
-{
-	char* ptr;
-
-	if(str == NULL) {
-		ptr = NULL;
-	} else {
-		ptr = malloc(sizeof(char) * (strlen(str)+1));
-
-		if(ptr == NULL) {
-			error("");
-		} else {
-			strcpy(ptr, str);
-		}
-
-	}
-
-	((*LT).values_str)[node] = ptr;
-
-	return ptr;
-}
-
-char* set_values_str_ptr(NODE node, char* str)
-{
-	((*LT).values_str)[node] = str;
-	return str;
-}
-
-NODE ref_node(NODE node)			// ref node of node n
-{
-	return ((*LT).ref_node)[node];
-}
-
-void set_ref_node(NODE node, NODE ref)	// set ref node of node n
-{
-	((*LT).ref_node)[node] = ref;
-}
-
-int extra_stat(NODE node)
-{
-	return ((*LT).extra_stat)[node];
-}
-
-void set_extra_stat(NODE node, int stat)
-{
-	((*LT).extra_stat)[node] = stat;
-}
-
-NODE create_node()
-{
-	return Add_Link_V(LT, -1);	// no parent(link to parent later)
-}
+//NODE create_node()
+//{
+//	return Add_Link_V(LT, -1);	// no parent(link to parent later)
+//}
 
 NODE alloc_node()
 {
@@ -778,12 +345,88 @@ void skip_dim()
 
 void next_token()
 {
+	if(token == EOF) {
+		error("syntax error");
+	}
+
+	clear_buff();
+
+	// skip fist LF/TAB
+	while(ch != EOF && (/* ch == ' ' || */ ch == LF || ch ==TAB)) {
+		next_char();
+	}
+
+	switch(ch) {
+	case '(' :
+	case ')' :
+	case ',' :
+		token = ch;
+		append_char(ch);	// append char to BUFF
+
+		next_char();		// get next char
+		break;
+	case EOF :
+		token = ch;
+		break;
+	default :
+		token = 'I';		// identifier
+
+		do {
+			switch(ch) {
+			case '"' :
+				skip_double_quote();	// skip to closing '"'
+				break;
+			case '[':
+				skip_dim();		// skip to closing ']'
+				break;
+			case LF :			// ignore LF, TAB
+			case TAB :
+				next_char();
+				break;
+			default :
+				append_char(ch);	// append to header
+				next_char();
+				break;
+			}
+		} while(ch != EOF && ch != '(' && ch != ')' && ch != ',');
+
+		break;
+	}
+
+#ifdef DEBUG
+	{
+		char tk=token;
+		char* bf=BUFF;	
+
+		char wk[1];
+		wk[0]='\0';
+
+		switch(tk) {
+		case EOF:
+			tk = 'E';
+			bf = wk;
+			break;
+		case LF:
+			tk = 'L';
+			bf = wk;
+			break;
+		default:
+			break;
+		}
+		printf("token : \'%c\'      \"%s\"\n", tk, bf);
+	}
+#endif
+}
+
+#if 0
+void next_token()
+{
 	int DLM_ACC = 1;
 
 	clear_buff();
 
 	// skip blank, etc.
-	while(ch != EOF & (ch == ' ' || /* ch == CR ||*/ ch == LF || ch ==TAB)) {
+	while(ch != EOF && (ch == ' ' || /* ch == CR ||*/ ch == LF || ch ==TAB)) {
 		next_char();
 	}
 
@@ -863,6 +506,7 @@ void next_token()
 	}
 #endif
 }
+#endif
 
 void skip(TOKEN tk)
 {
@@ -963,7 +607,7 @@ void dump_tree(NODE root, int indent)
 
 //import tree script
 // NODE import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int *ncount, struct LinkTable *_LT)
-NODE import_LinkTable(FILE *_IN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *ncount, int EXEC_FLAG, FILE *DATA, struct LinkTable *_LT)
+NODE import_LinkTable(FILE *_IN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *ncount, int EXEC_FLAG, FILE *DATA)
 {
 
 #ifdef DEBUG
@@ -975,15 +619,20 @@ NODE import_LinkTable(FILE *_IN, struct options *_opt, struct function_options *
 	// set global ptrs
 	IN = _IN;		// input file
 
-	LT = _LT;		// link table
+	// LT = _LT;		// link table
 
 	SN = *ncount;		// node count (excluding null node)
 
 	// initialize buf
-	BUFF = alloc_buff();
+	if((BUFF = malloc(sizeof(char) * (*_opt).buff)) == NULL){
+		printf("[Fail] malloc.\n");
+		exit(1);
+	}
 	clear_buff();
 
 	ch =' ';
+	next_char();		// ch <- first char
+	token = ' ';
 
 	next_token();
 	while(token != EOF) {

@@ -11,8 +11,8 @@
 
 #include "../RECURSIVE-SYSTEM/C-structure.h"			// SAK
 #include "../RECURSIVE-SYSTEM/CT-structure.h"			// SAK options
-#include "../RECURSIVE-SYSTEM/CT-functions.h"			// SAK
 #include "../RECURSIVE-SYSTEM/C-functions.h"			// SAK
+#include "../RECURSIVE-SYSTEM/CT-functions.h"			// SAK
 #include "../RECURSIVE-SYSTEM/C-functions_imex.h"		// SAK
 #include "../RECURSIVE-SYSTEM/CT-functions_Executor.h"		// SAK
 
@@ -484,8 +484,10 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 
-	struct LinkTable* lt = Create_LinkTable(0);	// SAK pending error check
-	setLinkTablePtr(lt);				// SAK pending
+	// struct LinkTable* lt = Create_LinkTable(0);	// SAK pending error check -> close
+	// setLinkTablePtr(lt);				// SAK pending -> close
+	
+	init_tree();
 
 	/* for search */
 	null_node = Create_Node(-1,(*opt).buff);
@@ -524,7 +526,7 @@ int main(int argc, char **argv){
 		node_count = 0;
 		EFLAG = (*opt).Pin+1+8;
 		// itop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,DATA);			// SAK
-		itop = import_LinkTable(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,DATA,lt);		// SAK
+		itop = import_LinkTable(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,DATA);		// SAK
 		Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);	
 		/** close in-file */
 		if(is_iopen > 0){
@@ -547,7 +549,7 @@ int main(int argc, char **argv){
 		/** import tree */
 		EFLAG = (*opt).Pout+4;
 		// otop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL);		// SAK
-		otop = import_LinkTable(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL,lt);	// SAK
+		otop = import_LinkTable(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL);	// SAK
 		Executor(otop,itop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
 		/** close file */
 		if(is_oopen > 0){
