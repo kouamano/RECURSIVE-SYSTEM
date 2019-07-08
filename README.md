@@ -13,7 +13,12 @@
 
 ## compile
 ```
-cd RECURSIVE-SYSTEM
+cd DimensionDefinitionLanguage/
+./compile_checker.sh
+```
+
+```
+cd ../
 compile-all.sh
 ```
 
