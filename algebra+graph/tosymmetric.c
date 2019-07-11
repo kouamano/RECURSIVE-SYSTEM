@@ -3,8 +3,8 @@
 #include<stdlib.h>
 #include<math.h>
 #include<string.h>
-#include "include/data_read.c"
-#include "include/alloc.c"
+#include "../../include/data_read.c"
+#include "../../include/alloc.c"
 
 #define LEN_FILE_NAME 2048
 #define LEN_SAMPLE_NAME 256
