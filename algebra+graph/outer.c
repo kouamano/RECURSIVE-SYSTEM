@@ -3,8 +3,8 @@
 #include <string.h>
 #include <math.h>
 #define TMP_STR_LEN 512
-#include "/home/pub/include/alloc.c"
-#include "/home/pub/include/list_operations.c"
+#include "../../include/alloc.c"
+#include "../../include/list_operations.c"
 
 int main(int argc, char **argv){
 	int i;

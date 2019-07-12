@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-main(int argc, char **argv){
+int main(int argc, char **argv){
 	int i;
 	float tmp=1;
 	float var=1;
@@ -17,5 +17,6 @@ main(int argc, char **argv){
 		}
 		printf("%f\n",var);
 	}
+	return(0);
 }
 			

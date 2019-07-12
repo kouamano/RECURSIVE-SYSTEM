@@ -4,7 +4,7 @@
 #define min(a,b) (((a)<(b))?(a):(b))
 #endif
 
-main(int argc, char **argv){
+int main(int argc, char **argv){
 	int i;
 	int tmp;
 	int minimum;
@@ -20,4 +20,5 @@ main(int argc, char **argv){
 		}
 	}
 	printf("%d\n",minimum);
+	return(0);
 }
