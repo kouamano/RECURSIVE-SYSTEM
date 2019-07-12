@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "/home/pub/include/alloc.c"
+#include "../include/alloc.c"
 #define IDSIZE 256
 
 struct argop {
