@@ -4,7 +4,7 @@
 #define max(a,b) (((a)>(b))?(a):(b))
 #endif
 
-main(int argc, char **argv){
+int main(int argc, char **argv){
 	int i;
 	int tmp;
 	int maximum;
@@ -20,4 +20,5 @@ main(int argc, char **argv){
 		}
 	}
 	printf("%d\n",maximum);
+	return(0);
 }

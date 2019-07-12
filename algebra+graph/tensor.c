@@ -1,7 +1,6 @@
 /* tensor.c */
 #include <stdio.h>
 #include <stdlib.h>
-#include "include/tensor.c"
 #define DEPTH 4
 int main(void){
 	struct intTensor IT;

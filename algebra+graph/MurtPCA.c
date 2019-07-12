@@ -32,12 +32,13 @@
 /*********************************************************************/
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <math.h>
 
 #define SIGN(a, b) ( (b) < 0 ? -fabs(a) : fabs(a) )
 
-main(argc, argv)
+int main(argc, argv)
 int argc;
 char *argv[];
 
@@ -289,7 +290,7 @@ char option, *strncpy();
     free_matrix(symmat2, m, m);
     free_vector(evals, m);
     free_vector(interm, m);
-
+    return(0);
 }
 
 /**  Correlation matrix: creation  ***********************************/

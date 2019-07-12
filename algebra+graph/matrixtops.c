@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "/home/pub/include/dim_alloc.c"
+#include "../../include/alloc.c"
 #define RSIZ 5
 
 int print_head();
