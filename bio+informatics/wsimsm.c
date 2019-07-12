@@ -28,8 +28,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "/home/pub/include/debug.c"
-#include "/home/pub/include/alloc.c"
+#include "../../include/debug.c"
+#include "../../include/alloc.c"
 #define FILE_NAME_SIZE 1024
 
 struct options {

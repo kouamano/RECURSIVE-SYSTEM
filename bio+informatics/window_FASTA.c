@@ -31,7 +31,7 @@ void init_option(struct option *opt){
 	sscanf("%012d","%s",opt->serial_NO_type);
 }
 
-get_option(struct option *opt, int optc, char **optv){
+void get_option(struct option *opt, int optc, char **optv){
 	int i = 0;
 	for(i=0;i<optc;i++){
 		if(strcmp(optv[i],"-h") == 0){

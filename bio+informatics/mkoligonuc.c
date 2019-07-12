@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
-#include "/home/pub/include/sprint_bin.c"
+#include "../../include/sprint_bin.c"
 #define DIGIT 2
 
 int main(int argc, char **argv){

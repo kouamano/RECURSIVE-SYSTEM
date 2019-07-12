@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "/home/pub/include/alloc.c"
+#include "../../include/alloc.c"
 /* INCLUDE FILES*) */
 
 /* (*GLOBAL VARS --including prototypes-- */

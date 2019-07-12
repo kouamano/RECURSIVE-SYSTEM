@@ -88,7 +88,7 @@ void help(void){
 	printf("  C -> -I\n");
 }
 
-main(int argc, char **argv){
+int main(int argc, char **argv){
 	signed char c;
 	struct opt option;
 	FILE *fp;
@@ -224,6 +224,7 @@ main(int argc, char **argv){
 	}
 	printf("\n");
 	fclose(fp);
+	return(0);
 }
 
 
