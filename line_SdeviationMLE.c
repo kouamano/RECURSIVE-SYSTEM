@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "/home/pub/include/dim_alloc.c"
+#include "../include/alloc.c"
 #ifndef max
 #define max(a,b) (((a)>(b))?(a):(b))
 #endif
@@ -102,7 +102,7 @@ float *add_column(int dim, int len, float **matrix){
 	int i;
 	int j;
 	float *sum_list;
-	sum_list = f_alloc_list(len);
+	sum_list = f_alloc_vec(len);
 	for(j=0;j<len;j++){
 		sum_list[j] = 0;
 	}
@@ -118,7 +118,7 @@ float *add_line(int dim, int len, float **matrix){
 	int i;
 	int j;
 	float *sum_list;
-	sum_list = f_alloc_list(dim);
+	sum_list = f_alloc_vec(dim);
 	for(j=0;j<dim;j++){
 		sum_list[j] = 0;
 	}
@@ -141,10 +141,10 @@ int main(int argc, char **argv){
 	float *av_line;
 	float *sq_sig_line;
 	if(argc == 1){
-		imat = f_clear_alloc_matrix(X,Y);
+		imat = f_calloc_mat(X,Y);
 		f_read_from_stdin(imat,dims);
 	}else if(argc == 2){
-		imat = f_clear_alloc_matrix(X,Y);
+		imat = f_calloc_mat(X,Y);
 		if((in = fopen(argv[1],"r")) == NULL){
 			perror(argv[1]);
 			exit(1);
@@ -154,7 +154,7 @@ int main(int argc, char **argv){
 	}
 	sig = add_column(dims[0],dims[1],imat);
 	sig_line = add_line(dims[0],dims[1],imat);
-	av_line = f_alloc_list(dims[1]);
+	av_line = f_alloc_vec(dims[1]);
 	for(i=0;i<dims[0];i++){
 		av_line[i] = sig_line[i]/dims[1];
 	}

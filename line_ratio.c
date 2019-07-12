@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "/home/pub/include/alloc.c"
+#include "../include/alloc.c"
 #ifndef max
 #define max(a,b) (((a)>(b))?(a):(b))
 #endif
