@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "/home/pub/include/dim_alloc.c"
+#include "../include/alloc.c"
 #define MAX_LEN 100000000
 
 struct f_freqs {
@@ -56,7 +56,7 @@ int main(int argc, char **argv){
 	float *ff;
 	struct f_freqs *out;
 	FILE *fp;
-	ff = f_alloc_list(MAX_LEN);
+	ff = f_alloc_vec(MAX_LEN);
 	i = 0;
 	j = 0;
 	l_len = 0;
