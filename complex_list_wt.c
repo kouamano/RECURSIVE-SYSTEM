@@ -12,9 +12,9 @@
 #define LONG_BUFF_SIZE 10000
 #define BRK_S "{"
 #define BRK_E "}"
-#include "/home/pub/include/alloc.c"
-#include "complexop.h"
-#include "complexop.c"
+#include "../include/alloc.c"
+#include "../include/complexop.h"
+#include "../include/complexop.c"
 
 struct option {
 	int print_help;

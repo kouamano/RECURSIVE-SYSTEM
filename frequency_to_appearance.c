@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include "/home/pub/include/data_read.c"
+#include "../include/data_read.c"
 #define LIST_LEN 10000
 #define FILE_NAME_LEN 2048
 #define LINE_LEN 2000000
