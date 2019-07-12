@@ -13,9 +13,11 @@
 #include <string.h>
 #include <math.h>
 
-#include "soc.h"
-#include "files.h"
-#include "soc.c"
+#include "../../include/alloc.c"
+#include "../../include/math_base.c"
+#include "../../include/data_read.c"
+#include "../../SOC/SOC_0.5.10-01/soc.h"
+#include "../../SOC/SOC_0.5.10-01/soc.c"
 
 struct plane_tensor {
 	int rank;
