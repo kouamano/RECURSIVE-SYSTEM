@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "/home/pub/include/dim_alloc.c"
+#include "../include/alloc.c"
 #ifndef max
 #define max(a,b) (((a)>(b))?(a):(b))
 #endif
@@ -102,7 +102,7 @@ float *add_column(int dim, int len, float **matrix){
 	int i;
 	int j;
 	float *sum_list;
-	sum_list = f_alloc_list(len);
+	sum_list = f_alloc_vec(len);
 	for(j=0;j<len;j++){
 		sum_list[j] = 0;
 	}
@@ -124,10 +124,10 @@ int main(int argc, char **argv){
 	float *av;
 	float *sq_sig;
 	if(argc == 1){
-		imat = f_clear_alloc_matrix(X,Y);
+		imat = f_calloc_mat(X,Y);
 		f_read_from_stdin(imat,dims);
 	}else if(argc == 2){
-		imat = f_clear_alloc_matrix(X,Y);
+		imat = f_calloc_mat(X,Y);
 		if((in = fopen(argv[1],"r")) == NULL){
 			perror(argv[1]);
 			exit(1);
@@ -136,7 +136,7 @@ int main(int argc, char **argv){
 		fclose(in);
 	}
 	sig = add_column(dims[0],dims[1],imat);
-	av = f_alloc_list(dims[0]);
+	av = f_alloc_vec(dims[0]);
 	for(i=0;i<dims[1];i++){
 		av[i] = sig[i]/dims[0];
 	}
