@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "/home/pub/include/dim_alloc.c"
+#include "../include/alloc.c"
 #ifndef max
 #define max(a,b) (((a)>(b))?(a):(b))
 #endif
@@ -103,7 +103,7 @@ int main(int argc, char **argv){
 	int j;
 	int dims[2];
 	char ***smat;
-	smat = s_alloc_matrix(S_LEN,X,Y);
+	smat = S_alloc_mat(X,Y,S_LEN);
 	if(argc == 1){
 		s_read_from_stdin(smat,dims);
 	}else if(argc == 2){
