@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "/home/pub/include/strop.c"
+#include "../include/strop.c"
 #define MAX_LEN_STR 1000
 #define MAX_LEN_LIST 200
 #define MAX_LINE_TABLE 10000
