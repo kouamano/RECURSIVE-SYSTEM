@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "/home/pub/include/alloc.c"
+#include "../include/alloc.c"
 #define MAX_LEN 100000000
 
 struct f_rfreqs {

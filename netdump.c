@@ -8,7 +8,7 @@
  * 
  * see packet(7) and netdevice(7)
  */
-#include </home/kamano/src/include/features.h>
+#include <features.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>

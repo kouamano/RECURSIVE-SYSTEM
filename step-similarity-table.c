@@ -183,7 +183,7 @@ void write_similarity_list(FILE *OUT, int num, float **table, char *format, floa
 	}
 }
 
-main(int argc, char **argv){
+int main(int argc, char **argv){
 	/* (* main valiables */
 	int i;
 	int j;

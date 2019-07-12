@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "byte_mask.h"
-#include "/home/pub/include/alloc.c"
+#include "../include/alloc.c"
 
 #define NAME_LEN 1024
 #define B_ORDER_MAX_32 3
