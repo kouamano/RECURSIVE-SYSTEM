@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include <math.h>
-#include "fasta.h"
-#include "fasta.c"
+#include "../../include/fasta.h"
+#include "../../include/fasta.c"
 #define LEN_FILE_NAME 1024
 #define LEN_SHORT_STRING 2048
 #define LEN_HEAD 512
