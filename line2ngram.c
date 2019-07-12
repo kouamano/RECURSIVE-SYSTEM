@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "/home/pub/include/alloc.c"
+#include "../include/alloc.c"
 
 #define NAME_LEN 1024
 #define PROG_NAME "line2ngram"
