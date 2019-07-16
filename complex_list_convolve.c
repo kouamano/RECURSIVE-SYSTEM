@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <complex.h>
 #include <math.h>
 #define FILE_NAME_SIZE 260
 #define SHORT_STRING_SIZE 1024
