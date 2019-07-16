@@ -1757,4 +1757,198 @@ NODE ExFunction_UpRecursive(NODE node, NODE (*e_function)(NODE ), struct options
 	return(par);
 }
 
+// SAK   bind
 
+#define TRUE	1
+#define FALSE	0
+
+#define ARRAY_INFINITY	-1
+
+typedef int bool;
+
+
+bool is_empty(int* list)
+{
+	return list[0] == -1;
+}
+
+bool is_leaf(NODE node)
+{
+	return child_count(node) == 0;
+}	
+
+int first(int* list)
+{
+	return list[0];
+}
+
+int* rest(int* list)
+{
+	return list++;
+}
+		// [] / [,6] empty -> infinit
+void read_number(char* str, int* value)
+{
+	(*value) = 0;			
+	while(isdigit(*str)) {
+		(*value) = (*value)*10 + ((*str)-'0');
+		str++;
+	}
+}
+
+void get_dim_list(char* str, int* dims)
+{
+	dims[0] = -1;				// termnator(end of list)
+
+	// SAK pending escape
+	while((*str) != '\0' && (*str) != '[') {	// skip to '['
+		str++;
+	}
+
+	if((*str) == '\0') {			// '[' not detected ->non array
+		return;
+	} 
+
+	int i=0;
+	do {
+		int value = 0;
+		str++;				// skip '['
+
+		read_number(str, &value);
+		dims[i++] = value;
+		dims[i] = -1;			// terminator(end of list)
+
+		while((*str) == ',') {
+			str++;			// skip ','
+
+			read_number(str, &value);
+			dims[i++] = value;
+			dims[i] = -1;		// terminator(end of list)
+		}
+
+		if((*str) == ']') {
+			str++;
+		} else {
+			dims[0] = -1;			// invalid dimension str
+			return;
+		}
+
+	} while((*str) == '[');
+}
+	
+void skip_value(int* size, FILE* DATA)
+{
+	if(size > 0) {		// other than 1st data item
+		size++;		// for length of ','
+	}
+
+	char ch = fgetc(DATA); 
+	while((ch != EOF) && (ch != DD) && (ch != '\n') ) {	// SAK pending : escape
+		size++;
+		ch = fgetc(DATA);
+	}
+}
+
+void bind_data_1st_path(NODE node, FILE* DATA)
+{
+	int size = (int)(long)(values_str(node));		// bufer suze
+
+	skip_value(&size, DATA);
+	set_value_count(node, value_count(node)+1);	// increment value counter
+	set_values_str_ptr(node, (char*)(long)(size));		// increment byte counter
+}
+
+void get_value(char* buff, int pos, FILE* DATA)
+{
+	if(pos>0) {			// other than 1st data item
+		buff[pos++] = DD;	// append ','
+	}
+
+	char ch = fgetc(DATA); 
+	while((ch != EOF) && (ch != DD) && (ch != '\n') ) {	// SAK pending : escape
+		buff[pos++] = ch;
+		ch = fgetc(DATA);
+	}
+	buff[pos++] = '\0';
+}
+
+void bind_data_2nd_path(NODE node, FILE* DATA)		// process next 1 data item
+{
+	if(value_poses(node) == NULL) {	// 1st data item
+		if(set_value_poses_ptr(node, malloc(sizeof(int) * (value_count(node)+1))) == NULL) {
+			perror("[]malloc@put_value2.\n");
+			exit(1);
+		} else {
+			set_value_count(node, 0);	// reset value counter
+		}
+		if(set_values_str_ptr(node, malloc(sizeof(char) * ((long)values_str(node))+1)) == NULL) {
+			perror("[]malloc@put_value2.\n");
+			exit(1);
+		} else {
+			(values_str(node))[0] = '\0';
+		}
+	}
+
+	int len = strlen(values_str(node));			// /SAK pending  peformance
+
+	get_value(values_str(node), len, DATA);
+	set_value_pos(node, value_count(node), len);
+	set_value_count(node, value_count(node)+1);		// reset value counter
+}
+
+extern bool bind_node(NODE, FILE*, void (*)(NODE, FILE*));
+
+bool bind_primitive_node(NODE node, FILE* DATA, void (*e_function)(NODE, FILE*))
+{
+	int eof=FALSE;
+	int i;
+
+	if(is_leaf(node)) {		// leaf node
+		eof = feof(DATA);
+		if(!eof) {
+			(*e_function)(node, DATA);
+		}
+	}
+
+	for(i=0; !eof && i<child_count(node); i++) {
+		eof = bind_node(child(node,i), DATA, e_function);
+	}
+
+	return eof;
+}
+
+bool bind_dim_node(NODE node, int* dims, FILE* DATA, void (*e_function)(NODE, FILE*))
+{
+	bool eof = FALSE;
+	int i;
+	
+	if(is_empty(dims)) {
+		eof = bind_primitive_node(node, DATA, e_function);
+	} else {
+		for(i=0; !eof && (i<first(dims) || first(dims) == ARRAY_INFINITY); i++) {
+			eof = bind_dim_node(node, rest(dims), DATA, e_function);
+		}
+	}
+
+	return eof;
+}
+
+bool bind_node(NODE node, FILE* DATA, void (*e_function)(NODE, FILE*))
+{
+	int dims[10];			// SAK PENDING  array size  => bind_dim_node(node, head_pos, DATA)
+
+	get_dim_list(head(node), dims);	// non-array -> () / [2][3,4] -> (2,3,4) / [][3,4] -> (0,3,4) / [3,,4] -> (3,0,4)
+					// dims: -1 terminate
+
+	if(is_leaf(node) && is_empty(dims)) {	// non-array leaf node
+		return FALSE;
+	} else {
+		return bind_dim_node(node, dims, DATA, e_function);
+	}
+}
+
+void bind_data(NODE node, FILE* DATA)
+{
+	bind_node(node, DATA, bind_data_1st_path);
+	bind_node(node, DATA, bind_data_2nd_path);
+}

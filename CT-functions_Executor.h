@@ -3,10 +3,11 @@ NODE Executor(NODE top, NODE refTree, NODE null_node, int C, int SN, struct opti
 		/* pre */
 		/** bind data (for input-form) */
 		if((EXEC_FLAG&1) == 1){
-			ExFunction_Recursive(top,(NODE (*)())Detect_DimBlock,_opt,_fopt,_copt);
+			// ExFunction_Recursive(top,(NODE (*)())Detect_DimBlock,_opt,_fopt,_copt);	// SAK Inner Prouct
 			if((*_opt).data != NULL){
 				if(strlen((*_opt).data) > 0){
-					Function_Bind_Data(DATA,top,_opt,_fopt,_copt);
+					// Function_Bind_Data(DATA,top,_opt,_fopt,_copt);		// SAK Inner Product
+					bind_data(top, DATA);						// SAK Inner Product
 				}
 			}
 		}

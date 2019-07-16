@@ -213,6 +213,8 @@ TOKEN	token;		// current token
 char*	BUFF;		// string for current token
 int	buf_ptr;	// 
 
+struct options *opt;	// pending
+
 void error(char* msg)
 {
 	perror("[Fail]:syntax error.\n");
@@ -266,11 +268,12 @@ NODE alloc_node()
 
 	return n;
 }
-
+/*
 bool ident_char(char ch)
 {
 	return isalnum(ch) || ch == '$' || ch == '#' || ch == '~'|| ch == '`'|| ch == '@';
 }
+*/
 
 void next_char()
 {
@@ -360,6 +363,7 @@ void next_token()
 	case '(' :
 	case ')' :
 	case ',' :
+	case '@' :
 		token = ch;
 		append_char(ch);	// append char to BUFF
 
@@ -388,7 +392,7 @@ void next_token()
 				next_char();
 				break;
 			}
-		} while(ch != EOF && ch != '(' && ch != ')' && ch != ',');
+		} while(ch != EOF && ch != '(' && ch != ')' && ch != ',' && ch !='@');
 
 		break;
 	}
@@ -517,6 +521,53 @@ void skip(TOKEN tk)
 	}
 }
 
+void put_value(char* buff, char* value)
+{
+	int len = strlen(buff);
+	buff[len] = ',';
+	strcpy(buff+len, value);
+}
+
+void parse_bind_values(NODE node)
+{
+	if(token == '@') {
+		int value_count = 0;
+		char* data_buff;
+
+		if((data_buff = malloc(sizeof(char) * (*opt).data_buff)) == NULL){
+			perror("[]malloc@parse_bind_data.\n");
+			exit(1);
+		}
+
+		skip('@');
+		skip('(');
+		
+		if(token == 'I') {
+			put_value(data_buff, BUFF);
+			value_count++;
+			skip('I');
+		}
+		while(token == ',') {
+			skip(',');
+			if(token == 'I') {
+				put_value(data_buff, BUFF);
+				value_count++;
+				skip('I');
+			}
+		}
+
+		skip(')');	
+
+		set_value_count(node, value_count);
+		if(value_count > 0) {
+			set_values_str(node, data_buff);
+		}
+
+		free(data_buff);
+	}
+
+}
+
 //
 // return tree for <header>
 //
@@ -529,6 +580,10 @@ NODE parse_header(int level)
 	Analyze_HeadLabel(root);	// SAK Analyze_Head -> Analyze_HeadLabel
 
 	next_token();			// get next token
+
+	if(token=='@') {
+		parse_bind_values(root);
+	}
 
 	return root;
 }
@@ -622,6 +677,8 @@ NODE import_LinkTable(FILE *_IN, struct options *_opt, struct function_options *
 	// LT = _LT;		// link table
 
 	SN = *ncount;		// node count (excluding null node)
+
+	opt = _opt;		// options
 
 	// initialize buf
 	if((BUFF = malloc(sizeof(char) * (*_opt).buff)) == NULL){
