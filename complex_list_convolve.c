@@ -15,6 +15,7 @@
 #include "../include/alloc.c"
 #include "../include/complexop.h"
 #include "../include/complexop.c"
+#include "../include/complex-data_read.c"
 
 struct option {
 	int print_help;

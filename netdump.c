@@ -1,5 +1,3 @@
-
-
 /* $Id: netdump.c,v 1.5 2001/09/19 06:15:22 m_sato Exp $ */
 /* 
  * netdump.c -- dump all packets received from specified interface
@@ -10,8 +8,10 @@
  */
 #include <features.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
+#include <ctype.h>
 #include <unistd.h>
 #include <asm/types.h>
 #include <sys/types.h>
@@ -19,6 +19,7 @@
 #include <linux/if_ether.h> 
 #include <linux/if_arcnet.h> 
 #include <linux/version.h>
+#include <arpa/inet.h>
 #include <net/if.h>
 #include <net/if_arp.h>
 #include <sys/ioctl.h>
