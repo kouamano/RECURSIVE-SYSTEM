@@ -1,4 +1,5 @@
 #include <stdio.h>
+int read_from_stdin(char *);
 
 int flag = 0;
 
@@ -15,9 +16,10 @@ int main(int argc, char **argv){
 		//printf("%s",arr);
 		//printf("%d",flag);
 	}
+	return(0);
 }
 
-read_from_stdin(char *arr){
+int read_from_stdin(char *arr){
 	char c;
 	int i = 0;
 	int n = 0;
@@ -33,4 +35,5 @@ read_from_stdin(char *arr){
 		}
 	}
 	*(arr+i) = '\0';
+	return(0);
 }
