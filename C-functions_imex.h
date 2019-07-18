@@ -550,6 +550,7 @@ void parse_bind_values(NODE node)
 		while(token == ',') {
 			skip(',');
 			if(token == 'I') {
+				put_value(data_buff, ",");
 				put_value(data_buff, BUFF);
 				value_count++;
 				skip('I');

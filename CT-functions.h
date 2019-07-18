@@ -1784,15 +1784,15 @@ int first(int* list)
 
 int* rest(int* list)
 {
-	return list++;
+	return ++list;
 }
 		// [] / [,6] empty -> infinit
-void read_number(char* str, int* value)
+void read_number(char** str, int* value)
 {
 	(*value) = 0;			
-	while(isdigit(*str)) {
-		(*value) = (*value)*10 + ((*str)-'0');
-		str++;
+	while(isdigit(**str)) {
+		(*value) = (*value)*10 + ((**str)-'0');
+		(*str)++;
 	}
 }
 
@@ -1814,14 +1814,14 @@ void get_dim_list(char* str, int* dims)
 		int value = 0;
 		str++;				// skip '['
 
-		read_number(str, &value);
+		read_number(&str, &value);
 		dims[i++] = value;
 		dims[i] = -1;			// terminator(end of list)
 
 		while((*str) == ',') {
 			str++;			// skip ','
 
-			read_number(str, &value);
+			read_number(&str, &value);
 			dims[i++] = value;
 			dims[i] = -1;		// terminator(end of list)
 		}
@@ -1836,16 +1836,17 @@ void get_dim_list(char* str, int* dims)
 	} while((*str) == '[');
 }
 	
+char _ch;
+
 void skip_value(int* size, FILE* DATA)
 {
-	if(size > 0) {		// other than 1st data item
-		size++;		// for length of ','
+	if(*size > 0) {			// other than 1st data item
+		(*size)++;		// for length of ','
 	}
 
-	char ch = fgetc(DATA); 
-	while((ch != EOF) && (ch != DD) && (ch != '\n') ) {	// SAK pending : escape
-		size++;
-		ch = fgetc(DATA);
+	while((_ch != EOF) && (_ch != DD) && (_ch != '\n')) {	// SAK pending : escape
+		(*size)++;
+		_ch = fgetc(DATA);
 	}
 }
 
@@ -1858,16 +1859,16 @@ void bind_data_1st_path(NODE node, FILE* DATA)
 	set_values_str_ptr(node, (char*)(long)(size));		// increment byte counter
 }
 
-void get_value(char* buff, int pos, FILE* DATA)
+void set_value(char* buff, int* s_pos, FILE* DATA)
 {
-	if(pos>0) {			// other than 1st data item
-		buff[pos++] = DD;	// append ','
+	if(*s_pos>0) {			// other than 1st data item
+		buff[(*s_pos)++] = DD;	// append ','
 	}
 
-	char ch = fgetc(DATA); 
-	while((ch != EOF) && (ch != DD) && (ch != '\n') ) {	// SAK pending : escape
-		buff[pos++] = ch;
-		ch = fgetc(DATA);
+	int pos = *s_pos;
+	while((_ch != EOF) && (_ch != DD) && (_ch != '\n') ) {	// SAK pending : escape
+		buff[pos++] = _ch;
+		_ch = fgetc(DATA);
 	}
 	buff[pos++] = '\0';
 }
@@ -1889,11 +1890,11 @@ void bind_data_2nd_path(NODE node, FILE* DATA)		// process next 1 data item
 		}
 	}
 
-	int len = strlen(values_str(node));			// /SAK pending  peformance
+	int s_pos = strlen(values_str(node));			// /SAK pending  peformance
 
-	get_value(values_str(node), len, DATA);
-	set_value_pos(node, value_count(node), len);
-	set_value_count(node, value_count(node)+1);		// reset value counter
+	set_value(values_str(node), &s_pos, DATA);
+	set_value_pos(node, value_count(node), s_pos);
+	set_value_count(node, value_count(node)+1);		// increment value counter
 }
 
 extern bool bind_node(NODE, FILE*, void (*)(NODE, FILE*));
@@ -1901,15 +1902,18 @@ extern bool bind_node(NODE, FILE*, void (*)(NODE, FILE*));
 bool bind_primitive_node(NODE node, FILE* DATA, void (*e_function)(NODE, FILE*))
 {
 	int eof=FALSE;
-	int i;
 
 	if(is_leaf(node)) {		// leaf node
 		eof = feof(DATA);
 		if(!eof) {
 			(*e_function)(node, DATA);
+			if((_ch == DD) || (_ch == '\n')) {	// SAK pending : escape
+				_ch = fgetc(DATA);
+			}
 		}
 	}
 
+	int i;
 	for(i=0; !eof && i<child_count(node); i++) {
 		eof = bind_node(child(node,i), DATA, e_function);
 	}
@@ -1925,7 +1929,7 @@ bool bind_dim_node(NODE node, int* dims, FILE* DATA, void (*e_function)(NODE, FI
 	if(is_empty(dims)) {
 		eof = bind_primitive_node(node, DATA, e_function);
 	} else {
-		for(i=0; !eof && (i<first(dims) || first(dims) == ARRAY_INFINITY); i++) {
+		for(i=0; !eof && (i<first(dims) || first(dims) == 0); i++) {
 			eof = bind_dim_node(node, rest(dims), DATA, e_function);
 		}
 	}
@@ -1949,6 +1953,10 @@ bool bind_node(NODE node, FILE* DATA, void (*e_function)(NODE, FILE*))
 
 void bind_data(NODE node, FILE* DATA)
 {
+	_ch = fgetc(DATA);
 	bind_node(node, DATA, bind_data_1st_path);
+
+	fseek(DATA, 0, SEEK_SET);
+	_ch = fgetc(DATA);
 	bind_node(node, DATA, bind_data_2nd_path);
 }
