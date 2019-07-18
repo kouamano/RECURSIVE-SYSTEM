@@ -1152,7 +1152,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		return(tree);
 	}
 
-	/* print bind mark for binded data */
+	/* print bind mark (1) */
 	if((*tree).valstr != NULL){
 		printf("@");
 	}
@@ -1172,7 +1172,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
 		}
 	}
-	/* print binded data */
+	/* print binded data (1) */
 	if((*tree).valstr != NULL){
 		printf("(%s)",(*tree).valstr);
 	}
