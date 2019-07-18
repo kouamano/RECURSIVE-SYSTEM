@@ -3,9 +3,9 @@
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
-#include "/home/pub/include/alloc.c"
-#include "/home/pub/include/fasta.h"
-#include "/home/pub/include/fasta.c"
+#include "../include/alloc.c"
+#include "../include/fasta.h"
+#include "../include/fasta.c"
 #define LEN_FILE_NAME 1024
 #define SEP '\n'
 
