@@ -58,7 +58,7 @@ void function_help(void){
 	printf("   -Ftest : prints from test function.\n");
 }
 void compile_help(void){
-	printf("  Compiled option: \n");
+	printf("  Compile option: \n");
 	printf("   -C : print compiled form.\n");
 	printf("   -Cr : prints the \"print-restrict\" char at the end of line.\n");
 	printf("   -Cc : clear head.\n");
