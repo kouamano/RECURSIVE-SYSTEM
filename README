@@ -3,3 +3,4 @@ mk_temporary_d_short.c
 mk_d_short_mat.c
 対角行列の書き換えは必要か確認。
 ループ回数は、サンプルサイズで良いのか？
+test
