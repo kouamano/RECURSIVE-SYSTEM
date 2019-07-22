@@ -6,7 +6,6 @@ int  yywrap(void) { return 1; }
 %%
 \(				return FUNC_S;
 \)				return FUNC_E;
-,				return DIV;
 [.]*				return HEAD;
 ''				return NULLCHAR;
 %%

@@ -6,7 +6,7 @@ int yylex(void);
 extern char *yytext;
 %}
 
-%token FUNC_S FUNC_E DIV HEAD NULLCHAR
+%token FUNC_S FUNC_E HEAD NULLCHAR
 %right FUNC_S
 %left FUNC_E
 
@@ -20,12 +20,10 @@ body
 	: FUNC_S FUNC_E
 	| FUNC_S arg FUNC_E
 	| FUNC_S body FUNC_E
-	| FUNC_S body DIV body FUNC_E
 	| body body
 
 arg
 	: head
-	| arg DIV head
 
 head
 	: HEAD
