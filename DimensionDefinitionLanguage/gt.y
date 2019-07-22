@@ -9,13 +9,12 @@ extern char *yytext;
 %token FUNC_S FUNC_E DIV HEAD NULLCHAR
 %right FUNC_S
 %left FUNC_E
-%right LIST
 
 %%
 list
-	: HEAD
+	: head
 	| body
-	| HEAD body
+	| head body
 
 body
 	: FUNC_S FUNC_E
