@@ -2,7 +2,7 @@
 git diff cq:README.exam tq_base:README.exam
 
 # tq
-echo tq VS cq
+echo cq VS tq
 git diff cq:tq.c tq_base:tq.c
 git diff cq:T-definition.h tq_base:T-definition.h
 git diff cq:T-structure.h tq_base:T-structure.h
@@ -10,12 +10,13 @@ git diff cq:T-functions.h tq_base:T-functions.h
 git diff cq:T-functions_Executor.h tq_base:T-functions_Executor.h
 git diff cq:T-functions_imex.h tq_base:T-functions_imex.h
 
-git diff cq:tq.c tq_base-bk:tq.c
-git diff cq:T-definition.h tq_base-bk:T-definition.h
-git diff cq:T-structure.h tq_base-bk:T-structure.h
-git diff cq:T-functions.h tq_base-bk:T-functions.h
-git diff cq:T-functions_Executor.h tq_base-bk:T-functions_Executor.h
-git diff cq:T-functions_imex.h tq_base-bk:T-functions_imex.h
+echo tq VS tq.bk
+git diff tq:tq.c tq_base-bk:tq.c
+git diff tq:T-definition.h tq_base-bk:T-definition.h
+git diff tq:T-structure.h tq_base-bk:T-structure.h
+git diff tq:T-functions.h tq_base-bk:T-functions.h
+git diff tq:T-functions_Executor.h tq_base-bk:T-functions_Executor.h
+git diff tq:T-functions_imex.h tq_base-bk:T-functions_imex.h
 
 # test
 echo test code
