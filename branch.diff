@@ -1,4 +1,8 @@
+# README
+git diff cq:README.exam tq_base:README.exam
+
 # tq
+echo tq VS cq
 git diff cq:tq.c tq_base:tq.c
 git diff cq:T-definition.h tq_base:T-definition.h
 git diff cq:T-structure.h tq_base:T-structure.h
@@ -14,6 +18,7 @@ git diff cq:T-functions_Executor.h tq_base-bk:T-functions_Executor.h
 git diff cq:T-functions_imex.h tq_base-bk:T-functions_imex.h
 
 # test
+echo test code
 git diff cq:DimensionDefinitionLanguage/conv-test.script tq_base:DimensionDefinitionLanguage/conv-test.script
 git diff cq:DimensionDefinitionLanguage/conv2-test.script tq_base:DimensionDefinitionLanguage/conv2-test.script
 
