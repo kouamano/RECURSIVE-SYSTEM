@@ -27,6 +27,7 @@ arg
 
 head
 	: HEAD
+	| list
 	| NULLCHAR
 
 %%
