@@ -1836,44 +1836,84 @@ void get_dim_list(char* str, int* dims)
 	} while((*str) == '[');
 }
 	
-char _ch;
+struct Stream {
+	char ch;
+	FILE* fp;
+};
 
-void skip_value(int* size, FILE* DATA)
+void initialize(struct Stream* in, FILE* fp)
 {
+	(*in).fp = fp;
+	(*in).ch = fgetc((*in).fp);
+}
+	
+void reset(struct Stream* in)
+{
+	fseek((*in).fp, 0, SEEK_SET);
+	(*in).ch = fgetc((*in).fp);
+}
+
+char peek(struct Stream* in)
+{
+	return (*in).ch;
+}
+
+char get(struct Stream* in)
+{
+	(*in).ch = fgetc((*in).fp);
+	return (*in).ch;
+}
+
+bool eos(struct Stream* in)
+{
+	return (*in).ch == EOF;
+}
+
+void skip_value(int* size, struct Stream* in)
+{
+	char ch = peek(in);
+
 	if(*size > 0) {			// other than 1st data item
 		(*size)++;		// for length of ','
 	}
 
-	while((_ch != EOF) && (_ch != DD) && (_ch != '\n')) {	// SAK pending : escape
+	while((ch != EOF) && (ch != DD) && (ch != '\n')) {	// SAK pending : escape
 		(*size)++;
-		_ch = fgetc(DATA);
+		ch = get(in);
+	}
+	if((ch == DD) || (ch == '\n')) {	// SAK pending : escape
+		ch = get(in);
 	}
 }
 
-void bind_data_1st_path(NODE node, FILE* DATA)
+void bind_data_1st_path(NODE node, struct Stream* in)
 {
 	int size = (int)(long)(values_str(node));		// bufer suze
 
-	skip_value(&size, DATA);
+	skip_value(&size, in);
 	set_value_count(node, value_count(node)+1);	// increment value counter
 	set_values_str_ptr(node, (char*)(long)(size));		// increment byte counter
 }
 
-void set_value(char* buff, int* s_pos, FILE* DATA)
+void set_value(char* buff, int* s_pos, struct Stream* in)
 {
 	if(*s_pos>0) {			// other than 1st data item
 		buff[(*s_pos)++] = DD;	// append ','
 	}
 
+	char ch = peek(in);
 	int pos = *s_pos;
-	while((_ch != EOF) && (_ch != DD) && (_ch != '\n') ) {	// SAK pending : escape
-		buff[pos++] = _ch;
-		_ch = fgetc(DATA);
+	while((ch != EOF) && (ch != DD) && (ch != '\n') ) {	// SAK pending : escape
+		buff[pos++] = ch;
+		ch = get(in);
 	}
 	buff[pos++] = '\0';
+	if((ch == DD) || (ch == '\n')) {	// SAK pending : escape
+		ch = get(in);
+	}
 }
 
-void bind_data_2nd_path(NODE node, FILE* DATA)		// process next 1 data item
+void bind_data_2nd_path(NODE node, struct Stream* in)		// process next 1 data item
 {
 	if(value_poses(node) == NULL) {	// 1st data item
 		if(set_value_poses_ptr(node, malloc(sizeof(int) * (value_count(node)+1))) == NULL) {
@@ -1892,52 +1932,49 @@ void bind_data_2nd_path(NODE node, FILE* DATA)		// process next 1 data item
 
 	int s_pos = strlen(values_str(node));			// /SAK pending  peformance
 
-	set_value(values_str(node), &s_pos, DATA);
+	set_value(values_str(node), &s_pos, in);
 	set_value_pos(node, value_count(node), s_pos);
 	set_value_count(node, value_count(node)+1);		// increment value counter
 }
 
-extern bool bind_node(NODE, FILE*, void (*)(NODE, FILE*));
+extern bool bind_node(NODE, struct Stream*, void (*)(NODE, struct Stream*));
 
-bool bind_primitive_node(NODE node, FILE* DATA, void (*e_function)(NODE, FILE*))
+bool bind_primitive_node(NODE node, struct Stream* in, void (*e_function)(NODE, struct Stream*))
 {
 	int eof=FALSE;
 
 	if(is_leaf(node)) {		// leaf node
-		eof = feof(DATA);
+		eof = eos(in);
 		if(!eof) {
-			(*e_function)(node, DATA);
-			if((_ch == DD) || (_ch == '\n')) {	// SAK pending : escape
-				_ch = fgetc(DATA);
-			}
+			(*e_function)(node, in);
 		}
 	}
 
 	int i;
 	for(i=0; !eof && i<child_count(node); i++) {
-		eof = bind_node(child(node,i), DATA, e_function);
+		eof = bind_node(child(node,i), in, e_function);
 	}
 
 	return eof;
 }
 
-bool bind_dim_node(NODE node, int* dims, FILE* DATA, void (*e_function)(NODE, FILE*))
+bool bind_dim_node(NODE node, int* dims, struct Stream* in, void (*e_function)(NODE, struct Stream*))
 {
 	bool eof = FALSE;
 	int i;
 	
 	if(is_empty(dims)) {
-		eof = bind_primitive_node(node, DATA, e_function);
+		eof = bind_primitive_node(node, in, e_function);
 	} else {
 		for(i=0; !eof && (i<first(dims) || first(dims) == 0); i++) {
-			eof = bind_dim_node(node, rest(dims), DATA, e_function);
+			eof = bind_dim_node(node, rest(dims), in, e_function);
 		}
 	}
 
 	return eof;
 }
 
-bool bind_node(NODE node, FILE* DATA, void (*e_function)(NODE, FILE*))
+bool bind_node(NODE node, struct Stream* in, void (*e_function)(NODE, struct Stream*))
 {
 	int dims[10];			// SAK PENDING  array size  => bind_dim_node(node, head_pos, DATA)
 
@@ -1947,16 +1984,17 @@ bool bind_node(NODE node, FILE* DATA, void (*e_function)(NODE, FILE*))
 	if(is_leaf(node) && is_empty(dims)) {	// non-array leaf node
 		return FALSE;
 	} else {
-		return bind_dim_node(node, dims, DATA, e_function);
+		return bind_dim_node(node, dims, in, e_function);
 	}
 }
 
 void bind_data(NODE node, FILE* DATA)
-{
-	_ch = fgetc(DATA);
-	bind_node(node, DATA, bind_data_1st_path);
+{	
+	struct Stream in;
 
-	fseek(DATA, 0, SEEK_SET);
-	_ch = fgetc(DATA);
-	bind_node(node, DATA, bind_data_2nd_path);
+	initialize(&in, DATA);
+	bind_node(node, &in, bind_data_1st_path);
+
+	reset(&in);
+	bind_node(node, &in, bind_data_2nd_path);
 }

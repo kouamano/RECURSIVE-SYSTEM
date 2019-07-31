@@ -574,19 +574,22 @@ void parse_bind_values(NODE node)
 //
 NODE parse_header(int level)
 {
-	NODE root = alloc_node();	// allocate node for this <header>
-	set_head(root, BUFF);		// set buff to <header> node
-	set_level(root, level);		// set buff to <header> node
+	NODE node = alloc_node();	// allocate node for this <header>
+	set_level(node, level);		// set buff to <header> node
 
-	Analyze_HeadLabel(root);	// SAK Analyze_Head -> Analyze_HeadLabel
+	if(token != 'I') {		// null node	20190731
+		set_head(node, "");
+	} else {
+		set_head(node, BUFF);	// set buff to <header> node
+		Analyze_HeadLabel(node);// SAK Analyze_Head -> Analyze_HeadLabel
+		skip('I');		// skip idenifier token
+	}				
 
-	next_token();			// get next token
-
-	if(token=='@') {
-		parse_bind_values(root);
+	if(token=='@') {		// bind operator
+		parse_bind_values(node);
 	}
 
-	return root;
+	return node;
 }
 
 //
@@ -597,6 +600,31 @@ NODE parseT(int level)
 	NODE root;	// root node of tree for this <T-exp>
 	NODE child;	// child node of root
 
+	root = parse_header(level);	// node for <header>
+
+	// child nodes
+	while(token == '(') {
+		skip('(');	// skip '('
+
+		child = parseT(level+1);	// 1st child after 	'('
+
+		add_child(root, child);	// add child to root 
+		set_conjugate(child, OFF);	// mark as 1st child
+
+		while(token == ',') {
+			skip(',');		// skip ','
+
+			child = parseT(level+1);	// 2nd child
+
+			add_child(root, child);		// add child to root 
+			set_conjugate(child, ON);	// mark as 2nd child
+		}
+
+		skip(')');		// skip ')'
+	}
+
+	return root;		// root node of this T-exp
+#if 0
 	// root node
 	if(token == '(') {
 		root = alloc_node();			// null node
@@ -610,7 +638,8 @@ NODE parseT(int level)
 	while(token == '(') {
 		skip('(');	// skip '('
 
-		if(token == ')') {
+		// if(token == ')') {		// 20190730
+		if(token != 'I') {		// 20190730
 			child = alloc_node();	// null node
 			set_head(child, "");
 			set_level(child, level+1);
@@ -624,9 +653,15 @@ NODE parseT(int level)
 		while(token == ',') {
 			skip(',');		// skip ','
 
-			child = parseT(level+1);	// 2nd child
+			if(token != 'I') {		// 20190730
+				child = alloc_node();	// 20190730(null node)
+				set_head(child, "");	// 20190730
+				set_level(child, level+1);	// 20190730
+			} else {				// 20190730
+				child = parseT(level+1);	// 2nd child
+			}					// 20190730
 
-			add_child(root, child);	// add child to root 
+			add_child(root, child);		// add child to root 
 			set_conjugate(child, ON);	// mark as 2nd child
 		}
 
@@ -634,6 +669,7 @@ NODE parseT(int level)
 	}
 
 	return root;		// root node of this T-exp
+#endif
 }
 
 #ifdef DEBUG
@@ -693,7 +729,7 @@ NODE import_LinkTable(FILE *_IN, struct options *_opt, struct function_options *
 	token = ' ';
 
 	next_token();
-	while(token != EOF) {
+	// while(token != EOF) {	// single T-exp allowed
 	root = parseT(0);	// parse with level 0
 	// skip(LF);
 #ifdef DEBUG
@@ -702,6 +738,10 @@ NODE import_LinkTable(FILE *_IN, struct options *_opt, struct function_options *
 #endif
 	*ncount = SN;
 
+	//}
+	
+	if(token != EOF) {	// more than one T-exps 
+		error("*** syntax error ***\n");
 	}
 
 	return root;
