@@ -1766,17 +1766,17 @@ NODE ExFunction_UpRecursive(NODE node, NODE (*e_function)(NODE ), struct options
 
 typedef int bool;
 
-
-bool is_empty(int* list)
+/*
+bool empty_dim(char** str)
 {
 	return list[0] == -1;
 }
-
+*/
 bool is_leaf(NODE node)
 {
 	return child_count(node) == 0;
 }	
-
+/*
 int first(int* list)
 {
 	return list[0];
@@ -1786,16 +1786,48 @@ int* rest(int* list)
 {
 	return ++list;
 }
-		// [] / [,6] empty -> infinit
-void read_number(char** str, int* value)
+*/
+
+// [] / [,6] empty -> infinit
+int scan_dim_number(char** str)
 {
-	(*value) = 0;			
-	while(isdigit(**str)) {
-		(*value) = (*value)*10 + ((**str)-'0');
+	bool bracket_beg = FALSE;
+	int value = 0;
+
+	while((**str) && !isdigit(**str) && !(bracket_beg && (**str) == ']')) {	// SAK pending escape
+		if(**str == '[') {
+			bracket_beg = TRUE;
+		}
 		(*str)++;
 	}
+
+	if(!(**str)) {				// end of string
+		value = -1;
+	} else if(isdigit(**str)) {		// number
+		value = 0;			
+		while(isdigit(**str)) {
+			value = value*10 + ((**str)-'0');
+			(*str)++;
+		}
+	} else {				// ']' with no numbers after opening '[' (e.g. [...])
+		value = 0;
+		(*str)++;
+	}
+
+	return value;
 }
 
+char* get_dim_str(char* str)
+{
+	// SAK pending escape
+	while((*str) != '\0' && (*str) != '[') {	// skip to '['
+		str++;
+	}
+
+	return str;
+}
+
+/*
 void get_dim_list(char* str, int* dims)
 {
 	dims[0] = -1;				// termnator(end of list)
@@ -1835,6 +1867,7 @@ void get_dim_list(char* str, int* dims)
 
 	} while((*str) == '[');
 }
+*/
 	
 struct Stream {
 	char ch;
@@ -1958,16 +1991,18 @@ bool bind_primitive_node(NODE node, struct Stream* in, void (*e_function)(NODE, 
 	return eof;
 }
 
-bool bind_dim_node(NODE node, int* dims, struct Stream* in, void (*e_function)(NODE, struct Stream*))
+bool bind_dim_node(NODE node, char* dims, struct Stream* in, void (*e_function)(NODE, struct Stream*))
 {
 	bool eof = FALSE;
 	int i;
 	
-	if(is_empty(dims)) {
+	int num = scan_dim_number(&dims);
+	
+	if(num == -1) {		//  no dim number
 		eof = bind_primitive_node(node, in, e_function);
 	} else {
-		for(i=0; !eof && (i<first(dims) || first(dims) == 0); i++) {
-			eof = bind_dim_node(node, rest(dims), in, e_function);
+		for(i=0; !eof && (num == 0 || i< num); i++) {
+			eof = bind_dim_node(node, dims, in, e_function);
 		}
 	}
 
@@ -1976,12 +2011,9 @@ bool bind_dim_node(NODE node, int* dims, struct Stream* in, void (*e_function)(N
 
 bool bind_node(NODE node, struct Stream* in, void (*e_function)(NODE, struct Stream*))
 {
-	int dims[10];			// SAK PENDING  array size  => bind_dim_node(node, head_pos, DATA)
+	char* dims = get_dim_str(head(node));
 
-	get_dim_list(head(node), dims);	// non-array -> () / [2][3,4] -> (2,3,4) / [][3,4] -> (0,3,4) / [3,,4] -> (3,0,4)
-					// dims: -1 terminate
-
-	if(is_leaf(node) && is_empty(dims)) {	// non-array leaf node
+	if(is_leaf(node) && !(*dims)) {		// non-array leaf node
 		return FALSE;
 	} else {
 		return bind_dim_node(node, dims, in, e_function);

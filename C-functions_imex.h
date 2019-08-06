@@ -213,6 +213,8 @@ TOKEN	token;		// current token
 char*	BUFF;		// string for current token
 int	buf_ptr;	// 
 
+bool null_node_allowed = ON;
+
 struct options *opt;	// pending
 
 void error(char* msg)
@@ -348,6 +350,8 @@ void skip_dim()
 
 void next_token()
 {
+	null_node_allowed = ON;		// null node flag
+
 	if(token == EOF) {
 		error("syntax error");
 	}
@@ -577,8 +581,9 @@ NODE parse_header(int level)
 	NODE node = alloc_node();	// allocate node for this <header>
 	set_level(node, level);		// set buff to <header> node
 
-	if(token != 'I') {		// null node	20190731
+	if(token != 'I' && null_node_allowed) {		// null node	20190731
 		set_head(node, "");
+		null_node_allowed = OFF;
 	} else {
 		set_head(node, BUFF);	// set buff to <header> node
 		Analyze_HeadLabel(node);// SAK Analyze_Head -> Analyze_HeadLabel
@@ -614,10 +619,10 @@ NODE parseT(int level)
 		while(token == ',') {
 			skip(',');		// skip ','
 
-			child = parseT(level+1);	// 2nd child
+			child = parseT(level+1);	// 2nd or later child
 
 			add_child(root, child);		// add child to root 
-			set_conjugate(child, ON);	// mark as 2nd child
+			set_conjugate(child, ON);	// mark as 2nd or later
 		}
 
 		skip(')');		// skip ')'
@@ -729,9 +734,9 @@ NODE import_LinkTable(FILE *_IN, struct options *_opt, struct function_options *
 	token = ' ';
 
 	next_token();
-	// while(token != EOF) {	// single T-exp allowed
+	//while(token != EOF) {	// multiple T-exps allowed
 	root = parseT(0);	// parse with level 0
-	// skip(LF);
+	//while(token == LF) skip(LF);		//
 #ifdef DEBUG
 	dump_tree(root, 0);
 	printf("\n\n");
