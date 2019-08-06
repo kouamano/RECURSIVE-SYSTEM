@@ -1,3 +1,6 @@
+# branchのdiff
+./branch.diff
+
 # tq のテスト
 ## 単体テスト
 ### コンバート
@@ -26,6 +29,8 @@ echo '$``List($4)' | ./tq.o in=/dev/stdin -FT -C -Pin
  => "List($4)"
 
 ### compile: アンパック
+echo '$~~$($U$(7,8,$U$(5,6)))' | ./tq.o in=/dev/stdin -FT -Pin -C
+ => $~~$($U$(7,8,$U$(5,6)))
 ./tq.o in=test_unpack.t -FT -Pin -C
  => $($1,$2,List,$1,$2)
 
@@ -95,7 +100,6 @@ echo '$``List($4)' | ./tq.o in=/dev/stdin -FT -C -Pin
 ./tq.o in=test_prd.1.ddf out=test_prd.5.ddl data=test.csv -FT -Pprod  -C
 ./tq.o in=test_prd.1.ddf out=test_prd.5.ddl data=test.csv -FT -Pprod  -C | ./tq.o in=/dev/stdin Sp=0,1 -Pin -FT
 - Headのディストリビュート(未完)
-./tq.o in=test_prd.2.ddf out=test_prd.2-1.ddl -Pprod -Pin -FT
 ./tq.o in=test_prd.2.ddf out=test_prd.2-1.ddl -Pprod -Pin -FT data=vals.csv
 TODO: @(1,2) を$PI$の時にディストリビュート-> Headをvalstr化する
 

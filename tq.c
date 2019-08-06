@@ -15,9 +15,9 @@ void status(void){
 	printf("STATUS:\n");
 	printf(" Under construction:\n");
 	printf("  - Block print (insert blacket) for inner product.\n");
-	printf("COMPILED:\n");
-	printf(" %s\n",ctime);
-	printf(" %s\n",cdate);
+	printf(" COMPILED:\n");
+	printf("  %s\n",ctime);
+	printf("  %s\n",cdate);
 }
 
 /* help */
@@ -43,7 +43,7 @@ void help(void){
 	printf("  war : set integer for warnnig level.\n");
 }
 void function_help(void){
-	printf("  -F<x> : function symbol, e.g. \"-FS\" prints S-form.\n");
+	printf("  Function option -F<x>: \n");
 	printf("   -FT : prints T-form.\n");
 	printf("   -FS : prints S-form.\n");
 	printf("   -FJ : prints JSON form.\n");
@@ -58,10 +58,11 @@ void function_help(void){
 	printf("   -Ftest : prints from test function.\n");
 }
 void compile_help(void){
-	printf("  -C : print compiled form.\n");
-	printf("  -Cr : prints the \"print-restrict\" char at the end of line.\n");
-	printf("  -Cc : clear head.\n");
-	printf("  -Cd : rewite head to dot.\n");
+	printf("  Compile option: \n");
+	printf("   -C : print compiled form.\n");
+	printf("   -Cr : prints the \"print-restrict\" char at the end of line.\n");
+	printf("   -Cc : clear head.\n");
+	printf("   -Cd : rewite head to dot.\n");
 }
 void search_help(void){
 	printf("  Search option: \n");

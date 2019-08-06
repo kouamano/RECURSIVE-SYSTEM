@@ -11,5 +11,6 @@
 #define REF_S 267
 #define REF_E 268
 #define LABEL 269
-#define END 270
-#define ERR 271
+#define DOT 270
+#define END 271
+#define ERR 272

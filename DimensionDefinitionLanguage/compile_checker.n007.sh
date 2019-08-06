@@ -1,6 +1,6 @@
 #!/bin/bash
 # checker
-##g
+##gt
 echo gt
 lex gt.l
 yacc -dv gt.y

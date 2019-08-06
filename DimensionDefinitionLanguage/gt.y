@@ -6,27 +6,29 @@ int yylex(void);
 extern char *yytext;
 %}
 
-%token FUNC_S FUNC_E DIV HEAD
+%token FUNC_S FUNC_E HEAD NULLCHAR
 %right FUNC_S
 %left FUNC_E
-%right LIST
 
 %%
 list
-	: HEAD
+	: head
 	| body
-	| HEAD body
+	| head body
 
 body
 	: FUNC_S FUNC_E
 	| FUNC_S arg FUNC_E
 	| FUNC_S body FUNC_E
-	| FUNC_S body DIV body FUNC_E
 	| body body
 
 arg
+	: head
+
+head
 	: HEAD
-	| arg DIV HEAD
+	| list
+	| NULLCHAR
 
 %%
 int yyerror(char const *str)

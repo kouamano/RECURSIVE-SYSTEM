@@ -92,7 +92,7 @@ diff test.s.t.mM test.s.t.mM.t.mM
 #M2S
 echo 'M2S'
 cat test.s.t.mM | ../mM2t.pl | ../tq.o in=/dev/stdin -FS -Pin > test.s.t.mM.t.s
-cat test.s.t.mM.t.s | ../cst in=/dev/stdin | t2mM.pl > test.s.t.mM.t.s.t.mM
+cat test.s.t.mM.t.s | ../cst in=/dev/stdin | ../t2mM.pl > test.s.t.mM.t.s.t.mM
 diff test.s.t.mM test.s.t.mM.t.s.t.mM
 
 #M2J

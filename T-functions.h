@@ -303,21 +303,21 @@ struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt){
 	free(buff);
 	return(tree);
 }
-struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *node_count, struct Tree **node_table){
+struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *bn_count, struct Tree **bn_table){
 	int i;
 	struct Tree *current = NULL;
 	current = top;
 	if((*current).nval > 0){
-		node_table = realloc(node_table,(sizeof(struct Tree *) * (*node_count + 2)));
-		if(node_table == NULL){
+		bn_table = realloc(bn_table,(sizeof(struct Tree *) * (*bn_count + 2)));
+		if(bn_table == NULL){
 			perror("[Fail]realloc@Function_Recursive_Search_BindNode");
 			exit(1);
 		}
-		node_table[(*node_count)] = current;
-		(*node_count)++;
+		bn_table[(*bn_count)] = current;
+		(*bn_count)++;
 	}
 	for(i=0;i<(*current).NextCount;i++){
-		Function_Recursive_Search_BindNode((*current).Next[i],node_count,node_table);
+		Function_Recursive_Search_BindNode((*current).Next[i],bn_count,bn_table);
 	}
 	return(NULL);
 }
@@ -1152,7 +1152,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		return(tree);
 	}
 
-	/* print bind mark for binded data */
+	/* print bind mark (1) */
 	if((*tree).valstr != NULL){
 		printf("@");
 	}
@@ -1172,7 +1172,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
 		}
 	}
-	/* print binded data */
+	/* print binded data (1) */
 	if((*tree).valstr != NULL){
 		printf("(%s)",(*tree).valstr);
 	}

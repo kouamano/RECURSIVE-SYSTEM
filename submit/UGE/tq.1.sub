@@ -1,0 +1,15 @@
+#!/bin/sh
+#$ -S /bin/sh
+
+#export PATH=${PATH}:/path/to/execfiles
+#export LD_LIBRARY_PATH=/path/to/libfiles:${LD_LIBRARY_PATH}
+
+cd /home/kamano/gitsrc/RECURSIVE-SYSTEM/test
+pwd
+hostname
+date
+echo "=====EXEC====="
+/home/kamano/gitsrc/RECURSIVE-SYSTEM/tq.o
+echo "=====END====="
+date
+#echo “to stderr” 1>&2
