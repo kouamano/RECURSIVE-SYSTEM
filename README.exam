@@ -134,12 +134,15 @@ user    2m5.473s
 sys     0m20.885s
 @ 36G mem
 ### 4.9億ノード
+- tq
 time ./tq.o in=lllarge4-single-test.t -FT
 498615417 Nodes were operated.
 real    3m28.752s
 user    2m28.315s
 sys     1m0.389s
 @ 96G mem
+- to json
+time ./tq.o in=lllarge4-single-test.t buff=30 -FJ -Pin > /dev/null
 ### 大型配列のバインド 1.6G => 1.2G(4億データポイント)
 -
 time ./tq.o in=large-test_bind.t -FT data=large-test.csv data_buff=2000000000 
