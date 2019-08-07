@@ -143,6 +143,10 @@ sys     1m0.389s
 @ 96G mem
 - to json
 time ./tq.o in=lllarge4-single-test.t buff=30 -FJ -Pin > /dev/null
+real	5m35.551s
+user	4m21.354s
+sys	1m14.121s
+@ 136G mem
 ### 大型配列のバインド 1.6G => 1.2G(4億データポイント)
 -
 time ./tq.o in=large-test_bind.t -FT data=large-test.csv data_buff=2000000000 
