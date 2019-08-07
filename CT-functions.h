@@ -376,7 +376,7 @@ NODE Detect_DimBlock(NODE node, struct options *_opt){
 	return(node);
 }
 // tq: struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *node_count, struct Tree **node_table){
-NODE Function_Recursive_Search_BindNode(NODE top, int *node_count, NODE *node_table){
+NODE Function_Recursive_Search_BindNode(NODE top, int *bn_count, NODE *bn_table){
 	int i;
 	// tq: struct Tree *current = NULL;
 	NODE current = NO_NODE;
@@ -384,18 +384,18 @@ NODE Function_Recursive_Search_BindNode(NODE top, int *node_count, NODE *node_ta
 	// tq: if((*current).nval > 0){
 	if(value_count(current) > 0){
 		// tq: node_table = realloc(node_table,(sizeof(struct Tree *) * (*node_count + 2)));
-		node_table = realloc(node_table,(sizeof(NODE ) * (*node_count + 2)));
-		if(node_table == NULL){
+		bn_table = realloc(bn_table,(sizeof(NODE ) * (*bn_count + 2)));
+		if(bn_table == NULL){
 			perror("[Fail]realloc@Function_Recursive_Search_BindNode");
 			exit(1);
 		}
-		node_table[(*node_count)] = current;
-		(*node_count)++;
+		bn_table[(*bn_count)] = current;
+		(*bn_count)++;
 	}
 	// tq: for(i=0;i<(*current).NextCount;i++){
 	for(i=0;i<child_count(current);i++){
 		// tq: Function_Recursive_Search_BindNode((*current).Next[i],node_count,node_table);
-		Function_Recursive_Search_BindNode(child(current,i),node_count,node_table);
+		Function_Recursive_Search_BindNode(child(current,i),bn_count,bn_table);
 	}
 	// tq: return(NULL);
 	return(NO_NODE);
@@ -710,7 +710,8 @@ char *Function_Interpret_Head(NODE node, struct compile_options *_copt){
 			set_extra_stat(node,extra_stat(node) + 8);
 		}
 		compiled++;
-	}else if(strncmp(tmp_head,"$``",3) == 0){ //quating tree
+	// }else if(strncmp(tmp_head,"$``",3) == 0){ //quating tree
+	}else if(strncmp(tmp_head,"$``$",4) == 0){ //quating tree
 		int tmp_len = 0;
 		out_head = realloc(out_head, (sizeof(char) * (len+1)));
 		if(out_head == NULL){
@@ -731,7 +732,8 @@ char *Function_Interpret_Head(NODE node, struct compile_options *_copt){
 		*/
 
 		out_head[0]='"';
-		strcpy(out_head+1,tmp_head+3);
+		// strcpy(out_head+1,tmp_head+3);
+		strcpy(out_head+1,tmp_head+4);
 		tmp_len = strlen(out_head);
 		// tq: if((*tree).NextCount == 0){
 		if(child_count(node) == 0){
@@ -746,8 +748,10 @@ char *Function_Interpret_Head(NODE node, struct compile_options *_copt){
 			set_extra_stat(node,extra_stat(node) + 4);
 		}
 		compiled++;
-	}else if(strncmp(tmp_head,"$~~",3) == 0){
-		strcpy(out_head,tmp_head+3);
+	// }else if(strncmp(tmp_head,"$~~",3) == 0){
+	// 	strcpy(out_head,tmp_head+3);
+	}else if(strncmp(tmp_head,"$~~",4) == 0){
+		strcpy(out_head,tmp_head+4);
 		strcpy(tmp_head,out_head);
 		// tq: if(((*tree).extra_stat&1) != 1){
 		if((extra_stat(node)&1) != 1){
@@ -758,8 +762,10 @@ char *Function_Interpret_Head(NODE node, struct compile_options *_copt){
 		// tq: ExFunction_Recursive_Set_Obj(tree, (struct Tree *(*)())Set_status, (int *)&tmp_stat);	// set cascading
 		ExFunction_Recursive_Set_Obj(node, (NODE (*)())Set_status, (int *)&tmp_stat);	// set cascading
 		compiled++;
-	}else if(strncmp(tmp_head,"$~",2) == 0){
-		strcpy(out_head,tmp_head+2);
+	// }else if(strncmp(tmp_head,"$~",2) == 0){
+	// 	strcpy(out_head,tmp_head+2);
+	}else if(strncmp(tmp_head,"$~$",3) == 0){
+		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
 		// tq: if(((*tree).extra_stat&1) != 1){
 		if((extra_stat(node)&1) != 1){
@@ -767,7 +773,8 @@ char *Function_Interpret_Head(NODE node, struct compile_options *_copt){
 			set_extra_stat(node,extra_stat(node) + 1);
 		}
 		compiled++;
-	}else if(strncmp(tmp_head,"$`",2) == 0){ //quating Head
+	// }else if(strncmp(tmp_head,"$`",2) == 0){ //quating Head
+	}else if(strncmp(tmp_head,"$`$",3) == 0){ //quating Head
 		int tmp_len = 0;
 		out_head = realloc(out_head, (sizeof(char) * (len+1)));
 		if(out_head == NULL){
@@ -775,7 +782,8 @@ char *Function_Interpret_Head(NODE node, struct compile_options *_copt){
 			exit(1);
 		}
 		out_head[0]='"';
-		strcpy(out_head+1,tmp_head+2);
+		// strcpy(out_head+1,tmp_head+2);
+		strcpy(out_head+1,tmp_head+3);
 		//printf("len:%d:",len);
 		//printf("S:%s:",out_head+1);
 		//printf("s:%s:",out_head);
@@ -808,7 +816,7 @@ void Function_Print_Smems(NODE node){
 	// tq: printf(":Lb=%d:",(*tree).Label);
 	printf(":Lb=%d:",label(node));
 	// tq: printf(":Hi=%d:",(*tree).IndicatorPtr);
-	printf(":Hi=%d:",indicator_pos(node));
+	printf(":Hptr=%d:",indicator_pos(node));
 	// tq: printf(":H=%s:",(*tree).Head);
 	printf(":H=%s:",head(node));
 	// tq: printf(":D=%s:",(*tree).dimstr);
@@ -817,7 +825,7 @@ void Function_Print_Smems(NODE node){
 	printf(":nval=%d:",value_count(node));
 	// tq: printf(":vstr=%s:",(*tree).valstr);
 	printf(":vstr=%s:",values_str(node));
-	printf(":vPtr=");
+	printf(":vptr=");
 	// tq: if((*tree).valPtr != NULL){
 	if(value_poses(node) != NULL){
 		int i;
@@ -857,7 +865,8 @@ int Function_Print_Adj(NODE node, int nodes, struct options *_opt){
 	for(i=0;i<nodes;i++){
 		// tq: if(i == (*tree).ser){
 		if(i == ser(node)){
-			printf("[%d",i);
+			// tq: printf("[:%s:%d",(*tree).Head,i);
+			printf("[:%s:%d",head(node),i);
 			// tq: if((*tree).RefNode != NULL){
 			if(ref_node(node) != NO_NODE){
 				// tq: printf("->%d",((*tree).RefNode)->ser);
@@ -984,8 +993,8 @@ NODE Function_Print_Bopen_T(NODE node, struct function_options *_fopt, struct co
 	if(pos == 1){
 		// tq: if((*tree).NextCount != 0){ 
 		if(child_count(node) != 0){ 
-			// tq: if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8){	// for unpack
-			if((*_copt).c_counter > 0 && (extra_stat(node)&8) == 8){	// for unpack
+			// tq: if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8 && ((*tree).extra_stat&1) != 1){	// for unpack
+			if((*_copt).c_counter > 0 && (extra_stat(node)&8) == 8 && (extra_stat(node)&1) != 1){	// for unpack
 				// tq: if(strlen((*tree).Head) > 3){
 				if(strlen(head(node)) > 3){
 					printf(",");
@@ -1475,7 +1484,7 @@ NODE Function_Print_Head(NODE node, struct function_options *_fopt, struct compi
 		return(node);
 	}
 
-	/* print bind mark for binded data */
+	/* print bind mark (1) */
 	// tq: if((*tree).valstr != NULL){
 	if(values_str(node) != NULL){
 		printf("@");
@@ -1504,7 +1513,7 @@ NODE Function_Print_Head(NODE node, struct function_options *_fopt, struct compi
 			ins_head = Function_Print_Head(ref_node(node),_fopt,_copt);
 		}
 	}
-	/* print binded data */
+	/* print binded data (1) */
 	// tq: if((*tree).valstr != NULL){
 	if(values_str(node) != NULL){
 		// tq: printf("(%s)",(*tree).valstr);

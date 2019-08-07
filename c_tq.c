@@ -20,65 +20,109 @@ const char cdate[] = __DATE__;
 const char ctime[] = __TIME__;
 
 void status(void){
-	printf("STATUS:\n");
-	printf(" Under construction:\n");
-	printf("  - Block print (insert blacket) for inner product.\n");
-	printf("COMPILED:\n");
-	printf(" %s\n",ctime);
-	printf(" %s\n",cdate);
+printf("\n");
+        printf("STATUS\n");
+	printf("======\n");
+	printf(" - Under construction\n");
+	printf("  - Inner product.\n");
+	printf("  - Double unpack.\n");
+	printf("  - Riteralize.\n");
+	printf(" - COMPILED\n");
+	printf("   %s\n",ctime);
+	printf("   %s\n",cdate);
 }
 
 /* help */
 void help(void){
-	printf("USAGE:\n");
+	printf("\n");
+	printf("USAGE\n");
+	printf("=====\n");
+	printf("\n");
 	printf(" tq.o [-h|-hF|-hC|-hS|-hD] [-s] [-c] [-test] buff=<(int)size> in=<file name of input form> out=<file name of outout form> data=<data file> data_buff=<(int)size> w=<warnning level> -F<x> -C<x> -P<x>.\n");
-	printf("  -h : help.\n");
-	printf("  -hF : function help.\n");
-	printf("  -hC : compile help.\n");
-	printf("  -hS : search help.\n");
-	printf("  -hD : data help.\n");
-	printf("  -s : prints status.\n");
-	printf("  -c : check args.\n");
-	printf("  -test : execute test code.\n");
-	printf("  -Pin : print input form.\n");
-	printf("  -Pout : print output form.\n");
-	printf("  -Pprod : print inner production of binded data.\n");
-	printf("  buff : set integer for buffer size to read heads.\n");
-	printf("  in : set input-form file name (length < 1024).\n");
-	printf("  out : set output-form file name (length < 1024).\n");
-	printf("  data : CSV data file name.\n");
-	printf("  data_buff : set integer for buffer size to read data.\n");
-	printf("  war : set integer for warnnig level.\n");
+	printf("\n");
+        printf(" - Main options\n");
+        printf("\n");
+        printf("  * -h : help.\n");
+        printf("  * -hF : function help.\n");
+        printf("  * -hC : compile help.\n");
+        printf("  * -hS : search help.\n");
+        printf("  * -hD : data help.\n");
+        printf("  * -hE : print examples.\n");
+        printf("  * -s : prints status.\n");
+        printf("  * -c : check args.\n");
+        printf("  * -test : execute test code.\n");
+        printf("  * -Pin : print input form.\n");
+        printf("  * -Pout : print output form.\n");
+        printf("  * -Pprod : print inner production of binded data.\n");
+        printf("  * buff : set integer for buffer size to read heads.\n");
+        printf("  * in : set input-form file name (length < 1024).\n");
+        printf("  * out : set output-form file name (length < 1024).\n");
+        printf("  * data : CSV data file name.\n");
+        printf("  * data_buff : set integer for buffer size to read data.\n");
+        printf("  * war : set integer for warnnig level.\n");
 }
 void function_help(void){
-	printf("  -F<x> : function symbol, e.g. \"-FS\" prints S-form.\n");
-	printf("   -FT : prints T-form.\n");
-	printf("   -FS : prints S-form.\n");
-	printf("   -FJ : prints JSON form.\n");
-	printf("   -FW : prints Wolfram language form.\n");
-	printf("   -FX : prints XML form.\n");
-	printf("   -FC : prints shell script form.\n");
-	printf("   -FN : prints seq node-no.\n");
-	printf("   -FMa : prints Adjacency matrix form.\n");
-	printf("   -Fh : prints hierarchical-form.\n");
-	printf("   -Fst : prints import status.\n");
-	printf("   -Fhst : prints import status with hierarchical-form.\n");
-	printf("   -Ftest : prints from test function.\n");
+	printf("\n");
+	printf(" - Function options\n");
+	printf("\n");
+	printf("  * -FT : prints T-form.\n");
+	printf("  * -FS : prints S-form.\n");
+	printf("  * -FJ : prints JSON form.\n");
+	printf("  * -FW : prints Wolfram language form.\n");
+	printf("  * -FX : prints XML form.\n");
+	printf("  * -FC : prints shell script form.\n");
+	printf("  * -FN : prints seq node-no.\n");
+	printf("  * -FMa : prints Adjacency matrix form.\n");
+	printf("  * -Fh : prints hierarchical-form.\n");
+	printf("  * -Fst : prints import status.\n");
+	printf("  * -Fhst : prints import status with hierarchical-form.\n");
+	printf("  * -Ftest : prints from test function.\n");
 }
 void compile_help(void){
-	printf("  -C : print compiled form.\n");
-	printf("  -Cr : prints the \"print-restrict\" char at the end of line.\n");
-	printf("  -Cc : clear head.\n");
-	printf("  -Cd : rewite head to dot.\n");
+	printf("\n");
+	printf(" - Compile options\n");
+	printf("\n");
+	printf("  * -C : print compiled form.\n");
+	printf("  * -CL : list buit-in operators.\n");
+	printf("  * -Cr : prints the \"print-restrict\" char at the end of line.\n");
+	printf("  * -Cc : clear head.\n");
+	printf("  * -Cd : rewite head to dot.\n");
+}
+void list_builtins(void){
+	printf("\n");
+	printf(" - Builtin operators\n");
+	printf("\n");
+	printf("  *  #<n> : Reference tag: head.\n");
+	printf("  * ##<n> : Reference tag: tree.\n");
+	printf("  * $#<n> : Referencer: head.\n");
+	printf("  * $##<n> : Referencer: tree.\n");
+	printf("  * $$ : Indicator: dictionary reference (term ID).\n");
+	printf("  * $X$ : Indicator: dictionary reference (term string).\n");
+	printf("  * $$$ : Indicator: dictionary reference (class ID).\n");
+	printf("  * $$X$ : Indicator: dictionary reference (class string).\n");
+	printf("  * $NULL$ : Indicator: null object.\n");
+	printf("  * @(<string>) : Indicator: binded data.\n");
+	printf("  * $`$ : Operator: quating head.\n");
+	printf("  * $``$ : Operator: quating tree.\n");
+	printf("  * $~$ : Operator: riteral head.\n");
+	printf("  * $~~$ : Operator: riteral tree.\n");
+	printf("  * $U$ : Operator: unpack single level.\n");
+	printf("  * $UU$ : Operator: unpack tree (under construction).\n");
+	printf("  * [<n>] : Operator: data bind.\n");
+	printf("  * @(<string>) : Operator: data overwrite.\n");
 }
 void search_help(void){
-	printf("  Search option: \n");
-	printf("   Sh=<head> (Under construction).\n");
-	printf("   Sp=<position>.\n");
+	printf("\n");
+	printf(" - Search options\n");
+	printf("\n");
+	printf("  * Sh=<head> (Under construction).\n");
+	printf("  * Sp=<position>.\n");
 }
 void data_help(void){
-	printf("  Data option: \n");
-	printf("   DD=<delimiter> currently unused, definded by definition file.\n");
+	printf("\n");
+        printf(" - Data option\n");
+        printf("\n");
+        printf("  * DD=<delimiter> currently unused, definded by definition file.\n");
 }
 
 /* allocation */
@@ -174,6 +218,7 @@ void init_function_options(struct function_options *fopt){
 }
 void init_compile_options(struct compile_options *copt){
         (*copt).c_counter = 0;
+        (*copt).c_list = 0;
         (*copt).c_restrict = 0;
         (*copt).c_clear = 0;
         (*copt).c_dot = 0;
@@ -279,7 +324,10 @@ void get_compile_options(int optc, char **optv, struct compile_options *copt){
 		if(strncmp(optv[i],"-C",2) == 0){
 			(*copt).c_counter++;
 		}
-		if(strncmp(optv[i],"-Cr",3) == 0){
+		if(strncmp(optv[i],"-CL",3) == 0){
+			(*copt).c_list = 1;
+			(*copt).c_counter++;
+		}else if(strncmp(optv[i],"-Cr",3) == 0){
 			(*copt).c_restrict = 1;
 			(*copt).c_counter++;
 		}else if(strncmp(optv[i],"-Cc",3) == 0){
@@ -367,6 +415,7 @@ void check_function_options(struct function_options *fopt){
 void check_compile_options(struct compile_options *copt){
 	printf(" compilers:\n");
 	printf("  opt.ccount:%d:\n",(*copt).c_counter);
+	printf("  opt.c_list:%d:\n",(*copt).c_list);
 	printf("  opt.c_restrict:%d:\n",(*copt).c_restrict);
 	printf("  opt.c_clear:%d:\n",(*copt).c_clear);
 	printf("  opt.c_dot:%d:\n",(*copt).c_dot);
@@ -480,6 +529,12 @@ int main(int argc, char **argv){
 		check_data_options(_dopt);
 		ie = 1;
 	}
+
+	if((*_copt).c_list == 1){
+		list_builtins();
+		ie = 1;
+	}
+
 	if(ie == 1){
 		exit(0);
 	}
