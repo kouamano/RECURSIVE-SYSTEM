@@ -750,7 +750,7 @@ char *Function_Interpret_Head(NODE node, struct compile_options *_copt){
 		compiled++;
 	// }else if(strncmp(tmp_head,"$~~",3) == 0){
 	// 	strcpy(out_head,tmp_head+3);
-	}else if(strncmp(tmp_head,"$~~",4) == 0){
+	}else if(strncmp(tmp_head,"$~~$",4) == 0){
 		strcpy(out_head,tmp_head+4);
 		strcpy(tmp_head,out_head);
 		// tq: if(((*tree).extra_stat&1) != 1){
