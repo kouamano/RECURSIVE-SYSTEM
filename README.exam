@@ -23,9 +23,9 @@ echo '$``$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst
 echo '$``$' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst
 ./tq.o in=test_compile.t -C -FT -Pin    
  => $~List(List(List,List,List,List))
-echo '$``List' | ./tq.o in=/dev/stdin -FT -C -Pin   
+echo '$``$List' | ./tq.o in=/dev/stdin -FT -C -Pin   
  => "List"
-echo '$``List($4)' | ./tq.o in=/dev/stdin -FT -C -Pin   
+echo '$``$List($4)' | ./tq.o in=/dev/stdin -FT -C -Pin   
  => "List($4)"
 
 ### compile: アンパック
@@ -43,7 +43,16 @@ echo '$~~$($U$(7,8,$U$(5,6)))' | ./tq.o in=/dev/stdin -FT -Pin -C
 ./tq.o in=test_dim.ddf -Pin -Fst data=vals.csv -FT
 
 ### データバインド
--
+- 基本(0)
+echo '#1$OP$Head($#1[1])' | ./tq.o in=/dev/stdin -FT -Pin data=test.csv
+ => #1$OP$Head($#1[1]@@#1$OP$Head(Length))
+- 基本(1)
+./tq.o in=test_ref.ddf -Pin -FT data=test.csv -Pout out=test_ref.ddl
+ => 
+(#1[2]@(Length,Weight),#2[2]@(mm,kg))
+$#1@#1[2]@(Length,Weight)
+4 Nodes were operated.
+- 基本(2)
 ./tq.o in=test.ddf -FT out=test.ddl data=test.csv -Pin -Pout
 - 配列指定のあるリーフノードにバインドされる
 ./tq.o in=test_bind.t  data=test.csv -FT -Pin
@@ -53,6 +62,8 @@ echo '$~~$($U$(7,8,$U$(5,6)))' | ./tq.o in=/dev/stdin -FT -Pin -C
 #### 木
 ./tq.o in=test_ref-tree.ddf -Pin -FT
 #### セルフ
+echo '#2$#1($#2,#1[4])' | ./tq.o in=/dev/stdin -Fst -Pin -FT
+ => #2$#1@#1[4]($#2@#2$#1@#1[4],#1[4])
 ./tq.o in=test_ref.1.t -FMa -FT -Fh -Pin
 - 完全グラフ
 ./tq.o in=test_ref-graph.4.t -Pin -FT -FMa
@@ -134,19 +145,25 @@ user    2m5.473s
 sys     0m20.885s
 @ 36G mem
 ### 4.9億ノード
-- tq
 time ./tq.o in=lllarge4-single-test.t -FT
 498615417 Nodes were operated.
 real    3m28.752s
 user    2m28.315s
 sys     1m0.389s
 @ 96G mem
-- to json
-time ./tq.o in=lllarge4-single-test.t buff=30 -FJ -Pin > /dev/null
-real	5m35.551s
-user	4m21.354s
-sys	1m14.121s
-@ 136G mem
+-
+time ./tq.o in=lllarge4-single-test.t buff=30 -FJ -Pin > lllarge4-single-test.json
+real	5m56.396s
+user	4m21.241s
+sys	1m34.636s
+@ 132G mem
+-
+time cat lllarge4-single-test.json | jq . > /dev/null
+real	5m56.396s
+user	4m21.241s
+sys	1m34.636s
+144G @ mem
+
 ### 大型配列のバインド 1.6G => 1.2G(4億データポイント)
 -
 time ./tq.o in=large-test_bind.t -FT data=large-test.csv data_buff=2000000000 
