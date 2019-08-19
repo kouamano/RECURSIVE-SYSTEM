@@ -1,3 +1,6 @@
+# self
+git diff cq:branch.diff tq_base:branch.diff
+
 # README
 git diff cq:README.exam tq_base:README.exam
 git diff cq:README.md tq_base:README.md
