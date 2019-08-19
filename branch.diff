@@ -1,5 +1,7 @@
 # README
 git diff cq:README.exam tq_base:README.exam
+git diff cq:README.md tq_base:README.md
+git diff cq:README.chem tq_base:README.chem
 
 # tq
 echo cq VS tq
