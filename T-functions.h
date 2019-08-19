@@ -563,7 +563,7 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 			(*tree).extra_stat = (*tree).extra_stat + 8;
 		}
 		compiled++;
-	}else if(strncmp(tmp_head,"$``",3) == 0){ //quating tree
+	}else if(strncmp(tmp_head,"$``$",4) == 0){ //quating tree
 		int tmp_len = 0;
 		out_head = realloc(out_head, (sizeof(char) * (len+1)));
 		if(out_head == NULL){
@@ -584,7 +584,7 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 		*/
 
 		out_head[0]='"';
-		strcpy(out_head+1,tmp_head+3);
+		strcpy(out_head+1,tmp_head+4);
 		tmp_len = strlen(out_head);
 		if((*tree).NextCount == 0){
 			out_head[tmp_len]='"';
@@ -596,8 +596,8 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 			(*tree).extra_stat = (*tree).extra_stat + 4;
 		}
 		compiled++;
-	}else if(strncmp(tmp_head,"$~~",3) == 0){
-		strcpy(out_head,tmp_head+3);
+	}else if(strncmp(tmp_head,"$~~$",4) == 0){
+		strcpy(out_head,tmp_head+4);
 		strcpy(tmp_head,out_head);
 		if(((*tree).extra_stat&1) != 1){
 			(*tree).extra_stat = (*tree).extra_stat + 1;
@@ -605,14 +605,14 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 		int tmp_stat = 1;
 		ExFunction_Recursive_Set_Obj(tree, (struct Tree *(*)())Set_status, (int *)&tmp_stat);	// set cascading
 		compiled++;
-	}else if(strncmp(tmp_head,"$~",2) == 0){
-		strcpy(out_head,tmp_head+2);
+	}else if(strncmp(tmp_head,"$~$",3) == 0){
+		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
 		if(((*tree).extra_stat&1) != 1){
 			(*tree).extra_stat = (*tree).extra_stat + 1;
 		}
 		compiled++;
-	}else if(strncmp(tmp_head,"$`",2) == 0){ //quating Head
+	}else if(strncmp(tmp_head,"$`$",3) == 0){ //quating Head
 		int tmp_len = 0;
 		out_head = realloc(out_head, (sizeof(char) * (len+1)));
 		if(out_head == NULL){
@@ -620,7 +620,7 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 			exit(1);
 		}
 		out_head[0]='"';
-		strcpy(out_head+1,tmp_head+2);
+		strcpy(out_head+1,tmp_head+3);
 		//printf("len:%d:",len);
 		//printf("S:%s:",out_head+1);
 		//printf("s:%s:",out_head);
@@ -645,12 +645,12 @@ void Function_Print_Smems(struct Tree *tree){
 	printf(":Ref=%ld:",(long int)(*tree).RefNode);
 	printf(":LT=%c:",(*tree).LabelType);
 	printf(":Lb=%d:",(*tree).Label);
-	printf(":Hi=%d:",(*tree).IndicatorPtr);
+	printf(":Hptr=%d:",(*tree).IndicatorPtr);
 	printf(":H=%s:",(*tree).Head);
 	printf(":D=%s:",(*tree).dimstr);
 	printf(":nval=%d:",(*tree).nval);
 	printf(":vstr=%s:",(*tree).valstr);
-	printf(":vPtr=");
+	printf(":vptr=");
 	if((*tree).valPtr != NULL){
 		int i;
 		for(i=0;i<(*tree).nval;i++){
@@ -677,7 +677,7 @@ int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 	int j;
 	for(i=0;i<nodes;i++){
 		if(i == (*tree).ser){
-			printf("[%d",i);
+			printf("[:%s:%d",(*tree).Head,i);
 			if((*tree).RefNode != NULL){
 				printf("->%d",((*tree).RefNode)->ser);
 			}
@@ -766,7 +766,7 @@ struct Tree *Function_Print_Conj_X(struct Tree *tree, struct function_options *_
 struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
 	if(pos == 1){
 		if((*tree).NextCount != 0){ 
-			if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8){	// for unpack
+			if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8&& ((*tree).extra_stat&1) != 1){	// for unpack
 				if(strlen((*tree).Head) > 3){
 					printf(",");
 				}
@@ -865,7 +865,7 @@ struct Tree *Function_Print_Bopen_C(struct Tree *tree, struct function_options *
 /** Bclose */
 struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
-			if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8){	// for unpack
+			if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8&& ((*tree).extra_stat&1) != 1){	// for unpack
 				;
 			}else{
 				printf(")");	//normal case
