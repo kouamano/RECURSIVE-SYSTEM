@@ -61,6 +61,7 @@ struct function_options {
 
 struct compile_options {
 	int c_counter;
+	int c_list;
 	int c_restrict;
 	int c_clear;
 	int c_dot;
