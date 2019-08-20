@@ -10,24 +10,29 @@
  */
 #include <features.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
 #include <unistd.h>
+#include <ctype.h>
 #include <asm/types.h>
 #include <sys/types.h>
 #include <linux/if_packet.h>
 #include <linux/if_ether.h> 
 #include <linux/if_arcnet.h>
 #include <linux/version.h>
+#include <arpa/inet.h>
 #include <net/if.h>
 #include <net/if_arp.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <sys/time.h>
-
 #define MAXPACKETLEN 0x10000	/* is it large enough ? */
-
 #define DEBUG printf
+
+
+int getpeeraddr(char *, struct sockaddr *);
+int makebroadcast(struct sockaddr *);
 
 void usage();
 int buildpacket(unsigned char *buf, struct sockaddr *src, struct sockaddr *dst, const unsigned char *msg, int count);
