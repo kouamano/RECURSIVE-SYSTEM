@@ -1,0 +1,11 @@
+#!/bin/bash
+#PBS -N mpi_normal_no60
+#PBS -q large
+#PBS -l walltime=2:00:00
+#PBS -j oe
+#PBS -l select=8:ncpus=24:mpiprocs=24
+
+cd $PBS_O_WORKDIR
+module load openmpi/gnu/3.1.3
+_NPROCS=`cat $PBS_NODEFILE | wc -l`
+mpirun -n $_NPROCS ./MPI_wxvp
