@@ -435,7 +435,7 @@ int main(int argc, char **argv){
 	struct Tree *null_node = NULL;
 	int ie = 0;
 	FILE *IN;
-	FILE *DATA;
+	FILE *DATA = NULL;
 	int is_iopen = 0;
 	int is_dopen = 0;
 	int is_oopen = 0;
