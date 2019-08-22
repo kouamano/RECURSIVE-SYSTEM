@@ -3,13 +3,6 @@
 - Wolfram Languageに変換   
 ./tq.o in=test_prd.1.ddf out=test_prd.5.ddl data=test2.csv -FT -Pprod  -C  | ./tq.o in=/dev/stdin -Pin -FW
 ## TODO
-- コードマージ    
-  坂本さんのコードに最新版をマージ
-  1. T-functionsをアップデート <= tq_base
-  2. マージチェック
-  3. fix
-  4. tqコード比較・アップデート <= tq_base
-- その他: issue : https://github.com/kouamano/RECURSIVE-SYSTEM/issues
 
 ## compile
 ```
