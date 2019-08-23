@@ -13,7 +13,6 @@ bash conv-check.script
 - with WL
   cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 - without WL
-  逆コンバーター
   cd DimensionDefinitionLanguage; bash conv2-test.script; cd ../
 
 ### エスケープ処理
