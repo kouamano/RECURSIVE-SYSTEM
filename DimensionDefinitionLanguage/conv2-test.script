@@ -73,15 +73,15 @@ diff test.s.t.j test.s.t.j.s.t.j
 
 #J2S
 echo 'J2S'
-cat test.s.t.mM.j | ../j2s.pl > test.s.t.mM.j.s
-cat test.s.t.mM.j.s | ../cst in=/dev/stdin | ../tq.o in=/dev/stdin -FJ -Pin > test.s.t.mM.j.s.t.j
-diff test.s.t.mM.j test.s.t.mM.j.s.t.j
+cat test.t.J | ../j2s.pl > test.t.J.s
+cat test.t.J.s | ../cst in=/dev/stdin | ../tq.o in=/dev/stdin -FJ -Pin > test.t.J.s.t.j
+diff test.t.J test.t.J.s.t.j
 
-#J2M
+#J2M # under construction
 echo 'J2M'
-cat test.s.t.mM.j | ../j2s.pl | ../cst in=/dev/stdin | ../tq.o in=/dev/stdin -FW -Pin > test.s.t.mM.j.s.t.mM
-cat test.s.t.mM.j.s.t.mM | ../mM2t.pl | ../tq.o in=/dev/stdin -FJ -Pin > test.s.t.mM.j.s.t.mM.t.j
-diff  test.s.t.mM.j test.s.t.mM.j.s.t.mM.t.j
+cat test.t.J | ../j2s.pl | ../cst in=/dev/stdin | ../tq.o in=/dev/stdin -FW -Pin | ../m2mM.pl > test.t.J.s.t.mM
+cat test.t.J.s.t.mM | ../mM2t.pl | ../tq.o in=/dev/stdin -FJ -Pin > test.t.J.s.t.mM.t.J
+diff test.t.J test.t.J.s.t.mM.t.J
 
 #M2T
 echo 'M2T'
