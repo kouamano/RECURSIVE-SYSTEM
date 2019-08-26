@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -N mpi_8_24
+#PBS -N mpi_1_48_1_24
 #PBS -q large
 #PBS -l walltime=2:00:00
 #PBS -j oe
