@@ -1,9 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import sys
 import fileinput
 import nltk
 from nltk import tokenize
+
+nltk.download('punkt')
 
 for line in fileinput.input():
   print(' <;/>'.
