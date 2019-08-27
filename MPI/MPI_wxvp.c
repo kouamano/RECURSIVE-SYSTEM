@@ -9,8 +9,11 @@ int main(int argc, char **argv){
         int dest;
         int tag = 0;
         char message[100];
+	FILE *IN;
 
-        //printf("prog:mpi-test:\n");
+        //printf("arg:%s:\n",argv[1]);
+        IN = fopen(argv[1],"r");
+	close(IN);
 
         MPI_Status status;
         MPI_Init(&argc, &argv);

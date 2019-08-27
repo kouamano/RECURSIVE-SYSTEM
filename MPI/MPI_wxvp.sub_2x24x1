@@ -1,11 +1,11 @@
 #!/bin/bash
-#PBS -N mpi_2_24_1_c4
+#PBS -N mpi_2_8_1_4
 #PBS -q large
 #PBS -l walltime=2:00:00
 #PBS -j oe
-#PBS -l select=2:mpiprocs=24:ompthreads=1:ncpus=4
+#PBS -l select=2:mpiprocs=8:ompthreads=1:ncpus=4
 
 cd $PBS_O_WORKDIR
 module load openmpi/gnu/3.1.3
 _NPROCS=`cat $PBS_NODEFILE | wc -l`
-mpirun -n $_NPROCS ./MPI_wxvp
+mpirun -n $_NPROCS ./MPI_wxvp comm
