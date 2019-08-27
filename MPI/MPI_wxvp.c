@@ -40,7 +40,7 @@ int main(int argc, char **argv){
 	}
 	LFcount++;
 	//fseek(IN,0,SEEK_SET);
-	close(IN);
+	fclose(IN);
 	if((commlist = malloc(sizeof(char *) * LFcount)) == NULL){
 		perror("[F]malloc@commlist");
 		exit(1);
