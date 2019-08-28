@@ -148,6 +148,7 @@ struct Tree *Function_Recursive_SearchBind_LabelNode(struct Tree *tree, char typ
 	return(NULL);
 }
 int get_ref(char *head, char *type, int *label){	//for binded
+	//search for $# or $##
 	int len;
 	len = strlen(head);
 	if(len < 3){
@@ -416,9 +417,9 @@ int Assign_RefedValPtr(struct Tree *tree){	// for product
 }
 void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred){
 	int i;
-	char target_type;
-	int target_label;
-	int stat;
+	char target_type = '\0';
+	int target_label = -1;
+	int stat = -1;
 	stat = get_ref((*binded).Head+(*binded).IndicatorPtr,&target_type,&target_label);
 	if(stat == 1){
 		struct Tree *addr = NULL;
