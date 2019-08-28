@@ -37,7 +37,7 @@ int main(int argc, char **argv){
 	FILE *IN;
 
 	IN = fopen(argv[1],"r");
-	while(C = fgetc(IN)){
+	while((C = fgetc(IN)) != EOF){
                 if(C == '\n'){
                         LFcount++;
                 }
@@ -45,7 +45,7 @@ int main(int argc, char **argv){
         LFcount++;
 	fclose(IN);
 	commlist = c_alloc_mat(LFcount,MSG_SIZ);
-	exit(0);
+	//exit(0);
         IN = fopen(argv[1],"r");
         i = 0;
         j = 0;
