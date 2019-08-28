@@ -63,6 +63,17 @@ $#1@#1[2]@(Length,Weight)
  => $TOP($X$List($LEAF,$LEAF[]@(Length),$LEAF[2]@(Weight,mm)),$X$List[2]($LEAF[2]@(kg,1,2,322)))
 
 ### レファレンス
+#### 不整合
+-
+echo '$1($#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+$1($#3@#3$3,#3$3)
+-
+echo '$1(#2$#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+$1(#2$#3@#3$3,#3$3)
+-
+echo '$1(##2$#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+$1(##2$#3,#3$3)  # <= レファレンスバインドが落る
+
 #### 木
 ./tq.o in=test_ref-tree.ddf -Pin -FT
 #### セルフ
