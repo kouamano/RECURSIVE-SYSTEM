@@ -864,7 +864,7 @@ int Free_LinkTable(struct LinkTable *LT){	// SAK pending
 #ifdef MEM_DIMENSION_STR
 	free((*LT).dimension_str);   // SAK rename
 #endif
-#if MEM_VALUE_COUNT
+#ifdef MEM_VALUE_COUNT
 	free((*LT).value_count);       // SAK rename
 #endif
 	free((*LT).value_poses);

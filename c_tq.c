@@ -1,3 +1,6 @@
+#define MEM_DIMENSION_STR
+#define MEM_VALUE_COUNT
+
 #define TQ
 #include <stdio.h>
 #include <stdlib.h>
@@ -442,8 +445,8 @@ int main(int argc, char **argv){
 	// struct Tree *itop = NULL;		// SAK
 	// struct Tree *otop = NULL;		// SAK
 	// struct Tree *null_node = NULL;	// SAK
-	NODE itop;				// SAK
-	NODE otop;				// SAK
+	NODE itop=NO_NODE;			// SAK
+	NODE otop=NO_NODE;			// SAK
 	NODE null_node;				// SAK
 
 	int ie = 0;
