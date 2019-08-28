@@ -36,7 +36,10 @@ int main(int argc, char **argv){
 	int j;
 	FILE *IN;
 
-	IN = fopen(argv[1],"r");
+	if((IN = fopen(argv[1],"r")) == NULL){
+		help();
+		exit(0);
+	}
 	while((C = fgetc(IN)) != EOF){
                 if(C == '\n'){
                         LFcount++;
