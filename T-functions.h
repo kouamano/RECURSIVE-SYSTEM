@@ -111,7 +111,7 @@ int Analyze_HeadLabel(struct Tree *tree){ // for labeling
 			labelnumlen++;
 		}
 		if((labelnumstr = malloc(sizeof(char) * (labelnumlen + 1))) == NULL){
-			perror("[Fail]malloc@AnalyzeHead\n");
+			perror("[Fail]malloc@Analyze_HeadLabel\n");
 			exit(1);
 		}
 		strncpy(labelnumstr,(*tree).Head+labelreadprt,labelnumlen);
