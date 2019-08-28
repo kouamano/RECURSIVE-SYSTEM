@@ -1,3 +1,5 @@
+# VS. cq
+echo VS. cq
 # self
 echo self
 git diff cq:branch.diff tq_base:branch.diff
@@ -21,4 +23,30 @@ git diff cq:T-functions_imex.h tq_base:T-functions_imex.h
 echo test code
 git diff cq:DimensionDefinitionLanguage/conv-test.script tq_base:DimensionDefinitionLanguage/conv-test.script
 git diff cq:DimensionDefinitionLanguage/conv2-test.script tq_base:DimensionDefinitionLanguage/conv2-test.script
+
+# VS. tq
+echo VS. tq
+# self
+echo self
+git diff tq:branch.diff tq_base:branch.diff
+
+# README
+echo Readme
+git diff tq:README.exam tq_base:README.exam
+git diff tq:README.md tq_base:README.md
+git diff tq:README.chem tq_base:README.chem
+
+# tq
+echo source code
+git diff tq:tq.c tq_base:tq.c
+git diff tq:T-definition.h tq_base:T-definition.h
+git diff tq:T-structure.h tq_base:T-structure.h
+git diff tq:T-functions.h tq_base:T-functions.h
+git diff tq:T-functions_Executor.h tq_base:T-functions_Executor.h
+git diff tq:T-functions_imex.h tq_base:T-functions_imex.h
+
+# test
+echo test code
+git diff tq:DimensionDefinitionLanguage/conv-test.script tq_base:DimensionDefinitionLanguage/conv-test.script
+git diff tq:DimensionDefinitionLanguage/conv2-test.script tq_base:DimensionDefinitionLanguage/conv2-test.script
 
