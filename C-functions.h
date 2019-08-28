@@ -327,10 +327,13 @@ struct LinkTable *Create_LinkTable(int _offset){
 #ifdef MEM_VALUE_COUNT
 	(*LT).value_count = NULL;		// SAK
 #endif
+	(*LT).value_poses = NULL;		// SAK
 	(*LT).values_str = NULL;		// SAK
 	(*LT).child_count = NULL;
 	(*LT).children = NULL;
 	(*LT).ref_node = NULL;		// SAK
+	(*LT).extra_stat = NULL;		// SAK
+	
 
 
 	// Alloc_Link_V(LT);		// SAK pending  ->close
