@@ -45,8 +45,8 @@ int main(int argc, char **argv){
                         LFcount++;
                 }
         }
-        LFcount++;
 	fclose(IN);
+	LFcount++;
 	commlist = c_alloc_mat(LFcount,MSG_SIZ);
 	//exit(0);
         IN = fopen(argv[1],"r");
@@ -68,6 +68,10 @@ int main(int argc, char **argv){
                 }
         }
 	fclose(IN);
+
+	for(i=0;i<LFcount-1;i++){
+		printf("%s\n",commlist[i]);
+	}
 
 	/*
 	printf("prog:%s:\n",argv[1]);
