@@ -89,7 +89,7 @@ struct Tree *Function_Get_Node(char *pos_str, struct Tree *tree){
 /** head analysis */
 int Analyze_HeadLabel(struct Tree *tree){ // for labeling
 	int i = 0;
-	int labelreadprt = 0;
+	int labelreadptr = 0;
 	int labelnumlen = 0;
 	char *labelnumstr;
 	int headlen = 0;
@@ -97,31 +97,31 @@ int Analyze_HeadLabel(struct Tree *tree){ // for labeling
 	/* label type */
 	if((*tree).Head[0] == '#' && (*tree).Head[1] == '#'){
 		(*tree).LabelType = 't';
-		labelreadprt = 2;
+		labelreadptr = 2;
 		labeled++;
 	}else if((*tree).Head[0] == '#' && (*tree).Head[1] != '#'){
 		(*tree).LabelType = 'h';
-		labelreadprt = 1;
+		labelreadptr = 1;
 		labeled++;
 	}
 	/* label */
 	if((*tree).LabelType != '\0'){
 		/* check num char */
-		for(i=labelreadprt; ((*tree).Head[i] >= 0x30) && ((*tree).Head[i] <= 0x39);i++){	//Hex
+		for(i=labelreadptr; ((*tree).Head[i] >= 0x30) && ((*tree).Head[i] <= 0x39);i++){	//Hex
 			labelnumlen++;
 		}
 		if((labelnumstr = malloc(sizeof(char) * (labelnumlen + 1))) == NULL){
 			perror("[Fail]malloc@Analyze_HeadLabel\n");
 			exit(1);
 		}
-		strncpy(labelnumstr,(*tree).Head+labelreadprt,labelnumlen);
+		strncpy(labelnumstr,(*tree).Head+labelreadptr,labelnumlen);
 		sscanf(labelnumstr,"%d",&(*tree).Label);
 		free(labelnumstr);
 		labeled++;
 	}
 	/* IndicatorPtr */
 	headlen = strlen((*tree).Head);
-	for(i=labelreadprt;i<headlen;i++){
+	for(i=labelreadptr;i<headlen;i++){
 		if((*tree).Head[i] < 0x30 || (*tree).Head[i] > 0x39){
 			(*tree).IndicatorPtr = i;
 			break;
