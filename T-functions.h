@@ -121,12 +121,13 @@ int Analyze_HeadLabel(struct Tree *tree){ // for labeling
 	}
 	/* IndicatorPtr */
 	headlen = strlen((*tree).Head);
-	for(i=labelnumlen;i<headlen;i++){
+	for(i=labelreadprt;i<headlen;i++){
 		if((*tree).Head[i] < 0x30 || (*tree).Head[i] > 0x39){
 			(*tree).IndicatorPtr = i;
 			break;
 		}
 	}
+	DB(printf("\nH:%s:Ptr:%d:\n",(*tree).Head,(*tree).IndicatorPtr);)
 	//fprintf(stderr,"labeled:%d.\n",labeled);
 	return(0);
 }

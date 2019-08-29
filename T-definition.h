@@ -1,3 +1,4 @@
+#define DB(X) 
 #ifndef LEN
 #define LEN 1024
 #endif
