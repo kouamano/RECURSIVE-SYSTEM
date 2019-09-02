@@ -17,10 +17,12 @@ void status(void){
 	printf("STATUS\n");
 	printf("======\n");
 	printf(" - Under construction\n");
-	printf("  - Inner product.\n");
-	printf("  - Double unpack.\n");
-	printf("  - Riteralize.\n");
-	printf(" - COMPILED\n");
+	printf("\n");
+	printf("  * Inner product.\n");
+	printf("  * Double unpack.\n");
+	//printf("  * Riteralize.\n");
+	printf("\n");
+	printf(" - COMPILED@\n");
 	printf("   %s\n",ctime);
 	printf("   %s\n",cdate);
 }
@@ -54,7 +56,7 @@ void help(void){
 }
 void function_help(void){
 	printf("\n");
-	printf(" - Function options\n");
+	printf(" - Format options\n");
 	printf("\n");
 	printf("  * -FT : prints T-form.\n");
 	printf("  * -FS : prints S-form.\n");
@@ -83,7 +85,7 @@ void list_builtins(void){
 	printf("\n");
 	printf(" - Builtin operators\n");
 	printf("\n");
-	printf("  *  #<n> : Reference tag: head.\n");
+	printf("  * #<n> : Reference tag: head.\n");
 	printf("  * ##<n> : Reference tag: tree.\n");
 	printf("  * $#<n> : Referencer: head.\n");
 	printf("  * $##<n> : Referencer: tree.\n");
@@ -100,7 +102,7 @@ void list_builtins(void){
 	printf("  * $U$ : Operator: unpack single level.\n");
 	printf("  * $UU$ : Operator: unpack tree (under construction).\n");
 	printf("  * [<n>] : Operator: data bind.\n");
-	printf("  * @(<string>) : Operator: data overwrite.\n");
+	printf("  * @(<string>) : Operator: data overwrite (under construction).\n");
 }
 void search_help(void){
 	printf("\n");
@@ -114,6 +116,77 @@ void data_help(void){
 	printf(" - Data option\n");
 	printf("\n");
 	printf("  * DD=<delimiter> currently unused, definded by definition file.\n");
+}
+void put_examples(void){
+	printf("\n");
+	printf("EXAMPLES\n");
+	printf("========\n");
+	printf("\n");
+	printf("ex.1::\n");
+	printf("\n");
+	printf(" test.csv::\n");
+	printf("\n");
+	printf("  Length,Weight\n");
+	printf("\n");
+	printf(" $ echo '#1$Op$Name($#1[1])' | tq.o in=/dev/stdin -FT -Pin data=test.csv\n");
+	printf("  => #1$Op$Name($#1[1]@@#1$Op$Name(Length))\n");
+	printf("\n");
+	printf(" - #1 : <label>\n");
+	printf(" - $Op$ : <operator>\n");
+	printf(" - Name : <name>\n");
+	printf(" - $#1 : <reference>\n");
+	printf(" - [1] : <binding dimension>\n");
+	printf(" - @ : <binded mark>\n");
+	printf("\n");
+	printf("ex.2 (referencing tree)::\n");
+	printf("\n");
+	printf(" $ echo 'A(B(#1C),$#1(D))'\n");
+	printf("  => A(B(#1C),$#1@#1C(D))\n");
+	printf("                  ^^^^^^^\n");
+	printf("                  Binding referenced tree.\n");
+	printf("\n");
+	printf("ex.3 (creating graph)::\n");
+	printf("\n");
+	printf(" $ echo '$G$($V$(#0,#1,#2),$E$($#0($#1,$#2),$#1($#0,$#2), $#2($#0,$#1)))' | tq.o in=/dev/stdin -FMa -Pin\n");
+	printf("  =>\n");
+	printf(" ====multiline====>\n");
+	printf(" [:$G$:0],1,,,,5,,,,,,,,,,\n");
+	printf(" ,[:$V$:1],2,3,4,,,,,,,,,,,\n");
+	printf(" ,,[:#0:2],,,,,,,,,,,,,\n");
+	printf(" ,,,[:#1:3],,,,,,,,,,,,\n");
+	printf(" ,,,,[:#2:4],,,,,,,,,,,\n");
+	printf(" ,,2,3,,[:$E$:5],6,,,9,,,12,,,\n");
+	printf(" ,,,3,4,,[:$#0:6->2],7,8,,,,,,,\n");
+	printf(" ,,,,,,,[:$#1:7->3],,,,,,,,\n");
+	printf(" ,,,,,,,,[:$#2:8->4],,,,,,,\n");
+	printf(" ,,2,,4,,,,,[:$#1:9->3],10,11,,,,\n");
+	printf(" ,,,,,,,,,,[:$#0:10->2],,,,,\n");
+	printf(" ,,,,,,,,,,,[:$#2:11->4],,,,\n");
+	printf(" ,,2,3,,,,,,,,,[: $#2:12],13,14,\n");
+	printf(" ,,,,,,,,,,,,,[:$#0:13->2],,\n");
+	printf(" ,,,,,,,,,,,,,,[:$#1:14->3],\n");
+	printf(" <====multiline====\n");
+	printf("\n");
+	printf("ex.4 (binding and reforming CSV)::\n");
+	printf("\n");
+	printf(" test.csv::\n");
+	printf("\n");
+	printf("  Length,Weight\n");
+	printf("  mm,kg\n");
+	printf("  1,2\n");
+	printf("  322,4\n");
+	printf("  5,68\n");
+	printf("\n");
+	printf(" in.ddf::\n");
+	printf("\n");
+	printf("  (#1[2],#2[2],[3](#4[2]))\n");
+	printf("\n");
+	printf(" out.ddl::\n");
+	printf("\n");
+	printf("  $PI$($#1,Quantity($#4,$#2))\n");
+	printf("\n");
+	printf(" $ tq.o in=in.ddf out=out.ddl data=test.csv -FT -Pprod -C\n");
+	printf("  => (((Length,Quantity(1,mm)),(Weight,Quantity(2,kg))),((Length,Quantity(322,mm)),(Weight,Quantity(4,kg))),((Length,Quantity(5,mm)),(Weight,Quantity(68,kg))))\n");
 }
 
 /* allocation */
@@ -189,6 +262,7 @@ void init_options(struct options *opt){
 	(*opt).hC = 0;
 	(*opt).hS = 0;
 	(*opt).hD = 0;
+	(*opt).hE = 0;
 }
 void init_function_options(struct function_options *fopt){
 	(*fopt).f_counter = 0;
@@ -250,6 +324,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).hS = 1;
 		}else if(strncmp(optv[i],"-hD",3) == 0){
 			(*opt).hD = 1;
+		}else if(strncmp(optv[i],"-hE",3) == 0){
+			(*opt).hE = 1;
 		}else if(strncmp(optv[i],"in=",3) == 0){
 			sscanf(optv[i],"in=%s",(*opt).in);
 		}else if(strncmp(optv[i],"out=",4) == 0){
@@ -368,58 +444,65 @@ void get_data_options(int optc, char **optv, struct data_options *dopt){
 
 /* checking */
 void check_options(struct options *opt){
-	printf("OPTIONS:\n");
-	printf(" opt.help:%d:\n",(*opt).help);
-	printf(" opt.stat:%d:\n",(*opt).stat);
-	printf(" opt.check:%d:\n",(*opt).check);
-	printf(" opt.war:%d:\n",(*opt).war);
-	printf(" opt.test:%d:\n",(*opt).test);
-	printf(" opt.buff:%d:\n",(*opt).buff);
-	printf(" opt.data_buff:%d:\n",(*opt).data_buff);
-	printf(" opt.in:%s:\n",(*opt).in);
-	printf(" opt.out:%s:\n",(*opt).out);
-	printf(" opt.data:%s:\n",(*opt).data);
-	printf(" opt.Pin:%d:\n",(*opt).Pin);
-	printf(" opt.Pout:%d:\n",(*opt).Pout);
-	printf(" opt.Pprod:%d:\n",(*opt).Pprod);
-	printf(" opt.hF:%d:\n",(*opt).hF);
-	printf(" opt.hC:%d:\n",(*opt).hC);
-	printf(" opt.hS:%d:\n",(*opt).hC);
-	printf(" opt.hD:%d:\n",(*opt).hC);
+	printf("\n");
+	printf("OPTION SETTING\n");
+	printf("==============\n\n");
+	printf(" * opt.help:%d:\n",(*opt).help);
+	printf(" * opt.stat:%d:\n",(*opt).stat);
+	printf(" * opt.check:%d:\n",(*opt).check);
+	printf(" * opt.war:%d:\n",(*opt).war);
+	printf(" * opt.test:%d:\n",(*opt).test);
+	printf(" * opt.buff:%d:\n",(*opt).buff);
+	printf(" * opt.data_buff:%d:\n",(*opt).data_buff);
+	printf(" * opt.in:\"%s\":\n",(*opt).in);
+	printf(" * opt.out:\"%s\":\n",(*opt).out);
+	printf(" * opt.data:\"%s\":\n",(*opt).data);
+	printf(" * opt.Pin:%d:\n",(*opt).Pin);
+	printf(" * opt.Pout:%d:\n",(*opt).Pout);
+	printf(" * opt.Pprod:%d:\n",(*opt).Pprod);
+	printf(" * opt.hF:%d:\n",(*opt).hF);
+	printf(" * opt.hC:%d:\n",(*opt).hC);
+	printf(" * opt.hS:%d:\n",(*opt).hS);
+	printf(" * opt.hD:%d:\n",(*opt).hD);
+	printf(" * opt.hE:%d:\n",(*opt).hE);
 }
 void check_function_options(struct function_options *fopt){
-	printf(" converters:\n");
-	printf("  opt.fcount:%d:\n",(*fopt).f_counter);
-	printf("  opt.FT:%d:\n",(*fopt).f_print_T);
-	printf("  opt.FS:%d:\n",(*fopt).f_print_S);
-	printf("  opt.FJ:%d:\n",(*fopt).f_print_J);
-	printf("  opt.FW:%d:\n",(*fopt).f_print_W);
-	printf("  opt.FX:%d:\n",(*fopt).f_print_X);
-	printf("  opt.FC:%d:\n",(*fopt).f_print_C);
-	printf("  opt.FN:%d:\n",(*fopt).f_print_N);
-	printf("  opt.FMa:%d:\n",(*fopt).f_print_Ma);
-	printf("  opt.Fst:%d:\n",(*fopt).f_print_status);
-	printf("  opt.Fh:%d:\n",(*fopt).f_print_hierarchy);
-	printf("  opt.Fhst:%d:\n",(*fopt).f_print_hierarchy_status);
-	printf("  opt.Ftest:%d:\n",(*fopt).f_print_test);
+	printf("\n|\n\n");
+	printf(" * converters:\n\n");
+	printf("  * opt.fcount:%d:\n",(*fopt).f_counter);
+	printf("  * opt.FT:%d:\n",(*fopt).f_print_T);
+	printf("  * opt.FS:%d:\n",(*fopt).f_print_S);
+	printf("  * opt.FJ:%d:\n",(*fopt).f_print_J);
+	printf("  * opt.FW:%d:\n",(*fopt).f_print_W);
+	printf("  * opt.FX:%d:\n",(*fopt).f_print_X);
+	printf("  * opt.FC:%d:\n",(*fopt).f_print_C);
+	printf("  * opt.FN:%d:\n",(*fopt).f_print_N);
+	printf("  * opt.FMa:%d:\n",(*fopt).f_print_Ma);
+	printf("  * opt.Fst:%d:\n",(*fopt).f_print_status);
+	printf("  * opt.Fh:%d:\n",(*fopt).f_print_hierarchy);
+	printf("  * opt.Fhst:%d:\n",(*fopt).f_print_hierarchy_status);
+	printf("  * opt.Ftest:%d:\n",(*fopt).f_print_test);
 }
 void check_compile_options(struct compile_options *copt){
-	printf(" compilers:\n");
-	printf("  opt.ccount:%d:\n",(*copt).c_counter);
-	printf("  opt.c_list:%d:\n",(*copt).c_list);
-	printf("  opt.c_restrict:%d:\n",(*copt).c_restrict);
-	printf("  opt.c_clear:%d:\n",(*copt).c_clear);
-	printf("  opt.c_dot:%d:\n",(*copt).c_dot);
+	printf("\n|\n\n");
+	printf(" * compilers:\n\n");
+	printf("  * opt.ccount:%d:\n",(*copt).c_counter);
+	printf("  * opt.c_list:%d:\n",(*copt).c_list);
+	printf("  * opt.c_restrict:%d:\n",(*copt).c_restrict);
+	printf("  * opt.c_clear:%d:\n",(*copt).c_clear);
+	printf("  * opt.c_dot:%d:\n",(*copt).c_dot);
 }
 void check_search_options(struct search_options *sopt){
-	printf(" searchs:\n");
-	printf("  opt.scount:%d:\n",(*sopt).s_counter);
-	printf("  opt.pos:%s:\n",(*sopt).pos);
-	printf("  opt.head:%s:\n",(*sopt).head);
+	printf("\n|\n\n");
+	printf(" * search:\n\n");
+	printf("  * opt.scount:%d:\n",(*sopt).s_counter);
+	printf("  * opt.pos:%s:\n",(*sopt).pos);
+	printf("  * opt.head:%s:\n",(*sopt).head);
 }
 void check_data_options(struct data_options *dopt){
-	printf(" data:\n");
-	printf("  opt.DD:%c:\n",(*dopt).dd);
+	printf("\n|\n\n");
+	printf(" * data:\n\n");
+	printf("  * opt.DD:%c:\n",(*dopt).dd);
 }
 
 /* main */
@@ -466,23 +549,6 @@ int main(int argc, char **argv){
 	if(argc == 1){
 		(*opt).help = 1;
 	}
-	if((*opt).hF == 1){
-		(*opt).help = 1;
-		ie = 1;
-	}
-	if((*opt).hC == 1){
-		(*opt).help = 1;
-		ie = 1;
-	}
-	if((*opt).hS == 1){
-		(*opt).help = 1;
-		ie = 1;
-	}
-	if((*opt).hD == 1){
-		(*opt).help = 1;
-		ie = 1;
-	}
-
 	if((*opt).help == 1){
 		help();
 		ie = 1;
@@ -495,6 +561,10 @@ int main(int argc, char **argv){
 		compile_help();
 		ie = 1;
 	}
+	if((*_copt).c_list == 1){
+		list_builtins();	
+		ie = 1;
+	}
 	if((*opt).hS == 1){
 		search_help();
 		ie = 1;
@@ -503,7 +573,6 @@ int main(int argc, char **argv){
 		data_help();
 		ie = 1;
 	}
-
 	if((*opt).stat == 1){
 		status();
 		ie = 1;
@@ -516,11 +585,11 @@ int main(int argc, char **argv){
 		check_data_options(_dopt);
 		ie = 1;
 	}
-
-	if((*_copt).c_list == 1){
-		list_builtins();	
+	if((*opt).hE == 1){
+		put_examples();
 		ie = 1;
 	}
+
 
 	if(ie == 1){
 		exit(0);
