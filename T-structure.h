@@ -39,6 +39,7 @@ struct options {
         int hC;
         int hS;
         int hD;
+        int hE;
 };
 
 struct function_options {
