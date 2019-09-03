@@ -1,5 +1,5 @@
 #define DB(X) 
-#define FC(X) X
+#define FC(X) 
 #ifndef LEN
 #define LEN 1024
 #endif
