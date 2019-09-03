@@ -20,6 +20,7 @@ void null_func(void){
 
 /* GC */
 int Function_Recursive_FreeForce_Tree(struct Tree *tree){
+	FC(printf(">Function_Recursive_FreeForce_Tree<\n");)
 	int i;
 	if(tree == NULL){
 		return(1);
@@ -45,6 +46,7 @@ int Function_Recursive_FreeForce_Tree(struct Tree *tree){
 /* analyzers */
 /** tree analysis */
 struct Tree *Function_Get_Node(char *pos_str, struct Tree *tree){
+	FC(printf(">Function_Get_Node<\n");)
 	int len = 0;
 	int list_len = 0;
 	int i;
@@ -88,6 +90,7 @@ struct Tree *Function_Get_Node(char *pos_str, struct Tree *tree){
 }
 /** head analysis */
 int Analyze_HeadLabel(struct Tree *tree){ // for labeling
+	FC(printf(">Analyze_HeadLabel<\n");)
 	int i = 0;
 	int labelreadptr = 0;
 	int labelnumlen = 0;
@@ -133,6 +136,7 @@ int Analyze_HeadLabel(struct Tree *tree){ // for labeling
 }
 /** reference analysis */
 struct Tree *Function_Recursive_SearchBind_LabelNode(struct Tree *tree, char type, int label, struct Tree *binded){	//for referred
+	FC(printf(">Function_Recursive_SearchBind_LabelNode<\n");)
 	int i;
 	if(tree == NULL){
 		return(NULL);
@@ -149,6 +153,7 @@ struct Tree *Function_Recursive_SearchBind_LabelNode(struct Tree *tree, char typ
 	return(NULL);
 }
 int get_ref(char *head, char *type, int *label){	//for binded
+	FC(printf(">get_ref<\n");)
 	//search for $# or $##
 	int len;
 	len = strlen(head);
@@ -175,6 +180,7 @@ int get_ref(char *head, char *type, int *label){	//for binded
 
 /* restructure functions */
 int get_nval(char *str){
+	FC(printf(">get_nval<\n");)
 	int i;
 	int len;
 	int count = 1;
@@ -190,12 +196,14 @@ int get_nval(char *str){
 	return(count);
 }
 int Add_DimStr(struct Tree *tree, int *dim_pos, char *buff){
+	FC(printf(">Add_DimStr<\n");)
 	int len;
 	len = strlen(buff);
 	snprintf(buff+len,dim_pos[1]-dim_pos[0]+1,"%s",(*tree).Head+dim_pos[0]);
 	return(len);
 }
 int Ins_DimStr(struct Tree *tree, int *dim_pos, char *buff){
+	FC(printf(">Ins_DimStr<\n");)
 	int len;
 	char *minibuff;
 	if((minibuff = malloc(sizeof(char) * LEN)) == NULL){
@@ -211,6 +219,7 @@ int Ins_DimStr(struct Tree *tree, int *dim_pos, char *buff){
 	return(len);
 }
 int Detect_DimRegion(const char *head, int *pos){
+	FC(printf(">Detect_DimRegion<\n");)
 	int len;
 	int dim_s = -1;
 	int dim_e = -1;
@@ -248,8 +257,8 @@ int Detect_DimRegion(const char *head, int *pos){
 	return(ret);
 }
 int SPrint_UpRecursive_Head(struct Tree *tree, char *buff){
+	FC(printf(">SPrint_UpRecursive_Head<\n");)
 	int sw;
-	//int dim_pos[2];
 	int *dim_pos;
 	int len;
 	if((dim_pos = calloc(2,sizeof(int))) == NULL){
@@ -273,8 +282,8 @@ int SPrint_UpRecursive_Head(struct Tree *tree, char *buff){
 	return(len);
 }
 struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt){
+	FC(printf(">Detect_DimBlock<\n");)
 	int sw = 0;
-	//int dim_pos[2];
 	int *dim_pos;
 	char *buff;
 	int len = 0;
@@ -306,6 +315,7 @@ struct Tree *Detect_DimBlock(struct Tree *tree, struct options *_opt){
 	return(tree);
 }
 struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *bn_count, struct Tree **bn_table){
+	FC(printf(">Function_Recursive_Search_BindNode<\n");)
 	int i;
 	struct Tree *current = NULL;
 	current = top;
@@ -324,6 +334,7 @@ struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *bn_count,
 	return(NULL);
 }
 int Function_Bind_Data(FILE *DATA, struct Tree *tree, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
+	FC(printf(">Function_Bind_Data<\n");)
 	int i;
         int C = '\0';
         int bn_count = 0;
@@ -386,6 +397,7 @@ int Function_Bind_Data(FILE *DATA, struct Tree *tree, struct options *_opt, stru
         return(0);
 }
 int Assign_RefedValPtr(struct Tree *tree){	// for product
+	FC(printf(">Assign_RefedValPtr<\n");)
 	if(tree == NULL){
 		return(0);
 	}
@@ -417,6 +429,7 @@ int Assign_RefedValPtr(struct Tree *tree){	// for product
 	return(0);
 }
 void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred){
+	FC(printf(">Function_Recursive_Bind_RefNode<\n");)
 	int i;
 	char target_type = '\0';
 	int target_label = -1;
@@ -432,6 +445,7 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred)
 }
 
 struct Tree *Create_Node(int _ser, int H_size){
+	FC(printf(">Create_Node<\n");)
 	struct Tree *tree;
 	if((tree = malloc(sizeof(struct Tree) * 1)) == NULL){
 		perror("[Fail]:malloc@Create_Node.\n");
@@ -467,6 +481,7 @@ struct Tree *Create_Node(int _ser, int H_size){
 	return(tree);
 }
 struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
+	FC(printf(">Add_Next<\n");)
 	if(parent == NULL){
 		perror("NULL parent detected -- exit.\n");
 		exit(1);
@@ -483,6 +498,7 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 	return(next);
 }
 struct Tree *Set_status(struct Tree *tree, int *bit){
+	FC(printf(">Set_status<\n");)
 	if(((*tree).extra_stat&*bit) != *bit){
 		(*tree).extra_stat = (*tree).extra_stat + *bit;
 	}
@@ -491,6 +507,7 @@ struct Tree *Set_status(struct Tree *tree, int *bit){
 
 /* compile functions */
 char *Function_Clear_Head(struct Tree *tree){
+	FC(printf(">Function_Clear_Head<\n");)
 	char *tmp_head;
 	if((tmp_head = malloc(sizeof(char) * 1)) == NULL){
 		perror("[Fail]:malloc@Function_Clear_Head\n");
@@ -500,6 +517,7 @@ char *Function_Clear_Head(struct Tree *tree){
 	return(tmp_head);
 }
 char *Function_Dot_Head(struct Tree *tree){
+	FC(printf(">Function_Dot_Head<\n");)
 	if((*tree).Head[0] != '\0'){
 		char *tmp_head;
 		if((tmp_head = malloc(sizeof(char) * 2)) == NULL){
@@ -514,6 +532,7 @@ char *Function_Dot_Head(struct Tree *tree){
 	}
 }
 char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
+	FC(printf(">Function_Interpret_Head<\n");)
 	char *tmp_head;
 	char *out_head;
 	int compiled = 0;
@@ -958,6 +977,7 @@ int Function_Recursive_Get_nvalMax(struct Tree *tree){
 	return(MAX);
 }
 int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList, int nval_start){
+	FC(printf(">Function_Recursive_Get_nvalList<\n");)
 	int i;
 	int nval = 0;
 	int nval_count = nval_start;
@@ -1299,6 +1319,7 @@ struct Tree *Function_Print_Head_SN(struct Tree *tree, struct function_options *
 /* recursive-apply-function */
 /** Down tree */
 struct Tree *ExFunction_Recursive_Set_Obj(struct Tree *tree, struct Tree *(*e_function)(struct Tree *tree, void *), void *obj){
+	FC(printf(">ExFunction_Recursive_Set_Obj<\n");)
 	int i;
 	(*e_function)(tree,obj);
 	for(i=0;i<(*tree).NextCount;i++){
@@ -1307,6 +1328,7 @@ struct Tree *ExFunction_Recursive_Set_Obj(struct Tree *tree, struct Tree *(*e_fu
 	return(tree);
 }
 struct Tree *ExFunction_Recursive(struct Tree *tree, struct Tree *(*e_function)(struct Tree *, struct options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
+	FC(printf(">ExFunction_Recursive<\n");)
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL || e_function == NULL){
@@ -1320,6 +1342,7 @@ struct Tree *ExFunction_Recursive(struct Tree *tree, struct Tree *(*e_function)(
 	return(out);
 }
 struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int, struct options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser, int exec){
+	FC(printf(">ExFunction_Recursive_Ser<\n");)
 	if(exec == 0){
 		return(NULL);
 	}
@@ -1336,6 +1359,7 @@ struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_functi
 	return(out);
 }
 struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree *(*conj_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*head_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*bopen_function)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*bclose_function)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
+	FC(printf(">ExFunction_Recursive_Ser_MultiPrint<\n");)
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL){
@@ -1364,6 +1388,7 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree 
 }
 /** Up tree */
 struct Tree *ExFunction_UpRecursive(struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, char *buff){
+	FC(printf(">ExFunction_UpRecursive<\n");)
 	struct Tree *parent;
 	parent = (*tree).Parent;
 	if((*tree).ser == -1 || (*parent).ser == -1 || e_function == NULL){
