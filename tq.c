@@ -31,7 +31,7 @@ void help(void){
 	printf("USAGE\n");
 	printf("=====\n");
 	printf("\n");
-	printf(" tq.o [-h|-hF|-hC|-hS|-hD] [-s] [-c] [-test] buff=<(int)size> in=<file name of input form> out=<file name of outout form> data=<data file> data_buff=<(int)size> w=<warnning level> -F<x> -C<x> -P<x>.\n");
+	printf(" tq.o [-h|-hF|-hC|-hS|-hD|-hE] [-s] [-c] [-test] buff=<(int)size> in=<file name of input form> out=<file name of outout form> data=<data file> data_buff=<(int)size> w=<warnning level> -F<x> -C<x> -P<x>.\n");
 	printf("\n");
 	printf(" - Main options\n");
 	printf("\n");
