@@ -1,5 +1,6 @@
 /* Executor */
 struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, int C, int SN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, FILE *DATA, int EXEC_FLAG){
+		FC(fprintf(stderr,">Executor(F:%d:)<\n",EXEC_FLAG);)
 		/* pre */
 		/** bind data (for input-form) */
 		if((EXEC_FLAG&1) == 1){
