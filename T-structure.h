@@ -58,6 +58,9 @@ struct function_options {
         int f_print_hierarchy_status;
         int f_print_test;
 	int f_print_self_stat;
+
+	int f_skipOnce;
+		// 1 : Function_Print_Conj_T
 };
 
 struct compile_options {

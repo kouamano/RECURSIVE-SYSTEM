@@ -721,6 +721,12 @@ int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 }
 /** Conj */
 struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+		DB(fprintf(stderr," before op : skip:%d:\n",(*_fopt).f_skipOnce);)
+		if((((*_fopt).f_skipOnce)&1) == 1){
+			(*_fopt).f_skipOnce = (*_fopt).f_skipOnce - 1;
+			return(tree);
+		}
+		DB(fprintf(stderr," after op : skip:%d:\n",(*_fopt).f_skipOnce);)
 		if((*tree).Conj == 1){
 			printf(",");
 		}else if((*tree).NCself > 1 && (*tree).Conj == 0){	// for search
@@ -1141,6 +1147,7 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 	return(tree);
 }
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%P
+	FC(fprintf(stderr,">Function_Print_Head<\n");)
 	/* 特殊型にFunction_Print_ProductValあり、上位関数で切り替え */
 	struct Tree *ins_head = NULL;
 	char target_type = '\0';
@@ -1188,12 +1195,19 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		(*_fopt).f_print_self_stat = 0;
 		/* switch 't' 'h' */
 		if((*tree).RefNode->LabelType == 'h'){
+			DB(fprintf(stderr," LT:h: <= TG:%c:\n",target_type);)
 			printf("@");
 			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
 		}else if((*tree).RefNode->LabelType == 't' && target_type == 't'){
+			DB(fprintf(stderr," LT:t:,TG:t:\n");)
 			printf("@");
+			if((((*_fopt).f_skipOnce)&1) == 0){	// skip print_conj
+				(*_fopt).f_skipOnce = (*_fopt).f_skipOnce + 1;
+			}
+			DB(fprintf(stderr," print_head:skip:%d:\n",(*_fopt).f_skipOnce);)
 			ins_head = ExFunction_Recursive_Ser_MultiPrint((*tree).RefNode, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
 		}else if((*tree).RefNode->LabelType == 't' && target_type == 'h'){
+			DB(fprintf(stderr," LT:t:,TG:h:\n");)
 			printf("@");
 			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
 		}
