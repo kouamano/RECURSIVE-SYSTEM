@@ -176,6 +176,12 @@ real    2m25.157s
 user    2m5.473s
 sys     0m20.885s
 @ 36G mem
+- python
+time ./importer.py lllarge-single-test.json
+real	0m51.391s
+user	0m43.341s
+sys	0m8.028s
+@ 12G mem
 ### 4.9億ノード
 time ./tq.o in=lllarge4-single-test.t -FT
 498615417 Nodes were operated.
