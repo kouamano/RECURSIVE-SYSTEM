@@ -89,19 +89,19 @@ void list_builtins(void){
 	printf("  * ##<n> : Reference tag: tree.\n");
 	printf("  * $#<n> : Referencer: head.\n");
 	printf("  * $##<n> : Referencer: tree.\n");
-	printf("  * $$ : Indicator: dictionary reference (term ID).\n");
-	printf("  * $X$ : Indicator: dictionary reference (term string).\n");
-	printf("  * $$$ : Indicator: dictionary reference (class ID).\n");
-	printf("  * $$X$ : Indicator: dictionary reference (class string).\n");
-	printf("  * $NULL$ : Indicator: null object.\n");
-	printf("  * @(<string>) : Indicator: binded data.\n");
 	printf("  * $`$ : Operator: quating head.\n");
 	printf("  * $``$ : Operator: quating tree.\n");
 	printf("  * $~$ : Operator: riteral head.\n");
 	printf("  * $~~$ : Operator: riteral tree.\n");
 	printf("  * $U$ : Operator: unpack single level.\n");
 	printf("  * $UU$ : Operator: unpack tree (under construction).\n");
+	printf("  * $$ : Indicator: dictionary reference (term ID).\n");
+	printf("  * $X$ : Indicator: dictionary reference (term string).\n");
+	printf("  * $$$ : Indicator: dictionary reference (class ID).\n");
+	printf("  * $$X$ : Indicator: dictionary reference (class string).\n");
+	printf("  * $NULL$ : Indicator: null object.\n");
 	printf("  * [<n>] : Operator: data bind.\n");
+	printf("  * @(<string>) : Indicator: binded data.\n");
 	printf("  * @(<string>) : Operator: data overwrite (under construction).\n");
 }
 void search_help(void){
