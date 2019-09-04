@@ -201,7 +201,12 @@ real	5m56.396s
 user	4m21.241s
 sys	1m34.636s
 @ 135G mem
-
+- python (終了直前にメモリー解放する)
+time ./importer.py lllarge4-single-test.json
+real	4m7.164s
+user	3m36.530s
+sys	0m30.504s
+@ 53G mem (max)
 ### 大型配列のバインド 1.6G => 1.2G(4億データポイント)
 -
 time ./tq.o in=large-test_bind.t -FT data=large-test.csv data_buff=2000000000 
