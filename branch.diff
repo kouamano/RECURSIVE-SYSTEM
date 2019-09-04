@@ -26,7 +26,7 @@ git diff cq:DimensionDefinitionLanguage/conv2-test.script tq_base:DimensionDefin
 
 # compile
 echo '>> compile'
-git diff cq:compile.sh tq_base:compile.sh
+git diff cq:compile-all.sh tq_base:compile-all.sh
 git diff cq:DimensionDefinitionLanguage/compile_checker.sh tq_base:DimensionDefinitionLanguage/compile_checker.sh
 
 
@@ -58,6 +58,6 @@ git diff tq:DimensionDefinitionLanguage/conv2-test.script tq_base:DimensionDefin
 
 # compile
 echo '>> compile'
-git diff tq:compile.sh tq_base:compile.sh
+git diff tq:compile-all.sh tq_base:compile-all.sh
 git diff tq:DimensionDefinitionLanguage/compile_checker.sh tq_base:DimensionDefinitionLanguage/compile_checker.sh
 
