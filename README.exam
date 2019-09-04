@@ -142,17 +142,17 @@ TODO: @(1,2) を$PI$の時にディストリビュート-> Headをvalstr化す�
 - 坂本さん、パフォーマンスはこれと比べてください。
 time ./tq.o in=lllarge-single-test.t buff=30
 124653854 Nodes were operated.
-real    0m41.343s
-user    0m29.955s
-sys     0m11.371s
+real	0m49.893s
+user	0m35.371s
+sys	0m14.503s
 @ 26G mem
 -
 time ./tq.o in=lllarge-single-test.t buff=30 -FJ -Pin > lllarge-single-test.json
 124653854 Nodes were operated.
-real    1m21.795s
-user    1m4.612s
-sys     0m16.943s
-@ 29G mem
+real	1m24.268s
+user	1m2.497s
+sys	0m19.662s
+@ 34G mem
 -
 time cat lllarge-single-test.json | jq . > /dev/null
 real    2m25.157s
@@ -165,7 +165,7 @@ time ./tq.o in=lllarge4-single-test.t -FT
 real    3m28.752s
 user    2m28.315s
 sys     1m0.389s
-@ 96G mem
+@ 106G mem
 -
 time ./tq.o in=lllarge4-single-test.t buff=30 -FJ -Pin > lllarge4-single-test.json
 real	5m56.396s
@@ -177,7 +177,7 @@ time cat lllarge4-single-test.json | jq . > /dev/null
 real	5m56.396s
 user	4m21.241s
 sys	1m34.636s
-144G @ mem
+@ 135G mem
 
 ### 大型配列のバインド 1.6G => 1.2G(4億データポイント)
 -
