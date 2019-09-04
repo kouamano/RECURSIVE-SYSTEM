@@ -24,6 +24,12 @@ echo '>> test code'
 git diff cq:DimensionDefinitionLanguage/conv-test.script tq_base:DimensionDefinitionLanguage/conv-test.script
 git diff cq:DimensionDefinitionLanguage/conv2-test.script tq_base:DimensionDefinitionLanguage/conv2-test.script
 
+# compile
+echo '>> compile'
+git diff cq:compile.sh tq_base:compile.sh
+git diff cq:DimensionDefinitionLanguage/compile_checker.sh tq_base:DimensionDefinitionLanguage/compile_checker.sh
+
+
 # VS. tq
 echo '> VS. tq'
 # self
@@ -49,4 +55,9 @@ git diff tq:T-functions_imex.h tq_base:T-functions_imex.h
 echo '>> test code'
 git diff tq:DimensionDefinitionLanguage/conv-test.script tq_base:DimensionDefinitionLanguage/conv-test.script
 git diff tq:DimensionDefinitionLanguage/conv2-test.script tq_base:DimensionDefinitionLanguage/conv2-test.script
+
+# compile
+echo '>> compile'
+git diff tq:compile.sh tq_base:compile.sh
+git diff tq:DimensionDefinitionLanguage/compile_checker.sh tq_base:DimensionDefinitionLanguage/compile_checker.sh
 
