@@ -265,6 +265,7 @@ void init_options(struct options *opt){
 	(*opt).hE = 0;
 }
 void init_function_options(struct function_options *fopt){
+	FC(fprintf(stderr,">init_function_options<\n");)
 	(*fopt).f_counter = 0;
 	(*fopt).f_print_T = 0;
 	(*fopt).f_print_S = 0;
@@ -280,6 +281,7 @@ void init_function_options(struct function_options *fopt){
 	(*fopt).f_print_hierarchy_status = 0;
 	(*fopt).f_print_test = 0;
 	(*fopt).f_print_self_stat = 0;
+	(*fopt).f_skipOnce = 0;
 }
 void init_compile_options(struct compile_options *copt){
         (*copt).c_counter = 0;
