@@ -362,6 +362,9 @@ void get_function_options(int optc, char **optv, struct function_options *fopt){
 		}else if(strncmp(optv[i],"-FJ",3) == 0){
 			(*fopt).f_print_J = 1;
 			(*fopt).f_counter++;
+		}else if(strncmp(optv[i],"-FWW",4) == 0){
+			(*fopt).f_print_W = 2;
+			(*fopt).f_counter++;
 		}else if(strncmp(optv[i],"-FW",3) == 0){
 			(*fopt).f_print_W = 1;
 			(*fopt).f_counter++;

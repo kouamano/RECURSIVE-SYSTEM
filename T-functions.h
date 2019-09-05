@@ -1310,8 +1310,8 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 		head_len = strlen(tmp_str);
 		if(head_len > 0){
 			printf("%s",tmp_str);
-		}else{
-			//printf("List");	//todo or not todo
+		}else if(head_len == 0 && (*_fopt).f_print_W == 2){
+			printf("List");	//todo or not todo
 		}
 	}
 	return(tree);
