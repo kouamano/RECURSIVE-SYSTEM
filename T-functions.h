@@ -1393,7 +1393,7 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree 
 	/*print Bopen post*/
 	bopen_function(tree,_fopt,_copt,1);
 	// $PI$ : if Tree.extra_stat&2 == 2 then skip for-loop.
-	if(((*tree).extra_stat&2) == 2){
+	if(((*tree).extra_stat&2) == 2 && (*_copt).c_counter > 0){
 		Function_RecursiveCyclic_Print_IProductVal(tree,_fopt,_copt);
 	}else{
 		for(i=0;i<(*tree).NextCount;i++){
