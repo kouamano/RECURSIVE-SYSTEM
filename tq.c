@@ -76,7 +76,7 @@ void compile_help(void){
 	printf(" - Compile options\n");
 	printf("\n");
 	printf("  * -C : print compiled form.\n");
-	printf("  * -CL : list buit-in operators.\n");
+	printf("  * -CL : list buitin operators.\n");
 	printf("  * -Cr : prints the \"print-restrict\" char at the end of line.\n");
 	printf("  * -Cc : clear head.\n");
 	printf("  * -Cd : rewite head to dot.\n");
@@ -95,6 +95,7 @@ void list_builtins(void){
 	printf("  * $~~$ : Operator: riteral tree.\n");
 	printf("  * $U$ : Operator: unpack single level.\n");
 	printf("  * $UU$ : Operator: unpack tree (under construction).\n");
+	printf("  * $PI$ : Operator: inner production for binded data.\n");
 	printf("  * $$ : Indicator: dictionary reference (term ID).\n");
 	printf("  * $X$ : Indicator: dictionary reference (term string).\n");
 	printf("  * $$$ : Indicator: dictionary reference (class ID).\n");
