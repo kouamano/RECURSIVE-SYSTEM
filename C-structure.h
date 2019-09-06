@@ -43,8 +43,8 @@ struct LinkTable {
 	NODE **children;	// SAK NODE rename
 	NODE *ref_node;		// SAK NODE rename
         int *extra_stat;
-		//1: $~~,$~ -> avoid compile;   2: $PI$ -> skip Next
-		//                //4: $`` -> quating tree;       8: $U$
+		//1: $~~$,$~$ -> avoid compile;   2: $PI$ -> skip Next
+		//4: $``$ -> quating tree;       8: $U$
 };
 
 #if 0		// extern -> not needed

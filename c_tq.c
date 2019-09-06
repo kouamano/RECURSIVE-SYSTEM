@@ -12,8 +12,8 @@
 //#include "../RECURSIVE-SYSTEM/T-functions_Executor.h"		// SAK
 //#include "../RECURSIVE-SYSTEM/T-functions_imex.h"		// SAK
 
-#include "../RECURSIVE-SYSTEM/C-structure.h"			// SAK
-#include "../RECURSIVE-SYSTEM/CT-structure.h"			// SAK options
+//#include "../RECURSIVE-SYSTEM/C-structure.h"			// SAK
+#include "../RECURSIVE-SYSTEM/CT-structure.h"			// SAK node table + options
 #include "../RECURSIVE-SYSTEM/C-functions.h"			// SAK
 #include "../RECURSIVE-SYSTEM/CT-functions.h"			// SAK
 #include "../RECURSIVE-SYSTEM/C-functions_imex.h"		// SAK
@@ -22,111 +22,7 @@
 const char cdate[] = __DATE__;
 const char ctime[] = __TIME__;
 
-void status(void){
-printf("\n");
-        printf("STATUS\n");
-	printf("======\n");
-	printf(" - Under construction\n");
-	printf("  - Inner product.\n");
-	printf("  - Double unpack.\n");
-	printf("  - Riteralize.\n");
-	printf(" - COMPILED\n");
-	printf("   %s\n",ctime);
-	printf("   %s\n",cdate);
-}
-
-/* help */
-void help(void){
-	printf("\n");
-	printf("USAGE\n");
-	printf("=====\n");
-	printf("\n");
-	printf(" tq.o [-h|-hF|-hC|-hS|-hD] [-s] [-c] [-test] buff=<(int)size> in=<file name of input form> out=<file name of outout form> data=<data file> data_buff=<(int)size> w=<warnning level> -F<x> -C<x> -P<x>.\n");
-	printf("\n");
-        printf(" - Main options\n");
-        printf("\n");
-        printf("  * -h : help.\n");
-        printf("  * -hF : function help.\n");
-        printf("  * -hC : compile help.\n");
-        printf("  * -hS : search help.\n");
-        printf("  * -hD : data help.\n");
-        printf("  * -hE : print examples.\n");
-        printf("  * -s : prints status.\n");
-        printf("  * -c : check args.\n");
-        printf("  * -test : execute test code.\n");
-        printf("  * -Pin : print input form.\n");
-        printf("  * -Pout : print output form.\n");
-        printf("  * -Pprod : print inner production of binded data.\n");
-        printf("  * buff : set integer for buffer size to read heads.\n");
-        printf("  * in : set input-form file name (length < 1024).\n");
-        printf("  * out : set output-form file name (length < 1024).\n");
-        printf("  * data : CSV data file name.\n");
-        printf("  * data_buff : set integer for buffer size to read data.\n");
-        printf("  * war : set integer for warnnig level.\n");
-}
-void function_help(void){
-	printf("\n");
-	printf(" - Function options\n");
-	printf("\n");
-	printf("  * -FT : prints T-form.\n");
-	printf("  * -FS : prints S-form.\n");
-	printf("  * -FJ : prints JSON form.\n");
-	printf("  * -FW : prints Wolfram language form.\n");
-	printf("  * -FX : prints XML form.\n");
-	printf("  * -FC : prints shell script form.\n");
-	printf("  * -FN : prints seq node-no.\n");
-	printf("  * -FMa : prints Adjacency matrix form.\n");
-	printf("  * -Fh : prints hierarchical-form.\n");
-	printf("  * -Fst : prints import status.\n");
-	printf("  * -Fhst : prints import status with hierarchical-form.\n");
-	printf("  * -Ftest : prints from test function.\n");
-}
-void compile_help(void){
-	printf("\n");
-	printf(" - Compile options\n");
-	printf("\n");
-	printf("  * -C : print compiled form.\n");
-	printf("  * -CL : list buit-in operators.\n");
-	printf("  * -Cr : prints the \"print-restrict\" char at the end of line.\n");
-	printf("  * -Cc : clear head.\n");
-	printf("  * -Cd : rewite head to dot.\n");
-}
-void list_builtins(void){
-	printf("\n");
-	printf(" - Builtin operators\n");
-	printf("\n");
-	printf("  *  #<n> : Reference tag: head.\n");
-	printf("  * ##<n> : Reference tag: tree.\n");
-	printf("  * $#<n> : Referencer: head.\n");
-	printf("  * $##<n> : Referencer: tree.\n");
-	printf("  * $$ : Indicator: dictionary reference (term ID).\n");
-	printf("  * $X$ : Indicator: dictionary reference (term string).\n");
-	printf("  * $$$ : Indicator: dictionary reference (class ID).\n");
-	printf("  * $$X$ : Indicator: dictionary reference (class string).\n");
-	printf("  * $NULL$ : Indicator: null object.\n");
-	printf("  * @(<string>) : Indicator: binded data.\n");
-	printf("  * $`$ : Operator: quating head.\n");
-	printf("  * $``$ : Operator: quating tree.\n");
-	printf("  * $~$ : Operator: riteral head.\n");
-	printf("  * $~~$ : Operator: riteral tree.\n");
-	printf("  * $U$ : Operator: unpack single level.\n");
-	printf("  * $UU$ : Operator: unpack tree (under construction).\n");
-	printf("  * [<n>] : Operator: data bind.\n");
-	printf("  * @(<string>) : Operator: data overwrite.\n");
-}
-void search_help(void){
-	printf("\n");
-	printf(" - Search options\n");
-	printf("\n");
-	printf("  * Sh=<head> (Under construction).\n");
-	printf("  * Sp=<position>.\n");
-}
-void data_help(void){
-	printf("\n");
-        printf(" - Data option\n");
-        printf("\n");
-        printf("  * DD=<delimiter> currently unused, definded by definition file.\n");
-}
+#include "../RECURSIVE-SYSTEM/C-help.h"				// SAK
 
 /* allocation */
 struct options *alloc_options(void){
@@ -201,6 +97,7 @@ void init_options(struct options *opt){
 	(*opt).hC = 0;
 	(*opt).hS = 0;
 	(*opt).hD = 0;
+	(*opt).hE = 0;
 }
 void init_function_options(struct function_options *fopt){
 	(*fopt).f_counter = 0;
@@ -218,6 +115,7 @@ void init_function_options(struct function_options *fopt){
 	(*fopt).f_print_hierarchy_status = 0;
 	(*fopt).f_print_test = 0;
 	(*fopt).f_print_self_stat = 0;
+	(*fopt).f_skipOnce = 0;
 }
 void init_compile_options(struct compile_options *copt){
         (*copt).c_counter = 0;
@@ -262,6 +160,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).hS = 1;
 		}else if(strncmp(optv[i],"-hD",3) == 0){
 			(*opt).hD = 1;
+		}else if(strncmp(optv[i],"-hE",3) == 0){
+			(*opt).hE = 1;
 		}else if(strncmp(optv[i],"in=",3) == 0){
 			sscanf(optv[i],"in=%s",(*opt).in);
 		}else if(strncmp(optv[i],"out=",4) == 0){
@@ -295,6 +195,9 @@ void get_function_options(int optc, char **optv, struct function_options *fopt){
 			(*fopt).f_counter++;
 		}else if(strncmp(optv[i],"-FJ",3) == 0){
 			(*fopt).f_print_J = 1;
+			(*fopt).f_counter++;
+		}else if(strncmp(optv[i],"-FWW",4) == 0){
+			(*fopt).f_print_W = 2;
 			(*fopt).f_counter++;
 		}else if(strncmp(optv[i],"-FW",3) == 0){
 			(*fopt).f_print_W = 1;
@@ -378,6 +281,7 @@ void get_data_options(int optc, char **optv, struct data_options *dopt){
 	}
 }
 
+#if 0
 /* checking */
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
@@ -434,6 +338,8 @@ void check_data_options(struct data_options *dopt){
 	printf("  opt.DD:%c:\n",(*dopt).dd);
 }
 
+#endif
+
 /* main */
 int main(int argc, char **argv){
 	struct options *opt;
@@ -451,7 +357,7 @@ int main(int argc, char **argv){
 
 	int ie = 0;
 	FILE *IN;
-	FILE *DATA;
+	FILE *DATA = NULL;
 	int is_iopen = 0;
 	int is_dopen = 0;
 	int is_oopen = 0;
@@ -482,23 +388,6 @@ int main(int argc, char **argv){
 	if(argc == 1){
 		(*opt).help = 1;
 	}
-	if((*opt).hF == 1){
-		(*opt).help = 1;
-		ie = 1;
-	}
-	if((*opt).hC == 1){
-		(*opt).help = 1;
-		ie = 1;
-	}
-	if((*opt).hS == 1){
-		(*opt).help = 1;
-		ie = 1;
-	}
-	if((*opt).hD == 1){
-		(*opt).help = 1;
-		ie = 1;
-	}
-
 	if((*opt).help == 1){
 		help();
 		ie = 1;
@@ -511,6 +400,10 @@ int main(int argc, char **argv){
 		compile_help();
 		ie = 1;
 	}
+	if((*_copt).c_list == 1){
+		list_builtins();	
+		ie = 1;
+	}
 	if((*opt).hS == 1){
 		search_help();
 		ie = 1;
@@ -519,7 +412,6 @@ int main(int argc, char **argv){
 		data_help();
 		ie = 1;
 	}
-
 	if((*opt).stat == 1){
 		status();
 		ie = 1;
@@ -532,11 +424,11 @@ int main(int argc, char **argv){
 		check_data_options(_dopt);
 		ie = 1;
 	}
-
-	if((*_copt).c_list == 1){
-		list_builtins();
+	if((*opt).hE == 1){
+		put_examples();
 		ie = 1;
 	}
+
 
 	if(ie == 1){
 		exit(0);

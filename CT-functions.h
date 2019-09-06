@@ -115,7 +115,7 @@ NODE Function_Get_Node(char *pos_str, NODE node){
 // tq: int Analyze_HeadLabel(struct Tree *tree){ // for labeling
 int Analyze_HeadLabel(NODE node){ // for labeling
 	int i = 0;
-	int labelreadprt = 0;
+	int labelreadptr = 0;
 	int labelnumlen = 0;
 	char *labelnumstr;
 	int headlen = 0;
@@ -125,13 +125,13 @@ int Analyze_HeadLabel(NODE node){ // for labeling
 	if(head(node)[0] == '#' && head(node)[1] == '#'){
 		// tq: (*tree).LabelType = 't';
 		set_label_type(node,'t');
-		labelreadprt = 2;
+		labelreadptr = 2;
 		labeled++;
 	// tq: }else if((*tree).Head[0] == '#' && (*tree).Head[1] != '#'){
 	}else if(head(node)[0] == '#' && head(node)[1] != '#'){
 		// tq: (*tree).LabelType = 'h';
 		set_label_type(node,'h');
-		labelreadprt = 1;
+		labelreadptr = 1;
 		labeled++;
 	}
 	/* label */
@@ -139,15 +139,15 @@ int Analyze_HeadLabel(NODE node){ // for labeling
 	if(label_type(node) != '\0'){
 		/* check num char */
 		// tq: for(i=labelreadprt; ((*tree).Head[i] >= 0x30) && ((*tree).Head[i] <= 0x39);i++){	//Hex
-		for(i=labelreadprt; (head(node)[i] >= 0x30) && (head(node)[i] <= 0x39);i++){	//Hex
+		for(i=labelreadptr; (head(node)[i] >= 0x30) && (head(node)[i] <= 0x39);i++){	//Hex
 			labelnumlen++;
 		}
 		if((labelnumstr = malloc(sizeof(char) * (labelnumlen + 1))) == NULL){
-			perror("[Fail]malloc@AnalyzeHead\n");
+			perror("[Fail]malloc@Analyze_HeadLabel\n");
 			exit(1);
 		}
 		// tq: strncpy(labelnumstr,(*tree).Head+labelreadprt,labelnumlen);
-		strncpy(labelnumstr,head(node)+labelreadprt,labelnumlen);
+		strncpy(labelnumstr,head(node)+labelreadptr,labelnumlen);
 		// tq: sscanf(labelnumstr,"%d",&(*tree).Label);
 		int wk;                                 // SAK
 		sscanf(labelnumstr,"%d",&wk);           // SAK
@@ -159,7 +159,7 @@ int Analyze_HeadLabel(NODE node){ // for labeling
 	/* IndicatorPtr */
 	// tq: headlen = strlen((*tree).Head);
 	headlen = strlen(head(node));
-	for(i=labelnumlen;i<headlen;i++){
+	for(i=labelreadptr;i<headlen;i++){
 		// tq: if((*tree).Head[i] < 0x30 || (*tree).Head[i] > 0x39){
 		if(head(node)[i] < 0x30 || head(node)[i] > 0x39){
 			// tq: (*tree).IndicatorPtr = i;
@@ -167,6 +167,8 @@ int Analyze_HeadLabel(NODE node){ // for labeling
 			break;
 		}
 	}
+	// tq: DB(printf("\nH:%s:Ptr:%d:\n",(*tree).Head,(*tree).IndicatorPtr);)
+	DB(printf("\nH:%s:Ptr:%d:\n",head(node),indicator_pos(node));)
 	//fprintf(stderr,"labeled:%d.\n",labeled);
 	return(0);
 }
@@ -197,6 +199,7 @@ NODE Function_Recursive_SearchBind_LabelNode(NODE node, char type, int lbl, NODE
 	return(NO_NODE);
 }
 int get_ref(char *head, char *type, int *label){	//for binded
+	//search for $# or $##
 	int len;
 	len = strlen(head);
 	if(len < 3){
@@ -513,9 +516,9 @@ int Assign_RefedValPtr(NODE node){	// for product
 // tq: void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred){
 void Function_Recursive_Bind_RefNode(NODE binded, NODE referred){
 	int i;
-	char target_type;
-	int target_label;
-	int stat;
+	char target_type = '\0';
+	int target_label = -1;
+	int stat = -1;
 	// tq: stat = get_ref((*binded).Head+(*binded).IndicatorPtr,&target_type,&target_label);
 	stat = get_ref(head(binded)+indicator_pos(binded),&target_type,&target_label);
 	if(stat == 1){
@@ -748,7 +751,7 @@ char *Function_Interpret_Head(NODE node, struct compile_options *_copt){
 			set_extra_stat(node,extra_stat(node) + 4);
 		}
 		compiled++;
-	// }else if(strncmp(tmp_head,"$~~",3) == 0){
+	// }else if(strncmp(tmp_head,"$~",3) == 0){
 	// 	strcpy(out_head,tmp_head+3);
 	}else if(strncmp(tmp_head,"$~~$",4) == 0){
 		strcpy(out_head,tmp_head+4);
@@ -898,6 +901,13 @@ int Function_Print_Adj(NODE node, int nodes, struct options *_opt){
 /** Conj */
 // tq: struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 NODE Function_Print_Conj_T(NODE node, struct function_options *_fopt, struct compile_options *_copt){
+		DB(fprintf(stderr," before op : skip:%d:\n",(*_fopt).f_skipOnce);)
+		if((((*_fopt).f_skipOnce)&1) == 1){
+			(*_fopt).f_skipOnce = (*_fopt).f_skipOnce - 1;
+			// tq: return(tree);
+			return(node);
+		}
+		DB(fprintf(stderr," after op : skip:%d:\n",(*_fopt).f_skipOnce);)
 		// tq: if((*tree).Conj == 1){
 		if(conjugate(node) == 1){
 			printf(",");
@@ -1124,7 +1134,7 @@ NODE Function_Print_Bclose_T(NODE node, struct function_options *_fopt, struct c
 	// tq: if((*tree).NextCount != 0){
 	if(child_count(node) != 0){
 			// tq: if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8){	// for unpack
-			if((*_copt).c_counter > 0 && (extra_stat(node)&8) == 8){	// for unpack
+			if((*_copt).c_counter > 0 && (extra_stat(node)&8) == 8 && (extra_stat(node)&1) != 1){	// for unpack
 				;
 			}else{
 				printf(")");	//normal case
@@ -1498,16 +1508,23 @@ NODE Function_Print_Head(NODE node, struct function_options *_fopt, struct compi
 		/* switch 't' 'h' */
 		// tq: if((*tree).RefNode->LabelType == 'h'){
 		if(label_type(ref_node(node)) == 'h'){
+			DB(fprintf(stderr," LT:h: <= TG:%c:\n",target_type);)
 			printf("@");
 			// tq: ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
 			ins_head = Function_Print_Head(ref_node(node),_fopt,_copt);
 		// tq: }else if((*tree).RefNode->LabelType == 't' && target_type == 't'){
 		}else if(label_type(ref_node(node)) == 't' && target_type == 't'){
+			DB(fprintf(stderr," LT:t:,TG:t:\n");)
 			printf("@");
+			if((((*_fopt).f_skipOnce)&1) == 0){	// skip print_conj
+				(*_fopt).f_skipOnce = (*_fopt).f_skipOnce + 1;
+			}
+			DB(fprintf(stderr," print_head:skip:%d:\n",(*_fopt).f_skipOnce);)
 			// tq: ins_head = ExFunction_Recursive_Ser_MultiPrint((*tree).RefNode, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
 			ins_head = ExFunction_Recursive_Ser_MultiPrint(ref_node(node), (NODE (*)())Function_Print_Conj_T, (NODE (*)())Function_Print_Head, (NODE (*)())Function_Print_Bopen_T,  (NODE (*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
 		// tq: }else if((*tree).RefNode->LabelType == 't' && target_type == 'h'){
 		}else if(label_type(ref_node(node)) == 't' && target_type == 'h'){
+			DB(fprintf(stderr," LT:t:,TG:h:\n");)
 			printf("@");
 			// tq: ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
 			ins_head = Function_Print_Head(ref_node(node),_fopt,_copt);
@@ -1623,8 +1640,8 @@ NODE Function_Print_Head_WL(NODE node, struct function_options *_fopt, struct co
 		head_len = strlen(tmp_str);
 		if(head_len > 0){
 			printf("%s",tmp_str);
-		}else{
-			//printf("List");	//todo or not todo
+		}else if(head_len == 0 && (*_fopt).f_print_W == 2){
+			printf("List");	//todo or not todo
 		}
 	}
 	// tq: return(tree);
@@ -1734,7 +1751,7 @@ NODE ExFunction_Recursive_Ser_MultiPrint(NODE node, NODE (*conj_function)(NODE ,
 	bopen_function(node,_fopt,_copt,1);
 	// $PI$ : if Tree.extra_stat&2 == 2 then skip for-loop.
 	// tq: if(((*tree).extra_stat&2) == 2){
-	if((extra_stat(node)&2) == 2){
+	if((extra_stat(node)&2) == 2 && (*_copt).c_counter > 0){
 		// tq: Function_RecursiveCyclic_Print_IProductVal(tree,_fopt,_copt);
 		Function_RecursiveCyclic_Print_IProductVal(node,_fopt,_copt);
 	}else{
