@@ -48,6 +48,7 @@ struct function_options {
         int f_print_S;
         int f_print_J;
         int f_print_W;
+		// 1 : normal,	2 : fill "List" when head is null str.
         int f_print_X;
         int f_print_C;
         int f_print_N;
