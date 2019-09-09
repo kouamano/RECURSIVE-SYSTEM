@@ -159,6 +159,9 @@ echo '$$CG$(#1F($#2),#2G($#1))' | ./tq.o in=/dev/stdin -FT -Pin
 ./tq.o in=test_prd.1.ddf out=test_prd.7.ddl data=test.csv -FT -Pprod  -C
 ./tq.o in=test_prd.1.ddf out=test_prd.8.ddl data=test.csv -FT -Pprod  -C
 ./tq.o in=test_prd.1.ddf out=test_prd.5.ddl data=test.csv -FT -Pprod  -C | ./tq.o in=/dev/stdin Sp=0,1 -Pin -FT
+./tq.o in=num.ddf out=num.ddl data=num.csv -FT -Pprod  -C
+ => (((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(3,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(6,kg))))
+
 
 ### サーチ
 - ポジション指定

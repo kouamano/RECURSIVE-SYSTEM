@@ -989,23 +989,45 @@ int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList, int nval_s
 	int i;
 	int nval = 0;
 	int nval_count = nval_start;
-	//Self
-		nval = (*tree).nval;
-		if(nval > 0){
-			for(i=0;i<nval_count;i++){
-				if(nvalList[i] == nval){
-					goto EXIT_self;
-				}
+	//Pseudo bind
+		//goto EXIT_pseudo;
+	//testing
+	if(*(*tree).Head+(*tree).IndicatorPtr != '@' || (*tree).Head+(*tree).IndicatorPtr == NULL){
+		goto EXIT_pseudo;
+	}
+	nval = (*tree).NextCount;
+	if(nval > 0){
+		for(i=0;i<nval_count;i++){
+			if(nvalList[i] == nval){
+				goto EXIT_pseudo;
 			}
-			nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
-			if(nvalList == NULL){
-				perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
-				exit(1);
-			}
-			nvalList[nval_count] = nval;
-			nval_count++;
 		}
-		EXIT_self:
+		nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
+		if(nvalList == NULL){
+			perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
+			exit(1);
+		}
+		nvalList[nval_count] = nval;
+		nval_count++;
+	}
+	EXIT_pseudo:
+	//Self
+	nval = (*tree).nval;
+	if(nval > 0){
+		for(i=0;i<nval_count;i++){
+			if(nvalList[i] == nval){
+				goto EXIT_self;
+			}
+		}
+		nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
+		if(nvalList == NULL){
+			perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
+			exit(1);
+		}
+		nvalList[nval_count] = nval;
+		nval_count++;
+	}
+	EXIT_self:
 	//Ref
 	nval = 0;
 	if((*tree).RefNode != NULL){

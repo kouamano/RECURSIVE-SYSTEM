@@ -91,6 +91,7 @@ echo '$$CG$(A($#1$f),#1B($#2$g),#2C)' | ./tq.o in=/dev/stdin -FT -Pin
  => $$CG$(A($#1$f@#1B),#1B($#2$g@#2C),#2C)
 
 - モノ射
+圏Cにおいて、
 	C -g-> A -f-> B
 	  -h->
 のtq表現は
@@ -102,6 +103,7 @@ echo '$$CG$(A($#1$f),#1B($#2$g),#2C)' | ./tq.o in=/dev/stdin -FT -Pin
 である。
 
 - エピ射
+圏Dにおいて、
 	A -f-> B -i-> D
 	         -j->
 のtq表現は
