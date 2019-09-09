@@ -94,8 +94,22 @@ echo '$1(##2$#3,##3$3())' | ./tq.o in=/dev/stdin -FT -Pin
 #### 木
 ./tq.o in=test_ref-tree.ddf -Pin -FT
 #### セルフ
+-
 echo '#2$#1($#2,#1[4])' | ./tq.o in=/dev/stdin -Fst -Pin -FT
  => #2$#1@#1[4]($#2@#2$#1@#1[4],#1[4])
+-
+echo '$$CG$(A($#1$f,$#2$g$f),#1B($##2$g),##2C(a,b))' | ./tq.o in=/dev/stdin -FT -Pin 
+ => $$CG$(A($#1$f@#1B,$#2$g$f@##2C),#1B($##2$g@##2C(a,b)),##2C(a,b))
+-
+echo '$$CG$(A($#1$f,$#2$g$f),#1B($##2$g(x,v)),##2C(a,b,a+b))' | ./tq.o in=/dev/stdin -FT -Pin 
+ => $$CG$(A($#1$f@#1B,$#2$g$f@##2C),#1B($##2$g@##2C(a,b,a+b)(x,v)),##2C(a,b,a+b))
+- ループ
+echo '$$CG$(##1F($##2),##2G($##1))' | ./tq.o in=/dev/stdin -FT -Pin
+ -> コアダンプ
+echo '$$CG$(#1F($#2),#2G($#1))' | ./tq.o in=/dev/stdin -FT -Pin
+ => $$CG$(#1F($#2@#2G),#2G($#1@#1F))
+
+-
 ./tq.o in=test_ref.1.t -FMa -FT -Fh -Pin
 - 完全グラフ
 ./tq.o in=test_ref-graph.4.t -Pin -FT -FMa
