@@ -1076,7 +1076,12 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){ //%P
 		conjR = 1;
 	}
 	if((*tree).RefNode == NULL && ((*tree).extra_stat&2) != 2){
-		printf("%s",(*tree).Head+(*tree).IndicatorPtr);
+		if(*(*tree).Head+(*tree).IndicatorPtr != '@'){
+			printf("%s",(*tree).Head+(*tree).IndicatorPtr);
+		}else{	//force-bind
+			printf("%s",(*tree).Next[nth%(*tree).NextCount]->Head);
+			return(tree);
+		}
 	}
 	if((*tree).RefNode != NULL){
 		if((*tree).RefNode->nval > 0){
