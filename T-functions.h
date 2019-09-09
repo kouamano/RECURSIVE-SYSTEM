@@ -4,6 +4,8 @@
 
 /* program */
 /* prottype */
+struct Tree *Function_Print_Head(struct Tree *, struct function_options *, struct compile_options *);
+
 struct Tree *Executor(struct Tree *, struct Tree *, struct Tree *, int, int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);
 
 struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *, struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct options *, struct function_options *, struct compile_options *, int);
@@ -1064,7 +1066,7 @@ struct Tree *Function_Print_nthVal(struct Tree *tree, int nth){
 	}
 	return(tree);
 }
-struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){ //%P
+struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth, struct function_options *_fopt, struct compile_options *_copt){ //%P
 	FC(fprintf(stderr,">Function_Recursive_Print_nthVal<\n");)
 	int i;
 	int conjR = 0;
@@ -1079,7 +1081,14 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){ //%P
 		if(*(*tree).Head+(*tree).IndicatorPtr != '@'){
 			printf("%s",(*tree).Head+(*tree).IndicatorPtr);
 		}else{	//force-bind
-			printf("%s",(*tree).Next[nth%(*tree).NextCount]->Head);
+			//printf("%s",(*tree).Next[nth%(*tree).NextCount]->Head);
+			int Cj_org = (*tree).Next[nth%(*tree).NextCount]->Conj;
+			int NCs_org = (*tree).Next[nth%(*tree).NextCount]->NCself;
+			(*tree).Next[nth%(*tree).NextCount]->Conj = 0;
+			(*tree).Next[nth%(*tree).NextCount]->NCself = 1;
+			ExFunction_Recursive_Ser_MultiPrint((*tree).Next[nth%(*tree).NextCount], (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
+			(*tree).Next[nth%(*tree).NextCount]->Conj = Cj_org;
+			(*tree).Next[nth%(*tree).NextCount]->NCself = NCs_org;
 			return(tree);
 		}
 	}
@@ -1093,7 +1102,7 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){ //%P
 		if((*tree).RefNode->NextCount > 0){
 			printf("(");
 			for(i=0;i<(*tree).RefNode->NextCount;i++){
-				Function_Recursive_Print_nthVal((*tree).RefNode->Next[i],nth);
+				Function_Recursive_Print_nthVal((*tree).RefNode->Next[i],nth,_fopt,_copt);
 			}
 			printf(")");
 		}
@@ -1101,7 +1110,7 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){ //%P
 	if((*tree).NextCount > 0){
 		printf("(");
 		for(i=0;i<(*tree).NextCount;i++){
-			Function_Recursive_Print_nthVal((*tree).Next[i],nth);
+			Function_Recursive_Print_nthVal((*tree).Next[i],nth,_fopt,_copt);
 		}
 		printf(")");
 	}
@@ -1140,7 +1149,7 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 				}
 			}
 		}
-		Function_Recursive_Print_nthVal(tree,i);
+		Function_Recursive_Print_nthVal(tree,i,_fopt,_copt);
 	}
 	for(i=0;i<nval_count-1;i++){
 		printf(")");
