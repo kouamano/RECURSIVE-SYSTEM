@@ -8,6 +8,7 @@ git diff cq:branch.diff tq_base:branch.diff
 echo '>> Readme'
 git diff cq:README.exam tq_base:README.exam
 git diff cq:README.md tq_base:README.md
+git diff cq:README.ken tq_base:README.ken
 git diff cq:README.chem tq_base:README.chem
 
 # tq
@@ -40,6 +41,7 @@ git diff tq:branch.diff tq_base:branch.diff
 echo '>> Readme'
 git diff tq:README.exam tq_base:README.exam
 git diff tq:README.md tq_base:README.md
+git diff tq:README.ken tq_base:README.ken
 git diff tq:README.chem tq_base:README.chem
 
 # tq
