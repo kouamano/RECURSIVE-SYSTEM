@@ -103,7 +103,7 @@ void list_builtins(void){
 	printf("  * $NULL$ : Indicator: null object.\n");
 	printf("  * [<n>] : Operator: data bind.\n");
 	printf("  * @(<string>) : Indicator: binded data.\n");
-	printf("  * @(<string>) : Operator: data overwrite (under construction).\n");
+	printf("  * @(<tree>) : Operator: pseudo-bind.\n");
 }
 void search_help(void){
 	printf("\n");
