@@ -210,7 +210,7 @@ void put_examples(void){
 	printf("\n");
 	printf("  (#1[2],#2[2],[3](#4[2]))\n");
 	printf("\n");
-	printf(" out.ddl::\n");
+	printf(" out2.ddl::\n");
 	printf("\n");
 	printf("  $PI$(@(L,W),Quantity($#4,$#2))\n");
 	printf("\n");
