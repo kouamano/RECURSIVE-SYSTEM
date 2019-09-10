@@ -155,6 +155,7 @@ echo '$$CG$(#1F($#2),#2G($#1))' | ./tq.o in=/dev/stdin -FT -Pin
 ./tq.o in=test_prd.1.ddf out=test_prd.3.ddl data=test.csv -FT -Pprod  -C  | ./tq.o in=/dev/stdin Sp=0,0 -Pin -FT
 ./tq.o in=test_prd.1.ddf out=test_prd.4.ddl data=test.csv -FT -Pprod  -C
 ./tq.o in=test_prd.1.ddf out=test_prd.5.ddl data=test.csv -FT -Pprod  -C
+ => (((Length,Quantity(1,mm)),(Weight,Quantity(2,kg))),((Length,Quantity(322,mm)),(Weight,Quantity(4,kg))),((Length,Quantity(5,mm)),(Weight,Quantity(68,kg))))
 ./tq.o in=test_prd.1.ddf out=test_prd.6.ddl data=test.csv -FT -Pprod  -C
 ./tq.o in=test_prd.1.ddf out=test_prd.7.ddl data=test.csv -FT -Pprod  -C
 ./tq.o in=test_prd.1.ddf out=test_prd.8.ddl data=test.csv -FT -Pprod  -C
