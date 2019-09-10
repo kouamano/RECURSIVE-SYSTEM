@@ -85,30 +85,6 @@ void compile_help(void){
 	printf("  * -Cc : clear head.\n");
 	printf("  * -Cd : rewite head to dot.\n");
 }
-void list_builtins(void){
-	printf("\n");
-	printf(" - Builtin operators\n");
-	printf("\n");
-	printf("  * #<n> : Reference tag: head.\n");
-	printf("  * ##<n> : Reference tag: tree.\n");
-	printf("  * $#<n> : Referencer: head.\n");
-	printf("  * $##<n> : Referencer: tree.\n");
-	printf("  * $`$ : Operator: quating head.\n");
-	printf("  * $``$ : Operator: quating tree.\n");
-	printf("  * $~$ : Operator: riteral head.\n");
-	printf("  * $~~$ : Operator: riteral tree.\n");
-	printf("  * $U$ : Operator: unpack single level.\n");
-	printf("  * $UU$ : Operator: unpack tree (under construction).\n");
-	printf("  * $PI$ : Operator: inner production for binded data.\n");
-	printf("  * [<n>] : Operator: data bind.\n");
-	printf("  * @(<tree>*) : Operator: pseudo-bind.\n");
-	printf("  * $$ : Indicator: dictionary reference (term ID).\n");
-	printf("  * $X$ : Indicator: dictionary reference (term string).\n");
-	printf("  * $$$ : Indicator: dictionary reference (class ID).\n");
-	printf("  * $$X$ : Indicator: dictionary reference (class string).\n");
-	printf("  * $NULL$ : Indicator: null object.\n");
-	printf("  * @(<string>) : Indicator: binded data.\n");
-}
 void search_help(void){
 	printf("\n");
 	printf(" - Search options\n");
@@ -121,6 +97,44 @@ void data_help(void){
 	printf(" - Data option\n");
 	printf("\n");
 	printf("  * DD=<delimiter> currently unused, definded by definition file.\n");
+}
+void language_help(void){
+	printf("\n");
+	printf("LANGUAGE\n");
+	printf("========\n");
+	printf("\n");
+	printf("  | LANGUAGE :: <head>|<tree>\n");
+	printf("  | <head> ::= <label><reference><operator><name><bind>\n");
+	printf("  | <tree> ::= <head>'('(<head>|<tree>)(','(<head>|<tree>)*')'\n");
+}
+void option_header(void){
+	printf("\n");
+	printf("OPTIONS\n");
+	printf("=======\n");
+}
+void list_builtins(void){
+	printf("\n");
+	printf(" - Builtin operators\n");
+	printf("\n");
+	printf("  * #<n> : <label>: head.\n");
+	printf("  * ##<n> : <label>: tree.\n");
+	printf("  * $#<n> : <reference>: head.\n");
+	printf("  * $##<n> : <refernce>: tree.\n");
+	printf("  * $`$ : <operator>: quating head.\n");
+	printf("  * $``$ : <operator>: quating tree.\n");
+	printf("  * $~$ : <operator>: riteral head.\n");
+	printf("  * $~~$ : <operator>: riteral tree.\n");
+	printf("  * $U$ : <operator>: unpack single level.\n");
+	printf("  * $UU$ : <operator>: unpack tree (under construction).\n");
+	printf("  * $PI$ : <operator>: inner production for binded data.\n");
+	printf("  * $$ : <name> prefix: dictionary reference (term ID).\n");
+	printf("  * $X$ : <name> prefix: dictionary reference (term string).\n");
+	printf("  * $$$ : <name> prefix: dictionary reference (class ID).\n");
+	printf("  * $$X$ : <name> prefix: dictionary reference (class string).\n");
+	printf("  * $NULL$ : <name>: null object.\n");
+	printf("  * @(<string>) : <name>: binded data.\n");
+	printf("  * [<n>] : <bind>: data bind.\n");
+	printf("  * @(<tree>*) : <bind>: pseudo-bind.\n");
 }
 void put_examples(void){
 	printf("\n");
@@ -586,6 +600,11 @@ int main(int argc, char **argv){
 	}
 	if((*opt).help == 1){
 		help();
+		language_help();
+		ie = 1;
+	}
+	if((*opt).hF == 1 || (*opt).hC == 1 || (*_copt).c_list == 1 || (*opt).hS == 1 || (*opt).hD == 1){
+		option_header();
 		ie = 1;
 	}
 	if((*opt).hF == 1){
