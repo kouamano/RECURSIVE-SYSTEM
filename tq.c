@@ -174,6 +174,8 @@ void put_examples(void){
 	printf("\n");
 	printf("ex.4 (binding and reforming CSV)::\n");
 	printf("\n");
+	printf(" [bind]\n");
+	printf("\n");
 	printf(" test.csv::\n");
 	printf("\n");
 	printf("  Length,Weight\n");
@@ -192,6 +194,29 @@ void put_examples(void){
 	printf("\n");
 	printf(" $ tq.o in=in.ddf out=out.ddl data=test.csv -FT -Pprod -C\n");
 	printf("  => (((Length,Quantity(1,mm)),(Weight,Quantity(2,kg))),((Length,Quantity(322,mm)),(Weight,Quantity(4,kg))),((Length,Quantity(5,mm)),(Weight,Quantity(68,kg))))\n");
+	//printf("ex.4 (binding and reforming CSV)::\n");
+	printf("\n");
+	printf(" [over write]\n");
+	printf("\n");
+	printf(" test.csv::\n");
+	printf("\n");
+	printf("  Length,Weight\n");
+	printf("  mm,kg\n");
+	printf("  1,2\n");
+	printf("  322,4\n");
+	printf("  5,68\n");
+	printf("\n");
+	printf(" in.ddf::\n");
+	printf("\n");
+	printf("  (#1[2],#2[2],[3](#4[2]))\n");
+	printf("\n");
+	printf(" out.ddl::\n");
+	printf("\n");
+	printf("  $PI$(@(L,W),Quantity($#4,$#2))\n");
+	printf("\n");
+	printf(" $ tq.o in=in.ddf out=out2.ddl data=test.csv -FT -Pprod -C\n");
+	printf("  => (((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(322,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(68,kg))))\n");
+
 }
 
 /* allocation */
