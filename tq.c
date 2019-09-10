@@ -33,6 +33,10 @@ void help(void){
 	printf("\n");
 	printf(" tq.o [-h|-hF|-hC|-hS|-hD|-hE] [-s] [-c] [-test] buff=<(int)size> in=<file name of input form> out=<file name of outout form> data=<data file> data_buff=<(int)size> w=<warnning level> -F<x> -C<x> -P<x>.\n");
 	printf("\n");
+	printf(" - Full information\n");
+	printf("\n");
+	printf("   tq.o -h -hF -hC -hS -hD -hE -s -c -CL\n");
+	printf("\n");
 	printf(" - Main options\n");
 	printf("\n");
 	printf("  * -h : help.\n");
