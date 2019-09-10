@@ -992,7 +992,11 @@ int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList, int nval_s
 	//Pseudo bind
 		//goto EXIT_pseudo;
 	//testing
-	if(*(*tree).Head+(*tree).IndicatorPtr != '@' || (*tree).Head+(*tree).IndicatorPtr == NULL){
+	int tmp_head_len = 0;
+	tmp_head_len = strlen((*tree).Head);
+	//printf("l:%d:e:%c:\n",tmp_head_len,(*tree).Head[tmp_head_len-1]);
+	//if(*(*tree).Head+(*tree).IndicatorPtr != '@' || (*tree).Head+(*tree).IndicatorPtr == NULL){
+	if((*tree).Head[tmp_head_len-1] != '@'){
 		goto EXIT_pseudo;
 	}
 	nval = (*tree).NextCount;
@@ -1100,7 +1104,12 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth, struct 
 		conjR = 1;
 	}
 	if((*tree).RefNode == NULL && ((*tree).extra_stat&2) != 2){
-		if(*(*tree).Head+(*tree).IndicatorPtr != '@'){
+		//Under rev
+		int tmp_head_len = 0;
+		tmp_head_len = strlen((*tree).Head);
+		//printf("l:%d:e:%c:\n",tmp_head_len,(*tree).Head[tmp_head_len-1]);
+		//if(*(*tree).Head+(*tree).IndicatorPtr != '@'){
+		if((*tree).Head[tmp_head_len-1] != '@'){
 			printf("%s",(*tree).Head+(*tree).IndicatorPtr);
 		}else{	//force-bind
 			//printf("%s",(*tree).Next[nth%(*tree).NextCount]->Head);

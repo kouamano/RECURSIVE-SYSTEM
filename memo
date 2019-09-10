@@ -1,0 +1,23 @@
+itop = import_LinkTable(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,DATA);     
+                EFLAG = (*opt).Pin+1+8;
+Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
+                EFLAG = 16;
+Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);  
+
+
+'$$CG$(#1F($#2),#2G($#1))'
+'$$CG$(##1F($##2),##2G($##1))'
+
+(((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(322,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(68,kg))))
+(((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(322,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(68,kg))))
+(((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(3  ,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(6 ,kg))))
+
+(((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(3,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(6,kg))))
+(((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(3,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(6,kg))))
+
+(((L,W),Quantity(1,(mm,kg))),((L,W),Quantity(2,(mm,kg))),((L,W),Quantity(3,(mm,kg))),((L,W),Quantity(4,(mm,kg))),((L,W),Quantity(5,(mm,kg))),((L,W),Quantity(6,(mm,kg))))
+(((L,W),Quantity(1,(mm,kg))),((L,W),Quantity(2,(mm,kg))),((L,W),Quantity(3,(mm,kg))),((L,W),Quantity(4,(mm,kg))),((L,W),Quantity(5,(mm,kg))),((L,W),Quantity(6,(mm,kg))))
+
+((((L,W),Quantity(1,mm)),((L,W),Quantity(2,kg))),(((L,W),Quantity(3,mm)),((L,W),Quantity(4,kg))),(((L,W),Quantity(5,mm)),((L,W),Quantity(6,kg))))
+((((L,W),Quantity(1,mm)),((L,W),Quantity(2,kg))),(((L,W),Quantity(3,mm)),((L,W),Quantity(4,kg))),(((L,W),Quantity(5,mm)),((L,W),Quantity(6,kg))))
+
