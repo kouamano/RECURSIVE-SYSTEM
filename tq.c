@@ -119,7 +119,7 @@ void list_builtins(void){
 	printf("  * #<n> : <label>: head.\n");
 	printf("  * ##<n> : <label>: tree.\n");
 	printf("  * $#<n> : <reference>: head.\n");
-	printf("  * $##<n> : <refernce>: tree.\n");
+	printf("  * $##<n> : <reference>: tree.\n");
 	printf("  * $`$ : <operator>: quating head.\n");
 	printf("  * $``$ : <operator>: quating tree.\n");
 	printf("  * $~$ : <operator>: riteral head.\n");
