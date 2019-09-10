@@ -1113,13 +1113,17 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth, struct 
 			printf("%s",(*tree).Head+(*tree).IndicatorPtr);
 		}else{	//force-bind
 			//printf("%s",(*tree).Next[nth%(*tree).NextCount]->Head);
-			int Cj_org = (*tree).Next[nth%(*tree).NextCount]->Conj;
-			int NCs_org = (*tree).Next[nth%(*tree).NextCount]->NCself;
-			(*tree).Next[nth%(*tree).NextCount]->Conj = 0;
-			(*tree).Next[nth%(*tree).NextCount]->NCself = 1;
+			//int Cj_org = (*tree).Next[nth%(*tree).NextCount]->Conj;
+			//int NCs_org = (*tree).Next[nth%(*tree).NextCount]->NCself;
+			//(*tree).Next[nth%(*tree).NextCount]->Conj = 0;
+			//(*tree).Next[nth%(*tree).NextCount]->NCself = 1;
+			if(((*_fopt).f_skipOnce&1) != 1){
+				(*_fopt).f_skipOnce = (*_fopt).f_skipOnce + 1;
+				//(*_fopt).f_skipOnce = 1;
+			}
 			ExFunction_Recursive_Ser_MultiPrint((*tree).Next[nth%(*tree).NextCount], (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
-			(*tree).Next[nth%(*tree).NextCount]->Conj = Cj_org;
-			(*tree).Next[nth%(*tree).NextCount]->NCself = NCs_org;
+			//(*tree).Next[nth%(*tree).NextCount]->Conj = Cj_org;
+			//(*tree).Next[nth%(*tree).NextCount]->NCself = NCs_org;
 			return(tree);
 		}
 	}
