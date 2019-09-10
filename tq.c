@@ -96,14 +96,14 @@ void list_builtins(void){
 	printf("  * $U$ : Operator: unpack single level.\n");
 	printf("  * $UU$ : Operator: unpack tree (under construction).\n");
 	printf("  * $PI$ : Operator: inner production for binded data.\n");
+	printf("  * [<n>] : Operator: data bind.\n");
+	printf("  * @(<tree>*) : Operator: pseudo-bind.\n");
 	printf("  * $$ : Indicator: dictionary reference (term ID).\n");
 	printf("  * $X$ : Indicator: dictionary reference (term string).\n");
 	printf("  * $$$ : Indicator: dictionary reference (class ID).\n");
 	printf("  * $$X$ : Indicator: dictionary reference (class string).\n");
 	printf("  * $NULL$ : Indicator: null object.\n");
-	printf("  * [<n>] : Operator: data bind.\n");
 	printf("  * @(<string>) : Indicator: binded data.\n");
-	printf("  * @(<tree>) : Operator: pseudo-bind.\n");
 }
 void search_help(void){
 	printf("\n");
