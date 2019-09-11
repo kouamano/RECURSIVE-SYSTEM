@@ -4,7 +4,7 @@ echo ==tq==
 echo '> VS. cq'
 # self
 echo '>> self'
-git diff cq:branch.diff tq_base:branch.diff
+git diff tq:branch.diff cq:branch.diff
 
 # README
 echo '>> Readme'
@@ -15,7 +15,7 @@ git diff tq:README.chem cq:README.chem
 
 # tq
 echo '>> source code'
-git diff tq:tq.c tq_base:tq.c
+git diff tq:tq.c cq:tq.c
 git diff tq:T-definition.h cq:T-definition.h
 git diff tq:T-structure.h cq:T-structure.h
 git diff tq:T-functions.h cq:T-functions.h
