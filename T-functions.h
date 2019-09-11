@@ -1287,6 +1287,8 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
 		}
 	}
+	/* progress IndicatorPtr ? */
+
 	/* print binded data (1) */
 	if((*tree).valstr != NULL){
 		printf("(%s)",(*tree).valstr);
