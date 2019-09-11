@@ -4,6 +4,10 @@
 
 /* program */
 /* prottype */
+
+// tq: struct Tree *Function_Print_Head(struct Tree *, struct function_options *, struct compile_options *);
+NODE Function_Print_Head(NODE, struct function_options *, struct compile_options *);
+
 // tq: struct Tree *Executor(struct Tree *, struct Tree *, struct Tree *, int, int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);
 NODE Executor(NODE , NODE , NODE , int, int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);
 
@@ -1257,24 +1261,53 @@ int Function_Recursive_Get_nvalList(NODE node, int *nvalList, int nval_start){
 	int i;
 	int nval = 0;
 	int nval_count = nval_start;
-	//Self
-		// tq: nval = (*tree).nval;
-		nval = value_count(node);
-		if(nval > 0){
-			for(i=0;i<nval_count;i++){
-				if(nvalList[i] == nval){
-					goto EXIT_self;
-				}
+	//Pseudo bind
+		//goto EXIT_pseudo;
+	//testing
+	int tmp_head_len = 0;
+	// tq: tmp_head_len = strlen((*tree).Head);
+	tmp_head_len = strlen(head(node));
+	//printf("l:%d:e:%c:\n",tmp_head_len,(*tree).Head[tmp_head_len-1]);
+	//if(*(*tree).Head+(*tree).IndicatorPtr != '@' || (*tree).Head+(*tree).IndicatorPtr == NULL){
+	// tq: if(tmp_head_len == 0 || (*tree).Head[tmp_head_len-1] != '@'){
+	if(tmp_head_len == 0 || head(node)[tmp_head_len-1] != '@'){
+		goto EXIT_pseudo;
+	}
+	// tq: nval = (*tree).NextCount;
+	nval = child_count(node);
+	if(nval > 0){
+		for(i=0;i<nval_count;i++){
+			if(nvalList[i] == nval){
+				goto EXIT_pseudo;
 			}
-			nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
-			if(nvalList == NULL){
-				perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
-				exit(1);
-			}
-			nvalList[nval_count] = nval;
-			nval_count++;
 		}
-		EXIT_self:
+	nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
+	if(nvalList == NULL){
+		perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
+		exit(1);
+	}
+	nvalList[nval_count] = nval;
+	nval_count++;
+	}
+	EXIT_pseudo:
+	//Self
+	// tq: nval = (*tree).nval;
+	nval = value_count(node);
+	if(nval > 0){
+		for(i=0;i<nval_count;i++){
+			if(nvalList[i] == nval){
+				goto EXIT_self;
+			}
+		}
+		nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
+		if(nvalList == NULL){
+			perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
+			exit(1);
+		}
+		nvalList[nval_count] = nval;
+		nval_count++;
+		}
+	EXIT_self:
 	//Ref
 	nval = 0;
 	// tq: if((*tree).RefNode != NULL){
@@ -1301,7 +1334,7 @@ int Function_Recursive_Get_nvalList(NODE node, int *nvalList, int nval_start){
 	// tq: for(i=0;i<(*tree).NextCount;i++){
 	for(i=0;i<child_count(node);i++){
 		// tq: nval_count =+ Function_Recursive_Get_nvalList((*tree).Next[i],nvalList,nval_count);
-		nval_count = Function_Recursive_Get_nvalList(child(node,i),nvalList,nval_count);	// SAK =+ -> +=
+		nval_count = Function_Recursive_Get_nvalList(child(node,i),nvalList,nval_count);
 	}
 	return(nval_count);
 }
@@ -1342,7 +1375,7 @@ NODE Function_Print_nthVal(NODE node, int nth){
 	return(node);
 }
 // tq: struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth){ //%P
-NODE Function_Recursive_Print_nthVal(NODE node, int nth){ //%P
+NODE Function_Recursive_Print_nthVal(NODE node, int nth, struct function_options *_fopt, struct compile_options *_copt){ //%P
 	int i;
 	int conjR = 0;
 	// tq: if((*tree).NCself > 1){
@@ -1357,8 +1390,31 @@ NODE Function_Recursive_Print_nthVal(NODE node, int nth){ //%P
 	}
 	// tq: if((*tree).RefNode == NULL && ((*tree).extra_stat&2) != 2){
 	if(ref_node(node) == NO_NODE && (extra_stat(node)&2) != 2){
-		// tq: printf("%s",(*tree).Head+(*tree).IndicatorPtr);
-		printf("%s",head(node)+indicator_pos(node));
+		//Under rev
+		int tmp_head_len = 0;
+		// tq: tmp_head_len = strlen((*tree).Head);
+		tmp_head_len = strlen(head(node));
+		//printf("l:%d:e:%c:\n",tmp_head_len,(*tree).Head[tmp_head_len-1]);
+		//if(*(*tree).Head+(*tree).IndicatorPtr != '@'){
+		// tq: if(tmp_head_len == 0 || (*tree).Head[tmp_head_len-1] != '@'){
+		if(tmp_head_len == 0 || head(node)[tmp_head_len-1] != '@'){
+                        // tq: printf("%s",(*tree).Head+(*tree).IndicatorPtr);
+                        printf("%s",head(node)+indicator_pos(node));
+		}else{	//force-bind
+			//printf("%s",(*tree).Next[nth%(*tree).NextCount]->Head);
+			//int Cj_org = (*tree).Next[nth%(*tree).NextCount]->Conj;
+			//int NCs_org = (*tree).Next[nth%(*tree).NextCount]->NCself;
+			//(*tree).Next[nth%(*tree).NextCount]->Conj = 0;
+			//(*tree).Next[nth%(*tree).NextCount]->NCself = 1;
+
+			if(((*_fopt).f_skipOnce&1) != 1){
+                                (*_fopt).f_skipOnce = (*_fopt).f_skipOnce + 1;
+                                //(*_fopt).f_skipOnce = 1;
+			}
+			// tq: ExFunction_Recursive_Ser_MultiPrint((*tree).Next[nth%(*tree).NextCount], (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
+			ExFunction_Recursive_Ser_MultiPrint(child(node,nth%child_count(node)), (NODE(*)())Function_Print_Conj_T, (NODE(*)())Function_Print_Head, (NODE(*)())Function_Print_Bopen_T,  (NODE(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
+			return(node);
+		}
 	}
 	// tq: if((*tree).RefNode != NULL){
 	if(ref_node(node) != NO_NODE){
@@ -1376,7 +1432,7 @@ NODE Function_Recursive_Print_nthVal(NODE node, int nth){ //%P
 			// tq: for(i=0;i<(*tree).RefNode->NextCount;i++){
 			for(i=0;i<child_count(ref_node(node));i++){
 				// tq: Function_Recursive_Print_nthVal((*tree).RefNode->Next[i],nth);
-				Function_Recursive_Print_nthVal(child(ref_node(node),i),nth);
+				Function_Recursive_Print_nthVal(child(ref_node(node),i),nth,_fopt,_copt);
 			}
 			printf(")");
 		}
@@ -1387,7 +1443,7 @@ NODE Function_Recursive_Print_nthVal(NODE node, int nth){ //%P
 		// tq: for(i=0;i<(*tree).NextCount;i++){
 		for(i=0;i<child_count(node);i++){
 			// tq: Function_Recursive_Print_nthVal((*tree).Next[i],nth);
-			Function_Recursive_Print_nthVal(child(node,i),nth);
+			Function_Recursive_Print_nthVal(child(node,i),nth,_fopt,_copt);
 		}
 		printf(")");
 	}
@@ -1430,7 +1486,7 @@ NODE Function_RecursiveCyclic_Print_IProductVal(NODE node, struct function_optio
 			}
 		}
 		// tq: Function_Recursive_Print_nthVal(tree,i);
-		Function_Recursive_Print_nthVal(node,i);
+		Function_Recursive_Print_nthVal(node,i,_fopt,_copt);
 	}
 	for(i=0;i<nval_count-1;i++){
 		printf(")");
@@ -1800,7 +1856,7 @@ bool empty_dim(char** str)
 */
 bool is_leaf(NODE node)
 {
-	return child_count(node) == 0;
+	return child_count(node) == 0 || strchr(head(node),'@') != NULL;	// SAK pending leaf '@'
 }	
 /*
 int first(int* list)
