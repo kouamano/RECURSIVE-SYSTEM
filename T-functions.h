@@ -1215,6 +1215,10 @@ struct Tree *Print_RecursiveSeq_Head(struct Tree *tree, int conj, int ind){
 	for(i=0;i<(*tree).NextCount;i++){
 		Print_RecursiveSeq_Head((*tree).Next[i],1,ind);
 	}
+	//print後は子ノードを切る
+	if(((*tree).extra_stat&2) != 2){
+		(*tree).extra_stat = (*tree).extra_stat + 2;
+	}
 	return(tree);
 }
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%P
