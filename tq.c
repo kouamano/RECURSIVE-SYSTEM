@@ -151,11 +151,11 @@ void put_examples(void){
 	printf("  => #1$Op$Name($#1[1]@@#1$Op$Name(Length))\n");
 	printf("\n");
 	printf(" - #1 : <label>\n");
+	printf(" - $#1 : <reference>\n");
 	printf(" - $Op$ : <operator>\n");
 	printf(" - Name : <name>\n");
-	printf(" - $#1 : <reference>\n");
-	printf(" - [1] : <binding dimension>\n");
-	printf(" - @ : <binded mark>\n");
+	printf(" - [1] : <bind>\n");
+	printf(" - @ : <name>: binded mark\n");
 	printf("\n");
 	printf("ex.2 (referencing tree)::\n");
 	printf("\n");
