@@ -725,7 +725,11 @@ int main(int argc, char **argv){
 
 	/* check */
 	if((*opt).test > 0){
-		printf("No test code.\n");
+		//printf("No test code.\n");
+		//ExFunction_Recursive(otop,NULL,opt,_fopt,_copt);
+		printf("\n=TEST OUTPUT=>\n");
+		Print_RecursiveSeq_Head(otop,0,1);
+		printf("\n<==\n");
 	}
 
 	/* finish */

@@ -578,6 +578,13 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 		strcpy(tmp_head,out_head);
 		compiled++;
 	//}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$U$",3) == 0){
+	}else if(strncmp(tmp_head,"$UU$",4) == 0){
+		strcpy(out_head,tmp_head+4);
+		strcpy(tmp_head,out_head);
+		if(((*tree).extra_stat&16) != 16){
+			(*tree).extra_stat = (*tree).extra_stat + 16;
+		}
+		compiled++;
 	}else if(strncmp(tmp_head,"$U$",3) == 0){
 		//strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
 		strcpy(out_head,tmp_head+3);
@@ -1192,6 +1199,21 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 	//print後は子ノードを切る
 	if(((*tree).extra_stat&2) != 2){
 		(*tree).extra_stat = (*tree).extra_stat + 2;
+	}
+	return(tree);
+}
+struct Tree *Print_RecursiveSeq_Head(struct Tree *tree, int conj, int ind){
+	int i;
+	if(conj == 1){
+		printf(",");
+	}
+	if(ind == 1){
+		printf("%s",(*tree).Head+(*tree).IndicatorPtr);
+	}else{
+		printf("%s",(*tree).Head);
+	}
+	for(i=0;i<(*tree).NextCount;i++){
+		Print_RecursiveSeq_Head((*tree).Next[i],1,ind);
 	}
 	return(tree);
 }
