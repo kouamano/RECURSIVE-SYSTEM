@@ -367,7 +367,7 @@ void next_token()
 	case '(' :
 	case ')' :
 	case ',' :
-	case '@' :
+	// case '@' :  overwrite
 		token = ch;
 		append_char(ch);	// append char to BUFF
 
@@ -396,7 +396,7 @@ void next_token()
 				next_char();
 				break;
 			}
-		} while(ch != EOF && ch != '(' && ch != ')' && ch != ',' && ch !='@');
+		} while(ch != EOF && ch != '(' && ch != ')' && ch != ',' /*&& ch !='@' overwrite*/);
 
 		break;
 	}
@@ -590,9 +590,11 @@ NODE parse_header(int level)
 		skip('I');		// skip idenifier token
 	}				
 
+/* overwrite
 	if(token=='@') {		// bind operator
 		parse_bind_values(node);
 	}
+*/
 
 	return node;
 }
