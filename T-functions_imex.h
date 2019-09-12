@@ -48,7 +48,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 					exit(1);
 				}
 				strcpy((*current).Head,BUFF);
-				Analyze_HeadLabel(current);
+				Analyze_Label(current);
 			}
 			/* check */
 			if(WAR > 0){
@@ -81,7 +81,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 					exit(1);
 				}
 				strcpy((*current).Head,BUFF);
-				Analyze_HeadLabel(current);
+				Analyze_Label(current);
 			}
 			/* check */
 			if(WAR > 0){
@@ -114,7 +114,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 					exit(1);
 				}
 				strcpy((*current).Head,BUFF);
-				Analyze_HeadLabel(current);
+				Analyze_Label(current);
 			}
 			/* check */
 			if(WAR > 0){
@@ -142,7 +142,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 					exit(1);
 				}
 				strcpy((*current).Head,BUFF);
-				Analyze_HeadLabel(current);
+				Analyze_Label(current);
 			}
 			close = 0;
 			ESC = 0;
