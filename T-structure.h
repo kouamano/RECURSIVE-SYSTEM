@@ -17,8 +17,9 @@ struct Tree {
 	struct Tree *Parent;	// must not free !!
 	struct Tree *RefNode;
 	int extra_stat;
-		//1: $~~$,$~$ -> avoid compile;	2: $PI$ -> skip Next
+		//1: $~~$,$~$ -> avoid compile;	2: $PI$ ; skipNext 兼用
 		//4: $``$ -> quating tree;	8: $U$
+		//16: $UU$
 };
 
 struct options {

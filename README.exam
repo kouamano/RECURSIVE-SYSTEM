@@ -140,8 +140,11 @@ echo '$$CG$(#1F($#2),#2G($#1))' | ./tq.o in=/dev/stdin -FT -Pin
 - out形式で参照をリストの入れ子に
 ./tq.o in=test_ref.2.t out=test_refR.2.ot -FT -Pin -Pout data=test.csv
 - 再帰レファレンス($#9)
-./tq.o in=test_ref.1.t out=test_ref.1.ot -FT -Pout data=test.csv
- => ...,$#9@#9$#2[3]@#2$2@(Length,Weight,mm,kg,1,2)))
+./tq.o in=test_ref.1.t out=test_ref.1.ot -FT -Pout data=test.csv -Pin
+ =>
+#0$0($#1[2]@#1$1[5]@(322,4,5,68,7)($#0@#0$0,#9$#2[3]@@#2$2(Length,Weight,mm,kg,1,2)),#2$2($#0@#0$0,#1$1[5]@(322,4,5,68,7)))
+#$#0@#0$0($#1@#1$1[5]@(322,4,5,68,7)($#0@#0$0,$#2@#2$2),$#2@#2$2($#1@#1$1[5]@(322,4,5,68,7),$#0@#0$0,$#9@#9$#2[3]@@#2$2(Length,Weight,mm,kg,1,2)))
+#15 Nodes were operated.
 - 複合レファレンス
 ./tq.o in=test_ref.3.ddf data=test.csv -FT -Pin
  => $TOP(#1$1[2](#2$2[2]@(Length,Weight,mm,kg)),$#2[3]@@#2$2[2]@(Length,Weight,mm,kg)(1,2,322))
@@ -159,7 +162,9 @@ echo '$$CG$(#1F($#2),#2G($#1))' | ./tq.o in=/dev/stdin -FT -Pin
 ./tq.o in=test_prd.1.ddf out=test_prd.6.ddl data=test.csv -FT -Pprod  -C
 ./tq.o in=test_prd.1.ddf out=test_prd.7.ddl data=test.csv -FT -Pprod  -C
 ./tq.o in=test_prd.1.ddf out=test_prd.8.ddl data=test.csv -FT -Pprod  -C
-./tq.o in=test_prd.1.ddf out=test_prd.5.ddl data=test.csv -FT -Pprod  -C | ./tq.o in=/dev/stdin Sp=0,1 -Pin -FT
+./tq.o in=test_prd.1.ddf out=test_prd.9.ddl data=test.csv -FT -Pprod  -C
+ => (f,g,((,(Length,Quantity(1,mm)),,(Weight,Quantity(2,kg))),(,(Length,Quantity(322,mm)),,(Weight,Quantity(4,kg))),(,(Length,Quantity(5,mm)),,(Weight,Quantity(68,kg)))),((,(Length,Quantity(1,mm)),,(Weight,Quantity(2,kg))),(,(Length,Quantity(322,mm)),,(Weight,Quantity(4,kg))),(,(Length,Quantity(5,mm)),,(Weight,Quantity(68,kg)))),h)
+ ちょっとおかしい
 ./tq.o in=num.ddf out=num.ddl data=num.csv -FT -Pprod  -C
  => (((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(3,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(6,kg))))
 ./tq.o in=num2.ddf out=num2.ddl data=num.csv -FT -Pprod  -C 

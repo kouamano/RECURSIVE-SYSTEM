@@ -125,7 +125,7 @@ void list_builtins(void){
 	printf("  * $~$ : <operator>: riteral head.\n");
 	printf("  * $~~$ : <operator>: riteral tree.\n");
 	printf("  * $U$ : <operator>: unpack single level.\n");
-	printf("  * $UU$ : <operator>: unpack tree (under construction).\n");
+	printf("  * $UU$ : <operator>: flatten tree.\n");
 	printf("  * $PI$ : <operator>: inner production for binded data.\n");
 	printf("  * $$ : <name> prefix: dictionary reference (term ID).\n");
 	printf("  * $X$ : <name> prefix: dictionary reference (term string).\n");
@@ -725,7 +725,11 @@ int main(int argc, char **argv){
 
 	/* check */
 	if((*opt).test > 0){
+		printf("\n=TEST OUTPUT=>\n");
 		printf("No test code.\n");
+		//ExFunction_Recursive(otop,NULL,opt,_fopt,_copt);
+		//Print_RecursiveSeq_Head(otop,0,1);
+		printf("\n<==\n");
 	}
 
 	/* finish */
