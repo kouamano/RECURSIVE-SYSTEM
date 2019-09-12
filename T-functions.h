@@ -449,7 +449,7 @@ int Assign_RefedValPtr(struct Tree *tree){	// for product
 	}
 	return(0);
 }
-void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred){
+void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred, struct compile_options *_copt){
 	FC(fprintf(stderr,">Function_Recursive_Bind_RefNode<\n");)
 	int i;
 	char target_type = '\0';
@@ -463,7 +463,7 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred)
 		addr = Function_Recursive_SearchBind_LabelNode(referred,target_type,target_label,binded);
 	}
 	for(i=0;i<(*binded).NextCount;i++){
-		Function_Recursive_Bind_RefNode((*binded).Next[i],referred);
+		Function_Recursive_Bind_RefNode((*binded).Next[i],referred,_copt);
 	}
 }
 
