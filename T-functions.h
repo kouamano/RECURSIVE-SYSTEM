@@ -456,7 +456,7 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred)
 	int target_label = -1;
 	int stat = -1;
 	stat = get_ref((*binded).Head+(*binded).IndicatorPtr,&target_type,&target_label);
-	// ここにheadのIndicatorPtrをプログレスするコードか? だめ、レファレンスバインドできなくなる
+	// ここにheadのIndicatorPtrをプログレスするコードか? だめ、レファレンスバインドできなくなる -> 条件分岐を試す。 コンパイルのときのみ実行。
 	//(*binded).IndicatorPtr = (*binded).IndicatorPtr + stat;
 	if(stat > 0){
 		struct Tree *addr = NULL;
