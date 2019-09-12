@@ -91,8 +91,8 @@ struct Tree *Function_Get_Node(char *pos_str, struct Tree *tree){
 	return(current);
 }
 /** head analysis */
-int Analyze_HeadLabel(struct Tree *tree){ // for labeling
-	FC(fprintf(stderr,">Analyze_HeadLabel<\n");)
+int Analyze_Label(struct Tree *tree){ // for labeling
+	FC(fprintf(stderr,">Analyze_Label<\n");)
 	int i = 0;
 	int labelreadptr = 0;
 	int labelnumlen = 0;
@@ -116,7 +116,7 @@ int Analyze_HeadLabel(struct Tree *tree){ // for labeling
 			labelnumlen++;
 		}
 		if((labelnumstr = malloc(sizeof(char) * (labelnumlen + 1))) == NULL){
-			perror("[Fail]malloc@Analyze_HeadLabel\n");
+			perror("[Fail]malloc@Analyze_Label\n");
 			exit(1);
 		}
 		strncpy(labelnumstr,(*tree).Head+labelreadptr,labelnumlen);
@@ -133,7 +133,6 @@ int Analyze_HeadLabel(struct Tree *tree){ // for labeling
 		}
 	}
 	DB(printf("\nH:%s:Ptr:%d:\n",(*tree).Head,(*tree).IndicatorPtr);)
-	//fprintf(stderr,"labeled:%d.\n",labeled);
 	return(0);
 }
 /** reference analysis */
@@ -176,8 +175,6 @@ int get_ref(char *head, char *type, int *label){	//for binded
 				break;
 			}
 		}
-		//printf("pgs:%d:\n",2+i);
-		//printf("nc:%c:\n",head[2+i]);
 		return(2+i);
 	}
 	if(len > 3){
@@ -191,8 +188,6 @@ int get_ref(char *head, char *type, int *label){	//for binded
 					break;
 				}
 			}
-			//printf("pgs:%d:\n",3+i);
-			//printf("nc:%c:\n",head[3+i]);
 			return(3+i);
 		}
 	}
@@ -579,28 +574,22 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 	}else if((*_copt).c_dot > 0){
 		tmp_head = Function_Dot_Head(tree);
 	}else if(strncmp(tmp_head,"$NULL$",6) == 0){
-	//}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$PI$",4) == 0){	// Inner Product
+		;
 	}else if(strncmp(tmp_head,"$PI$",4) == 0){	// Inner Product
-		//strcpy(out_head,tmp_head+(*tree).IndicatorPtr+4);
 		strcpy(out_head,tmp_head+4);
 		strcpy(tmp_head,out_head);
 		if(((*tree).extra_stat&2) != 2){
 			(*tree).extra_stat = (*tree).extra_stat + 2;
 		}
 		compiled++;
-	//}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$X$",3) == 0){
 	}else if(strncmp(tmp_head,"$X$",3) == 0){
-		//strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
 		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
 		compiled++;
-	//}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$M$",3) == 0){
 	}else if(strncmp(tmp_head,"$M$",3) == 0){
-		//strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
 		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
 		compiled++;
-	//}else if(strncmp(tmp_head+(*tree).IndicatorPtr,"$U$",3) == 0){
 	}else if(strncmp(tmp_head,"$UU$",4) == 0){
 		strcpy(out_head,tmp_head+4);
 		strcpy(tmp_head,out_head);
@@ -611,7 +600,6 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 		ExFunction_Recursive_Set_Obj(tree, (struct Tree *(*)())Set_status, (int *)&tmp_stat);	// set cascading
 		compiled++;
 	}else if(strncmp(tmp_head,"$U$",3) == 0){
-		//strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
 		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
 		if(((*tree).extra_stat&8) != 8){
@@ -625,18 +613,6 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 			perror("[Fail]:realloc@Function_Interpret_Head.\n");
 			exit(1);
 		}
-
-		/*
-		out_head[0]='"';
-		if((*tree).NextCount == 0){
-			strcpy(out_head+1,tmp_head+3);
-			out_head[len-2]='"';
-			out_head[len-1]='\0';
-		}else{
-			strcpy(out_head+1,tmp_head+3);
-			out_head[len-1]='\0';
-		}
-		*/
 
 		out_head[0]='"';
 		strcpy(out_head+1,tmp_head+4);
@@ -676,9 +652,6 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 		}
 		out_head[0]='"';
 		strcpy(out_head+1,tmp_head+3);
-		//printf("len:%d:",len);
-		//printf("S:%s:",out_head+1);
-		//printf("s:%s:",out_head);
 		tmp_len = strlen(out_head);
 		out_head[tmp_len]='"';
 		out_head[tmp_len+1]='\0';
@@ -686,7 +659,6 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 		compiled++;
 	}
 	free(out_head);
-	//fprintf(stderr,"Compiled:%d.\n",compiled);
 	return(tmp_head);
 }
 
@@ -1021,13 +993,8 @@ int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList, int nval_s
 	int i;
 	int nval = 0;
 	int nval_count = nval_start;
-	//Pseudo bind
-		//goto EXIT_pseudo;
-	//testing
 	int tmp_head_len = 0;
 	tmp_head_len = strlen((*tree).Head);
-	//printf("l:%d:e:%c:\n",tmp_head_len,(*tree).Head[tmp_head_len-1]);
-	//if(*(*tree).Head+(*tree).IndicatorPtr != '@' || (*tree).Head+(*tree).IndicatorPtr == NULL){
 	if(tmp_head_len == 0 || (*tree).Head[tmp_head_len-1] != '@'){
 		goto EXIT_pseudo;
 	}
@@ -1086,7 +1053,6 @@ int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList, int nval_s
 	EXIT_ref:
 	// Next
 	for(i=0;i<(*tree).NextCount;i++){
-		//nval_count =+ Function_Recursive_Get_nvalList((*tree).Next[i],nvalList,nval_count);
 		nval_count = Function_Recursive_Get_nvalList((*tree).Next[i],nvalList,nval_count);
 	}
 	return(nval_count);
@@ -1139,23 +1105,13 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth, struct 
 		//Under rev
 		int tmp_head_len = 0;
 		tmp_head_len = strlen((*tree).Head);
-		//printf("l:%d:e:%c:\n",tmp_head_len,(*tree).Head[tmp_head_len-1]);
-		//if(*(*tree).Head+(*tree).IndicatorPtr != '@'){
 		if(tmp_head_len == 0 || (*tree).Head[tmp_head_len-1] != '@'){
 			printf("%s",(*tree).Head+(*tree).IndicatorPtr);
 		}else{	//force-bind
-			//printf("%s",(*tree).Next[nth%(*tree).NextCount]->Head);
-			//int Cj_org = (*tree).Next[nth%(*tree).NextCount]->Conj;
-			//int NCs_org = (*tree).Next[nth%(*tree).NextCount]->NCself;
-			//(*tree).Next[nth%(*tree).NextCount]->Conj = 0;
-			//(*tree).Next[nth%(*tree).NextCount]->NCself = 1;
 			if(((*_fopt).f_skipOnce&1) != 1){
 				(*_fopt).f_skipOnce = (*_fopt).f_skipOnce + 1;
-				//(*_fopt).f_skipOnce = 1;
 			}
 			ExFunction_Recursive_Ser_MultiPrint((*tree).Next[nth%(*tree).NextCount], (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
-			//(*tree).Next[nth%(*tree).NextCount]->Conj = Cj_org;
-			//(*tree).Next[nth%(*tree).NextCount]->NCself = NCs_org;
 			return(tree);
 		}
 	}
@@ -1273,7 +1229,6 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	tmp_str = Function_Interpret_Head(tree,_copt);
 	int put_head_conj = 1;
 	put_head_conj = strcmp((*tree).Head+(*tree).IndicatorPtr,"$UU$");
-	//printf(":%d:",put_head_conj);
 	/* print head */
 	if(((*tree).extra_stat&1) == 1){
 		printf("%s",(*tree).Head);	//normal
@@ -1319,9 +1274,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
 		}
 	}
-	/* progress IndicatorPtr ? not here */
-	//testing
-	//(*tree).IndicatorPtr = (*tree).IndicatorPtr + prg;
+	/* progress IndicatorPtr -> not here */
 
 	/* print binded data (1) */
 	if((*tree).valstr != NULL){
@@ -1412,9 +1365,9 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 		}
 		strcpy(head_str,tmp_str);
 		head_str[dim_pos[0]] = '\0';
-		if(strlen(head_str) == 0){
+		//if(strlen(head_str) == 0){
 			//printf("List");	//todo or not todo
-		}
+		//}
 		printf("%s[DIM,",head_str);
 		printf("%s",head_str+dim_pos[0]+1);
 	}else{
