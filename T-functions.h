@@ -602,9 +602,11 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 	}else if(strncmp(tmp_head,"$UU$",4) == 0){
 		strcpy(out_head,tmp_head+4);
 		strcpy(tmp_head,out_head);
-		if(((*tree).extra_stat&16) != 16){
-			(*tree).extra_stat = (*tree).extra_stat + 16;
+		if(((*tree).extra_stat&8) != 8){
+			(*tree).extra_stat = (*tree).extra_stat + 8;
 		}
+		int tmp_stat = 8;
+		ExFunction_Recursive_Set_Obj(tree, (struct Tree *(*)())Set_status, (int *)&tmp_stat);	// set cascading
 		compiled++;
 	}else if(strncmp(tmp_head,"$U$",3) == 0){
 		//strcpy(out_head,tmp_head+(*tree).IndicatorPtr+3);
@@ -1495,7 +1497,7 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree 
 	bopen_function(tree,_fopt,_copt,1);
 	// $UU$ : if Tree.extra_stat&2 == 2 then skip for-loop.
 	if(((*tree).extra_stat&16) == 16 && (*_copt).c_counter > 0){
-		Print_RecursiveSeq_Head(tree, 0, 1);
+		//Print_RecursiveSeq_Head(tree, 0, 1);
 	// $PI$ : if Tree.extra_stat&2 == 2 then skip for-loop.
 	}else if(((*tree).extra_stat&2) == 2 && (*_copt).c_counter > 0){
 		Function_RecursiveCyclic_Print_IProductVal(tree,_fopt,_copt);
