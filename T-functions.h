@@ -456,6 +456,7 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred)
 	int target_label = -1;
 	int stat = -1;
 	stat = get_ref((*binded).Head+(*binded).IndicatorPtr,&target_type,&target_label);
+	// ここにheadのIndicatorPtrをプログレスするコードか?
 	if(stat > 0){
 		struct Tree *addr = NULL;
 		addr = Function_Recursive_SearchBind_LabelNode(referred,target_type,target_label,binded);
@@ -1307,9 +1308,9 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
 		}
 	}
-	/* progress IndicatorPtr ? */
+	/* progress IndicatorPtr ? not here */
 	//testing
-	(*tree).IndicatorPtr = (*tree).IndicatorPtr + prg;
+	//(*tree).IndicatorPtr = (*tree).IndicatorPtr + prg;
 
 	/* print binded data (1) */
 	if((*tree).valstr != NULL){
