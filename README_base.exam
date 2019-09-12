@@ -1,0 +1,188 @@
+# branchのdiff
+#./branch.diff
+
+# compile
+cd DimensionDefinitionLanguage; ./compile_checker.sh; cd ../
+cd DimensionDefinitionLanguage; ./compile_checker.n007.sh; cd ../
+#./compile-all.sh 
+
+# tq のテスト
+## 単体テスト
+### コンバート
+bash conv-check.script
+- with WL
+  cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
+- without WL
+  cd DimensionDefinitionLanguage; bash conv2-test.script; cd ../
+
+### エスケープ処理
+#### クオーティング
+./tqcq.awk ./tq-escape.test					### SAK recursive tqcq.awk
+
+### compile: クオーティング
+echo '#12$`$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst	### -Fst
+echo '#12$`$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C		### SAK -Fst del
+echo '$`$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst	### -Fst
+echo '$`$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C		### SAK -Fst del
+echo '#12$``$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst	### -Fst
+echo '#12$``$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C		### SAK -Fst del
+echo '$``$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst	### -Fst
+echo '$``$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C		### SAK -Fst del
+echo '$``$' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst		### -Fst
+echo '$``$' | ./tq.o in=/dev/stdin -FT  -Pin -C			### SAK -Fst del
+./tq.o in=test_compile.t -C -FT -Pin    
+ => $~List(List(List,List,List,List))
+echo '$``$List' | ./tq.o in=/dev/stdin -FT -C -Pin   
+ => "List"
+echo '$``$List($4)' | ./tq.o in=/dev/stdin -FT -C -Pin   
+ => "List($4)"
+
+### compile: アンパック
+echo '$~~$($U$(7,8,$U$(5,6)))' | ./tq.o in=/dev/stdin -FT -Pin -C
+ => $~~$($U$(7,8,$U$(5,6)))
+./tq.o in=test_unpack.t -FT -Pin -C
+ => $($1,$2,List,$1,$2)
+
+### compile: リテラル化
+./tq.o in=test_riteraltree.t -FT -Pin -C
+./tq.o in=test_ritelal-unpack.t -FT -Pin -C
+
+### 次元取得
+- リーフノードのみ取得される:
+./tq.o in=test_dim.ddf -Pin -Fst data=vals.csv -FT		### -Fst
+./tq.o in=test_dim.ddf -Pin data=vals.csv -FT			### SAK -Fst del
+
+### データバインド
+- 基本(0)
+echo '#1$OP$Head($#1[1])' | ./tq.o in=/dev/stdin -FT -Pin data=test.csv
+ => #1$OP$Head($#1[1]@@#1$OP$Head(Length))
+- 基本(1)
+./tq.o in=test_ref.ddf -Pin -FT data=test.csv -Pout out=test_ref.ddl
+ => 
+(#1[2]@(Length,Weight),#2[2]@(mm,kg))
+$#1@#1[2]@(Length,Weight)
+###end
+#4 Nodes were operated.						### SAK del
+- 基本(2)
+./tq.o in=test.ddf -FT out=test.ddl data=test.csv -Pin -Pout
+- 配列指定のあるリーフノードにバインドされる
+./tq.o in=test_bind.t  data=test.csv -FT -Pin
+ => $TOP($X$List($LEAF,$LEAF[]@(Length),$LEAF[2]@(Weight,mm)),$X$List[2]($LEAF[2]@(kg,1,2,322)))
+
+### レファレンス
+#### 不整合(解消)
+-
+echo '$1($#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1($#3@#3$3,#3$3)
+-
+echo '$1(#2$#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1(#2$#3@#3$3,#3$3)
+-
+echo '$1(##2$#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin	# #$1(##2$#3,#3$3)  <= レファレンスバインドが落る	### SAK del
+ => $1(##2$#3@#3$3,#3$3)
+-
+echo '$1(##2$#3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1(##2$#3@##3$3,##3$3)
+-
+echo '$1(##2$##3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1(##2$##3,#3$3)
+-
+echo '$1(##2$##3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1(##2$##3@##3$3,##3$3)
+- 木vs.木
+echo '$1(##2$##3,##3$3())' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1(##2$##3@##3$3(),##3$3())
+- 頭vs.木
+echo '$1(##2$#3,##3$3())' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1(##2$#3@##3$3,##3$3())
+
+
+#### 木
+./tq.o in=test_ref-tree.ddf -Pin -FT
+#### セルフ
+-
+echo '#2$#1($#2,#1[4])' | ./tq.o in=/dev/stdin -Fst -Pin -FT		### -Fst
+echo '#2$#1($#2,#1[4])' | ./tq.o in=/dev/stdin -Pin -FT			### SAK -Fst del
+ => #2$#1@#1[4]($#2@#2$#1@#1[4],#1[4])
+-
+echo '$$CG$(A($#1$f,$#2$g$f),#1B($##2$g),##2C(a,b))' | ./tq.o in=/dev/stdin -FT -Pin 
+ => $$CG$(A($#1$f@#1B,$#2$g$f@##2C),#1B($##2$g@##2C(a,b)),##2C(a,b))
+-
+echo '$$CG$(A($#1$f,$#2$g$f),#1B($##2$g(x,v)),##2C(a,b,a+b))' | ./tq.o in=/dev/stdin -FT -Pin 
+ => $$CG$(A($#1$f@#1B,$#2$g$f@##2C),#1B($##2$g@##2C(a,b,a+b)(x,v)),##2C(a,b,a+b))
+- ループ
+echo '$$CG$(##1F($##2),##2G($##1))' | ./tq.o in=/dev/stdin -FT -Pin
+ -> コアダンプ
+echo '$$CG$(#1F($#2),#2G($#1))' | ./tq.o in=/dev/stdin -FT -Pin
+ => $$CG$(#1F($#2@#2G),#2G($#1@#1F))
+
+-
+./tq.o in=test_ref.1.t -FMa -FT -Fh -Pin
+- 完全グラフ
+./tq.o in=test_ref-graph.4.t -Pin -FT -FMa	### SAK new line
+ =>
+#1$1($#2@#2$2($#1@#1$1,$#3@#3$3,$#4@#4$4),#3$3($#1@#1$1,$#2@#2$2,$#4@#4$4),#4$4($#1@#1$1,#2$2,$#3@#3$3))
+====multiline====>
+[0],1,,,,5,,,,9,,11,,
+0,[1->11],2,3,4,5,,,,9,,,,
+,,[2->0],,,,,,,,,,,
+,,,[3->5],,,,,,,,,,
+,,,,[4->9],,,,,,,,,
+0,,,,,[5],6,7,8,9,,11,,
+,,,,,,[6->0],,,,,,,
+,,,,,,,[7->11],,,,,,
+,,,,,,,,[8->9],,,,,
+0,,,,,5,,,,[9],10,11,12,
+,,,,,,,,,,[10->0],,,
+,,,,,,,,,,,[11],,
+,,,,,,,,,,,,[12->5],
+
+###end
+#### セルフ+ output
+./tq.o in=test_ref.1.t out=test_ref.1.ot -FMa -FT -Fh -Pin -Pout
+
+#### セルフ+ output + data    
+- フラットパターン    
+./tq.o in=test_ref.2.t out=test_ref.2.ot -FT -Pin -Pout data=test.csv
+- 入れ子パターン
+./tq.o in=test_ref.2.t out=test_ref.2-1.ot -FT -Pin -Pout data=test.csv
+- out形式で参照をリストの入れ子に
+./tq.o in=test_ref.2.t out=test_refR.2.ot -FT -Pin -Pout data=test.csv
+- 再帰レファレンス($#9)
+./tq.o in=test_ref.1.t out=test_ref.1.ot -FT -Pout data=test.csv -Pin
+ =>
+#0$0($#1[2]@#1$1[5]@(322,4,5,68,7)($#0@#0$0,#9$#2[3]@@#2$2(Length,Weight,mm,kg,1,2)),#2$2($#0@#0$0,#1$1[5]@(322,4,5,68,7)))
+#$#0@#0$0($#1@#1$1[5]@(322,4,5,68,7)($#0@#0$0,$#2@#2$2),$#2@#2$2($#1@#1$1[5]@(322,4,5,68,7),$#0@#0$0,$#9@#9$#2[3]@@#2$2(Length,Weight,mm,kg,1,2)))
+###end
+#15 Nodes were operated.
+- 複合レファレンス
+./tq.o in=test_ref.3.ddf data=test.csv -FT -Pin
+ => $TOP(#1$1[2](#2$2[2]@(Length,Weight,mm,kg)),$#2[3]@@#2$2[2]@(Length,Weight,mm,kg)(1,2,322))
+- 複合レファレンス(2)
+./tq.o out=test_complex-ref.ddl -Pout -FT in=test_complex-ref.ddf data=test.csv
+
+### 内積
+./tq.o in=test_prd.1.ddf out=test_prd.1.ddl data=test.csv -FT -Pprod  -C
+./tq.o in=test_prd.1.ddf out=test_prd.2.ddl data=test.csv -FT -Pprod  -C
+./tq.o in=test_prd.1.ddf out=test_prd.3.ddl data=test.csv -FT -Pprod  -C
+./tq.o in=test_prd.1.ddf out=test_prd.3.ddl data=test.csv -FT -Pprod  -C  | ./tq.o in=/dev/stdin Sp=0,0 -Pin -FT
+./tq.o in=test_prd.1.ddf out=test_prd.4.ddl data=test.csv -FT -Pprod  -C
+./tq.o in=test_prd.1.ddf out=test_prd.5.ddl data=test.csv -FT -Pprod  -C
+ => (((Length,Quantity(1,mm)),(Weight,Quantity(2,kg))),((Length,Quantity(322,mm)),(Weight,Quantity(4,kg))),((Length,Quantity(5,mm)),(Weight,Quantity(68,kg))))
+./tq.o in=test_prd.1.ddf out=test_prd.6.ddl data=test.csv -FT -Pprod  -C
+./tq.o in=test_prd.1.ddf out=test_prd.7.ddl data=test.csv -FT -Pprod  -C
+./tq.o in=test_prd.1.ddf out=test_prd.8.ddl data=test.csv -FT -Pprod  -C
+./tq.o in=test_prd.1.ddf out=test_prd.9.ddl data=test.csv -FT -Pprod  -C
+ => (f,g,((,(Length,Quantity(1,mm)),,(Weight,Quantity(2,kg))),(,(Length,Quantity(322,mm)),,(Weight,Quantity(4,kg))),(,(Length,Quantity(5,mm)),,(Weight,Quantity(68,kg)))),((,(Length,Quantity(1,mm)),,(Weight,Quantity(2,kg))),(,(Length,Quantity(322,mm)),,(Weight,Quantity(4,kg))),(,(Length,Quantity(5,mm)),,(Weight,Quantity(68,kg)))),h)
+# ちょっとおかしい		## SAK del
+./tq.o in=num.ddf out=num.ddl data=num.csv -FT -Pprod  -C
+ => (((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(3,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(6,kg))))
+./tq.o in=num2.ddf out=num2.ddl data=num.csv -FT -Pprod  -C 
+ => (((L,W),Quantity(1,(mm,kg))),((L,W),Quantity(2,(mm,kg))),((L,W),Quantity(3,(mm,kg))),((L,W),Quantity(4,(mm,kg))),((L,W),Quantity(5,(mm,kg))),((L,W),Quantity(6,(mm,kg))))
+./tq.o in=num2.ddf out=num3.ddl data=num.csv -FT -Pprod  -C 
+ => ((((L,W),Quantity(1,mm)),((L,W),Quantity(2,kg))),(((L,W),Quantity(3,mm)),((L,W),Quantity(4,kg))),(((L,W),Quantity(5,mm)),((L,W),Quantity(6,kg))))
+
+
+### サーチ
+- ポジション指定
+./tq.o in=test.t Sp=0,1 -FT -Pin

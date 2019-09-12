@@ -1,0 +1,75 @@
+## パフォーマンス
+### 大型の頭部
+- 500Mのhead
+./tq.o in=large-head.ddf buff=1000000000 -Pin -FT
+### 1.2億ノード
+- 坂本さん、パフォーマンスはこれと比べてください。
+time ./tq.o in=lllarge-single-test.t buff=30
+124653854 Nodes were operated.
+real	0m49.893s
+user	0m35.371s
+sys	0m14.503s
+@ 26G mem
+-
+time ./tq.o in=lllarge-single-test.t buff=30 -FJ -Pin > lllarge-single-test.json
+124653854 Nodes were operated.
+real	1m24.268s
+user	1m2.497s
+sys	0m19.662s
+@ 34G mem
+-
+time cat lllarge-single-test.json | jq . > /dev/null
+real    2m25.157s
+user    2m5.473s
+sys     0m20.885s
+@ 36G mem
+- python
+time ./importer.py lllarge-single-test.json
+real	0m51.391s
+user	0m43.341s
+sys	0m8.028s
+@ 12G mem
+### 4.9億ノード
+time ./tq.o in=lllarge4-single-test.t -FT
+498615417 Nodes were operated.
+real    3m28.752s
+user    2m28.315s
+sys     1m0.389s
+@ 106G mem
+-
+time ./tq.o in=lllarge4-single-test.t buff=30 -FJ -Pin > lllarge4-single-test.json
+real	5m56.396s
+user	4m21.241s
+sys	1m34.636s
+@ 132G mem
+-
+time cat lllarge4-single-test.json | jq . > /dev/null
+real	5m56.396s
+user	4m21.241s
+sys	1m34.636s
+@ 135G mem
+- python (終了直前にメモリー解放する)
+time ./importer.py lllarge4-single-test.json
+real	4m7.164s
+user	3m36.530s
+sys	0m30.504s
+@ 53G mem (max)
+### 大型配列のバインド 1.6G => 1.2G(4億データポイント)
+-
+time ./tq.o in=large-test_bind.t -FT data=large-test.csv data_buff=2000000000 
+4 Nodes were operated.
+real    0m14.931s
+user    0m14.010s
+sys     0m0.920s
+@ 1.2G mem
+-
+time ./tq.o in=large-test_bind.t -FT -Pin data=large-test.csv data_buff=2000000000 | ./tq.o in=/dev/stdin
+4 Nodes were operated.
+400000004 Nodes were operated.
+real    2m37.815s
+user    1m51.709s
+sys     0m49.234s
+@ 86G mem
+
+
+
