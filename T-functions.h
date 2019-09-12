@@ -456,8 +456,8 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred)
 	int target_label = -1;
 	int stat = -1;
 	stat = get_ref((*binded).Head+(*binded).IndicatorPtr,&target_type,&target_label);
-	// ここにheadのIndicatorPtrをプログレスするコードか?
-	(*binded).IndicatorPtr = (*binded).IndicatorPtr + stat;
+	// ここにheadのIndicatorPtrをプログレスするコードか? だめ、レファレンスバインドできなくなる
+	//(*binded).IndicatorPtr = (*binded).IndicatorPtr + stat;
 	if(stat > 0){
 		struct Tree *addr = NULL;
 		addr = Function_Recursive_SearchBind_LabelNode(referred,target_type,target_label,binded);
@@ -1269,12 +1269,18 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	/* interpret */
 	char *tmp_str = NULL;
 	tmp_str = Function_Interpret_Head(tree,_copt);
+	int put_head_conj = 1;
+	put_head_conj = strcmp((*tree).Head+(*tree).IndicatorPtr,"$UU$");
+	//printf(":%d:",put_head_conj);
 	/* print head */
 	if(((*tree).extra_stat&1) == 1){
 		printf("%s",(*tree).Head);	//normal
 	}else if((*_copt).c_counter > 0){
 		printf("%s",tmp_str);
 		free(tmp_str);
+		if(((*tree).extra_stat&8) == 8 && (*tree).NextCount > 0 && put_head_conj != 0){
+			putchar(44);
+		}
 	}else{
 		printf("%s",(*tree).Head);	//normal
 	}
@@ -1496,10 +1502,7 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree 
 	/*print Bopen post*/
 	bopen_function(tree,_fopt,_copt,1);
 	// $UU$ : if Tree.extra_stat&2 == 2 then skip for-loop.
-	if(((*tree).extra_stat&16) == 16 && (*_copt).c_counter > 0){
-		//Print_RecursiveSeq_Head(tree, 0, 1);
-	// $PI$ : if Tree.extra_stat&2 == 2 then skip for-loop.
-	}else if(((*tree).extra_stat&2) == 2 && (*_copt).c_counter > 0){
+	if(((*tree).extra_stat&2) == 2 && (*_copt).c_counter > 0){
 		Function_RecursiveCyclic_Print_IProductVal(tree,_fopt,_copt);
 	}else{
 		for(i=0;i<(*tree).NextCount;i++){
