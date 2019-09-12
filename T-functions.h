@@ -157,7 +157,8 @@ struct Tree *Function_Recursive_SearchBind_LabelNode(struct Tree *tree, char typ
 int get_ref(char *head, char *type, int *label){	//for binded
 	FC(fprintf(stderr,">get_ref<\n");)
 	//search for $# or $##
-	int len;
+	int i;
+	int len = 0;
 	len = strlen(head);
 	if(len < 3){
 		return(0);
@@ -168,13 +169,31 @@ int get_ref(char *head, char *type, int *label){	//for binded
 	if(head[2] >= 0x30 && head[2] <= 0x39){
 		sscanf(head+2,"%d",label);
 		*type = 'h';
-		return(1);
+		for(i=0;;i++){
+			if(head[2+i] >= 0x30 && head[2+i] <= 0x39){
+				;
+			}else{
+				break;
+			}
+		}
+		//printf("pgs:%d:\n",2+i);
+		//printf("nc:%c:\n",head[2+i]);
+		return(2+i);
 	}
 	if(len > 3){
 		if(head[2] == '#' && head[3] >= 0x30 && head[3] <= 0x39){
 			sscanf(head+3,"%d",label);
 			*type = 't';
-			return(1);
+			for(i=0;;i++){
+				if(head[3+i] >= 0x30 && head[3+i] <= 0x39){
+					;
+				}else{
+					break;
+				}
+			}
+			//printf("pgs:%d:\n",3+i);
+			//printf("nc:%c:\n",head[3+i]);
+			return(3+i);
 		}
 	}
 	return(0);
@@ -1227,6 +1246,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	struct Tree *ins_head = NULL;
 	char target_type = '\0';
 	int target_label = -1;
+	int prg = 0;
 	/* print hierarchy */
 	if((*_fopt).f_print_hierarchy == 1 && (*_fopt).f_print_self_stat == 1){
 		int i;
@@ -1265,7 +1285,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		printf("@");
 	}
 	/* print ref node */
-	get_ref((*tree).Head+(*tree).IndicatorPtr,&target_type,&target_label);
+	prg = get_ref((*tree).Head+(*tree).IndicatorPtr,&target_type,&target_label);
 	if((*tree).RefNode != NULL){
 		(*_fopt).f_print_self_stat = 0;
 		/* switch 't' 'h' */
@@ -1288,6 +1308,8 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		}
 	}
 	/* progress IndicatorPtr ? */
+	//testing
+	(*tree).IndicatorPtr = (*tree).IndicatorPtr + prg;
 
 	/* print binded data (1) */
 	if((*tree).valstr != NULL){
