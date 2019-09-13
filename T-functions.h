@@ -1241,7 +1241,9 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		printf("%s",tmp_str);
 		free(tmp_str);
 		if(((*tree).extra_stat&8) == 8 && (*tree).NextCount > 0 && put_head_conj != 0){
-			putchar(44);
+			if(strcmp((*tree).Head+(*tree).IndicatorPtr,"$U$") != 0){
+				putchar(44);
+			}
 		}
 	}else{
 		printf("%s",(*tree).Head);	//normal

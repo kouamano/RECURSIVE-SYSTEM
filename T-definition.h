@@ -1,5 +1,6 @@
-#define DB(X) X
-#define DB2(X) 
+#define DB(X) 
+#define DBe(X) 
+#define DBs(X) 
 #define FC(X) 
 #ifndef LEN
 #define LEN 1024
