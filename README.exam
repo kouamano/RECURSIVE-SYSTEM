@@ -25,20 +25,20 @@ echo '$`$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst
 echo '#12$``$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst
 echo '$``$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst
 echo '$``$' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst
-./tq.o in=test_compile.t -C -FT -Pin    
- => $~List(List(List,List,List,List))
 echo '$``$List' | ./tq.o in=/dev/stdin -FT -C -Pin   
  => "List"
 echo '$``$List($4)' | ./tq.o in=/dev/stdin -FT -C -Pin   
  => "List($4)"
 
-### compile: アンパック
+### アンパック
 echo '$~~$($U$(7,8,$U$(5,6)))' | ./tq.o in=/dev/stdin -FT -Pin -C
  => $~~$($U$(7,8,$U$(5,6)))
 ./tq.o in=test_unpack.t -FT -Pin -C
  => $($1,$2,List,$1,$2)
+./tq.o in=test_compile.t -C -FT -Pin    
+ => $~List(List(List,List,List,List))
 
-### compile: リテラル化
+### リテラル化
 ./tq.o in=test_riteraltree.t -FT -Pin -C
 ./tq.o in=test_ritelal-unpack.t -FT -Pin -C
 
