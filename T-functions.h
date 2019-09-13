@@ -803,10 +803,10 @@ struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *
 		if((*tree).NextCount != 0){ 
 			if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8&& ((*tree).extra_stat&1) != 1){	// for unpack
 				if(strlen((*tree).Head) > 3){
-					printf(",");
+					//printf(",");
 				}
 			}else{
-				printf("(");	//normal case
+				printf("(");	//normal case : "must"
 			}
 		}
 	}
