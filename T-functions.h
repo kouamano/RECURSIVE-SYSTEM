@@ -727,6 +727,7 @@ int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 }
 /** Conj */
 struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+		FC(fprintf(stderr,">Function_Print_Conj_T<\n");)
 		DB(fprintf(stderr," before op : skip:%d:\n",(*_fopt).f_skipOnce);)
 		if((((*_fopt).f_skipOnce)&1) == 1){
 			(*_fopt).f_skipOnce = (*_fopt).f_skipOnce - 1;
@@ -797,6 +798,7 @@ struct Tree *Function_Print_Conj_X(struct Tree *tree, struct function_options *_
 }
 /** Bopen */
 struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt, int pos){
+	FC(fprintf(stderr,">Function_Print_Bopen_T<\n");)
 	if(pos == 1){
 		if((*tree).NextCount != 0){ 
 			if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8&& ((*tree).extra_stat&1) != 1){	// for unpack
@@ -897,6 +899,7 @@ struct Tree *Function_Print_Bopen_C(struct Tree *tree, struct function_options *
 }
 /** Bclose */
 struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
+	FC(fprintf(stderr,">Function_Print_Bclose_T<\n");)
 	if((*tree).NextCount != 0){
 			if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8&& ((*tree).extra_stat&1) != 1){	// for unpack
 				;
@@ -975,6 +978,7 @@ struct Tree *Function_Print_Bclose_C(struct Tree *tree, struct function_options 
 }
 /** val */
 int Function_Recursive_Get_nvalMax(struct Tree *tree){
+	FC(fprintf(stderr,">Function_Recursive_Get_nvalMax<\n");)
 	int i;
 	int MAX = 0;
 	//Self
@@ -1184,6 +1188,7 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 	return(tree);
 }
 struct Tree *Print_RecursiveSeq_Head(struct Tree *tree, int conj, int ind){
+	FC(fprintf(stderr,">Print_RecursiveSeq_Head<\n");)
 	int i;
 	if(conj == 1){
 		printf(",");
