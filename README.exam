@@ -64,32 +64,50 @@ $#1@#1[2]@(Length,Weight)
 
 ### レファレンス
 #### 不整合(解消)
--
+- head/head
 echo '$1($#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
  => $1($#3@#3$3,#3$3)
--
+- ref-head/head
 echo '$1(#2$#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
  => $1(#2$#3@#3$3,#3$3)
--
+- reft-head/head
 echo '$1(##2$#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
 $1(##2$#3,#3$3)  # <= レファレンスバインドが落る
  => $1(##2$#3@#3$3,#3$3)
--
+
+- head/tree
+echo '$1($#3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1($#3@##3$3,##3$3)
+- ref-head/tree
+echo '$1(#2$#3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1(#2$#3@##3$3,##3$3)
+- reft-head/tree
 echo '$1(##2$#3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
  => $1(##2$#3@##3$3,##3$3)
--
-echo '$1(##2$##3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
- => $1(##2$##3,#3$3)
--
-echo '$1(##2$##3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
- => $1(##2$##3@##3$3,##3$3)
-- 木vs.木
-echo '$1(##2$##3,##3$3())' | ./tq.o in=/dev/stdin -FT -Pin
- => $1(##2$##3@##3$3(),##3$3())
-- 頭vs.木
+- reft-head/tree
 echo '$1(##2$#3,##3$3())' | ./tq.o in=/dev/stdin -FT -Pin
  => $1(##2$#3@##3$3,##3$3())
 
+
+- tree/head
+echo '$1($##3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1($##3,#3$3)
+- ref-tree/head
+echo '$1(#2$##3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1(#2$##3,#3$3)
+- reft-tree/head
+echo '$1(##2$##3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1(##2$##3,#3$3)
+
+- tree/tree
+echo '$1($##3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1($##3@##3$3,##3$3)
+- ref-tree/tree
+echo '$1(#2$##3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1(#2$##3@##3$3,##3$3)
+- reft-tree/tree
+echo '$1(##2$##3,##3$3())' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1(##2$##3@##3$3(),##3$3())
 
 #### 木
 ./tq.o in=test_ref-tree.ddf -Pin -FT
