@@ -15,6 +15,16 @@ bash conv-check.script
 - without WL
   cd DimensionDefinitionLanguage; bash conv2-test.script; cd ../
 
+### ラベル、レファレンス、オペレータ処理
+-
+echo '#1$#2$U$$f(#2$2)' | ./tq.o in=/dev/stdin -FT -Pin
+ => #1$#2$U$$f@#2$2(#2$2)
+-
+echo '#1$#2$U$$f(#2$2)' | ./tq.o in=/dev/stdin -FT -Pin -C
+ => $f@$2,$2
+echo '#1$#2$UU$$f(#2$2)' | ./tq.o in=/dev/stdin -FT -Pin -C
+ => $f@$2,$2
+
 ### エスケープ処理
 #### クオーティング
 ./tq-escape.test
