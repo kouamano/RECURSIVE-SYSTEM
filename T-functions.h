@@ -1292,7 +1292,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	/* comma for unpack */
 	if((*_copt).c_counter > 0){
 		if(((*tree).extra_stat&8) == 8 && (*tree).NextCount > 0 && put_head_conj != 0){
-			if(strcmp((*tree).Head+(*tree).IndicatorPtr,"$U$") != 0){
+			if(strcmp((*tree).Head+(*tree).IndicatorPtr,"$U$") != 0 && strcmp((*tree).Head+(*tree).IndicatorPtr,"$UU$") != 0){
 				putchar(44);
 			}
 		}
