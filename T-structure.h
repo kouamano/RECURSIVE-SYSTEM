@@ -18,8 +18,7 @@ struct Tree {
 	struct Tree *RefNode;
 	int extra_stat;
 		//1: $~~$,$~$ -> avoid compile;	2: $PI$ ; skipNext 兼用
-		//4: $``$ -> quating tree;	8: $U$
-		//16: $UU$
+		//4: $``$ -> quating tree;	8: $U$, $UU$
 };
 
 struct options {
