@@ -3,6 +3,15 @@
 BEGIN {
 	rtn = 1
 	count = 1
+	dir = "xxxxx"
+	out = xxx 
+
+	rc = system(sprintf("mkdir -p %s", dir))
+	if(rc) {
+		printf("system func error rc = %x\n", rc) > "/dev/stderr"
+		exit(1)
+	}
+
 }
 {
 	while(rtn == 1) {
@@ -16,7 +25,7 @@ BEGIN {
 
 			printf "[%04d] %s\n", count, $0			# command
 
-			tq_result = sprintf("xxx_%04d.tq", count)	# tq result path
+			tq_result = sprintf("%s/xxx_%04d.tq", dir, count)	# tq result path
 			i = match($0, /##* /)                           # comment after command   eg. "./tq.o -h  ### help"
 			if(i>0) {
 				com = substr($0, 1, i-1)
@@ -28,7 +37,7 @@ BEGIN {
 			system(tq_command) 				# exec tq
 
 			sub("./tq.o", "./cq.o", com) 
-			cq_result = sprintf("xxx_%04d.cq", count)	# cq result path
+			cq_result = sprintf("%s/xxx_%04d.cq", dir, count)	# cq result path
                 	cq_command = sprintf("%s > %s", com, cq_result)
                 	system(cq_command)				# exec cq
 
@@ -39,7 +48,7 @@ BEGIN {
 			rtn = getline
 			if(rtn == 1 && substr($0, 1, 3) == " =>") {			# answer follows
 
-				answer = sprintf("xxx_%04d.ans", count)	# anser path
+				answer = sprintf("%s/xxx_%04d.ans", dir, count)	# anser path
 
 				if($0 == " =>" || $0 == " => ") {
 					rtn = getline
