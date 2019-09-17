@@ -390,6 +390,11 @@ int main(int argc, char **argv){
 	}
 	if((*opt).help == 1){
 		help();
+		language_help();
+		ie = 1;
+	}
+	if((*opt).hF == 1 || (*opt).hC == 1 || (*_copt).c_list == 1 || (*opt).hS == 1 || (*opt).hD == 1){
+		option_header();
 		ie = 1;
 	}
 	if((*opt).hF == 1){
@@ -521,7 +526,11 @@ int main(int argc, char **argv){
 
 	/* check */
 	if((*opt).test > 0){
+		printf("\n=TEST OUTPUT=>\n");
 		printf("No test code.\n");
+		//ExFunction_Recursive(otop,NULL,opt,_fopt,_copt);
+		//Print_RecursiveSeq_Head(otop,0,1);
+		printf("\n<==\n");
 	}
 
 	/* finish */

@@ -13,11 +13,11 @@ NODE Executor(NODE top, NODE refTree, NODE null_node, int C, int SN, struct opti
 		}
 		/** bind self-ref (for input-form) */
 		if((EXEC_FLAG&8) == 8){
-			Function_Recursive_Bind_RefNode(top,top);
+			Function_Recursive_Bind_RefNode(top,top,_copt);
 		}
 		/** bind io-ref (for output-form) */
 		if((EXEC_FLAG&4) == 4){
-			Function_Recursive_Bind_RefNode(top,refTree);
+			Function_Recursive_Bind_RefNode(top,refTree,_copt);
 		}
 		/** inner product of binded data */
 		if((EXEC_FLAG&16) == 16){

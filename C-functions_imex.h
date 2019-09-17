@@ -586,7 +586,7 @@ NODE parse_header(int level)
 		null_node_allowed = OFF;
 	} else {
 		set_head(node, BUFF);	// set buff to <header> node
-		Analyze_HeadLabel(node);// SAK Analyze_Head -> Analyze_HeadLabel
+		Analyze_Label(node);	
 		skip('I');		// skip idenifier token
 	}				
 

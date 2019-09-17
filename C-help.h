@@ -6,7 +6,6 @@ void status(void){
 	printf(" - Under construction\n");
 	printf("\n");
 	printf("  * Inner product.\n");
-	printf("  * Double unpack.\n");
 	//printf("  * Riteralize.\n");
 	printf("\n");
 	printf(" - COMPILED@\n");
@@ -19,6 +18,10 @@ void help(void){
 	printf("=====\n");
 	printf("\n");
 	printf(" tq.o [-h|-hF|-hC|-hS|-hD|-hE] [-s] [-c] [-test] buff=<(int)size> in=<file name of input form> out=<file name of outout form> data=<data file> data_buff=<(int)size> w=<warnning level> -F<x> -C<x> -P<x>.\n");
+	printf("\n");
+	printf(" - Full information\n");
+	printf("\n");
+	printf("   tq.o -h -hF -hC -hS -hD -hE -s -c -CL\n");
 	printf("\n");
 	printf(" - Main options\n");
 	printf("\n");
@@ -68,30 +71,6 @@ void compile_help(void){
 	printf("  * -Cc : clear head.\n");
 	printf("  * -Cd : rewite head to dot.\n");
 }
-void list_builtins(void){
-	printf("\n");
-	printf(" - Builtin operators\n");
-	printf("\n");
-	printf("  * #<n> : Reference tag: head.\n");
-	printf("  * ##<n> : Reference tag: tree.\n");
-	printf("  * $#<n> : Referencer: head.\n");
-	printf("  * $##<n> : Referencer: tree.\n");
-	printf("  * $`$ : Operator: quating head.\n");
-	printf("  * $``$ : Operator: quating tree.\n");
-	printf("  * $~$ : Operator: riteral head.\n");
-	printf("  * $~~$ : Operator: riteral tree.\n");
-	printf("  * $U$ : Operator: unpack single level.\n");
-	printf("  * $UU$ : Operator: unpack tree (under construction).\n");
-	printf("  * $PI$ : Operator: inner production for binded data.\n");
-	printf("  * $$ : Indicator: dictionary reference (term ID).\n");
-	printf("  * $X$ : Indicator: dictionary reference (term string).\n");
-	printf("  * $$$ : Indicator: dictionary reference (class ID).\n");
-	printf("  * $$X$ : Indicator: dictionary reference (class string).\n");
-	printf("  * $NULL$ : Indicator: null object.\n");
-	printf("  * [<n>] : Operator: data bind.\n");
-	printf("  * @(<string>) : Indicator: binded data.\n");
-	printf("  * @(<string>) : Operator: data overwrite (under construction).\n");
-}
 void search_help(void){
 	printf("\n");
 	printf(" - Search options\n");
@@ -104,6 +83,44 @@ void data_help(void){
 	printf(" - Data option\n");
 	printf("\n");
 	printf("  * DD=<delimiter> currently unused, definded by definition file.\n");
+}
+void language_help(void){
+	printf("\n");
+	printf("LANGUAGE\n");
+	printf("========\n");
+	printf("\n");
+	printf("  | LANGUAGE :: <head>|<tree>\n");
+	printf("  | <head> ::= <label><reference><operator><name><bind>\n");
+	printf("  | <tree> ::= <head>'('(<head>|<tree>)(','(<head>|<tree>)*')'\n");
+}
+void option_header(void){
+	printf("\n");
+	printf("OPTIONS\n");
+	printf("=======\n");
+}
+void list_builtins(void){
+	printf("\n");
+	printf(" - Builtin operators\n");
+	printf("\n");
+	printf("  * #<n> : <label>: head.\n");
+	printf("  * ##<n> : <label>: tree.\n");
+	printf("  * $#<n> : <reference>: head.\n");
+	printf("  * $##<n> : <reference>: tree.\n");
+	printf("  * $`$ : <operator>: quating head.\n");
+	printf("  * $``$ : <operator>: quating tree.\n");
+	printf("  * $~$ : <operator>: riteral head.\n");
+	printf("  * $~~$ : <operator>: riteral tree.\n");
+	printf("  * $U$ : <operator>: unpack single level.\n");
+	printf("  * $UU$ : <operator>: unpack tree (test ver.).\n");
+	printf("  * $PI$ : <operator>: inner production for binded data.\n");
+	printf("  * $$ : <name> prefix: dictionary reference (term ID).\n");
+	printf("  * $X$ : <name> prefix: dictionary reference (term string).\n");
+	printf("  * $$$ : <name> prefix: dictionary reference (class ID).\n");
+	printf("  * $$X$ : <name> prefix: dictionary reference (class string).\n");
+	printf("  * $NULL$ : <name>: null object.\n");
+	printf("  * @(<string>) : <name>: binded data.\n");
+	printf("  * [<n>] : <bind>: data bind.\n");
+	printf("  * @(<tree>*) : <bind>: pseudo-bind.\n");
 }
 void put_examples(void){
 	printf("\n");
@@ -120,11 +137,11 @@ void put_examples(void){
 	printf("  => #1$Op$Name($#1[1]@@#1$Op$Name(Length))\n");
 	printf("\n");
 	printf(" - #1 : <label>\n");
+	printf(" - $#1 : <reference>\n");
 	printf(" - $Op$ : <operator>\n");
 	printf(" - Name : <name>\n");
-	printf(" - $#1 : <reference>\n");
-	printf(" - [1] : <binding dimension>\n");
-	printf(" - @ : <binded mark>\n");
+	printf(" - [1] : <bind>\n");
+	printf(" - @ : <name>: binded mark\n");
 	printf("\n");
 	printf("ex.2 (referencing tree)::\n");
 	printf("\n");
@@ -157,6 +174,8 @@ void put_examples(void){
 	printf("\n");
 	printf("ex.4 (binding and reforming CSV)::\n");
 	printf("\n");
+	printf(" [bind]\n");
+	printf("\n");
 	printf(" test.csv::\n");
 	printf("\n");
 	printf("  Length,Weight\n");
@@ -175,6 +194,29 @@ void put_examples(void){
 	printf("\n");
 	printf(" $ tq.o in=in.ddf out=out.ddl data=test.csv -FT -Pprod -C\n");
 	printf("  => (((Length,Quantity(1,mm)),(Weight,Quantity(2,kg))),((Length,Quantity(322,mm)),(Weight,Quantity(4,kg))),((Length,Quantity(5,mm)),(Weight,Quantity(68,kg))))\n");
+	//printf("ex.4 (binding and reforming CSV)::\n");
+	printf("\n");
+	printf(" [over write]\n");
+	printf("\n");
+	printf(" test.csv::\n");
+	printf("\n");
+	printf("  Length,Weight\n");
+	printf("  mm,kg\n");
+	printf("  1,2\n");
+	printf("  322,4\n");
+	printf("  5,68\n");
+	printf("\n");
+	printf(" in.ddf::\n");
+	printf("\n");
+	printf("  (#1[2],#2[2],[3](#4[2]))\n");
+	printf("\n");
+	printf(" out2.ddl::\n");
+	printf("\n");
+	printf("  $PI$(@(L,W),Quantity($#4,$#2))\n");
+	printf("\n");
+	printf(" $ tq.o in=in.ddf out=out2.ddl data=test.csv -FT -Pprod -C\n");
+	printf("  => (((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(322,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(68,kg))))\n");
+
 }
 
 /* checking */
