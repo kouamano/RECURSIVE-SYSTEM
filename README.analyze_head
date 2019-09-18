@@ -1,4 +1,8 @@
 ## head 処理の順番
 <label><reference><operator><naem><bind>
 1      3          4               2
-1、2は入れ替え可能
+1、2は入れ替え可能。
+<label><reference><operator>
+については、.IndicatorPtrを進ませることにより逐次処理を行う。
+## analysisの副作用
+headをprintするときに、副作用をもたらしている。
