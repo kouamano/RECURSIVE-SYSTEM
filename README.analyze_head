@@ -1,0 +1,4 @@
+## head 処理の順番
+<label><reference><operator><naem><bind>
+1      3          4               2
+1、2は入れ替え可能
