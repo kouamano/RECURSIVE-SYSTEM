@@ -24,6 +24,10 @@ echo '#1$#2$U$$f(#2$2)' | ./tq.o in=/dev/stdin -FT -Pin -C
  => $f@$2,$2
 echo '#1$#2$UU$$f(#2$2)' | ./tq.o in=/dev/stdin -FT -Pin -C
  => $f@$2,$2
+- レファレンスのレファレンス
+echo '(#1,#2,#3)(#4$#1,$#4)' | ./tq.o in=/dev/stdin -Pin -FT
+echo '(#1,#2,#3)(#4$#1,#5$#4,$#5)' | ./tq.o in=/dev/stdin -Pin -FT
+echo '(#1,#2,#3)(#4$#1h,#5$#4g,#6$#5f(H))' | ./tq.o in=/dev/stdin -Pin -FT -C
 
 ### エスケープ処理
 #### クオーティング
