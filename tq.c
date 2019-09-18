@@ -104,7 +104,7 @@ void language_help(void){
 	printf("\n");
 	printf("  | LANGUAGE :: <head>|<tree>\n");
 	printf("  | <head> ::= <label><reference><operator><name><bind>\n");
-	printf("  | <tree> ::= <head>'('(<head>|<tree>)(','(<head>|<tree>)*')'\n");
+	printf("  | <tree> ::= <head>('('(<head>|<tree>)(','(<head>|<tree>)*')')+\n");
 }
 void option_header(void){
 	printf("\n");
