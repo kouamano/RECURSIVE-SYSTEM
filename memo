@@ -1,3 +1,10 @@
+# code
+echo '(#1,#2,#3)(#4$#1,$#4)' | ./tq.o in=/dev/stdin -Pin -FT
+echo '(#1,#2,#3)(#4$#1,#5$#4,$#5)' | ./tq.o in=/dev/stdin -Pin -FT
+echo '(#1,#2,#3)(#4$#1h,#5$#4g,#6$#5f(H))' | ./tq.o in=/dev/stdin -Pin -FT -C
+
+
+# test
 itop = import_LinkTable(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,DATA);     
                 EFLAG = (*opt).Pin+1+8;
 Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
@@ -8,28 +15,17 @@ Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLA
 '$$CG$(#1F($#2),#2G($#1))'
 '$$CG$(##1F($##2),##2G($##1))'
 
-(((Length,Quantity(1,mm)),(Weight,Quantity(2,kg))),((Length,Quantity(322,mm)),(Weight,Quantity(4,kg))),((Length,Quantity(5,mm)),(Weight,Quantity(68,kg))))
-(((Length,Quantity(1,mm)),(Weight,Quantity(2,kg))),((Length,Quantity(322,mm)),(Weight,Quantity(4,kg))),((Length,Quantity(5,mm)),(Weight,Quantity(68,kg))))
-
-
-
-(((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(322,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(68,kg))))
-(((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(322,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(68,kg))))
-(((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(3  ,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(6 ,kg))))
-
+./tq.o in=num.ddf out=num.ddl data=num.csv -FT -Pprod  -C
 (((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(3,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(6,kg))))
 (((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(3,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(6,kg))))
 
+
+./tq.o in=num2.ddf out=num2.ddl data=num.csv -FT -Pprod  -C 
 (((L,W),Quantity(1,(mm,kg))),((L,W),Quantity(2,(mm,kg))),((L,W),Quantity(3,(mm,kg))),((L,W),Quantity(4,(mm,kg))),((L,W),Quantity(5,(mm,kg))),((L,W),Quantity(6,(mm,kg))))
 (((L,W),Quantity(1,(mm,kg))),((L,W),Quantity(2,(mm,kg))),((L,W),Quantity(3,(mm,kg))),((L,W),Quantity(4,(mm,kg))),((L,W),Quantity(5,(mm,kg))),((L,W),Quantity(6,(mm,kg))))
 
+./tq.o in=num2.ddf out=num3.ddl data=num.csv -FT -Pprod  -C 
 ((((L,W),Quantity(1,mm)),((L,W),Quantity(2,kg))),(((L,W),Quantity(3,mm)),((L,W),Quantity(4,kg))),(((L,W),Quantity(5,mm)),((L,W),Quantity(6,kg))))
 ((((L,W),Quantity(1,mm)),((L,W),Quantity(2,kg))),(((L,W),Quantity(3,mm)),((L,W),Quantity(4,kg))),(((L,W),Quantity(5,mm)),((L,W),Quantity(6,kg))))
 
-
-(((L,W),Quantity(1,(mm,kg))),((L,W),Quantity(2,(mm,kg))),((L,W),Quantity(3,(mm,kg))),((L,W),Quantity(4,(mm,kg))),((L,W),Quantity(5,(mm,kg))),((L,W),Quantity(6,(mm,kg))))
-(((L,W),Quantity(1,(mm,kg))),((L,W),Quantity(2,(mm,kg))),((L,W),Quantity(3,(mm,kg))),((L,W),Quantity(4,(mm,kg))),((L,W),Quantity(5,(mm,kg))),((L,W),Quantity(6,(mm,kg))))
-
-((((L,W),Quantity(1,mm)),((L,W),Quantity(2,kg))),(((L,W),Quantity(3,mm)),((L,W),Quantity(4,kg))),(((L,W),Quantity(5,mm)),((L,W),Quantity(6,kg))))
-((((L,W),Quantity(1,mm)),((L,W),Quantity(2,kg))),(((L,W),Quantity(3,mm)),((L,W),Quantity(4,kg))),(((L,W),Quantity(5,mm)),((L,W),Quantity(6,kg))))
 
