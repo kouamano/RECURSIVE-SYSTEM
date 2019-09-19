@@ -981,7 +981,7 @@ struct Tree *Function_Print_Bclose_C(struct Tree *tree, struct function_options 
 	return(tree);
 }
 /** val */
-int Function_Recursive_Get_nvalMax(struct Tree *tree){
+int Get_nvalMax(struct Tree *tree){
 	FC(fprintf(stderr,">Function_Recursive_Get_nvalMax<\n");)
 	int i;
 	int MAX = 0;
@@ -992,11 +992,11 @@ int Function_Recursive_Get_nvalMax(struct Tree *tree){
 		MAX = max(MAX,(*tree).RefNode->nval);
 	}
 	for(i=0;i<(*tree).NextCount;i++){
-		MAX = max(MAX,Function_Recursive_Get_nvalMax((*tree).Next[i]));
+		MAX = max(MAX,Get_nvalMax((*tree).Next[i]));
 	}
 	return(MAX);
 }
-int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList, int nval_start){
+int Get_nvalList(struct Tree *tree, int *nvalList, int nval_start){
 	FC(fprintf(stderr,">Function_Recursive_Get_nvalList<\n");)
 	int i;
 	int nval = 0;
@@ -1061,7 +1061,7 @@ int Function_Recursive_Get_nvalList(struct Tree *tree, int *nvalList, int nval_s
 	EXIT_ref:
 	// Next
 	for(i=0;i<(*tree).NextCount;i++){
-		nval_count = Function_Recursive_Get_nvalList((*tree).Next[i],nvalList,nval_count);
+		nval_count = Get_nvalList((*tree).Next[i],nvalList,nval_count);
 	}
 	return(nval_count);
 }
@@ -1161,8 +1161,8 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 		perror("[Fail]malloc@Function_RecursiveCyclic_Print_IProductVal\n");
 		exit(1);
 	}
-	max_nval = Function_Recursive_Get_nvalMax(tree);
-	nval_count = Function_Recursive_Get_nvalList(tree,nval_list,0);
+	max_nval = Get_nvalMax(tree);
+	nval_count = Get_nvalList(tree,nval_list,0);
 	for(i=0;i<nval_count-1;i++){
 		printf("(");
 	}
