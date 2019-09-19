@@ -551,7 +551,7 @@ char *Dot_Head(struct Tree *tree){
 		return((*tree).Head);
 	}
 }
-char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
+char *Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 	FC(fprintf(stderr,">Function_Interpret_Head<\n");)
 	char *tmp_head;
 	char *out_head;
@@ -1235,7 +1235,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	}
 	/* interpret */
 	char *tmp_str = NULL;
-	tmp_str = Function_Interpret_Head(tree,_copt);
+	tmp_str = Interpret_Head(tree,_copt);
 	int put_head_conj = 1;
 	put_head_conj = strcmp((*tree).Head+(*tree).IndicatorPtr,"$UU$");
 	/* print head */
@@ -1329,7 +1329,7 @@ struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *
 	}
 	/* compile */
 	if((*_copt).c_counter > 0){
-		tmp_str = Function_Interpret_Head(tree,_copt);
+		tmp_str = Interpret_Head(tree,_copt);
 	}else{
 		strcpy(tmp_str,(*tree).Head);
 	}
@@ -1373,7 +1373,7 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 	}
 	/* compile */
 	if((*_copt).c_counter > 0){
-		tmp_str = Function_Interpret_Head(tree,_copt);
+		tmp_str = Interpret_Head(tree,_copt);
 	}else{
 		strcpy(tmp_str,(*tree).Head);
 	}
@@ -1406,7 +1406,7 @@ struct Tree *Function_Print_Head_X(struct Tree *tree, struct function_options *_
 		/* compile */
 		if((*_copt).c_counter > 0){
 			char *tmp_str;
-			tmp_str = Function_Interpret_Head(tree,_copt);
+			tmp_str = Interpret_Head(tree,_copt);
 			printf("%s",tmp_str);
 		}else{
 			printf("%s",(*tree).Head);	//normal
