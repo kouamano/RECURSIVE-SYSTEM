@@ -526,7 +526,7 @@ struct Tree *Set_status(struct Tree *tree, int *bit){
 }
 
 /* compile functions */
-char *Function_Clear_Head(struct Tree *tree){
+char *Clear_Head(struct Tree *tree){
 	FC(fprintf(stderr,">Function_Clear_Head<\n");)
 	char *tmp_head;
 	if((tmp_head = malloc(sizeof(char) * 1)) == NULL){
@@ -536,7 +536,7 @@ char *Function_Clear_Head(struct Tree *tree){
 	tmp_head[0] = '\0';
 	return(tmp_head);
 }
-char *Function_Dot_Head(struct Tree *tree){
+char *Dot_Head(struct Tree *tree){
 	FC(fprintf(stderr,">Function_Dot_Head<\n");)
 	if((*tree).Head[0] != '\0'){
 		char *tmp_head;
@@ -570,9 +570,9 @@ char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 	strcpy(tmp_head,(*tree).Head+(*tree).IndicatorPtr);
 
 	if((*_copt).c_clear > 0){
-		tmp_head = Function_Clear_Head(tree);
+		tmp_head = Clear_Head(tree);
 	}else if((*_copt).c_dot > 0){
-		tmp_head = Function_Dot_Head(tree);
+		tmp_head = Dot_Head(tree);
 	}else if(strncmp(tmp_head,"$NULL$",6) == 0){
 		;
 	}else if(strncmp(tmp_head,"$PI$",4) == 0){	// Inner Product
