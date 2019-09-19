@@ -1088,7 +1088,7 @@ int print_singleVal(char *str){
 	}
 	return(i);
 }
-struct Tree *Function_Print_nthVal(struct Tree *tree, int nth){
+struct Tree *Print_nthVal(struct Tree *tree, int nth){
 	FC(fprintf(stderr,">Function_Print_nthVal<\n");)
 	// nth : loop iterator
 	int p = 0;
@@ -1106,7 +1106,7 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth, struct 
 		printf(",");
 	}
 	if((*tree).nval > 0){
-		Function_Print_nthVal(tree,nth);
+		Print_nthVal(tree,nth);
 		conjR = 1;
 	}
 	if((*tree).RefNode == NULL && ((*tree).extra_stat&2) != 2){
@@ -1128,7 +1128,7 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth, struct 
 			if(conjR > 0){
 				printf(",");
 			}
-			Function_Print_nthVal((*tree).RefNode,nth);
+			Print_nthVal((*tree).RefNode,nth);
 		}
 		if((*tree).RefNode->NextCount > 0){
 			printf("(");
