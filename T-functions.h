@@ -412,7 +412,7 @@ int Function_Bind_Data(FILE *DATA, struct Tree *tree, struct options *_opt, stru
 	free(buff);
         return(0);
 }
-int Assign_RefedValPtr(struct Tree *tree){	// for product
+int Function_Assign_RefedValPtr(struct Tree *tree){	// for product
 	FC(fprintf(stderr,">Assign_RefedValPtr<\n");)
 	if(tree == NULL){
 		return(0);

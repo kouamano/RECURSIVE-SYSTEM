@@ -21,7 +21,7 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 		}
 		/** inner product of binded data */
 		if((EXEC_FLAG&16) == 16){
-                        ExFunction_Recursive(top,(struct Tree *(*)())Assign_RefedValPtr,_opt,_fopt,_copt);
+                        ExFunction_Recursive(top,(struct Tree *(*)())Function_Assign_RefedValPtr,_opt,_fopt,_copt);
 		}
 		/** print */
 		if((EXEC_FLAG&2) == 2){
