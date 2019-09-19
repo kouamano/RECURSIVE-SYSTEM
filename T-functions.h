@@ -664,7 +664,7 @@ char *Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 
 /* print functions */
 /** status */
-void Function_Print_Smems(struct Tree *tree){
+void Print_Smems(struct Tree *tree){
 	printf(":SN=%d:",(*tree).ser);
 	printf(":LVs=%d:",(*tree).LVself);
 	printf(":Adr=%ld:",(long int)tree);
@@ -691,13 +691,13 @@ void Function_Print_Smems(struct Tree *tree){
 	printf(":stat=%d:",(*tree).extra_stat);
 }
 void Function_Print_Status(struct Tree *tree){
-	Function_Print_Smems(tree);
+	Print_Smems(tree);
 	printf("\n");
 }
 void print_war(char C, struct Tree *tree, int level){
 	printf(":C=%c:",C);
 	printf(":DetectLV=%d:",level);
-	Function_Print_Smems(tree);
+	Print_Smems(tree);
 }
 int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 	int i;
