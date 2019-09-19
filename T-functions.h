@@ -330,7 +330,7 @@ struct Tree *Function_Detect_DimBlock(struct Tree *tree, struct options *_opt){
 	free(buff);
 	return(tree);
 }
-struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *bn_count, struct Tree **bn_table){
+struct Tree *Search_Recursive_BindNode(struct Tree *top, int *bn_count, struct Tree **bn_table){
 	FC(fprintf(stderr,">Function_Recursive_Search_BindNode<\n");)
 	int i;
 	struct Tree *current = NULL;
@@ -345,7 +345,7 @@ struct Tree *Function_Recursive_Search_BindNode(struct Tree *top, int *bn_count,
 		(*bn_count)++;
 	}
 	for(i=0;i<(*current).NextCount;i++){
-		Function_Recursive_Search_BindNode((*current).Next[i],bn_count,bn_table);
+		Search_Recursive_BindNode((*current).Next[i],bn_count,bn_table);
 	}
 	return(NULL);
 }
@@ -359,7 +359,7 @@ int Function_Bind_Data(FILE *DATA, struct Tree *tree, struct options *_opt, stru
 		perror("[]malloc@bind_data");
 		exit(1);
 	}
-        Function_Recursive_Search_BindNode(tree,&bn_count,bn_table);
+        Search_Recursive_BindNode(tree,&bn_count,bn_table);
 	int delim_count = 0;
 	int node_count = 0;
 	int buff_ptr = 0;
