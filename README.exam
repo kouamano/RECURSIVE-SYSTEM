@@ -101,6 +101,11 @@ echo '$1(##2$#3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
 - reft-head/tree
 echo '$1(##2$#3,##3$3())' | ./tq.o in=/dev/stdin -FT -Pin
  => $1(##2$#3@##3$3,##3$3())
+#### 定義表現
+-
+echo '(f($##1),##1(a,$pow(a,2)))' | ./tq.o in=/dev/stdin -FT -Pin
+ => (f($##1@##1(a,$pow(a,2))),##1(a,$pow(a,2)))
+
 
 
 - tree/head
