@@ -90,7 +90,7 @@ struct Tree *Function_Get_Node(char *pos_str, struct Tree *tree){
 	free(list);
 	return(current);
 }
-/** head analysis */
+/** label analysis */
 int Analyze_Label(struct Tree *tree){ // for labeling
 	FC(fprintf(stderr,">Analyze_Label<\n");)
 	int i = 0;
@@ -99,7 +99,7 @@ int Analyze_Label(struct Tree *tree){ // for labeling
 	char *labelnumstr;
 	int headlen = 0;
 	int labeled = 0;
-	/* label type */
+	/* label type  for referenced node */
 	if((*tree).Head[0] == '#' && (*tree).Head[1] == '#'){
 		(*tree).LabelType = 't';
 		labelreadptr = 2;
@@ -109,7 +109,7 @@ int Analyze_Label(struct Tree *tree){ // for labeling
 		labelreadptr = 1;
 		labeled++;
 	}
-	/* label */
+	/* label for referenced node */
 	if((*tree).LabelType != '\0'){
 		/* check num char */
 		for(i=labelreadptr; ((*tree).Head[i] >= 0x30) && ((*tree).Head[i] <= 0x39);i++){	//Hex
@@ -135,24 +135,25 @@ int Analyze_Label(struct Tree *tree){ // for labeling
 	DB(printf("\nH:%s:Ptr:%d:\n",(*tree).Head,(*tree).IndicatorPtr);)
 	return(0);
 }
-/** reference analysis */
-struct Tree *Function_Recursive_SearchBind_LabelNode(struct Tree *tree, char type, int label, struct Tree *binded){	//for referred
+/** reference analysis for referenced node */
+struct Tree *Function_Recursive_SearchBind_LabelNode(struct Tree *tree, char type, int label, struct Tree *referencer){	//for referred
 	FC(fprintf(stderr,">Function_Recursive_SearchBind_LabelNode<\n");)
 	int i;
 	if(tree == NULL){
 		return(NULL);
 	}
 	if((*tree).LabelType == 't' && (*tree).Label == label){
-		(*binded).RefNode = tree;	//bind tree,head
+		(*referencer).RefNode = tree;	//bind tree,head
 	}
 	if((*tree).LabelType == type && (*tree).Label == label){
-		(*binded).RefNode = tree;	//bind tree
+		(*referencer).RefNode = tree;	//bind tree
 	}
 	for(i=0;i<(*tree).NextCount;i++){
-		Function_Recursive_SearchBind_LabelNode((*tree).Next[i],type,label,binded);
+		Function_Recursive_SearchBind_LabelNode((*tree).Next[i],type,label,referencer);
 	}
 	return(NULL);
 }
+/** reference analysis for referencer */
 int get_ref(char *head, char *type, int *label){	//for binded
 	FC(fprintf(stderr,">get_ref<\n");)
 	//search for $# or $##

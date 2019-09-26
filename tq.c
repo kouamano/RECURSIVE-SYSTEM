@@ -19,7 +19,6 @@ void status(void){
 	printf(" - Under construction\n");
 	printf("\n");
 	printf("  * Inner product.\n");
-	//printf("  * Riteralize.\n");
 	printf("\n");
 	printf(" - COMPILED@\n");
 	printf("   %s\n",ctime);
@@ -726,8 +725,6 @@ int main(int argc, char **argv){
 	if((*opt).test > 0){
 		printf("\n=TEST OUTPUT=>\n");
 		printf("No test code.\n");
-		//ExFunction_Recursive(otop,NULL,opt,_fopt,_copt);
-		//Print_RecursiveSeq_Head(otop,0,1);
 		printf("\n<==\n");
 	}
 
