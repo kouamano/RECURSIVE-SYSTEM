@@ -1,0 +1,7 @@
+echo '$U$(a(b(c)))' | ./tq.o in=/dev/stdin -FT -Pin
+echo '$U$(a(b(c,d),e))' | ./tq.o in=/dev/stdin -FT -Pin
+echo '(a($U$b(c)))' | ./tq.o in=/dev/stdin -FT -Pin
+echo '(a($U$(b(c))))' | ./tq.o in=/dev/stdin -FT -Pin
+echo '$UU$(a(b(c,d),e))' | ./tq.o in=/dev/stdin -FT -Pin
+echo '($UU$(a(b(c,d),e)),1,2(3))' | ./tq.o in=/dev/stdin -FT -Pin
+echo '(2,$UU$(a(b(c,d),e)),1,2(3))' | ./tq.o in=/dev/stdin -FT -Pin
