@@ -10,6 +10,7 @@ git diff tq:branch.diff cq:branch.diff
 echo '>> Readme'
 git diff tq:README.exam cq:README.exam
 git diff tq:README.md cq:README.md
+git diff tq:README.unpack cq:README.unpack
 git diff tq:README.ken cq:README.ken
 git diff tq:README.chem cq:README.chem
 
@@ -43,6 +44,7 @@ git diff tq:branch.diff tq_base:branch.diff
 echo '>> Readme'
 git diff tq:README.exam tq_base:README.exam
 git diff tq:README.md tq_base:README.md
+git diff tq:README.unpack tq_base:README.unpack
 git diff tq:README.ken tq_base:README.ken
 git diff tq:README.chem tq_base:README.chem
 
