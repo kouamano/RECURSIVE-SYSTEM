@@ -196,6 +196,7 @@ int get_ref(char *head, char *type, int *label){	//for binded
 }
 
 /* restructure functions */
+/** for data binding */
 int get_nval(char *str){
 	FC(fprintf(stderr,">get_nval<\n");)
 	int i;
@@ -413,6 +414,26 @@ int Function_Bind_Data(FILE *DATA, struct Tree *tree, struct options *_opt, stru
 	free(buff);
         return(0);
 }
+void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred, struct compile_options *_copt){
+	FC(fprintf(stderr,">Function_Recursive_Bind_RefNode<\n");)
+	int i;
+	char target_type = '\0';
+	int target_label = -1;
+	int stat = -1;
+	stat = get_ref((*binded).Head+(*binded).IndicatorPtr,&target_type,&target_label);
+	// ここにheadのIndicatorPtrをプログレスするコードか? だめ、レファレンスバインドできなくなる -> 条件分岐を試す。 コンパイルのときのみ実行。
+	if((*_copt).c_counter > 0){
+		(*binded).IndicatorPtr = (*binded).IndicatorPtr + stat;
+	}
+	if(stat > 0){
+		struct Tree *addr = NULL;
+		addr = Function_Recursive_SearchBind_LabelNode(referred,target_type,target_label,binded);
+	}
+	for(i=0;i<(*binded).NextCount;i++){
+		Function_Recursive_Bind_RefNode((*binded).Next[i],referred,_copt);
+	}
+}
+/** for product */
 int Function_Assign_RefedValPtr(struct Tree *tree){	// for product
 	FC(fprintf(stderr,">Assign_RefedValPtr<\n");)
 	if(tree == NULL){
@@ -444,25 +465,6 @@ int Function_Assign_RefedValPtr(struct Tree *tree){	// for product
 		}
 	}
 	return(0);
-}
-void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred, struct compile_options *_copt){
-	FC(fprintf(stderr,">Function_Recursive_Bind_RefNode<\n");)
-	int i;
-	char target_type = '\0';
-	int target_label = -1;
-	int stat = -1;
-	stat = get_ref((*binded).Head+(*binded).IndicatorPtr,&target_type,&target_label);
-	// ここにheadのIndicatorPtrをプログレスするコードか? だめ、レファレンスバインドできなくなる -> 条件分岐を試す。 コンパイルのときのみ実行。
-	if((*_copt).c_counter > 0){
-		(*binded).IndicatorPtr = (*binded).IndicatorPtr + stat;
-	}
-	if(stat > 0){
-		struct Tree *addr = NULL;
-		addr = Function_Recursive_SearchBind_LabelNode(referred,target_type,target_label,binded);
-	}
-	for(i=0;i<(*binded).NextCount;i++){
-		Function_Recursive_Bind_RefNode((*binded).Next[i],referred,_copt);
-	}
 }
 
 struct Tree *Create_Node(int _ser, int H_size){
