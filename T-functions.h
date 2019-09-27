@@ -434,8 +434,8 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred,
 	}
 }
 /** for product */
-int Function_Assign_RefedValPtr(struct Tree *tree){	// for product
-	FC(fprintf(stderr,">Assign_RefedValPtr<\n");)
+int Function_Assign_RefedValPtr(struct Tree *tree){	//%P 
+	FC(fprintf(stderr,">Function_Assign_RefedValPtr<\n");)
 	if(tree == NULL){
 		return(0);
 	}
@@ -444,7 +444,7 @@ int Function_Assign_RefedValPtr(struct Tree *tree){	// for product
 	}
 	if((*tree).nval > 0){
 		if(((*tree).valPtr = malloc(sizeof(int) * (*tree).nval)) == NULL){
-			perror("[Fail]malloc@Assign_RefedValPtr().\n");
+			perror("[Fail]malloc@Function_Assign_RefedValPtr().\n");
 			exit(1);
 		}
 		int i;
@@ -1113,7 +1113,6 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth, struct 
 		conjR = 1;
 	}
 	if((*tree).RefNode == NULL && ((*tree).extra_stat&2) != 2){
-		//Under rev
 		int tmp_head_len = 0;
 		tmp_head_len = strlen((*tree).Head);
 		if(tmp_head_len == 0 || (*tree).Head[tmp_head_len-1] != '@'){
@@ -1239,21 +1238,12 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	/* interpret */
 	char *tmp_str = NULL;
 	tmp_str = Interpret_Head(tree,_copt);
-	//int put_head_conj = 1;
-	//put_head_conj = strcmp((*tree).Head+(*tree).IndicatorPtr,"$UU$");
 	/* print head */
 	if(((*tree).extra_stat&1) == 1){
 		printf("%s",(*tree).Head);	//normal
 	}else if((*_copt).c_counter > 0){
 		printf("%s",tmp_str);
 		free(tmp_str);
-		/*
-		if(((*tree).extra_stat&8) == 8 && (*tree).NextCount > 0 && put_head_conj != 0){
-			if(strcmp((*tree).Head+(*tree).IndicatorPtr,"$U$") != 0){
-				putchar(44);
-			}
-		}
-		*/
 	}else{
 		printf("%s",(*tree).Head);	//normal
 	}
@@ -1298,11 +1288,8 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	}
 	/* comma for unpack */
 	if((*_copt).c_counter > 0){
-		//if(((*tree).extra_stat&8) == 8 && (*tree).NextCount > 0 && put_head_conj != 0){
 		if(((*tree).extra_stat&8) == 8 && ((*tree).extra_stat&1) != 1 && (*tree).NextCount > 0){
-			//if(strcmp((*tree).Head+(*tree).IndicatorPtr,"$U$") != 0 && strcmp((*tree).Head+(*tree).IndicatorPtr,"$UU$") != 0){
-				putchar(44);
-			//}
+			putchar(44);
 		}
 	}
 
@@ -1390,9 +1377,6 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 		}
 		strcpy(head_str,tmp_str);
 		head_str[dim_pos[0]] = '\0';
-		//if(strlen(head_str) == 0){
-			//printf("List");	//todo or not todo
-		//}
 		printf("%s[DIM,",head_str);
 		printf("%s",head_str+dim_pos[0]+1);
 	}else{
