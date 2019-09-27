@@ -3,7 +3,7 @@ NODE Executor(NODE top, NODE refTree, NODE null_node, int C, int SN, struct opti
 		/* pre */
 		/** bind data (for input-form) */
 		if((EXEC_FLAG&1) == 1){
-			// ExFunction_Recursive(top,(NODE (*)())Detect_DimBlock,_opt,_fopt,_copt);	// SAK Inner Prouct
+			// ExFunction_Recursive(top,(NODE (*)())Function_Detect_DimBlock,_opt,_fopt,_copt);	// SAK Inner Prouct
 			if((*_opt).data != NULL){
 				if(strlen((*_opt).data) > 0){
 					// Function_Bind_Data(DATA,top,_opt,_fopt,_copt);		// SAK Inner Product
@@ -21,7 +21,7 @@ NODE Executor(NODE top, NODE refTree, NODE null_node, int C, int SN, struct opti
 		}
 		/** inner product of binded data */
 		if((EXEC_FLAG&16) == 16){
-                        ExFunction_Recursive(top,(NODE (*)())Assign_RefedValPtr,_opt,_fopt,_copt);
+                        ExFunction_Recursive(top,(NODE (*)())Function_Assign_RefedValPtr,_opt,_fopt,_copt);
 		}
 		/** print */
 		if((EXEC_FLAG&2) == 2){

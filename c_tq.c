@@ -1,5 +1,6 @@
 #define MEM_DIMENSION_STR
 #define MEM_VALUE_COUNT
+#define MEM_INDICATOR_POS
 
 #define TQ
 #include <stdio.h>
@@ -479,7 +480,7 @@ int main(int argc, char **argv){
 		is_iopen = 1;
 		/** import tree */
 		node_count = 0;
-		EFLAG = (*opt).Pin+1+8;
+		EFLAG = (*opt).Pin+1+8;	//Pin: 2
 		// itop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,DATA);			// SAK
 		itop = import_LinkTable(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,DATA);		// SAK
 		Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);	
@@ -502,7 +503,7 @@ int main(int argc, char **argv){
 		}
 		is_oopen = 1;
 		/** import tree */
-		EFLAG = (*opt).Pout+4;
+		EFLAG = (*opt).Pout+4;	//Pout: 2
 		// otop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL);		// SAK
 		otop = import_LinkTable(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL);	// SAK
 		Executor(otop,itop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
@@ -528,8 +529,6 @@ int main(int argc, char **argv){
 	if((*opt).test > 0){
 		printf("\n=TEST OUTPUT=>\n");
 		printf("No test code.\n");
-		//ExFunction_Recursive(otop,NULL,opt,_fopt,_copt);
-		//Print_RecursiveSeq_Head(otop,0,1);
 		printf("\n<==\n");
 	}
 

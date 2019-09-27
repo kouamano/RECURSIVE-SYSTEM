@@ -25,6 +25,11 @@ echo '#1$#2$U$$f(#2$2)' | ./tq.o in=/dev/stdin -FT -Pin -C
 echo '#1$#2$UU$$f(#2$2)' | ./tq.o in=/dev/stdin -FT -Pin -C
  => $f@$2,$2
 
+- レファレンスのレファレンス
+echo '(#1,#2,#3)(#4$#1,$#4)' | ./tq.o in=/dev/stdin -Pin -FT
+echo '(#1,#2,#3)(#4$#1,#5$#4,$#5)' | ./tq.o in=/dev/stdin -Pin -FT
+echo '(#1,#2,#3)(#4$#1h,#5$#4g,#6$#5f(H))' | ./tq.o in=/dev/stdin -Pin -FT -C
+
 ### エスケープ処理
 #### クオーティング
 ./tqcq.awk ./tq-escape.test					### SAK recursive tqcq.awk
@@ -49,9 +54,9 @@ echo '$``$List($4)' | ./tq.o in=/dev/stdin -FT -C -Pin
 echo '$~~$($U$(7,8,$U$(5,6)))' | ./tq.o in=/dev/stdin -FT -Pin -C
  => $~~$($U$(7,8,$U$(5,6)))
 ./tq.o in=test_unpack.t -FT -Pin -C
- => $($1,$2,List,$1,$2)
+ => $(,$1,$2,List,$1,$2)
 ./tq.o in=test_compile.t -C -FT -Pin    
- => $~List(List(List,List,List,List))
+ => $~List(List(List,List,,List,List))
 
 ### リテラル化
 ./tq.o in=test_riteraltree.t -FT -Pin -C
@@ -104,6 +109,10 @@ echo '$1(##2$#3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
 - reft-head/tree
 echo '$1(##2$#3,##3$3())' | ./tq.o in=/dev/stdin -FT -Pin
  => $1(##2$#3@##3$3,##3$3())
+#### 定義表現
+-
+echo '(f($##1),##1(a,$pow(a,2)))' | ./tq.o in=/dev/stdin -FT -Pin
+ => (f($##1@##1(a,$pow(a,2))),##1(a,$pow(a,2)))
 
 
 - tree/head

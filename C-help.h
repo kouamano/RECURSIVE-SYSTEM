@@ -6,7 +6,6 @@ void status(void){
 	printf(" - Under construction\n");
 	printf("\n");
 	printf("  * Inner product.\n");
-	//printf("  * Riteralize.\n");
 	printf("\n");
 	printf(" - COMPILED@\n");
 	printf("   %s\n",ctime);
@@ -91,7 +90,7 @@ void language_help(void){
 	printf("\n");
 	printf("  | LANGUAGE :: <head>|<tree>\n");
 	printf("  | <head> ::= <label><reference><operator><name><bind>\n");
-	printf("  | <tree> ::= <head>'('(<head>|<tree>)(','(<head>|<tree>)*')'\n");
+	printf("  | <tree> ::= <head>('('(<head>|<tree>)(','(<head>|<tree>)*')')+\n");
 }
 void option_header(void){
 	printf("\n");
