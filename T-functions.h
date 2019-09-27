@@ -1216,7 +1216,7 @@ struct Tree *Print_RecursiveSeq_Head(struct Tree *tree, int conj, int ind){
 struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%P
 	FC(fprintf(stderr,">Function_Print_Head<\n");)
 	/* 特殊型にFunction_Print_ProductValあり、上位関数で切り替え */
-	struct Tree *ins_head = NULL;
+	//struct Tree *ins_head = NULL;
 	char target_type = '\0';
 	int target_label = -1;
 	int prg = 0;
@@ -1265,7 +1265,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		if((*tree).RefNode->LabelType == 'h'){
 			DB(fprintf(stderr," LT:h: <= TG:%c:\n",target_type);)
 			printf("@");
-			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
+			Function_Print_Head((*tree).RefNode,_fopt,_copt);
 		}else if((*tree).RefNode->LabelType == 't' && target_type == 't'){
 			DB(fprintf(stderr," LT:t:,TG:t:\n");)
 			printf("@");
@@ -1273,11 +1273,11 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 				(*_fopt).f_skipOnce = (*_fopt).f_skipOnce + 1;
 			}
 			DB(fprintf(stderr," print_head:skip:%d:\n",(*_fopt).f_skipOnce);)
-			ins_head = ExFunction_Recursive_Ser_MultiPrint((*tree).RefNode, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
+			ExFunction_Recursive_Ser_MultiPrint((*tree).RefNode, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
 		}else if((*tree).RefNode->LabelType == 't' && target_type == 'h'){
 			DB(fprintf(stderr," LT:t:,TG:h:\n");)
 			printf("@");
-			ins_head = Function_Print_Head((*tree).RefNode,_fopt,_copt);
+			Function_Print_Head((*tree).RefNode,_fopt,_copt);
 		}
 	}
 	/* progress IndicatorPtr -> not here */
