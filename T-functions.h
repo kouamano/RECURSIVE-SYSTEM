@@ -709,7 +709,9 @@ int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 		if(i == (*tree).ser){
 			printf("[");
 			if((*tree).RefNode != NULL){
-				printf("%d->",((*tree).Parent)->ser);
+				if((*tree).Parent != NULL){
+					printf("%d->",((*tree).Parent)->ser);
+				}
 			}
 			printf(":%s:%d",(*tree).Head,i);
 			if((*tree).RefNode != NULL){
