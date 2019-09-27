@@ -23,6 +23,7 @@ if [ $1 = "-h" ]; then
   exit;
 elif [ $1 = "-f" ]; then
   echo "tq Flow:"
+  echo ""
   echo "|file|  +exec+"
   echo ""
   echo "+tq+"
