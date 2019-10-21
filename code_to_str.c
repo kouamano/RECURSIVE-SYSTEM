@@ -57,10 +57,17 @@ void help(void){
 
 /* Under construction */
 int main(int argc, char **argv){
-	int str[2];
+	int str[10];
+	int i;
 	str[0] = 0x41;
-	str[1] = 0x0;
-	printf("%s\n",str);
+	str[1] = 0xe3;
+	str[2] = 0x81;
+	str[3] = 0xbb;
+	str[9] = 0x0;
+	//printf("%s\n",str);
+	for(i=0;i<10;i++){
+		putchar(str[i]);
+	}
 
 	int ie = 0;
 	FILE *IN = NULL;
