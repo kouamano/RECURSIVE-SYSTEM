@@ -94,6 +94,7 @@ int main(int argc, char **argv){
 	}
 	i = 0;
 	int c = 0;
+	int d = 0;
 	int count = 0;
 	char BUF[3];
 	BUF[0]='\0';
@@ -104,7 +105,9 @@ int main(int argc, char **argv){
 		//printf("%d\n",count);
 		BUF[count] = c;
 		if(count == 1){
-			printf("%s\n",BUF);	
+			sscanf(BUF,"%x",&d);
+			printf("%s\n",BUF);
+			printf("%x\n",d);
 		}
 		i++;
 	}
