@@ -91,6 +91,10 @@ int main(int argc, char **argv){
 		perror((*opt).in);
 		exit(1);
 	}
+	int c = 0;
+	while((c = fgetc(IN)) != EOF){
+		printf(":%X:",c);	
+	}
 	fclose(IN);
 
 }
