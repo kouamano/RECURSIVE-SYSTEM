@@ -63,6 +63,7 @@ int main(int argc, char **argv){
 	str[1] = 0xe3;
 	str[2] = 0x81;
 	str[3] = 0xbb;
+	str[8] = 0x0a;
 	str[9] = 0x0;
 	//printf("%s\n",str);
 	for(i=0;i<10;i++){
@@ -91,9 +92,21 @@ int main(int argc, char **argv){
 		perror((*opt).in);
 		exit(1);
 	}
+	i = 0;
 	int c = 0;
+	int count = 0;
+	char BUF[3];
+	BUF[0]='\0';
+	BUF[1]='\0';
+	BUF[2]='\0';
 	while((c = fgetc(IN)) != EOF){
-		printf(":%X:",c);	
+		count = i%2;
+		//printf("%d\n",count);
+		BUF[count] = c;
+		if(count == 1){
+			printf("%s\n",BUF);	
+		}
+		i++;
 	}
 	fclose(IN);
 
