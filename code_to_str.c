@@ -62,9 +62,22 @@ int main(int argc, char **argv){
 	str[1] = 0x0;
 	printf("%s\n",str);
 
+	int ie = 0;
+
 	struct option *opt;
 	opt = alloc_option();
 	init_option(opt);
 	get_option(argc-1,argv+1,opt);
-	print_option(opt);
+	if((*opt).help == 1){
+		help();
+		ie = 1;
+	}
+	if((*opt).check == 1){
+		print_option(opt);
+		ie = 1;
+	}
+	if(ie > 0){
+		exit(0);
+	}
+
 }
