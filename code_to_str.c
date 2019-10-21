@@ -21,6 +21,16 @@ void init_option(struct option *opt){
 }
 
 void get_option(int optc, char **optv, struct option *opt){
+	int i = 0;
+	for(i=0;i<optc;i++){
+		if(strcmp(optv[i],"-h") == 0){
+			(*opt).help = 1;
+		}else if(strcmp(optv[i],"-c") == 0){
+			(*opt).check = 1;
+		}else if(strncmp(optv[i],"in=",3) == 0){
+			sscanf(optv[i],"in=%s",(*opt).in);
+		}
+	}
 }
 
 void help(void){
