@@ -63,6 +63,7 @@ int main(int argc, char **argv){
 	printf("%s\n",str);
 
 	int ie = 0;
+	FILE *IN = NULL;
 
 	struct option *opt;
 	opt = alloc_option();
@@ -79,5 +80,10 @@ int main(int argc, char **argv){
 	if(ie > 0){
 		exit(0);
 	}
+	if((IN=fopen((*opt).in,"r")) == NULL){
+		perror((*opt).in);
+		exit(1);
+	}
+	fclose(IN);
 
 }
