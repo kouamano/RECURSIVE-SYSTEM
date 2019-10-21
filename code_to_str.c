@@ -9,6 +9,16 @@ struct option {
 	char *in;
 };
 
+struct option *alloc_option(void){
+	struct option *p;
+	p = malloc(sizeof(struct option) * 1);
+	if(p == NULL){
+		printf("F:malloc@alloc_option\n");
+		exit(1);
+	}
+	return(p);
+}
+
 void init_option(struct option *opt){
 	(*opt).help = 0;
 	(*opt).check = 0;
@@ -33,6 +43,7 @@ void get_option(int optc, char **optv, struct option *opt){
 	}
 }
 
+
 void help(void){
 	printf("\n");
 	printf("USAGE\n");
@@ -45,4 +56,8 @@ int main(int argc, char **argv){
 	str[0] = 0x41;
 	str[1] = 0x0;
 	printf("%s\n",str);
+
+	struct option *opt;
+	opt = alloc_option();
+	init_option(opt);
 }
