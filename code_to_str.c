@@ -53,6 +53,9 @@ void help(void){
 	printf("\n");
 	printf("USAGE\n");
 	printf(" code_to_str in=<file>\n");
+	printf("DESCRIPTION\n");
+	printf(" convert hexcode-string to charactor-string.\n");
+	printf(" e,g. echo 'e381bbe38192'|./a.out in=/dev/stdin -> ほげ\n");
 }
 
 /* Under construction */
@@ -71,7 +74,6 @@ int main(int argc, char **argv){
 		putchar(str[i]);
 	}
 	*/
-
 	int ie = 0;
 	FILE *IN = NULL;
 
@@ -115,5 +117,4 @@ int main(int argc, char **argv){
 		i++;
 	}
 	fclose(IN);
-
 }
