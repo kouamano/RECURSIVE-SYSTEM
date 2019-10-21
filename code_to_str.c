@@ -43,6 +43,11 @@ void get_option(int optc, char **optv, struct option *opt){
 	}
 }
 
+void print_option(struct option *opt){
+	printf("help:%d:\n",(*opt).help);
+	printf("check:%d:\n",(*opt).check);
+	printf("in:%s:\n",(*opt).in);
+}
 
 void help(void){
 	printf("\n");
@@ -60,4 +65,6 @@ int main(int argc, char **argv){
 	struct option *opt;
 	opt = alloc_option();
 	init_option(opt);
+	get_option(argc-1,argv+1,opt);
+	print_option(opt);
 }
