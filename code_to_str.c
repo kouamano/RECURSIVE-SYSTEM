@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* Under construction */
+
 int main(void){
 	int str[2];
 	str[0] = 0x41;
