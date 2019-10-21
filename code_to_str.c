@@ -57,8 +57,9 @@ void help(void){
 
 /* Under construction */
 int main(int argc, char **argv){
-	int str[10];
 	int i;
+	/*
+	int str[10];
 	str[0] = 0x41;
 	str[1] = 0xe3;
 	str[2] = 0x81;
@@ -69,6 +70,7 @@ int main(int argc, char **argv){
 	for(i=0;i<10;i++){
 		putchar(str[i]);
 	}
+	*/
 
 	int ie = 0;
 	FILE *IN = NULL;
@@ -106,8 +108,9 @@ int main(int argc, char **argv){
 		BUF[count] = c;
 		if(count == 1){
 			sscanf(BUF,"%x",&d);
-			printf("%s\n",BUF);
-			printf("%x\n",d);
+			//printf("%s\n",BUF);
+			//printf("%x\n",d);
+			putchar(d);
 		}
 		i++;
 	}
