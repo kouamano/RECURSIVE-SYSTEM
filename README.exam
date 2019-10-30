@@ -7,6 +7,8 @@ cd DimensionDefinitionLanguage; ./compile_checker.n007.sh; cd ../
 ./compile-all.sh 
 
 # tq のテスト
+## テストスクリプト実行
+./tqcq.awk README_base.exam
 ## 単体テスト
 ### コンバート
 bash conv-check.script
