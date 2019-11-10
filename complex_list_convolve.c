@@ -128,6 +128,9 @@ void print_options(struct option opt){
 
 void help(void){
 	printf("complex_list_comvolve\n");
+	printf("\nDESCRIOPTION:\n");
+	printf("  complex_list_comvolve returns reverse convolved list.\n");
+	printf("  Normaly it returns a,b,c, but complex_list_comvolve returns c,b,a.\n");
 	printf("\nUSAGE:\n");
 	printf("  complex_list_convolve bf=<base file> kf=<kernel file> [bfm=<base format>] [kfm=<kernel format>] [bfs=<base field separetor>] [kfs=<kernel field separator>] [bs=<base size>] [ks=<kernel size>] [buff=<buffer size>] [slide=<slide step>] overhang=<overhang option> [fill=<overhang filling value>] [conj_direction=<direction>] [fill_direction=<direction>] [conv=<convolve method>] [-h] [-c] [-s]\n");
 	printf("\nFILE FORMAT:\n");
