@@ -1,5 +1,5 @@
-/* complex_list_wt.c               */
-/* main program of complex_list_wt */
+/* complex_list_convolve.c               */
+/* main program of complex_list_convolve */
 
 #include <stdio.h>
 #include <stdlib.h>
