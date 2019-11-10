@@ -53,7 +53,7 @@ void init_options(struct option *opt){
 	(*opt).kernel_size = 10000;
 	(*opt).buff_size = 30;
 	(*opt).slide_step = 1;
-	(*opt).overhang = 1;	/* 1:base, 2:user value */
+	(*opt).overhang = 0;	/* 1:base, 2:user value */
 	(*opt).oh_fill_value = 0;
 	(*opt).oh_conj_direction = 1;
 	(*opt).oh_fill_direction = 1;
@@ -127,7 +127,7 @@ void print_options(struct option opt){
 }
 
 void help(void){
-	printf("complex_list_wt\n");
+	printf("complex_list_comvolve\n");
 	printf("\nUSAGE:\n");
 	printf("  complex_list_convolve bf=<base file> kf=<kernel file> [bfm=<base format>] [kfm=<kernel format>] [bfs=<base field separetor>] [kfs=<kernel field separator>] [bs=<base size>] [ks=<kernel size>] [buff=<buffer size>] [slide=<slide step>] overhang=<overhang option> [fill=<overhang filling value>] [conj_direction=<direction>] [fill_direction=<direction>] [conv=<convolve method>] [-h] [-c] [-s]\n");
 	printf("\nFILE FORMAT:\n");
