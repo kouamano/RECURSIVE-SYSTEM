@@ -138,6 +138,8 @@ void help(void){
 	printf("  1+3i,1,i,1i,...\n");
 	printf("\nOPTION REMARK:\n");
 	printf("  overhang : 1:use the base, 2:use the value specified by fill option.\n");
+	printf("\nEXAMPLE:\n");
+	printf("  complex_list_convolve bf=conv.bf kf=conv.kf.\n");
 	printf("\n");
 }
 
