@@ -51,9 +51,10 @@ MLデータセット生成システム: データ出力
   $*$ 単位 \\
   $*$ 値 \\
 1サンプル 1ライン、ただし、セル内の木構造も可能。
-\item システムからの同一項目のデータを回収、項目名/型/単位を統一 \\
-  $*$ 項目間関係を辞書記述し、自動的に辞書解析、項目変換を行う \\
-  $*$ 項目間関係の記述形式も同一のスプレッドシート形式
+\item システムから同項目のデータを回収、項目名/型/単位を統一 \\
+  $*$ 項目間関係を辞書記述し、自動的に辞書解析、項目互換を行う \\
+  $*$ 項目間関係の記述形式も同一のスプレッドシート形式 
+\item アドバンス機能としてシステムから指定項目に対する変換可能項目のデータを回収、変換出力 
 \item 何をInput/Outputにするかはユーザーの決定
 \end{itemize}
 \end{landscape}
@@ -121,7 +122,7 @@ MLデータセット生成システム: 現状の方針
   $*$ NIMS Standard SpreadSheetを出力する目的は変わらない
 \item tqをメイン、ソルバー(Mathematica等)はユーザー環境を利用 
 \item 署名や信頼性確保は他のサブシステムが行う
-\item データ形式定義、データ、辞書をすべて同一形式で記述
+\item データ形式定義、データ、辞書をすべて同一形式(言語)で記述
 \end{itemize}
 \end{landscape}
 \end{slide}
@@ -154,7 +155,7 @@ tq: 要求
 \begin{itemize}
 %\setlength{\itemsep}{0mm}
 %\setlength{\parskip}{0mm}
-\item データ構造（木）を記述可能であること
+\item データ構造 = データ形式定義+辞書参照（木）を記述可能であること
 \item 辞書構造 = 知識構造（グラフ）を記述可能であること
 \end{itemize}
 \end{landscape}
@@ -214,6 +215,28 @@ e.g.\\
 \begin{center}
 \color[cmyk]{0.3,0.3,0,0}
 \fontsize{30}{20}\selectfont
+tq: セルの構成
+\end{center}
+\
+
+\color[cmyk]{1,1,0,0}
+\fontsize{20}{20}\selectfont
+\color{black}(\color{red}項目名\txbase,\color{blue}型\color{black}(値\txbase,\color{green}単位\txbase)) \\
+\\
+e.g. \\
+\color{black}(\color{red}Weight\txbase,\color{blue}Quantity\color{black}(68\txbase,\color{green}kg\txbase)) \\
+\color{black}(\color{red}Comment\txbase,\color{blue}String\color{black}(This is a comment line.\txbase)) \\
+\color{black}(\color{red}No.\txbase,\color{blue}Numeric\color{black}(1\txbase)) \\
+\end{landscape}
+\end{slide}
+%%-----end     03-----%%
+
+%%-----start   03-----%%
+\begin{slide}
+\begin{landscape}
+\begin{center}
+\color[cmyk]{0.3,0.3,0,0}
+\fontsize{30}{20}\selectfont
 tq: 項参照
 \end{center}
 \
@@ -259,7 +282,6 @@ tq: データバインド
 \end{landscape}
 \end{slide}
 %%-----end     03-----%%
-
 
 %%-----start   03-----%%
 \begin{slide}
