@@ -221,7 +221,7 @@ tq: セルの構成
 
 \color[cmyk]{1,1,0,0}
 \fontsize{20}{20}\selectfont
-\color{black}(\color{red}項目名\txbase,\color{blue}型\color{black}(値\txbase,\color{green}単位\txbase)) \\
+\txbase(\color{red}項目名\txbase,\color{blue}型\color{black}(値\txbase,\color{green}単位\txbase)) \\
 \\
 e.g. \\
 \color{black}(\color{red}Weight\txbase,\color{blue}Quantity\color{black}(68\txbase,\color{green}kg\txbase)) \\
@@ -289,13 +289,13 @@ tq: データバインド
 \begin{center}
 \color[cmyk]{0.3,0.3,0,0}
 \fontsize{30}{20}\selectfont
-tq: 項参照とデータバインドを使ったデータの再構成
+tq: 項参照とデータバインドを使ったスプレッドシートの構成
 \end{center}
 \
 
 \color[cmyk]{1,1,0,0}
 \fontsize{20}{20}\selectfont
-データ: Length,Weight,mm,kg,1,2 322,4,5,68 \vspace{3mm} \\
+データ: Length,Weight,mm,kg,1,2,322,4,5,68 \vspace{3mm} \\
 入力形式定義: (\#1[2],\#2[2],[3](\#4[2])) \vspace{3mm}\\
 出力形式定義: \$PI\$(\$\#1,Quantity(\$\#4,\$\#2)) \vspace{3mm}\\
 出力: \\
