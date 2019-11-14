@@ -159,7 +159,7 @@ echo '$$CG$(#1F($#2),#2G($#1))' | ./tq.o in=/dev/stdin -FT -Pin
 
 -
 ./tq.o in=test_ref.1.t -FMa -FT -Fh -Pin
-- 完全グラフ
+- 完全グラフ(1)
 ./tq.o in=test_ref-graph.4.t -Pin -FT -FMa
  => #1$1($#2@#2$2($#1@#1$1,$#3@#3$3,$#4@#4$4),#3$3($#1@#1$1,$#2@#2$2,$#4@#4$4),#4$4($#1@#1$1,#2$2,$#3@#3$3))
 ====multiline====>
@@ -176,6 +176,8 @@ echo '$$CG$(#1F($#2),#2G($#1))' | ./tq.o in=/dev/stdin -FT -Pin
 ,,,,,,,,,,[10->0],,,
 ,,,,,,,,,,,[11],,
 ,,,,,,,,,,,,[12->5],
+- 完全グラフ(2)
+./tq.o in=comp-graph-3.t -FMa -Pin
 
 #### セルフ+ output
 ./tq.o in=test_ref.1.t out=test_ref.1.ot -FMa -FT -Fh -Pin -Pout
