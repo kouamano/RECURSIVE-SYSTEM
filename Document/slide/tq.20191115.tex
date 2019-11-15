@@ -50,11 +50,11 @@ MLデータセット生成システム: データ出力
   $*$ 型 \\
   $*$ 単位 \\
   $*$ 値 \\
-1サンプル 1ライン、ただし、セル内の木構造も可能。
-\item システムから同項目のデータを回収、項目名/型/単位を統一 \\
-  $*$ 項目間関係を辞書記述し、自動的に辞書解析、項目互換を行う \\
+1サンプル 1ライン、ただし、セル内の(値の)木構造も可能。
+\item リポジトリから同項目のデータを回収、項目名/型/単位を統一 \\
+  $*$ 辞書記述された項目間関係を自動解析、項目互換を行う \\
   $*$ 項目間関係の記述形式も同一のスプレッドシート形式 
-\item アドバンス機能としてシステムから指定項目に対する変換可能項目のデータを回収、変換出力 
+\item アドバンス機能として指定項目に対する変換可能項目（辞書定義を利用、辞書アナライザの開発が必要）データを変換出力 
 \item 何をInput/Outputにするかはユーザーの決定
 \end{itemize}
 \end{landscape}
@@ -68,23 +68,32 @@ MLデータセット生成システム: データ出力
 \newcommand\chcol[4]{\textcolor[rgb]{#1,#2,#3}{#4}}
 \color[cmyk]{0.3,0.3,0,0}
 \fontsize{30}{20}\selectfont
-MLデータセット生成システム: 過去のサービス構成
+MLデータセット生成システム: 当初のサービス構想
 \end{center}
 \
-
 \color[cmyk]{1,1,0,0}
-\begin{itemize}
+機能：
+\vspace{-10mm}\begin{itemize}
 \setlength{\itemsep}{0mm}
 \setlength{\parskip}{0mm}
-\item gitlab \\
-  $*$ gitlab-ci-yml
-\item Mathematica
-\item tq
-\item Jupyterhub
-\item gpg
+\item 登録履歴
+\item 登録者署名
+\item スプレッドシート生成
 \end{itemize}
-
-ユーザーはgitとgpgがあればよい。\\
+\vspace{-10mm}
+システム構成：
+\vspace{-10mm}\begin{itemize}
+\setlength{\itemsep}{0mm}
+\setlength{\parskip}{0mm}
+\item gitlab
+  \begin{itemize}
+  \item tq
+  \item Mathematica
+  \end{itemize}
+\item Jupyterhub
+\end{itemize}
+\vspace{-10mm}
+ユーザー環境にgitとgpgがあればよい。UIはJupyterhub。\\
 当初はMathematicaをメイン、tqを補助的に利用する方針。\\
 \end{landscape}
 \end{slide}
@@ -117,12 +126,12 @@ MLデータセット生成システム: 現状の方針
 \begin{itemize}
 \setlength{\itemsep}{0mm}
 \setlength{\parskip}{0mm}
-\item 解析クラスタ中心 \\
-  $*$ 解析クラスタでtqを動作させることを第一目標とする \\
-  $*$ NIMS Standard SpreadSheetを出力する目的は変わらない
 \item tqをメイン、ソルバー(Mathematica等)はユーザー環境を利用 
-\item 署名や信頼性確保は他のサブシステムが行う
 \item データ形式定義、データ、辞書をすべて同一形式(言語)で記述
+\item スプレッドシート生成のみ
+\item 解析クラスタ中心
+\item 署名や信頼性確保は他のサブシステムが行う
+\item 最小限のコンバーター
 \end{itemize}
 \end{landscape}
 \end{slide}
@@ -155,7 +164,7 @@ tq: 要求
 \begin{itemize}
 %\setlength{\itemsep}{0mm}
 %\setlength{\parskip}{0mm}
-\item データ構造 = データ形式定義+辞書参照（木）を記述可能であること
+\item データ構造 = データ形式定義+データ+辞書（木）を記述可能であること
 \item 辞書構造 = 知識構造（グラフ）を記述可能であること
 \end{itemize}
 \end{landscape}
@@ -204,7 +213,9 @@ tq: 文法
 
 e.g.\\
 \color{red}\#1\color{blue}\$\#2\color{green}\$Op\$\color{magenta}Name\color{black}(\color{red}\#2\color{magenta}Name2\color{cyan}[2]\color{black}) \\
-\color{red}\#1\color{blue}\$\#2\color{green}\$Op\$\color{magenta}Name@\#2Name2@\#2Name2\color{black}(\color{red}\#2\color{magenta}Name2,[2]@\color{black}(\color{magenta}Length\color{black},\color{magenta}Weight\color{black}))
+%\color{red}\#1\color{blue}\$\#2\color{green}\$Op\$\color{magenta}Name@\#2Name2@\#2Name2\color{black}(\color{red}\#2\color{magenta}Name2,[2]@\color{black}(\color{magenta}Length\color{black},\color{magenta}Weight\color{black}))
+%\#1\$\#2\$Op\$Name@\#2Name2[2]@(Length,Weight)(\#2Name2[2]@(Length,Weight))
+\color{red}\#1\color{blue}\underline{\$\#2}\color{green}\$Op\$\color{magenta}Name\color{black}@\underline{\color{red}\#2\color{magenta}Name2\color{cyan}[2]\color{cyan}@(\color{cyan}Length,Weight\color{cyan})}(\color{red}\#2\color{magenta}Name2\color{cyan}[2]\color{cyan}@(\color{cyan}Length,Weight\color{cyan})\color{black})
 \end{landscape}
 \end{slide}
 %%-----end     03-----%%
@@ -248,10 +259,10 @@ tq: 項参照
 \begin{tabular}{rlll}
 \color[cmyk]{1,1,0,0} \fontsize{20}{20}\selectfont 表現 & \color[cmyk]{1,1,0,0} \fontsize{20}{20}\selectfont 参照部 & \color[cmyk]{1,1,0,0} \fontsize{20}{20}\selectfont 被参照部 & \color[cmyk]{1,1,0,0} \fontsize{20}{20}\selectfont   被参照部バインド表現\\
 \hline
-\color{cyan} \$\#1\color[cmyk]{1,1,0,0}f & \color{cyan} \$\#1 & \color[cmyk]{1,1,0,0}  & \color[cmyk]{1,1,0,0} \$\#1f \\
-\color[cmyk]{1,1,0,0} (\color{cyan}\$\#1\color[cmyk]{1,1,0,0},\color{red}\#1\color[cmyk]{1,1,0,0}) & \color{cyan}  \$\#1 & \color{red} \#1 & \color[cmyk]{1,1,0,0} (\$\#1\color{magenta}@\#1\color[cmyk]{1,1,0,0},\#1)  \\
-\color{cyan} \$\#1\color[cmyk]{1,1,0,0}f(\color{red}\#1g\color[cmyk]{1,1,0,0}) & \color{cyan} \$\#1 & \color{red} \#1g & \color[cmyk]{1,1,0,0} \$\#1\color{magenta}@\#1g\color[cmyk]{1,1,0,0}(\#1g) \\
-\color{red} \#1f\color[cmyk]{1,1,0,0}(\color{cyan}\$\#1\color[cmyk]{1,1,0,0}g) & \color{cyan} \$\#1 & \color{red} \#1f & \color[cmyk]{1,1,0,0} \#1f(\$\#1\color[cmyk]{1,1,0,0}g\color{magenta}@\#1f\color[cmyk]{1,1,0,0}) \\
+\color{blue} \$\#1\color[cmyk]{1,1,0,0}f & \color{blue} \$\#1 & \color[cmyk]{1,1,0,0}  & \color[cmyk]{1,1,0,0} \$\#1f \\
+\color[cmyk]{1,1,0,0} (\color{blue}\$\#1\color[cmyk]{1,1,0,0},\color{red}\#1\color[cmyk]{1,1,0,0}) & \color{blue}  \$\#1 & \color{red} \#1 & \color[cmyk]{1,1,0,0} (\$\#1\color{magenta}@\#1\color[cmyk]{1,1,0,0},\#1)  \\
+\color{blue} \$\#1\color[cmyk]{1,1,0,0}f(\color{red}\#1g\color[cmyk]{1,1,0,0}) & \color{blue} \$\#1 & \color{red} \#1g & \color[cmyk]{1,1,0,0} \$\#1\color{magenta}@\#1g\color[cmyk]{1,1,0,0}(\#1g) \\
+\color{red} \#1f\color[cmyk]{1,1,0,0}(\color{blue}\$\#1\color[cmyk]{1,1,0,0}g) & \color{blue} \$\#1 & \color{red} \#1f & \color[cmyk]{1,1,0,0} \#1f(\$\#1\color[cmyk]{1,1,0,0}g\color{magenta}@\#1f\color[cmyk]{1,1,0,0}) \\
 \end{tabular}
 
 \end{landscape}
@@ -274,10 +285,10 @@ tq: データバインド
 \begin{tabular}{rll}
 \color[cmyk]{1,1,0,0} \fontsize{20}{20}\selectfont 表現 & \color[cmyk]{1,1,0,0} \fontsize{20}{20}\selectfont データ & \color[cmyk]{1,1,0,0} \fontsize{20}{20}\selectfont  データバインド表現   \\
 \hline
-\color[cmyk]{1,1,0,0} [1] & \color[cmyk]{1,1,0,0} L,W,22,3,21,5 & \color[cmyk]{1,1,0,0} [1]\color{magenta}@(L)  \\
-\color[cmyk]{1,1,0,0} [2] & \color[cmyk]{1,1,0,0} L,W,22,3,21,5 & \color[cmyk]{1,1,0,0} [2]\color{magenta}@(L,W)  \\
-\color[cmyk]{1,1,0,0} [2]([2]) & \color[cmyk]{1,1,0,0} L,W,22,3,21,5 & \color[cmyk]{1,1,0,0} [2]([2]\color{magenta}@(L,W,22,3)\color[cmyk]{1,1,0,0})  \\
-\color[cmyk]{1,1,0,0} H1[2](H2[2]) & \color[cmyk]{1,1,0,0} L,W,22,3,21,5 & \color[cmyk]{1,1,0,0} H1[2](H2[2]\color{magenta}@(L,W,22,3)\color[cmyk]{1,1,0,0})  \\
+\color[cmyk]{1,1,0,0} [1] & \color[cmyk]{1,1,0,0} L,W,22,3,21,5 & \color[cmyk]{1,1,0,0} [1]\color{cyan}@(L)  \\
+\color[cmyk]{1,1,0,0} [2] & \color[cmyk]{1,1,0,0} L,W,22,3,21,5 & \color[cmyk]{1,1,0,0} [2]\color{cyan}@(L,W)  \\
+\color[cmyk]{1,1,0,0} [2]([2]) & \color[cmyk]{1,1,0,0} L,W,22,3,21,5 & \color[cmyk]{1,1,0,0} [2]([2]\color{cyan}@(L,W,22,3)\color[cmyk]{1,1,0,0})  \\
+\color[cmyk]{1,1,0,0} H1[2](H2[2]) & \color[cmyk]{1,1,0,0} L,W,22,3,21,5 & \color[cmyk]{1,1,0,0} H1[2](H2[2]\color{cyan}@(L,W,22,3)\color[cmyk]{1,1,0,0})  \\
 \end{tabular}
 
 \end{landscape}
@@ -301,9 +312,9 @@ tq: 項参照とデータバインドを使ったスプレッドシートの構成
 出力形式定義: \$PI\$(\$\#1,Quantity(\$\#4,\$\#2)) \vspace{3mm}\\
 出力: \\
 ( \\
-\ (\ (\color{magenta}Length\txbase,Quantity(\color{magenta}1\txbase,\color{magenta}mm\txbase)),(\color{magenta}Weight\txbase,Quantity(\color{magenta}2\txbase,\color{magenta}kg\txbase))\ ),\\
-\ (\ (\color{magenta}Length\txbase,Quantity(\color{magenta}322\txbase,\color{magenta}mm\txbase)),(\color{magenta}Weight\txbase,Quantity(\color{magenta}4\txbase,\color{magenta}kg\txbase))\ ), \\
-\ (\ (\color{magenta}Length\txbase,Quantity(\color{magenta}5\txbase,\color{magenta}mm\txbase)),(\color{magenta}Weight\txbase,Quantity(\color{magenta}68\txbase,\color{magenta}kg\txbase))\ ) \\
+\ (\ (\color{cyan}Length\txbase,Quantity(\color{cyan}1\txbase,\color{cyan}mm\txbase)),(\color{cyan}Weight\txbase,Quantity(\color{cyan}2\txbase,\color{cyan}kg\txbase))\ ),\\
+\ (\ (\color{cyan}Length\txbase,Quantity(\color{cyan}322\txbase,\color{cyan}mm\txbase)),(\color{cyan}Weight\txbase,Quantity(\color{cyan}4\txbase,\color{cyan}kg\txbase))\ ), \\
+\ (\ (\color{cyan}Length\txbase,Quantity(\color{cyan}5\txbase,\color{cyan}mm\txbase)),(\color{cyan}Weight\txbase,Quantity(\color{cyan}68\txbase,\color{cyan}kg\txbase))\ ) \\
 )
 \
 
