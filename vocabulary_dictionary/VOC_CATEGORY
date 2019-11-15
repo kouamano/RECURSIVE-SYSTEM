@@ -1,4 +1,4 @@
-$$$Allow	$$$DOM	$$$COD
+$$X$Predicate	$$X$Subject	$$X$Object
 $X$Class	$X$pressure	$X$Property
 $X$Class	$X$Fe concentration	$X$Property
 $X$Class	$X$Gibbs energy of BCC phase	$X$Property
@@ -6,3 +6,7 @@ $X$Class	$X$Enthalpy of BCC phase	$X$Property
 $X$Class	$X$Entropy of BCC phase	$X$Property
 $X$Class	$X$heat capacity at constant pressure	$X$Property
 $X$Class	$X$Chemical potential of Fe in BCC phase	$X$Property
+
+$$X$Example
+$X$Desc	$X$A	$X$($X$B,$X$C,$X$D)
+$X$DEF	$X$Desc	$X$($$X$Head,($$X$Head,$$X$Head,$$X$Head))
