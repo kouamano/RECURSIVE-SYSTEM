@@ -131,7 +131,7 @@ MLデータセット生成システム: 現状の方針
 \item スプレッドシート生成のみ
 \item 解析クラスタ中心
 \item 署名や信頼性確保は他のサブシステムが行う
-\item 最小限のコンバーター
+\item 最小限のコンバーター、辞書アナライザの開発が必要
 \end{itemize}
 \end{landscape}
 \end{slide}
@@ -215,30 +215,7 @@ e.g.\\
 \color{red}\#1\color{blue}\$\#2\color{green}\$Op\$\color{magenta}Name\color{black}(\color{red}\#2\color{magenta}Name2\color{cyan}[2]\color{black}) \\
 %\color{red}\#1\color{blue}\$\#2\color{green}\$Op\$\color{magenta}Name@\#2Name2@\#2Name2\color{black}(\color{red}\#2\color{magenta}Name2,[2]@\color{black}(\color{magenta}Length\color{black},\color{magenta}Weight\color{black}))
 %\#1\$\#2\$Op\$Name@\#2Name2[2]@(Length,Weight)(\#2Name2[2]@(Length,Weight))
-\color{red}\#1\color{blue}\underline{\$\#2}\color{green}\$Op\$\color{magenta}Name\color{black}@\underline{\color{red}\#2\color{magenta}Name2\color{cyan}[2]\color{cyan}@(\color{cyan}Length,Weight\color{cyan})}(\color{red}\#2\color{magenta}Name2\color{cyan}[2]\color{cyan}@(\color{cyan}Length,Weight\color{cyan})\color{black})
-\end{landscape}
-\end{slide}
-%%-----end     03-----%%
-
-%%-----start   03-----%%
-\begin{slide}
-\begin{landscape}
-\begin{center}
-\color[cmyk]{0.3,0.3,0,0}
-\fontsize{30}{20}\selectfont
-tq: セルの構成
-\end{center}
-\
-
-\color[cmyk]{1,1,0,0}
-\fontsize{20}{20}\selectfont
-\color{black}(\color{red}項目名\color{black},\color{blue}型\color{black}(値,\color{green}単位\color{black})) \\
-\\
-\txbase{}e.g. \\
-\color{black}(\color{red}Weight\color{black},\color{blue}Quantity\color{black}(68,\color{green}kg\color{black})) \\
-\color{black}(\color{red}Comment\color{black},\color{blue}String\color{black}(This is a comment line.)) \\
-\color{black}(\color{red}Comment\color{black},\color{blue}String\color{black}(A","B","C)) \\
-\color{black}(\color{red}No.\color{black},\color{blue}Numeric\color{black}(1)) \\
+\color{red}\#1\color{blue}\underline{\$\#2}\color{green}\$Op\$\color{magenta}Name\color{blue}@\underline{\color{red}\#2\color{magenta}Name2\color{cyan}[2]\color{cyan}@(\color{cyan}Length,Weight\color{cyan})}(\color{red}\#2\color{magenta}Name2\color{cyan}[2]\color{cyan}@(\color{cyan}Length,Weight\color{cyan})\color{black})
 \end{landscape}
 \end{slide}
 %%-----end     03-----%%
@@ -261,7 +238,7 @@ tq: 項参照
 \hline
 \color{blue} \$\#1\color[cmyk]{1,1,0,0}f & \color{blue} \$\#1 & \color[cmyk]{1,1,0,0}  & \color[cmyk]{1,1,0,0} \$\#1f \\
 \color[cmyk]{1,1,0,0} (\color{blue}\$\#1\color[cmyk]{1,1,0,0},\color{red}\#1\color[cmyk]{1,1,0,0}) & \color{blue}  \$\#1 & \color{red} \#1 & \color[cmyk]{1,1,0,0} (\$\#1\color{magenta}@\#1\color[cmyk]{1,1,0,0},\#1)  \\
-\color{blue} \$\#1\color[cmyk]{1,1,0,0}f(\color{red}\#1g\color[cmyk]{1,1,0,0}) & \color{blue} \$\#1 & \color{red} \#1g & \color[cmyk]{1,1,0,0} \$\#1\color{magenta}@\#1g\color[cmyk]{1,1,0,0}(\#1g) \\
+\color{blue} \$\#1\color[cmyk]{1,1,0,0}f(\color{red}\#1g\color[cmyk]{1,1,0,0}) & \color{blue} \$\#1 & \color{red} \#1g & \color[cmyk]{1,1,0,0} \$\#1f\color{magenta}@\#1g\color[cmyk]{1,1,0,0}(\#1g) \\
 \color{red} \#1f\color[cmyk]{1,1,0,0}(\color{blue}\$\#1\color[cmyk]{1,1,0,0}g) & \color{blue} \$\#1 & \color{red} \#1f & \color[cmyk]{1,1,0,0} \#1f(\$\#1\color[cmyk]{1,1,0,0}g\color{magenta}@\#1f\color[cmyk]{1,1,0,0}) \\
 \end{tabular}
 
@@ -291,6 +268,29 @@ tq: データバインド
 \color[cmyk]{1,1,0,0} H1[2](H2[2]) & \color[cmyk]{1,1,0,0} L,W,22,3,21,5 & \color[cmyk]{1,1,0,0} H1[2](H2[2]\color{cyan}@(L,W,22,3)\color[cmyk]{1,1,0,0})  \\
 \end{tabular}
 
+\end{landscape}
+\end{slide}
+%%-----end     03-----%%
+
+%%-----start   03-----%%
+\begin{slide}
+\begin{landscape}
+\begin{center}
+\color[cmyk]{0.3,0.3,0,0}
+\fontsize{30}{20}\selectfont
+tq: セルの構成
+\end{center}
+\
+
+\color[cmyk]{1,1,0,0}
+\fontsize{20}{20}\selectfont
+\color{black}(\color{red}項目名\color{black},\color{blue}型\color{black}(値,\color{green}単位\color{black})) \\
+\\
+\txbase{}e.g. \\
+\color{black}(\color{red}Weight\color{black},\color{blue}Quantity\color{black}(68,\color{green}kg\color{black})) \\
+\color{black}(\color{red}Comment\color{black},\color{blue}String\color{black}(This is a comment line.)) \\
+\color{black}(\color{red}Comment\color{black},\color{blue}String\color{black}(A","B","C)) \\
+\color{black}(\color{red}No.\color{black},\color{blue}Numeric\color{black}(1)) \\
 \end{landscape}
 \end{slide}
 %%-----end     03-----%%
