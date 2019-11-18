@@ -224,7 +224,7 @@ $#0@#0$0($#1@#1$1[5]@(322,4,5,68,7)($#0@#0$0,$#2@#2$2),$#2@#2$2($#1@#1$1[5]@(322
  => (((L,W),Quantity(1,(mm,kg))),((L,W),Quantity(2,(mm,kg))),((L,W),Quantity(3,(mm,kg))),((L,W),Quantity(4,(mm,kg))),((L,W),Quantity(5,(mm,kg))),((L,W),Quantity(6,(mm,kg))))
 ./tq.o in=num2.ddf out=num3.ddl data=num.csv -FT -Pprod  -C 
  => ((((L,W),Quantity(1,mm)),((L,W),Quantity(2,kg))),(((L,W),Quantity(3,mm)),((L,W),Quantity(4,kg))),(((L,W),Quantity(5,mm)),((L,W),Quantity(6,kg))))
-- (a,b1)または@(a,b1)のdistributeがない
+- (a,b1)または@(a,b1)のdistributeがない -> 案：@はdistributeする@なしはしない
 ./tq.o in=num4.ddf out=num4.ddl data=num.csv -FT -Pprod  -C 
  => ((((a,b1),Quantity(1,mm)),((a,b1),Quantity(2,kg))),(((a,b1),Quantity(3,mm)),((a,b1),Quantity(4,kg))),(((a,b1),Quantity(5,mm)),((a,b1),Quantity(6,kg))))
 
