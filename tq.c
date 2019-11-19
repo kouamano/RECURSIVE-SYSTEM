@@ -25,12 +25,12 @@ void status(void){
 	printf("   %s\n",cdate);
 }
 void help(void){
-	printf("*********************************************************\n");
+	printf("=========================================================\n");
 	printf(" tq: A language for tree and graph structure description \n");
-	printf("*********************************************************\n");
+	printf("=========================================================\n");
 	printf("\n");
 	printf("USAGE\n");
-	printf("=====\n");
+	printf("*****\n");
 	printf("\n");
 	printf(" tq.o [-h|-hF|-hC|-hS|-hD|-hE] [-s] [-c] [-test] buff=<(int)size> in=<file name of input form> out=<file name of outout form> data=<data file> data_buff=<(int)size> w=<warnning level> -F<x> -C<x> -P<x>.\n");
 	printf("\n");
@@ -102,7 +102,7 @@ void data_help(void){
 void language_help(void){
 	printf("\n");
 	printf("LANGUAGE\n");
-	printf("========\n");
+	printf("********\n");
 	printf("\n");
 	printf("  | LANGUAGE :: <head>|<tree>\n");
 	printf("  | <head> ::= <label><reference><operator><name><bind>\n");
@@ -111,7 +111,7 @@ void language_help(void){
 void option_header(void){
 	printf("\n");
 	printf("OPTIONS\n");
-	printf("=======\n");
+	printf("*******\n");
 }
 void list_builtins(void){
 	printf("\n");
@@ -141,7 +141,7 @@ void list_builtins(void){
 void put_examples(void){
 	printf("\n");
 	printf("EXAMPLES\n");
-	printf("========\n");
+	printf("********\n");
 	printf("\n");
 	printf("ex.1::\n");
 	printf("\n");
