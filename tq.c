@@ -25,9 +25,9 @@ void status(void){
 	printf("   %s\n",cdate);
 }
 void help(void){
-	printf("********************************************************\n");
-	printf("tq: A language for tree and graph structure description \n");
-	printf("********************************************************\n");
+	printf("*********************************************************\n");
+	printf(" tq: A language for tree and graph structure description \n");
+	printf("*********************************************************\n");
 	printf("\n");
 	printf("USAGE\n");
 	printf("=====\n");
