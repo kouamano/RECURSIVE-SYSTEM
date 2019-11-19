@@ -161,7 +161,7 @@ void put_examples(void){
 	printf(" $ echo 'A(B(#1C),$#1(D))'\n");
 	printf("  => A(B(#1C),$#1@#1C(D))\n");
 	printf("                  ^^^^^^^\n");
-	printf("                  Binding referenced tree.\n");
+	printf("                  Binded referenced-tree.\n");
 	printf("\n");
 	printf("ex.3 (creating graph)::\n");
 	printf("\n");
@@ -209,7 +209,7 @@ void put_examples(void){
 	printf("  => (((Length,Quantity(1,mm)),(Weight,Quantity(2,kg))),((Length,Quantity(322,mm)),(Weight,Quantity(4,kg))),((Length,Quantity(5,mm)),(Weight,Quantity(68,kg))))\n");
 	//printf("ex.4 (binding and reforming CSV)::\n");
 	printf("\n");
-	printf(" [over write]\n");
+	printf(" [over write (1)]\n");
 	printf("\n");
 	printf(" test.csv::\n");
 	printf("\n");
@@ -226,10 +226,20 @@ void put_examples(void){
 	printf(" out2.ddl::\n");
 	printf("\n");
 	printf("  $PI$(@(L,W),Quantity($#4,$#2))\n");
+	printf("       ^^^^^^\n");
+	printf("       Binding data (distribution)\n");
 	printf("\n");
 	printf(" $ tq.o in=in.ddf out=out2.ddl data=test.csv -FT -Pprod -C\n");
 	printf("  => (((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(322,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(68,kg))))\n");
-
+	printf("\n");
+	printf(" [over write (2)]\n");
+	printf("\n");
+	printf(" DDL file::\n");
+	printf("\n");
+	printf("  $PI$((L,W),Quantity($#4,$#2))\n");
+	printf("       ^^^^^\n");
+	printf("       Binding data (bulk)\n");
+	printf("\n");
 }
 
 /* allocation */
