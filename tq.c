@@ -243,6 +243,30 @@ void put_examples(void){
 	printf("       ^^^^^\n");
 	printf("       Binding data (bulk)\n");
 	printf("\n");
+	printf("NIMS Standard SpreadSheet (NS3)\n");
+	printf("*******************************\n");
+	printf("\n");
+	printf("Definition:Cell::\n");
+	printf("=================\n");
+	printf("\n");
+	printf(" <Cell>:: (<item-name>,<type>(Quantity(<value>,<unit>)))\n");
+	printf("\n");
+	printf(" OR\n");
+	printf("\n");
+	printf(" <Cell>:: (<item-name>,<type>(<value>))\n");
+	printf("\n");
+	printf("Definition:Line:: (a sample)\n");
+	printf("============================\n");
+	printf("\n");
+	printf(" <Line>:: (<Cell>, ... )\n");
+	printf("\n");
+	printf("Definition:Dataset::\n");
+	printf("====================\n");
+	printf("\n");
+	printf("Dataset:: (<Line>, ... )\n");
+	printf("\n");
+	printf("NS3:: <Dataset>\n");
+	printf("\n");
 }
 
 /* allocation */
