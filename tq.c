@@ -249,7 +249,7 @@ void put_examples(void){
 	printf("Definition:Cell::\n");
 	printf("=================\n");
 	printf("\n");
-	printf(" <Cell>:: (<item-name>,<type>(Quantity(<value>,<unit>)))\n");
+	printf(" <Cell>:: (<item-name>,Quantity(<value>,<unit>))\n");
 	printf("\n");
 	printf(" OR\n");
 	printf("\n");
