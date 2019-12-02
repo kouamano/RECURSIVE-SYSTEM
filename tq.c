@@ -263,9 +263,9 @@ void put_examples(void){
 	printf("Definition:Dataset::\n");
 	printf("====================\n");
 	printf("\n");
-	printf("Dataset:: (<Line>, ... )\n");
+	printf(" Dataset:: (<Line>, ... )\n");
 	printf("\n");
-	printf("NS3:: <Dataset>\n");
+	printf(" NS3:: <Dataset>\n");
 	printf("\n");
 }
 
