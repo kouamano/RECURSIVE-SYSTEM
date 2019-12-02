@@ -255,8 +255,8 @@ void put_examples(void){
 	printf("\n");
 	printf(" <Cell>:: (<item-name>,<type>(<value>))\n");
 	printf("\n");
-	printf("Definition:Line:: (a sample)\n");
-	printf("============================\n");
+	printf("Definition:Line (corresponds to a sample)::\n");
+	printf("==============---------------==============\n");
 	printf("\n");
 	printf(" <Line>:: (<Cell>, ... )\n");
 	printf("\n");
