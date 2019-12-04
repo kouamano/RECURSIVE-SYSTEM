@@ -333,14 +333,14 @@ struct Tree *Function_Detect_DimBlock(struct Tree *tree, struct options *_opt){
 	return(tree);
 }
 struct Tree *Search_Recursive_BindNode(struct Tree *top, int *bn_count, struct Tree **bn_table){
-	FC(fprintf(stderr,">Function_Recursive_Search_BindNode<\n");)
+	FC(fprintf(stderr,">Search_Recursive_BindNode<\n");)
 	int i;
 	struct Tree *current = NULL;
 	current = top;
 	if((*current).nval > 0){
 		bn_table = realloc(bn_table,(sizeof(struct Tree *) * (*bn_count + 2)));
 		if(bn_table == NULL){
-			perror("[Fail]realloc@Function_Recursive_Search_BindNode");
+			perror("[Fail]realloc@Search_Recursive_BindNode");
 			exit(1);
 		}
 		bn_table[(*bn_count)] = current;
@@ -987,7 +987,7 @@ struct Tree *Function_Print_Bclose_C(struct Tree *tree, struct function_options 
 }
 /** val */
 int Get_nvalMax(struct Tree *tree){
-	FC(fprintf(stderr,">Function_Recursive_Get_nvalMax<\n");)
+	FC(fprintf(stderr,">Get_nvalMax<\n");)
 	int i;
 	int MAX = 0;
 	//Self
@@ -1002,7 +1002,7 @@ int Get_nvalMax(struct Tree *tree){
 	return(MAX);
 }
 int Get_nvalList(struct Tree *tree, int *nvalList, int nval_start){
-	FC(fprintf(stderr,">Function_Recursive_Get_nvalList<\n");)
+	FC(fprintf(stderr,">Get_nvalList<\n");)
 	int i;
 	int nval = 0;
 	int nval_count = nval_start;
@@ -1020,7 +1020,7 @@ int Get_nvalList(struct Tree *tree, int *nvalList, int nval_start){
 		}
 		nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
 		if(nvalList == NULL){
-			perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
+			perror("[Fail]realloc@Get_nvalList\n");
 			exit(1);
 		}
 		nvalList[nval_count] = nval;
@@ -1037,7 +1037,7 @@ int Get_nvalList(struct Tree *tree, int *nvalList, int nval_start){
 		}
 		nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
 		if(nvalList == NULL){
-			perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
+			perror("[Fail]realloc@Get_nvalList\n");
 			exit(1);
 		}
 		nvalList[nval_count] = nval;
@@ -1056,7 +1056,7 @@ int Get_nvalList(struct Tree *tree, int *nvalList, int nval_start){
 			}
 			nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
 			if(nvalList == NULL){
-				perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
+				perror("[Fail]realloc@Get_nvalList\n");
 				exit(1);
 			}
 			nvalList[nval_count] = nval;
@@ -1152,8 +1152,8 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth, struct 
 	return(tree);
 }
 /** Head */
-struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%P
-	FC(fprintf(stderr,">Function_RecursiveCyclic_Print_IProductVal<\n");)
+struct Tree *Function_Cyclic_Print_IProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%P
+	FC(fprintf(stderr,">Function_Cyclic_Print_IProductVal<\n");)
 	/* Function_Print_Head の特殊型 */
 	/* 子要素も含めてprint */
 	int i;	// for max_nval
@@ -1162,7 +1162,7 @@ struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struc
 	int *nval_list = NULL;
 	int nval_count = 0;
 	if((nval_list = malloc(sizeof(int) * 1)) == NULL){
-		perror("[Fail]malloc@Function_RecursiveCyclic_Print_IProductVal\n");
+		perror("[Fail]malloc@Function_Cyclic_Print_IProductVal\n");
 		exit(1);
 	}
 	max_nval = Get_nvalMax(tree);
@@ -1469,7 +1469,7 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree 
 	bopen_function(tree,_fopt,_copt,1);
 	// $UU$ : if Tree.extra_stat&2 == 2 then skip for-loop.
 	if(((*tree).extra_stat&2) == 2 && (*_copt).c_counter > 0){
-		Function_RecursiveCyclic_Print_IProductVal(tree,_fopt,_copt);
+		Function_Cyclic_Print_IProductVal(tree,_fopt,_copt);
 	}else{
 		for(i=0;i<(*tree).NextCount;i++){
 			ExFunction_Recursive_Ser_MultiPrint((*tree).Next[i],conj_function,head_function,bopen_function,bclose_function,_opt,_fopt,_copt,_ser);
