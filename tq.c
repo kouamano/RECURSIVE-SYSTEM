@@ -90,7 +90,8 @@ void search_help(void){
 	printf("\n");
 	printf(" - Search options\n");
 	printf("\n");
-	printf("  * Sh=<head> (Under construction).\n");
+	printf("  * St=<tree pattern> (Under construction).\n");
+	printf("  * Sl=<level> (Under construction).\n");
 	printf("  * Sp=<position>.\n");
 }
 void data_help(void){
