@@ -35,7 +35,7 @@ int get_options (int optc, char **optv, struct option *opt) {
 
 void help (void) {
 	printf("USAGE:\n");
-	printf("  string_sim_n seq1 seq2 n(>=2)\n");
+	printf("  string_sim_n seq1 seq2 n (>=1)\n");
 }
 
 double simshort (char *firstseq, int firstlen, char *secondseq, int secondlen) {
@@ -174,8 +174,8 @@ int main (int argc, char **argv) {
 	if( (opt.secondseq = malloc(sizeof(char) * 100)) == NULL){printf("ERROR : faild: malloc().\n");}
 	init_options(&opt);
 	get_options(argc-1,argv+1,&opt);
-	if(opt.n < 2){
-		fprintf(stderr,"WARN: please set n >= 2.\n");
+	if(opt.n < 1){
+		fprintf(stderr,"WARN: please set n >= 1.\n");
 	}
 	/* *) */
 
