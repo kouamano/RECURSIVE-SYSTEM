@@ -204,6 +204,7 @@ $#0@#0$0($#1@#1$1[5]@(322,4,5,68,7)($#0@#0$0,$#2@#2$2),$#2@#2$2($#1@#1$1[5]@(322
 ### 内積
 ./tq.o in=test1.ddf out=test1.ddl data=test1.csv -FT -Pprod -C
 ./tq.o in=test1.ddf out=test1-1.ddl data=test1.csv -FT -Pprod -C
+./tq.o in=test1.ddf out=test1-2.ddl data=test1.csv -FT -Pprod -C
  => ((((DATE,Length,Quantity(1,mm))),((DATE,Weight,Quantity(2,kg)))),(((DATE,Length,Quantity(322,mm))),((DATE,Weight,Quantity(4,kg)))),(((DATE,Length,Quantity(5,mm))),((DATE,Weight,Quantity(68,kg)))))
 ./tq.o in=test_prd.1.ddf out=test_prd.1.ddl data=test.csv -FT -Pprod  -C
 ./tq.o in=test_prd.1.ddf out=test_prd.2.ddl data=test.csv -FT -Pprod  -C
