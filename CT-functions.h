@@ -890,6 +890,8 @@ int Function_Print_Adj(NODE node, int nodes, struct options *_opt){
 				if(parent(node) != NO_NODE){
 					// tq: printf("%d->",((*tree).Parent)->ser);
 					printf("%d=>",ser(parent(node)));
+				}else{
+					printf("$NULL$=>");
 				}
 			}
 			// tq: printf(":%s:%d",(*tree).Head,i);
