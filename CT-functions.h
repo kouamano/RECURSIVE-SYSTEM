@@ -889,7 +889,7 @@ int Function_Print_Adj(NODE node, int nodes, struct options *_opt){
 				// tq: if((*tree).Parent != NULL){
 				if(parent(node) != NO_NODE){
 					// tq: printf("%d->",((*tree).Parent)->ser);
-					printf("%d->",ser(parent(node)));
+					printf("%d=>",ser(parent(node)));
 				}
 			}
 			// tq: printf(":%s:%d",(*tree).Head,i);
