@@ -56,7 +56,7 @@ struct function_options {
         int f_print_production;
         int f_print_status;
         int f_print_hierarchy;
-        int f_print_hierarchy_status;
+        //int f_print_hierarchy_status;
         int f_print_test;
 	int f_print_self_stat;
 
