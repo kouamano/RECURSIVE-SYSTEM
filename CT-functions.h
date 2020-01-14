@@ -2025,19 +2025,29 @@ bool eos(struct Stream* in)
 	return (*in).ch == EOF;
 }
 
+bool in_escape(char ch, bool* esc)
+{
+	if(ch == '"') {
+		(*esc) = !(*esc);
+	}
+	return *esc;
+
+}
+
 void skip_value(int* size, struct Stream* in)
 {
+	bool esc = FALSE;
 	char ch = peek(in);
 
 	if(*size > 0) {			// other than 1st data item
 		(*size)++;		// for length of ','
 	}
 
-	while((ch != EOF) && (ch != DD) && (ch != '\n')) {	// SAK pending : escape
+	while((ch != EOF) && (in_escape(ch, &esc) || ((ch != DD) && (ch != '\n')))) {	// SAK pending : escape -> done
 		(*size)++;
 		ch = get(in);
 	}
-	if((ch == DD) || (ch == '\n')) {	// SAK pending : escape
+	if((ch == DD) || (ch == '\n')) {
 		ch = get(in);
 	}
 }
@@ -2057,14 +2067,16 @@ void set_value(char* buff, int* s_pos, struct Stream* in)
 		buff[(*s_pos)++] = DD;	// append ','
 	}
 
+	bool esc = FALSE;		// escape off
 	char ch = peek(in);
+
 	int pos = *s_pos;
-	while((ch != EOF) && (ch != DD) && (ch != '\n') ) {	// SAK pending : escape
+	while((ch != EOF) && (in_escape(ch, &esc) || ((ch != DD) && (ch != '\n')))) {	// SAK pending : escape -> done
 		buff[pos++] = ch;
 		ch = get(in);
 	}
 	buff[pos++] = '\0';
-	if((ch == DD) || (ch == '\n')) {	// SAK pending : escape
+	if((ch == DD) || (ch == '\n')) {
 		ch = get(in);
 	}
 }

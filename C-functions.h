@@ -1,3 +1,5 @@
+#include <string.h>
+
 static struct LinkTable* LT;
 
 struct LinkTable *Alloc_Link_V(struct LinkTable *LT){
@@ -689,7 +691,12 @@ char* set_dimension_str_ptr(NODE node, char* str)
 int value_count(NODE node)
 {
 #ifdef MEM_VALUE_COUNT
-	return ((*LT).value_count)[node];
+	int len = strlen(head(node));
+	if(len == 0 || head(node)[len-1] != '@') {
+		return child_count(node);
+	} else {
+		return ((*LT).value_count)[node];
+	}
 #else
 	int sw = 0;
 	int dim_pos[2];
