@@ -720,7 +720,7 @@ int main(int argc, char **argv){
 		/** import tree */
 		node_count = 0;
 		EFLAG = (*opt).Pin+1+8;	//Pin: 2
-		itop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,DATA);
+		itop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG/* ,SAK DATA */);
 		Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);	
 		/** close in-file */
 		if(is_iopen > 0){
@@ -742,7 +742,7 @@ int main(int argc, char **argv){
 		is_oopen = 1;
 		/** import tree */
 		EFLAG = (*opt).Pout+4;	//Pout: 2
-		otop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG,NULL);
+		otop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count,EFLAG/* SAK,NULL */);
 		Executor(otop,itop,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);
 		/** close file */
 		if(is_oopen > 0){
