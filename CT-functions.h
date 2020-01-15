@@ -908,7 +908,7 @@ int Function_Print_Adj(NODE node, int nodes, struct options *_opt){
 			// tq: if(((*tree).Next[j])->ser == i){
 			if(ser(child(node,j)) == i){
 				// tq: printf("%d",((*tree).Next[j])->ser);
-				printf("%d",ser(child(node,j)));
+				printf(":%d",ser(child(node,j)));
 				break;
 			// tq: }else if((*tree).Next[j]->RefNode != NULL){
 			}else if(ref_node(child(node,j)) != NO_NODE){

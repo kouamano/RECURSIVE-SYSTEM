@@ -723,7 +723,7 @@ int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 		}
 		for(j=0;j<(*tree).NextCount;j++){
 			if(((*tree).Next[j])->ser == i){
-				printf("%d",((*tree).Next[j])->ser);
+				printf(":%d",((*tree).Next[j])->ser);
 				break;
 			}else if((*tree).Next[j]->RefNode != NULL){
 				if((*tree).Next[j]->RefNode->ser == i){
