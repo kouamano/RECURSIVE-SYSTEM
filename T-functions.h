@@ -727,7 +727,7 @@ int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 				break;
 			}else if((*tree).Next[j]->RefNode != NULL){
 				if((*tree).Next[j]->RefNode->ser == i){
-					printf("%d",(*tree).Next[j]->RefNode->ser);
+					printf("->%d",(*tree).Next[j]->RefNode->ser);
 				}
 			}
 		}
