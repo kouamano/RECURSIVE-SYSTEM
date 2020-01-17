@@ -830,7 +830,7 @@ void Print_Smems(NODE node){
 	// tq: printf(":Ref=%ld:",(long int)(*tree).RefNode);
 	printf(":Ref=%d:",ref_node(node));
 	// tq: printf(":LT=%c:",(*tree).LabelType);
-	printf(":LT=%c:",label_type(node));
+	printf(":RT=%c:",label_type(node));
 	// tq: printf(":Lb=%d:",(*tree).Label);
 	printf(":Lb=%d:",label(node));
 	// tq: printf(":Hi=%d:",(*tree).IndicatorPtr);
@@ -857,9 +857,9 @@ void Print_Smems(NODE node){
 	// tq: printf(":Cj=%d:",(*tree).Conj);
 	printf(":Cj=%d:",conjugate(node));
 	// tq: printf(":NCs=%d:",(*tree).NCself);
-	printf(":NCs=%d:",child_no(node));
+	printf(":Cs=%d:",child_no(node));
 	// tq: printf(":NC=%d:",(*tree).NextCount);
-	printf(":NC=%d:",child_count(node));
+	printf(":C=%d:",child_count(node));
 	// tq: printf(":stat=%d:",(*tree).extra_stat);
 	printf(":stat=%d:",extra_stat(node));
 }
