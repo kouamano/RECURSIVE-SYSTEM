@@ -9,7 +9,7 @@ while(<>){
 	print $self;
 	$selfnum = $1;
 	$line = $_;
-	$line_org = $_;
+	#$line_org = $_;
 	$line =~ s/\[.*\]//;
 	@line = split(/,/,$line);
 	foreach(@line){
