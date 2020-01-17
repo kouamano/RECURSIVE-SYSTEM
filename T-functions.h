@@ -673,7 +673,7 @@ void Print_Smems(struct Tree *tree){
 	printf(":Adr=%ld:",(long int)tree);
 	printf(":PaAdr=%ld:",(long int)(*tree).Parent);
 	printf(":Ref=%ld:",(long int)(*tree).RefNode);
-	printf(":LT=%c:",(*tree).LabelType);
+	printf(":RT=%c:",(*tree).LabelType);
 	printf(":Lb=%d:",(*tree).Label);
 	printf(":Hptr=%d:",(*tree).IndicatorPtr);
 	printf(":H=%s:",(*tree).Head);
