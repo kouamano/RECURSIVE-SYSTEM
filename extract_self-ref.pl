@@ -5,11 +5,10 @@ while(<>){
 	chomp;
 	$_ =~ /(\[.*\])/;
 	$self = $1;
-	$self =~ /([0-9]*)\]/;
 	print $self;
+	$self =~ /([0-9]*)\]/;
 	$selfnum = $1;
 	$line = $_;
-	#$line_org = $_;
 	$line =~ s/\[.*\]//;
 	@line = split(/,/,$line);
 	foreach(@line){
