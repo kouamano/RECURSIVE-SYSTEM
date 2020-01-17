@@ -689,8 +689,8 @@ void Print_Smems(struct Tree *tree){
 	}
 	printf(":");
 	printf(":Cj=%d:",(*tree).Conj);
-	printf(":NCs=%d:",(*tree).NCself);
-	printf(":NC=%d:",(*tree).NextCount);
+	printf(":Cs=%d:",(*tree).NCself);
+	printf(":C=%d:",(*tree).NextCount);
 	printf(":stat=%d:",(*tree).extra_stat);
 }
 void Function_Print_Status(struct Tree *tree){
