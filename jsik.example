@@ -1,0 +1,1 @@
+./tq.o in=standard-model-net.t -Pin -FT -Fh | grep `./tq.o in=standard-model-net.t -FMa -Pin | ./extract_self-ref.pl  | ./extract_term-no.pl`

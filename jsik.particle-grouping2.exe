@@ -1,0 +1,1 @@
+./tq.o in=standard-model-net.t -Fst -Pin | grep --text SN | grep --text -v NC=0 | grep --text -v '\$'
