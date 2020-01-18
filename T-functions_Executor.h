@@ -56,11 +56,17 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 				printf("\n");
 			}
 			if((*_fopt).f_print_T == 1){
+				if((*_fopt).f_print_hierarchy == 1){
+					printf("====multiline====>");
+				}
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,_opt,_fopt,_copt,SN);
 				if((*_copt).c_restrict == 1){
 					printf(";");
 				}
 				printf("\n");
+				if((*_fopt).f_print_hierarchy == 1){
+					printf("<====multiline====\n");
+				}
 			}
 			if((*_fopt).f_print_S == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (struct Tree *(*)())Function_Print_Conj_S, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_S, (struct Tree *(*)())Function_Print_Bclose_S, _opt,_fopt,_copt,SN);
