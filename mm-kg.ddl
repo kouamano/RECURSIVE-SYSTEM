@@ -1,1 +1,1 @@
-$PI$DataSet($#1,Quantity[1](($#4,$#2)))
+$PI$DataSet($#1,Quantity(($#4,$#2)))
