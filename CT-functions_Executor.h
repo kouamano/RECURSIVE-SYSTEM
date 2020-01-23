@@ -60,11 +60,17 @@ NODE Executor(NODE top, NODE refTree, NODE null_node, int C, int SN, struct opti
 				printf("\n");
 			}
 			if((*_fopt).f_print_T == 1){
+				if((*_fopt).f_print_hierarchy == 1){
+					printf("====multiline====>");
+				}
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (NODE (*)())Function_Print_Conj_T, (NODE (*)())Function_Print_Head, (NODE (*)())Function_Print_Bopen_T,  (NODE (*)())Function_Print_Bclose_T,_opt,_fopt,_copt,SN);
 				if((*_copt).c_restrict == 1){
 					printf(";");
 				}
 				printf("\n");
+				if((*_fopt).f_print_hierarchy == 1){
+					printf("<====multiline====\n");
+				}
 			}
 			if((*_fopt).f_print_S == 1){
 				ExFunction_Recursive_Ser_MultiPrint(hit_tree, (NODE (*)())Function_Print_Conj_S, (NODE (*)())Function_Print_Head, (NODE (*)())Function_Print_Bopen_S, (NODE (*)())Function_Print_Bclose_S, _opt,_fopt,_copt,SN);
