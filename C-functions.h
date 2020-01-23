@@ -692,7 +692,7 @@ int value_count(NODE node)
 {
 #ifdef MEM_VALUE_COUNT
 	int len = strlen(head(node));
-	if(len == 0 || head(node)[len-1] != '@') {
+	if((len > 0) && (head(node)[len-1] == '@')) {
 		return child_count(node);
 	} else {
 		return ((*LT).value_count)[node];
