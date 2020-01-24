@@ -1,9 +1,15 @@
 # Chemical language
 Aromatic bond: [:]
 Ionic bond: [.]
+Negative Ion: [-]
+Positive Ion: [+]
 Ion: [+]H([.][-]O(H))
+Ion(anaother): H(+)(O(.,-)(H))
 Isotope: C14
 Benzene: #1[:2]C([:]C([:2]C([:]C([:2]C([:]C($#1))))))
+Benzene: #1C(:,2)(C(:)(C(:,2)(C(:)(C(:,2)(C(:)($#1))))))
+poly-phenyl: #1C(:,2)(C(:)(C(:,2)(C(:)(C(:,2)(C(:)($#1)),$##1))))
+Cyclohexane (full-form): #1C(C(C(C(C(C($#1,H,H),H,H),H,H),H,H),H,H),H,H)
 Cyclohexane (full-form): #1C(C(C(C(C(C($#1,H,H),H,H),H,H),H,H),H,H),H,H)
 trans-1,2-Difluoroethylene: C(F,H,[trans;2]C(F,H))
 Copper(II) sulfate: [+2]Cu([.]S([2]O,[2]O,[-]O,[-]O))
