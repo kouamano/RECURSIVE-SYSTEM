@@ -35,5 +35,6 @@ int main(){
 	printf("pointer int*                \t:%ld:\tbyte\n",sizeof(int*));
 	printf("pointer double*             \t:%ld:\tbyte\n",sizeof(double*));
 	printf("pointer void*               \t:%ld:\tbyte\n",sizeof(void*));
+	printf("EOF (int:%d)                \t:%ld:\tbyte\n",(int)EOF,sizeof(EOF));
 	return(0);
 }
