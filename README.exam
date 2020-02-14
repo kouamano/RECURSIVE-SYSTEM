@@ -232,7 +232,7 @@ $#0@#0$0($#1@#1$1[5]@(322,4,5,68,7)($#0@#0$0,$#2@#2$2),$#2@#2$2($#1@#1$1[5]@(322
  => (((a,b1),Quantity(1,(mm,kg))),((a,b1),Quantity(2,(mm,kg))),((a,b1),Quantity(3,(mm,kg))),((a,b1),Quantity(4,(mm,kg))),((a,b1),Quantity(5,(mm,kg))),((a,b1),Quantity(6,(mm,kg))))
 #### NS3
 ./tq.o in=data.ns3.ddf out=data.ns3.ddl data=data.ns3.csv -FT -Pprod  -C
- => (((Length,Qyantity(300,mm)),(Weight,Quantity(100,kg))),((Length,Qyantity(320,mm)),(Weight,Quantity(102,kg))),((Length,Qyantity(302,mm)),(Weight,Quantity(101,kg))),((Length,Qyantity(360,mm)),(Weight,Quantity(125,kg))))
+ => (((Length,Quantity(300,mm)),(Weight,Quantity(100,kg))),((Length,Quantity(320,mm)),(Weight,Quantity(102,kg))),((Length,Quantity(302,mm)),(Weight,Quantity(101,kg))),((Length,Quantity(360,mm)),(Weight,Quantity(125,kg))))
 
 
 
