@@ -3,7 +3,7 @@
 static struct LinkTable* LT;
 
 struct LinkTable *Alloc_Link_V(struct LinkTable *LT){
-	int size = (*LT).node_count;
+	unsigned int size = (*LT).node_count;		// SAK(uint)
 	(*LT).head = realloc((*LT).head, sizeof(*(*LT).head) * (size + 1));
 	if((*LT).head == NULL){
 		perror("[Fail]:realloc@Alloc_Link_V.^\n");
@@ -122,9 +122,9 @@ struct LinkTable *Alloc_Link_V(struct LinkTable *LT){
 	return(LT);
 }
 
-int Add_Link_V(struct LinkTable *LT, NODE _parent){
+NODE Add_Link_V(struct LinkTable *LT, NODE _parent){				// SAK(uint)
 	// int size = (*LT).SN;		SAK pending -> close
-	int size = (*LT).node_count;		// SAK
+	unsigned int size = (*LT).node_count;		// SAK			// SAK(uint)
 	// int bulk = (*opt).bulk_size;		// SAK pending
 	int bulk = 1000000;
 
@@ -373,12 +373,12 @@ NODE create_node()
 //	LT = lt;
 //}
 
-int node_count()
+unsigned int node_count()			// SAK(uint)
 {
 	return (*LT).node_count;
 }
 
-int ser(NODE node)
+unsigned int ser(NODE node)			// SAK(uint)
 {
 #ifdef MEM_SER
 	return ((*LT).ser)[node];
@@ -387,7 +387,7 @@ int ser(NODE node)
 #endif
 }
 
-void set_ser(NODE node, int ser)
+void set_ser(NODE node, unsigned int ser)	// SAK(uint)
 {
 #ifdef MEM_SER
 	((*LT).ser)[node] = ser;
@@ -805,16 +805,17 @@ void set_extra_stat(NODE node, int stat)
 }
 
 int Function_Print_LinkTable(struct LinkTable *LT){
-	int i,j;
+	unsigned int i;							// SAK(uint)
+	int j;								// SAK(uint)
 	printf("Global.offset_SN:%d:\n",(*LT).offset);
 	// tq: printf("Global.SN:%d:\n",(*LT).node_count);
-	printf("Global.SN:%d:\n",(*LT).node_count);
+	printf("Global.SN:%u:\n",(*LT).node_count);			// SAK(uint)
 	// tq: for(i=0;i<(*LT).node_count;i++){
 	for(i=0;i<(*LT).node_count;i++){
 		// tq: printf("Each[%d].:H=%s:",i,(*LT).head[i]);
-		printf("Each[%d].:H=%s:",i,head(i));
+		printf("Each[%u].:H=%s:",i,head(i));			// SAK(uint)
 		// tq: printf(":Pa=%d:",(*LT).parent[i]);
-		printf(":Pa=%d:",parent(i));
+		printf(":Pa=%u:",parent(i));				// SAK(uint)
 		// printf(":Lv=%d:",(*LT).Lv[i]);	// SAK
 		// tq: printf(":Lv=%d:",(*LT).level[i]);	// SAK
 		printf(":Lv=%d:",level(i));	// SAK
@@ -826,7 +827,7 @@ int Function_Print_LinkTable(struct LinkTable *LT){
 		// tq: for(j=0;j<(*LT).child_count[i];j++){
 		for(j=0;j<child_count(i);j++){
 			// tq: printf(",%d",(*LT).children[i][j]);
-			printf(",%d",child(i,j));
+			printf(",%u",child(i,j));			// SAK(uint)
 		}
 		printf(":\n");
 	}
@@ -835,7 +836,7 @@ int Function_Print_LinkTable(struct LinkTable *LT){
 
 /* SAK pending -> closed */
 int Free_LinkTable(struct LinkTable *LT){	// SAK pending
-	int i;
+	unsigned int i;					// SAK(uint)
 	for(i=0;i<(*LT).node_count;i++){
 		free((*LT).head[i]);
 		//free((*LT).parent);

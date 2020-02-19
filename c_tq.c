@@ -348,7 +348,7 @@ int main(int argc, char **argv){
 	struct compile_options *_copt;
 	struct search_options *_sopt;
 	struct data_options *_dopt;
-	int node_count;
+	unsigned int node_count;		// SAK(uint)
 	// struct Tree *itop = NULL;		// SAK
 	// struct Tree *otop = NULL;		// SAK
 	// struct Tree *null_node = NULL;	// SAK
@@ -446,7 +446,8 @@ int main(int argc, char **argv){
 	init_tree();
 
 	/* for search */
-	null_node = Create_Node(-1,(*opt).buff);
+	// null_node = Create_Node(-1,(*opt).buff);		// SAK(uint)
+	null_node = Create_Node(1,(*opt).buff);			// SAK(uint)
         // tq: strcpy((*null_node).Head,"$NULL$");
 	strcpy(head(null_node),"$NULL$");
         // tq: (*null_node).LVself = -1;
@@ -523,7 +524,7 @@ int main(int argc, char **argv){
 	}
 
 	/* terminal report */
-	fprintf(stderr,"%d Nodes were operated.\n",node_count);
+	fprintf(stderr,"%u Nodes were operated.\n",node_count);		// SAK(uint)
 
 	/* check */
 	if((*opt).test > 0){

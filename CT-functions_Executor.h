@@ -1,5 +1,5 @@
 /* Executor */
-NODE Executor(NODE top, NODE refTree, NODE null_node, int C, int SN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, FILE *DATA, int EXEC_FLAG){
+NODE Executor(NODE top, NODE refTree, NODE null_node, int C, unsigned int SN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, FILE *DATA, int EXEC_FLAG){		// SAK (uint)
 		/* pre */
 		/** bind data (for input-form) */
 		if((EXEC_FLAG&1) == 1){

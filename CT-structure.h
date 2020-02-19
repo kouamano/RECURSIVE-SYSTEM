@@ -25,19 +25,19 @@ struct Tree {
 */
 
 //typedefs
-typedef int NODE;
+typedef unsigned int NODE;			// SAK (uint)
 
-#define	NO_NODE -1
+#define	NO_NODE 0				// SAK (uint) -1 -> 0
 
 //structure
 //// Conj-table
 struct LinkTable {
 	// global
 	int offset;		// SAK rename
-	int node_count;		// SAK rename
+	unsigned int node_count;		// SAK rename	// SAK (uint)
 	// each node
 #ifdef MEM_SER
-	int *ser;		// SAK rename
+	unsigned int *ser;		// SAK rename			// SAK (uint)
 #endif
 	NODE *parent;		// SAK NODE rename
 #ifdef MEM_LEVEL

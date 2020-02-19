@@ -9,13 +9,13 @@
 NODE Function_Print_Head(NODE, struct function_options *, struct compile_options *);
 
 // tq: struct Tree *Executor(struct Tree *, struct Tree *, struct Tree *, int, int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);
-NODE Executor(NODE , NODE , NODE , int, int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);
+NODE Executor(NODE , NODE , NODE , int, unsigned int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);		// SAK(uint)
 
 // tq: struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *, struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct options *, struct function_options *, struct compile_options *, int);
-NODE ExFunction_Recursive_Ser_MultiPrint(NODE , NODE (*)(NODE , struct function_options *, struct compile_options *), NODE (*)(NODE , struct function_options *, struct compile_options *), NODE (*)(NODE , struct function_options *, struct compile_options *, int),  NODE (*)(NODE , struct function_options *, struct compile_options *), struct options *, struct function_options *, struct compile_options *, int);
+NODE ExFunction_Recursive_Ser_MultiPrint(NODE , NODE (*)(NODE , struct function_options *, struct compile_options *), NODE (*)(NODE , struct function_options *, struct compile_options *), NODE (*)(NODE , struct function_options *, struct compile_options *, int),  NODE (*)(NODE , struct function_options *, struct compile_options *), struct options *, struct function_options *, struct compile_options *, unsigned int);	// SAK (uint)
 
 // tq: struct Tree *ExFunction_Recursive_Ser(struct Tree *, struct Tree *(*)(struct Tree *, int, struct options *), struct options *, struct function_options *, struct compile_options *, int , int);
-NODE ExFunction_Recursive_Ser(NODE , NODE (*)(NODE , int, struct options *), struct options *, struct function_options *, struct compile_options *, int , int);
+NODE ExFunction_Recursive_Ser(NODE , NODE (*)(NODE , unsigned int, struct options *), struct options *, struct function_options *, struct compile_options *, unsigned int , int);		// SAK (uint)
 
 // tq: struct Tree *ExFunction_Recursive(struct Tree *, struct Tree *(*)(struct Tree *, struct options *), struct options *, struct function_options *, struct compile_options *);
 NODE ExFunction_Recursive(NODE , NODE (*)(NODE , struct options *), struct options *, struct function_options *, struct compile_options *);
@@ -559,7 +559,7 @@ int Function_Assign_RefedValPtr(NODE node){	// %P
 	return(0);
 }
 // tq: struct Tree *Create_Node(int _ser, int H_size){
-NODE Create_Node(int _ser, int H_size){
+NODE Create_Node(unsigned int _ser, int H_size){		// SAK (uint)
 	// tq: struct Tree *tree;
 	NODE node;
 	// tq: if((tree = malloc(sizeof(struct Tree) * 1)) == NULL){
@@ -820,15 +820,15 @@ char *Interpret_Head(NODE node, struct compile_options *_copt){
 // tq: void Print_Smems(struct Tree *tree){
 void Print_Smems(NODE node){
 	// tq: printf(":SN=%d:",(*tree).ser);
-	printf(":SN=%d:",ser(node));
+	printf(":SN=%u:",ser(node));					// SAK (uint)
 	// tq: printf(":LVs=%d:",(*tree).LVself);
 	printf(":LVs=%d:",level(node));
 	// tq: printf(":Adr=%ld:",(long int)tree);
-	printf(":Adr=%d:",node);
+	printf(":Adr=%u:",node);					// SAK (uint)
 	// tq: printf(":PaAdr=%ld:",(long int)(*tree).Parent);
-	printf(":PaAdr=%d:",parent(node));
+	printf(":PaAdr=%u:",parent(node));				// SAK (uint)
 	// tq: printf(":Ref=%ld:",(long int)(*tree).RefNode);
-	printf(":Ref=%d:",ref_node(node));
+	printf(":Ref=%u:",ref_node(node));				// SAK (uint)
 	// tq: printf(":LT=%c:",(*tree).LabelType);
 	printf(":RT=%c:",label_type(node));
 	// tq: printf(":Lb=%d:",(*tree).Label);
@@ -877,8 +877,8 @@ void print_war(char C, NODE node, int level){
 	Print_Smems(node);
 }
 // tq: int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
-int Function_Print_Adj(NODE node, int nodes, struct options *_opt){
-	int i;
+unsigned int Function_Print_Adj(NODE node, int nodes, struct options *_opt){	// SAK (uint)
+	unsigned int i;								// SAK (uint)
 	int j;
 	for(i=0;i<nodes;i++){
 		// tq: if(i == (*tree).ser){
@@ -889,17 +889,17 @@ int Function_Print_Adj(NODE node, int nodes, struct options *_opt){
 				// tq: if((*tree).Parent != NULL){
 				if(parent(node) != NO_NODE){
 					// tq: printf("%d->",((*tree).Parent)->ser);
-					printf("%d=>",ser(parent(node)));
+					printf("%u=>",ser(parent(node)));		// SAK (uint)
 				}else{
 					printf("$NULL$=>");
 				}
 			}
 			// tq: printf(":%s:%d",(*tree).Head,i);
-			printf(":%s:%d",head(node),i);
+			printf(":%s:%u",head(node),i);					// SAK (uint)
 			// tq: if((*tree).RefNode != NULL){
 			if(ref_node(node) != NO_NODE){
 				// tq: printf("->%d",((*tree).RefNode)->ser);
-				printf("->%d",ser(ref_node(node)));
+				printf("->%u",ser(ref_node(node)));			// SAK (uint)
 			}
 			printf("]");
 		}
@@ -908,14 +908,14 @@ int Function_Print_Adj(NODE node, int nodes, struct options *_opt){
 			// tq: if(((*tree).Next[j])->ser == i){
 			if(ser(child(node,j)) == i){
 				// tq: printf("%d",((*tree).Next[j])->ser);
-				printf(":%d",ser(child(node,j)));
+				printf(":%u",ser(child(node,j)));			// SAK (uint)
 				break;
 			// tq: }else if((*tree).Next[j]->RefNode != NULL){
 			}else if(ref_node(child(node,j)) != NO_NODE){
 				// tq: if((*tree).Next[j]->RefNode->ser == i){
 				if(ser(ref_node(child(node,j))) == i){
 					// tq: printf("%d",(*tree).Next[j]->RefNode->ser);
-					printf("->%d",ser(ref_node(child(node,j))));
+					printf("->%u",ser(ref_node(child(node,j))));	// SAK (uint)
 				}
 			}
 		}
@@ -1554,11 +1554,11 @@ NODE Function_Print_Head(NODE node, struct function_options *_fopt, struct compi
 		if(conjugate(node) == 1 && child_no(node) > 1){
 			printf("+");
 			// tq: printf("%d:",(*tree).ser);
-			printf("%d:",ser(node));
+			printf("%u:",ser(node));			// SAK (uint)
 		}else{
 			printf("-");
 			// tq: printf("%d:",(*tree).ser);
-			printf("%d:",ser(node));
+			printf("%u:",ser(node));			// SAK (uint)
 		}
 	}
 	/* interpret */
@@ -1765,7 +1765,7 @@ NODE Function_Print_Head_X(NODE node, struct function_options *_fopt, struct com
 // tq: struct Tree *Function_Print_Head_SN(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 NODE Function_Print_Head_SN(NODE node, struct function_options *_fopt, struct compile_options *_copt){
 	// tq: printf("%d",(*tree).ser);
-	printf("%d",ser(node));
+	printf("%u",ser(node));				// SAK (uint)
 	// tq: return(tree);
 	return(node);
 }
@@ -1804,7 +1804,7 @@ NODE ExFunction_Recursive(NODE node, NODE (*e_function)(NODE , struct options *)
 	return(out);
 }
 // tq: struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int, struct options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser, int exec){
-NODE ExFunction_Recursive_Ser(NODE node, NODE (*e_function)(NODE , int, struct options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser, int exec){
+NODE ExFunction_Recursive_Ser(NODE node, NODE (*e_function)(NODE , unsigned int, struct options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, unsigned int _ser, int exec){		// SAK (uint)
 	if(exec == 0){
 		return(NO_NODE);
 	}
@@ -1825,7 +1825,7 @@ NODE ExFunction_Recursive_Ser(NODE node, NODE (*e_function)(NODE , int, struct o
 	return(out);
 }
 // tq: struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree *(*conj_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*head_function)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*bopen_function)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*bclose_function)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
-NODE ExFunction_Recursive_Ser_MultiPrint(NODE node, NODE (*conj_function)(NODE , struct function_options *, struct compile_options *), NODE (*head_function)(NODE , struct function_options *, struct compile_options *), NODE (*bopen_function)(NODE , struct function_options *, struct compile_options *, int),  NODE (*bclose_function)(NODE , struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
+NODE ExFunction_Recursive_Ser_MultiPrint(NODE node, NODE (*conj_function)(NODE , struct function_options *, struct compile_options *), NODE (*head_function)(NODE , struct function_options *, struct compile_options *), NODE (*bopen_function)(NODE , struct function_options *, struct compile_options *, int),  NODE (*bclose_function)(NODE , struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, unsigned int _ser){		// SAK (uint)
 	int i;
 	// tq: struct Tree *out = tree;
 	NODE out = node;
@@ -1871,7 +1871,8 @@ NODE ExFunction_UpRecursive(NODE node, NODE (*e_function)(NODE ), struct options
 	// tq: parent = (*tree).Parent;
 	par = parent(node);
 	// tq: if((*tree).ser == -1 || (*parent).ser == -1 || e_function == NULL){
-	if(ser(node) == -1 || ser(par) == -1 || e_function == NULL){
+	// if(ser(node) == -1 || ser(par) == -1 || e_function == NULL){		// SAK(uint)
+	if(ser(node) == 1 || ser(par) == 1 || e_function == NULL){
 		// tq: return(NULL);
 		return(NO_NODE);
 	}
