@@ -155,6 +155,7 @@ struct options {
 	char *data;
         int buff;
 	int data_buff;
+	unsigned int bulk;			// SAK : bulk alloc size
 	int Pin;
 	int Pout;
 	int Pprod;

@@ -2,6 +2,8 @@
 #define MEM_VALUE_COUNT
 #define MEM_INDICATOR_POS
 
+#define BULK_SIZE	1000000
+
 #define TQ
 #include <stdio.h>
 #include <stdlib.h>
@@ -88,6 +90,7 @@ void init_options(struct options *opt){
 	(*opt).test = 0;
 	(*opt).buff = BUFF_LEN;
 	(*opt).data_buff = BUFF_LEN;
+	(*opt).bulk = BULK_SIZE;		// SAK : default bulk size
 	(*opt).in[0] = '\0';
 	(*opt).out[0] = '\0';
 	(*opt).data[0] = '\0';
@@ -151,6 +154,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"buff=%d",&(*opt).buff);
 		}else if(strncmp(optv[i],"data_buff=",9) == 0){
 			sscanf(optv[i],"data_buff=%d",&(*opt).data_buff);
+		}else if(strncmp(optv[i],"bulk=",5) == 0){			// SAK : bulk size
+			sscanf(optv[i],"bulk=%d",&(*opt).bulk);			//
 		}else if(strncmp(optv[i],"w=",2) == 0){
 			sscanf(optv[i],"w=%d",&(*opt).war);
 		}else if(strncmp(optv[i],"-hF",3) == 0){
@@ -444,7 +449,7 @@ int main(int argc, char **argv){
 	// struct LinkTable* lt = Create_LinkTable(0);	// SAK pending error check -> close
 	// setLinkTablePtr(lt);				// SAK pending -> close
 	
-	init_tree();
+	init_tree((*opt).bulk);				// SAK tree initialize, set bulk size
 
 	/* for search */
 	// null_node = Create_Node(-1,(*opt).buff);		// SAK(uint)

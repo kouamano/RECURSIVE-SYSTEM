@@ -44,6 +44,7 @@ void help(void){
 	printf("  * out : set output-form file name (length < 1024).\n");
 	printf("  * data : CSV data file name.\n");
 	printf("  * data_buff : set integer for buffer size to read data.\n");
+	printf("  * bulk : set integer for size to allocate bulk memory.\n");		// SAK : bul size
 	printf("  * war : set integer for warnnig level.\n");
 }
 void function_help(void){
