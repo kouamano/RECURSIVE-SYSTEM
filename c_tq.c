@@ -113,7 +113,7 @@ void init_function_options(struct function_options *fopt){
 	(*fopt).f_print_production = 0;
 	(*fopt).f_print_status = 0;
 	(*fopt).f_print_hierarchy = 0;
-	(*fopt).f_print_hierarchy_status = 0;
+	//(*fopt).f_print_hierarchy_status = 0;
 	(*fopt).f_print_test = 0;
 	(*fopt).f_print_self_stat = 0;
 	(*fopt).f_skipOnce = 0;
@@ -215,9 +215,10 @@ void get_function_options(int optc, char **optv, struct function_options *fopt){
 		}else if(strncmp(optv[i],"-FMa",4) == 0){
 			(*fopt).f_print_Ma = 1;
 			(*fopt).f_counter++;
-		}else if(strncmp(optv[i],"-Fhst",4) == 0 && strlen(optv[i]) == 5){
+		/*}else if(strncmp(optv[i],"-Fhst",4) == 0 && strlen(optv[i]) == 5){
 			(*fopt).f_print_hierarchy_status = 1;
 			(*fopt).f_counter++;
+		*/
 		}else if(strncmp(optv[i],"-Fh",3) == 0 && strlen(optv[i]) == 3){
 			(*fopt).f_print_hierarchy = 1;
 			(*fopt).f_counter++;
