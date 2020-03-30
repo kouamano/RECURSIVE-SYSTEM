@@ -12,9 +12,12 @@ void status(void){
 	printf("   %s\n",cdate);
 }
 void help(void){
+	printf("=========================================================\n");
+	printf(" tq: A language for tree and graph structure description \n");
+	printf("=========================================================\n");
 	printf("\n");
 	printf("USAGE\n");
-	printf("=====\n");
+	printf("*****\n");
 	printf("\n");
 	printf(" tq.o [-h|-hF|-hC|-hS|-hD|-hE] [-s] [-c] [-test] buff=<(int)size> in=<file name of input form> out=<file name of outout form> data=<data file> data_buff=<(int)size> w=<warnning level> -F<x> -C<x> -P<x>.\n");
 	printf("\n");
@@ -41,6 +44,7 @@ void help(void){
 	printf("  * out : set output-form file name (length < 1024).\n");
 	printf("  * data : CSV data file name.\n");
 	printf("  * data_buff : set integer for buffer size to read data.\n");
+	printf("  * bulk : set integer for size to allocate bulk memory.\n");		// SAK : bul size
 	printf("  * war : set integer for warnnig level.\n");
 }
 void function_help(void){
@@ -57,7 +61,7 @@ void function_help(void){
 	printf("  * -FMa : prints Adjacency matrix form.\n");
 	printf("  * -Fh : prints hierarchical-form.\n");
 	printf("  * -Fst : prints import status.\n");
-	printf("  * -Fhst : prints import status with hierarchical-form.\n");
+	//printf("  * -Fhst : prints import status with hierarchical-form.\n");
 	printf("  * -Ftest : prints from test function.\n");
 }
 void compile_help(void){
@@ -74,7 +78,8 @@ void search_help(void){
 	printf("\n");
 	printf(" - Search options\n");
 	printf("\n");
-	printf("  * Sh=<head> (Under construction).\n");
+	printf("  * St=<tree pattern> (Under construction).\n");
+	printf("  * Sl=<level> (Under construction).\n");
 	printf("  * Sp=<position>.\n");
 }
 void data_help(void){
@@ -86,16 +91,16 @@ void data_help(void){
 void language_help(void){
 	printf("\n");
 	printf("LANGUAGE\n");
-	printf("========\n");
+	printf("********\n");
 	printf("\n");
 	printf("  | LANGUAGE :: <head>|<tree>\n");
 	printf("  | <head> ::= <label><reference><operator><name><bind>\n");
-	printf("  | <tree> ::= <head>('('(<head>|<tree>)(','(<head>|<tree>)*')')+\n");
+	printf("  | <tree> ::= <head>('('(<head>|<tree>)(','(<head>|<tree>))*')')*\n");
 }
 void option_header(void){
 	printf("\n");
 	printf("OPTIONS\n");
-	printf("=======\n");
+	printf("*******\n");
 }
 void list_builtins(void){
 	printf("\n");
@@ -112,10 +117,11 @@ void list_builtins(void){
 	printf("  * $U$ : <operator>: unpack single level.\n");
 	printf("  * $UU$ : <operator>: unpack tree (test ver.).\n");
 	printf("  * $PI$ : <operator>: inner production for binded data.\n");
-	printf("  * $$ : <name> prefix: dictionary reference (term ID).\n");
-	printf("  * $X$ : <name> prefix: dictionary reference (term string).\n");
-	printf("  * $$$ : <name> prefix: dictionary reference (class ID).\n");
-	printf("  * $$X$ : <name> prefix: dictionary reference (class string).\n");
+	printf("  * $&$ : <operator>: composition (of functions).\n");
+	printf("  * $$<n> : <prefix>: dictionary reference (term ID).\n");
+	printf("  * $X$<str> : <prefix>: dictionary reference (term string).\n");
+	printf("  * $$$<n> : <prefix>: dictionary reference (class ID).\n");
+	printf("  * $$X$<str> : <prefix>: dictionary reference (class string).\n");
 	printf("  * $NULL$ : <name>: null object.\n");
 	printf("  * @(<string>) : <name>: binded data.\n");
 	printf("  * [<n>] : <bind>: data bind.\n");
@@ -124,7 +130,7 @@ void list_builtins(void){
 void put_examples(void){
 	printf("\n");
 	printf("EXAMPLES\n");
-	printf("========\n");
+	printf("********\n");
 	printf("\n");
 	printf("ex.1::\n");
 	printf("\n");
@@ -147,7 +153,7 @@ void put_examples(void){
 	printf(" $ echo 'A(B(#1C),$#1(D))'\n");
 	printf("  => A(B(#1C),$#1@#1C(D))\n");
 	printf("                  ^^^^^^^\n");
-	printf("                  Binding referenced tree.\n");
+	printf("                  Binded referenced-tree.\n");
 	printf("\n");
 	printf("ex.3 (creating graph)::\n");
 	printf("\n");
@@ -195,7 +201,7 @@ void put_examples(void){
 	printf("  => (((Length,Quantity(1,mm)),(Weight,Quantity(2,kg))),((Length,Quantity(322,mm)),(Weight,Quantity(4,kg))),((Length,Quantity(5,mm)),(Weight,Quantity(68,kg))))\n");
 	//printf("ex.4 (binding and reforming CSV)::\n");
 	printf("\n");
-	printf(" [over write]\n");
+	printf(" [over write (1)]\n");
 	printf("\n");
 	printf(" test.csv::\n");
 	printf("\n");
@@ -212,10 +218,44 @@ void put_examples(void){
 	printf(" out2.ddl::\n");
 	printf("\n");
 	printf("  $PI$(@(L,W),Quantity($#4,$#2))\n");
+	printf("       ^^^^^^\n");
+	printf("       Binding data (distribution)\n");
 	printf("\n");
 	printf(" $ tq.o in=in.ddf out=out2.ddl data=test.csv -FT -Pprod -C\n");
 	printf("  => (((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(322,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(68,kg))))\n");
-
+	printf("\n");
+	printf(" [over write (2)]\n");
+	printf("\n");
+	printf(" DDL file::\n");
+	printf("\n");
+	printf("  $PI$((L,W),Quantity($#4,$#2))\n");
+	printf("       ^^^^^\n");
+	printf("       Binding data (bulk)\n");
+	printf("\n");
+	printf("NIMS Standard SpreadSheet (NS3)\n");
+	printf("*******************************\n");
+	printf("\n");
+	printf("Definition:Cell::\n");
+	printf("=================\n");
+	printf("\n");
+	printf(" <Cell>:: '('<item-name>,Quantity'('<value>,<unit>')'')'\n");
+	printf("\n");
+	printf(" OR\n");
+	printf("\n");
+	printf(" <Cell>:: '('<item-name>,<type>'('<value>')'')'\n");
+	printf("\n");
+	printf("Definition:Line (corresponds to a sample)::\n");
+	printf("===========================================\n");
+	printf("\n");
+	printf(" <Line>:: '('<Cell>, ... ')'\n");
+	printf("\n");
+	printf("Definition:Dataset::\n");
+	printf("====================\n");
+	printf("\n");
+	printf(" <Dataset>:: '('<Line>, ... ')'\n");
+	printf("\n");
+	printf(" NS3:: <Dataset>\n");
+	printf("\n");
 }
 
 /* checking */
@@ -256,7 +296,7 @@ void check_function_options(struct function_options *fopt){
 	printf("  * opt.FMa:%d:\n",(*fopt).f_print_Ma);
 	printf("  * opt.Fst:%d:\n",(*fopt).f_print_status);
 	printf("  * opt.Fh:%d:\n",(*fopt).f_print_hierarchy);
-	printf("  * opt.Fhst:%d:\n",(*fopt).f_print_hierarchy_status);
+	//printf("  * opt.Fhst:%d:\n",(*fopt).f_print_hierarchy_status);
 	printf("  * opt.Ftest:%d:\n",(*fopt).f_print_test);
 }
 void check_compile_options(struct compile_options *copt){

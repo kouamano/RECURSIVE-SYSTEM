@@ -9,7 +9,7 @@
 NODE Function_Print_Head(NODE, struct function_options *, struct compile_options *);
 
 // tq: struct Tree *Executor(struct Tree *, struct Tree *, struct Tree *, int, int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);
-NODE Executor(NODE , NODE , NODE , int, unsigned int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);		// SAK(uint)
+//NODE Executor(NODE , NODE , NODE , int, unsigned int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);		// SAK(uint)
 
 // tq: struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *, struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct options *, struct function_options *, struct compile_options *, int);
 NODE ExFunction_Recursive_Ser_MultiPrint(NODE , NODE (*)(NODE , struct function_options *, struct compile_options *), NODE (*)(NODE , struct function_options *, struct compile_options *), NODE (*)(NODE , struct function_options *, struct compile_options *, int),  NODE (*)(NODE , struct function_options *, struct compile_options *), struct options *, struct function_options *, struct compile_options *, unsigned int);	// SAK (uint)
@@ -409,7 +409,7 @@ NODE Search_Recursive_BindNode(NODE top, int *bn_count, NODE *bn_table){
 		// tq: node_table = realloc(node_table,(sizeof(struct Tree *) * (*node_count + 2)));
 		bn_table = realloc(bn_table,(sizeof(NODE ) * (*bn_count + 2)));
 		if(bn_table == NULL){
-			perror("[Fail]realloc@Function_Recursive_Search_BindNode");
+			perror("[Fail]realloc@Search_Recursive_BindNode");
 			exit(1);
 		}
 		bn_table[(*bn_count)] = current;
@@ -1300,7 +1300,7 @@ int Get_nvalList(NODE node, int *nvalList, int nval_start){
 		}
 	nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
 	if(nvalList == NULL){
-		perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
+		perror("[Fail]realloc@Get_nvalList\n");
 		exit(1);
 	}
 	nvalList[nval_count] = nval;
@@ -1318,7 +1318,7 @@ int Get_nvalList(NODE node, int *nvalList, int nval_start){
 		}
 		nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
 		if(nvalList == NULL){
-			perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
+			perror("[Fail]realloc@Get_nvalList\n");
 			exit(1);
 		}
 		nvalList[nval_count] = nval;
@@ -1339,7 +1339,7 @@ int Get_nvalList(NODE node, int *nvalList, int nval_start){
 			}
 			nvalList = realloc(nvalList,sizeof(int) * (nval_count + 1));
 			if(nvalList == NULL){
-				perror("[Fail]realloc@Function_Recursive_Get_nvalList\n");
+				perror("[Fail]realloc@Get_nvalList\n");
 				exit(1);
 			}
 			nvalList[nval_count] = nval;
@@ -1459,7 +1459,7 @@ NODE Function_Recursive_Print_nthVal(NODE node, int nth, struct function_options
 }
 /** Head */
 // tq: struct Tree *Function_RecursiveCyclic_Print_IProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%P
-NODE Function_RecursiveCyclic_Print_IProductVal(NODE node, struct function_options *_fopt, struct compile_options *_copt){ //%P
+NODE Function_Cyclic_Print_IProductVal(NODE node, struct function_options *_fopt, struct compile_options *_copt){ //%P
 	/* Function_Print_Head の特殊型 */
 	/* 子要素も含めてprint */
 	int i;	// for max_nval
@@ -1468,7 +1468,7 @@ NODE Function_RecursiveCyclic_Print_IProductVal(NODE node, struct function_optio
 	int *nval_list = NULL;
 	int nval_count = 0;
 	if((nval_list = malloc(sizeof(int) * 1)) == NULL){
-		perror("[Fail]malloc@Function_RecursiveCyclic_Print_IProductVal\n");
+		perror("[Fail]malloc@Function_Cyclic_Print_IProductVal\n");
 		exit(1);
 	}
 	// tq: max_nval = Get_nvalMax(tree);
@@ -1850,7 +1850,7 @@ NODE ExFunction_Recursive_Ser_MultiPrint(NODE node, NODE (*conj_function)(NODE ,
 	// tq: if(((*tree).extra_stat&2) == 2 && (*_copt).c_counter > 0){
 	if((extra_stat(node)&2) == 2 && (*_copt).c_counter > 0){
 		// tq: Function_RecursiveCyclic_Print_IProductVal(tree,_fopt,_copt);
-		Function_RecursiveCyclic_Print_IProductVal(node,_fopt,_copt);
+		Function_Cyclic_Print_IProductVal(node,_fopt,_copt);
 	}else{
 		// tq: for(i=0;i<(*tree).NextCount;i++){
 		for(i=0;i<child_count(node);i++){

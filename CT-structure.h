@@ -21,6 +21,7 @@ struct Tree {
 	int extra_stat;
 		//1: $~~,$~ -> avoid compile;	2: $PI$ -> skip Next
 		//4: $`` -> quating tree;	8: $U$
+		//16: $UU$
 };
 */
 
@@ -154,6 +155,7 @@ struct options {
 	char *data;
         int buff;
 	int data_buff;
+	unsigned int bulk;			// SAK : bulk alloc size
 	int Pin;
 	int Pout;
 	int Pprod;
@@ -178,7 +180,7 @@ struct function_options {
         int f_print_production;
         int f_print_status;
         int f_print_hierarchy;
-        int f_print_hierarchy_status;
+        // int f_print_hierarchy_status;
         int f_print_test;
 	int f_print_self_stat;
 

@@ -1,5 +1,7 @@
 #include <string.h>
 
+static unsigned int _bulk;
+
 static struct LinkTable* LT;
 
 struct LinkTable *Alloc_Link_V(struct LinkTable *LT){
@@ -125,8 +127,7 @@ struct LinkTable *Alloc_Link_V(struct LinkTable *LT){
 NODE Add_Link_V(struct LinkTable *LT, NODE _parent){				// SAK(uint)
 	// int size = (*LT).SN;		SAK pending -> close
 	unsigned int size = (*LT).node_count;		// SAK			// SAK(uint)
-	// int bulk = (*opt).bulk_size;		// SAK pending
-	int bulk = 1000000;
+	int bulk = _bulk;
 
 	if((*LT).node_count % bulk == 0) {
 #ifdef MEM_SER
@@ -345,8 +346,10 @@ struct LinkTable *Create_LinkTable(int _offset){
 
 // initialize
 //
-void init_tree()
+void init_tree(unsigned int bulk)
 {
+	_bulk = bulk;
+
 	LT = Create_LinkTable(0);
 
 	if(LT == NULL) {
