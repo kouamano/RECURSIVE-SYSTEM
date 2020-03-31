@@ -529,9 +529,9 @@ int Function_Assign_RefedValPtr(NODE node){	// %P
 		return(0);
 	}
 	// tq: if((*tree).nval > 0){
-	if(value_count(node) > 0){
+	if(value_count2(node) > 0){
 		// tq: if(((*tree).valPtr = malloc(sizeof(int) * (*tree).nval)) == NULL){
-		if(set_value_poses_ptr(node,malloc(sizeof(int) * value_count(node))) == NULL){
+		if(set_value_poses_ptr(node,malloc(sizeof(int) * value_count2(node))) == NULL){
 			perror("[Fail]malloc@Function_Assign_RefedValPtr().\n");
 			exit(1);
 		}
@@ -848,7 +848,7 @@ void Print_Smems(NODE node){
 	if(value_poses(node) != NULL){
 		int i;
 		// tq: for(i=0;i<(*tree).nval;i++){
-		for(i=0;i<value_count(node);i++){
+		for(i=0;i<value_count2(node);i++){
 			// tq: printf(",%d",(*tree).valPtr[i]);
 			printf(",%d",value_pos(node,i));
 		}
@@ -2058,7 +2058,7 @@ void bind_data_1st_path(NODE node, struct Stream* in)
 	int size = (int)(long)(values_str(node));		// bufer suze
 
 	skip_value(&size, in);
-	set_value_count(node, value_count(node)+1);	// increment value counter
+	set_value_count(node, value_count2(node)+1);	// increment value counter
 	set_values_str_ptr(node, (char*)(long)(size));		// increment byte counter
 }
 
@@ -2085,7 +2085,7 @@ void set_value(char* buff, int* s_pos, struct Stream* in)
 void bind_data_2nd_path(NODE node, struct Stream* in)		// process next 1 data item
 {
 	if(value_poses(node) == NULL) {	// 1st data item
-		if(set_value_poses_ptr(node, malloc(sizeof(int) * (value_count(node)+1))) == NULL) {
+		if(set_value_poses_ptr(node, malloc(sizeof(int) * (value_count2(node)+1))) == NULL) {
 			perror("[]malloc@put_value2.\n");
 			exit(1);
 		} else {
@@ -2102,8 +2102,8 @@ void bind_data_2nd_path(NODE node, struct Stream* in)		// process next 1 data it
 	int s_pos = strlen(values_str(node));			// /SAK pending  peformance
 
 	set_value(values_str(node), &s_pos, in);
-	set_value_pos(node, value_count(node), s_pos);
-	set_value_count(node, value_count(node)+1);		// increment value counter
+	set_value_pos(node, value_count2(node), s_pos);
+	set_value_count(node, value_count2(node)+1);		// increment value counter
 }
 
 extern bool bind_node(NODE, struct Stream*, void (*)(NODE, struct Stream*));

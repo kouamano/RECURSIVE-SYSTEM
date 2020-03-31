@@ -691,6 +691,11 @@ char* set_dimension_str_ptr(NODE node, char* str)
 #endif
 }
 
+int value_count2(NODE node)
+{
+		return ((*LT).value_count)[node];
+}
+
 int value_count(NODE node)
 {
 #ifdef MEM_VALUE_COUNT
