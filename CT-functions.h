@@ -405,7 +405,7 @@ NODE Search_Recursive_BindNode(NODE top, int *bn_count, NODE *bn_table){
 	NODE current = NO_NODE;
 	current = top;
 	// tq: if((*current).nval > 0){
-	if(value_count(current) > 0){
+	if(value_count2(current) > 0){
 		// tq: node_table = realloc(node_table,(sizeof(struct Tree *) * (*node_count + 2)));
 		bn_table = realloc(bn_table,(sizeof(NODE ) * (*bn_count + 2)));
 		if(bn_table == NULL){
@@ -462,7 +462,7 @@ int Function_Bind_Data(FILE *DATA, NODE node, struct options *_opt, struct funct
 				delim_count++;
 			}
 			// tq: if(bn_table[node_count]->nval == delim_count && ESC == 0){
-			if(value_count(bn_table[node_count]) == delim_count && ESC == 0){
+			if(value_count2(bn_table[node_count]) == delim_count && ESC == 0){
 				buff[buff_ptr] = '\0';
 				buff_len = strlen(buff);
 				for(i=0;i<buff_len;i++){
@@ -840,7 +840,7 @@ void Print_Smems(NODE node){
 	// tq: printf(":D=%s:",(*tree).dimstr);
 	printf(":D=%s:",dimension_str(node));
 	// tq: printf(":nval=%d:",(*tree).nval);
-	printf(":nval=%d:",value_count(node));
+	printf(":nval=%d:",value_count2(node));
 	// tq: printf(":vstr=%s:",(*tree).valstr);
 	printf(":vstr=%s:",values_str(node));
 	printf(":vptr=");
@@ -1384,7 +1384,7 @@ NODE Print_nthVal(NODE node, int nth){
 	// tq: if((*tree).valstr != NULL && (*tree).valPtr != NULL){
 	if(values_str(node) != NULL && value_poses(node) != NULL){
 		// tq: p = nth%(*tree).nval;
-		p = nth%value_count(node);
+		p = nth%value_count2(node);
 		// tq: print_singleVal((*tree).valstr+(*tree).valPtr[p]);
 		print_singleVal(values_str(node)+value_pos(node,p));
 	}
@@ -1400,7 +1400,7 @@ NODE Function_Recursive_Print_nthVal(NODE node, int nth, struct function_options
 		printf(",");
 	}
 	// tq: if((*tree).nval > 0){
-	if(value_count(node) > 0){
+	if(value_count2(node) > 0){
 		// tq: Print_nthVal(tree,nth);
 		Print_nthVal(node,nth);
 		conjR = 1;
@@ -1426,7 +1426,7 @@ NODE Function_Recursive_Print_nthVal(NODE node, int nth, struct function_options
 	// tq: if((*tree).RefNode != NULL){
 	if(ref_node(node) != NO_NODE){
 		// tq: if((*tree).RefNode->nval > 0){
-		if(value_count(ref_node(node)) > 0){
+		if(value_count2(ref_node(node)) > 0){
 			if(conjR > 0){
 				printf(",");
 			}
