@@ -830,7 +830,11 @@ void Print_Smems(NODE node){
 	// tq: printf(":Ref=%ld:",(long int)(*tree).RefNode);
 	printf(":Ref=%u:",ref_node(node));				// SAK (uint)
 	// tq: printf(":LT=%c:",(*tree).LabelType);
-	printf(":RT=%c:",label_type(node));
+	if(label_type(node) != 0){
+		printf(":RT=%c:",label_type(node));
+	}else{
+		printf(":RT=:",label_type(node));
+	}
 	// tq: printf(":Lb=%d:",(*tree).Label);
 	printf(":Lb=%d:",label(node));
 	// tq: printf(":Hi=%d:",(*tree).IndicatorPtr);
