@@ -14,7 +14,7 @@ git diff cq:README.unpack cq_debug:README.unpack
 git diff cq:README.ken cq_debug:README.ken
 git diff cq:README.chem cq_debug:README.chem
 
-# tq
+# tq/cq
 echo '>> source code'
 git diff cq:tq.c cq_debug:tq.c
 git diff cq:T-definition.h cq_debug:T-definition.h
@@ -22,6 +22,9 @@ git diff cq:T-structure.h cq_debug:T-structure.h
 git diff cq:T-functions.h cq_debug:T-functions.h
 git diff cq:T-functions_Executor.h cq_debug:T-functions_Executor.h
 git diff cq:T-functions_imex.h cq_debug:T-functions_imex.h
+git diff cq:CT-structure.h cq_debug:CT-structure.h
+git diff cq:CT-functions.h cq_debug:CT-functions.h
+git diff cq:CT-functions_Executor.h cq_debug:CT-functions_Executor.h
 
 # test
 echo '>> test code'
