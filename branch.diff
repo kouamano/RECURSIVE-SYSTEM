@@ -1,69 +1,36 @@
-echo ==tq==
+echo ==cq==
 
 # VS. cq
-echo '> VS. cq'
+echo '> VS. cq_debug'
 # self
 echo '>> self'
-git diff tq:branch.diff cq:branch.diff
+git diff cq:branch.diff cq_debug:branch.diff
 
 # README
 echo '>> Readme'
-git diff tq:README.exam cq:README.exam
-git diff tq:README.md cq:README.md
-git diff tq:README.unpack cq:README.unpack
-git diff tq:README.ken cq:README.ken
-git diff tq:README.chem cq:README.chem
+git diff cq:README.exam cq_debug:README.exam
+git diff cq:README.md cq_debug:README.md
+git diff cq:README.unpack cq_debug:README.unpack
+git diff cq:README.ken cq_debug:README.ken
+git diff cq:README.chem cq_debug:README.chem
 
 # tq
 echo '>> source code'
-git diff tq:tq.c cq:tq.c
-git diff tq:T-definition.h cq:T-definition.h
-git diff tq:T-structure.h cq:T-structure.h
-git diff tq:T-functions.h cq:T-functions.h
-git diff tq:T-functions_Executor.h cq:T-functions_Executor.h
-git diff tq:T-functions_imex.h cq:T-functions_imex.h
+git diff cq:tq.c cq_debug:tq.c
+git diff cq:T-definition.h cq_debug:T-definition.h
+git diff cq:T-structure.h cq_debug:T-structure.h
+git diff cq:T-functions.h cq_debug:T-functions.h
+git diff cq:T-functions_Executor.h cq_debug:T-functions_Executor.h
+git diff cq:T-functions_imex.h cq_debug:T-functions_imex.h
 
 # test
 echo '>> test code'
-git diff tq:DimensionDefinitionLanguage/conv-test.script cq:DimensionDefinitionLanguage/conv-test.script
-git diff tq:DimensionDefinitionLanguage/conv2-test.script cq:DimensionDefinitionLanguage/conv2-test.script
+git diff cq:DimensionDefinitionLanguage/conv-test.script cq_debug:DimensionDefinitionLanguage/conv-test.script
+git diff cq:DimensionDefinitionLanguage/conv2-test.script cq_debug:DimensionDefinitionLanguage/conv2-test.script
 
 # compile
 echo '>> compile'
-git diff tq:compile-all.sh cq:compile-all.sh
-git diff tq:DimensionDefinitionLanguage/compile_checker.sh cq:DimensionDefinitionLanguage/compile_checker.sh
+git diff cq:compile-all.sh cq_debug:compile-all.sh
+git diff cq:DimensionDefinitionLanguage/compile_checker.sh cq_debug:DimensionDefinitionLanguage/compile_checker.sh
 
-
-# VS. tq_base
-echo '> VS. tq_base'
-# self
-echo '>> self'
-git diff tq:branch.diff tq_base:branch.diff
-
-# README
-echo '>> Readme'
-git diff tq:README.exam tq_base:README.exam
-git diff tq:README.md tq_base:README.md
-git diff tq:README.unpack tq_base:README.unpack
-git diff tq:README.ken tq_base:README.ken
-git diff tq:README.chem tq_base:README.chem
-
-# tq
-echo '>> source code'
-git diff tq:tq.c tq_base:tq.c
-git diff tq:T-definition.h tq_base:T-definition.h
-git diff tq:T-structure.h tq_base:T-structure.h
-git diff tq:T-functions.h tq_base:T-functions.h
-git diff tq:T-functions_Executor.h tq_base:T-functions_Executor.h
-git diff tq:T-functions_imex.h tq_base:T-functions_imex.h
-
-# test
-echo '>> test code'
-git diff tq:DimensionDefinitionLanguage/conv-test.script tq_base:DimensionDefinitionLanguage/conv-test.script
-git diff tq:DimensionDefinitionLanguage/conv2-test.script tq_base:DimensionDefinitionLanguage/conv2-test.script
-
-# compile
-echo '>> compile'
-git diff tq:compile-all.sh tq_base:compile-all.sh
-git diff tq:DimensionDefinitionLanguage/compile_checker.sh tq_base:DimensionDefinitionLanguage/compile_checker.sh
 
