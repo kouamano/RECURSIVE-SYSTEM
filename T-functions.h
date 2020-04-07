@@ -120,6 +120,7 @@ int Analyze_Label(struct Tree *tree){ // for labeling
 			exit(1);
 		}
 		strncpy(labelnumstr,(*tree).Head+labelreadptr,labelnumlen);
+		labelnumstr[labelnumlen] = '\0';
 		sscanf(labelnumstr,"%d",&(*tree).Label);
 		free(labelnumstr);
 		labeled++;
