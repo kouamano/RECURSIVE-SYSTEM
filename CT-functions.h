@@ -152,6 +152,7 @@ int Analyze_Label(NODE node){ // for labeling
 		}
 		// tq: strncpy(labelnumstr,(*tree).Head+labelreadprt,labelnumlen);
 		strncpy(labelnumstr,head(node)+labelreadptr,labelnumlen);
+		labelnumstr[labelnumlen] = '\0';
 		// tq: sscanf(labelnumstr,"%d",&(*tree).Label);
 		int wk;                                 // SAK
 		sscanf(labelnumstr,"%d",&wk);           // SAK
