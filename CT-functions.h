@@ -834,7 +834,7 @@ void Print_Smems(NODE node){
 	if(label_type(node) != 0){
 		printf(":RT=%c:",label_type(node));
 	}else{
-		printf(":RT=:",label_type(node));
+		printf(":RT=:");
 	}
 	// tq: printf(":Lb=%d:",(*tree).Label);
 	printf(":Lb=%d:",label(node));
