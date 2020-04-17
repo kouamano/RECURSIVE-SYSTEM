@@ -509,8 +509,8 @@ if((*_copt).c_counter > 0){
 	}
 	if(stat > 0){
 		// tq: struct Tree *addr = NULL;
-		NODE addr = NO_NODE;
-		addr = Function_Recursive_SearchBind_LabelNode(referred,target_type,target_label,binded);
+		//NODE addr = NO_NODE;
+		Function_Recursive_SearchBind_LabelNode(referred,target_type,target_label,binded);
 	}
 	// tq: for(i=0;i<(*binded).NextCount;i++){
 	for(i=0;i<child_count(binded);i++){
@@ -1546,7 +1546,7 @@ NODE Function_Print_Head(NODE node, struct function_options *_fopt, struct compi
 	//NODE ins_head = NO_NODE;
 	char target_type = '\0';
 	int target_label = -1;
-	int prg = 0;
+	//int prg = 0;
 	/* print hierarchy */
 	if((*_fopt).f_print_hierarchy == 1 && (*_fopt).f_print_self_stat == 1){
 		int i;
@@ -1597,7 +1597,7 @@ NODE Function_Print_Head(NODE node, struct function_options *_fopt, struct compi
 	}
 	/* print ref node */
 	// tq: prg = get_ref((*tree).Head+(*tree).IndicatorPtr,&target_type,&target_label);
-	prg = get_ref(head(node)+indicator_pos(node),&target_type,&target_label);
+	get_ref(head(node)+indicator_pos(node),&target_type,&target_label);
 	// tq: if((*tree).RefNode != NULL){
 	if(ref_node(node) != NO_NODE){
 		(*_fopt).f_print_self_stat = 0;
