@@ -677,7 +677,7 @@ void Print_Smems(struct Tree *tree){
 	if((*tree).LabelType != 0){
 		printf(":RT=%c:",(*tree).LabelType);
 	}else{
-		printf(":RT=:",(*tree).LabelType);
+		printf(":RT=:");
 	}
 	printf(":Lb=%d:",(*tree).Label);
 	printf(":Hptr=%d:",(*tree).IndicatorPtr);
