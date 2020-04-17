@@ -427,8 +427,8 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred,
 		(*binded).IndicatorPtr = (*binded).IndicatorPtr + stat;
 	}
 	if(stat > 0){
-		struct Tree *addr = NULL;
-		addr = Function_Recursive_SearchBind_LabelNode(referred,target_type,target_label,binded);
+		//struct Tree *addr = NULL;
+		Function_Recursive_SearchBind_LabelNode(referred,target_type,target_label,binded);
 	}
 	for(i=0;i<(*binded).NextCount;i++){
 		Function_Recursive_Bind_RefNode((*binded).Next[i],referred,_copt);
@@ -1228,7 +1228,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	//struct Tree *ins_head = NULL;
 	char target_type = '\0';
 	int target_label = -1;
-	int prg = 0;
+	//int prg = 0;
 	/* print hierarchy */
 	if((*_fopt).f_print_hierarchy == 1 && (*_fopt).f_print_self_stat == 1){
 		int i;
@@ -1267,7 +1267,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		printf("@");
 	}
 	/* print ref node */
-	prg = get_ref((*tree).Head+(*tree).IndicatorPtr,&target_type,&target_label);
+	get_ref((*tree).Head+(*tree).IndicatorPtr,&target_type,&target_label);
 	if((*tree).RefNode != NULL){
 		(*_fopt).f_print_self_stat = 0;
 		/* switch 't' 'h' */
