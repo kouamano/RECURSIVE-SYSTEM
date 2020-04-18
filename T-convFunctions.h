@@ -222,8 +222,9 @@ void Function_Print_HeadHierarchy(struct Tree *tree){
 }
 void Function_Print_HeadHierarchyStatus(struct Tree *tree){
 	int i;
-	int countCZ = 0;
-	countCZ = Function_Count_NextConjZero(tree);
+	//int countCZ = 0;
+	//countCZ = Function_Count_NextConjZero(tree);
+	Function_Count_NextConjZero(tree);
 	for(i=0;i<(*tree).LVself;i++){
 		printf(INDENT);
 	}
