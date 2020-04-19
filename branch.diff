@@ -26,8 +26,13 @@ git diff cq:T-functions_imex.h cq_debug:T-functions_imex.h
 git diff cq:CT-structure.h cq_debug:CT-structure.h
 git diff cq:CT-functions.h cq_debug:CT-functions.h
 git diff cq:CT-functions_Executor.h cq_debug:CT-functions_Executor.h
+git diff cq:C-structure.h cq_debug:C-structure.h
+git diff cq:C-functions.h cq_debug:C-functions.h
+git diff cq:C-functions_imex.h cq_debug:C-functions_imex.h
 ## tconv
+git diff cq:T-convStructure.h cq_debug:T-convStructure.h
 git diff cq:T-convFunctions.h cq_debug:T-convFunctions.h
+git diff cq:T-convFunctions_imex.h cq_debug:T-convFunctions_imex.h
 ## test
 echo '>> test code'
 git diff cq:DimensionDefinitionLanguage/conv-test.script cq_debug:DimensionDefinitionLanguage/conv-test.script
