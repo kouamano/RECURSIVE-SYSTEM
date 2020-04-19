@@ -47,7 +47,7 @@ git diff cq:DimensionDefinitionLanguage/compile_checker.sh cq_debug:DimensionDef
 echo '> VS. jsik'
 ## self
 echo '>> self'
-git diff cq:branch.diff cq_debug:branch.diff
+git diff cq:branch.diff jsik:branch.diff
 ## tq/cq
 echo '>> source code'
 git diff cq:tq.c jsik:tq.c
