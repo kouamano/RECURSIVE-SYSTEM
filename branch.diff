@@ -15,6 +15,9 @@ git diff cq:README.chem cq_debug:README.chem
 ## tq/cq
 echo '>> source code'
 git diff cq:tq.c cq_debug:tq.c
+git diff cq:escape_sw.c cq_debug:escape_sw.c
+git diff cq:escape_sw1.c cq_debug:escape_sw1.c
+git diff cq:escape_sw2.c cq_debug:escape_sw2.c
 git diff cq:T-definition.h cq_debug:T-definition.h
 git diff cq:T-structure.h cq_debug:T-structure.h
 git diff cq:T-functions.h cq_debug:T-functions.h
