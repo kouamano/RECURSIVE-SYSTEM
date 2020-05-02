@@ -79,30 +79,6 @@ $#1@#1[2]@(Length,Weight)
  => $TOP($X$List($LEAF,$LEAF[]@(Length),$LEAF[2]@(Weight,mm)),$X$List[2]($LEAF[2]@(kg,1,2,322)))
 
 ### レファレンス
-#### 不整合(解消)
-- head/head
-echo '$1($#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
- => $1($#3@#3$3,#3$3)
-- ref-head/head
-echo '$1(#2$#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
- => $1(#2$#3@#3$3,#3$3)
-- reft-head/head
-echo '$1(##2$#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
-$1(##2$#3,#3$3)  # <= レファレンスバインドが落る
- => $1(##2$#3@#3$3,#3$3)
-
-- head/tree
-echo '$1($#3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
- => $1($#3@##3$3,##3$3)
-- ref-head/tree
-echo '$1(#2$#3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
- => $1(#2$#3@##3$3,##3$3)
-- reft-head/tree
-echo '$1(##2$#3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
- => $1(##2$#3@##3$3,##3$3)
-- reft-head/tree
-echo '$1(##2$#3,##3$3())' | ./tq.o in=/dev/stdin -FT -Pin
- => $1(##2$#3@##3$3,##3$3())
 #### 定義表現
 -
 echo '(f($##1),##1(a,$pow(a,2)))' | ./tq.o in=/dev/stdin -FT -Pin
@@ -118,7 +94,28 @@ echo '(#1A,#2B,#3f,$#1($#2$#3))' | ./tq.o in=/dev/stdin -Pin -FT -FMa
 #### 辞書表現
 - ex2.dict
 
-#### テスト
+#### 単純テスト
+- head/head
+echo '$1($#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1($#3@#3$3,#3$3)
+- ref-head/head
+echo '$1(#2$#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1(#2$#3@#3$3,#3$3)
+- reft-head/head
+echo '$1(##2$#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1(##2$#3@#3$3,#3$3)
+- head/tree
+echo '$1($#3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1($#3@##3$3,##3$3)
+- ref-head/tree
+echo '$1(#2$#3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1(#2$#3@##3$3,##3$3)
+- reft-head/tree
+echo '$1(##2$#3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1(##2$#3@##3$3,##3$3)
+- reft-head/tree
+echo '$1(##2$#3,##3$3())' | ./tq.o in=/dev/stdin -FT -Pin
+ => $1(##2$#3@##3$3,##3$3())
 - tree/head
 echo '$1($##3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
  => $1($##3,#3$3)
@@ -128,7 +125,6 @@ echo '$1(#2$##3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
 - reft-tree/head
 echo '$1(##2$##3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
  => $1(##2$##3,#3$3)
-
 - tree/tree
 echo '$1($##3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
  => $1($##3@##3$3,##3$3)
