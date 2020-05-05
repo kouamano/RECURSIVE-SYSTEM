@@ -1,5 +1,0 @@
-./tq.o in=MIDATA001.it  -FT -Pin data=MIDATA001.csv data_buff=1000000 | ./tq.o in=/dev/stdin Sp=0,2,0 -FT -Pin  | ./tq.o in=/dev/stdin
-5 Nodes were operated.
-5611 Nodes were operated.
-5603 Nodes were operated.
-
