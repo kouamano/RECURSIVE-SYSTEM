@@ -1,0 +1,10 @@
+# ref
+echo '$#1(#1)' | ./tq.o in=/dev/stdin -FT -Pin
+echo '($#1,#1$#2,#2)' | ./tq.o in=/dev/stdin -FT -Pin
+echo '($#1,#1$#2,#2$#3,#3)' | ./tq.o in=/dev/stdin -FT -Pin
+echo '($#1,#1$#2(A),#2$#3(B),#3(C))' | ./tq.o in=/dev/stdin -FT -Pin
+## 木参照のときのレファレンスバインド表示順を検討中。
+echo '($##1,##1$##2(A),##2$##3(B),##3(C))' | ./tq.o in=/dev/stdin -FT -Pin
+echo '#1($#1)' | ./tq.o in=/dev/stdin -FT -Pin
+
+# ref+bind
