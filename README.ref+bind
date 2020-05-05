@@ -8,3 +8,4 @@ echo '($##1,##1$##2(A),##2$##3(B),##3(C))' | ./tq.o in=/dev/stdin -FT -Pin
 echo '#1($#1)' | ./tq.o in=/dev/stdin -FT -Pin
 
 # ref+bind
+echo '($##1[1],##1$##2(A[1]),##2$##3(B[1]),##3(C[1]))' | ./tq.o in=/dev/stdin -FT -Pin data=num.csv
