@@ -7,12 +7,15 @@ echo '>> self'
 git diff cq:branch.diff cq_debug:branch.diff
 ## README
 echo '>> Readme'
-git diff cq:README_base.exam cq_debug:README_base.exam
-git diff cq:README.exam cq_debug:README.exam
-git diff cq:README.md cq_debug:README.md
-git diff cq:README.unpack cq_debug:README.unpack
-git diff cq:README.ken cq_debug:README.ken
+git diff cq:README.analyze_head cq_debug:README.analyze_head
 git diff cq:README.chem cq_debug:README.chem
+git diff cq:README.exam cq_debug:README.exam
+git diff cq:README.ken cq_debug:README.ken
+git diff cq:README.md cq_debug:README.md
+git diff cq:README.ref+bind cq_debug:README.ref+bind
+git diff cq:README.unpack cq_debug:README.unpack
+git diff cq:README_base.exam cq_debug:README_base.exam
+git diff cq:README_big.exam cq_debug:README_big.exam
 ## tq/cq
 echo '>> source code'
 git diff cq:tq.c cq_debug:tq.c
