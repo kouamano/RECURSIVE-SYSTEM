@@ -1,5 +1,0 @@
-$PI$((Len(mm(1))),(Wei(kg(2))),(Len(mm("3,4"))),(Wei(kg(5))),(Len(mm(6))),(Wei(kg(7))))
-((Length(mm(List(1)))),(Weight(kg(List(2)))),(Length(mm(List(322)))),(Weight(kg(List(4)))),(Length(mm(List(5)))),(Weight(kg(List(68)))))
-((Length(mm(List(1)))),(Weight(kg(List(2)))),(Length(mm(List(322)))),(Weight(kg(List(4)))),(Length(mm(List(5)))),(Weight(kg(List(68)))))
-((Length,Quantity(1,mm)),(Weight,Quantity(2,kg)),(Length,Quantity(322,mm)),(Weight,Quantity(4,kg)),(Length,Quantity(5,mm)),(Weight,Quantity(68,kg)))
-((Length,Quantity(1,mm)),(Weight,Quantity(2,kg)),(Length,Quantity(322,mm)),(Weight,Quantity(4,kg)),(Length,Quantity(5,mm)),(Weight,Quantity(68,kg)))
