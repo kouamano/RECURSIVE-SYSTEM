@@ -180,17 +180,17 @@ echo '$$CG$(#1F($#2),#2G($#1))' | ./tq.o in=/dev/stdin -FT -Pin
 <====multiline====
 ###end
 #### セルフ+ output
-./tq.o in=test_ref.1.t out=test_ref.1.ot -FMa -FT -Fh -Pin -Pout
+./tq.o in=test_ref.1.ddf out=test_ref.1.ddl -FMa -FT -Fh -Pin -Pout
 
 #### セルフ+ output + data    
 - フラットパターン    
-./tq.o in=test_ref.2.t out=test_ref.2.ot -FT -Pin -Pout data=test.csv
+./tq.o in=test_ref.2.ddf out=test_ref.2.ddl -FT -Pin -Pout data=test.csv
 - 入れ子パターン
-./tq.o in=test_ref.2.t out=test_ref.2-1.ot -FT -Pin -Pout data=test.csv
+./tq.o in=test_ref.2.ddf out=test_ref.2-1.ddl -FT -Pin -Pout data=test.csv
 - out形式で参照をリストの入れ子に
-./tq.o in=test_ref.2.t out=test_refR.2.ot -FT -Pin -Pout data=test.csv
+./tq.o in=test_ref.2.ddf out=test_ref.R.2.ddl -FT -Pin -Pout data=test.csv
 - 再帰レファレンス($#9)
-./tq.o in=test_ref.1.t out=test_ref.1.ot -FT -Pout data=test.csv -Pin
+./tq.o in=test_ref.1.ddf out=test_ref.1.ddl -FT -Pout data=test.csv -Pin
  =>
 #0$0($#1[2]@#1$1[5]@(322,4,5,68,7)($#0@#0$0,#9$#2[3]@@#2$2(Length,Weight,mm,kg,1,2)),#2$2($#0@#0$0,#1$1[5]@(322,4,5,68,7)))
 $#0@#0$0($#1@#1$1[5]@(322,4,5,68,7)($#0@#0$0,$#2@#2$2),$#2@#2$2($#1@#1$1[5]@(322,4,5,68,7),$#0@#0$0,$#9@#9$#2[3]@@#2$2(Length,Weight,mm,kg,1,2)))
