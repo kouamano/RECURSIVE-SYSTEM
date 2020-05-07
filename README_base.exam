@@ -9,7 +9,7 @@ cd DimensionDefinitionLanguage; ./compile_checker.n007.sh; cd ../
 # tq のテスト
 ## 単体テスト
 ### コンバート
-bash conv-check.script
+bash conv-check.sh
 - with WL
   cd DimensionDefinitionLanguage; bash conv-test.script; cd ../
 - without WL
