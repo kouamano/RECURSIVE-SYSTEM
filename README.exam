@@ -215,12 +215,16 @@ $#0@#0$0($#1@#1$1[5]@(322,4,5,68,7)($#0@#0$0,$#2@#2$2),$#2@#2$2($#1@#1$1[5]@(322
 ./tq.o in=test_prd.1.ddf out=test_prd.9.ddl data=test.csv -FT -Pprod  -C
 ./tq.o in=test_prd.1.ddf out=test_prd.10.ddl data=test.csv -FT -Pprod  -C
  ちょっとおかしい
+#### 内積 x バインド x データ配列挿入
 ./tq.o in=num.ddf out=num.ddl data=num.csv -FT -Pprod  -C
- => (((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(3,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(6,kg))))
+ => (((Length,Quantity(1,mm)),(Weight,Quantity(2,kg))),((Length,Quantity(3,mm)),(Weight,Quantity(4,kg))),((Length,Quantity(5,mm)),(Weight,Quantity(6,kg))),((Length,Quantity(7,mm)),(Weight,Quantity(8,kg))))
+#### 内積 x バインド 
 ./tq.o in=num2.ddf out=num2.ddl data=num.csv -FT -Pprod  -C 
  => (((L,W),Quantity(1,(mm,kg))),((L,W),Quantity(2,(mm,kg))),((L,W),Quantity(3,(mm,kg))),((L,W),Quantity(4,(mm,kg))),((L,W),Quantity(5,(mm,kg))),((L,W),Quantity(6,(mm,kg))))
+#### 内積 x バインド x データ配列挿入
 ./tq.o in=num2.ddf out=num3.ddl data=num.csv -FT -Pprod  -C 
  => ((((L,W),Quantity(1,mm)),((L,W),Quantity(2,kg))),(((L,W),Quantity(3,mm)),((L,W),Quantity(4,kg))),(((L,W),Quantity(5,mm)),((L,W),Quantity(6,kg))))
+#### 内積 x バインド x データ配列挿入
 - DDL ::> @はdistributeする@なしはしない
 ./tq.o in=num4.ddf out=num4.ddl data=num.csv -FT -Pprod  -C 
  => ((((a,b1),Quantity(1,mm)),((a,b1),Quantity(2,kg))),(((a,b1),Quantity(3,mm)),((a,b1),Quantity(4,kg))),(((a,b1),Quantity(5,mm)),((a,b1),Quantity(6,kg))))
