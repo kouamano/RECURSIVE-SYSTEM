@@ -555,19 +555,19 @@ char *Dot_Head(struct Tree *tree){
 		return((*tree).Head);
 	}
 }
-char *Interpret_Head(struct Tree *tree, struct compile_options *_copt){
-	FC(fprintf(stderr,">Function_Interpret_Head<\n");)
+char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
+	FC(fprintf(stderr,">Interpret_Operator<\n");)
 	char *tmp_head;
 	char *out_head;
 	int compiled = 0;
 	int len = 0;
 	len = strlen((*tree).Head);
 	if((tmp_head = malloc(sizeof(char) * (len+1))) == NULL){
-		perror("[Fail]:malloc@Function_Interpret_Head.\n");
+		perror("[Fail]:malloc@Interpret_Operator.\n");
 		exit(1);
 	}
 	if((out_head = malloc(sizeof(char) * (len+1))) == NULL){
-		perror("[Fail]:malloc@Function_Interpret_Head.\n");
+		perror("[Fail]:malloc@Interpret_Operator.\n");
 		exit(1);
 	}
 
@@ -614,7 +614,7 @@ char *Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 		int tmp_len = 0;
 		out_head = realloc(out_head, (sizeof(char) * (len+1)));
 		if(out_head == NULL){
-			perror("[Fail]:realloc@Function_Interpret_Head.\n");
+			perror("[Fail]:realloc@Interpret_Operator.\n");
 			exit(1);
 		}
 
@@ -651,7 +651,7 @@ char *Interpret_Head(struct Tree *tree, struct compile_options *_copt){
 		int tmp_len = 0;
 		out_head = realloc(out_head, (sizeof(char) * (len+1)));
 		if(out_head == NULL){
-			perror("[Fail]:realloc@Function_Interpret_Head_Head.\n");
+			perror("[Fail]:realloc@Interpret_Operator.\n");
 			exit(1);
 		}
 		out_head[0]='"';
@@ -1246,7 +1246,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	}
 	/* interpret */
 	char *tmp_str = NULL;
-	tmp_str = Interpret_Head(tree,_copt);
+	tmp_str = Interpret_Operator(tree,_copt);
 	/* print head */
 	if(((*tree).extra_stat&1) == 1){
 		printf("%s",(*tree).Head);	//normal
@@ -1329,7 +1329,7 @@ struct Tree *Function_Print_Head_JS(struct Tree *tree, struct function_options *
 	}
 	/* compile */
 	if((*_copt).c_counter > 0){
-		tmp_str = Interpret_Head(tree,_copt);
+		tmp_str = Interpret_Operator(tree,_copt);
 	}else{
 		strcpy(tmp_str,(*tree).Head);
 	}
@@ -1373,7 +1373,7 @@ struct Tree *Function_Print_Head_WL(struct Tree *tree, struct function_options *
 	}
 	/* compile */
 	if((*_copt).c_counter > 0){
-		tmp_str = Interpret_Head(tree,_copt);
+		tmp_str = Interpret_Operator(tree,_copt);
 	}else{
 		strcpy(tmp_str,(*tree).Head);
 	}
@@ -1403,7 +1403,7 @@ struct Tree *Function_Print_Head_X(struct Tree *tree, struct function_options *_
 		/* compile */
 		if((*_copt).c_counter > 0){
 			char *tmp_str;
-			tmp_str = Interpret_Head(tree,_copt);
+			tmp_str = Interpret_Operator(tree,_copt);
 			printf("%s",tmp_str);
 		}else{
 			printf("%s",(*tree).Head);	//normal

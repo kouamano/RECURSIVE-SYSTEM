@@ -679,7 +679,7 @@ char *Dot_Head(NODE node){
 	}
 }
 // tq: char *Function_Interpret_Head(struct Tree *tree, struct compile_options *_copt){
-char *Interpret_Head(NODE node, struct compile_options *_copt){
+char *Interpret_Operator(NODE node, struct compile_options *_copt){
 	char *tmp_head;
 	char *out_head;
 	int compiled = 0;
@@ -687,11 +687,11 @@ char *Interpret_Head(NODE node, struct compile_options *_copt){
 	// tq: len = strlen((*tree).Head);
 	len = strlen(head(node));
 	if((tmp_head = malloc(sizeof(char) * (len+1))) == NULL){
-		perror("[Fail]:malloc@Function_Interpret_Head.\n");
+		perror("[Fail]:malloc@Interpret_Operator.\n");
 		exit(1);
 	}
 	if((out_head = malloc(sizeof(char) * (len+1))) == NULL){
-		perror("[Fail]:malloc@Function_Interpret_Head.\n");
+		perror("[Fail]:malloc@Interpret_Operator.\n");
 		exit(1);
 	}
 
@@ -749,7 +749,7 @@ char *Interpret_Head(NODE node, struct compile_options *_copt){
 		int tmp_len = 0;
 		out_head = realloc(out_head, (sizeof(char) * (len+1)));
 		if(out_head == NULL){
-			perror("[Fail]:realloc@Function_Interpret_Head.\n");
+			perror("[Fail]:realloc@FInterpret_Operator.\n");
 			exit(1);
 		}
 
@@ -800,7 +800,7 @@ char *Interpret_Head(NODE node, struct compile_options *_copt){
 		int tmp_len = 0;
 		out_head = realloc(out_head, (sizeof(char) * (len+1)));
 		if(out_head == NULL){
-			perror("[Fail]:realloc@Function_Interpret_Head_Head.\n");
+			perror("[Fail]:realloc@Interpret_Operator.\n");
 			exit(1);
 		}
 		out_head[0]='"';
@@ -1569,7 +1569,7 @@ NODE Function_Print_Head(NODE node, struct function_options *_fopt, struct compi
 	/* interpret */
 	char *tmp_str = NULL;
 	// tq: tmp_str = Function_Interpret_Head(tree,_copt);
-	tmp_str = Interpret_Head(node,_copt);
+	tmp_str = Interpret_Operator(node,_copt);
 	/* print head */
 	// tq: if(((*tree).extra_stat&1) == 1){
 	if((extra_stat(node)&1) == 1){
@@ -1673,7 +1673,7 @@ NODE Function_Print_Head_JS(NODE node, struct function_options *_fopt, struct co
 	/* compile */
 	if((*_copt).c_counter > 0){
 		// tq: tmp_str = Interpret_Head(tree,_copt);
-		tmp_str = Interpret_Head(node,_copt);
+		tmp_str = Interpret_Operator(node,_copt);
 	}else{
 		// tq: strcpy(tmp_str,(*tree).Head);
 		strcpy(tmp_str,head(node));
@@ -1722,7 +1722,7 @@ NODE Function_Print_Head_WL(NODE node, struct function_options *_fopt, struct co
 	/* compile */
 	if((*_copt).c_counter > 0){
 		// tq: tmp_str = Interpret_Head(tree,_copt);
-		tmp_str = Interpret_Head(node,_copt);
+		tmp_str = Interpret_Operator(node,_copt);
 	}else{
 		// tq: strcpy(tmp_str,(*tree).Head);
 		strcpy(tmp_str,head(node));
@@ -1757,7 +1757,7 @@ NODE Function_Print_Head_X(NODE node, struct function_options *_fopt, struct com
 		if((*_copt).c_counter > 0){
 			char *tmp_str;
 			// tq: tmp_str = Interpret_Head(tree,_copt);
-			tmp_str = Interpret_Head(node,_copt);
+			tmp_str = Interpret_Operator(node,_copt);
 			printf("%s",tmp_str);
 		}else{
 			// tq: printf("%s",(*tree).Head);	//normal
