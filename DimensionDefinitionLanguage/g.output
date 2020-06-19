@@ -1,0 +1,520 @@
+   0  $accept : line_list $end
+
+   1  line_list : line
+   2            | line_list line
+
+   3  line : dimension_expression END
+
+   4  dimension_expression : arg
+   5                       | list
+   6                       | arg RULE arg
+   7                       | arg RULE list
+   8                       | list RULE arg
+   9                       | list RULE list
+  10                       | arg RULE arg REW arg
+  11                       | arg RULE arg REW list
+  12                       | arg RULE list REW arg
+  13                       | arg RULE list REW list
+  14                       | list RULE arg REW arg
+  15                       | list RULE arg REW list
+  16                       | list RULE list REW arg
+  17                       | list RULE list REW list
+
+  18  list : chain
+
+  19  chain : arg
+  20        | FUNC_S chain FUNC_E
+  21        | FUNC_S FUNC_E
+  22        | chain LIST chain
+  23        | chain DOT chain
+  24        | chain chain
+
+  25  arg : ARGEX
+  26      | ARGEX DIM
+
+state 0
+	$accept : . line_list $end  (0)
+
+	ARGEX  shift 1
+	FUNC_S  shift 2
+	.  error
+
+	line_list  goto 3
+	line  goto 4
+	dimension_expression  goto 5
+	arg  goto 6
+	list  goto 7
+	chain  goto 8
+
+
+state 1
+	arg : ARGEX .  (25)
+	arg : ARGEX . DIM  (26)
+
+	DIM  shift 9
+	ARGEX  reduce 25
+	LIST  reduce 25
+	FUNC_S  reduce 25
+	FUNC_E  reduce 25
+	RULE  reduce 25
+	REW  reduce 25
+	DOT  reduce 25
+	END  reduce 25
+
+
+state 2
+	chain : FUNC_S . chain FUNC_E  (20)
+	chain : FUNC_S . FUNC_E  (21)
+
+	ARGEX  shift 1
+	FUNC_S  shift 2
+	FUNC_E  shift 10
+	.  error
+
+	arg  goto 11
+	chain  goto 12
+
+
+state 3
+	$accept : line_list . $end  (0)
+	line_list : line_list . line  (2)
+
+	$end  accept
+	ARGEX  shift 1
+	FUNC_S  shift 2
+	.  error
+
+	line  goto 13
+	dimension_expression  goto 5
+	arg  goto 6
+	list  goto 7
+	chain  goto 8
+
+
+state 4
+	line_list : line .  (1)
+
+	.  reduce 1
+
+
+state 5
+	line : dimension_expression . END  (3)
+
+	END  shift 14
+	.  error
+
+
+6: shift/reduce conflict (shift 15, reduce 19) on RULE
+6: reduce/reduce conflict (reduce 4, reduce 19) on END
+state 6
+	dimension_expression : arg .  (4)
+	dimension_expression : arg . RULE arg  (6)
+	dimension_expression : arg . RULE list  (7)
+	dimension_expression : arg . RULE arg REW arg  (10)
+	dimension_expression : arg . RULE arg REW list  (11)
+	dimension_expression : arg . RULE list REW arg  (12)
+	dimension_expression : arg . RULE list REW list  (13)
+	chain : arg .  (19)
+
+	RULE  shift 15
+	ARGEX  reduce 19
+	LIST  reduce 19
+	FUNC_S  reduce 19
+	DOT  reduce 19
+	END  reduce 4
+
+
+state 7
+	dimension_expression : list .  (5)
+	dimension_expression : list . RULE arg  (8)
+	dimension_expression : list . RULE list  (9)
+	dimension_expression : list . RULE arg REW arg  (14)
+	dimension_expression : list . RULE arg REW list  (15)
+	dimension_expression : list . RULE list REW arg  (16)
+	dimension_expression : list . RULE list REW list  (17)
+
+	RULE  shift 16
+	END  reduce 5
+
+
+state 8
+	list : chain .  (18)
+	chain : chain . LIST chain  (22)
+	chain : chain . DOT chain  (23)
+	chain : chain . chain  (24)
+
+	ARGEX  shift 1
+	LIST  shift 17
+	FUNC_S  shift 2
+	DOT  shift 18
+	RULE  reduce 18
+	REW  reduce 18
+	END  reduce 18
+
+	arg  goto 11
+	chain  goto 19
+
+
+state 9
+	arg : ARGEX DIM .  (26)
+
+	.  reduce 26
+
+
+state 10
+	chain : FUNC_S FUNC_E .  (21)
+
+	.  reduce 21
+
+
+state 11
+	chain : arg .  (19)
+
+	.  reduce 19
+
+
+state 12
+	chain : FUNC_S chain . FUNC_E  (20)
+	chain : chain . LIST chain  (22)
+	chain : chain . DOT chain  (23)
+	chain : chain . chain  (24)
+
+	ARGEX  shift 1
+	LIST  shift 17
+	FUNC_S  shift 2
+	FUNC_E  shift 20
+	DOT  shift 18
+	.  error
+
+	arg  goto 11
+	chain  goto 19
+
+
+state 13
+	line_list : line_list line .  (2)
+
+	.  reduce 2
+
+
+state 14
+	line : dimension_expression END .  (3)
+
+	.  reduce 3
+
+
+state 15
+	dimension_expression : arg RULE . arg  (6)
+	dimension_expression : arg RULE . list  (7)
+	dimension_expression : arg RULE . arg REW arg  (10)
+	dimension_expression : arg RULE . arg REW list  (11)
+	dimension_expression : arg RULE . list REW arg  (12)
+	dimension_expression : arg RULE . list REW list  (13)
+
+	ARGEX  shift 1
+	FUNC_S  shift 2
+	.  error
+
+	arg  goto 21
+	list  goto 22
+	chain  goto 8
+
+
+state 16
+	dimension_expression : list RULE . arg  (8)
+	dimension_expression : list RULE . list  (9)
+	dimension_expression : list RULE . arg REW arg  (14)
+	dimension_expression : list RULE . arg REW list  (15)
+	dimension_expression : list RULE . list REW arg  (16)
+	dimension_expression : list RULE . list REW list  (17)
+
+	ARGEX  shift 1
+	FUNC_S  shift 2
+	.  error
+
+	arg  goto 23
+	list  goto 24
+	chain  goto 8
+
+
+state 17
+	chain : chain LIST . chain  (22)
+
+	ARGEX  shift 1
+	FUNC_S  shift 2
+	.  error
+
+	arg  goto 11
+	chain  goto 25
+
+
+state 18
+	chain : chain DOT . chain  (23)
+
+	ARGEX  shift 1
+	FUNC_S  shift 2
+	.  error
+
+	arg  goto 11
+	chain  goto 26
+
+
+19: shift/reduce conflict (shift 1, reduce 24) on ARGEX
+19: shift/reduce conflict (shift 17, reduce 24) on LIST
+19: shift/reduce conflict (shift 2, reduce 24) on FUNC_S
+19: shift/reduce conflict (shift 18, reduce 24) on DOT
+state 19
+	chain : chain . LIST chain  (22)
+	chain : chain . DOT chain  (23)
+	chain : chain . chain  (24)
+	chain : chain chain .  (24)
+
+	ARGEX  shift 1
+	LIST  shift 17
+	FUNC_S  shift 2
+	DOT  shift 18
+	FUNC_E  reduce 24
+	RULE  reduce 24
+	REW  reduce 24
+	END  reduce 24
+
+	arg  goto 11
+	chain  goto 19
+
+
+state 20
+	chain : FUNC_S chain FUNC_E .  (20)
+
+	.  reduce 20
+
+
+21: shift/reduce conflict (shift 27, reduce 19) on REW
+21: reduce/reduce conflict (reduce 6, reduce 19) on END
+state 21
+	dimension_expression : arg RULE arg .  (6)
+	dimension_expression : arg RULE arg . REW arg  (10)
+	dimension_expression : arg RULE arg . REW list  (11)
+	chain : arg .  (19)
+
+	REW  shift 27
+	ARGEX  reduce 19
+	LIST  reduce 19
+	FUNC_S  reduce 19
+	DOT  reduce 19
+	END  reduce 6
+
+
+state 22
+	dimension_expression : arg RULE list .  (7)
+	dimension_expression : arg RULE list . REW arg  (12)
+	dimension_expression : arg RULE list . REW list  (13)
+
+	REW  shift 28
+	END  reduce 7
+
+
+23: shift/reduce conflict (shift 29, reduce 19) on REW
+23: reduce/reduce conflict (reduce 8, reduce 19) on END
+state 23
+	dimension_expression : list RULE arg .  (8)
+	dimension_expression : list RULE arg . REW arg  (14)
+	dimension_expression : list RULE arg . REW list  (15)
+	chain : arg .  (19)
+
+	REW  shift 29
+	ARGEX  reduce 19
+	LIST  reduce 19
+	FUNC_S  reduce 19
+	DOT  reduce 19
+	END  reduce 8
+
+
+state 24
+	dimension_expression : list RULE list .  (9)
+	dimension_expression : list RULE list . REW arg  (16)
+	dimension_expression : list RULE list . REW list  (17)
+
+	REW  shift 30
+	END  reduce 9
+
+
+25: shift/reduce conflict (shift 18, reduce 22) on DOT
+state 25
+	chain : chain . LIST chain  (22)
+	chain : chain LIST chain .  (22)
+	chain : chain . DOT chain  (23)
+	chain : chain . chain  (24)
+
+	LIST  shift 17
+	DOT  shift 18
+	ARGEX  reduce 22
+	FUNC_S  reduce 22
+	FUNC_E  reduce 22
+	RULE  reduce 22
+	REW  reduce 22
+	END  reduce 22
+
+	arg  goto 11
+	chain  goto 19
+
+
+26: shift/reduce conflict (shift 1, reduce 23) on ARGEX
+26: shift/reduce conflict (shift 17, reduce 23) on LIST
+26: shift/reduce conflict (shift 2, reduce 23) on FUNC_S
+26: shift/reduce conflict (shift 18, reduce 23) on DOT
+state 26
+	chain : chain . LIST chain  (22)
+	chain : chain . DOT chain  (23)
+	chain : chain DOT chain .  (23)
+	chain : chain . chain  (24)
+
+	ARGEX  shift 1
+	LIST  shift 17
+	FUNC_S  shift 2
+	DOT  shift 18
+	FUNC_E  reduce 23
+	RULE  reduce 23
+	REW  reduce 23
+	END  reduce 23
+
+	arg  goto 11
+	chain  goto 19
+
+
+state 27
+	dimension_expression : arg RULE arg REW . arg  (10)
+	dimension_expression : arg RULE arg REW . list  (11)
+
+	ARGEX  shift 1
+	FUNC_S  shift 2
+	.  error
+
+	arg  goto 31
+	list  goto 32
+	chain  goto 8
+
+
+state 28
+	dimension_expression : arg RULE list REW . arg  (12)
+	dimension_expression : arg RULE list REW . list  (13)
+
+	ARGEX  shift 1
+	FUNC_S  shift 2
+	.  error
+
+	arg  goto 33
+	list  goto 34
+	chain  goto 8
+
+
+state 29
+	dimension_expression : list RULE arg REW . arg  (14)
+	dimension_expression : list RULE arg REW . list  (15)
+
+	ARGEX  shift 1
+	FUNC_S  shift 2
+	.  error
+
+	arg  goto 35
+	list  goto 36
+	chain  goto 8
+
+
+state 30
+	dimension_expression : list RULE list REW . arg  (16)
+	dimension_expression : list RULE list REW . list  (17)
+
+	ARGEX  shift 1
+	FUNC_S  shift 2
+	.  error
+
+	arg  goto 37
+	list  goto 38
+	chain  goto 8
+
+
+31: reduce/reduce conflict (reduce 10, reduce 19) on END
+state 31
+	dimension_expression : arg RULE arg REW arg .  (10)
+	chain : arg .  (19)
+
+	ARGEX  reduce 19
+	LIST  reduce 19
+	FUNC_S  reduce 19
+	DOT  reduce 19
+	END  reduce 10
+
+
+state 32
+	dimension_expression : arg RULE arg REW list .  (11)
+
+	.  reduce 11
+
+
+33: reduce/reduce conflict (reduce 12, reduce 19) on END
+state 33
+	dimension_expression : arg RULE list REW arg .  (12)
+	chain : arg .  (19)
+
+	ARGEX  reduce 19
+	LIST  reduce 19
+	FUNC_S  reduce 19
+	DOT  reduce 19
+	END  reduce 12
+
+
+state 34
+	dimension_expression : arg RULE list REW list .  (13)
+
+	.  reduce 13
+
+
+35: reduce/reduce conflict (reduce 14, reduce 19) on END
+state 35
+	dimension_expression : list RULE arg REW arg .  (14)
+	chain : arg .  (19)
+
+	ARGEX  reduce 19
+	LIST  reduce 19
+	FUNC_S  reduce 19
+	DOT  reduce 19
+	END  reduce 14
+
+
+state 36
+	dimension_expression : list RULE arg REW list .  (15)
+
+	.  reduce 15
+
+
+37: reduce/reduce conflict (reduce 16, reduce 19) on END
+state 37
+	dimension_expression : list RULE list REW arg .  (16)
+	chain : arg .  (19)
+
+	ARGEX  reduce 19
+	LIST  reduce 19
+	FUNC_S  reduce 19
+	DOT  reduce 19
+	END  reduce 16
+
+
+state 38
+	dimension_expression : list RULE list REW list .  (17)
+
+	.  reduce 17
+
+
+State 6 contains 1 shift/reduce conflict, 1 reduce/reduce conflict.
+State 19 contains 4 shift/reduce conflicts.
+State 21 contains 1 shift/reduce conflict, 1 reduce/reduce conflict.
+State 23 contains 1 shift/reduce conflict, 1 reduce/reduce conflict.
+State 25 contains 1 shift/reduce conflict.
+State 26 contains 4 shift/reduce conflicts.
+State 31 contains 1 reduce/reduce conflict.
+State 33 contains 1 reduce/reduce conflict.
+State 35 contains 1 reduce/reduce conflict.
+State 37 contains 1 reduce/reduce conflict.
+
+
+18 terminals, 7 nonterminals
+27 grammar rules, 39 states

@@ -1,0 +1,540 @@
+   0  $accept : line_list $end
+
+   1  line_list : line
+   2            | line_list line
+
+   3  line : dimension_expression END
+
+   4  dimension_expression : arg
+   5                       | list
+   6                       | arg RULE arg
+   7                       | arg RULE list
+   8                       | list RULE arg
+   9                       | list RULE list
+  10                       | arg RULE arg REW arg
+  11                       | arg RULE arg REW list
+  12                       | arg RULE list REW arg
+  13                       | arg RULE list REW list
+  14                       | list RULE arg REW arg
+  15                       | list RULE arg REW list
+  16                       | list RULE list REW arg
+  17                       | list RULE list REW list
+
+  18  list : arg func
+
+  19  func : FUNC_S argm FUNC_E
+  20       | FUNC_S FUNC_E
+  21       | func func
+
+  22  argm : args
+  23       | args func
+  24       | argm LIST argm
+
+  25  args : arg
+  26       | args LIST arg
+
+  27  arg : ARGEX
+  28      | ARGEX DIM
+  29      | LABEL ARGEX
+  30      | LABEL ARGEX DIM
+  31      | '$' LABEL ARGEX
+  32      | '$' LABEL ARGEX DIM
+
+state 0
+	$accept : . line_list $end  (0)
+
+	ARGEX  shift 1
+	LABEL  shift 2
+	'$'  shift 3
+	.  error
+
+	line_list  goto 4
+	line  goto 5
+	dimension_expression  goto 6
+	arg  goto 7
+	list  goto 8
+
+
+state 1
+	arg : ARGEX .  (27)
+	arg : ARGEX . DIM  (28)
+
+	DIM  shift 9
+	LIST  reduce 27
+	FUNC_S  reduce 27
+	FUNC_E  reduce 27
+	RULE  reduce 27
+	REW  reduce 27
+	END  reduce 27
+
+
+state 2
+	arg : LABEL . ARGEX  (29)
+	arg : LABEL . ARGEX DIM  (30)
+
+	ARGEX  shift 10
+	.  error
+
+
+state 3
+	arg : '$' . LABEL ARGEX  (31)
+	arg : '$' . LABEL ARGEX DIM  (32)
+
+	LABEL  shift 11
+	.  error
+
+
+state 4
+	$accept : line_list . $end  (0)
+	line_list : line_list . line  (2)
+
+	$end  accept
+	ARGEX  shift 1
+	LABEL  shift 2
+	'$'  shift 3
+	.  error
+
+	line  goto 12
+	dimension_expression  goto 6
+	arg  goto 7
+	list  goto 8
+
+
+state 5
+	line_list : line .  (1)
+
+	.  reduce 1
+
+
+state 6
+	line : dimension_expression . END  (3)
+
+	END  shift 13
+	.  error
+
+
+state 7
+	dimension_expression : arg .  (4)
+	dimension_expression : arg . RULE arg  (6)
+	dimension_expression : arg . RULE list  (7)
+	dimension_expression : arg . RULE arg REW arg  (10)
+	dimension_expression : arg . RULE arg REW list  (11)
+	dimension_expression : arg . RULE list REW arg  (12)
+	dimension_expression : arg . RULE list REW list  (13)
+	list : arg . func  (18)
+
+	FUNC_S  shift 14
+	RULE  shift 15
+	END  reduce 4
+
+	func  goto 16
+
+
+state 8
+	dimension_expression : list .  (5)
+	dimension_expression : list . RULE arg  (8)
+	dimension_expression : list . RULE list  (9)
+	dimension_expression : list . RULE arg REW arg  (14)
+	dimension_expression : list . RULE arg REW list  (15)
+	dimension_expression : list . RULE list REW arg  (16)
+	dimension_expression : list . RULE list REW list  (17)
+
+	RULE  shift 17
+	END  reduce 5
+
+
+state 9
+	arg : ARGEX DIM .  (28)
+
+	.  reduce 28
+
+
+state 10
+	arg : LABEL ARGEX .  (29)
+	arg : LABEL ARGEX . DIM  (30)
+
+	DIM  shift 18
+	LIST  reduce 29
+	FUNC_S  reduce 29
+	FUNC_E  reduce 29
+	RULE  reduce 29
+	REW  reduce 29
+	END  reduce 29
+
+
+state 11
+	arg : '$' LABEL . ARGEX  (31)
+	arg : '$' LABEL . ARGEX DIM  (32)
+
+	ARGEX  shift 19
+	.  error
+
+
+state 12
+	line_list : line_list line .  (2)
+
+	.  reduce 2
+
+
+state 13
+	line : dimension_expression END .  (3)
+
+	.  reduce 3
+
+
+state 14
+	func : FUNC_S . argm FUNC_E  (19)
+	func : FUNC_S . FUNC_E  (20)
+
+	ARGEX  shift 1
+	FUNC_E  shift 20
+	LABEL  shift 2
+	'$'  shift 3
+	.  error
+
+	arg  goto 21
+	argm  goto 22
+	args  goto 23
+
+
+state 15
+	dimension_expression : arg RULE . arg  (6)
+	dimension_expression : arg RULE . list  (7)
+	dimension_expression : arg RULE . arg REW arg  (10)
+	dimension_expression : arg RULE . arg REW list  (11)
+	dimension_expression : arg RULE . list REW arg  (12)
+	dimension_expression : arg RULE . list REW list  (13)
+
+	ARGEX  shift 1
+	LABEL  shift 2
+	'$'  shift 3
+	.  error
+
+	arg  goto 24
+	list  goto 25
+
+
+state 16
+	list : arg func .  (18)
+	func : func . func  (21)
+
+	FUNC_S  shift 14
+	RULE  reduce 18
+	REW  reduce 18
+	END  reduce 18
+
+	func  goto 26
+
+
+state 17
+	dimension_expression : list RULE . arg  (8)
+	dimension_expression : list RULE . list  (9)
+	dimension_expression : list RULE . arg REW arg  (14)
+	dimension_expression : list RULE . arg REW list  (15)
+	dimension_expression : list RULE . list REW arg  (16)
+	dimension_expression : list RULE . list REW list  (17)
+
+	ARGEX  shift 1
+	LABEL  shift 2
+	'$'  shift 3
+	.  error
+
+	arg  goto 27
+	list  goto 28
+
+
+state 18
+	arg : LABEL ARGEX DIM .  (30)
+
+	.  reduce 30
+
+
+state 19
+	arg : '$' LABEL ARGEX .  (31)
+	arg : '$' LABEL ARGEX . DIM  (32)
+
+	DIM  shift 29
+	LIST  reduce 31
+	FUNC_S  reduce 31
+	FUNC_E  reduce 31
+	RULE  reduce 31
+	REW  reduce 31
+	END  reduce 31
+
+
+state 20
+	func : FUNC_S FUNC_E .  (20)
+
+	.  reduce 20
+
+
+state 21
+	args : arg .  (25)
+
+	.  reduce 25
+
+
+state 22
+	func : FUNC_S argm . FUNC_E  (19)
+	argm : argm . LIST argm  (24)
+
+	LIST  shift 30
+	FUNC_E  shift 31
+	.  error
+
+
+23: shift/reduce conflict (shift 32, reduce 22) on LIST
+state 23
+	argm : args .  (22)
+	argm : args . func  (23)
+	args : args . LIST arg  (26)
+
+	LIST  shift 32
+	FUNC_S  shift 14
+	FUNC_E  reduce 22
+
+	func  goto 33
+
+
+state 24
+	dimension_expression : arg RULE arg .  (6)
+	dimension_expression : arg RULE arg . REW arg  (10)
+	dimension_expression : arg RULE arg . REW list  (11)
+	list : arg . func  (18)
+
+	FUNC_S  shift 14
+	REW  shift 34
+	END  reduce 6
+
+	func  goto 16
+
+
+state 25
+	dimension_expression : arg RULE list .  (7)
+	dimension_expression : arg RULE list . REW arg  (12)
+	dimension_expression : arg RULE list . REW list  (13)
+
+	REW  shift 35
+	END  reduce 7
+
+
+26: shift/reduce conflict (shift 14, reduce 21) on FUNC_S
+state 26
+	func : func . func  (21)
+	func : func func .  (21)
+
+	FUNC_S  shift 14
+	LIST  reduce 21
+	FUNC_E  reduce 21
+	RULE  reduce 21
+	REW  reduce 21
+	END  reduce 21
+
+	func  goto 26
+
+
+state 27
+	dimension_expression : list RULE arg .  (8)
+	dimension_expression : list RULE arg . REW arg  (14)
+	dimension_expression : list RULE arg . REW list  (15)
+	list : arg . func  (18)
+
+	FUNC_S  shift 14
+	REW  shift 36
+	END  reduce 8
+
+	func  goto 16
+
+
+state 28
+	dimension_expression : list RULE list .  (9)
+	dimension_expression : list RULE list . REW arg  (16)
+	dimension_expression : list RULE list . REW list  (17)
+
+	REW  shift 37
+	END  reduce 9
+
+
+state 29
+	arg : '$' LABEL ARGEX DIM .  (32)
+
+	.  reduce 32
+
+
+state 30
+	argm : argm LIST . argm  (24)
+
+	ARGEX  shift 1
+	LABEL  shift 2
+	'$'  shift 3
+	.  error
+
+	arg  goto 21
+	argm  goto 38
+	args  goto 23
+
+
+state 31
+	func : FUNC_S argm FUNC_E .  (19)
+
+	.  reduce 19
+
+
+state 32
+	args : args LIST . arg  (26)
+
+	ARGEX  shift 1
+	LABEL  shift 2
+	'$'  shift 3
+	.  error
+
+	arg  goto 39
+
+
+state 33
+	func : func . func  (21)
+	argm : args func .  (23)
+
+	FUNC_S  shift 14
+	LIST  reduce 23
+	FUNC_E  reduce 23
+
+	func  goto 26
+
+
+state 34
+	dimension_expression : arg RULE arg REW . arg  (10)
+	dimension_expression : arg RULE arg REW . list  (11)
+
+	ARGEX  shift 1
+	LABEL  shift 2
+	'$'  shift 3
+	.  error
+
+	arg  goto 40
+	list  goto 41
+
+
+state 35
+	dimension_expression : arg RULE list REW . arg  (12)
+	dimension_expression : arg RULE list REW . list  (13)
+
+	ARGEX  shift 1
+	LABEL  shift 2
+	'$'  shift 3
+	.  error
+
+	arg  goto 42
+	list  goto 43
+
+
+state 36
+	dimension_expression : list RULE arg REW . arg  (14)
+	dimension_expression : list RULE arg REW . list  (15)
+
+	ARGEX  shift 1
+	LABEL  shift 2
+	'$'  shift 3
+	.  error
+
+	arg  goto 44
+	list  goto 45
+
+
+state 37
+	dimension_expression : list RULE list REW . arg  (16)
+	dimension_expression : list RULE list REW . list  (17)
+
+	ARGEX  shift 1
+	LABEL  shift 2
+	'$'  shift 3
+	.  error
+
+	arg  goto 46
+	list  goto 47
+
+
+state 38
+	argm : argm . LIST argm  (24)
+	argm : argm LIST argm .  (24)
+
+	LIST  shift 30
+	FUNC_E  reduce 24
+
+
+state 39
+	args : args LIST arg .  (26)
+
+	.  reduce 26
+
+
+state 40
+	dimension_expression : arg RULE arg REW arg .  (10)
+	list : arg . func  (18)
+
+	FUNC_S  shift 14
+	END  reduce 10
+
+	func  goto 16
+
+
+state 41
+	dimension_expression : arg RULE arg REW list .  (11)
+
+	.  reduce 11
+
+
+state 42
+	dimension_expression : arg RULE list REW arg .  (12)
+	list : arg . func  (18)
+
+	FUNC_S  shift 14
+	END  reduce 12
+
+	func  goto 16
+
+
+state 43
+	dimension_expression : arg RULE list REW list .  (13)
+
+	.  reduce 13
+
+
+state 44
+	dimension_expression : list RULE arg REW arg .  (14)
+	list : arg . func  (18)
+
+	FUNC_S  shift 14
+	END  reduce 14
+
+	func  goto 16
+
+
+state 45
+	dimension_expression : list RULE arg REW list .  (15)
+
+	.  reduce 15
+
+
+state 46
+	dimension_expression : list RULE list REW arg .  (16)
+	list : arg . func  (18)
+
+	FUNC_S  shift 14
+	END  reduce 16
+
+	func  goto 16
+
+
+state 47
+	dimension_expression : list RULE list REW list .  (17)
+
+	.  reduce 17
+
+
+State 23 contains 1 shift/reduce conflict.
+State 26 contains 1 shift/reduce conflict.
+
+
+18 terminals, 9 nonterminals
+33 grammar rules, 48 states

@@ -1,0 +1,7 @@
+$1[2]($2[2]@(1,2,3,4),$3[3]@(5,6,7,8,9,10),$4)
+====multiline====>
+:SN=0::LVs=0::Adr=33561584::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$1[2]::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=3::stat=0:
+:SN=1::LVs=1::Adr=33562752::PaAdr=33561584::Ref=0::RT=::Lb=-1::Hptr=0::H=$2[2]::D=[2[2::nval=4::vstr=1,2,3,4::vptr=::Cj=0::Cs=1::C=0::stat=0:
+:SN=2::LVs=1::Adr=33562912::PaAdr=33561584::Ref=0::RT=::Lb=-1::Hptr=0::H=$3[3]::D=[2[3::nval=6::vstr=5,6,7,8,9,10::vptr=::Cj=1::Cs=2::C=0::stat=0:
+:SN=3::LVs=1::Adr=33563104::PaAdr=33561584::Ref=0::RT=::Lb=-1::Hptr=0::H=$4::D=(null)::nval=0::vstr=(null)::vptr=::Cj=1::Cs=3::C=0::stat=0:
+<====multiline====

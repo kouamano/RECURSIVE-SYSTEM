@@ -1,0 +1,2 @@
+(#1[2]@(Length,Weight),#2[2]@(mm,kg))
+$#1@#1[2]@(Length,Weight)
