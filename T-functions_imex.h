@@ -12,6 +12,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 	struct Tree *next;
 	int close = 0;
 	int ESC = 0;
+	int BESC = 0;
 	int SN = *ncount;
 	io_top = Create_Node(SN,0);
 	SN++;
@@ -30,14 +31,22 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 			print_war(C,current,WAR);
 		}
 		/* set conditions */
-		if(C == '[' && ESC == 0){
+		if(C == '[' && ESC == 0 && BESC == 0){
 			DLM_ACC--;
 		}
-		if(C == ']' && ESC == 0){
+		if(C == ']' && ESC == 0 && BESC == 0){
 			DLM_ACC++;
 		}
+		if(C == '{' && ESC == 0){
+			DLM_ACC--;
+			BESC++;
+		}
+		if(C == '}' && ESC == 0){
+			DLM_ACC++;
+			BESC--;
+		}
 		/* function code */
-		if(C == '(' && ESC == 0){
+		if(C == '(' && ESC == 0 && BESC == 0){
 			/* confirm current */
 			BUFF[buf_ptr] = '\0';
 			buff_size = 0;
@@ -70,7 +79,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 			/* set node_current */
 			current = next;
 			close = 0;
-		}else if(C == ',' && DLM_ACC > 0 && ESC == 0){
+		}else if(C == ',' && DLM_ACC > 0 && ESC == 0 && BESC == 0){
 			/* confirm current */
 			BUFF[buf_ptr] = '\0';
 			buff_size = 0;
@@ -103,7 +112,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 			/* set node_current */
 			current = next;
 			close = 0;
-		}else if(C == ')' && ESC == 0){
+		}else if(C == ')' && ESC == 0 && BESC == 0){
 			/* confirm current */
 			BUFF[buf_ptr] = '\0';
 			buff_size = 0;
