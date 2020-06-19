@@ -1,2 +1,0 @@
-$X$List($X$List(#1$$X$Property[2]@(Length,Weight)),$X$List(#2$$X$Unit[2]@(mm,kg)),$X$List[4](#1234567890$$X$Real[2]@(1,2,322,4,5,68,7,81)))
-$X$List($X$List($#1@#1$$X$Property[2]@(Length,Weight),$#2@#2$$X$Unit[2]@(mm,kg),$#1234567890@#1234567890$$X$Real[2]@(1,2,322,4,5,68,7,81)))

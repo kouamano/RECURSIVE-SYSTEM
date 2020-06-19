@@ -1,7 +1,0 @@
-$1[2]($2[2]@(1,2,6,7),$3[3]@(3,4,5,8,9,10),$4)
-====multiline====>
-:SN=0::LVs=0::Adr=1::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$1[2]::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=3::stat=0:
-:SN=1::LVs=1::Adr=2::PaAdr=1::Ref=0::RT=::Lb=-1::Hptr=0::H=$2[2]::D=(null)::nval=4::vstr=1,2,6,7::vptr=,0,2,4,6::Cj=0::Cs=1::C=0::stat=0:
-:SN=2::LVs=1::Adr=3::PaAdr=1::Ref=0::RT=::Lb=-1::Hptr=0::H=$3[3]::D=(null)::nval=6::vstr=3,4,5,8,9,10::vptr=,0,2,4,6,8,10::Cj=1::Cs=2::C=0::stat=0:
-:SN=3::LVs=1::Adr=4::PaAdr=1::Ref=0::RT=::Lb=-1::Hptr=0::H=$4::D=(null)::nval=0::vstr=(null)::vptr=::Cj=1::Cs=3::C=0::stat=0:
-<====multiline====

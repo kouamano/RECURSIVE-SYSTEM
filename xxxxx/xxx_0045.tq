@@ -1,6 +1,0 @@
-#2$#1@#1[4]($#2@#2$#1@#1[4],#1[4])
-====multiline====>
-:SN=0::LVs=0::Adr=13463280::PaAdr=0::Ref=13463568::RT=h::Lb=2::Hptr=2::H=#2$#1::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=2::stat=0:
-:SN=1::LVs=1::Adr=13463408::PaAdr=13463280::Ref=13463280::RT=::Lb=-1::Hptr=0::H=$#2::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
-:SN=2::LVs=1::Adr=13463568::PaAdr=13463280::Ref=0::RT=h::Lb=1::Hptr=2::H=#1[4]::D=[4::nval=4::vstr=(null)::vptr=::Cj=1::Cs=2::C=0::stat=0:
-<====multiline====
