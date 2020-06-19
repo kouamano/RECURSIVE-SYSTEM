@@ -6,5 +6,3 @@ cat test_qescape.3.t
 ./tq.o in=test_qescape.3.t -FT -Pin
 cat test_qescape.4.t
 ./tq.o in=test_qescape.4.t -FT -Pin
-cat test.ddl
-./tq.o in=test.ddf -FT out=test.ddl data=test_qesc.csv -Pin -Pout
