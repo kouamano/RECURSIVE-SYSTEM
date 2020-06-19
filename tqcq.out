@@ -1,0 +1,971 @@
+# branchのdiff
+==cq==
+> VS. cq_debug
+>> self
+>> Readme
+>> source code
+>> test code
+>> compile
+> VS. jsik
+>> self
+>> source code
+
+# compile
+gt
+t
+et
+eet
+s
+es
+ees
+gt
+t
+et
+eet
+s
+es
+ees
+c
+g
+
+# tq のテスト
+## テストスクリプト実行
+# branchのdiff
+==cq==
+> VS. cq_debug
+>> self
+>> Readme
+>> source code
+>> test code
+>> compile
+> VS. jsik
+>> self
+>> source code
+
+# compile
+gt
+t
+et
+eet
+s
+es
+ees
+gt
+t
+et
+eet
+s
+es
+ees
+c
+g
+
+# tq のテスト
+## 単体テスト
+### コンバート
+compile
+T
+S
+J
+W
+C
+0a1
+> ====multiline====>
+8c9
+< 
+---
+> <====multiline====
+N
+H
+1,12c1,13
+< -$11
+<   -$1[]
+<     -$2
+<       -$3[3,4]
+<         -$6
+<           -$7
+<     +$4
+<       -$5
+<   +#1$9
+<     -$10
+<   +#2$11
+< 
+---
+> ====multiline====>
+> -0:$11:(
+>   -1:$1[]:(
+>     -2:$2:(
+>       -3:$3[3,4]:(
+>         -4:$6:(
+>           -5:$7:))),
+>     +6:$4:(
+>       -7:$5:)),
+>   +8:#1$9:(
+>     -9:$10:),
+>   +10:#2$11:)
+> <====multiline====
+- with WL
+START
+T
+:Dataset::END:
+::T:CLEAR::
+S
+:Dataset::END:
+::S:CLEAR::
+tq.o: self check
+S/T
+T2S
+1d0
+< $13[3,4]($5,$23($5)()()()($4,$6[6]))
+T2J
+1d0
+< $13[3,4]($5,$23($5)()()()($4,$6[6]))
+1d0
+< $13[3,4]($5,$23($5)()()()($4,$6[6]))
+T2M
+S2T
+1d0
+< ($13[3,4],$5,((((($23,$5)))),$4,$6[6]))
+S2J
+1d0
+< ($13[3,4],$5,((((($23,$5)))),$4,$6[6]))
+S2M
+1d0
+< ($13[3,4],$5,((((($23,$5)))),$4,$6[6]))
+1d0
+< ($13[3,4],$5,((((($23,$5)))),$4,$6[6]))
+J2T
+J2S
+J2M
+M2T
+M2S
+2c2
+< $13[DIM,3,4][$5,$23[$5][][][][$4,$6[DIM,6]]]
+---
+> 
+M2J
+1,3d0
+< {
+< $13[DIM,3,4][$5,$23[$5][][][][$4,$6[DIM,6]]]
+< }
+json ckeck
+END
+- without WL
+START (without WL)
+T
+:Dataset::END:
+::T:CLEAR::
+S
+:Dataset::END:
+::S:CLEAR::
+tq.o: self check
+S/T
+T2S
+T2S
+T2J
+T2M
+T2M
+S2T
+S2J
+S2M
+J2T
+J2S
+J2M
+M2T
+M2S
+M2J
+json ckeck
+END
+
+### ラベル、レファレンス、オペレータ処理
+-
+[0001] echo '#1$#2$U$$f(#2$2)' | ./tq.o in=/dev/stdin -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0001.tq と xxxxx/xxx_0001.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0001.tq と xxxxx/xxx_0001.ans は同一です
+
+
+-
+[0002] echo '#1$#2$U$$f(#2$2)' | ./tq.o in=/dev/stdin -FT -Pin -C
+<tq/cq> ファイル xxxxx/xxx_0002.tq と xxxxx/xxx_0002.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0002.tq と xxxxx/xxx_0002.ans は同一です
+
+
+[0003] echo '#1$#2$UU$$f(#2$2)' | ./tq.o in=/dev/stdin -FT -Pin -C
+<tq/cq> ファイル xxxxx/xxx_0003.tq と xxxxx/xxx_0003.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0003.tq と xxxxx/xxx_0003.ans は同一です
+
+
+
+- レファレンスのレファレンス
+[0004] echo '(#1,#2,#3)(#4$#1,$#4)' | ./tq.o in=/dev/stdin -Pin -FT
+<tq/cq> ファイル xxxxx/xxx_0004.tq と xxxxx/xxx_0004.cq は同一です
+
+
+[0005] echo '(#1,#2,#3)(#4$#1,#5$#4,$#5)' | ./tq.o in=/dev/stdin -Pin -FT
+<tq/cq> ファイル xxxxx/xxx_0005.tq と xxxxx/xxx_0005.cq は同一です
+
+
+[0006] echo '(#1,#2,#3)(#4$#1h,#5$#4g,#6$#5f(H))' | ./tq.o in=/dev/stdin -Pin -FT -C
+<tq/cq> ファイル xxxxx/xxx_0006.tq と xxxxx/xxx_0006.cq は同一です
+
+
+
+### エスケープ処理
+#### クオーティング
+"("()
+[0001] ./tq.o in=test_qescape.1.t -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0001.tq と xxxxx/xxx_0001.cq は同一です
+
+
+"("(")")
+[0002] ./tq.o in=test_qescape.2.t -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0002.tq と xxxxx/xxx_0002.cq は同一です
+
+
+\\()()
+[0003] ./tq.o in=test_qescape.3.t -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0003.tq と xxxxx/xxx_0003.cq は同一です
+
+
+\\(\\)
+[0004] ./tq.o in=test_qescape.4.t -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0004.tq と xxxxx/xxx_0004.cq は同一です
+
+
+$X$List($X$List($#1,$#2,$#1234567890))
+[0005] ./tq.o in=test.ddf -FT out=test.ddl data=test_qesc.csv -Pin -Pout
+<tq/cq> ファイル xxxxx/xxx_0005.tq と xxxxx/xxx_0005.cq は同一です
+
+
+
+### compile: クオーティング
+[0007] echo '#12$`$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst	### -Fst
+<tq/cq> 3,4c3,4
+< :SN=0::LVs=0::Adr=15475776::PaAdr=0::Ref=0::RT=h::Lb=12::Hptr=3::H=#12$`$134::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=1::stat=0:
+< :SN=1::LVs=1::Adr=15477040::PaAdr=15475776::Ref=0::RT=::Lb=-1::Hptr=0::H=::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+---
+> :SN=0::LVs=0::Adr=1::PaAdr=0::Ref=0::RT=h::Lb=12::Hptr=3::H=#12$`$134::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=1::stat=0:
+> :SN=1::LVs=1::Adr=2::PaAdr=1::Ref=0::RT=::Lb=-1::Hptr=0::H=::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+
+
+[0008] echo '#12$`$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C		### SAK  -Fst del
+<tq/cq> ファイル xxxxx/xxx_0008.tq と xxxxx/xxx_0008.cq は同一です
+
+
+[0009] echo '$`$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst	### -Fst
+<tq/cq> 3,4c3,4
+< :SN=0::LVs=0::Adr=8979520::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$`$134::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=1::stat=0:
+< :SN=1::LVs=1::Adr=8980752::PaAdr=8979520::Ref=0::RT=::Lb=-1::Hptr=0::H=::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+---
+> :SN=0::LVs=0::Adr=1::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$`$134::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=1::stat=0:
+> :SN=1::LVs=1::Adr=2::PaAdr=1::Ref=0::RT=::Lb=-1::Hptr=0::H=::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+
+
+[0010] echo '$`$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C 		### SAK  -Fst del
+<tq/cq> ファイル xxxxx/xxx_0010.tq と xxxxx/xxx_0010.cq は同一です
+
+
+[0011] echo '#12$``$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst	### -Fst
+<tq/cq> 3,4c3,4
+< :SN=0::LVs=0::Adr=37434432::PaAdr=0::Ref=0::RT=h::Lb=12::Hptr=3::H=#12$``$134::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=1::stat=4:
+< :SN=1::LVs=1::Adr=37435696::PaAdr=37434432::Ref=0::RT=::Lb=-1::Hptr=0::H=::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+---
+> :SN=0::LVs=0::Adr=1::PaAdr=0::Ref=0::RT=h::Lb=12::Hptr=3::H=#12$``$134::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=1::stat=4:
+> :SN=1::LVs=1::Adr=2::PaAdr=1::Ref=0::RT=::Lb=-1::Hptr=0::H=::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+
+
+[0012] echo '#12$``$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C 	### SAK  -Fst del
+<tq/cq> ファイル xxxxx/xxx_0012.tq と xxxxx/xxx_0012.cq は同一です
+
+
+[0013] echo '$``$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst	### -Fst
+<tq/cq> 3,4c3,4
+< :SN=0::LVs=0::Adr=9684032::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$``$134::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=1::stat=4:
+< :SN=1::LVs=1::Adr=9685264::PaAdr=9684032::Ref=0::RT=::Lb=-1::Hptr=0::H=::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+---
+> :SN=0::LVs=0::Adr=1::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$``$134::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=1::stat=4:
+> :SN=1::LVs=1::Adr=2::PaAdr=1::Ref=0::RT=::Lb=-1::Hptr=0::H=::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+
+
+[0014] echo '$``$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C 		### SAK  -Fst del
+<tq/cq> ファイル xxxxx/xxx_0014.tq と xxxxx/xxx_0014.cq は同一です
+
+
+[0015] echo '$``$' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst		### -Fst
+<tq/cq> 3c3
+< :SN=0::LVs=0::Adr=12358720::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$``$::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=4:
+---
+> :SN=0::LVs=0::Adr=1::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$``$::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=4:
+
+
+[0016] echo '$``$' | ./tq.o in=/dev/stdin -FT  -Pin -C			### SAK  -Fst del
+<tq/cq> ファイル xxxxx/xxx_0016.tq と xxxxx/xxx_0016.cq は同一です
+
+
+[0017] echo '$``$List' | ./tq.o in=/dev/stdin -FT -C -Pin   
+<tq/cq> ファイル xxxxx/xxx_0017.tq と xxxxx/xxx_0017.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0017.tq と xxxxx/xxx_0017.ans は同一です
+
+
+[0018] echo '$``$List($4)' | ./tq.o in=/dev/stdin -FT -C -Pin   
+<tq/cq> ファイル xxxxx/xxx_0018.tq と xxxxx/xxx_0018.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0018.tq と xxxxx/xxx_0018.ans は同一です
+
+
+
+### アンパック
+[0019] echo '$~~$($U$(7,8,$U$(5,6)))' | ./tq.o in=/dev/stdin -FT -Pin -C
+<tq/cq> ファイル xxxxx/xxx_0019.tq と xxxxx/xxx_0019.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0019.tq と xxxxx/xxx_0019.ans は同一です
+
+
+[0020] ./tq.o in=test_unpack.t -FT -Pin -C
+<tq/cq> ファイル xxxxx/xxx_0020.tq と xxxxx/xxx_0020.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0020.tq と xxxxx/xxx_0020.ans は同一です
+
+
+[0021] ./tq.o in=test_compile.t -C -FT -Pin    
+<tq/cq> ファイル xxxxx/xxx_0021.tq と xxxxx/xxx_0021.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0021.tq と xxxxx/xxx_0021.ans は同一です
+
+
+
+### リテラル化
+[0022] ./tq.o in=test_riteraltree.t -FT -Pin -C
+<tq/cq> ファイル xxxxx/xxx_0022.tq と xxxxx/xxx_0022.cq は同一です
+
+
+[0023] ./tq.o in=test_ritelal-unpack.t -FT -Pin -C
+<tq/cq> ファイル xxxxx/xxx_0023.tq と xxxxx/xxx_0023.cq は同一です
+
+
+
+### 次元取得
+- リーフノードのみ取得される:
+[0024] ./tq.o in=test_dim.ddf -Pin -Fst data=vals.csv -FT		### -Fst
+<tq/cq> 1c1
+< $1[2]($2[2]@(1,2,3,4),$3[3]@(5,6,7,8,9,10),$4)
+---
+> $1[2]($2[2]@(1,2,6,7),$3[3]@(3,4,5,8,9,10),$4)
+3,6c3,6
+< :SN=0::LVs=0::Adr=19240576::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$1[2]::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=3::stat=0:
+< :SN=1::LVs=1::Adr=19241808::PaAdr=19240576::Ref=0::RT=::Lb=-1::Hptr=0::H=$2[2]::D=[2[2::nval=4::vstr=1,2,3,4::vptr=::Cj=0::Cs=1::C=0::stat=0:
+< :SN=2::LVs=1::Adr=19242000::PaAdr=19240576::Ref=0::RT=::Lb=-1::Hptr=0::H=$3[3]::D=[2[3::nval=6::vstr=5,6,7,8,9,10::vptr=::Cj=1::Cs=2::C=0::stat=0:
+< :SN=3::LVs=1::Adr=19242192::PaAdr=19240576::Ref=0::RT=::Lb=-1::Hptr=0::H=$4::D=(null)::nval=0::vstr=(null)::vptr=::Cj=1::Cs=3::C=0::stat=0:
+---
+> :SN=0::LVs=0::Adr=1::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$1[2]::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=3::stat=0:
+> :SN=1::LVs=1::Adr=2::PaAdr=1::Ref=0::RT=::Lb=-1::Hptr=0::H=$2[2]::D=(null)::nval=4::vstr=1,2,6,7::vptr=,0,2,4,6::Cj=0::Cs=1::C=0::stat=0:
+> :SN=2::LVs=1::Adr=3::PaAdr=1::Ref=0::RT=::Lb=-1::Hptr=0::H=$3[3]::D=(null)::nval=6::vstr=3,4,5,8,9,10::vptr=,0,2,4,6,8,10::Cj=1::Cs=2::C=0::stat=0:
+> :SN=3::LVs=1::Adr=4::PaAdr=1::Ref=0::RT=::Lb=-1::Hptr=0::H=$4::D=(null)::nval=0::vstr=(null)::vptr=::Cj=1::Cs=3::C=0::stat=0:
+
+
+[0025] ./tq.o in=test_dim.ddf -Pin data=vals.csv -FT			### SAK  -Fst del
+<tq/cq> 1c1
+< $1[2]($2[2]@(1,2,3,4),$3[3]@(5,6,7,8,9,10),$4)
+---
+> $1[2]($2[2]@(1,2,6,7),$3[3]@(3,4,5,8,9,10),$4)
+
+
+
+### データバインド
+- 基本(0)
+[0026] echo '#1$OP$Head($#1[1])' | ./tq.o in=/dev/stdin -FT -Pin data=test.csv
+<tq/cq> ファイル xxxxx/xxx_0026.tq と xxxxx/xxx_0026.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0026.tq と xxxxx/xxx_0026.ans は同一です
+
+
+- 基本(1)
+[0027] ./tq.o in=test_ref.ddf -Pin -FT data=test.csv -Pout out=test_ref.ddl
+<tq/cq> ファイル xxxxx/xxx_0027.tq と xxxxx/xxx_0027.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0027.tq と xxxxx/xxx_0027.ans は同一です
+
+
+#4 Nodes were operated.						### SAK del
+- 基本(2)
+[0028] ./tq.o in=test.ddf -FT out=test.ddl data=test.csv -Pin -Pout
+<tq/cq> ファイル xxxxx/xxx_0028.tq と xxxxx/xxx_0028.cq は同一です
+
+
+- 配列指定のあるリーフノードにバインドされる
+[0029] ./tq.o in=test_bind.t  data=test.csv -FT -Pin
+<tq/cq> 1c1
+< $TOP($X$List($LEAF,$LEAF[]@(Length),$LEAF[2]@(Weight,mm)),$X$List[2]($LEAF[2]@(kg,1,2,322)))
+---
+> $TOP($X$List($LEAF,$LEAF[]@(Length,Weight,mm,kg,1,2,322,4,5,68,7,81,90,7,100,100,99,99,80,80,77,77),$LEAF[2]),$X$List[2]($LEAF[2]))
+<tq/ans> ファイル xxxxx/xxx_0029.tq と xxxxx/xxx_0029.ans は同一です
+
+
+
+### レファレンス
+#### 不整合(解消)
+- head/head
+[0030] echo '$1($#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0030.tq と xxxxx/xxx_0030.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0030.tq と xxxxx/xxx_0030.ans は同一です
+
+
+- ref-head/head
+[0031] echo '$1(#2$#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0031.tq と xxxxx/xxx_0031.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0031.tq と xxxxx/xxx_0031.ans は同一です
+
+
+- reft-head/head
+[0032] echo '$1(##2$#3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin 
+<tq/cq> ファイル xxxxx/xxx_0032.tq と xxxxx/xxx_0032.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0032.tq と xxxxx/xxx_0032.ans は同一です
+
+
+### $1(##2$#3,#3$3)  # <= レファレンスバインドが落る    ### SAK del
+
+- head/tree
+[0033] echo '$1($#3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0033.tq と xxxxx/xxx_0033.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0033.tq と xxxxx/xxx_0033.ans は同一です
+
+
+- ref-head/tree
+[0034] echo '$1(#2$#3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0034.tq と xxxxx/xxx_0034.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0034.tq と xxxxx/xxx_0034.ans は同一です
+
+
+- reft-head/tree
+[0035] echo '$1(##2$#3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0035.tq と xxxxx/xxx_0035.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0035.tq と xxxxx/xxx_0035.ans は同一です
+
+
+- reft-head/tree
+[0036] echo '$1(##2$#3,##3$3())' | ./tq.o in=/dev/stdin -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0036.tq と xxxxx/xxx_0036.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0036.tq と xxxxx/xxx_0036.ans は同一です
+
+
+#### 定義表現
+-
+[0037] echo '(f($##1),##1(a,$pow(a,2)))' | ./tq.o in=/dev/stdin -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0037.tq と xxxxx/xxx_0037.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0037.tq と xxxxx/xxx_0037.ans は同一です
+
+
+
+
+- tree/head
+[0038] echo '$1($##3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0038.tq と xxxxx/xxx_0038.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0038.tq と xxxxx/xxx_0038.ans は同一です
+
+
+- ref-tree/head
+[0039] echo '$1(#2$##3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0039.tq と xxxxx/xxx_0039.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0039.tq と xxxxx/xxx_0039.ans は同一です
+
+
+- reft-tree/head
+[0040] echo '$1(##2$##3,#3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0040.tq と xxxxx/xxx_0040.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0040.tq と xxxxx/xxx_0040.ans は同一です
+
+
+
+- tree/tree
+[0041] echo '$1($##3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0041.tq と xxxxx/xxx_0041.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0041.tq と xxxxx/xxx_0041.ans は同一です
+
+
+- ref-tree/tree
+[0042] echo '$1(#2$##3,##3$3)' | ./tq.o in=/dev/stdin -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0042.tq と xxxxx/xxx_0042.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0042.tq と xxxxx/xxx_0042.ans は同一です
+
+
+- reft-tree/tree
+[0043] echo '$1(##2$##3,##3$3())' | ./tq.o in=/dev/stdin -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0043.tq と xxxxx/xxx_0043.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0043.tq と xxxxx/xxx_0043.ans は同一です
+
+
+
+#### 木
+[0044] ./tq.o in=test_ref-tree.ddf -Pin -FT
+<tq/cq> ファイル xxxxx/xxx_0044.tq と xxxxx/xxx_0044.cq は同一です
+
+
+#### セルフ
+-
+[0045] echo '#2$#1($#2,#1[4])' | ./tq.o in=/dev/stdin -Fst -Pin -FT		### -Fst
+<tq/cq> 3,5c3,5
+< :SN=0::LVs=0::Adr=9262144::PaAdr=0::Ref=9263568::RT=h::Lb=2::Hptr=2::H=#2$#1::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=2::stat=0:
+< :SN=1::LVs=1::Adr=9263408::PaAdr=9262144::Ref=9262144::RT=::Lb=-1::Hptr=0::H=$#2::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+< :SN=2::LVs=1::Adr=9263568::PaAdr=9262144::Ref=0::RT=h::Lb=1::Hptr=2::H=#1[4]::D=[4::nval=4::vstr=(null)::vptr=::Cj=1::Cs=2::C=0::stat=0:
+---
+> :SN=0::LVs=0::Adr=1::PaAdr=0::Ref=3::RT=h::Lb=2::Hptr=2::H=#2$#1::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=2::stat=0:
+> :SN=1::LVs=1::Adr=2::PaAdr=1::Ref=1::RT=::Lb=-1::Hptr=0::H=$#2::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+> :SN=2::LVs=1::Adr=3::PaAdr=1::Ref=0::RT=h::Lb=1::Hptr=2::H=#1[4]::D=(null)::nval=0::vstr=(null)::vptr=::Cj=1::Cs=2::C=0::stat=0:
+<tq/ans> 2,6d1
+< ====multiline====>
+< :SN=0::LVs=0::Adr=9262144::PaAdr=0::Ref=9263568::RT=h::Lb=2::Hptr=2::H=#2$#1::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=2::stat=0:
+< :SN=1::LVs=1::Adr=9263408::PaAdr=9262144::Ref=9262144::RT=::Lb=-1::Hptr=0::H=$#2::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+< :SN=2::LVs=1::Adr=9263568::PaAdr=9262144::Ref=0::RT=h::Lb=1::Hptr=2::H=#1[4]::D=[4::nval=4::vstr=(null)::vptr=::Cj=1::Cs=2::C=0::stat=0:
+< <====multiline====
+
+
+-
+[0046] echo '#2$#1($#2,#1[4])' | ./tq.o in=/dev/stdin -Pin -FT			### SAK  -Fst del
+<tq/cq> ファイル xxxxx/xxx_0046.tq と xxxxx/xxx_0046.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0046.tq と xxxxx/xxx_0046.ans は同一です
+
+
+-
+[0047] echo '$$CG$(A($#1$f,$#2$g$f),#1B($##2$g),##2C(a,b))' | ./tq.o in=/dev/stdin -FT -Pin 
+<tq/cq> ファイル xxxxx/xxx_0047.tq と xxxxx/xxx_0047.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0047.tq と xxxxx/xxx_0047.ans は同一です
+
+
+-
+[0048] echo '$$CG$(A($#1$f,$#2$g$f),#1B($##2$g(x,v)),##2C(a,b,a+b))' | ./tq.o in=/dev/stdin -FT -Pin 
+<tq/cq> ファイル xxxxx/xxx_0048.tq と xxxxx/xxx_0048.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0048.tq と xxxxx/xxx_0048.ans は同一です
+
+
+- ループ
+#echo '$$CG$(##1F($##2),##2G($##1))' | ./tq.o in=/dev/stdin -FT -Pin		### SAK del
+# -> コアダンプ
+[0049] echo '$$CG$(#1F($#2),#2G($#1))' | ./tq.o in=/dev/stdin -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0049.tq と xxxxx/xxx_0049.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0049.tq と xxxxx/xxx_0049.ans は同一です
+
+
+
+-
+[0050] ./tq.o in=test_ref.1.t -FMa -FT -Fh -Pin
+<tq/cq> ファイル xxxxx/xxx_0050.tq と xxxxx/xxx_0050.cq は同一です
+
+
+- 完全グラフ
+[0051] ./tq.o in=test_ref-graph.4.t -Pin -FT -FMa		### SAK 複数行のansを開業した
+<tq/cq> ファイル xxxxx/xxx_0051.tq と xxxxx/xxx_0051.cq は同一です
+<tq/ans> 1a2
+> 
+3,13c4,14
+< [:#1$1:0],:1,,,,:5,,,,:9,,->11,,
+< ->0,[0=>:$#2:1->11],:2,:3,:4,->5,,,,->9,,,,
+< ,,[1=>:$#1:2->0],,,,,,,,,,,
+< ,,,[1=>:$#3:3->5],,,,,,,,,,
+< ,,,,[1=>:$#4:4->9],,,,,,,,,
+< ->0,,,,,[:#3$3:5],:6,:7,:8,->9,,->11,,
+< ,,,,,,[5=>:$#1:6->0],,,,,,,
+< ,,,,,,,[5=>:$#2:7->11],,,,,,
+< ,,,,,,,,[5=>:$#4:8->9],,,,,
+< ->0,,,,,->5,,,,[:#4$4:9],:10,:11,:12,
+< ,,,,,,,,,,[9=>:$#1:10->0],,,
+---
+> [:#1$1:0],1,,,,5,,,,9,,11,,
+> 0,[0->:$#2:1->11],2,3,4,5,,,,9,,,,
+> ,,[1->:$#1:2->0],,,,,,,,,,,
+> ,,,[1->:$#3:3->5],,,,,,,,,,
+> ,,,,[1->:$#4:4->9],,,,,,,,,
+> 0,,,,,[:#3$3:5],6,7,8,9,,11,,
+> ,,,,,,[5->:$#1:6->0],,,,,,,
+> ,,,,,,,[5->:$#2:7->11],,,,,,
+> ,,,,,,,,[5->:$#4:8->9],,,,,
+> 0,,,,,5,,,,[:#4$4:9],10,11,12,
+> ,,,,,,,,,,[9->:$#1:10->0],,,
+15c16
+< ,,,,,,,,,,,,[9=>:$#3:12->5],
+---
+> ,,,,,,,,,,,,[9->:$#3:12->5],
+
+
+#### セルフ+ output
+[0052] ./tq.o in=test_ref.1.t out=test_ref.1.ot -FMa -FT -Fh -Pin -Pout
+<tq/cq> ファイル xxxxx/xxx_0052.tq と xxxxx/xxx_0052.cq は同一です
+
+
+
+#### セルフ+ output + data    
+- フラットパターン    
+[0053] ./tq.o in=test_ref.2.t out=test_ref.2.ot -FT -Pin -Pout data=test.csv
+<tq/cq> ファイル xxxxx/xxx_0053.tq と xxxxx/xxx_0053.cq は同一です
+
+
+- 入れ子パターン
+[0054] ./tq.o in=test_ref.2.t out=test_ref.2-1.ot -FT -Pin -Pout data=test.csv
+<tq/cq> ファイル xxxxx/xxx_0054.tq と xxxxx/xxx_0054.cq は同一です
+
+
+- out形式で参照をリストの入れ子に
+[0055] ./tq.o in=test_ref.2.t out=test_refR.2.ot -FT -Pin -Pout data=test.csv
+<tq/cq> ファイル xxxxx/xxx_0055.tq と xxxxx/xxx_0055.cq は同一です
+
+
+- 再帰レファレンス($#9)
+[0056] ./tq.o in=test_ref.1.t out=test_ref.1.ot -FT -Pout data=test.csv -Pin
+<tq/cq> ファイル xxxxx/xxx_0056.tq と xxxxx/xxx_0056.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0056.tq と xxxxx/xxx_0056.ans は同一です
+
+
+#15 Nodes were operated.
+- 複合レファレンス
+[0057] ./tq.o in=test_ref.3.ddf data=test.csv -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0057.tq と xxxxx/xxx_0057.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0057.tq と xxxxx/xxx_0057.ans は同一です
+
+
+- 複合レファレンス(2)
+[0058] ./tq.o out=test_complex-ref.ddl -Pout -FT in=test_complex-ref.ddf data=test.csv
+<tq/cq> ファイル xxxxx/xxx_0058.tq と xxxxx/xxx_0058.cq は同一です
+
+
+
+### 内積
+[0059] ./tq.o in=test_prd.1.ddf out=test_prd.1.ddl data=test.csv -FT -Pprod  -C
+<tq/cq> ファイル xxxxx/xxx_0059.tq と xxxxx/xxx_0059.cq は同一です
+
+
+[0060] ./tq.o in=test_prd.1.ddf out=test_prd.2.ddl data=test.csv -FT -Pprod  -C
+<tq/cq> ファイル xxxxx/xxx_0060.tq と xxxxx/xxx_0060.cq は同一です
+
+
+[0061] ./tq.o in=test_prd.1.ddf out=test_prd.3.ddl data=test.csv -FT -Pprod  -C
+<tq/cq> ファイル xxxxx/xxx_0061.tq と xxxxx/xxx_0061.cq は同一です
+
+
+[0062] ./tq.o in=test_prd.1.ddf out=test_prd.3.ddl data=test.csv -FT -Pprod  -C  | ./tq.o in=/dev/stdin Sp=0,0 -Pin -FT
+<tq/cq> ファイル xxxxx/xxx_0062.tq と xxxxx/xxx_0062.cq は同一です
+
+
+[0063] ./tq.o in=test_prd.1.ddf out=test_prd.4.ddl data=test.csv -FT -Pprod  -C
+<tq/cq> ファイル xxxxx/xxx_0063.tq と xxxxx/xxx_0063.cq は同一です
+
+
+[0064] ./tq.o in=test_prd.1.ddf out=test_prd.5.ddl data=test.csv -FT -Pprod  -C
+<tq/cq> ファイル xxxxx/xxx_0064.tq と xxxxx/xxx_0064.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0064.tq と xxxxx/xxx_0064.ans は同一です
+
+
+[0065] ./tq.o in=test_prd.1.ddf out=test_prd.6.ddl data=test.csv -FT -Pprod  -C
+<tq/cq> ファイル xxxxx/xxx_0065.tq と xxxxx/xxx_0065.cq は同一です
+
+
+[0066] ./tq.o in=test_prd.1.ddf out=test_prd.7.ddl data=test.csv -FT -Pprod  -C
+<tq/cq> ファイル xxxxx/xxx_0066.tq と xxxxx/xxx_0066.cq は同一です
+
+
+[0067] ./tq.o in=test_prd.1.ddf out=test_prd.8.ddl data=test.csv -FT -Pprod  -C
+<tq/cq> ファイル xxxxx/xxx_0067.tq と xxxxx/xxx_0067.cq は同一です
+
+
+[0068] ./tq.o in=test_prd.1.ddf out=test_prd.9.ddl data=test.csv -FT -Pprod  -C
+<tq/cq> ファイル xxxxx/xxx_0068.tq と xxxxx/xxx_0068.cq は同一です
+<tq/ans> 1c1
+< ((((Length,Quantity(1,mm)),(Weight,Quantity(2,kg))),((Length,Quantity(322,mm)),(Weight,Quantity(4,kg))),((Length,Quantity(5,mm)),(Weight,Quantity(68,kg)))))
+---
+> (f,g,((,(Length,Quantity(1,mm)),,(Weight,Quantity(2,kg))),(,(Length,Quantity(322,mm)),,(Weight,Quantity(4,kg))),(,(Length,Quantity(5,mm)),,(Weight,Quantity(68,kg)))),((,(Length,Quantity(1,mm)),,(Weight,Quantity(2,kg))),(,(Length,Quantity(322,mm)),,(Weight,Quantity(4,kg))),(,(Length,Quantity(5,mm)),,(Weight,Quantity(68,kg)))),h)
+
+
+# ちょっとおかしい				### SAK del
+[0069] ./tq.o in=num.ddf out=num.ddl data=num.csv -FT -Pprod  -C
+<tq/cq> ファイル xxxxx/xxx_0069.tq と xxxxx/xxx_0069.cq は同一です
+<tq/ans> 1c1
+< (((Length,Quantity(300,mm)),(Weight,Quantity(100,kg))),((Length,Quantity(320,mm)),(Weight,Quantity(102,kg))),((Length,Quantity(302,mm)),(Weight,Quantity(101,kg))),((Length,Quantity(360,mm)),(Weight,Quantity(125,kg))))
+---
+> (((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(3,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(6,kg))))
+
+
+[0070] ./tq.o in=num2.ddf out=num2.ddl data=num.csv -FT -Pprod  -C 
+<tq/cq> ファイル xxxxx/xxx_0070.tq と xxxxx/xxx_0070.cq は同一です
+<tq/ans> 1c1
+< (((L,W),Quantity(300,(mm,kg))),((L,W),Quantity(100,(mm,kg))),((L,W),Quantity(320,(mm,kg))),((L,W),Quantity(102,(mm,kg))),((L,W),Quantity(302,(mm,kg))),((L,W),Quantity(101,(mm,kg))))
+---
+> (((L,W),Quantity(1,(mm,kg))),((L,W),Quantity(2,(mm,kg))),((L,W),Quantity(3,(mm,kg))),((L,W),Quantity(4,(mm,kg))),((L,W),Quantity(5,(mm,kg))),((L,W),Quantity(6,(mm,kg))))
+
+
+[0071] ./tq.o in=num2.ddf out=num3.ddl data=num.csv -FT -Pprod  -C 
+<tq/cq> ファイル xxxxx/xxx_0071.tq と xxxxx/xxx_0071.cq は同一です
+<tq/ans> 1c1
+< ((((L,W),Quantity(300,mm)),((L,W),Quantity(100,kg))),(((L,W),Quantity(320,mm)),((L,W),Quantity(102,kg))),(((L,W),Quantity(302,mm)),((L,W),Quantity(101,kg))))
+---
+> ((((L,W),Quantity(1,mm)),((L,W),Quantity(2,kg))),(((L,W),Quantity(3,mm)),((L,W),Quantity(4,kg))),(((L,W),Quantity(5,mm)),((L,W),Quantity(6,kg))))
+
+
+
+
+### サーチ
+- ポジション指定
+[0072] ./tq.o in=test.t Sp=0,1 -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0072.tq と xxxxx/xxx_0072.cq は同一です
+
+
+## 単体テスト
+### コンバート
+compile
+T
+S
+J
+W
+C
+0a1
+> ====multiline====>
+8c9
+< 
+---
+> <====multiline====
+N
+H
+1,12c1,13
+< -$11
+<   -$1[]
+<     -$2
+<       -$3[3,4]
+<         -$6
+<           -$7
+<     +$4
+<       -$5
+<   +#1$9
+<     -$10
+<   +#2$11
+< 
+---
+> ====multiline====>
+> -0:$11:(
+>   -1:$1[]:(
+>     -2:$2:(
+>       -3:$3[3,4]:(
+>         -4:$6:(
+>           -5:$7:))),
+>     +6:$4:(
+>       -7:$5:)),
+>   +8:#1$9:(
+>     -9:$10:),
+>   +10:#2$11:)
+> <====multiline====
+- with WL
+START
+T
+:Dataset::END:
+::T:CLEAR::
+S
+:Dataset::END:
+::S:CLEAR::
+tq.o: self check
+S/T
+T2S
+1d0
+< $13[3,4]($5,$23($5)()()()($4,$6[6]))
+T2J
+1d0
+< $13[3,4]($5,$23($5)()()()($4,$6[6]))
+1d0
+< $13[3,4]($5,$23($5)()()()($4,$6[6]))
+T2M
+S2T
+1d0
+< ($13[3,4],$5,((((($23,$5)))),$4,$6[6]))
+S2J
+1d0
+< ($13[3,4],$5,((((($23,$5)))),$4,$6[6]))
+S2M
+1d0
+< ($13[3,4],$5,((((($23,$5)))),$4,$6[6]))
+1d0
+< ($13[3,4],$5,((((($23,$5)))),$4,$6[6]))
+J2T
+J2S
+J2M
+M2T
+M2S
+2c2
+< $13[DIM,3,4][$5,$23[$5][][][][$4,$6[DIM,6]]]
+---
+> 
+M2J
+1,3d0
+< {
+< $13[DIM,3,4][$5,$23[$5][][][][$4,$6[DIM,6]]]
+< }
+json ckeck
+END
+- without WL
+START (without WL)
+T
+:Dataset::END:
+::T:CLEAR::
+S
+:Dataset::END:
+::S:CLEAR::
+tq.o: self check
+S/T
+T2S
+T2S
+T2J
+T2M
+T2M
+S2T
+S2J
+S2M
+J2T
+J2S
+J2M
+M2T
+M2S
+M2J
+json ckeck
+END
+
+### ラベル、レファレンス、オペレータ処理
+-
+[0001] echo '#1$#2$U$$f(#2$2)' | ./tq.o in=/dev/stdin -FT -Pin
+<tq/cq> ファイル xxxxx/xxx_0001.tq と xxxxx/xxx_0001.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0001.tq と xxxxx/xxx_0001.ans は同一です
+
+
+-
+[0002] echo '#1$#2$U$$f(#2$2)' | ./tq.o in=/dev/stdin -FT -Pin -C
+<tq/cq> ファイル xxxxx/xxx_0002.tq と xxxxx/xxx_0002.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0002.tq と xxxxx/xxx_0002.ans は同一です
+
+
+[0003] echo '#1$#2$UU$$f(#2$2)' | ./tq.o in=/dev/stdin -FT -Pin -C
+<tq/cq> ファイル xxxxx/xxx_0003.tq と xxxxx/xxx_0003.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0003.tq と xxxxx/xxx_0003.ans は同一です
+
+
+- レファレンスのレファレンス
+[0004] echo '(#1,#2,#3)(#4$#1,$#4)' | ./tq.o in=/dev/stdin -Pin -FT
+<tq/cq> ファイル xxxxx/xxx_0004.tq と xxxxx/xxx_0004.cq は同一です
+
+
+[0005] echo '(#1,#2,#3)(#4$#1,#5$#4,$#5)' | ./tq.o in=/dev/stdin -Pin -FT
+<tq/cq> ファイル xxxxx/xxx_0005.tq と xxxxx/xxx_0005.cq は同一です
+
+
+[0006] echo '(#1,#2,#3)(#4$#1h,#5$#4g,#6$#5f(H))' | ./tq.o in=/dev/stdin -Pin -FT -C
+<tq/cq> ファイル xxxxx/xxx_0006.tq と xxxxx/xxx_0006.cq は同一です
+
+
+
+### エスケープ処理
+#### クオーティング
+
+### compile: クオーティング
+[0007] echo '#12$`$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst
+<tq/cq> 3,4c3,4
+< :SN=0::LVs=0::Adr=30237760::PaAdr=0::Ref=0::RT=h::Lb=12::Hptr=3::H=#12$`$134::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=1::stat=0:
+< :SN=1::LVs=1::Adr=30239024::PaAdr=30237760::Ref=0::RT=::Lb=-1::Hptr=0::H=::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+---
+> :SN=0::LVs=0::Adr=1::PaAdr=0::Ref=0::RT=h::Lb=12::Hptr=3::H=#12$`$134::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=1::stat=0:
+> :SN=1::LVs=1::Adr=2::PaAdr=1::Ref=0::RT=::Lb=-1::Hptr=0::H=::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+
+
+[0008] echo '$`$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst
+<tq/cq> 3,4c3,4
+< :SN=0::LVs=0::Adr=8930368::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$`$134::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=1::stat=0:
+< :SN=1::LVs=1::Adr=8931600::PaAdr=8930368::Ref=0::RT=::Lb=-1::Hptr=0::H=::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+---
+> :SN=0::LVs=0::Adr=1::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$`$134::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=1::stat=0:
+> :SN=1::LVs=1::Adr=2::PaAdr=1::Ref=0::RT=::Lb=-1::Hptr=0::H=::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+
+
+[0009] echo '#12$``$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst
+<tq/cq> 3,4c3,4
+< :SN=0::LVs=0::Adr=37520448::PaAdr=0::Ref=0::RT=h::Lb=12::Hptr=3::H=#12$``$134::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=1::stat=4:
+< :SN=1::LVs=1::Adr=37521712::PaAdr=37520448::Ref=0::RT=::Lb=-1::Hptr=0::H=::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+---
+> :SN=0::LVs=0::Adr=1::PaAdr=0::Ref=0::RT=h::Lb=12::Hptr=3::H=#12$``$134::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=1::stat=4:
+> :SN=1::LVs=1::Adr=2::PaAdr=1::Ref=0::RT=::Lb=-1::Hptr=0::H=::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+
+
+[0010] echo '$``$134()' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst
+<tq/cq> 3,4c3,4
+< :SN=0::LVs=0::Adr=7922752::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$``$134::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=1::stat=4:
+< :SN=1::LVs=1::Adr=7923984::PaAdr=7922752::Ref=0::RT=::Lb=-1::Hptr=0::H=::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+---
+> :SN=0::LVs=0::Adr=1::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$``$134::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=1::stat=4:
+> :SN=1::LVs=1::Adr=2::PaAdr=1::Ref=0::RT=::Lb=-1::Hptr=0::H=::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=0:
+
+
+[0011] echo '$``$' | ./tq.o in=/dev/stdin -FT  -Pin -C -Fst
+<tq/cq> 3c3
+< :SN=0::LVs=0::Adr=30549056::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$``$::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=4:
+---
+> :SN=0::LVs=0::Adr=1::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$``$::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=0::stat=4:
+
+
+[0012] echo '$``$List' | ./tq.o in=/dev/stdin -FT -C -Pin   
+<tq/cq> ファイル xxxxx/xxx_0012.tq と xxxxx/xxx_0012.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0012.tq と xxxxx/xxx_0012.ans は同一です
+
+
+[0013] echo '$``$List($4)' | ./tq.o in=/dev/stdin -FT -C -Pin   
+<tq/cq> ファイル xxxxx/xxx_0013.tq と xxxxx/xxx_0013.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0013.tq と xxxxx/xxx_0013.ans は同一です
+
+
+
+### アンパック
+[0014] echo '$~~$($U$(7,8,$U$(5,6)))' | ./tq.o in=/dev/stdin -FT -Pin -C
+<tq/cq> ファイル xxxxx/xxx_0014.tq と xxxxx/xxx_0014.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0014.tq と xxxxx/xxx_0014.ans は同一です
+
+
+[0015] ./tq.o in=test_unpack.t -FT -Pin -C
+<tq/cq> ファイル xxxxx/xxx_0015.tq と xxxxx/xxx_0015.cq は同一です
+<tq/ans> 1c1
+< $(,$1,$2,List,$1,$2)
+---
+> $($1,$2,List,$1,$2)
+
+
+[0016] ./tq.o in=test_compile.t -C -FT -Pin    
+<tq/cq> ファイル xxxxx/xxx_0016.tq と xxxxx/xxx_0016.cq は同一です
+<tq/ans> 1c1
+< $~List(List(List,List,,List,List))
+---
+> $~List(List(List,List,List,List))
+
+
+
+### リテラル化
+[0017] ./tq.o in=test_riteraltree.t -FT -Pin -C
+<tq/cq> ファイル xxxxx/xxx_0017.tq と xxxxx/xxx_0017.cq は同一です
+
+
+[0018] ./tq.o in=test_ritelal-unpack.t -FT -Pin -C
+<tq/cq> ファイル xxxxx/xxx_0018.tq と xxxxx/xxx_0018.cq は同一です
+
+
+
+### 次元取得
+- リーフノードのみ取得される:
+[0019] ./tq.o in=test_dim.ddf -Pin -Fst data=vals.csv -FT
+<tq/cq> 1c1
+< $1[2]($2[2]@(1,2,3,4),$3[3]@(5,6,7,8,9,10),$4)
+---
+> $1[2]($2[2]@(1,2,6,7),$3[3]@(3,4,5,8,9,10),$4)
+3,6c3,6
+< :SN=0::LVs=0::Adr=23053952::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$1[2]::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=3::stat=0:
+< :SN=1::LVs=1::Adr=23055184::PaAdr=23053952::Ref=0::RT=::Lb=-1::Hptr=0::H=$2[2]::D=[2[2::nval=4::vstr=1,2,3,4::vptr=::Cj=0::Cs=1::C=0::stat=0:
+< :SN=2::LVs=1::Adr=23055376::PaAdr=23053952::Ref=0::RT=::Lb=-1::Hptr=0::H=$3[3]::D=[2[3::nval=6::vstr=5,6,7,8,9,10::vptr=::Cj=1::Cs=2::C=0::stat=0:
+< :SN=3::LVs=1::Adr=23055568::PaAdr=23053952::Ref=0::RT=::Lb=-1::Hptr=0::H=$4::D=(null)::nval=0::vstr=(null)::vptr=::Cj=1::Cs=3::C=0::stat=0:
+---
+> :SN=0::LVs=0::Adr=1::PaAdr=0::Ref=0::RT=::Lb=-1::Hptr=0::H=$1[2]::D=(null)::nval=0::vstr=(null)::vptr=::Cj=0::Cs=1::C=3::stat=0:
+> :SN=1::LVs=1::Adr=2::PaAdr=1::Ref=0::RT=::Lb=-1::Hptr=0::H=$2[2]::D=(null)::nval=4::vstr=1,2,6,7::vptr=,0,2,4,6::Cj=0::Cs=1::C=0::stat=0:
+> :SN=2::LVs=1::Adr=3::PaAdr=1::Ref=0::RT=::Lb=-1::Hptr=0::H=$3[3]::D=(null)::nval=6::vstr=3,4,5,8,9,10::vptr=,0,2,4,6,8,10::Cj=1::Cs=2::C=0::stat=0:
+> :SN=3::LVs=1::Adr=4::PaAdr=1::Ref=0::RT=::Lb=-1::Hptr=0::H=$4::D=(null)::nval=0::vstr=(null)::vptr=::Cj=1::Cs=3::C=0::stat=0:
+
+
+
+### データバインド
+- 基本(0)
+[0020] echo '#1$OP$Head($#1[1])' | ./tq.o in=/dev/stdin -FT -Pin data=test.csv
+<tq/cq> ファイル xxxxx/xxx_0020.tq と xxxxx/xxx_0020.cq は同一です
+<tq/ans> ファイル xxxxx/xxx_0020.tq と xxxxx/xxx_0020.ans は同一です
+
+
+- 基本(1)
+[0021] ./tq.o in=test_ref.ddf -Pin -FT data=test.csv -Pout out=test_ref.ddl
+<tq/cq> ファイル xxxxx/xxx_0021.tq と xxxxx/xxx_0021.cq は同一です
