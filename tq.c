@@ -32,7 +32,7 @@ void help(void){
 	printf("DEVELOPER\n");
 	printf("*********\n");
 	printf("\n");
-	printf(" | Wretten by K. Amano and K. sakamoto.\n");
+	printf(" | Wretten by K. Amano and K. Sakamoto.\n");
 	printf(" | National Institute for Materials Science.\n");
 	printf("\n");
 	printf("USAGE\n");
