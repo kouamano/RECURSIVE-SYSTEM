@@ -29,6 +29,12 @@ void help(void){
 	printf(" tq: A language for tree and graph structure description \n");
 	printf("=========================================================\n");
 	printf("\n");
+	printf("Developer\n");
+	printf("*********\n");
+	printf("\n");
+	printf(" | Wretten by K. Amano and K. sakamoto.\n");
+	printf(" | National Institute for Materials Science.\n");
+	printf("\n");
 	printf("USAGE\n");
 	printf("*****\n");
 	printf("\n");
