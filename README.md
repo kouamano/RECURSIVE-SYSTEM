@@ -1,6 +1,6 @@
 # tq
 ## License
-GPL
+GPL    
 developed by K. Amano and K. Sakamoto @ NIMS
 
 ## compile
