@@ -129,11 +129,6 @@ void list_builtins(void){
 	printf("  * $U$ : <operator>: unpack single level.\n");
 	printf("  * $UU$ : <operator>: unpack tree (test ver.).\n");
 	printf("  * $PI$ : <operator>: inner production for binded data.\n");
-	printf("  * $&$ : <operator>: composition (of functions).\n");
-	printf("  * $$<n> : <prefix>: dictionary reference (term ID).\n");
-	printf("  * $X$<str> : <prefix>: dictionary reference (term string).\n");
-	printf("  * $$$<n> : <prefix>: dictionary reference (class ID).\n");
-	printf("  * $$X$<str> : <prefix>: dictionary reference (class string).\n");
 	printf("  * $NULL$ : <name>: null object.\n");
 	printf("  * @(<string>) : <name>: binded data.\n");
 	printf("  * [<n>] : <bind>: data bind.\n");
