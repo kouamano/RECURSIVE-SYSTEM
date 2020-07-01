@@ -27,10 +27,7 @@ time numactl --localalloc ./tq.o buff=30 in=lllarge4-single-test.t
 time numactl --localalloc ./tq.o buff=30 in=lllarge-single-test.t    
 124653854 Nodes were operated.
 
-### large tree performance (3): 2m33sec; 56G mem
-time ./tq.o in=lllarge-single-test_double.t buff=30 -Pin -FJ > lllarge-single-test_double.json
-
-### large tree performance (3) vs jq:  4m43sec; 72G mem
+### large tree performance (2) vs jq:  4m43sec; 72G mem
 time cat lllarge-single-test_double.json | jq . > /dev/null
 
 
