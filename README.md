@@ -19,9 +19,9 @@ cd DimensionDefinitionLanguage
 README.exam
 
 ## Performance
-### huge tree performance (1): 2m37sec; 83G mem
-time tq.o in=lllarge-single-test_dd.t buff=30
-498615410 Nodes were operated.
+### huge tree performance (1): 3m37sec; 106G mem
+time numactl --localalloc ./tq.o buff=30 in=lllarge4-single-test.t
+498615417 Nodes were operated.
 
 ### large tree performance (2): 1m18sec; 41G mem 
 time ./tq.o in=lllarge-single-test_double.t buff=30
