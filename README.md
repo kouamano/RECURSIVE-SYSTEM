@@ -27,13 +27,10 @@ time tq.o in=lllarge-single-test_dd.t buff=30
 time ./tq.o in=lllarge-single-test_double.t buff=30
 249307706 Nodes were operated.
 
-### large tree performance (3): 1m47sec; 41G mem 
-time ./tq.o in=lllarge-single-test_double.t buff=30 -FT -Pin > /dev/null
-
-### large tree performance (4): 2m33sec; 56G mem
+### large tree performance (3): 2m33sec; 56G mem
 time ./tq.o in=lllarge-single-test_double.t buff=30 -Pin -FJ > lllarge-single-test_double.json
 
-### large tree performance (4) vs jq:  4m43sec; 72G mem
+### large tree performance (3) vs jq:  4m43sec; 72G mem
 time cat lllarge-single-test_double.json | jq . > /dev/null
 
 
