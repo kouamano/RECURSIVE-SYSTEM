@@ -1,9 +1,12 @@
 # tq
 ## License
 GPL    
-developed by K. Amano and K. Sakamoto @ NIMS
 
-## compile
+## Developer
+developed by NIMS,
+written by K. Amano and K. Sakamoto.
+
+## Compile
 ```
 ./compile-all.sh
 ```
@@ -12,25 +15,19 @@ developed by K. Amano and K. Sakamoto @ NIMS
 cd DimensionDefinitionLanguage
 ./compile_checker.sh
 ```
-## 使用例
+## Example
 README.exam
 
-## performance
-### huge tree performance (1): 2m37sec; 83G mem
-time tq.o in=lllarge-single-test_dd.t buff=30
-498615410 Nodes were operated.
+## Performance
+### huge tree performance (1): 3m37sec; 106G mem
+time numactl --localalloc ./tq.o buff=30 in=lllarge4-single-test.t    
+498615417 Nodes were operated.
 
-### large tree performance (2): 1m18sec; 41G mem 
-time ./tq.o in=lllarge-single-test_double.t buff=30
-249307706 Nodes were operated.
+### large tree performance (2): 0m46sec; 26G mem 
+time numactl --localalloc ./tq.o buff=30 in=lllarge-single-test.t    
+124653854 Nodes were operated.
 
-### large tree performance (3): 1m47sec; 41G mem 
-time ./tq.o in=lllarge-single-test_double.t buff=30 -FT -Pin > /dev/null
-
-### large tree performance (4): 2m33sec; 56G mem
-time ./tq.o in=lllarge-single-test_double.t buff=30 -Pin -FJ > lllarge-single-test_double.json
-
-### large tree performance (4) vs jq:  4m43sec; 72G mem
-time cat lllarge-single-test_double.json | jq . > /dev/null
+### large tree performance (2) vs jq:  2m30sec; 36G mem
+time cat lllarge-single-test.json | numactl --localalloc jq . > /dev/null
 
 
