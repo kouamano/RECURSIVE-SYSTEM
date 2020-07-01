@@ -1,9 +1,12 @@
 # tq
 ## License
 GPL    
-developed by K. Amano and K. Sakamoto @ NIMS
 
-## compile
+## Developer
+developed by NIMS,
+written by K. Amano and K. Sakamoto.
+
+## Compile
 ```
 ./compile-all.sh
 ```
@@ -12,10 +15,10 @@ developed by K. Amano and K. Sakamoto @ NIMS
 cd DimensionDefinitionLanguage
 ./compile_checker.sh
 ```
-## 使用例
+## Example
 README.exam
 
-## performance
+## Performance
 ### huge tree performance (1): 2m37sec; 83G mem
 time tq.o in=lllarge-single-test_dd.t buff=30
 498615410 Nodes were operated.
