@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     18803,        417]
-NotebookOptionsPosition[     17485,        385]
-NotebookOutlinePosition[     17831,        400]
-CellTagsIndexPosition[     17788,        397]
+NotebookDataLength[     24058,        543]
+NotebookOptionsPosition[     22288,        503]
+NotebookOutlinePosition[     22635,        518]
+CellTagsIndexPosition[     22592,        515]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -239,6 +239,124 @@ Cell[BoxData["\<\"/home/kamano/gitsrc/RECURSIVE-SYSTEM/icon2.png\"\>"], \
 
 Cell[CellGroupData[{
 
+Cell[BoxData[
+ RowBox[{"g3", "=", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"CMYKColor", "[", 
+       RowBox[{"0", ",", "0", ",", "0", ",", "0.65"}], "]"}], ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<tq\>\"", ",", "78"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0.039", ",", "0"}], "}"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"CMYKColor", "[", 
+       RowBox[{"0", ",", "0", ",", "0", ",", "0.78"}], "]"}], ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<V = V \[Union] E\>\"", ",", "27"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0.057", ",", "0.001"}], "}"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Rotate", "[", 
+       RowBox[{
+        RowBox[{"Text", "[", 
+         RowBox[{
+          RowBox[{"Style", "[", 
+           RowBox[{"\"\<E = E \[Union] V\>\"", ",", "27"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0.057", ",", 
+            RowBox[{"-", "0.0024"}]}], "}"}]}], "]"}], ",", "Pi"}], "]"}], 
+      ",", "\[IndentingNewLine]", 
+      RowBox[{"CMYKColor", "[", 
+       RowBox[{"0", ",", "0", ",", "0", ",", "1"}], "]"}], ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\< A  comprehensive  graph  language \>\"", ",", "14", ",", 
+          RowBox[{"FontFamily", "\[Rule]", "\"\<Montserrat\>\""}]}], "]"}], 
+        ",", 
+        RowBox[{"{", 
+         RowBox[{"0.05", ",", 
+          RowBox[{"-", "0.01"}]}], "}"}]}], "]"}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+    RowBox[{"ImageSize", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"360", ",", "132"}], "}"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQAWIQraRdosQd+saRTSZWC0Tv+L7eDETH2ZvZgej/onMD
+QLRDrlAgiFbh/BUKorsWPo4C0avkH8aB6BW5VtUg+ner81QQvcvOZjuILoi8
+dwBEn+goOwyil3XuPw6idU7MOgWiT/GVnQfRSXsv3gfRLv+2PwHRHB/MlXiA
+tNSOM5og2uFnpBGIbvojYQ6iue7w2IDoHXrpK6SB9EaHxnUgelKk7mUQLXH2
+zXUQ/fb4ZB0ZIM2zfpkuiN7zZqYxiH7bL2oKojN+OFTKAulXdr5gumjKunYQ
+bXfIfCKIDuq0nwqiv7j3TQPR62N+zQLRE5qmrwXRAEDikKs=
+  "],
+ CellLabel->"In[20]:=",ExpressionUUID->"cfd1d428-adf0-406b-8e56-cffee530b868"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {CMYKColor[0, 0, 0, 0.65], InsetBox[
+     StyleBox["\<\"tq\"\>",
+      StripOnInput->False,
+      FontSize->78], {0.039, 0}]}, 
+   {CMYKColor[0, 0, 0, 0.78], InsetBox[
+     StyleBox["\<\"V = V \[Union] E\"\>",
+      StripOnInput->False,
+      FontSize->27], {0.057, 0.001}], GeometricTransformationBox[InsetBox[
+      StyleBox["\<\"E = E \[Union] V\"\>",
+       StripOnInput->False,
+       FontSize->27], {0.057, -0.0024}], {{{-1, 0}, {0, -1}}, Center}]}, 
+   {CMYKColor[0, 0, 0, 1], InsetBox[
+     StyleBox["\<\" A  comprehensive  graph  language \"\>",
+      StripOnInput->False,
+      FontFamily->"Montserrat",
+      FontSize->14], {0.05, -0.01}]}},
+  ImageSize->{360, 132},
+  PlotRange->All]], "Output",
+ CellChangeTimes->{{3.802683682658992*^9, 3.802683718492091*^9}, {
+   3.802683842013308*^9, 3.80268385489522*^9}, {3.802684097010016*^9, 
+   3.802684119999165*^9}, {3.802684158571891*^9, 3.802684234793158*^9}, {
+   3.802684267713215*^9, 3.802684378150011*^9}, {3.802684643639421*^9, 
+   3.802684858775639*^9}, {3.802684942938361*^9, 3.802684956622517*^9}, {
+   3.8026849927538147`*^9, 3.8026850136744204`*^9}, {3.802685057051066*^9, 
+   3.802685183420753*^9}, {3.802685228113287*^9, 3.8026856909570923`*^9}, {
+   3.80268577636796*^9, 3.802685843593876*^9}, {3.802685882710684*^9, 
+   3.802685921581633*^9}, 3.80271740619657*^9, {3.8027175200868053`*^9, 
+   3.802717556842065*^9}, {3.8027178436365747`*^9, 3.8027178878010387`*^9}, {
+   3.802718565597076*^9, 3.802718573696368*^9}, 3.8027186348411093`*^9, 
+   3.802721227559662*^9, 3.8027213564412622`*^9, {3.802721391593163*^9, 
+   3.802721418777163*^9}, 3.802721461433811*^9, {3.802721497209448*^9, 
+   3.802721645128293*^9}},
+ CellLabel->"Out[20]=",ExpressionUUID->"f8fd8b63-93c8-45c0-a302-a75d2cc79397"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+  "\"\</home/kamano/gitsrc/RECURSIVE-SYSTEM/icon3.png\>\"", ",", "g3"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.802717545510111*^9, 3.802717591974721*^9}, {
+  3.8027188900253763`*^9, 3.802718893016985*^9}, {3.8027217316306343`*^9, 
+  3.802721734782003*^9}},
+ CellLabel->"In[21]:=",ExpressionUUID->"c13aedf4-4970-4ec2-b206-47a8946244d5"],
+
+Cell[BoxData["\<\"/home/kamano/gitsrc/RECURSIVE-SYSTEM/icon3.png\"\>"], \
+"Output",
+ CellChangeTimes->{3.8027217362413883`*^9},
+ CellLabel->"Out[21]=",ExpressionUUID->"9e616c94-a79c-4641-8bab-6ecb39c46e53"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
 Cell[BoxData["$FontFamilies"], "Input",
  CellChangeTimes->{{3.8027184121209583`*^9, 3.802718415777546*^9}},
  CellLabel->"In[31]:=",ExpressionUUID->"70713db4-39f1-450c-8f54-f28c0dcf7dfd"],
@@ -384,7 +502,7 @@ Cell[BoxData[
 }, Open  ]]
 },
 WindowSize->{808, 755},
-WindowMargins->{{Automatic, 411}, {Automatic, 72}},
+WindowMargins->{{330, Automatic}, {Automatic, 136}},
 FrontEndVersion->"12.0 for Linux x86 (64-bit) (2019\:5e745\:67083\:65e5)",
 StyleDefinitions->"Default.nb"
 ]
@@ -413,11 +531,19 @@ Cell[7708, 197, 902, 22, 157, "Output",ExpressionUUID->"1db1e397-8366-480e-b8ea-
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[8647, 224, 337, 7, 49, "Input",ExpressionUUID->"fda05765-60af-46db-9aa6-5ed15b9ee0b2"],
-Cell[8987, 233, 205, 3, 92, "Output",ExpressionUUID->"903e34ec-5aef-4bda-b711-8cb6a9a813ff"]
+Cell[8987, 233, 205, 3, 35, "Output",ExpressionUUID->"903e34ec-5aef-4bda-b711-8cb6a9a813ff"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[9229, 241, 186, 2, 49, "Input",ExpressionUUID->"70713db4-39f1-450c-8f54-f28c0dcf7dfd"],
-Cell[9418, 245, 8051, 137, 1301, "Output",ExpressionUUID->"ae3bfa79-83a6-4e67-9c0b-3959f24aed59"]
+Cell[9229, 241, 2333, 59, 282, "Input",ExpressionUUID->"cfd1d428-adf0-406b-8e56-cffee530b868"],
+Cell[11565, 302, 1795, 34, 149, "Output",ExpressionUUID->"f8fd8b63-93c8-45c0-a302-a75d2cc79397"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13397, 341, 389, 8, 49, "Input",ExpressionUUID->"c13aedf4-4970-4ec2-b206-47a8946244d5"],
+Cell[13789, 351, 206, 3, 92, "Output",ExpressionUUID->"9e616c94-a79c-4641-8bab-6ecb39c46e53"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14032, 359, 186, 2, 49, "Input",ExpressionUUID->"70713db4-39f1-450c-8f54-f28c0dcf7dfd"],
+Cell[14221, 363, 8051, 137, 1301, "Output",ExpressionUUID->"ae3bfa79-83a6-4e67-9c0b-3959f24aed59"]
 }, Open  ]]
 }
 ]
