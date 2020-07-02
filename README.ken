@@ -8,7 +8,6 @@ $##<n> ... 木レファレンス :: Src、Dstはコピーと見做す
   ##<n> は木ラベル
 ### 圏のための表現
 - $xxx$ ... オペレータ :: 処理が内部予約されている
-- $$xxx$ ... クラス :: ユーザー定義
 とする。
 
 ## 定義
@@ -19,72 +18,73 @@ $##<n> ... 木レファレンス :: Src、Dstはコピーと見做す
 - Arrow
   * Arr
 において、Arrowによって関係が定義されるObjectが圏である。
-ここで、$$CAT$ :: Category、$$CG$ :: CategoryGraph を導入する。
+ここで、$CAT$ :: Category、$CG$ :: CategoryGraph を導入する。
 写像
 	f:A->B
 	f(A)=B
 は、tq では、
-	$$CAT$(f,A,B)
-	$$CG$(A($#1f),#1B)
+	$CAT$(f,A,B)
+	$CG$(A($#1f),#1B)
 と表す。
-	$$CAT$
+	$CAT$
 はCategoryクラスを表す。
-	$$CG$
+	$CG$
 はCategoryGraphクラスを表す。
 
 tq による無名表現は以下である。
-	$$CAT$($$ARR$,$$DOM$,$$COD$)
-	$$CG$($$DOM$,...)
+	$CAT$($ARR$,$DOM$,$COD$)
+	$CG$($DOM$,...)
 
 #### 基本処理
 - 射
 	f:A->B
-	$$CAT$(f,A,B)
+	$CAT$(f,A,B)
 のとき、
-	##1$$CAT$(f,A,B) ;; "##1"はラベル
-	$$ARR$($##1) => f
-	$$DOM$($##1) => A
-	$$COD$($##1) => B
+	##1$CAT$(f,A,B) ;; "##1"はラベル
+	$ARR$($##1) => f
+	$DOM$($##1) => A
+	$COD$($##1) => B
 である。
 
 -- 例
 	h:G->U(C(G))
 のtq表現
-	$$CAT$(h,G,U(C(G)))
+	$CAT$(h,G,U(C(G)))
 
 - 恒等射
 恒等射の表現は、
-	$$CAT$($$1$(A),A,A)
+	$CAT$($1$(A),A,A)
 または
-	$$CAT$($$1$,A,A)
+	$CAT$($1$,A,A)
 となる。
 
 - 合成
 	g&f(a)
+	$&$(g,f)(a)
 は、
 	g(f(a))
 の別表現である。ただし、tqではこの表現は一部抑制される。
 
 - 結合則
 すべての
-	$$CAT$(f,A,B); $$CAT$(g,B,C); $$CAT$(h,C,D)
+	$CAT$(f,A,B); $CAT$(g,B,C); $CAT$(h,C,D)
 に対して、
 	h(g(f())) = h(g)(f()) = h(g)(f)()
 である。
 
 - 単位元
 すべての
-	$$CAT$(f,A,B)
+	$CAT$(f,A,B)
 に対して、
-	f($$1$(A)) = f = $$1$(B)(f)
-となる$$1$がある。
+	f($1$(A)) = f = $1$(B)(f)
+となる$1$がある。
 
 - Functor
 	F:C->D
-	$$CAT$(F,C,D)
+	$CAT$(F,C,D)
 のとき、以下を満たすのがFunctorである。
-1.	F($$CAT$(f,C,D)) = $$CAT$(F(f),F(C),F(D));
-2.	F($$1$(A)) = $$1$(F(A));
+1.	F($CAT$(f,C,D)) = $CAT$(F(f),F(C),F(D));
+2.	F($1$(A)) = $1$(F(A));
 3.	F(g(f())) = F(g)(F(f()))
 
 -- 例
@@ -97,14 +97,14 @@ tq による無名表現は以下である。
 	      \|/
 	       C 
 
-	$$CAT$(f,A,B) ; $$CAT$(g,B,C) => $$CAT$(g&f,A,C)
+	$CAT$(f,A,B) ; $CAT$(g,B,C) => $CAT$(g&f,A,C)
 
 - モノ射
 圏Cにおいて、
 	C -g-> A -f-> B
 	  -h->
 のCategoryGraph表現は
-	$$CG$(C($#2g,$#2h),#2A($#3f),#3B)
+	$CG$(C($#2g,$#2h),#2A($#3f),#3B)
 である。
 	f&g = f&h
 ならば、
@@ -116,7 +116,7 @@ tq による無名表現は以下である。
 	A -f-> B -i-> D
 	         -j->
 のtq表現は
-	$$CG$(A($#2f),#2B($#3i,$#3j),#3D)
+	$CG$(A($#2f),#2B($#3i,$#3j),#3D)
 である。
 	i&f = j&f
 ならば、
