@@ -6,6 +6,9 @@ echo '($#1,#1$#2(A),#2$#3(B),#3(C))' | ./tq.o in=/dev/stdin -FT -Pin
 ## 木参照のときのレファレンスバインド表示順を検討中。
 echo '($##1,##1$##2(A),##2$##3(B),##3(C))' | ./tq.o in=/dev/stdin -FT -Pin
 echo '#1($#1)' | ./tq.o in=/dev/stdin -FT -Pin
+## 木参照のとき、"-C"オプションによる効果が不適切
+echo '(##1,$##1)' | ./tq.o in=/dev/stdin -FT -Pin -C
+(##1,)
 
 # ref+bind
 echo '($##1[1],##1$##2(A[1]),##2$##3(B[1]),##3(C[1]))' | ./tq.o in=/dev/stdin -FT -Pin data=num.csv
