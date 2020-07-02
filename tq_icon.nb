@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      5616,        148]
-NotebookOptionsPosition[      4967,        128]
-NotebookOutlinePosition[      5314,        143]
-CellTagsIndexPosition[      5271,        140]
+NotebookDataLength[     17936,        395]
+NotebookOptionsPosition[     16838,        367]
+NotebookOutlinePosition[     17184,        382]
+CellTagsIndexPosition[     17141,        379]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -57,8 +57,10 @@ Cell[BoxData[
       RowBox[{"Text", "[", 
        RowBox[{
         RowBox[{"Style", "[", 
-         RowBox[{"\"\< A  comprehensive  graph  language \>\"", ",", "14"}], 
-         "]"}], ",", 
+         RowBox[{
+         "\"\< A  comprehensive  graph  language \>\"", ",", "14", ",", 
+          RowBox[{"FontFamily", "\[Rule]", "\"\<Montserrat\>\""}]}], "]"}], 
+        ",", 
         RowBox[{"{", 
          RowBox[{"0.05", ",", 
           RowBox[{"-", "0.01"}]}], "}"}]}], "]"}]}], "}"}], ",", 
@@ -66,7 +68,7 @@ Cell[BoxData[
     RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
     RowBox[{"ImageSize", "\[Rule]", 
      RowBox[{"{", 
-      RowBox[{"300", ",", "120"}], "}"}]}]}], "]"}]}]], "Input",
+      RowBox[{"360", ",", "132"}], "}"}]}]}], "]"}]}]], "Input",
  CellChangeTimes->{{3.802683667630265*^9, 3.802683730909671*^9}, {
   3.802683829498989*^9, 3.8026838896952353`*^9}, {3.802684036908935*^9, 
   3.802684040575836*^9}, {3.802684079813616*^9, 3.802684119113469*^9}, {
@@ -75,8 +77,10 @@ Cell[BoxData[
   3.802684989985553*^9, 3.802685012836935*^9}, {3.8026850516893053`*^9, 
   3.802685182554368*^9}, {3.8026852217497883`*^9, 3.8026857137480507`*^9}, {
   3.8026857743974733`*^9, 3.802685842811676*^9}, {3.8026858807808237`*^9, 
-  3.80268592040186*^9}, {3.802717507224453*^9, 3.802717556039147*^9}},
- CellLabel->"In[5]:=",ExpressionUUID->"5637a0e6-8b94-4402-945d-ba14c14a882b"],
+  3.80268592040186*^9}, {3.802717507224453*^9, 3.802717556039147*^9}, {
+  3.802717849417184*^9, 3.802717887400036*^9}, {3.802718564618155*^9, 
+  3.802718573208868*^9}, {3.8027186208101482`*^9, 3.802718632673819*^9}},
+ CellLabel->"In[38]:=",ExpressionUUID->"5637a0e6-8b94-4402-945d-ba14c14a882b"],
 
 Cell[BoxData[
  GraphicsBox[{
@@ -94,8 +98,9 @@ Cell[BoxData[
    {CMYKColor[0, 0, 0, 1], InsetBox[
      StyleBox["\<\" A  comprehensive  graph  language \"\>",
       StripOnInput->False,
+      FontFamily->"Montserrat",
       FontSize->14], {0.05, -0.01}]}},
-  ImageSize->{300, 120},
+  ImageSize->{360, 132},
   PlotRange->All]], "Output",
  CellChangeTimes->{{3.802683682658992*^9, 3.802683718492091*^9}, {
    3.802683842013308*^9, 3.80268385489522*^9}, {3.802684097010016*^9, 
@@ -106,8 +111,9 @@ Cell[BoxData[
    3.802685183420753*^9}, {3.802685228113287*^9, 3.8026856909570923`*^9}, {
    3.80268577636796*^9, 3.802685843593876*^9}, {3.802685882710684*^9, 
    3.802685921581633*^9}, 3.80271740619657*^9, {3.8027175200868053`*^9, 
-   3.802717556842065*^9}},
- CellLabel->"Out[5]=",ExpressionUUID->"dde98489-bcec-4feb-965b-1d1745f4c32a"]
+   3.802717556842065*^9}, {3.8027178436365747`*^9, 3.8027178878010387`*^9}, {
+   3.802718565597076*^9, 3.802718573696368*^9}, 3.8027186348411093`*^9},
+ CellLabel->"Out[38]=",ExpressionUUID->"89f0529d-b136-40be-980a-7af84ccff0f1"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -118,16 +124,249 @@ Cell[BoxData[
   "\"\</home/kamano/gitsrc/RECURSIVE-SYSTEM/icon.png\>\"", ",", "g1"}], 
   "]"}]], "Input",
  CellChangeTimes->{{3.802717545510111*^9, 3.802717591974721*^9}},
- CellLabel->"In[6]:=",ExpressionUUID->"d6f8e361-167b-400e-9cda-a7f77b340839"],
+ CellLabel->"In[39]:=",ExpressionUUID->"d6f8e361-167b-400e-9cda-a7f77b340839"],
 
 Cell[BoxData["\<\"/home/kamano/gitsrc/RECURSIVE-SYSTEM/icon.png\"\>"], \
 "Output",
- CellChangeTimes->{3.802717595670722*^9},
- CellLabel->"Out[6]=",ExpressionUUID->"b50c9e52-0720-4878-92be-63ed5f4d83bb"]
+ CellChangeTimes->{3.802717595670722*^9, 3.802718595532065*^9, 
+  3.802718643917802*^9},
+ CellLabel->"Out[39]=",ExpressionUUID->"496e4692-6f4f-4550-bdac-d5036ebaf08e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"g2", "=", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"CMYKColor", "[", 
+       RowBox[{"0", ",", "0", ",", "0", ",", "0.65"}], "]"}], ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<tq\>\"", ",", "78"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0.039", ",", "0"}], "}"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"CMYKColor", "[", 
+       RowBox[{"0", ",", "0", ",", "0", ",", "0.78"}], "]"}], ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<E = E \[Union] V\>\"", ",", "27"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0.057", ",", "0.001"}], "}"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<V = V \[Union] E\>\"", ",", "27"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0.057", ",", 
+          RowBox[{"-", "0.0022"}]}], "}"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"CMYKColor", "[", 
+       RowBox[{"0", ",", "0", ",", "0", ",", "1"}], "]"}], ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\< A   comprehensive   graph   language \>\"", ",", "14", ",", 
+          RowBox[{"FontFamily", "\[Rule]", "\"\<Monospace\>\""}]}], "]"}], 
+        ",", 
+        RowBox[{"{", 
+         RowBox[{"0.049", ",", 
+          RowBox[{"-", "0.007"}]}], "}"}]}], "]"}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+    RowBox[{"ImageSize", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"300", ",", "140"}], "}"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQBWIQraRdosQd+saRTSZWC0Tv+L7eDETH2ZvZgej/onMD
+QLRDrlAgiFbh/BUKorsWPo4C0avkH8aB6BW5VtUg+ner81QQvcvOZjuILoi8
+dwBEn+goOwyil3XuPw6idU7MOgWiT/GVnQfRSXsv3gfRLv+2PwHRHB/MlXiA
+tNSOM5og2uFnpBGIbvojYQ6iue7w2IDoHXrpK6SB9EaHxnUgelKk7mUQfb6l
++wGINlvQ9wREtyntBtOpkskvQbTE+fCvYPXL/P6C6C22wSwyQDryTYsAiD4k
+KiAIoh+s5hcH0UnhumC65VGkLIiOk0tWBNHTxMzUQbTag7dgGgDmdJJ+
+  "],
+ CellLabel->"In[34]:=",ExpressionUUID->"2ef7af3e-0b65-4f27-9507-1ec24354d4d3"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {CMYKColor[0, 0, 0, 0.65], InsetBox[
+     StyleBox["\<\"tq\"\>",
+      StripOnInput->False,
+      FontSize->78], {0.039, 0}]}, 
+   {CMYKColor[0, 0, 0, 0.78], InsetBox[
+     StyleBox["\<\"E = E \[Union] V\"\>",
+      StripOnInput->False,
+      FontSize->27], {0.057, 0.001}], InsetBox[
+     StyleBox["\<\"V = V \[Union] E\"\>",
+      StripOnInput->False,
+      FontSize->27], {0.057, -0.0022}]}, 
+   {CMYKColor[0, 0, 0, 1], InsetBox[
+     StyleBox["\<\" A   comprehensive   graph   language \"\>",
+      StripOnInput->False,
+      FontFamily->"Monospace",
+      FontSize->14], {0.049, -0.007}]}},
+  ImageSize->{300, 140},
+  PlotRange->All]], "Output",
+ CellChangeTimes->{{3.80271844823081*^9, 3.802718477320282*^9}, 
+   3.8027185290759087`*^9},
+ CellLabel->"Out[34]=",ExpressionUUID->"8bddafa1-a824-47ee-a481-0ce017cacbe3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["$FontFamilies"], "Input",
+ CellChangeTimes->{{3.8027184121209583`*^9, 3.802718415777546*^9}},
+ CellLabel->"In[31]:=",ExpressionUUID->"70713db4-39f1-450c-8f54-f28c0dcf7dfd"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"Abyssinica SIL\"\>", ",", "\<\"Alegreya SC\"\>", 
+   ",", "\<\"Bitstream Charter\"\>", ",", "\<\"Bitstream Vera Sans\"\>", 
+   ",", "\<\"Bitstream Vera Sans Mono\"\>", 
+   ",", "\<\"Bitstream Vera Serif\"\>", ",", "\<\"C059 [UKWN]\"\>", 
+   ",", "\<\"C059 [urw]\"\>", ",", "\<\"Cantarell\"\>", 
+   ",", "\<\"Clear Sans\"\>", ",", "\<\"Clear Sans Light\"\>", 
+   ",", "\<\"Clear Sans Medium\"\>", ",", "\<\"Clear Sans Thin\"\>", 
+   ",", "\<\"Courier\"\>", ",", "\<\"Courier 10 Pitch\"\>", 
+   ",", "\<\"Cousine\"\>", ",", "\<\"Cursor\"\>", 
+   ",", "\<\"D050000L [urw]\"\>", ",", "\<\"D050000L [URW ]\"\>", 
+   ",", "\<\"DejaVu Sans\"\>", ",", "\<\"DejaVu Sans Condensed\"\>", 
+   ",", "\<\"DejaVu Sans Mono\"\>", ",", "\<\"DejaVu Serif\"\>", 
+   ",", "\<\"DejaVu Serif Condensed\"\>", ",", "\<\"Droid Sans [1ASC]\"\>", 
+   ",", "\<\"Droid Sans [MONO]\"\>", ",", "\<\"Droid Serif\"\>", 
+   ",", "\<\"EB Garamond\"\>", ",", "\<\"EB Garamond 08\"\>", 
+   ",", "\<\"EB Garamond 12\"\>", ",", "\<\"EB Garamond 12 All SC\"\>", 
+   ",", "\<\"EB Garamond SC\"\>", ",", "\<\"EB Garamond SC 08\"\>", 
+   ",", "\<\"EB Garamond SC 12\"\>", ",", "\<\"Economica\"\>", 
+   ",", "\<\"Felipa\"\>", ",", "\<\"FontAwesome\"\>", ",", "\<\"FreeMono\"\>",
+    ",", "\<\"FreeSans\"\>", ",", "\<\"FreeSerif\"\>", 
+   ",", "\<\"Gentium Basic\"\>", ",", "\<\"Goha-Tibeb Zemen\"\>", 
+   ",", "\<\"Inconsolata\"\>", ",", "\<\"Jomolhari\"\>", ",", "\<\"Kalam\"\>",
+    ",", "\<\"Kalam Bold\"\>", ",", "\<\"Kalam Light\"\>", 
+   ",", "\<\"Khmer OS\"\>", ",", "\<\"Khmer OS Content\"\>", 
+   ",", "\<\"Khmer OS System\"\>", ",", "\<\"Lato\"\>", 
+   ",", "\<\"Lato Black\"\>", ",", "\<\"Lato Hairline\"\>", 
+   ",", "\<\"Lato Light\"\>", ",", "\<\"League Gothic\"\>", 
+   ",", "\<\"League Gothic Condensed\"\>", 
+   ",", "\<\"League Gothic Condensed Italic\"\>", 
+   ",", "\<\"League Gothic Italic\"\>", ",", "\<\"Liberation Mono\"\>", 
+   ",", "\<\"Liberation Sans\"\>", ",", "\<\"Liberation Serif\"\>", 
+   ",", "\<\"Lohit Assamese\"\>", ",", "\<\"Lohit Bengali\"\>", 
+   ",", "\<\"Lohit Devanagari\"\>", ",", "\<\"Lohit Gujarati\"\>", 
+   ",", "\<\"Lohit Gurmukhi\"\>", ",", "\<\"Lohit Kannada\"\>", 
+   ",", "\<\"Lohit Odia\"\>", ",", "\<\"Lohit Tamil\"\>", 
+   ",", "\<\"Lohit Telugu\"\>", ",", "\<\"Mathematica\"\>", 
+   ",", "\<\"MathematicaMono\"\>", ",", "\<\"MathematicaSans\"\>", 
+   ",", "\<\"Meera\"\>", ",", "\<\"Monospace\"\>", ",", "\<\"Montserrat\"\>", 
+   ",", "\<\"Montserrat Alternates\"\>", 
+   ",", "\<\"Montserrat Alternates Black\"\>", 
+   ",", "\<\"Montserrat Alternates ExLight\"\>", 
+   ",", "\<\"Montserrat Alternates ExtraBold\"\>", 
+   ",", "\<\"Montserrat Alternates Light\"\>", 
+   ",", "\<\"Montserrat Alternates Medium\"\>", 
+   ",", "\<\"Montserrat Alternates SemiBold\"\>", 
+   ",", "\<\"Montserrat Alternates Thin\"\>", ",", "\<\"Montserrat Black\"\>",
+    ",", "\<\"Montserrat ExtraBold\"\>", ",", "\<\"Montserrat ExtraLight\"\>",
+    ",", "\<\"Montserrat Light\"\>", ",", "\<\"Montserrat Medium\"\>", 
+   ",", "\<\"Montserrat SemiBold\"\>", ",", "\<\"Montserrat Thin\"\>", 
+   ",", "\<\"Nimbus Mono PS [UKWN]\"\>", ",", "\<\"Nimbus Mono PS [urw]\"\>", 
+   ",", "\<\"Nimbus Roman [UKWN]\"\>", ",", "\<\"Nimbus Roman [urw]\"\>", 
+   ",", "\<\"Nimbus Sans Narrow [UKWN]\"\>", 
+   ",", "\<\"Nimbus Sans Narrow [urw]\"\>", ",", "\<\"Nimbus Sans [UKWN]\"\>",
+    ",", "\<\"Nimbus Sans [urw]\"\>", ",", "\<\"Noto Sans CJK HK\"\>", 
+   ",", "\<\"Noto Sans CJK HK Black\"\>", 
+   ",", "\<\"Noto Sans CJK HK DemiLight\"\>", 
+   ",", "\<\"Noto Sans CJK HK Light\"\>", 
+   ",", "\<\"Noto Sans CJK HK Medium\"\>", 
+   ",", "\<\"Noto Sans CJK HK Thin\"\>", ",", "\<\"Noto Sans CJK JP\"\>", 
+   ",", "\<\"Noto Sans CJK JP Black\"\>", 
+   ",", "\<\"Noto Sans CJK JP DemiLight\"\>", 
+   ",", "\<\"Noto Sans CJK JP Light\"\>", 
+   ",", "\<\"Noto Sans CJK JP Medium\"\>", 
+   ",", "\<\"Noto Sans CJK JP Thin\"\>", ",", "\<\"Noto Sans CJK KR\"\>", 
+   ",", "\<\"Noto Sans CJK KR Black\"\>", 
+   ",", "\<\"Noto Sans CJK KR DemiLight\"\>", 
+   ",", "\<\"Noto Sans CJK KR Light\"\>", 
+   ",", "\<\"Noto Sans CJK KR Medium\"\>", 
+   ",", "\<\"Noto Sans CJK KR Thin\"\>", ",", "\<\"Noto Sans CJK SC\"\>", 
+   ",", "\<\"Noto Sans CJK SC Black\"\>", 
+   ",", "\<\"Noto Sans CJK SC DemiLight\"\>", 
+   ",", "\<\"Noto Sans CJK SC Light\"\>", 
+   ",", "\<\"Noto Sans CJK SC Medium\"\>", 
+   ",", "\<\"Noto Sans CJK SC Thin\"\>", ",", "\<\"Noto Sans CJK TC\"\>", 
+   ",", "\<\"Noto Sans CJK TC Black\"\>", 
+   ",", "\<\"Noto Sans CJK TC DemiLight\"\>", 
+   ",", "\<\"Noto Sans CJK TC Light\"\>", 
+   ",", "\<\"Noto Sans CJK TC Medium\"\>", 
+   ",", "\<\"Noto Sans CJK TC Thin\"\>", ",", "\<\"Noto Sans Lisu\"\>", 
+   ",", "\<\"Noto Sans Mandaic\"\>", ",", "\<\"Noto Sans Meetei Mayek\"\>", 
+   ",", "\<\"Noto Sans Mono CJK HK\"\>", ",", "\<\"Noto Sans Mono CJK JP\"\>",
+    ",", "\<\"Noto Sans Mono CJK KR\"\>", 
+   ",", "\<\"Noto Sans Mono CJK SC\"\>", ",", "\<\"Noto Sans Mono CJK TC\"\>",
+    ",", "\<\"Noto Sans Sinhala\"\>", ",", "\<\"Noto Sans Tagalog\"\>", 
+   ",", "\<\"Noto Sans Tai Tham\"\>", ",", "\<\"Noto Sans Tai Viet\"\>", 
+   ",", "\<\"Noto Serif CJK JP\"\>", ",", "\<\"Noto Serif CJK JP Black\"\>", 
+   ",", "\<\"Noto Serif CJK JP ExtraLight\"\>", 
+   ",", "\<\"Noto Serif CJK JP Light\"\>", 
+   ",", "\<\"Noto Serif CJK JP Medium\"\>", 
+   ",", "\<\"Noto Serif CJK JP SemiBold\"\>", 
+   ",", "\<\"Noto Serif CJK KR\"\>", ",", "\<\"Noto Serif CJK KR Black\"\>", 
+   ",", "\<\"Noto Serif CJK KR ExtraLight\"\>", 
+   ",", "\<\"Noto Serif CJK KR Light\"\>", 
+   ",", "\<\"Noto Serif CJK KR Medium\"\>", 
+   ",", "\<\"Noto Serif CJK KR SemiBold\"\>", 
+   ",", "\<\"Noto Serif CJK SC\"\>", ",", "\<\"Noto Serif CJK SC Black\"\>", 
+   ",", "\<\"Noto Serif CJK SC ExtraLight\"\>", 
+   ",", "\<\"Noto Serif CJK SC Light\"\>", 
+   ",", "\<\"Noto Serif CJK SC Medium\"\>", 
+   ",", "\<\"Noto Serif CJK SC SemiBold\"\>", 
+   ",", "\<\"Noto Serif CJK TC\"\>", ",", "\<\"Noto Serif CJK TC Black\"\>", 
+   ",", "\<\"Noto Serif CJK TC ExtraLight\"\>", 
+   ",", "\<\"Noto Serif CJK TC Light\"\>", 
+   ",", "\<\"Noto Serif CJK TC Medium\"\>", 
+   ",", "\<\"Noto Serif CJK TC SemiBold\"\>", ",", "\<\"Nuosu SIL\"\>", 
+   ",", "\<\"Oswald\"\>", ",", "\<\"P052 [UKWN]\"\>", 
+   ",", "\<\"P052 [urw]\"\>", ",", "\<\"Padauk\"\>", 
+   ",", "\<\"PakType Naskh Basic\"\>", ",", "\<\"Playfair Display\"\>", 
+   ",", "\<\"Playfair Display Black\"\>", ",", "\<\"PT Sans\"\>", 
+   ",", "\<\"PT Sans Narrow\"\>", ",", "\<\"Roboto\"\>", 
+   ",", "\<\"Roboto Black\"\>", ",", "\<\"Roboto Condensed\"\>", 
+   ",", "\<\"Roboto Condensed Light\"\>", ",", "\<\"Roboto Light\"\>", 
+   ",", "\<\"Roboto Medium\"\>", ",", "\<\"Roboto Slab\"\>", 
+   ",", "\<\"Roboto Thin\"\>", ",", "\<\"Sans Serif\"\>", 
+   ",", "\<\"Serif\"\>", ",", "\<\"Shadows Into Light Two\"\>", 
+   ",", "\<\"Source Code Pro\"\>", ",", "\<\"Source Code Pro Black\"\>", 
+   ",", "\<\"Source Code Pro ExtraLight\"\>", 
+   ",", "\<\"Source Code Pro Light\"\>", 
+   ",", "\<\"Source Code Pro Medium\"\>", 
+   ",", "\<\"Source Code Pro Semibold\"\>", ",", "\<\"Source Sans Pro\"\>", 
+   ",", "\<\"Source Sans Pro Black\"\>", 
+   ",", "\<\"Source Sans Pro ExtraLight\"\>", 
+   ",", "\<\"Source Sans Pro Light\"\>", 
+   ",", "\<\"Source Sans Pro SemiBold\"\>", ",", "\<\"Source Serif Pro\"\>", 
+   ",", "\<\"Source Serif Pro Semibold\"\>", 
+   ",", "\<\"Standard Symbols PS\"\>", ",", "\<\"STIX\"\>", 
+   ",", "\<\"Swiss 721\"\>", ",", "\<\"Titillium Web\"\>", 
+   ",", "\<\"URW Bookman [UKWN]\"\>", ",", "\<\"URW Bookman [urw]\"\>", 
+   ",", "\<\"URW Gothic [UKWN]\"\>", ",", "\<\"URW Gothic [urw]\"\>", 
+   ",", "\<\"Utopia\"\>", ",", "\<\"Waree\"\>", 
+   ",", "\<\"Yanone Kaffeesatz\"\>", 
+   ",", "\<\"Yanone Kaffeesatz Extra Light\"\>", 
+   ",", "\<\"Yanone Kaffeesatz Light\"\>", ",", "\<\"Z003 [UKWN]\"\>", 
+   ",", "\<\"Z003 [urw]\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{3.802718416788517*^9},
+ CellLabel->"Out[31]=",ExpressionUUID->"ae3bfa79-83a6-4e67-9c0b-3959f24aed59"]
 }, Open  ]]
 },
 WindowSize->{808, 755},
-WindowMargins->{{358, Automatic}, {Automatic, 120}},
+WindowMargins->{{377, Automatic}, {84, Automatic}},
 FrontEndVersion->"12.0 for Linux x86 (64-bit) (2019\:5e745\:67083\:65e5)",
 StyleDefinitions->"Default.nb"
 ]
@@ -143,12 +382,20 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 2433, 56, 240, "Input",ExpressionUUID->"5637a0e6-8b94-4402-945d-ba14c14a882b"],
-Cell[3016, 80, 1408, 29, 137, "Output",ExpressionUUID->"dde98489-bcec-4feb-965b-1d1745f4c32a"]
+Cell[580, 22, 2662, 60, 282, "Input",ExpressionUUID->"5637a0e6-8b94-4402-945d-ba14c14a882b"],
+Cell[3245, 84, 1565, 31, 149, "Output",ExpressionUUID->"89f0529d-b136-40be-980a-7af84ccff0f1"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4461, 114, 285, 6, 49, "Input",ExpressionUUID->"d6f8e361-167b-400e-9cda-a7f77b340839"],
-Cell[4749, 122, 202, 3, 92, "Output",ExpressionUUID->"b50c9e52-0720-4878-92be-63ed5f4d83bb"]
+Cell[4847, 120, 286, 6, 49, "Input",ExpressionUUID->"d6f8e361-167b-400e-9cda-a7f77b340839"],
+Cell[5136, 128, 250, 4, 92, "Output",ExpressionUUID->"496e4692-6f4f-4550-bdac-d5036ebaf08e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5423, 137, 2265, 57, 301, "Input",ExpressionUUID->"2ef7af3e-0b65-4f27-9507-1ec24354d4d3"],
+Cell[7691, 196, 854, 22, 157, "Output",ExpressionUUID->"8bddafa1-a824-47ee-a481-0ce017cacbe3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8582, 223, 186, 2, 49, "Input",ExpressionUUID->"70713db4-39f1-450c-8f54-f28c0dcf7dfd"],
+Cell[8771, 227, 8051, 137, 1301, "Output",ExpressionUUID->"ae3bfa79-83a6-4e67-9c0b-3959f24aed59"]
 }, Open  ]]
 }
 ]
