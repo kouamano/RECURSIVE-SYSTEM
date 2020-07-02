@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      5965,        166]
-NotebookOptionsPosition[      5589,        148]
-NotebookOutlinePosition[      5953,        164]
-CellTagsIndexPosition[      5910,        161]
+NotebookDataLength[      5616,        148]
+NotebookOptionsPosition[      4967,        128]
+NotebookOutlinePosition[      5314,        143]
+CellTagsIndexPosition[      5271,        140]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -21,51 +21,52 @@ Notebook[{
 
 Cell[CellGroupData[{
 Cell[BoxData[
- RowBox[{"Graphics", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"CMYKColor", "[", 
-      RowBox[{"0", ",", "0", ",", "0", ",", "0.65"}], "]"}], ",", 
-     RowBox[{"Text", "[", 
-      RowBox[{
-       RowBox[{"Style", "[", 
-        RowBox[{"\"\<tq\>\"", ",", "78"}], "]"}], ",", 
-       RowBox[{"{", 
-        RowBox[{"0.039", ",", "0"}], "}"}]}], "]"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{"CMYKColor", "[", 
-      RowBox[{"0", ",", "0", ",", "0", ",", "0.78"}], "]"}], ",", 
-     RowBox[{"Text", "[", 
-      RowBox[{
-       RowBox[{"Style", "[", 
-        RowBox[{"\"\<E = E \[Union] V\>\"", ",", "27"}], "]"}], ",", 
-       RowBox[{"{", 
-        RowBox[{"0.057", ",", "0.00125"}], "}"}]}], "]"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{"Text", "[", 
-      RowBox[{
-       RowBox[{"Style", "[", 
-        RowBox[{"\"\<V = V \[Union] E\>\"", ",", "27"}], "]"}], ",", 
-       RowBox[{"{", 
-        RowBox[{"0.057", ",", 
-         RowBox[{"-", "0.00275"}]}], "}"}]}], "]"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{"CMYKColor", "[", 
-      RowBox[{"0", ",", "0", ",", "0", ",", "1"}], "]"}], ",", 
-     RowBox[{"Text", "[", 
-      RowBox[{
-       RowBox[{"Style", "[", 
-        RowBox[{"\"\< A  comprehensive  graph  language \>\"", ",", "14"}], 
-        "]"}], ",", 
-       RowBox[{"{", 
-        RowBox[{"0.05", ",", 
-         RowBox[{"-", "0.01"}]}], "}"}]}], "]"}]}], "}"}], ",", 
-   "\[IndentingNewLine]", 
-   RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-   RowBox[{"ImageSize", "\[Rule]", 
+ RowBox[{"g1", "=", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{
     RowBox[{"{", 
-     RowBox[{"300", ",", "120"}], "}"}]}]}], "]"}]], "Input",
+     RowBox[{
+      RowBox[{"CMYKColor", "[", 
+       RowBox[{"0", ",", "0", ",", "0", ",", "0.65"}], "]"}], ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<tq\>\"", ",", "78"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0.039", ",", "0"}], "}"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"CMYKColor", "[", 
+       RowBox[{"0", ",", "0", ",", "0", ",", "0.78"}], "]"}], ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<E = E \[Union] V\>\"", ",", "27"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0.057", ",", "0.00125"}], "}"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<V = V \[Union] E\>\"", ",", "27"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0.057", ",", 
+          RowBox[{"-", "0.00275"}]}], "}"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"CMYKColor", "[", 
+       RowBox[{"0", ",", "0", ",", "0", ",", "1"}], "]"}], ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\< A  comprehensive  graph  language \>\"", ",", "14"}], 
+         "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0.05", ",", 
+          RowBox[{"-", "0.01"}]}], "}"}]}], "]"}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+    RowBox[{"ImageSize", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"300", ",", "120"}], "}"}]}]}], "]"}]}]], "Input",
  CellChangeTimes->{{3.802683667630265*^9, 3.802683730909671*^9}, {
   3.802683829498989*^9, 3.8026838896952353`*^9}, {3.802684036908935*^9, 
   3.802684040575836*^9}, {3.802684079813616*^9, 3.802684119113469*^9}, {
@@ -74,7 +75,8 @@ Cell[BoxData[
   3.802684989985553*^9, 3.802685012836935*^9}, {3.8026850516893053`*^9, 
   3.802685182554368*^9}, {3.8026852217497883`*^9, 3.8026857137480507`*^9}, {
   3.8026857743974733`*^9, 3.802685842811676*^9}, {3.8026858807808237`*^9, 
-  3.80268592040186*^9}}],
+  3.80268592040186*^9}, {3.802717507224453*^9, 3.802717556039147*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"5637a0e6-8b94-4402-945d-ba14c14a882b"],
 
 Cell[BoxData[
  GraphicsBox[{
@@ -96,60 +98,37 @@ Cell[BoxData[
   ImageSize->{300, 120},
   PlotRange->All]], "Output",
  CellChangeTimes->{{3.802683682658992*^9, 3.802683718492091*^9}, {
-  3.802683842013308*^9, 3.80268385489522*^9}, {3.802684097010016*^9, 
-  3.802684119999165*^9}, {3.802684158571891*^9, 3.802684234793158*^9}, {
-  3.802684267713215*^9, 3.802684378150011*^9}, {3.802684643639421*^9, 
-  3.802684858775639*^9}, {3.802684942938361*^9, 3.802684956622517*^9}, {
-  3.8026849927538147`*^9, 3.8026850136744204`*^9}, {3.802685057051066*^9, 
-  3.802685183420753*^9}, {3.802685228113287*^9, 3.8026856909570923`*^9}, {
-  3.80268577636796*^9, 3.802685843593876*^9}, {3.802685882710684*^9, 
-  3.802685921581633*^9}}]
+   3.802683842013308*^9, 3.80268385489522*^9}, {3.802684097010016*^9, 
+   3.802684119999165*^9}, {3.802684158571891*^9, 3.802684234793158*^9}, {
+   3.802684267713215*^9, 3.802684378150011*^9}, {3.802684643639421*^9, 
+   3.802684858775639*^9}, {3.802684942938361*^9, 3.802684956622517*^9}, {
+   3.8026849927538147`*^9, 3.8026850136744204`*^9}, {3.802685057051066*^9, 
+   3.802685183420753*^9}, {3.802685228113287*^9, 3.8026856909570923`*^9}, {
+   3.80268577636796*^9, 3.802685843593876*^9}, {3.802685882710684*^9, 
+   3.802685921581633*^9}, 3.80271740619657*^9, {3.8027175200868053`*^9, 
+   3.802717556842065*^9}},
+ CellLabel->"Out[5]=",ExpressionUUID->"dde98489-bcec-4feb-965b-1d1745f4c32a"]
 }, Open  ]],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{"Graphics", "[", 
-  RowBox[{"{", 
-   RowBox[{
-    RowBox[{"Text", "[", 
-     RowBox[{
-      RowBox[{"Style", "[", 
-       RowBox[{"\"\<tq\>\"", ",", "78"}], "]"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0.025", ",", "0"}], "}"}]}], "]"}], ",", 
-    RowBox[{"Text", "[", 
-     RowBox[{
-      RowBox[{"Style", "[", 
-       RowBox[{"\"\<E = E \[Union] V\>\"", ",", "25"}], "]"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0.07", ",", "0.005"}], "}"}]}], "]"}], ",", 
-    RowBox[{"Text", "[", 
-     RowBox[{
-      RowBox[{"Style", "[", 
-       RowBox[{"\"\<V = V \[Union] E\>\"", ",", "25"}], "]"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0.07", ",", 
-        RowBox[{"-", "0.005"}]}], "}"}]}], "]"}], ",", 
-    RowBox[{"Text", "[", 
-     RowBox[{
-      RowBox[{"Style", "[", 
-       RowBox[{
-       "\"\<A comprehensive homoginized graph language\>\"", ",", "15"}], 
-       "]"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0.05", ",", 
-        RowBox[{"-", "0.015"}]}], "}"}]}], "]"}]}], "}"}], "]"}]], "Input",
- CellChangeTimes->{{3.802683667630265*^9, 3.802683730909671*^9}, {
-  3.802683829498989*^9, 3.8026838896952353`*^9}, {3.802684036908935*^9, 
-  3.802684040575836*^9}, {3.802684079813616*^9, 3.802684119113469*^9}, {
-  3.8026841510351152`*^9, 3.802684377825886*^9}, {3.802684586110105*^9, 
-  3.802684857882657*^9}, {3.8026849349484177`*^9, 3.802684955704197*^9}, {
-  3.802684989985553*^9, 3.802685012836935*^9}, {3.8026850516893053`*^9, 
-  3.802685182554368*^9}}]
+ RowBox[{"Export", "[", 
+  RowBox[{
+  "\"\</home/kamano/gitsrc/RECURSIVE-SYSTEM/icon.png\>\"", ",", "g1"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.802717545510111*^9, 3.802717591974721*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"d6f8e361-167b-400e-9cda-a7f77b340839"],
+
+Cell[BoxData["\<\"/home/kamano/gitsrc/RECURSIVE-SYSTEM/icon.png\"\>"], \
+"Output",
+ CellChangeTimes->{3.802717595670722*^9},
+ CellLabel->"Out[6]=",ExpressionUUID->"b50c9e52-0720-4878-92be-63ed5f4d83bb"]
+}, Open  ]]
 },
 WindowSize->{808, 755},
-WindowMargins->{{-1, Automatic}, {Automatic, 4}},
-FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (2014\:5e747\
-\:67089\:65e5)",
+WindowMargins->{{358, Automatic}, {Automatic, 120}},
+FrontEndVersion->"12.0 for Linux x86 (64-bit) (2019\:5e745\:67083\:65e5)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -164,12 +143,14 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 2241, 54, 114, "Input"],
-Cell[2824, 78, 1249, 27, 169, "Output"]
+Cell[580, 22, 2433, 56, 240, "Input",ExpressionUUID->"5637a0e6-8b94-4402-945d-ba14c14a882b"],
+Cell[3016, 80, 1408, 29, 137, "Output",ExpressionUUID->"dde98489-bcec-4feb-965b-1d1745f4c32a"]
 }, Open  ]],
-Cell[4088, 108, 1497, 38, 63, "Input"]
+Cell[CellGroupData[{
+Cell[4461, 114, 285, 6, 49, "Input",ExpressionUUID->"d6f8e361-167b-400e-9cda-a7f77b340839"],
+Cell[4749, 122, 202, 3, 92, "Output",ExpressionUUID->"b50c9e52-0720-4878-92be-63ed5f4d83bb"]
+}, Open  ]]
 }
 ]
 *)
 
-(* End of internal cache information *)
