@@ -2,3 +2,11 @@
 <label><reference><operator><name><bind>
 1      3          4         5     2
 
+### コード検証
+1: import_Tree()で、Analyze_Label()処理が呼ばれる。
+2: Executor()で、FLAGが1のとき、ExFunction_Recursive(Function_Bind_Data())が実行される。
+3: Executor()で、FLAGが8と4のとき、Function_Recursive_Bind_RefNode()が実行される。
+4: 内積実行時、
+  [1] Executor()で、FLAGが16のとき、ExFunction_Recursive(Function_Assign_RefedValPtr())で、データがバインドされ、
+  [2] Executor()で、FLAGが2、すなわちprintフェーズのとき、ExFunction_Recursive_Ser_MultiPrint()が再帰的に呼ばれる中で、Function_Recursive_Print_nthVal()が実行された時に、"("、")"が挿入されてprintされる。
+5: 最終的にTree.IndicatorPtrが<name>の前で止まる。
