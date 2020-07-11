@@ -706,7 +706,7 @@ void dump_tree(NODE root, int indent)
 
 //import tree script
 // NODE import_LinkTable(FILE *_IN, struct Tree *top, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int *ncount, struct LinkTable *_LT)
-NODE import_LinkTable(FILE *_IN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, unsigned int *ncount, int EXEC_FLAG/*, FILE *DATA*/)		// SAK (uint)
+NODE import_LinkTable(FILE *_IN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, unsigned int *ncount/*, int EXEC_FLAG, FILE *DATA*/)		// SAK (uint)
 {
 
 #ifdef DEBUG
