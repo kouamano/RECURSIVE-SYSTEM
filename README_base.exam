@@ -157,7 +157,7 @@ echo '$$CG$(#1F($#2),#2G($#1))' | ./tq.o in=/dev/stdin -FT -Pin
  => $$CG$(#1F($#2@#2G),#2G($#1@#1F))
 
 -
-./tq.o in=test_ref.1.t -FMa -FT -Fh -Pin
+#./tq.o in=test_ref.1.t -FMa -FT -Fh -Pin
 - 完全グラフ
 ./tq.o in=test_ref-graph.4.t -Pin -FT -FMa		### SAK 複数行のansを開業した
  =>
