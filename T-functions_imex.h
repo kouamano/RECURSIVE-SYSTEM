@@ -1,5 +1,5 @@
 /* importer, exporter */
-struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *ncount, int EXEC_FLAG /* SAK , FILE *DATA */){
+struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, int *ncount/* SAK, int EXEC_FLAG, FILE *DATA */){
 	FC(fprintf(stderr,">import_Tree<\n");)
 	int WAR;
 	int C;
