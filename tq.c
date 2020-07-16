@@ -721,7 +721,7 @@ int main(int argc, char **argv){
 		/** import tree */
 		node_count = 0;
 		EFLAG = (*opt).Pin+1+8;	//Pin: 2
-		itop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count/*, SAK EFLAG, DATA */);
+		itop = import_Tree(IN,opt,_fopt,_copt,_sopt,&node_count/*,SAK EFLAG, DATA */);
 		Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLAG);	
 		/** close in-file */
 		if(is_iopen > 0){
