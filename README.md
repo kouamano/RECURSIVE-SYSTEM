@@ -1,4 +1,9 @@
 # tq
+A graph description language.
+
+- Implicit expression: can describe graph.
+- Explicit expression: can describe homoginized-graph.
+
 ## License
 GPL    
 
