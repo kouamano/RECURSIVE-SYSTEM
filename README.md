@@ -5,6 +5,9 @@ A graph description language.
     V(V, ... )
 - Explicit expression: can describe homoginized-graph.    
     E(V, ... )
+- Linkage:    
+    Ix: #1V1(V2($#1)): V1<->V2
+    Ex: #1E1(E2($#1)): E1 = hiperedge involving E2, E2 = hiperedge involving E1.
 
 ## License
 GPL    
