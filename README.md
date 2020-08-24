@@ -1,8 +1,10 @@
 # tq
 A graph description language.
 
-- Implicit expression: can describe graph.
-- Explicit expression: can describe homoginized-graph.
+- Implicit expression: can describe graph.    
+    V(V, ... )
+- Explicit expression: can describe homoginized-graph.    
+    E(V, ... )
 
 ## License
 GPL    
