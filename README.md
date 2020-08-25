@@ -3,11 +3,11 @@ A tree/graph description language.
 - Tree expression: can descrive tree.    
     0(1(2, ... ))
 - Implicit expression: can describe graph.    
-    V(V, ... )
-    - Linkage: #1V1(V2($#1)): V1<->V2.    
+    V0(V1, ... )
+    - Linkage: #0V0(V1($#0)): V0<->V1.    
 - Explicit expression: can describe homoginized-graph.    
-    E(V, ... )    
-    - Linkage: #1E1(E2($#1)): E1 = hyperedge involving E2, E2 = hyperedge involving E1.
+    E0(E1, ... )    
+    - Linkage: #0E0(E1($#0)): E0 = hyperedge involving E0, E1 = hyperedge involving E0.
 
 ## License
 GPL    
