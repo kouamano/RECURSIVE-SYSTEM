@@ -4,10 +4,10 @@ A tree/graph description language.
     0(1(2, ... ))
 - Implicit graph expression: can describe graph.    
     V0(V1, ... )
-    - Linkage: #0V0(V1($#0)): V0<->V1.    
+    - Reference: #0V0(V1($#0)): V0<->V1.    
 - Explicit graph expression: can describe homoginized-graph.    
     E0(E1, ... )    
-    - Linkage: #0E0(E1($#0)): E0 = hyperedge involving E0, E1 = hyperedge involving E0.
+    - Reference: #0E0(E1($#0)): E0 = hyperedge involving E0, E1 = hyperedge involving E0.
 
 ## License
 GPL    
