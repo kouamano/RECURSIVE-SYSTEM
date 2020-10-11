@@ -1,4 +1,13 @@
 # tq
+A tree/graph description language.
+- Tree expression: can descrive tree.    
+    0(1(2, ... ))
+- Implicit graph expression: can describe directed graph with reference.    
+    V0(V1): V0->V1.    
+    #0V0(V1($#0)): V0<->V1.    
+- Explicit graph expression: can describe homoginized-graph with reference.    
+    #0E0(E1($#0)): E0 = hyperedge involving E1, E1 = hyperedge involving E0.
+
 ## License
 GPL    
 
