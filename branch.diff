@@ -35,6 +35,7 @@ git diff cq:C-structure.h cq_debug:C-structure.h
 git diff cq:C-functions.h cq_debug:C-functions.h
 git diff cq:C-functions_imex.h cq_debug:C-functions_imex.h
 ## tconv
+echo '>> converter'
 git diff cq:T-convStructure.h cq_debug:T-convStructure.h
 git diff cq:T-convFunctions.h cq_debug:T-convFunctions.h
 git diff cq:T-convFunctions_imex.h cq_debug:T-convFunctions_imex.h
@@ -74,6 +75,15 @@ git diff cq:T-functions_imex.h jsik:T-functions_imex.h
 git diff cq:CT-structure.h jsik:CT-structure.h
 git diff cq:CT-functions.h jsik:CT-functions.h
 git diff cq:CT-functions_Executor.h jsik:CT-functions_Executor.h
+## tconv
+echo '>> converter'
+git diff cq:T-convStructure.h cq_debug:T-convStructure.h
+git diff cq:T-convFunctions.h cq_debug:T-convFunctions.h
+git diff cq:T-convFunctions_imex.h cq_debug:T-convFunctions_imex.h
+## test
+echo '>> test code'
+git diff cq:DimensionDefinitionLanguage/conv-test.script cq_debug:DimensionDefinitionLanguage/conv-test.script
+git diff cq:DimensionDefinitionLanguage/conv2-test.script cq_debug:DimensionDefinitionLanguage/conv2-test.script
 ## compile
 echo '>> compile'
 git diff cq:compile-all.sh jsik:compile-all.sh
