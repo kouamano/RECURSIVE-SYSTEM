@@ -74,4 +74,9 @@ git diff cq:T-functions_imex.h jsik:T-functions_imex.h
 git diff cq:CT-structure.h jsik:CT-structure.h
 git diff cq:CT-functions.h jsik:CT-functions.h
 git diff cq:CT-functions_Executor.h jsik:CT-functions_Executor.h
+## compile
+echo '>> compile'
+git diff cq:compile-all.sh jsik:compile-all.sh
+git diff cq:DimensionDefinitionLanguage/compile_checker.sh jsik:DimensionDefinitionLanguage/compile_checker.sh
+
 
