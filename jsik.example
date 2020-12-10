@@ -1,1 +1,3 @@
 ./tq.o in=standard-model-net.t -Pin -FT -Fh | grep `./tq.o in=standard-model-net.t -FMa -Pin | ./extract_self-ref.pl  | ./extract_term-no.pl`
+(base) kouamano@x86_64-apple-darwin13 RECURSIVE-SYSTEM % ./tq.o in=standard-model-net.t -Pin -Fst | grep -v C=0 | grep Ref=0 | grep -E 'H=.*[a-zA-Z]:'
+
