@@ -600,7 +600,7 @@ int main(int argc, char **argv){
 	struct compile_options *_copt;
 	struct search_options *_sopt;
 	struct data_options *_dopt;
-	int node_count;
+	int node_count = 0;
 	struct Tree *itop = NULL;
 	struct Tree *otop = NULL;
 	struct Tree *null_node = NULL;
