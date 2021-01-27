@@ -7,23 +7,23 @@ struct options {
 	int help;
 	int stat;
 	int check;
-	//int argint;
-	//char *argstr;
+	int argint;
+	char *argstr;
 };
 
 void help(void){
-	printf("DESCRIPTION:\n");
-	printf(" toPsdJSON prints pseudo JSON form with T-format, via standard input.");
 	printf("USAGE:\n");
-	printf(" toPsdJSON [-h] [-s] [-c]\n");
+	printf(" template [-h] [-s] [-c] int=<argint> str=<argstr>.\n");
 	printf("  -h : help.\n");
-	printf("  -s : status.\n");
+	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
+	printf("  argint : set integer.\n");
+	printf("  argstr : set *chars (len < 1024).\n");
 }
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" Under construction.\n");
+	printf(" this program is template.\n");
 }
 
 struct options *alloc_options(void){
@@ -32,12 +32,10 @@ struct options *alloc_options(void){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
-	/*
 	if(((*p).argstr = malloc(sizeof(char) * LEN)) == NULL){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
-	*/
 	return(p);
 }
 
@@ -45,8 +43,8 @@ void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
 	(*opt).check = 0;
-	//(*opt).argint = 0;
-	//(*opt).argstr[0] = '\0';
+	(*opt).argint = 0;
+	(*opt).argstr[0] = '\0';
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -58,20 +56,18 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).stat = 1;
 		}else if(strcmp(optv[i],"-c") == 0){
 			(*opt).check = 1;
-		//}else if(strncmp(optv[i],"int=",4) == 0){
-		//	sscanf(optv[i],"int=%d",&(*opt).argint);
-		//}else if(strncmp(optv[i],"str=",4) == 0){
-		//	sscanf(optv[i],"str=%s",(*opt).argstr);
+		}else if(strncmp(optv[i],"int=",4) == 0){
+			sscanf(optv[i],"int=%d",&(*opt).argint);
+		}else if(strncmp(optv[i],"str=",4) == 0){
+			sscanf(optv[i],"str=%s",(*opt).argstr);
 		}
 	}
 }
 
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
-	printf(" opt.help:%d:\n",(*opt).help);
-	printf(" opt.stat:%d:\n",(*opt).stat);
-	//printf(" opt.argint:%d:\n",(*opt).argint);
-	//printf(" opt.argstr:%s:\n",(*opt).argstr);
+	printf(" opt.argint:%d:\n",(*opt).argint);
+	printf(" opt.argstr:%s:\n",(*opt).argstr);
 }
 
 int main(int argc, char **argv){
