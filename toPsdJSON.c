@@ -8,7 +8,7 @@ struct options {
 	int stat;
 	int check;
 	//int argint;
-	//char *argstr;
+	char *file;
 };
 
 void help(void){
@@ -32,12 +32,10 @@ struct options *alloc_options(void){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
-	/*
-	if(((*p).argstr = malloc(sizeof(char) * LEN)) == NULL){
+	if(((*p).file = malloc(sizeof(char) * LEN)) == NULL){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
-	*/
 	return(p);
 }
 
@@ -46,7 +44,7 @@ void init_options(struct options *opt){
 	(*opt).stat = 0;
 	(*opt).check = 0;
 	//(*opt).argint = 0;
-	//(*opt).argstr[0] = '\0';
+	(*opt).file[0] = '\0';
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -60,8 +58,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).check = 1;
 		//}else if(strncmp(optv[i],"int=",4) == 0){
 		//	sscanf(optv[i],"int=%d",&(*opt).argint);
-		//}else if(strncmp(optv[i],"str=",4) == 0){
-		//	sscanf(optv[i],"str=%s",(*opt).argstr);
+		}else if(strncmp(optv[i],"in=",3) == 0){
+			sscanf(optv[i],"in=%s",(*opt).file);
 		}
 	}
 }
@@ -71,7 +69,7 @@ void check_options(struct options *opt){
 	printf(" opt.help:%d:\n",(*opt).help);
 	printf(" opt.stat:%d:\n",(*opt).stat);
 	//printf(" opt.argint:%d:\n",(*opt).argint);
-	//printf(" opt.argstr:%s:\n",(*opt).argstr);
+	printf(" opt.argstr:%s:\n",(*opt).file);
 }
 
 int main(int argc, char **argv){
