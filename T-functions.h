@@ -1238,10 +1238,10 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		}
 		if((*tree).Conj == 1 && (*tree).NCself > 1){
 			printf("+");
-			printf("%d:",(*tree).ser);
+			printf("%d ",(*tree).ser);
 		}else{
 			printf("-");
-			printf("%d:",(*tree).ser);
+			printf("%d ",(*tree).ser);
 		}
 	}
 	/* interpret */
@@ -1304,7 +1304,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 
 	/* print hierarchy */
 	if((*_fopt).f_print_hierarchy == 1 && (*_fopt).f_print_self_stat == 1){
-		printf(":");
+		printf("");
 	}
 	if((*_fopt).f_print_hierarchy == 1){
 		(*_fopt).f_print_self_stat = 1;
