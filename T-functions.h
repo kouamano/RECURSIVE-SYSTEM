@@ -1304,7 +1304,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 
 	/* print hierarchy */
 	if((*_fopt).f_print_hierarchy == 1 && (*_fopt).f_print_self_stat == 1){
-		printf("");
+		//printf("");
 	}
 	if((*_fopt).f_print_hierarchy == 1){
 		(*_fopt).f_print_self_stat = 1;
