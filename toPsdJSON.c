@@ -104,10 +104,47 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	is_open = 1;
+	int ESC = 0;
+	int OC = 0;
 	while((C = fgetc(IN)) != EOF){
-		putc((char)C,stdout);
+		OC = C;
+		if(C == '\"' && ESC == 0){
+			ESC = 1;
+			//fprintf(stdout,"%s","hoge");
+		}
+		if(C == '\"' && ESC == 1){
+			ESC = 0;
+			//fprintf(stdout,"%s","hoge");
+		}
+		if(C == '{' && ESC == 1){
+			putc((char)OC,stdout);
+		}else if(C == '{' && ESC == 0){
+			fprintf(stdout,"%s","\"{\"");
+			OC = '(';
+			putc((char)OC,stdout);
+		}else if(C == '[' && ESC == 1){
+			putc((char)OC,stdout);
+		}else if(C == '[' && ESC == 0){
+			fprintf(stdout,"%s","\"[\"");
+			OC = '(';
+			putc((char)OC,stdout);
+		}else if(C == '}' && ESC == 1){
+			putc((char)OC,stdout);
+		}else if(C == '}' && ESC == 0){
+			OC = ')';
+			putc((char)OC,stdout);
+		}else if(C == ']' && ESC == 1){
+			putc((char)OC,stdout);
+		}else if(C == ']' && ESC == 0){
+			OC = ')';
+			putc((char)OC,stdout);
+		}else{
+			putc((char)OC,stdout);
+		}
 	}
-	fclose(IN);
+	if(is_open > 0){
+		fclose(IN);
+	}
 
 	return(0);
 }
