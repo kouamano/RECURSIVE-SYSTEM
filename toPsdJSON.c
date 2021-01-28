@@ -15,7 +15,7 @@ void help(void){
 	printf("DESCRIPTION:\n");
 	printf(" toPsdJSON prints pseudo JSON form with T-format, via standard input.\n");
 	printf("USAGE:\n");
-	printf(" toPsdJSON [-h] [-s] [-c]\n");
+	printf(" toPsdJSON [-h] [-s] [-c] in=<file>\n");
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
@@ -78,6 +78,9 @@ int main(int argc, char **argv){
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
+	int is_open = 0;
+	int C = 0;
+	FILE *IN;
 	if(argc == 1){
 		(*opt).help = 1;
 	}
@@ -96,5 +99,15 @@ int main(int argc, char **argv){
 	if(ie == 1){
 		exit(0);
 	}
+	if((IN = fopen((*opt).file,"r")) == NULL){
+		perror((*opt).file);
+		exit(1);
+	}
+	is_open = 1;
+	while((C = fgetc(IN)) != EOF){
+		putc((char)C,stdout);
+	}
+	fclose(IN);
+
 	return(0);
 }
