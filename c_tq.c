@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "../RECURSIVE-SYSTEM/T-definition.h"
+#include "T-definition.h"
 //#include "../RECURSIVE-SYSTEM/T-structure.h"			// SAK
 //#include "../RECURSIVE-SYSTEM/T-functions.h"			// SAK
 //#include "../RECURSIVE-SYSTEM/T-functions_Executor.h"		// SAK
@@ -17,10 +17,10 @@
 
 //#include "../RECURSIVE-SYSTEM/C-structure.h"			// SAK
 #include "../RECURSIVE-SYSTEM/CT-structure.h"			// SAK node table + options
-#include "../RECURSIVE-SYSTEM/C-functions.h"			// SAK
-#include "../RECURSIVE-SYSTEM/CT-functions.h"			// SAK
-#include "../RECURSIVE-SYSTEM/C-functions_imex.h"		// SAK
-#include "../RECURSIVE-SYSTEM/CT-functions_Executor.h"		// SAK
+#include "C-functions.h"			// SAK
+#include "CT-functions.h"			// SAK
+#include "C-functions_imex.h"		// SAK
+#include "CT-functions_Executor.h"		// SAK
 
 const char cdate[] = __DATE__;
 const char ctime[] = __TIME__;
