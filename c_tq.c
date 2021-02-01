@@ -16,7 +16,7 @@
 //#include "../RECURSIVE-SYSTEM/T-functions_imex.h"		// SAK
 
 //#include "../RECURSIVE-SYSTEM/C-structure.h"			// SAK
-#include "../RECURSIVE-SYSTEM/CT-structure.h"			// SAK node table + options
+#include "CT-structure.h"			// SAK node table + options
 #include "C-functions.h"			// SAK
 #include "CT-functions.h"			// SAK
 #include "C-functions_imex.h"		// SAK
@@ -25,7 +25,7 @@
 const char cdate[] = __DATE__;
 const char ctime[] = __TIME__;
 
-#include "../RECURSIVE-SYSTEM/C-help.h"				// SAK
+#include "C-help.h"				// SAK
 
 /* allocation */
 struct options *alloc_options(void){
