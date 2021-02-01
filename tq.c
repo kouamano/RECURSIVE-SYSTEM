@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../RECURSIVE-SYSTEM/T-definition.h"
-#include "../RECURSIVE-SYSTEM/T-structure.h"
-#include "../RECURSIVE-SYSTEM/T-functions.h"
-#include "../RECURSIVE-SYSTEM/T-functions_Executor.h"
-#include "../RECURSIVE-SYSTEM/T-functions_imex.h"
+#include "T-definition.h"
+#include "T-structure.h"
+#include "T-functions.h"
+#include "T-functions_Executor.h"
+#include "T-functions_imex.h"
 
 const char cdate[] = __DATE__;
 const char ctime[] = __TIME__;
