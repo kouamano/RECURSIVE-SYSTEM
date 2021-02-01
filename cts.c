@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../RECURSIVE-SYSTEM/List-definition.h"
-#include "../RECURSIVE-SYSTEM/List-structure.h"
-#include "../RECURSIVE-SYSTEM/List-functions.h"
+#include "List-definition.h"
+#include "List-structure.h"
+#include "List-functions.h"
 
 
 void help(void){
