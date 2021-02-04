@@ -45,7 +45,7 @@ void init_options(struct options *opt){
 	(*opt).stat = 0;
 	(*opt).check = 0;
 	(*opt).file[0] = '\0';
-	(*opt).idt = '\0';
+	(*opt).idt = ' ';
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -105,11 +105,46 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	is_open = 1;
+	int i = 0;
 	int LV = 0;
 	int PLV = 0;
+	int currentLV = 0;
+	int diffLV = 0;
 	int LF = 0;
+	int IDT = 0;
+	int IPready = 0;
 	while((C = fgetc(IN)) != EOF){
+		if(C == (*opt).idt){
+			PLV = LV;
+			LV++;
+			IDT++;
+		}
+		if(C != (*opt).idt){
+			IDT = 0;
+		}
+		if(C == '\n'){
+			putc(',',stdout);
+			LV = currentLV;
+			IPready = 1;
+		}
 		putc((char)C,stdout);
+		if(IPready == 1){
+			diffLV = LV-PLV;
+			if(diffLV > 0){
+				for(i=0;i++;i<diffLV){
+					putc('(',stdout);
+				}
+			}else if(diffLV == 0){
+				;
+			}else{
+				for(i=0;i++;i<diffLV){
+					putc(')',stdout);
+				}
+			}
+			IPready = 0;
+			LV = 0;
+			PLV = 0;
+		}
 	}
 	if(is_open > 0){
 		fclose(IN);
