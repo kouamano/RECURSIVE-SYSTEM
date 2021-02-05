@@ -114,6 +114,9 @@ int main(int argc, char **argv){
 	int cdiffLV = 0;
 	int LF = 0;
 	int EBP = 0;
+
+	
+	putc('(',stdout);
 	while((C = fgetc(IN)) != EOF){
 		if(C == (*opt).idt){
 			currentLV++;
@@ -156,9 +159,12 @@ int main(int argc, char **argv){
 			putc(',',stdout);
 		}
 
-		printf("p:%d,c:%d,l:%d:",plineLV,currentLV,lineLV);
-		printf("'%c'",C);
-		printf("\n");
+		//printf("p:%d,c:%d,l:%d:",plineLV,currentLV,lineLV);
+		//printf("'%c'",C);
+		if(C != ' ' && C != '\n'){
+			putc(C,stdout);
+		}
+		//printf("\n");
 
 		if(C == '\n'){
 			if(cdiffLV > 0 && diffLV <= 0){
@@ -188,6 +194,8 @@ int main(int argc, char **argv){
 			putc(')',stdout);
 		}
 	}
+	putc(')',stdout);
+
 	if(is_open > 0){
 		fclose(IN);
 	}
