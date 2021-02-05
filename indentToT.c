@@ -81,6 +81,7 @@ int main(int argc, char **argv){
 	get_options(argc-1, argv+1, opt);
 	int is_open = 0;
 	int C = 0;
+	int PC = 0;
 	FILE *IN;
 	if(argc == 1){
 		(*opt).help = 1;
@@ -106,32 +107,38 @@ int main(int argc, char **argv){
 	}
 	is_open = 1;
 	int i = 0;
-	int LV = 0;
-	int PLV = 0;
+	int lineLV = 0;
+	int plineLV = 0;
 	int currentLV = 0;
 	int diffLV = 0;
 	int LF = 0;
-	int IDT = 0;
-	int IPready = 0;
 	while((C = fgetc(IN)) != EOF){
 		if(C == (*opt).idt){
-			LV++;
-			IDT++;
-		}
-		if(C != (*opt).idt){
-			IDT = 0;
-		}
-		if(C == '\n'){
-			putc(',',stdout);
-			PLV = LV;
-			LV = currentLV;
-			IPready = 1;
-		}
-		if(C == (*opt).idt){
-			;
+			currentLV++;
+		}else if(C == '\n'){
+			plineLV = currentLV;
+			currentLV = 0;
 		}else{
-			putc((char)C,stdout);
+			lineLV = currentLV;
 		}
+
+		printf("p:%d,c:%d,l:%d:",plineLV,currentLV,lineLV);
+		printf("'%c'",C);
+		printf("\n");
+		diffLV = lineLV - plineLV;
+		if(C != (*opt).idt){
+			if(PC == ' '){
+				if(diffLV > 0){
+					for(i=0;i<diffLV;i++){
+						putc('(',stdout);
+					}
+				}else if(diffLV == 0){
+						putc(',',stdout);
+				}
+			}
+		}
+
+		PC = C;
 	}
 //					putc(')',stdout);
 	if(is_open > 0){
