@@ -127,24 +127,10 @@ int main(int argc, char **argv){
 			LV = currentLV;
 			IPready = 1;
 		}
-		putc((char)C,stdout);
-		if(IPready == 1){
-			diffLV = PLV-LV;
-			printf(":%d:",diffLV);
-			if(diffLV > 0){
-				for(i=0;i<diffLV;i++){
-					putc('(',stdout);
-				}
-			}else if(diffLV == 0){
-				;
-			}else{
-				for(i=0;i<diffLV;i++){
-					putc(')',stdout);
-				}
-			}
-			IPready = 0;
-			LV = 0;
-			PLV = 0;
+		if(C == (*opt).idt){
+			;
+		}else{
+			putc((char)C,stdout);
 		}
 	}
 //					putc(')',stdout);
