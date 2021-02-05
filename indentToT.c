@@ -10,13 +10,14 @@ struct options {
 	//int argint;
 	char *file;
 	char idt;
+	int buff;
 };
 
 void help(void){
 	printf("DESCRIPTION:\n");
 	printf(" indentToT prints T-form from indent format.\n");
 	printf("USAGE:\n");
-	printf(" indentToT [-h] [-s] [-c] in=<file> idt=<char>\n");
+	printf(" indentToT [-h] [-s] [-c] in=<file> idt=<char> buff=<size>\n");
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
@@ -24,7 +25,7 @@ void help(void){
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" Under text.\n");
+	printf(" Under const.\n");
 }
 
 struct options *alloc_options(void){
@@ -46,6 +47,7 @@ void init_options(struct options *opt){
 	(*opt).check = 0;
 	(*opt).file[0] = '\0';
 	(*opt).idt = ' ';
+	(*opt).buff = 1024 * 1024;
 }
 
 void get_options(int optc, char **optv, struct options *opt){
@@ -61,6 +63,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"idt=%c",&(*opt).idt);
 		}else if(strncmp(optv[i],"in=",3) == 0){
 			sscanf(optv[i],"in=%s",(*opt).file);
+		}else if(strncmp(optv[i],"buff=",5) == 0){
+			sscanf(optv[i],"buff=%d",&(*opt).buff);
 		}
 	}
 }
@@ -71,6 +75,7 @@ void check_options(struct options *opt){
 	printf(" opt.stat:%d:\n",(*opt).stat);
 	printf(" opt.file:%s:\n",(*opt).file);
 	printf(" opt.idt:%c:\n",(*opt).idt);
+	printf(" opt.buff:%d:\n",(*opt).buff);
 }
 
 int main(int argc, char **argv){
@@ -162,12 +167,12 @@ int main(int argc, char **argv){
 		if(PC == '\n' && diffLV >= 0){
 			putc(';',stdout);
 		}
-		//printf("p:%d,c:%d,l:%d:",plineLV,currentLV,lineLV);
-		//printf("'%c'",C);
+		printf("p:%d,c:%d,l:%d:",plineLV,currentLV,lineLV);
+		printf("'%c'",C);
 		if(C != ' ' && C != '\n'){
-			putc(C,stdout);
+			//putc(C,stdout);
 		}
-		//printf("\n");
+		printf("\n");
 
 
 		if(C == '\n'){
