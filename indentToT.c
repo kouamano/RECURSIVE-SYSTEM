@@ -206,5 +206,6 @@ int main(int argc, char **argv){
 		fclose(IN);
 	}
 
+	putc('\n',stdout);
 	return(0);
 }
