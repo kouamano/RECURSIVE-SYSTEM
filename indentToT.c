@@ -131,13 +131,13 @@ int main(int argc, char **argv){
 		if(IPready == 1){
 			diffLV = LV-PLV;
 			if(diffLV > 0){
-				for(i=0;i++;i<diffLV){
+				for(i=0;i<diffLV;i++){
 					putc('(',stdout);
 				}
 			}else if(diffLV == 0){
 				;
 			}else{
-				for(i=0;i++;i<diffLV){
+				for(i=0;i<diffLV;i++){
 					putc(')',stdout);
 				}
 			}
@@ -146,6 +146,7 @@ int main(int argc, char **argv){
 			PLV = 0;
 		}
 	}
+//					putc(')',stdout);
 	if(is_open > 0){
 		fclose(IN);
 	}
