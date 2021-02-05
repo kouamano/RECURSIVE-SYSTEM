@@ -88,7 +88,7 @@ int get_LV(char *line, char idt){
 			break;
 		}
 	}
-	printf(":i%d:",i);
+	//printf(":i%d:",i);
 	return(i);
 }
 
@@ -158,13 +158,14 @@ int main(int argc, char **argv){
 	int pBUFF_ptr = 0;
 	int pLV = 0;
 	int diffLV = 0;
+	putc('(',stdout);
 	while((C = fgetc(IN)) != EOF){
 		if(C == '\n'){
 			BUFF[BUFF_ptr] = '\0';
 			LV = get_LV(BUFF,(*opt).idt);	
 			pLV = get_LV(pBUFF,(*opt).idt);	
 			diffLV = LV - pLV;
-			printf(":%d:",diffLV);
+			//printf(":%d:",diffLV);
 			if(diffLV > 0){
 				putc(',',stdout);
 				for(j=0;j<diffLV;j++){
@@ -194,6 +195,7 @@ int main(int argc, char **argv){
 		}
 		Ccount++;
 	}
+	putc(')',stdout);
 	if(is_open > 0){
 		fclose(IN);
 	}
