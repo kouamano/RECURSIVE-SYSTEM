@@ -115,7 +115,6 @@ int main(int argc, char **argv){
 	int IPready = 0;
 	while((C = fgetc(IN)) != EOF){
 		if(C == (*opt).idt){
-			PLV = LV;
 			LV++;
 			IDT++;
 		}
@@ -124,12 +123,14 @@ int main(int argc, char **argv){
 		}
 		if(C == '\n'){
 			putc(',',stdout);
+			PLV = LV;
 			LV = currentLV;
 			IPready = 1;
 		}
 		putc((char)C,stdout);
 		if(IPready == 1){
-			diffLV = LV-PLV;
+			diffLV = PLV-LV;
+			printf(":%d:",diffLV);
 			if(diffLV > 0){
 				for(i=0;i<diffLV;i++){
 					putc('(',stdout);
