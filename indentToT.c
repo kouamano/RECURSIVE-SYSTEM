@@ -142,7 +142,10 @@ int main(int argc, char **argv){
 				}else if(diffLV == 0){
 						//putc(',',stdout);
 				}else{
-						//putc(',',stdout);
+					for(i=0;i<-diffLV;i++){
+						putc(')',stdout);
+						putc(',',stdout);
+					}
 				}
 			}else if(PC == '\n'){
 				if(diffLV < 0){
@@ -155,16 +158,17 @@ int main(int argc, char **argv){
 			}
 		}
 
+
 		if(PC == '\n'){
 			putc(',',stdout);
 		}
-
-		//printf("p:%d,c:%d,l:%d:",plineLV,currentLV,lineLV);
-		//printf("'%c'",C);
+		printf("p:%d,c:%d,l:%d:",plineLV,currentLV,lineLV);
+		printf("'%c'",C);
 		if(C != ' ' && C != '\n'){
-			putc(C,stdout);
+			//putc(C,stdout);
 		}
-		//printf("\n");
+		printf("\n");
+
 
 		if(C == '\n'){
 			if(cdiffLV > 0 && diffLV <= 0){
@@ -182,7 +186,9 @@ int main(int argc, char **argv){
 				}else if(diffLV == 0){
 						//putc(',',stdout);
 				}else{
-						//putc(',',stdout);
+					for(i=0;i<-diffLV;i++){
+						//putc('}',stdout);
+					}
 				}
 			}
 		}
