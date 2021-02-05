@@ -24,7 +24,7 @@ void help(void){
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" Under construction.\n");
+	printf(" Under text.\n");
 }
 
 struct options *alloc_options(void){
@@ -113,7 +113,7 @@ int main(int argc, char **argv){
 	int diffLV = 0;
 	int cdiffLV = 0;
 	int LF = 0;
-	int EBP = 0;
+	//int EBP = 0;
 
 	
 	putc('(',stdout);
@@ -128,11 +128,11 @@ int main(int argc, char **argv){
 		}
 		diffLV = lineLV - plineLV;
 		cdiffLV = lineLV - currentLV;
-		EBP = 0;
+		//EBP = 0;
 
 
 		if(C == '\n'){
-			//putc(',',stdout);
+			;
 		}else if(C != (*opt).idt){
 			if(PC == ' '){
 				if(diffLV > 0){
@@ -151,7 +151,7 @@ int main(int argc, char **argv){
 				if(diffLV < 0){
 					for(i=0;i<-diffLV;i++){
 						putc(')',stdout);
-						EBP++;
+						//EBP++;
 					}
 					//putc(',',stdout);
 				}
@@ -159,24 +159,19 @@ int main(int argc, char **argv){
 		}
 
 
-		if(PC == '\n'){
-			putc(',',stdout);
+		if(PC == '\n' && diffLV >= 0){
+			putc(';',stdout);
 		}
-		//printf("p:%d,c:%d,l:%d:",plineLV,currentLV,lineLV);
-		//printf("'%c'",C);
+		printf("p:%d,c:%d,l:%d:",plineLV,currentLV,lineLV);
+		printf("'%c'",C);
 		if(C != ' ' && C != '\n'){
-			putc(C,stdout);
+			//putc(C,stdout);
 		}
-		//printf("\n");
+		printf("\n");
 
 
 		if(C == '\n'){
-			if(cdiffLV > 0 && diffLV <= 0){
-				for(i=0;i<cdiffLV;i++){
-					//putc('}',stdout);
-				}
-			}
-			//putc(',',stdout);
+			;
 		}else if(C != (*opt).idt){
 			if(PC == ' '){
 				if(diffLV > 0){
