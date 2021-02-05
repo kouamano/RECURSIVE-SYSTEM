@@ -80,10 +80,27 @@ void check_options(struct options *opt){
 
 int get_LV(char *line, char idt){
 	int i = 0;
-	while((char)line[i] == (char)idt){
-		i++;
+	int len = 0;
+	len = strlen(line);
+	//printf(":%d:",len);
+	for(i=0;i<len;i++){
+		if(line[i] != ' '){
+			break;
+		}
 	}
+	printf(":i%d:",i);
 	return(i);
+}
+
+int cp_BUFF(char *src, char *dst){
+	int i;
+	int len;
+	len = strlen(src);
+	for(i=0;i<len;i++){
+		dst[i] = src[i];
+	}
+	dst[len] = '\0';
+	return(len);
 }
 
 int main(int argc, char **argv){
@@ -157,7 +174,7 @@ int main(int argc, char **argv){
 			}
 			printf("%s",BUFF);
 			//printf("%s",pBUFF);
-			pBUFF = BUFF;
+			cp_BUFF(BUFF,pBUFF);
 			pBUFF_ptr = BUFF_ptr;
 			BUFF[0] = '\0';
 			BUFF_ptr = 0;
