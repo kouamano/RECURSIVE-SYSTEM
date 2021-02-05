@@ -88,6 +88,11 @@ int main(int argc, char **argv){
 	int C = 0;
 	int PC = 0;
 	FILE *IN;
+	char *BUFF;
+	if((BUFF = malloc(sizeof(char) * (*opt).buff)) == NULL){
+		perror("Fail: malloc()\n");
+		exit(0);
+	}
 	if(argc == 1){
 		(*opt).help = 1;
 	}
