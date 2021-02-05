@@ -164,6 +164,7 @@ int main(int argc, char **argv){
 	int pBUFF_ptr = 0;
 	int pLV = 0;
 	int diffLV = 0;
+	int dripP = 0;
 	putc('(',stdout);
 	while((C = fgetc(IN)) != EOF){
 		if(C == '\n'){
@@ -186,7 +187,9 @@ int main(int argc, char **argv){
 					putc(',',stdout);
 				}
 			}
-			printf("%s",BUFF);
+			dripP = drip_Pos(BUFF);
+			//printf(":%d:",dripP);
+			printf("%s",BUFF+dripP);
 			cp_BUFF(BUFF,pBUFF);
 			pBUFF_ptr = BUFF_ptr;
 			BUFF[0] = '\0';
