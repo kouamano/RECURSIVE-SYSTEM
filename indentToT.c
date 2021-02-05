@@ -78,6 +78,14 @@ void check_options(struct options *opt){
 	printf(" opt.buff:%d:\n",(*opt).buff);
 }
 
+int get_LV(char *line, char idt){
+	int i = 0;
+	while((char)line[i] == (char)idt){
+		i++;
+	}
+	return(i);
+}
+
 int main(int argc, char **argv){
 	struct options *opt;
 	int ie = 0;
@@ -89,7 +97,12 @@ int main(int argc, char **argv){
 	int PC = 0;
 	FILE *IN;
 	char *BUFF;
+	char *pBUFF;
 	if((BUFF = malloc(sizeof(char) * (*opt).buff)) == NULL){
+		perror("Fail: malloc()\n");
+		exit(0);
+	}
+	if((pBUFF = malloc(sizeof(char) * (*opt).buff)) == NULL){
 		perror("Fail: malloc()\n");
 		exit(0);
 	}
@@ -117,16 +130,48 @@ int main(int argc, char **argv){
 	}
 	is_open = 1;
 	int i = 0;
+	int j = 0;
 
-	
-	putc('(',stdout);
+	BUFF[0] = '\0';
+	int BUFF_ptr = 0;
+	int LV = 0;
+	pBUFF[0] = '\0';
+	int pBUFF_ptr = 0;
+	int pLV = 0;
+	int diffLV = 0;
 	while((C = fgetc(IN)) != EOF){
+		if(C == '\n'){
+			BUFF[BUFF_ptr] = '\0';
+			LV = get_LV(BUFF,(*opt).idt);	
+			pLV = get_LV(pBUFF,(*opt).idt);	
+			diffLV = LV - pLV;
+			printf(":%d:",diffLV);
+			if(diffLV > 0){
+				for(j=0;j<diffLV;j++){
+					putc('(',stdout);
+				}
+			}else if(diffLV == 0){
+				;
+			}else{
+				;
+			}
+			printf("%s",BUFF);
+			//printf("%s",pBUFF);
+			pBUFF = BUFF;
+			pBUFF_ptr = BUFF_ptr;
+			BUFF[0] = '\0';
+			BUFF_ptr = 0;
+			putc('\n',stdout);
+		}else{
+			BUFF[BUFF_ptr] = C;
+			BUFF_ptr++;
+		}
 	}
-
 	if(is_open > 0){
 		fclose(IN);
 	}
-
 	putc('\n',stdout);
+
+
 	return(0);
 }
