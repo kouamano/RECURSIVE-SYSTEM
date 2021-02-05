@@ -121,12 +121,11 @@ int main(int argc, char **argv){
 		}else{
 			lineLV = currentLV;
 		}
-
-		printf("p:%d,c:%d,l:%d:",plineLV,currentLV,lineLV);
-		printf("'%c'",C);
-		printf("\n");
 		diffLV = lineLV - plineLV;
-		if(C != (*opt).idt){
+
+		if(C == '\n'){
+						putc(',',stdout);
+		}else if(C != (*opt).idt){
 			if(PC == ' '){
 				if(diffLV > 0){
 					for(i=0;i<diffLV;i++){
@@ -134,6 +133,32 @@ int main(int argc, char **argv){
 					}
 				}else if(diffLV == 0){
 						putc(',',stdout);
+				}else{
+						//putc(',',stdout);
+				}
+			}else if(PC == '\n'){
+				if(diffLV < 0){
+					for(i=0;i<-diffLV;i++){
+						putc(')',stdout);
+					}
+				}
+			}
+		}
+
+		printf("p:%d,c:%d,l:%d:",plineLV,currentLV,lineLV);
+		printf("'%c'",C);
+		printf("\n");
+
+		if(C != (*opt).idt){
+			if(PC == ' '){
+				if(diffLV > 0){
+					for(i=0;i<diffLV;i++){
+						//putc('(',stdout);
+					}
+				}else if(diffLV == 0){
+						//putc(',',stdout);
+				}else{
+						//putc(',',stdout);
 				}
 			}
 		}
