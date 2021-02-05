@@ -82,13 +82,11 @@ int get_LV(char *line, char idt){
 	int i = 0;
 	int len = 0;
 	len = strlen(line);
-	//printf(":%d:",len);
 	for(i=0;i<len;i++){
 		if(line[i] != ' '){
 			break;
 		}
 	}
-	//printf(":i%d:",i);
 	return(i);
 }
 
@@ -101,6 +99,14 @@ int cp_BUFF(char *src, char *dst){
 	}
 	dst[len] = '\0';
 	return(len);
+}
+
+int drip_Pos(char *line){
+	int i = 0;
+	while(line[i] == ' '){
+		i++;
+	}
+	return(i);
 }
 
 int main(int argc, char **argv){
@@ -165,7 +171,6 @@ int main(int argc, char **argv){
 			LV = get_LV(BUFF,(*opt).idt);	
 			pLV = get_LV(pBUFF,(*opt).idt);	
 			diffLV = LV - pLV;
-			//printf(":%d:",diffLV);
 			if(diffLV > 0){
 				putc(',',stdout);
 				for(j=0;j<diffLV;j++){
@@ -182,7 +187,6 @@ int main(int argc, char **argv){
 				}
 			}
 			printf("%s",BUFF);
-			//printf("%s",pBUFF);
 			cp_BUFF(BUFF,pBUFF);
 			pBUFF_ptr = BUFF_ptr;
 			BUFF[0] = '\0';
