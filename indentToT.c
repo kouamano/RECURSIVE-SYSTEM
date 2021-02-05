@@ -111,7 +111,9 @@ int main(int argc, char **argv){
 	int plineLV = 0;
 	int currentLV = 0;
 	int diffLV = 0;
+	int cdiffLV = 0;
 	int LF = 0;
+	int EBP = 0;
 	while((C = fgetc(IN)) != EOF){
 		if(C == (*opt).idt){
 			currentLV++;
@@ -122,9 +124,12 @@ int main(int argc, char **argv){
 			lineLV = currentLV;
 		}
 		diffLV = lineLV - plineLV;
+		cdiffLV = lineLV - currentLV;
+		EBP = 0;
+
 
 		if(C == '\n'){
-						putc(',',stdout);
+			//putc(',',stdout);
 		}else if(C != (*opt).idt){
 			if(PC == ' '){
 				if(diffLV > 0){
@@ -132,7 +137,7 @@ int main(int argc, char **argv){
 						putc('(',stdout);
 					}
 				}else if(diffLV == 0){
-						putc(',',stdout);
+						//putc(',',stdout);
 				}else{
 						//putc(',',stdout);
 				}
@@ -140,16 +145,29 @@ int main(int argc, char **argv){
 				if(diffLV < 0){
 					for(i=0;i<-diffLV;i++){
 						putc(')',stdout);
+						EBP++;
 					}
+					//putc(',',stdout);
 				}
 			}
+		}
+
+		if(PC == '\n'){
+			putc(',',stdout);
 		}
 
 		printf("p:%d,c:%d,l:%d:",plineLV,currentLV,lineLV);
 		printf("'%c'",C);
 		printf("\n");
 
-		if(C != (*opt).idt){
+		if(C == '\n'){
+			if(cdiffLV > 0 && diffLV <= 0){
+				for(i=0;i<cdiffLV;i++){
+					//putc('}',stdout);
+				}
+			}
+			//putc(',',stdout);
+		}else if(C != (*opt).idt){
 			if(PC == ' '){
 				if(diffLV > 0){
 					for(i=0;i<diffLV;i++){
@@ -165,7 +183,11 @@ int main(int argc, char **argv){
 
 		PC = C;
 	}
-//					putc(')',stdout);
+	if(cdiffLV > 0){
+		for(i=0;i<cdiffLV;i++){
+			putc(')',stdout);
+		}
+	}
 	if(is_open > 0){
 		fclose(IN);
 	}
