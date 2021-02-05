@@ -153,7 +153,7 @@ int main(int argc, char **argv){
 						putc(')',stdout);
 						//EBP++;
 					}
-					//putc(',',stdout);
+					putc(',',stdout);
 				}
 			}
 		}
@@ -162,12 +162,12 @@ int main(int argc, char **argv){
 		if(PC == '\n' && diffLV >= 0){
 			putc(';',stdout);
 		}
-		printf("p:%d,c:%d,l:%d:",plineLV,currentLV,lineLV);
-		printf("'%c'",C);
+		//printf("p:%d,c:%d,l:%d:",plineLV,currentLV,lineLV);
+		//printf("'%c'",C);
 		if(C != ' ' && C != '\n'){
-			//putc(C,stdout);
+			putc(C,stdout);
 		}
-		printf("\n");
+		//printf("\n");
 
 
 		if(C == '\n'){
