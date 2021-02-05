@@ -146,6 +146,8 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	is_open = 1;
+	int Ccount = 0;
+	int Lcount = 0;
 	int i = 0;
 	int j = 0;
 
@@ -164,13 +166,19 @@ int main(int argc, char **argv){
 			diffLV = LV - pLV;
 			printf(":%d:",diffLV);
 			if(diffLV > 0){
+				putc(',',stdout);
 				for(j=0;j<diffLV;j++){
 					putc('(',stdout);
 				}
-			}else if(diffLV == 0){
-				;
+			}else if(diffLV == 0 && Lcount > 0){
+				putc(',',stdout);
 			}else{
-				;
+				for(j=0;j<-diffLV;j++){
+					putc(')',stdout);
+				}
+				if(Lcount > 0){
+					putc(',',stdout);
+				}
 			}
 			printf("%s",BUFF);
 			//printf("%s",pBUFF);
@@ -179,10 +187,12 @@ int main(int argc, char **argv){
 			BUFF[0] = '\0';
 			BUFF_ptr = 0;
 			putc('\n',stdout);
+			Lcount++;
 		}else{
 			BUFF[BUFF_ptr] = C;
 			BUFF_ptr++;
 		}
+		Ccount++;
 	}
 	if(is_open > 0){
 		fclose(IN);
