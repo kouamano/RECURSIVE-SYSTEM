@@ -122,12 +122,15 @@ void option_header(void){
 }
 void list_builtins(void){
 	printf("\n");
-	printf(" - Builtin operators\n");
+	printf(" - Term reference rules\n");
 	printf("\n");
 	printf("  * #<n> : <label>: head.\n");
 	printf("  * ##<n> : <label>: tree.\n");
 	printf("  * $#<n> : <reference>: head.\n");
 	printf("  * $##<n> : <reference>: tree.\n");
+	printf("\n");
+	printf(" - Builtin operators\n");
+	printf("\n");
 	printf("  * $`$ : <operator>: quating head.\n");
 	printf("  * $``$ : <operator>: quating tree.\n");
 	printf("  * $~$ : <operator>: riteral head.\n");
