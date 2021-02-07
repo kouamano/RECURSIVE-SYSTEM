@@ -34,11 +34,13 @@ git diff cq:C-help.h cq_debug:C-help.h
 git diff cq:C-structure.h cq_debug:C-structure.h
 git diff cq:C-functions.h cq_debug:C-functions.h
 git diff cq:C-functions_imex.h cq_debug:C-functions_imex.h
-## tconv
+## converter
 echo '>> converter'
 git diff cq:T-convStructure.h cq_debug:T-convStructure.h
 git diff cq:T-convFunctions.h cq_debug:T-convFunctions.h
 git diff cq:T-convFunctions_imex.h cq_debug:T-convFunctions_imex.h
+git diff cq:toPsdJSON.c cq_debug:toPsdJSON.c
+git diff cq:indentToT.c cq_debug:indentToT.c
 ## test
 echo '>> test code'
 git diff cq:DimensionDefinitionLanguage/conv-test.script cq_debug:DimensionDefinitionLanguage/conv-test.script
