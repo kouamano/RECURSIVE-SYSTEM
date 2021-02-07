@@ -34,7 +34,7 @@ git diff cq:C-help.h cq_debug:C-help.h
 git diff cq:C-structure.h cq_debug:C-structure.h
 git diff cq:C-functions.h cq_debug:C-functions.h
 git diff cq:C-functions_imex.h cq_debug:C-functions_imex.h
-## tconv
+## converter
 echo '>> converter'
 git diff cq:T-convStructure.h cq_debug:T-convStructure.h
 git diff cq:T-convFunctions.h cq_debug:T-convFunctions.h
