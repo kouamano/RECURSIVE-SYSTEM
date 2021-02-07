@@ -1,11 +1,7 @@
 ## head 処理の順番
-### 現行
 <label><reference><operator><name><bind>
 1      3          4         5     2
-### 次期
-<label><reference><operator><name><bind>
-1      2          {4}       {5}   {3}
-                  7         8     6
+
 ### コード検証
 1: import_Tree()で、Analyze_Label()処理が呼ばれる。
 2: Executor()で、FLAGが1のとき、ExFunction_Recursive(Function_Bind_Data())が実行される。
