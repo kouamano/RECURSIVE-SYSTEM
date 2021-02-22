@@ -87,7 +87,7 @@ void compile_help(void){
 	printf(" - Compile options\n");
 	printf("\n");
 	printf("  * -C : print compiled form.\n");
-	printf("  * -CL : list buitin operators.\n");
+	printf("  * -CL : list buitin functions.\n");
 	printf("  * -Cr : prints the \"print-restrict\" char at the end of line.\n");
 	printf("  * -Cc : clear head.\n");
 	printf("  * -Cd : rewite head to dot.\n");
@@ -129,7 +129,7 @@ void list_builtins(void){
 	printf("  * $#<n> : <reference>: head.\n");
 	printf("  * $##<n> : <reference>: tree.\n");
 	printf("\n");
-	printf(" - Builtin operators\n");
+	printf(" - Builtin functions\n");
 	printf("\n");
 	printf("  * $`$ : <operator>: quating head.\n");
 	printf("  * $``$ : <operator>: quating tree.\n");
