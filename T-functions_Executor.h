@@ -2,14 +2,6 @@
 struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_node, int C, int SN, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct search_options *_sopt, FILE *DATA, int EXEC_FLAG){
 		FC(fprintf(stderr,">Executor(F:%d:)<\n",EXEC_FLAG);)
 		/* pre */
-		/** bind self-ref (for input-form) */
-		if((EXEC_FLAG&8) == 8){
-			Function_Recursive_Bind_RefNode(top,top,_copt);
-		}
-		/** bind io-ref (for output-form) */
-		if((EXEC_FLAG&4) == 4){
-			Function_Recursive_Bind_RefNode(top,refTree,_copt);
-		}
 		/** bind data (for input-form) */
 		if((EXEC_FLAG&1) == 1){
 			ExFunction_Recursive(top,(struct Tree *(*)())Function_Detect_DimBlock,_opt,_fopt,_copt);
@@ -18,6 +10,14 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 					Function_Bind_Data(DATA,top,_opt,_fopt,_copt);
 				}
 			}
+		}
+		/** bind self-ref (for input-form) */
+		if((EXEC_FLAG&8) == 8){
+			Function_Recursive_Bind_RefNode(top,top,_copt);
+		}
+		/** bind io-ref (for output-form) */
+		if((EXEC_FLAG&4) == 4){
+			Function_Recursive_Bind_RefNode(top,refTree,_copt);
 		}
 		/** inner product of binded data */
 		if((EXEC_FLAG&16) == 16){
