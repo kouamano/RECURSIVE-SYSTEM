@@ -17,6 +17,7 @@ fi
 if [ $1 = "--h" ]; then
   echo "==tq=="
   ./tq.o -h
+  echo
   echo "==c_tq=="
   ./c_tq.o -h
   exit;
