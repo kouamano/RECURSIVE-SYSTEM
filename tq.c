@@ -702,7 +702,9 @@ int main(int argc, char **argv){
 	// 0 : no exec
 	// 1 : bind data
 	// 2 : print
-	// 4 : bind ref-node
+	// 4 : bind ref-node for output form
+	// 8 : bind ref-node for input form
+	// 16 : generate product from bibded data
 
 	/* input-form file */
 	if(strlen((*opt).in) > 0){
