@@ -18,6 +18,7 @@ git --no-pager diff cq:README_base.exam cq_debug:README_base.exam
 git --no-pager diff cq:README_big.exam cq_debug:README_big.exam
 ## tq/cq
 echo '>> source code'
+git --no-pager diff cq:tq.sh cq_debug:tq.sh
 git --no-pager diff cq:tq.c cq_debug:tq.c
 git --no-pager diff cq:escape_sw.c cq_debug:escape_sw.c
 git --no-pager diff cq:escape_sw1.c cq_debug:escape_sw1.c
@@ -68,6 +69,7 @@ git --no-pager diff cq:README_base.exam jsik:README_base.exam
 git --no-pager diff cq:README_big.exam jsik:README_big.exam
 ## tq/cq
 echo '>> source code'
+git --no-pager diff cq:tq.sh jsik:tq.sh
 git --no-pager diff cq:tq.c jsik:tq.c
 git --no-pager diff cq:T-definition.h jsik:T-definition.h
 git --no-pager diff cq:T-structure.h jsik:T-structure.h
