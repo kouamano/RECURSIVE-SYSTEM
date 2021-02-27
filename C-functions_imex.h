@@ -353,7 +353,7 @@ void skip_op()
 	int DLM_ACC;
 
 	do {
-		append_char(ch);			// '['
+		append_char(ch);			// '{'
 		next_char();
 
 		DLM_ACC = 1;
