@@ -10,11 +10,9 @@ if [ $# -eq 0 ]; then
 fi
 
 if [ $1 = "-h" ]; then
-  echo '==tq=='
+  echo "==tq=="
   ./tq.o -h
-  echo '==c_tq=='
+  echo "==c_tq=="
   ./c_tq.o -h
   exit;
-else
-  ;
 fi
