@@ -1,6 +1,7 @@
 #!/bin/bash
 # this is a tq meta command
 # Needs: tq.o, c_tq.o
+array=$@
 
 TQ=~/gitsrc/RECURSIVE-SYSTEM/tq.o
 
@@ -11,7 +12,7 @@ if [ $# -eq 0 ]; then
   exit;
 fi
 
-if [ $1 = "-h" ]; then
+if [ $1 = "--h" ]; then
   echo "==tq=="
   ./tq.o -h
   echo "==c_tq=="
@@ -19,4 +20,4 @@ if [ $1 = "-h" ]; then
   exit;
 fi
 
-$TQ $@
+$TQ $array
