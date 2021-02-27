@@ -2,6 +2,8 @@
 # this is a tq meta command
 # Needs: tq.o, c_tq.o
 
+TQ=~/gitsrc/RECURSIVE-SYSTEM/tq.o
+
 if [ $# -eq 0 ]; then
   echo "Usage:"
   echo "  tq target=<file>"
@@ -16,3 +18,5 @@ if [ $1 = "-h" ]; then
   ./c_tq.o -h
   exit;
 fi
+
+$TQ $@
