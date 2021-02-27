@@ -4,11 +4,13 @@
 array=$@
 
 TQ=~/gitsrc/RECURSIVE-SYSTEM/tq.o
+CQ=~/gitsrc/RECURSIVE-SYSTEM/c_tq.o
 
 if [ $# -eq 0 ]; then
   echo "Usage:"
-  echo "  tq target=<file>"
-  echo "  tq -h"
+  echo "  tq.sh --h"
+  echo "  tq.sh --C <args>"
+  echo "  tq.sh <args>"
   exit;
 fi
 
@@ -21,7 +23,7 @@ if [ $1 = "--h" ]; then
 fi
 
 if [ $1 = "--C" ]; then
-  TQ=~/gitsrc/RECURSIVE-SYSTEM/c_tq.o
+  TQ=$CQ
   array=${array#--C}
 fi
 
