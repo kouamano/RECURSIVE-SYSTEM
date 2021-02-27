@@ -8,9 +8,9 @@ CQ=~/gitsrc/RECURSIVE-SYSTEM/c_tq.o
 
 if [ $# -eq 0 ]; then
   echo "Usage:"
-  echo "  tq.sh --h"
-  echo "  tq.sh --C <args>"
-  echo "  tq.sh <args>"
+  echo "  tq --h"
+  echo "  tq --C <args>"
+  echo "  tq <args>"
   exit;
 fi
 
