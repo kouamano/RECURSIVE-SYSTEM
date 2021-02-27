@@ -20,4 +20,9 @@ if [ $1 = "--h" ]; then
   exit;
 fi
 
+if [ $1 = "--C" ]; then
+  TQ=~/gitsrc/RECURSIVE-SYSTEM/c_tq.o
+  array=${array#--C}
+fi
+
 $TQ $array
