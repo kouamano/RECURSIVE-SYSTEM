@@ -4,94 +4,94 @@ echo ==cq==
 echo '> VS. cq_debug'
 ## self
 echo '>> self'
-git diff cq:branch.diff cq_debug:branch.diff
+git --no-pager diff cq:branch.diff cq_debug:branch.diff
 ## README
 echo '>> Readme'
-git diff cq:README.analyze_head cq_debug:README.analyze_head
-git diff cq:README.chem cq_debug:README.chem
-git diff cq:README.exam cq_debug:README.exam
-git diff cq:README.ken cq_debug:README.ken
-git diff cq:README.md cq_debug:README.md
-git diff cq:README.ref+bind cq_debug:README.ref+bind
-git diff cq:README.unpack cq_debug:README.unpack
-git diff cq:README_base.exam cq_debug:README_base.exam
-git diff cq:README_big.exam cq_debug:README_big.exam
+git --no-pager diff cq:README.analyze_head cq_debug:README.analyze_head
+git --no-pager diff cq:README.chem cq_debug:README.chem
+git --no-pager diff cq:README.exam cq_debug:README.exam
+git --no-pager diff cq:README.ken cq_debug:README.ken
+git --no-pager diff cq:README.md cq_debug:README.md
+git --no-pager diff cq:README.ref+bind cq_debug:README.ref+bind
+git --no-pager diff cq:README.unpack cq_debug:README.unpack
+git --no-pager diff cq:README_base.exam cq_debug:README_base.exam
+git --no-pager diff cq:README_big.exam cq_debug:README_big.exam
 ## tq/cq
 echo '>> source code'
-git diff cq:tq.c cq_debug:tq.c
-git diff cq:escape_sw.c cq_debug:escape_sw.c
-git diff cq:escape_sw1.c cq_debug:escape_sw1.c
-git diff cq:escape_sw2.c cq_debug:escape_sw2.c
-git diff cq:T-definition.h cq_debug:T-definition.h
-git diff cq:T-structure.h cq_debug:T-structure.h
-git diff cq:T-functions.h cq_debug:T-functions.h
-git diff cq:T-functions_Executor.h cq_debug:T-functions_Executor.h
-git diff cq:T-functions_imex.h cq_debug:T-functions_imex.h
-git diff cq:CT-structure.h cq_debug:CT-structure.h
-git diff cq:CT-functions.h cq_debug:CT-functions.h
-git diff cq:CT-functions_Executor.h cq_debug:CT-functions_Executor.h
-git diff cq:C-help.h cq_debug:C-help.h
-git diff cq:C-structure.h cq_debug:C-structure.h
-git diff cq:C-functions.h cq_debug:C-functions.h
-git diff cq:C-functions_imex.h cq_debug:C-functions_imex.h
+git --no-pager diff cq:tq.c cq_debug:tq.c
+git --no-pager diff cq:escape_sw.c cq_debug:escape_sw.c
+git --no-pager diff cq:escape_sw1.c cq_debug:escape_sw1.c
+git --no-pager diff cq:escape_sw2.c cq_debug:escape_sw2.c
+git --no-pager diff cq:T-definition.h cq_debug:T-definition.h
+git --no-pager diff cq:T-structure.h cq_debug:T-structure.h
+git --no-pager diff cq:T-functions.h cq_debug:T-functions.h
+git --no-pager diff cq:T-functions_Executor.h cq_debug:T-functions_Executor.h
+git --no-pager diff cq:T-functions_imex.h cq_debug:T-functions_imex.h
+git --no-pager diff cq:CT-structure.h cq_debug:CT-structure.h
+git --no-pager diff cq:CT-functions.h cq_debug:CT-functions.h
+git --no-pager diff cq:CT-functions_Executor.h cq_debug:CT-functions_Executor.h
+git --no-pager diff cq:C-help.h cq_debug:C-help.h
+git --no-pager diff cq:C-structure.h cq_debug:C-structure.h
+git --no-pager diff cq:C-functions.h cq_debug:C-functions.h
+git --no-pager diff cq:C-functions_imex.h cq_debug:C-functions_imex.h
 ## converter
 echo '>> converter'
-git diff cq:T-convStructure.h cq_debug:T-convStructure.h
-git diff cq:T-convFunctions.h cq_debug:T-convFunctions.h
-git diff cq:T-convFunctions_imex.h cq_debug:T-convFunctions_imex.h
-git diff cq:toPsdJSON.c cq_debug:toPsdJSON.c
-git diff cq:indentToT.c cq_debug:indentToT.c
+git --no-pager diff cq:T-convStructure.h cq_debug:T-convStructure.h
+git --no-pager diff cq:T-convFunctions.h cq_debug:T-convFunctions.h
+git --no-pager diff cq:T-convFunctions_imex.h cq_debug:T-convFunctions_imex.h
+git --no-pager diff cq:toPsdJSON.c cq_debug:toPsdJSON.c
+git --no-pager diff cq:indentToT.c cq_debug:indentToT.c
 ## test
 echo '>> test code'
-git diff cq:DimensionDefinitionLanguage/conv-test.script cq_debug:DimensionDefinitionLanguage/conv-test.script
-git diff cq:DimensionDefinitionLanguage/conv2-test.script cq_debug:DimensionDefinitionLanguage/conv2-test.script
+git --no-pager diff cq:DimensionDefinitionLanguage/conv-test.script cq_debug:DimensionDefinitionLanguage/conv-test.script
+git --no-pager diff cq:DimensionDefinitionLanguage/conv2-test.script cq_debug:DimensionDefinitionLanguage/conv2-test.script
 ## compile
 echo '>> compile'
-git diff cq:compile-all.sh cq_debug:compile-all.sh
-git diff cq:DimensionDefinitionLanguage/compile_checker.sh cq_debug:DimensionDefinitionLanguage/compile_checker.sh
+git --no-pager diff cq:compile-all.sh cq_debug:compile-all.sh
+git --no-pager diff cq:DimensionDefinitionLanguage/compile_checker.sh cq_debug:DimensionDefinitionLanguage/compile_checker.sh
 
 # vs. jsik
 echo '> VS. jsik'
 ## self
 echo '>> self'
-git diff cq:branch.diff jsik:branch.diff
+git --no-pager diff cq:branch.diff jsik:branch.diff
 ## README
 echo '>> Readme'
-git diff cq:README.analyze_head jsik:README.analyze_head
-git diff cq:README.chem jsik:README.chem
-git diff cq:README.exam jsik:README.exam
-git diff cq:README.ken jsik:README.ken
-git diff cq:README.md jsik:README.md
-git diff cq:README.ref+bind jsik:README.ref+bind
-git diff cq:README.unpack jsik:README.unpack
-git diff cq:README_base.exam jsik:README_base.exam
-git diff cq:README_big.exam jsik:README_big.exam
+git --no-pager diff cq:README.analyze_head jsik:README.analyze_head
+git --no-pager diff cq:README.chem jsik:README.chem
+git --no-pager diff cq:README.exam jsik:README.exam
+git --no-pager diff cq:README.ken jsik:README.ken
+git --no-pager diff cq:README.md jsik:README.md
+git --no-pager diff cq:README.ref+bind jsik:README.ref+bind
+git --no-pager diff cq:README.unpack jsik:README.unpack
+git --no-pager diff cq:README_base.exam jsik:README_base.exam
+git --no-pager diff cq:README_big.exam jsik:README_big.exam
 ## tq/cq
 echo '>> source code'
-git diff cq:tq.c jsik:tq.c
-git diff cq:T-definition.h jsik:T-definition.h
-git diff cq:T-structure.h jsik:T-structure.h
-git diff cq:T-functions.h jsik:T-functions.h
-git diff cq:T-functions_Executor.h jsik:T-functions_Executor.h
-git diff cq:T-functions_imex.h jsik:T-functions_imex.h
-git diff cq:CT-structure.h jsik:CT-structure.h
-git diff cq:CT-functions.h jsik:CT-functions.h
-git diff cq:CT-functions_Executor.h jsik:CT-functions_Executor.h
-git diff cq:C-structure.h jsik:C-structure.h
-git diff cq:C-functions.h jsik:C-functions.h
-git diff cq:C-functions_imex.h jsik:C-functions_imex.h
+git --no-pager diff cq:tq.c jsik:tq.c
+git --no-pager diff cq:T-definition.h jsik:T-definition.h
+git --no-pager diff cq:T-structure.h jsik:T-structure.h
+git --no-pager diff cq:T-functions.h jsik:T-functions.h
+git --no-pager diff cq:T-functions_Executor.h jsik:T-functions_Executor.h
+git --no-pager diff cq:T-functions_imex.h jsik:T-functions_imex.h
+git --no-pager diff cq:CT-structure.h jsik:CT-structure.h
+git --no-pager diff cq:CT-functions.h jsik:CT-functions.h
+git --no-pager diff cq:CT-functions_Executor.h jsik:CT-functions_Executor.h
+git --no-pager diff cq:C-structure.h jsik:C-structure.h
+git --no-pager diff cq:C-functions.h jsik:C-functions.h
+git --no-pager diff cq:C-functions_imex.h jsik:C-functions_imex.h
 ## tconv
 echo '>> converter'
-git diff cq:T-convStructure.h jsik:T-convStructure.h
-git diff cq:T-convFunctions.h jsik:T-convFunctions.h
-git diff cq:T-convFunctions_imex.h jsik:T-convFunctions_imex.h
+git --no-pager diff cq:T-convStructure.h jsik:T-convStructure.h
+git --no-pager diff cq:T-convFunctions.h jsik:T-convFunctions.h
+git --no-pager diff cq:T-convFunctions_imex.h jsik:T-convFunctions_imex.h
 ## test
 echo '>> test code'
-git diff cq:DimensionDefinitionLanguage/conv-test.script jsik:DimensionDefinitionLanguage/conv-test.script
-git diff cq:DimensionDefinitionLanguage/conv2-test.script jsik:DimensionDefinitionLanguage/conv2-test.script
+git --no-pager diff cq:DimensionDefinitionLanguage/conv-test.script jsik:DimensionDefinitionLanguage/conv-test.script
+git --no-pager diff cq:DimensionDefinitionLanguage/conv2-test.script jsik:DimensionDefinitionLanguage/conv2-test.script
 ## compile
 echo '>> compile'
-git diff cq:compile-all.sh jsik:compile-all.sh
-git diff cq:DimensionDefinitionLanguage/compile_checker.sh jsik:DimensionDefinitionLanguage/compile_checker.sh
+git --no-pager diff cq:compile-all.sh jsik:compile-all.sh
+git --no-pager diff cq:DimensionDefinitionLanguage/compile_checker.sh jsik:DimensionDefinitionLanguage/compile_checker.sh
 
 
