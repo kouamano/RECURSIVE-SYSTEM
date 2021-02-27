@@ -382,7 +382,7 @@ void skip_op()
 			}
 		}
 		if(DLM_ACC > 0) {
-			error("syntax error");		// EOF before closing ']'
+			error("syntax error");		// EOF before closing '}'
 		}
 	} while(ch == '{');
 }
