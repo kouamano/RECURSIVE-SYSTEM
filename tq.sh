@@ -23,6 +23,9 @@ if [ $1 = "--h" ]; then
 fi
 
 if [ $1 = "--C" ]; then
+  if [ $# -eq 1 ]; then
+    exit;
+  fi
   TQ=$CQ
   array=${array#--C}
 fi
