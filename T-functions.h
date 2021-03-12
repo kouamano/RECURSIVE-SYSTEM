@@ -661,6 +661,13 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 		out_head[tmp_len+1]='\0';
 		strcpy(tmp_head,out_head);
 		compiled++;
+	}else if(strncmp(tmp_head,"$CAT$",5) == 0){
+		strcpy(out_head,tmp_head+5);
+		strcpy(tmp_head,out_head);
+		if(((*tree).extra_stat&16) != 16){
+			(*tree).extra_stat = (*tree).extra_stat + 16;
+		}
+		compiled++;
 	}
 	free(out_head);
 	return(tmp_head);
