@@ -3,8 +3,8 @@
 # Needs: tq.o, c_tq.o
 array=$@
 
-TQ=~/gitsrc/RECURSIVE-SYSTEM/tq.o
-CQ=~/gitsrc/RECURSIVE-SYSTEM/c_tq.o
+TQ=~/gitsrc/RECURSIVE-SYSTEM/tq.o	#必要に応じて書き換え
+CQ=~/gitsrc/RECURSIVE-SYSTEM/c_tq.o	#必要に応じて書き換え
 
 if [ $# -eq 0 ]; then
   echo "Usage:"
