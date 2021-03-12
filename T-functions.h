@@ -661,6 +661,13 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 		out_head[tmp_len+1]='\0';
 		strcpy(tmp_head,out_head);
 		compiled++;
+	}else if(strncmp(tmp_head,"$CAT$",5) == 0){
+		strcpy(out_head,tmp_head+5);
+		strcpy(tmp_head,out_head);
+		if(((*tree).extra_stat&16) != 16){
+			(*tree).extra_stat = (*tree).extra_stat + 16;
+		}
+		compiled++;
 	}
 	free(out_head);
 	return(tmp_head);
@@ -1250,6 +1257,8 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	/* print head */
 	if(((*tree).extra_stat&1) == 1){
 		printf("%s",(*tree).Head);	//normal
+	}else if(((*tree).extra_stat&16) == 16 && (*_copt).c_counter > 0){
+		;				//cat the file, no head
 	}else if((*_copt).c_counter > 0){
 		printf("%s",tmp_str);
 		free(tmp_str);
@@ -1299,6 +1308,24 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	if((*_copt).c_counter > 0){
 		if(((*tree).extra_stat&8) == 8 && ((*tree).extra_stat&1) != 1 && (*tree).NextCount > 0){
 			putchar(44);
+		}
+	}
+	/* cat the file */
+	if(((*tree).extra_stat&16) == 16 && (*_copt).c_counter > 0){
+		//printf("%s",tmp_str);
+		int is_open = 0;
+		FILE *CAT;
+		int C = 0;
+		if((CAT = fopen(tmp_str,"r")) == NULL){
+			perror(tmp_str);
+			exit(1);
+		}
+		is_open = 1;
+		while((C = fgetc(CAT)) != EOF){
+			putchar(C);
+		}
+		if(is_open == 1){
+			fclose(CAT);
 		}
 	}
 

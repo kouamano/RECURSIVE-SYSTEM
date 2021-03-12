@@ -138,6 +138,7 @@ void list_builtins(void){
 	printf("  * $U$ : <operator>: unpack single level.\n");
 	printf("  * $UU$ : <operator>: unpack tree (test ver.).\n");
 	printf("  * $PI$ : <operator>: inner production for binded data.\n");
+	printf("  * $CAT$ : <operator>: concatenate text-string from file. (Underconstruction)\n");
 	printf("  * $NULL$ : <name>: null object.\n");
 	printf("  * @(<string>) : <name>: binded data.\n");
 	printf("  * [<n>] : <bind>: data bind.\n");
