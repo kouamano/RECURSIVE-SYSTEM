@@ -28,7 +28,7 @@ if [ $1 = "--C" ]; then
     exit;
   fi
   TQ=$CQ
-  array=${array#--C}
+  array=${array#--*}
 fi
 
 $TQ $array
