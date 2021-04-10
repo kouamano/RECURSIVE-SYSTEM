@@ -1,18 +1,19 @@
 #!/bin/bash
-# this is a tq meta command
+# This is a tq meta command
 # Needs: tq.o, c_tq.o, exprt.pl
 array=$@
 exec=0
 
-TQ=~/gitsrc/RECURSIVE-SYSTEM/tq.o	#必要に応じて書き換え
-CQ=~/gitsrc/RECURSIVE-SYSTEM/c_tq.o	#必要に応じて書き換え
-EXPRT=~/gitsrc/RECURSIVE-SYSTEM/exprt.pl
+TQ=~/gitsrc/RECURSIVE-SYSTEM/tq.o		#必要に応じて書き換え
+CQ=~/gitsrc/RECURSIVE-SYSTEM/c_tq.o		#必要に応じて書き換え
+EXPRT=~/gitsrc/RECURSIVE-SYSTEM/exprt.pl	#必要に応じて書き換え
 
 if [ $# -eq 0 ]; then
   echo "Usage:"
   echo "  tq --h"
-  echo "  tq --<OP> <args>"
   echo "  tq <args>"
+  echo "  tq --<OP> <args>"
+  echo "  <OP>: comma separated charactor"
   echo "  <OP>:C execute c_tq"
   echo "  <OP>:E execute <command> in {<command>}"
   exit;
