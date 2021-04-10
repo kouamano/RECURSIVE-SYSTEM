@@ -19,7 +19,7 @@ struct Tree {
 	int extra_stat;		// print系関数で使用
 		//1: $~~$,$~$ -> avoid compile;	2: $PI$ ; skipNext 兼用
 		//4: $``$ -> quating tree;	8: $U$, $UU$
-		//16: $CAT$ -> string from file
+		//16: $CAT$ -> cat file; 	32: $PO$ -> 外積のため予約
 };
 
 struct options {
