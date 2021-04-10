@@ -23,12 +23,29 @@ if [ $1 = "--h" ]; then
   exit;
 fi
 
-if [ $1 = "--C" ]; then
+#if [ $1 = "--C" ]; then
+if [[ $1 =~ --.* ]]; then
   if [ $# -eq 1 ]; then
     exit;
   fi
-  TQ=$CQ
-  array=${array#--*}
+
+  op=$1
+  op=${op:2}
+  #echo op:$op:
+  list=(${op//,/ })
+  #echo ${list[@]}
+  for e in ${list[@]}; do
+    #echo $e
+    if [ $e = "C" ]; then
+      TQ=$CQ
+    fi
+    if [ $e = "E" ]; then
+      echo hit:E
+    fi
+  done
+
+  array=${array#--* }
+  echo arr:$array:
 fi
 
 $TQ $array
