@@ -11,8 +11,10 @@ EXPRT=~/gitsrc/RECURSIVE-SYSTEM/exprt.pl
 if [ $# -eq 0 ]; then
   echo "Usage:"
   echo "  tq --h"
-  echo "  tq --C <args>"
+  echo "  tq --<OP> <args>"
   echo "  tq <args>"
+  echo "  <OP>:C execute c_tq"
+  echo "  <OP>:E execute <command> in {<command>}"
   exit;
 fi
 
