@@ -16,6 +16,8 @@ git --no-pager diff cq:README.ref+bind cq_debug:README.ref+bind
 git --no-pager diff cq:README.unpack cq_debug:README.unpack
 git --no-pager diff cq:README_base.exam cq_debug:README_base.exam
 git --no-pager diff cq:README_big.exam cq_debug:README_big.exam
+echo '>> meta command'
+git --no-pager diff cq:tq.sh cq_debug:tq.sh
 ## tq/cq
 echo '>> source code'
 git --no-pager diff cq:tq.sh cq_debug:tq.sh
@@ -67,6 +69,8 @@ git --no-pager diff cq:README.ref+bind jsik:README.ref+bind
 git --no-pager diff cq:README.unpack jsik:README.unpack
 git --no-pager diff cq:README_base.exam jsik:README_base.exam
 git --no-pager diff cq:README_big.exam jsik:README_big.exam
+echo '>> meta command'
+git --no-pager diff cq:tq.sh jsik:tq.sh
 ## tq/cq
 echo '>> source code'
 git --no-pager diff cq:tq.sh jsik:tq.sh
