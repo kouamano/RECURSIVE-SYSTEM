@@ -2,9 +2,11 @@
 # this is a tq meta command
 # Needs: tq.o, c_tq.o
 array=$@
+exec=0
 
 TQ=~/gitsrc/RECURSIVE-SYSTEM/tq.o	#必要に応じて書き換え
 CQ=~/gitsrc/RECURSIVE-SYSTEM/c_tq.o	#必要に応じて書き換え
+EXPRT=~/gitsrc/RECURSIVE-SYSTEM/exprt.pl
 
 if [ $# -eq 0 ]; then
   echo "Usage:"
@@ -40,7 +42,7 @@ if [[ $1 =~ --.* ]]; then
       TQ=$CQ
     fi
     if [ $e = "E" ]; then
-      echo hit:E
+      exec=1
     fi
   done
 
@@ -48,4 +50,9 @@ if [[ $1 =~ --.* ]]; then
   echo arr:$array:
 fi
 
-$TQ $array
+if [ $exec = 1 ]; then
+  #echo exec
+  $TQ $array | $EXPRT
+else
+  $TQ $array
+fi
