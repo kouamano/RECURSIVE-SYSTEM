@@ -1,6 +1,6 @@
 #!/bin/bash
 # this is a tq meta command
-# Needs: tq.o, c_tq.o
+# Needs: tq.o, c_tq.o, exprt.pl
 array=$@
 exec=0
 
@@ -35,9 +35,7 @@ if [[ $1 =~ --.* ]]; then
   op=${op:2}
   #echo op:$op:
   list=(${op//,/ })
-  #echo ${list[@]}
   for e in ${list[@]}; do
-    #echo $e
     if [ $e = "C" ]; then
       TQ=$CQ
     fi
@@ -47,11 +45,9 @@ if [[ $1 =~ --.* ]]; then
   done
 
   array=${array#--* }
-  echo arr:$array:
 fi
 
 if [ $exec = 1 ]; then
-  #echo exec
   $TQ $array | $EXPRT
 else
   $TQ $array
