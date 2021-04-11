@@ -13,11 +13,11 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 		}
 		/** bind self-ref (for input-form) */
 		if((EXEC_FLAG&8) == 8){
-			Function_Recursive_Bind_RefNode(top,top,_copt);
+			ExFunction_Recursive_Bind_RefNode(top,top,_copt);
 		}
 		/** bind io-ref (for output-form) */
 		if((EXEC_FLAG&4) == 4){
-			Function_Recursive_Bind_RefNode(top,refTree,_copt);
+			ExFunction_Recursive_Bind_RefNode(top,refTree,_copt);
 		}
 		/** inner product of binded data */
 		if((EXEC_FLAG&16) == 16){

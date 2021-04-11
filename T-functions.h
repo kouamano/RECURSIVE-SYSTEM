@@ -415,8 +415,8 @@ int Function_Bind_Data(FILE *DATA, struct Tree *tree, struct options *_opt, stru
 	free(buff);
         return(0);
 }
-void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred, struct compile_options *_copt){
-	FC(fprintf(stderr,">Function_Recursive_Bind_RefNode<\n");)
+void ExFunction_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred, struct compile_options *_copt){
+	FC(fprintf(stderr,">ExFunction_Recursive_Bind_RefNode<\n");)
 	int i;
 	char target_type = '\0';
 	int target_label = -1;
@@ -431,7 +431,7 @@ void Function_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referred,
 		Function_Recursive_SearchBind_LabelNode(referred,target_type,target_label,binded);
 	}
 	for(i=0;i<(*binded).NextCount;i++){
-		Function_Recursive_Bind_RefNode((*binded).Next[i],referred,_copt);
+		ExFunction_Recursive_Bind_RefNode((*binded).Next[i],referred,_copt);
 	}
 }
 /** for product */
