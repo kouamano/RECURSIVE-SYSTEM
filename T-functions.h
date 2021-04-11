@@ -47,8 +47,8 @@ int Function_Recursive_FreeForce_Tree(struct Tree *tree){
 
 /* analyzers */
 /** tree analysis */
-struct Tree *Function_Get_Node(char *pos_str, struct Tree *tree){
-	FC(fprintf(stderr,">Function_Get_Node<\n");)
+struct Tree *ExFunction_Get_Node(char *pos_str, struct Tree *tree){
+	FC(fprintf(stderr,">ExFunction_Get_Node<\n");)
 	int len = 0;
 	int list_len = 0;
 	int i;
