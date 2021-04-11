@@ -352,8 +352,8 @@ struct Tree *Search_Recursive_BindNode(struct Tree *top, int *bn_count, struct T
 	}
 	return(NULL);
 }
-int Function_Bind_Data(FILE *DATA, struct Tree *tree, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
-	FC(fprintf(stderr,">Function_Bind_Data<\n");)
+int ExFunction_Bind_Data(FILE *DATA, struct Tree *tree, struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
+	FC(fprintf(stderr,">ExFunction_Bind_Data<\n");)
 	int i;
         int C = '\0';
         int bn_count = 0;
