@@ -16,7 +16,7 @@ struct Tree {
 	struct Tree **Next;
 	struct Tree *Parent;	// must not free !!
 	struct Tree *RefNode;
-	int extra_stat;		// print系関数で使用
+	int builtin_flag;		// print系関数で使用
 		//1: $~~$,$~$ -> avoid compile;	2: $PI$ ; skipNext 兼用
 		//4: $``$ -> quating tree;	8: $U$, $UU$
 		//16: $CAT$ -> cat file; 	32: $PO$ -> 外積のため予約
