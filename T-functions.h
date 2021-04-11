@@ -501,7 +501,7 @@ struct Tree *Create_Node(int _ser, int H_size){
 	(*tree).valstr = NULL;
 	(*tree).Parent = NULL;
 	(*tree).RefNode = NULL;
-	(*tree).extra_stat = 0;
+	(*tree).builtin_flag = 0;
 	return(tree);
 }
 struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
@@ -523,8 +523,8 @@ struct Tree *Add_Next(struct Tree *parent, struct Tree *next){
 }
 struct Tree *Set_status(struct Tree *tree, int *bit){
 	FC(fprintf(stderr,">Set_status<\n");)
-	if(((*tree).extra_stat&*bit) != *bit){
-		(*tree).extra_stat = (*tree).extra_stat + *bit;
+	if(((*tree).builtin_flag&*bit) != *bit){
+		(*tree).builtin_flag = (*tree).builtin_flag + *bit;
 	}
 	return(tree);
 }
@@ -582,8 +582,8 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 	}else if(strncmp(tmp_head,"$PI$",4) == 0){	// Inner Product
 		strcpy(out_head,tmp_head+4);
 		strcpy(tmp_head,out_head);
-		if(((*tree).extra_stat&2) != 2){
-			(*tree).extra_stat = (*tree).extra_stat + 2;
+		if(((*tree).builtin_flag&2) != 2){
+			(*tree).builtin_flag = (*tree).builtin_flag + 2;
 		}
 		compiled++;
 	}else if(strncmp(tmp_head,"$X$",3) == 0){
@@ -597,8 +597,8 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 	}else if(strncmp(tmp_head,"$UU$",4) == 0){
 		strcpy(out_head,tmp_head+4);
 		strcpy(tmp_head,out_head);
-		if(((*tree).extra_stat&8) != 8){
-			(*tree).extra_stat = (*tree).extra_stat + 8;
+		if(((*tree).builtin_flag&8) != 8){
+			(*tree).builtin_flag = (*tree).builtin_flag + 8;
 		}
 		int tmp_stat = 8;
 		ExFunction_Recursive_Set_Obj(tree, (struct Tree *(*)())Set_status, (int *)&tmp_stat);	// set cascading
@@ -606,8 +606,8 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 	}else if(strncmp(tmp_head,"$U$",3) == 0){
 		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
-		if(((*tree).extra_stat&8) != 8){
-			(*tree).extra_stat = (*tree).extra_stat + 8;
+		if(((*tree).builtin_flag&8) != 8){
+			(*tree).builtin_flag = (*tree).builtin_flag + 8;
 		}
 		compiled++;
 	}else if(strncmp(tmp_head,"$``$",4) == 0){ //quating tree
@@ -627,15 +627,15 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 		}
 
 		strcpy(tmp_head,out_head);
-		if(((*tree).extra_stat&4) != 4){
-			(*tree).extra_stat = (*tree).extra_stat + 4;
+		if(((*tree).builtin_flag&4) != 4){
+			(*tree).builtin_flag = (*tree).builtin_flag + 4;
 		}
 		compiled++;
 	}else if(strncmp(tmp_head,"$~~$",4) == 0){
 		strcpy(out_head,tmp_head+4);
 		strcpy(tmp_head,out_head);
-		if(((*tree).extra_stat&1) != 1){
-			(*tree).extra_stat = (*tree).extra_stat + 1;
+		if(((*tree).builtin_flag&1) != 1){
+			(*tree).builtin_flag = (*tree).builtin_flag + 1;
 		}
 		int tmp_stat = 1;
 		ExFunction_Recursive_Set_Obj(tree, (struct Tree *(*)())Set_status, (int *)&tmp_stat);	// set cascading
@@ -643,8 +643,8 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 	}else if(strncmp(tmp_head,"$~$",3) == 0){
 		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
-		if(((*tree).extra_stat&1) != 1){
-			(*tree).extra_stat = (*tree).extra_stat + 1;
+		if(((*tree).builtin_flag&1) != 1){
+			(*tree).builtin_flag = (*tree).builtin_flag + 1;
 		}
 		compiled++;
 	}else if(strncmp(tmp_head,"$`$",3) == 0){ //quating Head
@@ -664,8 +664,8 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 	}else if(strncmp(tmp_head,"$CAT$",5) == 0){
 		strcpy(out_head,tmp_head+5);
 		strcpy(tmp_head,out_head);
-		if(((*tree).extra_stat&16) != 16){
-			(*tree).extra_stat = (*tree).extra_stat + 16;
+		if(((*tree).builtin_flag&16) != 16){
+			(*tree).builtin_flag = (*tree).builtin_flag + 16;
 		}
 		compiled++;
 	}
@@ -703,7 +703,7 @@ void Print_Smems(struct Tree *tree){
 	printf(":Cj=%d:",(*tree).Conj);
 	printf(":Cs=%d:",(*tree).NCself);
 	printf(":C=%d:",(*tree).NextCount);
-	printf(":stat=%d:",(*tree).extra_stat);
+	printf(":stat=%d:",(*tree).builtin_flag);
 }
 void Function_Print_Status(struct Tree *tree){
 	Print_Smems(tree);
@@ -769,7 +769,7 @@ struct Tree *Function_Print_Conj_S(struct Tree *tree, struct function_options *_
 			printf(")");
 		}
 		if((*tree).LVself != 0 && strlen((*tree).Head) != 0){ 
-			if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8){	// for unpack
+			if((*_copt).c_counter > 0 && ((*tree).builtin_flag&8) == 8){	// for unpack
 				if(strlen((*tree).Head) > 3){
 					printf(",");
 				}
@@ -784,7 +784,7 @@ struct Tree *Function_Print_Conj_JS(struct Tree *tree, struct function_options *
 			printf("]");
 		}
 		if((*tree).LVself != 0 && strlen((*tree).Head) != 0){ 
-			if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8){	// for unpack
+			if((*_copt).c_counter > 0 && ((*tree).builtin_flag&8) == 8){	// for unpack
 				if(strlen((*tree).Head) > 3){
 					printf(",");
 				}
@@ -824,7 +824,7 @@ struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *
 	FC(fprintf(stderr,">Function_Print_Bopen_T<\n");)
 	if(pos == 1){
 		if((*tree).NextCount != 0){ 
-			if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8&& ((*tree).extra_stat&1) != 1){	// for unpack
+			if((*_copt).c_counter > 0 && ((*tree).builtin_flag&8) == 8&& ((*tree).builtin_flag&1) != 1){	// for unpack
 				if(strlen((*tree).Head) > 3){
 					//printf(",");
 				}
@@ -840,7 +840,7 @@ struct Tree *Function_Print_Bopen_S(struct Tree *tree, struct function_options *
 		int i;
 		for(i=0;i<(*tree).NextCount;i++){
 			if((*tree).Next[i]->Conj == 0){ 
-				if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8){	// for unpack
+				if((*_copt).c_counter > 0 && ((*tree).builtin_flag&8) == 8){	// for unpack
 					if(strlen((*tree).Head) > 3){
 						;
 					}
@@ -857,7 +857,7 @@ struct Tree *Function_Print_Bopen_JS(struct Tree *tree, struct function_options 
 		int i;
 		for(i=0;i<(*tree).NextCount;i++){
 			if((*tree).Next[i]->Conj == 0){ 
-				if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8){	// for unpack
+				if((*_copt).c_counter > 0 && ((*tree).builtin_flag&8) == 8){	// for unpack
 					if(strlen((*tree).Head) > 3){
 						;
 					}
@@ -924,12 +924,12 @@ struct Tree *Function_Print_Bopen_C(struct Tree *tree, struct function_options *
 struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	FC(fprintf(stderr,">Function_Print_Bclose_T<\n");)
 	if((*tree).NextCount != 0){
-			if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8&& ((*tree).extra_stat&1) != 1){	// for unpack
+			if((*_copt).c_counter > 0 && ((*tree).builtin_flag&8) == 8&& ((*tree).builtin_flag&1) != 1){	// for unpack
 				;
 			}else{
 				printf(")");	//normal case
 			}
-			if((*_copt).c_counter > 0 && ((*tree).extra_stat&4) == 4){	// for quating
+			if((*_copt).c_counter > 0 && ((*tree).builtin_flag&4) == 4){	// for quating
 				printf("\"");
 			}
 	}
@@ -937,12 +937,12 @@ struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options 
 }
 struct Tree *Function_Print_Bclose_S(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
-			if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8){	// for unpack
+			if((*_copt).c_counter > 0 && ((*tree).builtin_flag&8) == 8){	// for unpack
 				;
 			}else{
 				printf(")");	//normal case
 			}
-			if((*_copt).c_counter > 0 && ((*tree).extra_stat&4) == 4){	// for quating
+			if((*_copt).c_counter > 0 && ((*tree).builtin_flag&4) == 4){	// for quating
 				printf("\"");
 			}
 	}
@@ -950,12 +950,12 @@ struct Tree *Function_Print_Bclose_S(struct Tree *tree, struct function_options 
 }
 struct Tree *Function_Print_Bclose_WL(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	if((*tree).NextCount != 0){
-			if((*_copt).c_counter > 0 && ((*tree).extra_stat&8) == 8){	// for unpack
+			if((*_copt).c_counter > 0 && ((*tree).builtin_flag&8) == 8){	// for unpack
 				;
 			}else{
 				printf("]");	//normal case
 			}
-			if((*_copt).c_counter > 0 && ((*tree).extra_stat&4) == 4){	// for quating
+			if((*_copt).c_counter > 0 && ((*tree).builtin_flag&4) == 4){	// for quating
 				printf("\"");
 			}
 	}
@@ -1128,7 +1128,7 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth, struct 
 		Print_nthVal(tree,nth);
 		conjR = 1;
 	}
-	if((*tree).RefNode == NULL && ((*tree).extra_stat&2) != 2){
+	if((*tree).RefNode == NULL && ((*tree).builtin_flag&2) != 2){
 		int tmp_head_len = 0;
 		tmp_head_len = strlen((*tree).Head);
 		if(tmp_head_len == 0 || (*tree).Head[tmp_head_len-1] != '@'){
@@ -1204,8 +1204,8 @@ struct Tree *Function_Cyclic_Print_IProductVal(struct Tree *tree, struct functio
 		printf(")");
 	}
 	//print後は子ノードを切る
-	if(((*tree).extra_stat&2) != 2){
-		(*tree).extra_stat = (*tree).extra_stat + 2;
+	if(((*tree).builtin_flag&2) != 2){
+		(*tree).builtin_flag = (*tree).builtin_flag + 2;
 	}
 	return(tree);
 }
@@ -1224,8 +1224,8 @@ struct Tree *Print_RecursiveSeq_Head(struct Tree *tree, int conj, int ind){
 		Print_RecursiveSeq_Head((*tree).Next[i],1,ind);
 	}
 	//print後は子ノードを切る
-	if(((*tree).extra_stat&2) != 2){
-		(*tree).extra_stat = (*tree).extra_stat + 2;
+	if(((*tree).builtin_flag&2) != 2){
+		(*tree).builtin_flag = (*tree).builtin_flag + 2;
 	}
 	return(tree);
 }
@@ -1255,9 +1255,9 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	char *tmp_str = NULL;
 	tmp_str = Interpret_Operator(tree,_copt);
 	/* print head */
-	if(((*tree).extra_stat&1) == 1){
+	if(((*tree).builtin_flag&1) == 1){
 		printf("%s",(*tree).Head);	//normal
-	}else if(((*tree).extra_stat&16) == 16 && (*_copt).c_counter > 0){
+	}else if(((*tree).builtin_flag&16) == 16 && (*_copt).c_counter > 0){
 		;				//cat the file, no head
 	}else if((*_copt).c_counter > 0){
 		printf("%s",tmp_str);
@@ -1266,8 +1266,8 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		printf("%s",(*tree).Head);	//normal
 	}
 
-	/* if extra_stat&2 == 2 then return() */
-	if(((*tree).extra_stat&2) == 2){
+	/* if builtin_flag&2 == 2 then return() */
+	if(((*tree).builtin_flag&2) == 2){
 		return(tree);
 	}
 
@@ -1306,12 +1306,12 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	}
 	/* comma for unpack */
 	if((*_copt).c_counter > 0){
-		if(((*tree).extra_stat&8) == 8 && ((*tree).extra_stat&1) != 1 && (*tree).NextCount > 0){
+		if(((*tree).builtin_flag&8) == 8 && ((*tree).builtin_flag&1) != 1 && (*tree).NextCount > 0){
 			putchar(44);
 		}
 	}
 	/* cat the file */
-	if(((*tree).extra_stat&16) == 16 && (*_copt).c_counter > 0){
+	if(((*tree).builtin_flag&16) == 16 && (*_copt).c_counter > 0){
 		//printf("%s",tmp_str);
 		int is_open = 0;
 		FILE *CAT;
@@ -1501,8 +1501,8 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree 
 	print_head(tree,_fopt,_copt);
 	/*print Bopen post*/
 	print_bopen(tree,_fopt,_copt,1);
-	// $UU$ : if Tree.extra_stat&2 == 2 then skip for-loop.
-	if(((*tree).extra_stat&2) == 2 && (*_copt).c_counter > 0){
+	// $UU$ : if Tree.builtin_flag&2 == 2 then skip for-loop.
+	if(((*tree).builtin_flag&2) == 2 && (*_copt).c_counter > 0){
 		Function_Cyclic_Print_IProductVal(tree,_fopt,_copt);
 	}else{
 		for(i=0;i<(*tree).NextCount;i++){
