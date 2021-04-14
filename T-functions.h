@@ -748,6 +748,13 @@ int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 	printf("\n");
 	return(nodes);
 }
+int Function_Print_Linkage(struct Tree *tree){
+	int i=0;
+	for(i=0;i<(*tree).NextCount;i++){
+		printf("%s -> %s\n",(*tree).Head,tree->Next[i]->Head);
+	}
+	return(i);
+}
 /** Conj */
 struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 		FC(fprintf(stderr,">Function_Print_Conj_T<\n");)

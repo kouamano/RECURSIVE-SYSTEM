@@ -69,18 +69,19 @@ void function_help(void){
 	printf("\n");
 	printf(" - Format options\n");
 	printf("\n");
-	printf("  * -FT : prints T-form.\n");
-	printf("  * -FS : prints S-form.\n");
-	printf("  * -FJ : prints JSON form.\n");
-	printf("  * -FW : prints Wolfram language form.\n");
-	printf("  * -FX : prints XML form.\n");
-	printf("  * -FC : prints shell script form.\n");
-	printf("  * -FN : prints seq node-no.\n");
-	printf("  * -FMa : prints Adjacency matrix form.\n");
-	printf("  * -Fh : prints hierarchical-form.\n");
-	printf("  * -Fst : prints import status.\n");
-	//printf("  * -Fhst : prints import status with hierarchical-form.\n");
-	printf("  * -Ftest : prints from test function.\n");
+	printf("  * -FT : print T-form.\n");
+	printf("  * -FS : print S-form.\n");
+	printf("  * -FJ : print JSON form.\n");
+	printf("  * -FW : print Wolfram language form.\n");
+	printf("  * -FX : print XML form.\n");
+	printf("  * -FC : print shell script form.\n");
+	printf("  * -FN : print seq node-no.\n");
+	printf("  * -FMa : print Adjacency matrix form.\n");
+	printf("  * -FLn : print linkage.\n");
+	printf("  * -Fh : print hierarchical-form.\n");
+	printf("  * -Fst : print import status.\n");
+	//printf("  * -Fhst : print import status with hierarchical-form.\n");
+	printf("  * -Ftest : print from test function.\n");
 }
 void compile_help(void){
 	printf("\n");
@@ -361,6 +362,7 @@ void init_function_options(struct function_options *fopt){
 	(*fopt).f_print_C = 0;
 	(*fopt).f_print_N = 0;
 	(*fopt).f_print_Ma = 0;
+	(*fopt).f_print_Ln = 0;
 	(*fopt).f_print_production = 0;
 	(*fopt).f_print_status = 0;
 	(*fopt).f_print_hierarchy = 0;
@@ -465,6 +467,9 @@ void get_function_options(int optc, char **optv, struct function_options *fopt){
 			(*fopt).f_counter++;
 		}else if(strncmp(optv[i],"-FMa",4) == 0){
 			(*fopt).f_print_Ma = 1;
+			(*fopt).f_counter++;
+		}else if(strncmp(optv[i],"-FLn",4) == 0){
+			(*fopt).f_print_Ln = 1;
 			(*fopt).f_counter++;
 		/*}else if(strncmp(optv[i],"-Fhst",4) == 0 && strlen(optv[i]) == 5){
 			(*fopt).f_print_hierarchy_status = 1;
