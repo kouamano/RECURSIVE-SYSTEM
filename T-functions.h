@@ -764,15 +764,18 @@ int Function_Print_Linkage(struct Tree *tree){
 	int i=0;
 	int len_parent_head = 0;
 	char *tmp_parent_head;
+	int pos_parent_head = -1;
 	int len_chd_head = 0;
 	char *tmp_chd_head;
-	int pos = -1;
+	int pos_chd_head = -1;
 	len_parent_head = strlen((*tree).Head);
 	if((tmp_parent_head = malloc(sizeof(char) * (len_parent_head + 1))) == NULL){
 		perror("Failed: malloc()");
 	}
 	tmp_parent_head[0] = '\0';
 	strcpy(tmp_parent_head,(*tree).Head);
+	pos_parent_head = get_char_pos(tmp_parent_head,'[');
+	tmp_parent_head[pos_parent_head] = '\0';
 	tmp_chd_head = malloc(sizeof(char) * 1);
 	for(i=0;i<(*tree).NextCount;i++){
 		len_chd_head = strlen(tree->Next[i]->Head);
@@ -781,9 +784,9 @@ int Function_Print_Linkage(struct Tree *tree){
 		}
 		tmp_chd_head[0] = '\0';
 		strcpy(tmp_chd_head,tree->Next[i]->Head);
-		pos = get_char_pos(tmp_chd_head,'[');
-		tmp_chd_head[pos] = '\0';
-		//printf(":%d:",pos);
+		pos_chd_head = get_char_pos(tmp_chd_head,'[');
+		tmp_chd_head[pos_chd_head] = '\0';
+		//printf(":%d:",pos_chd_head);
 		putchar('"');
 		printf("%s",tmp_parent_head);
 		putchar('"');
@@ -791,8 +794,8 @@ int Function_Print_Linkage(struct Tree *tree){
 		putchar('"');
 		printf("%s",tmp_chd_head);
 		putchar('"');
-		if(len_chd_head > pos){
-			printf(" [%s",tmp_chd_head+pos+1);
+		if(len_chd_head > pos_chd_head){
+			printf(" [%s",tmp_chd_head+pos_chd_head+1);
 		}
 		putchar('\n');
 	}
