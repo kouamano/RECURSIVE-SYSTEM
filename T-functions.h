@@ -773,6 +773,7 @@ int Function_Print_Linkage(struct Tree *tree){
 	}
 	tmp_parent_head[0] = '\0';
 	strcpy(tmp_parent_head,(*tree).Head);
+	tmp_chd_head = malloc(sizeof(char) * 1);
 	for(i=0;i<(*tree).NextCount;i++){
 		len_chd_head = strlen(tree->Next[i]->Head);
 		if((tmp_chd_head = realloc(tmp_chd_head,sizeof(char) * (len_parent_head + 1))) == NULL){
