@@ -750,15 +750,28 @@ int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 }
 int Function_Print_Linkage(struct Tree *tree){
 	int i=0;
+	int len_parent_head = 0;
+	char *tmp_parent_head;
+	int len_chd_head = 0;
+	char *tmp_chd_head;
+	len_parent_head = strlen((*tree).Head);
+	if((tmp_parent_head = malloc(sizeof(char) * (len_parent_head + 1))) == NULL){
+		perror("Failed: malloc()");
+	}
+	tmp_parent_head[0] = '\0';
+	strcpy(tmp_parent_head,(*tree).Head);
 	for(i=0;i<(*tree).NextCount;i++){
 		putchar('"');
-		printf("%s",(*tree).Head);
+		printf("%s",tmp_parent_head);
 		putchar('"');
 		printf(" -> ");
 		putchar('"');
 		printf("%s",tree->Next[i]->Head);
 		putchar('"');
 		putchar('\n');
+	}
+	if(len_parent_head > 0){
+		free(tmp_parent_head);
 	}
 	return(i);
 }
