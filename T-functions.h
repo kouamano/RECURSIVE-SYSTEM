@@ -761,17 +761,26 @@ int Function_Print_Linkage(struct Tree *tree){
 	tmp_parent_head[0] = '\0';
 	strcpy(tmp_parent_head,(*tree).Head);
 	for(i=0;i<(*tree).NextCount;i++){
+		len_chd_head = strlen(tree->Next[i]->Head);
+		if((tmp_chd_head = realloc(tmp_chd_head,sizeof(char) * (len_parent_head + 1))) == NULL){
+			perror("Failed: realloc()");
+		}
+		tmp_chd_head[0] = '\0';
+		strcpy(tmp_chd_head,tree->Next[i]->Head);
 		putchar('"');
 		printf("%s",tmp_parent_head);
 		putchar('"');
 		printf(" -> ");
 		putchar('"');
-		printf("%s",tree->Next[i]->Head);
+		printf("%s",tmp_chd_head);
 		putchar('"');
 		putchar('\n');
 	}
 	if(len_parent_head > 0){
 		free(tmp_parent_head);
+	}
+	if(len_chd_head > 0){
+		free(tmp_chd_head);
 	}
 	return(i);
 }
