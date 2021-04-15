@@ -751,7 +751,14 @@ int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 int Function_Print_Linkage(struct Tree *tree){
 	int i=0;
 	for(i=0;i<(*tree).NextCount;i++){
-		printf("%s -> %s\n",(*tree).Head,tree->Next[i]->Head);
+		putchar('"');
+		printf("%s",(*tree).Head);
+		putchar('"');
+		printf(" -> ");
+		putchar('"');
+		printf("%s",tree->Next[i]->Head);
+		putchar('"');
+		putchar('\n');
 	}
 	return(i);
 }
