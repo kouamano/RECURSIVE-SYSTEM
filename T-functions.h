@@ -782,7 +782,7 @@ int Function_Print_Linkage(struct Tree *tree){
 		strcpy(tmp_chd_head,tree->Next[i]->Head);
 		pos = get_char_pos(tmp_chd_head,'[');
 		tmp_chd_head[pos] = '\0';
-		printf(":%d:",pos);
+		//printf(":%d:",pos);
 		putchar('"');
 		printf("%s",tmp_parent_head);
 		putchar('"');
