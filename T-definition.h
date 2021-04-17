@@ -3,7 +3,7 @@
 #define DBs(X) 
 #define FC(X) 
 #ifndef LEN
-#define LEN 1024
+#define LEN 1048576
 #endif
 #ifndef BUFF_LEN
 #define BUFF_LEN 1024
