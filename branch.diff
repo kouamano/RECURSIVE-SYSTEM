@@ -72,7 +72,6 @@ echo '>> meta command'
 git --no-pager diff cq:tq.sh jsik:tq.sh
 ## tq/cq
 echo '>> source code'
-git --no-pager diff cq:tq.sh jsik:tq.sh
 git --no-pager diff cq:tq.c jsik:tq.c
 git --no-pager diff cq:T-definition.h jsik:T-definition.h
 git --no-pager diff cq:T-structure.h jsik:T-structure.h
