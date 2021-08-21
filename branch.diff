@@ -20,7 +20,6 @@ echo '>> meta command'
 git --no-pager diff cq:tq.sh cq_debug:tq.sh
 ## tq/cq
 echo '>> source code'
-git --no-pager diff cq:tq.sh cq_debug:tq.sh
 git --no-pager diff cq:tq.c cq_debug:tq.c
 git --no-pager diff cq:escape_sw.c cq_debug:escape_sw.c
 git --no-pager diff cq:escape_sw1.c cq_debug:escape_sw1.c
