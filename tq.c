@@ -134,8 +134,8 @@ void list_builtins(void){
 	printf("\n");
 	printf("  * $`$ : <operator>: quating head.\n");
 	printf("  * $``$ : <operator>: quating tree.\n");
-	printf("  * $~$ : <operator>: riteral head.\n");
-	printf("  * $~~$ : <operator>: riteral tree.\n");
+	printf("  * $~$ : <operator>: literal head.\n");
+	printf("  * $~~$ : <operator>: literal tree.\n");
 	printf("  * $U$ : <operator>: unpack single level.\n");
 	printf("  * $UU$ : <operator>: unpack tree (test ver.).\n");
 	printf("  * $PI$ : <operator>: inner production for binded data.\n");
