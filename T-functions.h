@@ -763,10 +763,10 @@ int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 int Function_Print_Linkage(struct Tree *tree){
 	int i=0;
 	int len_parent_head = 0;
-	char *tmp_parent_head;
+	char *tmp_parent_head = NULL;
 	int pos_parent_head = -1;
 	int len_chd_head = 0;
-	char *tmp_chd_head;
+	char *tmp_chd_head = NULL;
 	int pos_chd_head = -1;
 	len_parent_head = strlen((*tree).Head);
 	if((tmp_parent_head = malloc(sizeof(char) * (len_parent_head + 1))) == NULL){
@@ -776,7 +776,9 @@ int Function_Print_Linkage(struct Tree *tree){
 	strcpy(tmp_parent_head,(*tree).Head);
 	pos_parent_head = get_char_pos(tmp_parent_head,'[');
 	tmp_parent_head[pos_parent_head] = '\0';
-	tmp_chd_head = malloc(sizeof(char) * 1);
+	if((tmp_chd_head = malloc(sizeof(char) * 1)) == NULL){
+		perror("Failed: malloc()");
+	}
 	for(i=0;i<(*tree).NextCount;i++){
 		len_chd_head = strlen(tree->Next[i]->Head);
 		if((tmp_chd_head = realloc(tmp_chd_head,sizeof(char) * (len_parent_head + 1))) == NULL){
@@ -799,10 +801,10 @@ int Function_Print_Linkage(struct Tree *tree){
 		}
 		putchar('\n');
 	}
-	if(len_parent_head > 0){
+	if(tmp_parent_head != NULL){
 		free(tmp_parent_head);
 	}
-	if(len_chd_head > 0){
+	if(tmp_chd_head != NULL){
 		free(tmp_chd_head);
 	}
 	return(i);
