@@ -761,53 +761,16 @@ int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
 	return(nodes);
 }
 int Function_Print_Linkage(struct Tree *tree){
-	int i=0;
-	int len_parent_head = 0;
-	char *tmp_parent_head = NULL;
-	int pos_parent_head = -1;
-	int len_chd_head = 0;
-	char *tmp_chd_head = NULL;
-	int pos_chd_head = -1;
-	len_parent_head = strlen((*tree).Head);
-	if((tmp_parent_head = malloc(sizeof(char) * (len_parent_head + 1))) == NULL){
-		perror("Failed: malloc()");
+	if((*tree).Parent != NULL){
+		printf("\"%s\" -> ",(*tree).Parent->Head);
+		printf("\"%s\"\n",(*tree).Head);
+	}else{
+		;
 	}
-	tmp_parent_head[0] = '\0';
-	strcpy(tmp_parent_head,(*tree).Head);
-	pos_parent_head = get_char_pos(tmp_parent_head,'[');
-	tmp_parent_head[pos_parent_head] = '\0';
-	if((tmp_chd_head = malloc(sizeof(char) * 1)) == NULL){
-		perror("Failed: malloc()");
-	}
-	for(i=0;i<(*tree).NextCount;i++){
-		len_chd_head = strlen(tree->Next[i]->Head);
-		if((tmp_chd_head = realloc(tmp_chd_head,sizeof(char) * (len_parent_head + 1))) == NULL){
-			perror("Failed: realloc()");
-		}
-		tmp_chd_head[0] = '\0';
-		strcpy(tmp_chd_head,tree->Next[i]->Head);
-		pos_chd_head = get_char_pos(tmp_chd_head,'[');
-		tmp_chd_head[pos_chd_head] = '\0';
-		//printf(":%d:",pos_chd_head);
-		putchar('"');
-		printf("%s",tmp_parent_head);
-		putchar('"');
-		printf(" -> ");
-		putchar('"');
-		printf("%s",tmp_chd_head);
-		putchar('"');
-		if(len_chd_head > pos_chd_head){
-			printf(" [%s",tmp_chd_head+pos_chd_head+1);
-		}
-		putchar('\n');
-	}
-	if(tmp_parent_head != NULL){
-		free(tmp_parent_head);
-	}
-	if(tmp_chd_head != NULL){
-		free(tmp_chd_head);
-	}
-	return(i);
+	return(0);
+}
+int Function_Print_Linkage_old(struct Tree *tree){
+	return(0);
 }
 /** Conj */
 struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
