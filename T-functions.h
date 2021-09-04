@@ -598,6 +598,13 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 			(*tree).builtin_flag = (*tree).builtin_flag + 2;
 		}
 		compiled++;
+	}else if(strncmp(tmp_head,"$PO$",4) == 0){	// Outer Product for Tree
+		strcpy(out_head,tmp_head+4);
+		strcpy(tmp_head,out_head);
+		if(((*tree).builtin_flag&32) != 32){
+			(*tree).builtin_flag = (*tree).builtin_flag + 32;
+		}
+		compiled++;
 	}else if(strncmp(tmp_head,"$X$",3) == 0){
 		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
@@ -1190,6 +1197,11 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth, struct 
 	return(tree);
 }
 /** Head */
+struct Tree *Function_Cyclic_Print_OProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%P
+	//Under construction
+	printf("\n  Under construction  \n");
+	return(tree);
+}
 struct Tree *Function_Cyclic_Print_IProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%P
 	FC(fprintf(stderr,">Function_Cyclic_Print_IProductVal<\n");)
 	/* Function_Print_Head の特殊型 */
@@ -1526,7 +1538,9 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree 
 	/*print Bopen post*/
 	print_bopen(tree,_fopt,_copt,1);
 	// $UU$ : if Tree.builtin_flag&2 == 2 then skip for-loop.
-	if(((*tree).builtin_flag&2) == 2 && (*_copt).c_counter > 0){
+	if(((*tree).builtin_flag&32) == 32 && (*_copt).c_counter > 0){
+		Function_Cyclic_Print_OProductVal(tree,_fopt,_copt);
+	}else if(((*tree).builtin_flag&2) == 2 && (*_copt).c_counter > 0){
 		Function_Cyclic_Print_IProductVal(tree,_fopt,_copt);
 	}else{
 		for(i=0;i<(*tree).NextCount;i++){
