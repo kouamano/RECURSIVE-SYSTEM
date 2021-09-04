@@ -70,17 +70,17 @@ int count_Node(const struct Tree *tree, int n_counter){
 int array_Node(const struct Tree *tree, struct Tree **t_list, int *n_list){
 	// under construction
 	// for outer
-	int count = 0;
-	count = (*tree).NextCount;
-	if((t_list = malloc(sizeof(*tree) * count)) == NULL){
+	int nodes = 0;
+	nodes = (*tree).NextCount;
+	if((t_list = malloc(sizeof(*tree) * nodes)) == NULL){
 		perror("[Fail]malloc\n");
 		exit(0);
 	}
-	if((n_list = malloc(sizeof(int) * count)) == NULL){
+	if((n_list = malloc(sizeof(int) * nodes)) == NULL){
 		perror("[Fail]malloc\n");
 		exit(0);
 	}
-	return(count);
+	return(nodes);
 }
 struct Tree *ExFunction_Get_Node(char *pos_str, struct Tree *tree){
 	FC(fprintf(stderr,">ExFunction_Get_Node<\n");)
@@ -1226,6 +1226,11 @@ struct Tree *Function_Cyclic_Print_OProductVal(struct Tree *tree, struct functio
 	int testc = 0;
 	testc = count_Node(tree,testc);
 	printf("  testc: %d\n",testc);
+
+	int nodes = 0;
+	struct Tree **t_list = NULL;
+	int *n_list = NULL;
+	nodes = array_Node(tree,t_list,n_list);
 	return(tree);
 }
 struct Tree *Function_Cyclic_Print_IProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%P
