@@ -86,6 +86,10 @@ int array_Node(const struct Tree *tree, struct Tree ***t_list, int *n_list){
 		n_list[i] = 0;
 		n_list[i] = count_Node((*tree).Next[i],n_list[i]);
 		printf(";%d",n_list[i]);
+		if((t_list[i] = malloc(sizeof(struct Tree *) * n_list[i])) == NULL){
+			perror("[Fail]malloc\n");
+			exit(0);
+		}
 		for(j=0;j<n_list[i];j++){
 			// coding ...
 		}
