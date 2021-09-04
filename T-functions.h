@@ -79,7 +79,7 @@ int insert_Node(struct Tree *tree, struct Tree **t_list, int n_counter, int max)
 	}
 	return(n_counter);
 }
-int array_Node(const struct Tree *tree, struct Tree ***t_list, int *n_list){
+int array_Node(struct Tree *tree, struct Tree ***t_list, int *n_list){
 	int i = 0;
 	int j = 0;
 	// under construction
@@ -95,19 +95,20 @@ int array_Node(const struct Tree *tree, struct Tree ***t_list, int *n_list){
 		exit(0);
 	}
 	for(i=0;i<nodes;i++){
-		n_list[i] = 0;
+		n_list[i] = 1;
 		n_list[i] = count_Node((*tree).Next[i],n_list[i]);
-		printf(";%d",n_list[i]);
+		//printf(";%d",n_list[i]);
 		if((t_list[i] = malloc(sizeof(struct Tree *) * n_list[i])) == NULL){
 			perror("[Fail]malloc\n");
 			exit(0);
 		}
+		int counter = 0;
+		insert_Node(tree,t_list[i],counter,n_list[i]);
 		for(j=0;j<n_list[i];j++){
-			// coding ...
+			printf("<%d>:%s:",n_list[i],t_list[i][j]->Head);
 		}
+		printf("\n");
 	}
-
-
 
 	return(nodes);
 }
@@ -1251,6 +1252,7 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth, struct 
 /** Head */
 struct Tree *Function_Cyclic_Print_OProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%P
 	//Under construction
+	int i;
 	printf("\n  Under construction  \n");
 	int testc = 0;
 	testc = count_Node(tree,testc);
@@ -1259,7 +1261,9 @@ struct Tree *Function_Cyclic_Print_OProductVal(struct Tree *tree, struct functio
 	int nodes = 0;
 	struct Tree ***t_list = NULL;
 	int *n_list = NULL;
-	nodes = array_Node(tree,t_list,n_list);
+	for(i=0;i<(*tree).NextCount;i++){
+		nodes = array_Node((*tree).Next[i],t_list,n_list);
+	}
 	return(tree);
 }
 struct Tree *Function_Cyclic_Print_IProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%P
