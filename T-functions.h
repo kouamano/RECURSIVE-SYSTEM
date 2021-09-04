@@ -67,6 +67,18 @@ int count_Node(const struct Tree *tree, int n_counter){
 	}
 	return(n_counter);
 }
+int insert_Node(struct Tree *tree, struct Tree **t_list, int n_counter, int max){
+	int i;
+	t_list[n_counter] = tree;
+	if(n_counter >= max){
+		return(n_counter);
+	}
+	n_counter++;
+	for(i=0;i<(*tree).NextCount;i++){
+		n_counter = insert_Node((*tree).Next[i],t_list,n_counter,max);
+	}
+	return(n_counter);
+}
 int array_Node(const struct Tree *tree, struct Tree ***t_list, int *n_list){
 	int i = 0;
 	int j = 0;
