@@ -1252,9 +1252,9 @@ struct Tree *Function_Cyclic_Print_OProductVal(struct Tree *tree, struct functio
 	//Under construction
 	int i;
 	printf("\n  Under construction  \n");
-	int testc = 0;
-	testc = count_Node(tree,testc);
-	printf("  testc: %d\n",testc);
+	//int testc = 0;
+	//testc = count_Node(tree,testc);
+	//printf("  testc: %d\n",testc);
 
 	int nodes = 0;
 	struct Tree ***t_list = NULL;
