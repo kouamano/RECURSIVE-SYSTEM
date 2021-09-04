@@ -59,6 +59,29 @@ int get_char_pos(char *str, char ch){
 	return(i);
 }
 /** tree analysis */
+int count_Node(const struct Tree *tree, int n_counter){
+	int i;
+	n_counter++;
+	for(i=0;i<(*tree).NextCount;i++){
+		n_counter = count_Node((*tree).Next[i],n_counter);
+	}
+	return(n_counter);
+}
+int list_Node(const struct Tree *tree, struct Tree **t_list, int *n_list){
+	// under construction
+	// for outer
+	int count = 0;
+	count = (*tree).NextCount;
+	if((t_list = malloc(sizeof(*tree) * count)) == NULL){
+		perror("[Fail]malloc\n");
+		exit(0);
+	}
+	if((n_list = malloc(sizeof(int) * count)) == NULL){
+		perror("[Fail]malloc\n");
+		exit(0);
+	}
+	return(count);
+}
 struct Tree *ExFunction_Get_Node(char *pos_str, struct Tree *tree){
 	FC(fprintf(stderr,">ExFunction_Get_Node<\n");)
 	int len = 0;
@@ -1200,6 +1223,9 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth, struct 
 struct Tree *Function_Cyclic_Print_OProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%P
 	//Under construction
 	printf("\n  Under construction  \n");
+	int testc = 0;
+	testc = count_Node(tree,testc);
+	printf("  testc: %d\n",testc);
 	return(tree);
 }
 struct Tree *Function_Cyclic_Print_IProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%P
