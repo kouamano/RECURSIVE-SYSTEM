@@ -67,12 +67,14 @@ int count_Node(const struct Tree *tree, int n_counter){
 	}
 	return(n_counter);
 }
-int array_Node(const struct Tree *tree, struct Tree **t_list, int *n_list){
+int array_Node(const struct Tree *tree, struct Tree ***t_list, int *n_list){
+	int i = 0;
+	int j = 0;
 	// under construction
 	// for outer
 	int nodes = 0;
 	nodes = (*tree).NextCount;
-	if((t_list = malloc(sizeof(*tree) * nodes)) == NULL){
+	if((t_list = malloc(sizeof(struct Tree **) * nodes)) == NULL){
 		perror("[Fail]malloc\n");
 		exit(0);
 	}
@@ -80,6 +82,17 @@ int array_Node(const struct Tree *tree, struct Tree **t_list, int *n_list){
 		perror("[Fail]malloc\n");
 		exit(0);
 	}
+	for(i=0;i<nodes;i++){
+		n_list[i] = 0;
+		n_list[i] = count_Node((*tree).Next[i],n_list[i]);
+		printf(";%d",n_list[i]);
+		for(j=0;j<n_list[i];j++){
+			// coding ...
+		}
+	}
+
+
+
 	return(nodes);
 }
 struct Tree *ExFunction_Get_Node(char *pos_str, struct Tree *tree){
@@ -1228,7 +1241,7 @@ struct Tree *Function_Cyclic_Print_OProductVal(struct Tree *tree, struct functio
 	printf("  testc: %d\n",testc);
 
 	int nodes = 0;
-	struct Tree **t_list = NULL;
+	struct Tree ***t_list = NULL;
 	int *n_list = NULL;
 	nodes = array_Node(tree,t_list,n_list);
 	return(tree);
