@@ -82,7 +82,7 @@ int insert_Node(struct Tree *tree, struct Tree **t_list, int n_counter, int max)
 int array_Node(struct Tree *tree, struct Tree ***t_list, int *n_list){
 	int i = 0;
 	int j = 0;
-	// under construction
+	// under construction -> OK ?
 	// for outer
 	int nodes = 0;
 	nodes = (*tree).NextCount;
@@ -97,7 +97,6 @@ int array_Node(struct Tree *tree, struct Tree ***t_list, int *n_list){
 	for(i=0;i<nodes;i++){
 		n_list[i] = 1;
 		n_list[i] = count_Node((*tree).Next[i],n_list[i]);
-		//printf(";%d",n_list[i]);
 		if((t_list[i] = malloc(sizeof(struct Tree *) * n_list[i])) == NULL){
 			perror("[Fail]malloc\n");
 			exit(0);
@@ -109,7 +108,6 @@ int array_Node(struct Tree *tree, struct Tree ***t_list, int *n_list){
 		}
 		printf("\n");
 	}
-
 	return(nodes);
 }
 struct Tree *ExFunction_Get_Node(char *pos_str, struct Tree *tree){
