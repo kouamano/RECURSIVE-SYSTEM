@@ -67,7 +67,7 @@ int count_Node(const struct Tree *tree, int n_counter){
 	}
 	return(n_counter);
 }
-int list_Node(const struct Tree *tree, struct Tree **t_list, int *n_list){
+int array_Node(const struct Tree *tree, struct Tree **t_list, int *n_list){
 	// under construction
 	// for outer
 	int count = 0;
