@@ -59,57 +59,6 @@ int get_char_pos(char *str, char ch){
 	return(i);
 }
 /** tree analysis */
-int count_Node(const struct Tree *tree, int n_counter){
-	int i;
-	n_counter++;
-	for(i=0;i<(*tree).NextCount;i++){
-		n_counter = count_Node((*tree).Next[i],n_counter);
-	}
-	return(n_counter);
-}
-int insert_Node(struct Tree *tree, struct Tree **t_list, int n_counter, int max){
-	int i;
-	t_list[n_counter] = tree;
-	if(n_counter >= max){
-		return(n_counter);
-	}
-	n_counter++;
-	for(i=0;i<(*tree).NextCount;i++){
-		n_counter = insert_Node((*tree).Next[i],t_list,n_counter,max);
-	}
-	return(n_counter);
-}
-int array_Node(struct Tree *tree, struct Tree ***t_list, int *n_list){
-	int i = 0;
-	int j = 0;
-	// under construction -> OK ?
-	// for outer
-	int nodes = 0;
-	nodes = (*tree).NextCount;
-	if((t_list = malloc(sizeof(struct Tree **) * nodes)) == NULL){
-		perror("[Fail]malloc\n");
-		exit(0);
-	}
-	if((n_list = malloc(sizeof(int) * nodes)) == NULL){
-		perror("[Fail]malloc\n");
-		exit(0);
-	}
-	for(i=0;i<nodes;i++){
-		n_list[i] = 1;
-		n_list[i] = count_Node((*tree).Next[i],n_list[i]);
-		if((t_list[i] = malloc(sizeof(struct Tree *) * n_list[i])) == NULL){
-			perror("[Fail]malloc\n");
-			exit(0);
-		}
-		int counter = 0;
-		insert_Node(tree,t_list[i],counter,n_list[i]);
-		for(j=0;j<n_list[i];j++){
-			printf("<%d>:%s:",n_list[i],t_list[i][j]->Head);
-		}
-		printf("\n");
-	}
-	return(nodes);
-}
 struct Tree *ExFunction_Get_Node(char *pos_str, struct Tree *tree){
 	FC(fprintf(stderr,">ExFunction_Get_Node<\n");)
 	int len = 0;
@@ -647,13 +596,6 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 		strcpy(tmp_head,out_head);
 		if(((*tree).builtin_flag&2) != 2){
 			(*tree).builtin_flag = (*tree).builtin_flag + 2;
-		}
-		compiled++;
-	}else if(strncmp(tmp_head,"$PO$",4) == 0){	// Outer Product for Tree
-		strcpy(out_head,tmp_head+4);
-		strcpy(tmp_head,out_head);
-		if(((*tree).builtin_flag&32) != 32){
-			(*tree).builtin_flag = (*tree).builtin_flag + 32;
 		}
 		compiled++;
 	}else if(strncmp(tmp_head,"$X$",3) == 0){
@@ -1248,22 +1190,6 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth, struct 
 	return(tree);
 }
 /** Head */
-struct Tree *Function_Cyclic_Print_OProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%P
-	//Under construction
-	int i;
-	printf("\n  Under construction  \n");
-	//int testc = 0;
-	//testc = count_Node(tree,testc);
-	//printf("  testc: %d\n",testc);
-
-	int nodes = 0;
-	struct Tree ***t_list = NULL;
-	int *n_list = NULL;
-	for(i=0;i<(*tree).NextCount;i++){
-		nodes = array_Node((*tree).Next[i],t_list,n_list);
-	}
-	return(tree);
-}
 struct Tree *Function_Cyclic_Print_IProductVal(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){ //%P
 	FC(fprintf(stderr,">Function_Cyclic_Print_IProductVal<\n");)
 	/* Function_Print_Head の特殊型 */
@@ -1600,9 +1526,7 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree 
 	/*print Bopen post*/
 	print_bopen(tree,_fopt,_copt,1);
 	// $UU$ : if Tree.builtin_flag&2 == 2 then skip for-loop.
-	if(((*tree).builtin_flag&32) == 32 && (*_copt).c_counter > 0){
-		Function_Cyclic_Print_OProductVal(tree,_fopt,_copt);
-	}else if(((*tree).builtin_flag&2) == 2 && (*_copt).c_counter > 0){
+	if(((*tree).builtin_flag&2) == 2 && (*_copt).c_counter > 0){
 		Function_Cyclic_Print_IProductVal(tree,_fopt,_copt);
 	}else{
 		for(i=0;i<(*tree).NextCount;i++){
