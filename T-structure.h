@@ -17,9 +17,10 @@ struct Tree {
 	struct Tree *Parent;	// must not free !!
 	struct Tree *RefNode;
 	int builtin_flag;		// print系関数で使用
-		//1: $~~$,$~$ -> avoid compile;	2: $PI$ ; skipNext 兼用
-		//4: $``$ -> quating tree;	8: $U$, $UU$
-		//16: $CAT$ -> cat file; 	32: $PO$ -> 外積のため予約
+		//1: $~~$,$~$ -> avoid compile;	2: $PI$ -> 内積,skipNext 兼用
+		//4: $``$ -> quating tree;	8: $U$,$UU$ -> unpack
+		//16: $CAT$ -> cat file; 	32: $PO$ -> データ外積予約
+		//64: $TO$ -> tree外積予約;
 };
 
 struct options {
