@@ -68,6 +68,15 @@ int *count_node(struct Tree *tree, int *count){
 	}
 	return(count);
 }
+int *insert_tree(struct Tree *tree, struct Tree **array, int *pos){
+	int i;
+	array[*pos] = tree;
+	(*pos)++;
+	for(i=0;i<(*tree).NextCount;i++){
+		insert_tree((*tree).Next[i],array,pos);
+	}
+	return(pos);
+}
 struct Tree *ExFunction_Get_Node(char *pos_str, struct Tree *tree){
 	FC(fprintf(stderr,">ExFunction_Get_Node<\n");)
 	int len = 0;
@@ -1534,14 +1543,22 @@ struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_functi
 }
 struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
 	printf("Under construction");
+	int i;
 	int count = 0;
+	struct Tree **array = NULL;
 	count_node(tree,&count);
 	printf(" %d",count);
+	array = malloc(sizeof(struct Tree *) * (count+1));
+	int pos = 0;
+	insert_tree(tree,array,&pos);
+	for(i=0;i<count;i++){
+		printf("%s",array[i]->Head);
+	}
 	return(tree);
 
 	//recursive print (old code)
 	FC(fprintf(stderr,">ExFunction_Recursive_Print_Tree<\n");)
-	int i;
+	//int i;
 	struct Tree *out = tree;
 	if(tree == NULL){
 		perror("NULL node detected -- exit.\n");
