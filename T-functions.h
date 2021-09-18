@@ -8,7 +8,7 @@ struct Tree *Function_Print_Head(struct Tree *, struct function_options *, struc
 
 //struct Tree *Executor(struct Tree *, struct Tree *, struct Tree *, int, int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);
 
-struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *, struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct options *, struct function_options *, struct compile_options *, int);
+struct Tree *ExFunction_Recursive_Print_Tree(struct Tree *, struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct options *, struct function_options *, struct compile_options *, int);
 
 struct Tree *ExFunction_Recursive_Ser(struct Tree *, struct Tree *(*)(struct Tree *, int, struct options *), struct options *, struct function_options *, struct compile_options *, int , int);
 
@@ -1175,7 +1175,7 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth, struct 
 			if(((*_fopt).f_skipOnce&1) != 1){
 				(*_fopt).f_skipOnce = (*_fopt).f_skipOnce + 1;
 			}
-			ExFunction_Recursive_Ser_MultiPrint((*tree).Next[nth%(*tree).NextCount], (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
+			ExFunction_Recursive_Print_Tree((*tree).Next[nth%(*tree).NextCount], (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
 			return(tree);
 		}
 	}
@@ -1329,7 +1329,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 				(*_fopt).f_skipOnce = (*_fopt).f_skipOnce + 1;
 			}
 			DB(fprintf(stderr," print_head:skip:%d:\n",(*_fopt).f_skipOnce);)
-			ExFunction_Recursive_Ser_MultiPrint((*tree).RefNode, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
+			ExFunction_Recursive_Print_Tree((*tree).RefNode, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
 		}else if((*tree).RefNode->LabelType == 't' && target_type == 'h'){
 			DB(fprintf(stderr," LT:t:,TG:h:\n");)
 			printf("@");
@@ -1523,8 +1523,8 @@ struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_functi
 	}
 	return(out);
 }
-struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
-	FC(fprintf(stderr,">ExFunction_Recursive_Ser_MultiPrint<\n");)
+struct Tree *ExFunction_Recursive_Print_Tree(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
+	FC(fprintf(stderr,">ExFunction_Recursive_Print_Tree<\n");)
 	int i;
 	struct Tree *out = tree;
 	if(tree == NULL){
@@ -1544,7 +1544,7 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree 
 		Function_Cyclic_Print_IProductVal(tree,_fopt,_copt);
 	}else{
 		for(i=0;i<(*tree).NextCount;i++){
-			ExFunction_Recursive_Ser_MultiPrint((*tree).Next[i],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
+			ExFunction_Recursive_Print_Tree((*tree).Next[i],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
 		}
 	}
 	/*print Bclose*/
