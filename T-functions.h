@@ -1526,6 +1526,37 @@ struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_functi
 struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
 	printf("Under construction");
 	return(tree);
+
+	//recursive print (old code)
+	FC(fprintf(stderr,">ExFunction_Recursive_Ser_MultiPrint<\n");)
+	int i;
+	struct Tree *out = tree;
+	if(tree == NULL){
+		perror("NULL node detected -- exit.\n");
+		exit(1);
+	}
+	/*print conj*/
+	print_conj(tree,_fopt,_copt);
+	/*print Bopen pre*/
+	print_bopen(tree,_fopt,_copt,0);
+	/*print head*/
+	print_head(tree,_fopt,_copt);
+	/*print Bopen post*/
+	print_bopen(tree,_fopt,_copt,1);
+	// $UU$ : if Tree.builtin_flag&2 == 2 then skip for-loop.
+	if(((*tree).builtin_flag&64) == 64 && (*_copt).c_counter > 0){
+		Function_Print_OTree(tree,print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
+	}else if(((*tree).builtin_flag&2) == 2 && (*_copt).c_counter > 0){
+		Function_Cyclic_Print_IProductVal(tree,_fopt,_copt);
+	}else{
+		for(i=0;i<(*tree).NextCount;i++){
+			ExFunction_Recursive_Ser_MultiPrint((*tree).Next[i],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
+		}
+	}
+	/*print Bclose*/
+	print_bclose(tree,_fopt,_copt);
+	return(out);
+
 }
 struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
 	FC(fprintf(stderr,">ExFunction_Recursive_Ser_MultiPrint<\n");)
