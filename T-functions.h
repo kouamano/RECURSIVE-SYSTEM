@@ -1540,7 +1540,9 @@ struct Tree *ExFunction_Recursive_Ser_MultiPrint(struct Tree *tree, struct Tree 
 	/*print Bopen post*/
 	print_bopen(tree,_fopt,_copt,1);
 	// $UU$ : if Tree.builtin_flag&2 == 2 then skip for-loop.
-	if(((*tree).builtin_flag&2) == 2 && (*_copt).c_counter > 0){
+	if(((*tree).builtin_flag&64) == 64 && (*_copt).c_counter > 0){
+		printf("Under construction");
+	}else if(((*tree).builtin_flag&2) == 2 && (*_copt).c_counter > 0){
 		Function_Cyclic_Print_IProductVal(tree,_fopt,_copt);
 	}else{
 		for(i=0;i<(*tree).NextCount;i++){
