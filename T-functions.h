@@ -1547,7 +1547,7 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 	int count = 0;
 	struct Tree **array = NULL;
 	count_node(tree,&count);
-	printf(" %d",count);
+	printf(" count:%d",count);
 	array = malloc(sizeof(struct Tree *) * (count+1));
 	int pos = 0;
 	insert_tree(tree,array,&pos);
