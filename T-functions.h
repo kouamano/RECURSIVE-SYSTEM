@@ -59,6 +59,15 @@ int get_char_pos(char *str, char ch){
 	return(i);
 }
 /** tree analysis */
+int *count_node(struct Tree *tree, int *count){
+	//(*count)++;
+	int i;
+	for(i=0;i<(*tree).NextCount;i++){
+		(*count)++;
+		count_node((*tree).Next[i],count);
+	}
+	return(count);
+}
 struct Tree *ExFunction_Get_Node(char *pos_str, struct Tree *tree){
 	FC(fprintf(stderr,">ExFunction_Get_Node<\n");)
 	int len = 0;
@@ -1525,6 +1534,9 @@ struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_functi
 }
 struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
 	printf("Under construction");
+	int count = 0;
+	count_node(tree,&count);
+	printf(" %d",count);
 	return(tree);
 
 	//recursive print (old code)
@@ -1579,6 +1591,7 @@ struct Tree *ExFunction_Recursive_Print_Tree(struct Tree *tree, struct Tree *(*p
 		Function_Print_OTree(tree,print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
 	}else if(((*tree).builtin_flag&32) == 32 && (*_copt).c_counter > 0){
 		//Function_Print_OProductVal(tree,_fopt,_copt);
+		printf("Under construction");
 	}else if(((*tree).builtin_flag&2) == 2 && (*_copt).c_counter > 0){
 		Function_Cyclic_Print_IProductVal(tree,_fopt,_copt);
 	}else{
