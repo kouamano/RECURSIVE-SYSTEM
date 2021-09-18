@@ -1541,7 +1541,7 @@ struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_functi
 	}
 	return(out);
 }
-struct Tree *print_path_ree(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
+struct Tree *print_path_tree(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
 	int i;
 	int count = 0;
 	struct Tree **array = NULL;
@@ -1572,10 +1572,10 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 	}
 	*/
 	int i;
-	print_path_ree(tree,print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
+	print_path_tree(tree,print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
 	for(i=0;i<(*tree).NextCount;i++){
 		printf("\n>>>");
-		print_path_ree((*tree).Next[i],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
+		print_path_tree((*tree).Next[i],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
 		printf("<<<\n");
 	}
 	return(tree);
