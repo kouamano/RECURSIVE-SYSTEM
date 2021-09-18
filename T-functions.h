@@ -1548,7 +1548,9 @@ struct Tree *print_path_tree(struct Tree *tree, struct Tree *(*print_conj)(struc
 	count_node(tree,&count);
 	count++;
 	printf(" count:%d, ",count);
-	array = malloc(sizeof(struct Tree *) * (count+1));
+	if((array = malloc(sizeof(struct Tree *) * (count+1))) == NULL){
+		perror("Fail:malloc\n");
+	}
 	int pos = 0;
 	insert_tree(tree,array,&pos);
 	for(i=0;i<count;i++){
