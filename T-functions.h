@@ -1577,6 +1577,8 @@ struct Tree *ExFunction_Recursive_Print_Tree(struct Tree *tree, struct Tree *(*p
 	// $UU$ : if Tree.builtin_flag&2 == 2 then skip for-loop.
 	if(((*tree).builtin_flag&64) == 64 && (*_copt).c_counter > 0){
 		Function_Print_OTree(tree,print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
+	}else if(((*tree).builtin_flag&32) == 32 && (*_copt).c_counter > 0){
+		//Function_Print_OProductVal(tree,_fopt,_copt);
 	}else if(((*tree).builtin_flag&2) == 2 && (*_copt).c_counter > 0){
 		Function_Cyclic_Print_IProductVal(tree,_fopt,_copt);
 	}else{
