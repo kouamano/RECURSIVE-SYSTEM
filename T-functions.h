@@ -1588,7 +1588,14 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 		count_node((*tree).Next[i], &node_count_array[i]);
 		node_count_array[i]++;
 		printf(":%d:",node_count_array[i]);
+		//test
 		array[i] = malloc(sizeof(struct Tree *) * node_count_array[i]);
+		int j;
+		int pos = 0;
+		for(j=0;j<node_count_array[i];j++){
+			pos = 0;
+			insert_tree((*tree).Next[i],array[i],&pos);
+		}
 	}
 	printf("\n");
 	for(i=0;i<(*tree).NextCount;i++){
