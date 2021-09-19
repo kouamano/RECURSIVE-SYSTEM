@@ -1554,7 +1554,8 @@ struct Tree *print_path_tree(struct Tree *tree, struct Tree *(*print_conj)(struc
 	int pos = 0;
 	insert_tree(tree,array,&pos);
 	for(i=0;i<count;i++){
-		printf("%s",array[i]->Head);
+		//printf("%s",array[i]->Head);
+		ExFunction_Recursive_Print_Tree(array[i],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
 	}
 	free(array);
 	return(tree);
