@@ -1597,6 +1597,14 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 			insert_tree((*tree).Next[i],array[i],&pos);
 		}
 	}
+	for(i=0;i<(*tree).NextCount;i++){
+		int j;
+		printf("\n");
+		for(j=0;j<node_count_array[i];j++){
+			printf("%s;",array[i][j]->Head);
+		}
+		printf("\n");
+	}
 	printf("\n");
 	for(i=0;i<(*tree).NextCount;i++){
 		printf("\n>>>");
