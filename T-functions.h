@@ -1556,6 +1556,7 @@ struct Tree *print_path_tree(struct Tree *tree, struct Tree *(*print_conj)(struc
 	for(i=0;i<count;i++){
 		printf("%s",array[i]->Head);
 	}
+	free(array);
 	return(tree);
 }
 struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
@@ -1573,8 +1574,16 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 		printf("%s",array[i]->Head);
 	}
 	*/
+	//print_path_tree(tree,print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
 	int i;
-	print_path_tree(tree,print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
+	int *node_count_array = 0;
+	node_count_array = malloc(sizeof(int) * (*tree).NextCount);
+	for(i=0;i<(*tree).NextCount;i++){
+		node_count_array[i] = 0;
+		count_node((*tree).Next[i], &node_count_array[i]);
+		node_count_array[i]++;
+		printf(":%d:",node_count_array[i]);
+	}
 	for(i=0;i<(*tree).NextCount;i++){
 		printf("\n>>>");
 		print_path_tree((*tree).Next[i],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
