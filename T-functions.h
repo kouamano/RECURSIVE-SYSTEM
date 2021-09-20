@@ -1611,6 +1611,22 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 	}
 	printf("\n");
 
+	int loop = 1;
+	for(i=0;i<(*tree).NextCount;i++){
+		loop = loop * node_count_array[i];
+	}
+	printf("loop:%d\n",loop);
+
+	int j;
+	int mod = 0;
+	for(j=0;j<loop;j++){
+		for(i=0;i<(*tree).NextCount;i++){
+			printf("[%d][%d];",i,mod%node_count_array[i]);
+		}
+		mod++;
+		printf("\n");
+	}
+
 	//test
 	for(i=0;i<(*tree).NextCount;i++){
 		printf("\n>>>");
