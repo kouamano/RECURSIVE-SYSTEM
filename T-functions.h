@@ -1619,7 +1619,7 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 
 	int j;
 	int mod = 0;
-	for(j=0;j<loop;j++){
+	for(j=0;j<loop;j++){	//needs utility/algebra+graph/outer.c
 		for(i=0;i<(*tree).NextCount;i++){
 			printf("[%d][%d];",i,mod%node_count_array[i]);
 		}
