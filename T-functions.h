@@ -1602,6 +1602,9 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 		printf("\n");
 		for(j=0;j<node_count_array[i];j++){
 			printf("%s;",array[i][j]->Head);
+			printf("<<<");
+			ExFunction_Recursive_Print_Tree(array[i][j],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
+			printf(">>>");
 		}
 		printf("\n");
 	}
