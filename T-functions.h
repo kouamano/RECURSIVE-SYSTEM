@@ -2,18 +2,12 @@
 /* //%P : print-function which contains NO converter. */
 /* //%I : incomplete function. */
 
-/* program */
 /* prottype */
 struct Tree *Function_Print_Head(struct Tree *, struct function_options *, struct compile_options *);
-
 //struct Tree *Executor(struct Tree *, struct Tree *, struct Tree *, int, int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);
-
 struct Tree *ExFunction_Recursive_Print_Tree(struct Tree *, struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct options *, struct function_options *, struct compile_options *, int);
-
 struct Tree *ExFunction_Recursive_Ser(struct Tree *, struct Tree *(*)(struct Tree *, int, struct options *), struct options *, struct function_options *, struct compile_options *, int , int);
-
 struct Tree *ExFunction_Recursive(struct Tree *, struct Tree *(*)(struct Tree *, struct options *), struct options *, struct function_options *, struct compile_options *);
-
 struct Tree *ExFunction_Recursive_Set_Obj(struct Tree *, struct Tree *(*)(struct Tree *, void *), void *);
 
 /* meta functions */
@@ -479,7 +473,7 @@ int Function_Assign_RefedValPtr(struct Tree *tree){	//%P
 	}
 	return(0);
 }
-
+/** basic structure */
 struct Tree *Create_Node(int _ser, int H_size){
 	FC(fprintf(stderr,">Create_Node<\n");)
 	struct Tree *tree;
