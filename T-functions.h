@@ -1,6 +1,8 @@
 /* README */
 /* //%P : print-function which contains NO converter. */
 /* //%I : incomplete function. */
+#include "../include/alloc.c"
+#include "../include/list_operations.c"
 
 /* prottype */
 struct Tree *Function_Print_Head(struct Tree *, struct function_options *, struct compile_options *);
@@ -1622,11 +1624,13 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 	}
 
 	//test
+	/*
 	for(i=0;i<(*tree).NextCount;i++){
 		printf("\n>>>");
 		print_path_tree((*tree).Next[i],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
 		printf("<<<\n");
 	}
+	*/
 	return(tree);
 
 	//recursive print (old code)
