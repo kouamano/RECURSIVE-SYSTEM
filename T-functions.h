@@ -1567,12 +1567,10 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 
 	int *node_count_array = 0;
 	node_count_array = malloc(sizeof(int) * (*tree).NextCount);
-	//printf("node count:");
 	for(i=0;i<(*tree).NextCount;i++){
 		node_count_array[i] = 0;
 		count_node((*tree).Next[i], &node_count_array[i]);
 		node_count_array[i]++;
-		//printf(":%d:",node_count_array[i]);
 		array[i] = malloc(sizeof(struct Tree *) * node_count_array[i]);
 		int j;
 		int pos = 0;
@@ -1586,21 +1584,17 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 	for(i=0;i<(*tree).NextCount;i++){
 		loop = loop * node_count_array[i];
 	}
-
-
 	int ** outer_list;
         outer_list = i_alloc_mat(loop,(*tree).NextCount);
 	create_outer_list((*tree).NextCount,node_count_array,outer_list);
         int counter = 0;
-	/*
-	*/
         for(i=0;i<loop;i++){
                 counter = 0;
                 printf("[%d][%d];;",counter,outer_list[i][0]);
 		ExFunction_Recursive_Print_Tree(array[counter][outer_list[i][0]],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
                 counter++;
                 for(j=1;j<(*tree).NextCount;j++){
-                        printf(",[%d][%d];;",counter,outer_list[i][j]);
+                        printf("[%d][%d];;",counter,outer_list[i][j]);
                         //printf(",[%d][%d]",array[counter][outer_list[i][j]]);
 
 			ExFunction_Recursive_Print_Tree(array[counter][outer_list[i][j]],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
@@ -1608,16 +1602,6 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
                 }
                 printf("\n");
         }
-
-
-	//test
-	/*
-	for(i=0;i<(*tree).NextCount;i++){
-		printf("\n>>>");
-		print_path_tree((*tree).Next[i],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
-		printf("<<<\n");
-	}
-	*/
 	return(tree);
 
 	//recursive print (old code)
