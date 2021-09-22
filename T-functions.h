@@ -1614,6 +1614,7 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 	printf("loop:%d\n",loop);
 
 	int j;
+	/*
 	int mod = 0;
 	for(j=0;j<loop;j++){	//needs utility/algebra+graph/outer.c
 		for(i=0;i<(*tree).NextCount;i++){
@@ -1622,6 +1623,7 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 		mod++;
 		printf("\n");
 	}
+	*/
 
 	printf("outer_list::\n");
 	int ** outer_list;
