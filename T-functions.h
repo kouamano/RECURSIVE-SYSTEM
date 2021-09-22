@@ -1623,6 +1623,23 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 		printf("\n");
 	}
 
+	printf("outer_list::\n");
+	int ** outer_list;
+        outer_list = i_alloc_mat(loop,(*tree).NextCount);
+	create_outer_list((*tree).NextCount,node_count_array,outer_list);
+        int counter = 0;
+        for(i=0;i<loop;i++){
+                counter = 0;
+                printf("[%d][%d]",counter,outer_list[i][0]);
+                counter++;
+                for(j=1;j<(*tree).NextCount;j++){
+                        printf(",[%d][%d]",counter,outer_list[i][j]);
+                        counter++;
+                }
+                printf("\n");
+        }
+
+
 	//test
 	/*
 	for(i=0;i<(*tree).NextCount;i++){
