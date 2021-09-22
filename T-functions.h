@@ -1628,6 +1628,7 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
         outer_list = i_alloc_mat(loop,(*tree).NextCount);
 	create_outer_list((*tree).NextCount,node_count_array,outer_list);
         int counter = 0;
+	/*
         for(i=0;i<loop;i++){
                 counter = 0;
                 printf("[%d][%d]",counter,outer_list[i][0]);
@@ -1638,6 +1639,7 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
                 }
                 printf("\n");
         }
+	*/
         for(i=0;i<loop;i++){
                 counter = 0;
                 printf("[%d][%d];;",counter,outer_list[i][0]);
