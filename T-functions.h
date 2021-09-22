@@ -1558,34 +1558,21 @@ struct Tree *print_path_tree(struct Tree *tree, struct Tree *(*print_conj)(struc
 }
 struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
 	printf("Under construction\n");
-	/*
-	int i;
-	int count = 0;
-	struct Tree **array = NULL;
-	count_node(tree,&count);
-	printf(" count:%d, ",count);
-	array = malloc(sizeof(struct Tree *) * (count+1));
-	int pos = 0;
-	insert_tree(tree,array,&pos);
-	for(i=0;i<count;i++){
-		printf("%s",array[i]->Head);
-	}
-	*/
-
 	//needs:
 	int i;
+	int j;
 
 	struct Tree ***array = NULL;
 	array = malloc(sizeof(struct Tree **) * (*tree).NextCount);
 
 	int *node_count_array = 0;
 	node_count_array = malloc(sizeof(int) * (*tree).NextCount);
-	printf("node count:");
+	//printf("node count:");
 	for(i=0;i<(*tree).NextCount;i++){
 		node_count_array[i] = 0;
 		count_node((*tree).Next[i], &node_count_array[i]);
 		node_count_array[i]++;
-		printf(":%d:",node_count_array[i]);
+		//printf(":%d:",node_count_array[i]);
 		array[i] = malloc(sizeof(struct Tree *) * node_count_array[i]);
 		int j;
 		int pos = 0;
@@ -1594,53 +1581,18 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 			insert_tree((*tree).Next[i],array[i],&pos);
 		}
 	}
-	for(i=0;i<(*tree).NextCount;i++){
-		int j;
-		printf("\n");
-		for(j=0;j<node_count_array[i];j++){
-			printf("%s;",array[i][j]->Head);
-			printf("<<<");
-			ExFunction_Recursive_Print_Tree(array[i][j],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
-			printf(">>>");
-		}
-		printf("\n");
-	}
-	printf("\n");
 
 	int loop = 1;
 	for(i=0;i<(*tree).NextCount;i++){
 		loop = loop * node_count_array[i];
 	}
-	printf("loop:%d\n",loop);
 
-	int j;
-	/*
-	int mod = 0;
-	for(j=0;j<loop;j++){	//needs utility/algebra+graph/outer.c
-		for(i=0;i<(*tree).NextCount;i++){
-			printf("[%d][%d];",i,mod%node_count_array[i]);
-		}
-		mod++;
-		printf("\n");
-	}
-	*/
 
-	printf("outer_list::\n");
 	int ** outer_list;
         outer_list = i_alloc_mat(loop,(*tree).NextCount);
 	create_outer_list((*tree).NextCount,node_count_array,outer_list);
         int counter = 0;
 	/*
-        for(i=0;i<loop;i++){
-                counter = 0;
-                printf("[%d][%d]",counter,outer_list[i][0]);
-                counter++;
-                for(j=1;j<(*tree).NextCount;j++){
-                        printf(",[%d][%d]",counter,outer_list[i][j]);
-                        counter++;
-                }
-                printf("\n");
-        }
 	*/
         for(i=0;i<loop;i++){
                 counter = 0;
