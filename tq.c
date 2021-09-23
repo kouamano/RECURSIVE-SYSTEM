@@ -4,9 +4,10 @@
 #include <string.h>
 #include "T-definition.h"
 #include "T-structure.h"
-#include "T-functions.h"
-#include "T-functions_Executor.h"
-#include "T-functions_imex.h"
+
+//#include "T-functions.h"
+//#include "T-functions_Executor.h"
+//#include "T-functions_imex.h"
 
 const char cdate[] = __DATE__;
 const char ctime[] = __TIME__;
@@ -613,6 +614,10 @@ void check_data_options(struct data_options *dopt){
 	printf(" * data:\n\n");
 	printf("  * opt.DD:%c:\n",(*dopt).dd);
 }
+
+#include "T-functions.h"
+#include "T-functions_Executor.h"
+#include "T-functions_imex.h"
 
 /* main */
 int main(int argc, char **argv){
