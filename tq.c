@@ -386,6 +386,11 @@ void init_data_options(struct data_options *dopt){
 	(*dopt).d_counter = 0;
 	(*dopt).dd = DD;
 }
+void init_reform_options(struct reform_options *ropt){
+	(*ropt).r_counter = 0;
+	(*ropt).sup_print_conj = 0;
+}
+
 
 /* get options */
 void get_options(int optc, char **optv, struct options *opt){
@@ -743,7 +748,7 @@ int main(int argc, char **argv){
 			fclose(DATA);
 		}
 	}
-	/* outout-form file */
+	/* output-form file */
 	if(strlen((*opt).out) > 0){
 		/** open */
 		if((IN = fopen((*opt).out,"r")) == NULL){
