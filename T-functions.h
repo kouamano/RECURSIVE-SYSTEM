@@ -1537,6 +1537,7 @@ struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_functi
 	}
 	return(out);
 }
+/*
 struct Tree *print_path_tree(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
 	int i;
 	int count = 0;
@@ -1556,6 +1557,7 @@ struct Tree *print_path_tree(struct Tree *tree, struct Tree *(*print_conj)(struc
 	free(array);
 	return(tree);
 }
+*/
 struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
 	printf("Under construction\n");
 	//needs:
