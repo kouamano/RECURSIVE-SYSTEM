@@ -195,7 +195,7 @@ void put_examples(void){
 	printf(" ,,,,,,,,,,,,,,[:$#1:14->3],\n");
 	printf(" <====multiline====\n");
 	printf("\n");
-	printf("ex.4 (binding and reforming CSV)::\n");
+	printf("ex.4 (binding CSV)::\n");
 	printf("\n");
 	printf(" [bind]\n");
 	printf("\n");
@@ -217,7 +217,6 @@ void put_examples(void){
 	printf("\n");
 	printf(" $ tq.o in=in.ddf out=out.ddl data=test.csv -FT -Pprod -C\n");
 	printf("  => (((Length,Quantity(1,mm)),(Weight,Quantity(2,kg))),((Length,Quantity(322,mm)),(Weight,Quantity(4,kg))),((Length,Quantity(5,mm)),(Weight,Quantity(68,kg))))\n");
-	//printf("ex.4 (binding and reforming CSV)::\n");
 	printf("\n");
 	printf(" [over write (1)]\n");
 	printf("\n");
