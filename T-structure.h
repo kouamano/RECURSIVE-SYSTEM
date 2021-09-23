@@ -88,5 +88,6 @@ struct data_options {
 
 struct reform_options {
 	int r_counter;
+	int sup_print_conj;
 };
 
