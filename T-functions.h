@@ -1592,6 +1592,11 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
         outer_list = i_alloc_mat(loop,(*tree).NextCount);
 	create_outer_list((*tree).NextCount,node_count_array,outer_list);
         int counter = 0;
+	struct reform_options *_ropt;
+	_ropt = alloc_reform_options();
+	init_reform_options(_ropt);
+	(*_ropt).sup_print_conj = 1;
+	printf("<<<%d>>>",_ropt->sup_print_conj);
         for(i=0;i<loop;i++){
                 counter = 0;
 		if(i!=0){
@@ -1599,7 +1604,7 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 		}
 		printf("(");
                 //printf("[%d][%d];;",counter,outer_list[i][0]);
-		ExFunction_Recursive_Print_Tree(array[counter][outer_list[i][0]],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,NULL,_ser);
+		ExFunction_Recursive_Print_Tree(array[counter][outer_list[i][0]],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ropt,_ser);
                 counter++;
                 for(j=1;j<(*tree).NextCount;j++){
                         //printf("[%d][%d];;",counter,outer_list[i][j]);
