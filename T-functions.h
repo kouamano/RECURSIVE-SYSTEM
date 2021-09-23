@@ -1596,7 +1596,7 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 	_ropt = alloc_reform_options();
 	init_reform_options(_ropt);
 	(*_ropt).sup_print_conj = 1;
-	printf("<<<%d>>>",_ropt->sup_print_conj);
+	//printf("<<<%d>>>",_ropt->sup_print_conj);
         for(i=0;i<loop;i++){
                 counter = 0;
 		if(i!=0){
@@ -1659,7 +1659,15 @@ struct Tree *ExFunction_Recursive_Print_Tree(struct Tree *tree, struct Tree *(*p
 		exit(1);
 	}
 	/*print conj*/
-	print_conj(tree,_fopt,_copt);
+	if(_ropt == NULL){
+		print_conj(tree,_fopt,_copt);
+	}else{
+		if((*_ropt).sup_print_conj != 1){
+			print_conj(tree,_fopt,_copt);
+		}else{
+			;
+		}
+	}
 	/*print Bopen pre*/
 	print_bopen(tree,_fopt,_copt,0);
 	/*print head*/
