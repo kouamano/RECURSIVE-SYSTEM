@@ -1563,18 +1563,21 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 	//needs:
 	int i;
 	int j;
-
 	struct Tree ***array = NULL;
-	array = malloc(sizeof(struct Tree **) * (*tree).NextCount);
-
+	if((array = malloc(sizeof(struct Tree **) * (*tree).NextCount)) == NULL){
+		perror("Failed:malloc\n");
+	}
 	int *node_count_array = 0;
-	node_count_array = malloc(sizeof(int) * (*tree).NextCount);
+	if((node_count_array = malloc(sizeof(int) * (*tree).NextCount)) == NULL){
+		perror("Failed:malloc\n");
+	}
 	for(i=0;i<(*tree).NextCount;i++){
 		node_count_array[i] = 0;
 		count_node((*tree).Next[i], &node_count_array[i]);
 		node_count_array[i]++;
-		array[i] = malloc(sizeof(struct Tree *) * node_count_array[i]);
-		int j;
+		if((array[i] = malloc(sizeof(struct Tree *) * node_count_array[i])) == NULL){
+			perror("Failed:malloc\n");
+		}
 		int pos = 0;
 		for(j=0;j<node_count_array[i];j++){
 			pos = 0;
