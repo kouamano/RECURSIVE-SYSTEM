@@ -1559,7 +1559,7 @@ struct Tree *print_path_tree(struct Tree *tree, struct Tree *(*print_conj)(struc
 }
 */
 struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
-	printf("Under construction,\n");
+	printf("Under construction -> カンマの抑制,\n");
 	//needs:
 	int i;
 	int j;
