@@ -1594,6 +1594,9 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
         int counter = 0;
         for(i=0;i<loop;i++){
                 counter = 0;
+		if(i!=0){
+                	printf(",");
+		}
 		printf("(");
                 //printf("[%d][%d];;",counter,outer_list[i][0]);
 		ExFunction_Recursive_Print_Tree(array[counter][outer_list[i][0]],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
@@ -1605,9 +1608,6 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
                         counter++;
                 }
                 printf(")\n");
-		if(i<loop-1){
-                	printf(",");
-		}
         }
 	return(tree);
 
