@@ -1559,7 +1559,7 @@ struct Tree *print_path_tree(struct Tree *tree, struct Tree *(*print_conj)(struc
 }
 */
 struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
-	printf("Under construction -> $TO$の組出力における最初の要素のカンマの抑制,\n");
+	//printf("Under construction -> $TO$の組出力における最初の要素のカンマの抑制,\n");
 	//needs:
 	int i;
 	int j;
@@ -1615,7 +1615,7 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 			ExFunction_Recursive_Print_Tree(array[counter][outer_list[i][j]],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,NULL,_ser);
                         counter++;
                 }
-                printf(")\n");
+                printf(")");
         }
 	return(tree);
 
