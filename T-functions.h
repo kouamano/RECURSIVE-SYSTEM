@@ -1604,6 +1604,9 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
                 for(j=1;j<(*tree).NextCount;j++){
                         //printf("[%d][%d];;",counter,outer_list[i][j]);
                         //printf(",[%d][%d]",array[counter][outer_list[i][j]]);
+			if(array[counter][outer_list[i][j]]->NCself == 1){
+				printf(",");
+			}
 			ExFunction_Recursive_Print_Tree(array[counter][outer_list[i][j]],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
                         counter++;
                 }
