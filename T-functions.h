@@ -1,8 +1,8 @@
 /* README */
 /* //%P : print-function which contains NO converter. */
 /* //%I : incomplete function. */
-#include "../include/alloc.c"
-#include "../include/list_operations.c"
+//#include "../include/alloc.c"
+//#include "../include/list_operations.c"
 
 /* prottype */
 struct Tree *Function_Print_Head(struct Tree *, struct function_options *, struct compile_options *);

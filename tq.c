@@ -4,6 +4,8 @@
 #include <string.h>
 #include "T-definition.h"
 #include "T-structure.h"
+#include "../include/alloc.c"
+#include "../include/list_operations.c"
 
 //#include "T-functions.h"
 //#include "T-functions_Executor.h"
