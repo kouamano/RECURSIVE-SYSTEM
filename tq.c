@@ -330,12 +330,12 @@ struct data_options *alloc_data_options(void){
 	return(p);
 }
 struct reform_options *alloc_reform_options(void){
-        struct reform_options *p;
-        if((p = malloc(sizeof(struct reform_options) * 1)) == NULL){
-                printf("[Fail]malloc@alloc_reform_options().\n");
-                exit(1);
-        }
-        return(p);
+	struct reform_options *p;
+	if((p = malloc(sizeof(struct reform_options) * 1)) == NULL){
+		printf("[Fail]malloc@alloc_reform_options().\n");
+		exit(1);
+	}
+	return(p);
 }
 
 /* initialize */
