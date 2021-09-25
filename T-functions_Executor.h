@@ -40,12 +40,6 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 			}else{
 				hit_tree = top;
 			}
-			/**** edit hit_tree */
-			int CONJ_ORG = (*hit_tree).Conj;
-			if((*hit_tree).Conj == 1){
-				(*hit_tree).Conj = CONJ_SW;
-			}
-
 			/*** apply formated print */
 			(*_fopt).f_print_self_stat = 1;
 			if((*_fopt).f_print_N == 1){
@@ -116,11 +110,6 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 				ExFunction_Recursive(hit_tree,(struct Tree *(*)())Function_Print_Linkage,_opt,_fopt,_copt);
 				printf("<====multiline====\n");
                         }
-
-			/**** recover hit_tree */
-			if((*hit_tree).Conj == CONJ_SW){
-				(*hit_tree).Conj = CONJ_ORG;
-			}
 		}
 		/* test */
 		return(top);
