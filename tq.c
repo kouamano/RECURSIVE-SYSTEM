@@ -614,8 +614,7 @@ void check_data_options(struct data_options *dopt){
 	printf("  * opt.DD:%c:\n",(*dopt).dd);
 }
 
-
-/* functions */
+/* tree functions */
 #include "../include/list_operations.c"
 #include "T-functions.h"
 #include "T-functions_Executor.h"
