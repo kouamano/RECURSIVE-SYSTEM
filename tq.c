@@ -4,8 +4,6 @@
 #include <string.h>
 #include "T-definition.h"
 #include "T-structure.h"
-//#include "../include/alloc.c"
-//#include "../include/list_operations.c"
 
 const char cdate[] = __DATE__;
 const char ctime[] = __TIME__;
