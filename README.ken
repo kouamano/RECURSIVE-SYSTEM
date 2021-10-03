@@ -91,7 +91,7 @@ tq による無名表現は以下である。
 	      \|/
 	       C 
 
-	$CAT$(f,A,B) ; $CAT$(g,B,C) => $CAT$(g&f,A,C)
+	$CAT$(f,A,B) ; $CAT$(g,B,C) => $CAT$($&$(g,f),A,C)
 
 - モノ射
 圏Cにおいて、
