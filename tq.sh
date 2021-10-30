@@ -1,6 +1,8 @@
 #!/bin/bash
 # This is a tq meta command
 # Needs: tq.o, c_tq.o, exprt.pl
+# How to install
+# sudo cp tq.sh /usr/local/bin/tq
 array=$@
 exec=0
 
