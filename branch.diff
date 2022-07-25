@@ -73,6 +73,9 @@ git --no-pager diff cq:tq.sh jsik:tq.sh
 ## tq/cq
 echo '>> source code'
 git --no-pager diff cq:tq.c jsik:tq.c
+git --no-pager diff cq:escape_sw.c jsik:escape_sw.c
+git --no-pager diff cq:escape_sw1.c jsik:escape_sw1.c
+git --no-pager diff cq:escape_sw2.c jsik:escape_sw2.c
 git --no-pager diff cq:T-definition.h jsik:T-definition.h
 git --no-pager diff cq:T-structure.h jsik:T-structure.h
 git --no-pager diff cq:T-functions.h jsik:T-functions.h
