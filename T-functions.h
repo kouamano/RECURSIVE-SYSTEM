@@ -1311,9 +1311,12 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 		printf("%s",(*tree).Head);	//normal
 	}else if(((*tree).builtin_flag&16) == 16 && (*_copt).c_counter > 0){
 		;				//cat the file, no head
+	}else if(((*tree).builtin_flag&64) == 64 && (*_copt).c_counter > 0){
+		;				//nothing to print
 	}else if((*_copt).c_counter > 0){
-		printf("%s",tmp_str);
-		free(tmp_str);
+		printf("%s",(*tree).Head);	//normal
+		//printf("%s",tmp_str);
+		//free(tmp_str);
 	}else{
 		printf("%s",(*tree).Head);	//normal
 	}
