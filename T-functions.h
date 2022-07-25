@@ -1309,10 +1309,12 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	/* print head */
 	if(((*tree).builtin_flag&1) == 1){
 		printf("%s",(*tree).Head);	//normal
+	}else if(((*tree).builtin_flag&2) == 2 && (*_copt).c_counter > 0){
+		;				//nothing to print for $PI$
 	}else if(((*tree).builtin_flag&16) == 16 && (*_copt).c_counter > 0){
 		;				//cat the file, no head
 	}else if(((*tree).builtin_flag&64) == 64 && (*_copt).c_counter > 0){
-		;				//nothing to print
+		;				//nothing to print for $TO$
 	}else if((*_copt).c_counter > 0){
 		printf("%s",(*tree).Head);	//normal
 		//printf("%s",tmp_str);
