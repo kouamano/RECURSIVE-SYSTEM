@@ -84,6 +84,7 @@ git --no-pager diff cq:T-functions_imex.h jsik:T-functions_imex.h
 git --no-pager diff cq:CT-structure.h jsik:CT-structure.h
 git --no-pager diff cq:CT-functions.h jsik:CT-functions.h
 git --no-pager diff cq:CT-functions_Executor.h jsik:CT-functions_Executor.h
+git --no-pager diff cq:C-help.h jsik:C-help.h
 git --no-pager diff cq:C-structure.h jsik:C-structure.h
 git --no-pager diff cq:C-functions.h jsik:C-functions.h
 git --no-pager diff cq:C-functions_imex.h jsik:C-functions_imex.h
