@@ -619,7 +619,7 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 			(*tree).builtin_flag = (*tree).builtin_flag + 32;
 		}
 		compiled++;
-	}else if(strncmp(tmp_head,"$TO$",4) == 0){	// Outer Tree product : under construction
+	}else if(strncmp(tmp_head,"$TO$",4) == 0){	// Outer Tree product
 		strcpy(out_head,tmp_head+4);
 		strcpy(tmp_head,out_head);
 		if(((*tree).builtin_flag&64) != 64){
