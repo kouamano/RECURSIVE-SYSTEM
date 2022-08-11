@@ -67,13 +67,11 @@ echo '$~~$($U$(7,8,$U$(5,6)))' | ./tq.o in=/dev/stdin -FT -Pin -C
 echo '#1$OP$Head($#1[1])' | ./tq.o in=/dev/stdin -FT -Pin data=test.csv
  => #1$OP$Head($#1[1]@@#1$OP$Head(Length))
 - 基本(1)
-./tq.o in=test_ref.ddf -Pin -FT data=test.csv -Pout out=test_ref.ddl
- => 
-(#1[2]@(Length,Weight),#2[2]@(mm,kg))
-$#1@#1[2]@(Length,Weight)
-4 Nodes were operated.
+./tq.o in=test_ref.ddf -FT data=test.csv -Pout out=test_ref.ddl
+ => $#1@#1[2]@(Length,Weight)
 - 基本(2)
 ./tq.o in=test.ddf -FT out=test.ddl data=test.csv -Pin -Pout
+ => $X$List($X$List($#1@#1$$X$Property[2]@(Length,Weight),$#2@#2$$X$Unit[2]@(mm,kg),$#1234567890@#1234567890$$X$Real[2]@(1,2,322,4,5,68,7,81)))
 - 配列指定のあるリーフノードにバインドされる
 ./tq.o in=test_bind.t  data=test.csv -FT -Pin
  => $TOP($X$List($LEAF,$LEAF[]@(Length),$LEAF[2]@(Weight,mm)),$X$List[2]($LEAF[2]@(kg,1,2,322)))
