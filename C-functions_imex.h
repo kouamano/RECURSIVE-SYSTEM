@@ -348,6 +348,45 @@ void skip_dim()
 	} while(ch == '[');
 }
 
+void skip_op()
+{
+	int DLM_ACC;
+
+	do {
+		append_char(ch);			// '{'
+		next_char();
+
+		DLM_ACC = 1;
+
+		while(ch != EOF && DLM_ACC > 0) {
+			if(ch == '"') {
+				skip_double_quote();
+			} else {
+				switch(ch) {
+				case '{':
+					DLM_ACC++;
+					break;
+				case '}':
+					DLM_ACC--;
+					break;
+				// case '\\':
+				// 	append_char(ch);
+				// 	next_char();
+				// 	break;
+				default:
+					break;
+				}
+
+				append_char(ch);
+				next_char();
+			}
+		}
+		if(DLM_ACC > 0) {
+			error("syntax error");		// EOF before closing '}'
+		}
+	} while(ch == '{');
+}
+
 void next_token()
 {
 	null_node_allowed = ON;		// null node flag
@@ -386,6 +425,9 @@ void next_token()
 				break;
 			case '[':
 				skip_dim();		// skip to closing ']'
+				break;
+			case '{':
+				skip_op();		// skip to closing '}'
 				break;
 			case LF :			// ignore LF, TAB
 			case TAB :
