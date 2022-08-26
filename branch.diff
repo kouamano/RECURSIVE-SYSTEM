@@ -45,6 +45,7 @@ git --no-pager diff cq:toPsdJSON.c cq_debug:toPsdJSON.c
 git --no-pager diff cq:indentToT.c cq_debug:indentToT.c
 ## test
 echo '>> test code'
+git --no-pager diff cq:tqcq.awk cq_debug:tqcq.awk
 git --no-pager diff cq:DimensionDefinitionLanguage/conv-test.script cq_debug:DimensionDefinitionLanguage/conv-test.script
 git --no-pager diff cq:DimensionDefinitionLanguage/conv2-test.script cq_debug:DimensionDefinitionLanguage/conv2-test.script
 ## compile
@@ -95,6 +96,7 @@ git --no-pager diff cq:T-convFunctions.h jsik:T-convFunctions.h
 git --no-pager diff cq:T-convFunctions_imex.h jsik:T-convFunctions_imex.h
 ## test
 echo '>> test code'
+git --no-pager diff cq:tqcq.awk jsik:tqcq.awk
 git --no-pager diff cq:DimensionDefinitionLanguage/conv-test.script jsik:DimensionDefinitionLanguage/conv-test.script
 git --no-pager diff cq:DimensionDefinitionLanguage/conv2-test.script jsik:DimensionDefinitionLanguage/conv2-test.script
 ## compile
