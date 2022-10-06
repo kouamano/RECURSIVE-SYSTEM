@@ -1621,6 +1621,9 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 	if(outer_list != NULL){
 		i_free_mat(outer_list);
 	}
+	if(node_count_array != NULL){
+		free(node_count_array);
+	}
 	return(tree);
 }
 struct Tree *ExFunction_Recursive_Print_Tree(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct reform_options *_ropt, int _ser){
