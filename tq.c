@@ -273,6 +273,7 @@ void put_examples(void){
 }
 
 /* allocation */
+#include "../include/alloc.c"
 struct options *alloc_options(void){
 	struct options *p;
 	if((p = malloc(sizeof(struct options) * 1)) == NULL){
@@ -612,6 +613,7 @@ void check_data_options(struct data_options *dopt){
 }
 
 /* tree functions */
+#include "../include/list_operations.c"
 #include "T-functions.h"
 #include "T-functions_Executor.h"
 #include "T-functions_imex.h"

@@ -1,11 +1,13 @@
 /* README */
 /* //%P : print-function which contains NO converter. */
 /* //%I : incomplete function. */
+//#include "../include/alloc.c"
+//#include "../include/list_operations.c"
 
 /* prottype */
 struct Tree *Function_Print_Head(struct Tree *, struct function_options *, struct compile_options *);
 //struct Tree *Executor(struct Tree *, struct Tree *, struct Tree *, int, int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);
-struct Tree *ExFunction_Recursive_Print_Tree(struct Tree *, struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct options *, struct function_options *, struct compile_options *, int);
+void ExFunction_Recursive_Print_Tree(struct Tree *, struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct options *, struct function_options *, struct compile_options *, struct reform_options *, int);
 struct Tree *ExFunction_Recursive_Ser(struct Tree *, struct Tree *(*)(struct Tree *, int, struct options *), struct options *, struct function_options *, struct compile_options *, int , int);
 struct Tree *ExFunction_Recursive(struct Tree *, struct Tree *(*)(struct Tree *, struct options *), struct options *, struct function_options *, struct compile_options *);
 struct Tree *ExFunction_Recursive_Set_Obj(struct Tree *, struct Tree *(*)(struct Tree *, void *), void *);
@@ -53,6 +55,24 @@ int get_char_pos(char *str, char ch){
 	return(i);
 }
 /** tree analysis */
+int *count_node(struct Tree *tree, int *count){
+	//(*count)++;
+	int i;
+	for(i=0;i<(*tree).NextCount;i++){
+		(*count)++;
+		count_node((*tree).Next[i],count);
+	}
+	return(count);
+}
+int *insert_tree(struct Tree *tree, struct Tree **array, int *pos){
+	int i;
+	array[*pos] = tree;
+	(*pos)++;
+	for(i=0;i<(*tree).NextCount;i++){
+		insert_tree((*tree).Next[i],array,pos);
+	}
+	return(pos);
+}
 struct Tree *ExFunction_Get_Node(char *pos_str, struct Tree *tree){
 	FC(fprintf(stderr,">ExFunction_Get_Node<\n");)
 	int len = 0;
@@ -599,7 +619,7 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 			(*tree).builtin_flag = (*tree).builtin_flag + 32;
 		}
 		compiled++;
-	}else if(strncmp(tmp_head,"$TO$",4) == 0){	// Outer Tree product : under construction
+	}else if(strncmp(tmp_head,"$TO$",4) == 0){	// Outer Tree product
 		strcpy(out_head,tmp_head+4);
 		strcpy(tmp_head,out_head);
 		if(((*tree).builtin_flag&64) != 64){
@@ -1169,7 +1189,7 @@ struct Tree *Function_Recursive_Print_nthVal(struct Tree *tree, int nth, struct 
 			if(((*_fopt).f_skipOnce&1) != 1){
 				(*_fopt).f_skipOnce = (*_fopt).f_skipOnce + 1;
 			}
-			ExFunction_Recursive_Print_Tree((*tree).Next[nth%(*tree).NextCount], (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
+			ExFunction_Recursive_Print_Tree((*tree).Next[nth%(*tree).NextCount], (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,NULL,0);
 			return(tree);
 		}
 	}
@@ -1289,11 +1309,16 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 	/* print head */
 	if(((*tree).builtin_flag&1) == 1){
 		printf("%s",(*tree).Head);	//normal
+	}else if(((*tree).builtin_flag&2) == 2 && (*_copt).c_counter > 0){
+		;				//nothing to print for $PI$
 	}else if(((*tree).builtin_flag&16) == 16 && (*_copt).c_counter > 0){
 		;				//cat the file, no head
+	}else if(((*tree).builtin_flag&64) == 64 && (*_copt).c_counter > 0){
+		;				//nothing to print for $TO$
 	}else if((*_copt).c_counter > 0){
-		printf("%s",tmp_str);
-		free(tmp_str);
+		printf("%s",(*tree).Head);	//normal
+		//printf("%s",tmp_str);
+		//free(tmp_str);
 	}else{
 		printf("%s",(*tree).Head);	//normal
 	}
@@ -1323,7 +1348,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 				(*_fopt).f_skipOnce = (*_fopt).f_skipOnce + 1;
 			}
 			DB(fprintf(stderr," print_head:skip:%d:\n",(*_fopt).f_skipOnce);)
-			ExFunction_Recursive_Print_Tree((*tree).RefNode, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,0);
+			ExFunction_Recursive_Print_Tree((*tree).RefNode, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,NULL,0);
 		}else if((*tree).RefNode->LabelType == 't' && target_type == 'h'){
 			DB(fprintf(stderr," LT:t:,TG:h:\n");)
 			printf("@");
@@ -1517,16 +1542,108 @@ struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_functi
 	}
 	return(out);
 }
-struct Tree *ExFunction_Recursive_Print_Tree(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
+/*
+struct Tree *print_path_tree(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
+	int i;
+	int count = 0;
+	struct Tree **array = NULL;
+	count_node(tree,&count);
+	count++;
+	printf(" count:%d; ",count);
+	if((array = malloc(sizeof(struct Tree *) * (count+1))) == NULL){
+		perror("Fail:malloc\n");
+	}
+	int pos = 0;
+	insert_tree(tree,array,&pos);
+	for(i=0;i<count;i++){
+		//printf("%s",array[i]->Head);
+		ExFunction_Recursive_Print_Tree(array[i],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,NULL,_ser);
+	}
+	free(array);
+	return(tree);
+}
+*/
+struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser){
+	//printf("Under construction -> $TO$の組出力における最初の要素のカンマの抑制,\n");
+	//needs:
+	int i;
+	int j;
+	struct Tree ***array = NULL;
+	if((array = malloc(sizeof(struct Tree **) * (*tree).NextCount)) == NULL){
+		perror("Failed:malloc\n");
+	}
+	int *node_count_array = NULL;
+	if((node_count_array = malloc(sizeof(int) * (*tree).NextCount)) == NULL){
+		perror("Failed:malloc\n");
+	}
+	for(i=0;i<(*tree).NextCount;i++){
+		node_count_array[i] = 0;
+		count_node((*tree).Next[i], &node_count_array[i]);
+		node_count_array[i]++;
+		if((array[i] = malloc(sizeof(struct Tree *) * node_count_array[i])) == NULL){
+			perror("Failed:malloc\n");
+		}
+		int pos = 0;
+		for(j=0;j<node_count_array[i];j++){
+			pos = 0;
+			insert_tree((*tree).Next[i],array[i],&pos);
+		}
+	}
+	int loop = 1;
+	for(i=0;i<(*tree).NextCount;i++){
+		loop = loop * node_count_array[i];
+	}
+	int **outer_list = NULL;
+	outer_list = i_alloc_mat(loop,(*tree).NextCount);
+	create_outer_list((*tree).NextCount,node_count_array,outer_list);
+	int counter = 0;
+	struct reform_options *_ropt;
+	_ropt = alloc_reform_options();
+	init_reform_options(_ropt);
+	(*_ropt).sup_print_conj = 1;
+        for(i=0;i<loop;i++){
+		counter = 0;
+		if(i!=0){
+			printf(",");
+		}
+		printf("(");
+		ExFunction_Recursive_Print_Tree(array[counter][outer_list[i][0]],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ropt,_ser);
+		counter++;
+		for(j=1;j<(*tree).NextCount;j++){
+			if(array[counter][outer_list[i][j]]->NCself == 1){
+				printf(",");
+			}
+			ExFunction_Recursive_Print_Tree(array[counter][outer_list[i][j]],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,NULL,_ser);
+			counter++;
+		}
+		printf(")");
+	}
+	if(outer_list != NULL){
+		i_free_mat(outer_list);
+	}
+	if(node_count_array != NULL){
+		free(node_count_array);
+	}
+	return(tree);
+}
+void ExFunction_Recursive_Print_Tree(struct Tree *tree, struct Tree *(*print_conj)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_head)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*print_bopen)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*print_bclose)(struct Tree *, struct function_options *, struct compile_options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, struct reform_options *_ropt, int _ser){
 	FC(fprintf(stderr,">ExFunction_Recursive_Print_Tree<\n");)
 	int i;
-	struct Tree *out = tree;
+	//struct Tree *out = tree;
 	if(tree == NULL){
 		perror("NULL node detected -- exit.\n");
 		exit(1);
 	}
 	/*print conj*/
-	print_conj(tree,_fopt,_copt);
+	if(_ropt == NULL){
+		print_conj(tree,_fopt,_copt);
+	}else{
+		if((*_ropt).sup_print_conj != 1){
+			print_conj(tree,_fopt,_copt);
+		}else{
+			;
+		}
+	}
 	/*print Bopen pre*/
 	print_bopen(tree,_fopt,_copt,0);
 	/*print head*/
@@ -1534,16 +1651,21 @@ struct Tree *ExFunction_Recursive_Print_Tree(struct Tree *tree, struct Tree *(*p
 	/*print Bopen post*/
 	print_bopen(tree,_fopt,_copt,1);
 	// $UU$ : if Tree.builtin_flag&2 == 2 then skip for-loop.
-	if(((*tree).builtin_flag&2) == 2 && (*_copt).c_counter > 0){
+	if(((*tree).builtin_flag&64) == 64 && (*_copt).c_counter > 0){
+		Function_Print_OTree(tree,print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
+	}else if(((*tree).builtin_flag&32) == 32 && (*_copt).c_counter > 0){
+		//Function_Print_OProductVal(tree,_fopt,_copt);
+		printf("Under construction");
+	}else if(((*tree).builtin_flag&2) == 2 && (*_copt).c_counter > 0){
 		Function_Cyclic_Print_IProductVal(tree,_fopt,_copt);
 	}else{
 		for(i=0;i<(*tree).NextCount;i++){
-			ExFunction_Recursive_Print_Tree((*tree).Next[i],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,_ser);
+			ExFunction_Recursive_Print_Tree((*tree).Next[i],print_conj,print_head,print_bopen,print_bclose,_opt,_fopt,_copt,NULL,_ser);
 		}
 	}
 	/*print Bclose*/
 	print_bclose(tree,_fopt,_copt);
-	return(out);
+	//return(out);
 }
 /** Up tree */
 struct Tree *ExFunction_UpRecursive(struct Tree *tree, struct Tree *(*e_function)(struct Tree *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, char *buff){
