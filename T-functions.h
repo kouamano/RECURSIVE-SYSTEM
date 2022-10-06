@@ -1572,7 +1572,7 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 	if((array = malloc(sizeof(struct Tree **) * (*tree).NextCount)) == NULL){
 		perror("Failed:malloc\n");
 	}
-	int *node_count_array = 0;
+	int *node_count_array = NULL;
 	if((node_count_array = malloc(sizeof(int) * (*tree).NextCount)) == NULL){
 		perror("Failed:malloc\n");
 	}
@@ -1593,7 +1593,7 @@ struct Tree *Function_Print_OTree(struct Tree *tree, struct Tree *(*print_conj)(
 	for(i=0;i<(*tree).NextCount;i++){
 		loop = loop * node_count_array[i];
 	}
-	int ** outer_list;
+	int **outer_list = NULL;
 	outer_list = i_alloc_mat(loop,(*tree).NextCount);
 	create_outer_list((*tree).NextCount,node_count_array,outer_list);
 	int counter = 0;
