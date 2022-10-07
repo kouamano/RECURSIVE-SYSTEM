@@ -107,7 +107,7 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 			/*** apply linkage print */
                         if((*_fopt).f_print_Ln == 1){
 				printf("====multiline====>\n");
-				ExFunction_Recursive(hit_tree,(struct Tree *(*)())Function_Print_Linkage,_opt,_fopt,_copt);
+				ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Function_Print_Linkage,_opt,_fopt,_copt,SN,1);
 				printf("<====multiline====\n");
                         }
 		}

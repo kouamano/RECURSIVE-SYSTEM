@@ -788,7 +788,7 @@ int Function_Print_Adj(struct Tree *tree, struct options *_opt, int nodes){
 	printf("\n");
 	return(nodes);
 }
-int Function_Print_Linkage(struct Tree *tree){
+int Function_Print_Linkage(struct Tree *tree, struct options *o_dummy, int i_dummy){
 	if((*tree).Parent != NULL){
 		printf("\"%s\" -> ",(*tree).Parent->Head);
 		printf("\"%s\"\n",(*tree).Head);
