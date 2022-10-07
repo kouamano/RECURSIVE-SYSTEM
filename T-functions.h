@@ -8,7 +8,7 @@
 struct Tree *Function_Print_Head(struct Tree *, struct function_options *, struct compile_options *);
 //struct Tree *Executor(struct Tree *, struct Tree *, struct Tree *, int, int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);
 void ExFunction_Recursive_Print_Tree(struct Tree *, struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct options *, struct function_options *, struct compile_options *, struct reform_options *, int);
-struct Tree *ExFunction_Recursive_Ser(struct Tree *, struct Tree *(*)(struct Tree *, int, struct options *), struct options *, struct function_options *, struct compile_options *, int , int);
+struct Tree *ExFunction_Recursive_Ser(struct Tree *, struct Tree *(*)(struct Tree *, struct options *, int), struct options *, struct function_options *, struct compile_options *, int , int);
 struct Tree *ExFunction_Recursive(struct Tree *, struct Tree *(*)(struct Tree *, struct options *), struct options *, struct function_options *, struct compile_options *);
 struct Tree *ExFunction_Recursive_Set_Obj(struct Tree *, struct Tree *(*)(struct Tree *, void *), void *);
 
@@ -754,7 +754,7 @@ void print_war(char C, struct Tree *tree, int level){
 	printf(":DetectLV=%d:",level);
 	Print_Smems(tree);
 }
-int Function_Print_Adj(struct Tree *tree, int nodes, struct options *_opt){
+int Function_Print_Adj(struct Tree *tree, struct options *_opt, int nodes){
 	int i;
 	int j;
 	for(i=0;i<nodes;i++){
@@ -1525,7 +1525,7 @@ struct Tree *ExFunction_Recursive(struct Tree *tree, struct Tree *(*e_function)(
 	}
 	return(out);
 }
-struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_function)(struct Tree *, int, struct options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser, int exec){
+struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_function)(struct Tree *, struct options *, int), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser, int exec){
 	FC(fprintf(stderr,">ExFunction_Recursive_Ser<\n");)
 	if(exec == 0){
 		return(NULL);
@@ -1536,7 +1536,7 @@ struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_functi
 		perror("NULL node detected -- exit.\n");
 		exit(1);
 	}
-	(*e_function)(tree,_ser,_opt);
+	(*e_function)(tree,_opt,_ser);
 	for(i=0;i<(*tree).NextCount;i++){
 		ExFunction_Recursive_Ser((*tree).Next[i],e_function,_opt,_fopt,_copt,_ser,exec);
 	}
