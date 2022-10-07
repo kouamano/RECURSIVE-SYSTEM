@@ -95,7 +95,7 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 			/*** apply status print */
                         if((*_fopt).f_print_status == 1){
 				printf("====multiline====>\n");
-				ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Function_Print_Status,_opt,_fopt,_copt,0,1);
+				ExFunction_Recursive_Ser(hit_tree,(struct Tree *(*)())Function_Print_Status,_opt,_fopt,_copt,SN,1);
 				printf("<====multiline====\n");
                         }
 			/*** apply conjugation-table print */
