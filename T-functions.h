@@ -461,7 +461,7 @@ void ExFunction_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referre
 	}
 }
 /** for product */
-int Function_Assign_RefedValPtr(struct Tree *tree, struct options *o_dummy, int i_dummy){	//%P 
+int Function_Assign_RefedValPtr(struct Tree *tree, struct options *o_dummy, int i_dummy){	//%P
 	FC(fprintf(stderr,">Function_Assign_RefedValPtr<\n");)
 	if(tree == NULL){
 		return(0);
