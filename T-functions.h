@@ -326,7 +326,7 @@ int SPrint_UpRecursive_Head(struct Tree *tree, char *buff){
 	len = strlen(buff);
 	return(len);
 }
-struct Tree *Function_Detect_DimBlock(struct Tree *tree, struct options *_opt){
+struct Tree *Function_Detect_DimBlock(struct Tree *tree, struct options *_opt, int i_dummy){
 	FC(fprintf(stderr,">Detect_DimBlock<\n");)
 	int sw = 0;
 	int *dim_pos;
