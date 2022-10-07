@@ -745,7 +745,7 @@ void Print_Smems(struct Tree *tree){
 	printf(":C=%d:",(*tree).NextCount);
 	printf(":stat=%d:",(*tree).builtin_flag);
 }
-void Function_Print_Status(struct Tree *tree){
+void Function_Print_Status(struct Tree *tree, struct options *o_dummy, int i_dummy){
 	Print_Smems(tree);
 	printf("\n");
 }
