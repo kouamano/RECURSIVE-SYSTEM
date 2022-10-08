@@ -4,7 +4,7 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 		/* pre */
 		/** bind data (for input-form) */
 		if((EXEC_FLAG&1) == 1){
-			ExFunction_Recursive(top,(struct Tree *(*)())Function_Detect_DimBlock,_opt,_fopt,_copt);
+			ExFunction_Recursive_Ser(top,(struct Tree *(*)())Function_Detect_DimBlock,_opt,_fopt,_copt,SN,1);
 			if((*_opt).data != NULL){
 				if(strlen((*_opt).data) > 0){
 					ExFunction_Bind_Data(DATA,top,_opt,_fopt,_copt);
@@ -21,7 +21,7 @@ struct Tree *Executor(struct Tree *top, struct Tree *refTree, struct Tree *null_
 		}
 		/** inner product of binded data */
 		if((EXEC_FLAG&16) == 16){
-                        ExFunction_Recursive(top,(struct Tree *(*)())Function_Assign_RefedValPtr,_opt,_fopt,_copt);
+                        ExFunction_Recursive_Ser(top,(struct Tree *(*)())Function_Assign_RefedValPtr,_opt,_fopt,_copt,SN,1);
 		}
 		/** print */
 		if((EXEC_FLAG&2) == 2){
