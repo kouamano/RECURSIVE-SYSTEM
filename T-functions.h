@@ -9,7 +9,7 @@ struct Tree *Function_Print_Head(struct Tree *, struct function_options *, struc
 //struct Tree *Executor(struct Tree *, struct Tree *, struct Tree *, int, int, struct options *, struct function_options *, struct compile_options *, struct search_options *, FILE *, int);
 void ExFunction_Recursive_Print_Tree(struct Tree *, struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *, int),  struct Tree *(*)(struct Tree *, struct function_options *, struct compile_options *), struct options *, struct function_options *, struct compile_options *, struct reform_options *, int);
 struct Tree *ExFunction_Recursive_Ser(struct Tree *, struct Tree *(*)(struct Tree *, struct options *, int), struct options *, struct function_options *, struct compile_options *, int , int);
-struct Tree *ExFunction_Recursive(struct Tree *, struct Tree *(*)(struct Tree *, struct options *), struct options *, struct function_options *, struct compile_options *);
+//struct Tree *ExFunction_Recursive(struct Tree *, struct Tree *(*)(struct Tree *, struct options *), struct options *, struct function_options *, struct compile_options *);
 struct Tree *ExFunction_Recursive_Set_Obj(struct Tree *, struct Tree *(*)(struct Tree *, void *), void *);
 
 /* meta functions */
@@ -326,7 +326,7 @@ int SPrint_UpRecursive_Head(struct Tree *tree, char *buff){
 	len = strlen(buff);
 	return(len);
 }
-struct Tree *Function_Detect_DimBlock(struct Tree *tree, struct options *_opt){
+struct Tree *Function_Detect_DimBlock(struct Tree *tree, struct options *_opt, int i_dummy){
 	FC(fprintf(stderr,">Detect_DimBlock<\n");)
 	int sw = 0;
 	int *dim_pos;
@@ -461,7 +461,7 @@ void ExFunction_Recursive_Bind_RefNode(struct Tree *binded, struct Tree *referre
 	}
 }
 /** for product */
-int Function_Assign_RefedValPtr(struct Tree *tree){	//%P 
+int Function_Assign_RefedValPtr(struct Tree *tree, struct options *o_dummy, int i_dummy){	//%P
 	FC(fprintf(stderr,">Function_Assign_RefedValPtr<\n");)
 	if(tree == NULL){
 		return(0);
@@ -1511,6 +1511,7 @@ struct Tree *ExFunction_Recursive_Set_Obj(struct Tree *tree, struct Tree *(*e_fu
 	}
 	return(tree);
 }
+/*
 struct Tree *ExFunction_Recursive(struct Tree *tree, struct Tree *(*e_function)(struct Tree *, struct options *), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt){
 	FC(fprintf(stderr,">ExFunction_Recursive<\n");)
 	int i;
@@ -1525,6 +1526,7 @@ struct Tree *ExFunction_Recursive(struct Tree *tree, struct Tree *(*e_function)(
 	}
 	return(out);
 }
+*/
 struct Tree *ExFunction_Recursive_Ser(struct Tree *tree, struct Tree *(*e_function)(struct Tree *, struct options *, int), struct options *_opt, struct function_options *_fopt, struct compile_options *_copt, int _ser, int exec){
 	FC(fprintf(stderr,">ExFunction_Recursive_Ser<\n");)
 	if(exec == 0){
