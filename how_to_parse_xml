@@ -66,6 +66,7 @@ extra Bl(TI): same as emp-tag
 変数
 current_C
 current_Lv
+current_Nd
 BUFF
 current_Bl_TYPE: TO TC TI BD
 Nd[]
