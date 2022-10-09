@@ -38,11 +38,14 @@ extra Bl: same as emp-tag
   cd:	'<![CDATA['	']]>'
   ot:	'<!'    	'>'
 ---- ---- ----
-用意するもの
+0. 用意するもの
   バッファ:BUFF
   ノード:Nd
   ブロック:Bl
+    種別: TO:オープンtag、TC:クローズtag、BD:body
   その他の属性値用変数
+    種別(TAG系): in_TAG、op_TAG、cl_TAG、emp_TAG
+    種別(NODE系): current_Lv、current_Nd
 1. 最上位ノードを生成
 2. Blの読み込み
   tag:
