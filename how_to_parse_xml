@@ -70,9 +70,11 @@ BUFF
 current_Bl_TYPE: TO TC TI BD
 Nd[]
   Lv
-  Bl[]
+  Bl as Bl_TO		#TYPE: TO
+  Bl[]			#TYPE: TC TI BD
 Bl[]
   TYPE: TO TC TI BD
+  str
 
 ---- ---- ----
 コマンド引数
