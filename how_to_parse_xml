@@ -39,6 +39,7 @@ extra Bl(TI): same as emp-tag
   ot:	'<!'    	'>'
 
 ---- ---- ----
+処理の概要
 0. 用意するもの
   バッファ:BUFF
   ノード:Nd
@@ -54,10 +55,22 @@ extra Bl(TI): same as emp-tag
     Blの先頭を読み、
       後端を読み、対応が適性になるまで次の'>'を読む、extraを優先処理
     current_Lvの処理: tagがTOなら++1、tagがTCなら--1
-    tagがTOならLvをset
   body:
     '>'の次 ~ '<'の前まで読み込む
   Blを配列に収納
   Blが開始タグなら新しくNdを生成、Ndを配列に収納、BlをNdに属させる
     Blが開始タグでないなら既存のNdに属させる
+  Blが開始タグならLvをNdにset
+
+---- ---- ----
+変数
+current_C
+current_Lv
+BUFF
+current_Bl_TYPE: TO TC TI BD
+Nd[]
+  Lv
+  Bl[]
+Bl[]
+  TYPE: TO TC TI BD
 ================================================================
