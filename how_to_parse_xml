@@ -52,6 +52,8 @@ extra Bl: same as emp-tag
     '<' ~ '>' まで読み込む
     Blの先頭を読み、
       後端を読み、対応が適性になるまで次の'>'を読む、extraを優先処理
+    current_Lvの処理: tagがTOなら++1、tagがTCなら--1
+    tagがTOならLvをset
   body:
     '>'の次 ~ '<'の前まで読み込む
   Blを配列に収納
