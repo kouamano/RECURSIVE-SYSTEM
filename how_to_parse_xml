@@ -32,17 +32,18 @@ Nd1 1     2  *                             8  9
 Nd2          3      4     5     6  7
 Nd3                       
 
-extra Bl: same as emp-tag
+extra Bl(TI): same as emp-tag
   com:	'<!--'  	'-->'
   proc:	'<?'    	'?>'
   cd:	'<![CDATA['	']]>'
   ot:	'<!'    	'>'
+
 ---- ---- ----
 0. 用意するもの
   バッファ:BUFF
   ノード:Nd
   ブロック:Bl
-    種別: TO:オープンtag、TC:クローズtag、BD:body
+    種別: TO:オープンtag、TC:クローズtag、独立tag:TI、BD:body
   その他の属性値用変数
     種別(TAG系): in_TAG、op_TAG、cl_TAG、emp_TAG
     種別(NODE系): current_Lv、current_Nd
