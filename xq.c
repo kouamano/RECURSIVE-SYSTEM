@@ -3,15 +3,7 @@
 #include <string.h>
 #define LEN 1024
 
-struct options {
-	int help;
-	int stat;
-	int check;
-	char *file;
-	int buff;
-	int blocks;
-};
-
+/* help */
 void help(void){
 	printf("USAGE:\n");
 	printf(" xq [-h] [-s] [-c] if=<inputfile> buf=<buf-size> blocks=<blocks>.\n");
@@ -22,12 +14,19 @@ void help(void){
 	printf("  buf : buffer size.\n");
 	printf("  blocks : number of blocks.\n");
 }
-
 void status(void){
 	printf("STATUS:\n");
 	printf("  under construction.\n");
 }
-
+/* option */
+struct options {
+	int help;
+	int stat;
+	int check;
+	char *file;
+	int buff;
+	int blocks;
+};
 struct options *alloc_options(void){
 	struct options *p;
 	if((p = malloc(sizeof(struct options) * 1)) == NULL){
@@ -40,7 +39,6 @@ struct options *alloc_options(void){
 	}
 	return(p);
 }
-
 void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
@@ -49,7 +47,6 @@ void init_options(struct options *opt){
 	(*opt).buff = LEN;
 	(*opt).blocks = LEN;
 }
-
 void get_options(int optc, char **optv, struct options *opt){
 	int i = 0;
 	for(i=0;i<optc;i++){
@@ -68,13 +65,12 @@ void get_options(int optc, char **optv, struct options *opt){
 		}
 	}
 }
-
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	printf(" opt.file:%s:\n",(*opt).file);
 	printf(" opt.blocks:%d:\n",(*opt).blocks);
 }
-
+/* main */
 int main(int argc, char **argv){
 	struct options *opt;
 	int ie = 0;
