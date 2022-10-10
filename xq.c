@@ -82,6 +82,7 @@ int main(int argc, char **argv){
 	int ie = 0;
 	int if_open = 0;
 	FILE *IN = NULL;
+	struct Block *Bl = NULL;
 	/** initialize **/
 	opt = alloc_options();
 	init_options(opt);
@@ -105,6 +106,9 @@ int main(int argc, char **argv){
 	if(ie == 1){
 		exit(0);
 	}
+	/** create block **/
+	Bl = alloc_Block((*opt).blocks);
+	create_top_Nd(Bl);
 	/** input **/
 	if((IN = fopen((*opt).file,"r")) == NULL){
 		perror((*opt).file);
