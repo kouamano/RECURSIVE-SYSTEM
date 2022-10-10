@@ -42,9 +42,9 @@ extra Bl(TI): same as emp-tag
 処理の概要
 0. 用意するもの
   バッファ:BUFF
-  ノード:Nd
+  //ノード:Nd
   ブロック:Bl
-    種別: TO:オープンtag、TC:クローズtag、独立tag:TI、BD:body
+    種別: TO:オープンtag、TC:クローズtag、独立tag:TI、BD:body、ND:ノード
   その他の属性値用変数
     種別(TAG系): in_TAG、op_TAG、cl_TAG、emp_TAG
     種別(NODE系): current_Lv、current_Nd
@@ -58,9 +58,8 @@ extra Bl(TI): same as emp-tag
   body:
     '>'の次 ~ '<'の前まで読み込む
   Blを配列に収納
-  Blが開始タグなら新しくNdを生成、Ndを配列に収納、BlをNdに属させる
-    Blが開始タグでないなら既存のNdに属させる
-  Blが開始タグならLvをNdにset
+  Blが開始タグならTO属性とND属性を付与、Blを配列に収納
+    Blが開始タグでないなら対応する属性を付与
 
 ---- ---- ----
 変数
@@ -68,14 +67,12 @@ current_C
 current_Lv
 current_Nd
 BUFF
-current_Bl_TYPE: TO TC TI BD
-Nd[]
-  Lv
-  Bl as Bl_TO		#TYPE: TO
-  Bl[]			#TYPE: TC TI BD
+current_Bl_TYPE: TO TC TI BD ND
 Bl[]
-  TYPE: TO TC TI BD
+  TYPE: TO TC TI BD ND
+  Lv
   str
+  Bl[]
 
 ---- ---- ----
 コマンド引数
