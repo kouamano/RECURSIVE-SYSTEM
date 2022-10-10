@@ -73,11 +73,16 @@ void check_options(struct options *opt){
 }
 /* main */
 int main(int argc, char **argv){
+	/** vals **/
 	struct options *opt;
 	int ie = 0;
+	int if_open = 0;
+	FILE *IN = NULL;
+	/** initialize **/
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
+	/** arg processing **/
 	if(argc == 1){
 		(*opt).help = 1;
 	}
@@ -95,6 +100,17 @@ int main(int argc, char **argv){
 	}
 	if(ie == 1){
 		exit(0);
+	}
+	/** input **/
+	if((IN = fopen((*opt).file,"r")) == NULL){
+		perror((*opt).file);
+		exit(1);
+	}
+	if_open = 1;
+
+	/** finalize **/
+	if(if_open == 1){
+		fclose(IN);
 	}
 	return(0);
 }
