@@ -13,6 +13,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 	int current_Nd = start_Nd;
 	int current_Lv = start_Lv;
 	char *BUFF = NULL;
+	int BUFF_counter = 0;
 	if((BUFF = malloc(sizeof(char) * (*opt).blocks)) == NULL){
 		perror("malloc() for BUFF\n");
 		exit(1);
@@ -21,6 +22,16 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 	while((current_C = fgetc(IN))){
 		if(current_C == EOF){
 			break;
+		}else if(current_C == '<'){
+
+		}else if(current_C == '>'){
+
+		}else{
+			if(in_tag == 1){
+
+			}else{
+
+			}
 		}
 	}
 	return(0);
