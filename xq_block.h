@@ -1,11 +1,11 @@
-/* Block type
- 1	Node
- 2	open tag
- 4	close tag
- 8	independent tag
- 16	body
-*/
+/* Block type */
+int BType_Node = 1;
+int BType_oTag = 2;
+int BType_cTag = 4;
+int BType_iTag = 8;
+int BType_Body = 16;
 
+/* structure */
 struct Block {
 	int ser;
 	int Lv;
