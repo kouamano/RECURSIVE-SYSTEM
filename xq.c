@@ -71,6 +71,10 @@ void check_options(struct options *opt){
 	printf(" opt.buff:%d:\n",(*opt).buff);
 	printf(" opt.blocks:%d:\n",(*opt).blocks);
 }
+/* block operation */
+#include "./xq_block.h"
+/* read operation */
+#include "./xq_read.h"
 /* main */
 int main(int argc, char **argv){
 	/** vals **/
