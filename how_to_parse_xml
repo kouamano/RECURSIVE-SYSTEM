@@ -62,21 +62,20 @@ extra Bl(TI): same as emp-tag
 
 ---- ---- ----
 変数
-current_C
-current_Lv
-current_Nd
 BUFF
-current_Bl_TYPE: TO TC TI BD ND
+current_C: int
+current_Lv: int
+current_Nd: long int
+current_Bl_TYPE: long int : TO TC TI BD ND
 Bl[]
   TYPE: TO TC TI BD ND
   Lv
   str
-  Bl[]
+  next_Bl[]
 
 ---- ---- ----
 コマンド引数
 BUFFサイズ
-Nd数
 Bl数
 ファイル
 ================================================================
