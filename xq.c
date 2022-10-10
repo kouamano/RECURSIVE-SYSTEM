@@ -6,12 +6,12 @@
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" xq [-h] [-s] [-c] if=<inputfile> buf=<buf-size> blocks=<blocks>.\n");
+	printf(" xq [-h] [-s] [-c] if=<input file> buff=<buffer size> blocks=<blocks>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  inputfile : input file.\n");
-	printf("  buf : buffer size.\n");
+	printf("  buff : buffer size.\n");
 	printf("  blocks : number of blocks.\n");
 }
 void status(void){
@@ -58,8 +58,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).check = 1;
 		}else if(strncmp(optv[i],"if=",3) == 0){
 			sscanf(optv[i],"if=%s",(*opt).file);
-		}else if(strncmp(optv[i],"buf=",4) == 0){
-			sscanf(optv[i],"buf=%d",&(*opt).buff);
+		}else if(strncmp(optv[i],"buff=",5) == 0){
+			sscanf(optv[i],"buff=%d",&(*opt).buff);
 		}else if(strncmp(optv[i],"blocks=",7) == 0){
 			sscanf(optv[i],"blocks=%d",&(*opt).blocks);
 		}
@@ -68,6 +68,7 @@ void get_options(int optc, char **optv, struct options *opt){
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	printf(" opt.file:%s:\n",(*opt).file);
+	printf(" opt.buff:%d:\n",(*opt).buff);
 	printf(" opt.blocks:%d:\n",(*opt).blocks);
 }
 /* main */
