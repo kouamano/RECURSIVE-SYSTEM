@@ -15,7 +15,7 @@ struct Block {
 	int *next_Bl;
 };
 
-int set_Block_type(struct Block *Bl, int target_Bl){
+int set_Block_type(struct Block *Bl, int target_Bl, int type){
 	return(0);
 }
 
