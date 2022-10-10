@@ -115,6 +115,7 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	if_open = 1;
+	read_x(opt, IN, Bl, 0, 0, 0);
 
 	/** finalize **/
 	if(if_open == 1){
