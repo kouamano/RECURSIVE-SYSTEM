@@ -65,6 +65,7 @@ extra Bl(TI): same as emp-tag
 BUFF
 current_C: int
 current_Lv: int
+current_Bl: long int
 current_Nd: long int
 current_Bl_TYPE: long int : TO TC TI BD ND
 Bl[]
