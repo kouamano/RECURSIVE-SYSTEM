@@ -1,6 +1,7 @@
-void read_tag(int C, char *BUFF){
+void read_tag(int C){
+	putchar(C);
 }
-void read_body(int C, char *BUFF){
+void read_body(){
 }
 int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int start_Nd, int start_Lv){
 	int current_C = 0;
@@ -22,16 +23,14 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 	while((current_C = fgetc(IN))){
 		if(current_C == EOF){
 			break;
-		}else if(current_C == '<'){
-
+		}
+		if(current_C == '<'){
+			in_tag++;
 		}else if(current_C == '>'){
-
+			in_tag--;
+		}
+		if(in_tag == 1){
 		}else{
-			if(in_tag == 1){
-
-			}else{
-
-			}
 		}
 	}
 	return(0);
