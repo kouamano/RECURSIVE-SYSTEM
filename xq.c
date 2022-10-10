@@ -9,25 +9,23 @@ struct options {
 	int check;
 	char *file;
 	int buff;
-	int nodes;
 	int blocks;
 };
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" xq [-h] [-s] [-c] if=<inputfile> buf=<buf-size> node=<nodes> nlock=<blocks>.\n");
+	printf(" xq [-h] [-s] [-c] if=<inputfile> buf=<buf-size> blocks=<blocks>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  inputfile : input file.\n");
 	printf("  buf : buffer size.\n");
-	printf("  node : number of nodes.\n");
-	printf("  block : number of blocks.\n");
+	printf("  blocks : number of blocks.\n");
 }
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" under construction.\n");
+	printf("  under construction.\n");
 }
 
 struct options *alloc_options(void){
@@ -49,7 +47,6 @@ void init_options(struct options *opt){
 	(*opt).check = 0;
 	(*opt).file[0] = '\0';
 	(*opt).buff = LEN;
-	(*opt).nodes = LEN;
 	(*opt).blocks = LEN;
 }
 
@@ -66,10 +63,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"if=%s",(*opt).file);
 		}else if(strncmp(optv[i],"buf=",4) == 0){
 			sscanf(optv[i],"buf=%d",&(*opt).buff);
-		}else if(strncmp(optv[i],"nodes=",6) == 0){
-			sscanf(optv[i],"nodes=%d",&(*opt).nodes);
 		}else if(strncmp(optv[i],"blocks=",7) == 0){
-			sscanf(optv[i],"nodes=%d",&(*opt).blocks);
+			sscanf(optv[i],"blocks=%d",&(*opt).blocks);
 		}
 	}
 }
@@ -77,6 +72,7 @@ void get_options(int optc, char **optv, struct options *opt){
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
 	printf(" opt.file:%s:\n",(*opt).file);
+	printf(" opt.blocks:%d:\n",(*opt).blocks);
 }
 
 int main(int argc, char **argv){
