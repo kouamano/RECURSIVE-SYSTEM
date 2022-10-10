@@ -26,7 +26,8 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		}
 		if(current_C == '<'){
 			in_tag++;
-		}else if(current_C == '>'){
+		}
+		if(current_C == '>'){
 			in_tag--;
 		}
 		if(in_tag == 1){
