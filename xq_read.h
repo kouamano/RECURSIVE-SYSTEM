@@ -1,3 +1,7 @@
+void read_tag(int C, char *BUFF){
+}
+void read_body(int C, char *BUFF){
+}
 int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int start_Nd, int start_Lv){
 	int current_C = 0;
 	int in_tag = 0;
@@ -13,6 +17,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		perror("malloc() for BUFF\n");
 		exit(1);
 	}
+	BUFF[0] = '\0';
 	while((current_C = fgetc(IN))){
 		if(current_C == EOF){
 			break;
