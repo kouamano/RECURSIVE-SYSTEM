@@ -1,8 +1,8 @@
 int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int start_Nd, int start_Lv){
 	int current_C = 0;
 	int in_tag = 0;
-	int TO = 0;
-	int TC = 0;
+	int TS = 0;
+	int TE = 0;
 	int TI = 0;
 	int BD = 0;
 	int current_Bl = start_Bl;
