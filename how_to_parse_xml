@@ -43,9 +43,9 @@ extra Bl(TI): same as emp-tag
 0. 用意するもの
   バッファ:BUFF
   ブロック:Bl
-    種別: TO:オープンtag、TC:クローズtag、独立tag:TI、BD:body、ND:ノード
+    種別: TO:オープンtag、TC:クローズtag、TI:独立tag、BD:body、ND:ノード
   その他の属性値用変数
-    種別(TAG系): in_TAG、op_TAG、cl_TAG、emp_TAG
+    種別(TAG系): in_TAG、op_TAG、cl_TAG、i_TAG
     種別(NODE系): current_Lv、current_Nd
 1. 最上位ノードを生成
 2. Blの読み込み
