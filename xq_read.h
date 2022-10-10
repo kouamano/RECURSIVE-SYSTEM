@@ -9,7 +9,10 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 	int current_Nd = start_Nd;
 	int current_Lv = start_Lv;
 	char *BUFF = NULL;
-	printf("%d\n",(*opt).buff);
+	if((BUFF = malloc(sizeof(char) * (*opt).blocks)) == NULL){
+		perror("malloc() for BUFF\n");
+		exit(1);
+	}
 
 	return(0);
 }
