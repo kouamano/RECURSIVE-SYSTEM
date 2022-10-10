@@ -42,7 +42,6 @@ extra Bl(TI): same as emp-tag
 処理の概要
 0. 用意するもの
   バッファ:BUFF
-  //ノード:Nd
   ブロック:Bl
     種別: TO:オープンtag、TC:クローズtag、独立tag:TI、BD:body、ND:ノード
   その他の属性値用変数
@@ -58,8 +57,8 @@ extra Bl(TI): same as emp-tag
   body:
     '>'の次 ~ '<'の前まで読み込む
   Blを配列に収納
-  Blが開始タグならTO属性とND属性を付与、Blを配列に収納
-    Blが開始タグでないなら対応する属性を付与
+  Blに該当する属性を付与
+    Blが開始タグならさらにND属性を付与
 
 ---- ---- ----
 変数
