@@ -55,11 +55,11 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 				//タグ種別ごとに
 			//extendあり: 最後まで読み込む; in_tag = -1
 			//extendなし: in_tag = -1
-			//TS/TE/TIが決まる
 			in_tag = -1;	//とりあえず
 		}
 		if(in_tag == -1){
 			//if current_C == '>' && BUFF != 0 then create tag block 、タグ種別判定
+			//TS/TE/TIが決まる
 			if(current_C == '>'){
 				//tag Blのcreate
 				BUFF[BUFF_counter] = '\0';
