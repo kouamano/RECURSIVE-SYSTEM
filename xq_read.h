@@ -1,5 +1,6 @@
-void push_buff(int C, char *BUFF, int counter){
+void push_buff(struct options *opt, int C, char *BUFF, int counter){
 	//putchar(C);
+	//TODO: size check
 	BUFF[counter] = (char)C;
 
 }
@@ -24,7 +25,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		if(current_C == EOF){
 			break;
 		}
-		push_buff(current_C,BUFF,BUFF_counter);
+		push_buff(opt,current_C,BUFF,BUFF_counter);
 		BUFF_counter++;
 		if(current_C == '<'){
 			in_tag = 1;
