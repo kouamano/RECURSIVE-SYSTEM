@@ -34,13 +34,16 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		}
 		if(in_tag == 1){
 			if(current_C == '<'){
+				if(BUFF_counter < 2){
+				}else{
 				//bodyのcreate
 				//if current_C == '<' && BUFF != 0 then create body block
-				BUFF[BUFF_counter] = '\0';
+				BUFF[BUFF_counter - 1] = '\0';
 				printf("%s$\n",BUFF);
 				//BUFFクリア、BUFF_counter クリア
-				BUFF[0] = '\0';
-				BUFF_counter = 0;
+				BUFF[0] = '<';
+				BUFF_counter = 1;
+				}
 			}
 		}
 		if(in_tag == 0){
@@ -56,7 +59,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 				//tagのcreate
 				//if current_C == '>' && BUFF != 0 then create tag block 、タグ種別判定
 				BUFF[BUFF_counter] = '\0';
-				printf("%s",BUFF);
+				printf("%s#\n",BUFF);
 				BUFF[0] = '\0';
 				BUFF_counter = 0;
 					//if tag == TS then Lv++; node生成
