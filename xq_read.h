@@ -28,7 +28,9 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		push_buff(opt,current_C,BUFF,BUFF_counter);
 		BUFF_counter++;
 		if(current_C == '<'){
-			in_tag = 1;
+			if(in_tag == -1){
+				in_tag = 1;
+			}
 		}
 		if(current_C == '>'){
 			in_tag = 0;
