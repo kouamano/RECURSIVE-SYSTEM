@@ -74,4 +74,3 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 	}
 	return(0);
 }
-//TODO: BUFF_counterの扱い
