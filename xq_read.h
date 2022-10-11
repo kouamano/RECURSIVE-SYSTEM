@@ -34,6 +34,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		}
 		if(in_tag == 1){
 			if(current_C == '<'){
+			//bodyのcreate
 			//if current_C == '<' && BUFF != 0 then create body block
 			}
 		}
@@ -46,6 +47,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		}
 		if(in_tag == -1){
 			if(current_C == '>'){
+			//tagのcreate
 			//if current_C == '>' && BUFF != 0 then create tag block 、タグ種別判定
 				//if tag == TS then Lv++; node生成
 				//if tag == TE then Lv--;
