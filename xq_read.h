@@ -33,7 +33,9 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			in_tag = 0;
 		}
 		if(in_tag == 1){
+			if(current_C == '<'){
 			//if current_C == '<' && BUFF != 0 then create body block
+			}
 		}
 		if(in_tag == 0){
 			//extend check
@@ -43,10 +45,12 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			//TS/TE/TIが決まる
 		}
 		if(in_tag == -1){
+			if(current_C == '>'){
 			//if current_C == '>' && BUFF != 0 then create tag block 、タグ種別判定
 				//if tag == TS then Lv++; node生成
 				//if tag == TE then Lv--;
 			//TS/TE/TIをクリア
+			}
 		}
 	}
 	return(0);
