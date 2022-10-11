@@ -5,6 +5,16 @@ int BType_eTag = 4;
 int BType_iTag = 8;
 int BType_Body = 16;
 
+/* tag head */
+char THead_CDATA[] = "<![CDATA[";
+char TTail_CDATA[] = "]]>";
+char THead_comment[] = "<!--";
+char TTail_comment[] = "-->";
+char THead_proc[] = "<?";
+char TTail_proc[] = "?>";
+char THead_other[] = "<!";
+char TTail_other[] = "!>";
+
 /* structure */
 struct Block {
 	int ser;
@@ -26,6 +36,7 @@ struct Block *alloc_Block(int size){
 }
 
 int check_Block_type(char *BUFF){
+	return(0);
 }
 
 int set_Block_type(struct Block *Bl, int target_Bl, int type){
