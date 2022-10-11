@@ -43,7 +43,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 				}else{
 					//bodyのcreate
 					BUFF[BUFF_counter - 1] = '\0';
-					printf("%s$\n",BUFF);	//createの代わり
+					printf("%s$:Lv%d\n",BUFF,current_Lv);	//createの代わり
 					//BUFFクリア、BUFF_counter クリア
 					BUFF[0] = '<';
 					BUFF_counter = 1;
@@ -63,12 +63,13 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			if(current_C == '>'){
 				//tag Blのcreate
 				BUFF[BUFF_counter] = '\0';
-				printf("%s#\n",BUFF);	//createの代わり
+				printf("%s#:Lv%d\n",BUFF,current_Lv);	//createの代わり
 				//BUFFクリア、BUFF_counterクリア
 				BUFF[0] = '\0';
 				BUFF_counter = 0;
 				//if tag == TS then Lv++; node生成
 				//if tag == TE then Lv--;
+				//TS/TE/TIをBlにset
 				//TS/TE/TIをクリア
 			}
 		}
