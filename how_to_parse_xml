@@ -33,10 +33,10 @@ Nd2          3      4     5     6  7
 Nd3                       
 
 extra Bl(TI): same as emp-tag
-  com:	'<!--'  	'-->'
-  proc:	'<?'    	'?>'
-  cd:	'<![CDATA['	']]>'
-  ot:	'<!'    	'>'
+  cd:	'<![CDATA['	']]>'	:extend
+  com:	'<!--'  	'-->'	:extend
+  proc:	'<?'    	'?>'	:extend
+  ot:	'<!'    	'>'	:no extend
 
 ---- ---- ----
 処理の概要
