@@ -39,8 +39,23 @@ struct Block *alloc_Block(int size){
 	return(p);
 }
 
-int check_Block_type(char *BUFF){
-	return(0);
+int check_Block_type(char *BUFF, int *type){
+	int ext = 0;
+	//CDATA
+	if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
+		*type = BType_iTag;
+		ext = 1;
+	}else
+	//comment
+	if(1){
+	}
+	//proc
+	//other
+	//normal-start
+	//normal-end
+	//body
+	
+	return(ext);
 }
 
 int set_Block_type(struct Block *Bl, int target_Bl, int type){
