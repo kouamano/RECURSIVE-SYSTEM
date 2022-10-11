@@ -15,6 +15,7 @@ struct Block {
 	int *next_Bl;
 };
 
+/* functions */
 struct Block *alloc_Block(int size){
 	struct Block *p;
 	if((p = malloc(sizeof(struct Block) * size)) == NULL){
@@ -22,6 +23,9 @@ struct Block *alloc_Block(int size){
 		exit(1);
 	}
 	return(p);
+}
+
+int check_Block_type(char *BUFF){
 }
 
 int set_Block_type(struct Block *Bl, int target_Bl, int type){
