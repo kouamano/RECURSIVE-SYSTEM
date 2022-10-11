@@ -34,16 +34,17 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			in_tag = 0;
 		}
 		if(in_tag == 1){
+			//if current_C == '<' && BUFF != 0 then create body block
 			if(current_C == '<'){
 				if(BUFF_counter < 2){
+					;
 				}else{
-				//bodyのcreate
-				//if current_C == '<' && BUFF != 0 then create body block
-				BUFF[BUFF_counter - 1] = '\0';
-				printf("%s$\n",BUFF);
-				//BUFFクリア、BUFF_counter クリア
-				BUFF[0] = '<';
-				BUFF_counter = 1;
+					//bodyのcreate
+					BUFF[BUFF_counter - 1] = '\0';
+					printf("%s$\n",BUFF);	//createの代わり
+					//BUFFクリア、BUFF_counter クリア
+					BUFF[0] = '<';
+					BUFF_counter = 1;
 				}
 			}
 		}
@@ -53,20 +54,20 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			//extendあり: 最後まで読み込む; in_tag = -1
 			//extendなし: in_tag = -1
 			//TS/TE/TIが決まる
-			in_tag = -1;
+			in_tag = -1;	//とりあえず
 		}
 		if(in_tag == -1){
+			//if current_C == '>' && BUFF != 0 then create tag block 、タグ種別判定
 			if(current_C == '>'){
-				//tagのcreate
-				//if current_C == '>' && BUFF != 0 then create tag block 、タグ種別判定
+				//tag Blのcreate
 				BUFF[BUFF_counter] = '\0';
-				printf("%s#\n",BUFF);
+				printf("%s#\n",BUFF);	//createの代わり
+				//BUFFクリア、BUFF_counterクリア
 				BUFF[0] = '\0';
 				BUFF_counter = 0;
-					//if tag == TS then Lv++; node生成
-					//if tag == TE then Lv--;
+				//if tag == TS then Lv++; node生成
+				//if tag == TE then Lv--;
 				//TS/TE/TIをクリア
-				//BUFFクリア、BUFF_counterクリア
 			}
 		}
 		//push_buff(current_C,BUFF,BUFF_counter);
