@@ -38,13 +38,15 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		if(in_tag == 0){
 			//extend check
 				//タグ種別ごとに
-			//extendあり: 最後まで読み込む
+			//extendあり: 最後まで読み込む; in_tag = -1
 			//extendなし: in_tag = -1
+			//TS/TE/TIが決まる
 		}
 		if(in_tag == -1){
 			//if current_C == '>' && BUFF != 0 then create tag block 、タグ種別判定
 				//if tag == TS then Lv++; node生成
 				//if tag == TE then Lv--;
+			//TS/TE/TIをクリア
 		}
 	}
 	return(0);
