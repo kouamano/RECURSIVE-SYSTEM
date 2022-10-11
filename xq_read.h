@@ -1,5 +1,7 @@
-void push_buff(int C, char *BUFF){
-	putchar(C);
+void push_buff(int C, char *BUFF, int counter){
+	//putchar(C);
+	BUFF[counter] = (char)C;
+
 }
 int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int start_Nd, int start_Lv){
 	int current_C = 0;
@@ -22,7 +24,8 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		if(current_C == EOF){
 			break;
 		}
-		push_buff(current_C,BUFF);
+		push_buff(current_C,BUFF,BUFF_counter);
+		BUFF_counter++;
 		if(current_C == '<'){
 			in_tag = 1;
 		}
@@ -44,3 +47,4 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 	}
 	return(0);
 }
+//TODO: BUFF_counterの扱い
