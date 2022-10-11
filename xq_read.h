@@ -11,6 +11,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 	int TE = 0;
 	int TI = 0;
 	int BD = 0;
+	int current_BlType = 0;
 	int current_Bl = start_Bl;
 	int current_Nd = start_Nd;
 	int current_Lv = start_Lv;
@@ -52,10 +53,11 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		}
 		if(in_tag == 0){
 			//extend check
+			in_tag = check_Block_type(BUFF,&current_BlType);	//創り中関数
 				//タグ種別ごとに
 			//extendあり: 最後まで読み込む; in_tag = -1
 			//extendなし: in_tag = -1
-			in_tag = -1;	//とりあえず
+			//in_tag = -1;	//とりあえず
 		}
 		if(in_tag == -1){
 			//if current_C == '>' && BUFF != 0 then create tag block 、タグ種別判定

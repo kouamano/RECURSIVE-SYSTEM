@@ -40,21 +40,22 @@ struct Block *alloc_Block(int size){
 }
 
 int check_Block_type(char *BUFF, int *type){
-	int ext = 0;
+	int ext = -1;
 	//CDATA
 	if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
 		*type = BType_iTag;
-		ext = 1;
+		ext = 0;
 	}else
 	//comment
-	if(1){
+	if(strncmp(BUFF,THead_comment,strlen(THead_comment)) == 0){
+		*type = BType_iTag;
+		ext = 0;
 	}
 	//proc
 	//other
 	//normal-start
 	//normal-end
 	//body
-	
 	return(ext);
 }
 
