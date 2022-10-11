@@ -61,6 +61,8 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			//if current_C == '>' && BUFF != 0 then create tag block 、タグ種別判定
 			//TS/TE/TIが決まる
 			if(current_C == '>'){
+				//TS/TE/TIを判定
+				//TS/TE/TIをBlにset
 				//tag Blのcreate
 				BUFF[BUFF_counter] = '\0';
 				printf("%s#:Lv%d\n",BUFF,current_Lv);	//createの代わり
@@ -69,7 +71,6 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 				BUFF_counter = 0;
 				//if tag == TS then Lv++; node生成
 				//if tag == TE then Lv--;
-				//TS/TE/TIをBlにset
 				//TS/TE/TIをクリア
 			}
 		}
