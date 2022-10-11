@@ -1,7 +1,7 @@
 /* Block type */
 int BType_Node = 1;
-int BType_oTag = 2;
-int BType_cTag = 4;
+int BType_sTag = 2;
+int BType_eTag = 4;
 int BType_iTag = 8;
 int BType_Body = 16;
 
