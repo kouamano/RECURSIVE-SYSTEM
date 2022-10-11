@@ -22,6 +22,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		if(current_C == EOF){
 			break;
 		}
+		push_buff(current_C,BUFF);
 		if(current_C == '<'){
 			in_tag = 1;
 		}
@@ -29,10 +30,16 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			in_tag = 0;
 		}
 		if(in_tag == 1){
+			//if current_C == '<' && BUFF != 0 then create body block
 		}
 		if(in_tag == 0){
+			//extend check
+				//タグ種別ごとに
+			//extendあり: 最後まで読み込む
+			//extendなし: in_tag = -1
 		}
 		if(in_tag == -1){
+			//if current_C == '>' && BUFF != 0 then create tag block
 		}
 	}
 	return(0);
