@@ -1,7 +1,5 @@
-void read_tag(int C){
+void push_buff(int C, char *BUFF){
 	putchar(C);
-}
-void read_body(){
 }
 int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int start_Nd, int start_Lv){
 	int current_C = 0;
