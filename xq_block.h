@@ -40,17 +40,20 @@ struct Block *alloc_Block(int size){
 }
 
 int check_Block_type(char *BUFF, int *type){
-	int ext = -1;
+	int ext = 0;
 	//CDATA
-	if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
+		printf("%s\n",BUFF+strlen(BUFF)-strlen(TTail_CDATA));
+	if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0 && strncmp(BUFF+strlen(BUFF)-strlen(TTail_CDATA),TTail_CDATA,strlen(TTail_CDATA)) == 0){
 		*type = BType_iTag;
-		ext = 0;
-	}else
+		ext = -1;
+	}
 	//comment
-	if(strncmp(BUFF,THead_comment,strlen(THead_comment)) == 0){
+	/*
+	else if(strncmp(BUFF,THead_comment,strlen(THead_comment)) == 0){
 		*type = BType_iTag;
 		ext = 0;
 	}
+	*/
 	//proc
 	//other
 	//normal-start
