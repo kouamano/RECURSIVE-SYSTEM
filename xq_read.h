@@ -24,6 +24,8 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 	BUFF[0] = '\0';
 	while((current_C = fgetc(IN))){
 		if(current_C == EOF){
+			BUFF[BUFF_counter] = '\0';
+			printf("%s",BUFF);
 			break;
 		}
 		push_buff(opt,current_C,BUFF,BUFF_counter);
@@ -52,13 +54,15 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			}
 		}
 		if(in_tag == 0){
-			//extend check
-			//in_tag = check_Block_type(BUFF,&current_BlType);	//創り中関数、うまくいかない
-			//printf("%d",in_tag);
-				//タグ種別ごとに
-			//extendあり: 最後まで読み込む; in_tag = -1
-			//extendなし: in_tag = -1
-			in_tag = -1;	//とりあえず
+			if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
+				//printf("HOGE");
+				if(strncmp(BUFF+strlen(BUFF)-strlen(TTail_CDATA),TTail_CDATA,strlen(TTail_CDATA)) == 0){
+					//printf("hoge");
+					in_tag = -1;
+				}
+			}else{
+				in_tag = 1;
+			}
 		}
 		if(in_tag == -1){
 			//if current_C == '>' && BUFF != 0 then create tag block 、タグ種別判定
