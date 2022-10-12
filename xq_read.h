@@ -73,6 +73,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 				//if tag == TS then Lv++; node生成
 				//if tag == TE then Lv--;
 				//TS/TE/TIをクリア
+				in_tag = 1;
 			}
 		}
 		//push_buff(current_C,BUFF,BUFF_counter);
