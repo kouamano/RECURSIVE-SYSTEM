@@ -19,8 +19,8 @@ BFT <head>   <head2>      <aaa/>   </head2>   </head>
 BFB       xxx       xxxxxx      xxx        xxx       
 T   <a  d>   <h   2>      <a  />   </    2>   </   d>
 typ op       op           emp      cl         cl
-TO  1        1            0        0          0
-TC       0         0           0          1         1
+TS  1        1            0        0          0
+TE       0         0           0          1         1
 Lv 011111111122222222222222222222222222222211111111110
 S0 v                                                 ^
 S1  v                                               ^ 
