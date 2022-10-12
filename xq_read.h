@@ -58,7 +58,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		}
 		if(in_tag == 0){
 			//ext_cont = check_extend(BUFF,&in_tag,&in_cdata);
-			check_extend(BUFF,&in_tag,&in_cdata);
+			check_extend(BUFF,&in_tag,&in_cdata,BUFF_counter);
 			//in_tag = -1;
 		}
 		if(in_tag == -1){
