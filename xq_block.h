@@ -39,19 +39,32 @@ struct Block *alloc_Block(int size){
 	return(p);
 }
 
-int check_Block_type(char *BUFF, int *type){
-	int ext = 0;
+int check_Block_type(char *BUFF, int *type, const int ext){
+	int head_match;
+	int tail_match;
+	int ext_out = ext;
+	head_match = strncmp(BUFF,THead_CDATA,strlen(THead_CDATA));
+	tail_match = strncmp(BUFF+strlen(BUFF)-strlen(TTail_CDATA),TTail_CDATA,strlen(TTail_CDATA));
 	//CDATA
-		printf("%s\n",BUFF+strlen(BUFF)-strlen(TTail_CDATA));
-	if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0 && strncmp(BUFF+strlen(BUFF)-strlen(TTail_CDATA),TTail_CDATA,strlen(TTail_CDATA)) == 0){
+	/*
+	printf("{{{\n");
+	printf(":%s:",BUFF);
+	printf(":%s:",THead_CDATA);
+	printf(":%s:",BUFF+strlen(BUFF)-strlen(TTail_CDATA));
+	printf(":%s:",TTail_CDATA);
+	printf(":%d,%d:\n",head_match,tail_match);
+	printf("}}}\n");
+	*/
+	if(head_match == 0 && tail_match == 0){
 		*type = BType_iTag;
-		ext = -1;
+		ext_out = -1;
+		printf("ext_out:%d:",ext_out);
 	}
 	//comment
 	/*
 	else if(strncmp(BUFF,THead_comment,strlen(THead_comment)) == 0){
 		*type = BType_iTag;
-		ext = 0;
+		ext_out = 0;
 	}
 	*/
 	//proc
@@ -59,7 +72,8 @@ int check_Block_type(char *BUFF, int *type){
 	//normal-start
 	//normal-end
 	//body
-	return(ext);
+	//return(-1);
+	return(ext_out);
 }
 
 int set_Block_type(struct Block *Bl, int target_Bl, int type){
