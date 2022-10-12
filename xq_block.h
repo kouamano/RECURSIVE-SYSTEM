@@ -48,6 +48,7 @@ int check_extend(char *BUFF, int *tag, int *in_cdata){
 		}else{
 			*tag = 0;
 			cont = 1;
+			*in_cdata = 1;
 		}
 		*in_cdata = 1;
 	}else{
