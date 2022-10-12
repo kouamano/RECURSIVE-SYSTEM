@@ -6,7 +6,6 @@ void push_buff(struct options *opt, int C, char *BUFF, int counter){
 }
 int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int start_Nd, int start_Lv){
 	int current_C = 0;
-	int in_tag = 0;
 	int TS = 0;
 	int TE = 0;
 	int TI = 0;
@@ -22,6 +21,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		exit(1);
 	}
 	BUFF[0] = '\0';
+	int in_tag = 0;
 	int ext_cont = 0;
 	while((current_C = fgetc(IN))){
 		if(current_C == EOF){
@@ -35,6 +35,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			printf("{<@tag:%d:cont:%d}",in_tag,ext_cont);
 		}
 		if(current_C == '>'){
+			printf("{<@tag:%d:cont:%d}",in_tag,ext_cont);
 			in_tag = 0;
 		}
 		if(in_tag == 1){
@@ -73,6 +74,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 				//TS/TE/TIをクリア
 				in_tag = 1;
 			}
+			ext_cont = 0;
 		}
 		//push_buff(current_C,BUFF,BUFF_counter);
 		//BUFF_counter++;
