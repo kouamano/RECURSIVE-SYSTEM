@@ -23,7 +23,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 	}
 	BUFF[0] = '\0';
 	int in_tag = 0;
-	int ext_cont = 0;
+	//int ext_cont = 0;
 	while((current_C = fgetc(IN))){
 		if(current_C == EOF){
 			BUFF[BUFF_counter] = '\0';
@@ -34,11 +34,11 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		BUFF_counter++;
 		if(current_C == '<'){
 			in_tag = 1;
-			printf("{<@tag:%d:cont:%d}",in_tag,ext_cont);
+			printf("{<@tag:%d:}",in_tag);
 		}
 		if(current_C == '>'){
 			in_tag = 0;
-			printf("{<@tag:%d:cont:%d}",in_tag,ext_cont);
+			printf("{<@tag:%d:}",in_tag);
 		}
 		if(in_tag == 1){
 			//BODYのprint
@@ -57,7 +57,8 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			}
 		}
 		if(in_tag == 0){
-			ext_cont = check_extend(BUFF,&in_tag,&in_cdata);
+			//ext_cont = check_extend(BUFF,&in_tag,&in_cdata);
+			check_extend(BUFF,&in_tag,&in_cdata);
 			//in_tag = -1;
 		}
 		if(in_tag == -1){
@@ -78,7 +79,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 				//TS/TE/TIをクリア
 				in_tag = 1;
 			}
-			ext_cont = 0;
+			//ext_cont = 0;
 		}
 		//push_buff(current_C,BUFF,BUFF_counter);
 		//BUFF_counter++;
