@@ -33,12 +33,12 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		push_buff(opt,current_C,BUFF,BUFF_counter);
 		BUFF_counter++;
 		if(current_C == '<'){
-			printf("{<@tag:%d:cont:%d}",in_tag,ext_cont);
 			in_tag = 1;
+			printf("{<@tag:%d:cont:%d}",in_tag,ext_cont);
 		}
 		if(current_C == '>'){
-			printf("{<@tag:%d:cont:%d}",in_tag,ext_cont);
 			in_tag = 0;
+			printf("{<@tag:%d:cont:%d}",in_tag,ext_cont);
 		}
 		if(in_tag == 1){
 			//BODYのprint
