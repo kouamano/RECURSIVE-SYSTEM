@@ -40,22 +40,17 @@ struct Block *alloc_Block(int size){
 }
 
 void check_extend(char *BUFF, int *tag, int *in_cdata){
-	//int cont = 0;
 	if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
 		if(strncmp(BUFF+strlen(BUFF)-strlen(TTail_CDATA),TTail_CDATA,strlen(TTail_CDATA)) == 0){
+			printf("HOGE");
 			*tag = -1;
-			//cont = 0;
 		}else{
 			*tag = 0;
-			//cont = 1;
 			*in_cdata = 1;
 		}
-		*in_cdata = 1;
 	}else{
 			*tag = -1;
-			//cont = 1;
 	}
-	//return(cont);
 }
 
 int check_Block_type(char *BUFF, int *type){
