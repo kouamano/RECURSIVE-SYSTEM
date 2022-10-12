@@ -33,7 +33,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		BUFF_counter++;
 		if(current_C == '<'){
 			if(in_tag == -1){
-				in_tag = 1;
+				//in_tag = 1;
 			}
 		}
 		if(current_C == '>'){
