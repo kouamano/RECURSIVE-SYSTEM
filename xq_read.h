@@ -11,7 +11,6 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 	int TE = 0;
 	int TI = 0;
 	int BD = 0;
-	int ext_cont = 0;
 	int current_BlType = 0;
 	int current_Bl = start_Bl;
 	int current_Nd = start_Nd;
@@ -23,6 +22,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		exit(1);
 	}
 	BUFF[0] = '\0';
+	int ext_cont = 0;
 	while((current_C = fgetc(IN))){
 		if(current_C == EOF){
 			BUFF[BUFF_counter] = '\0';
@@ -32,9 +32,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		push_buff(opt,current_C,BUFF,BUFF_counter);
 		BUFF_counter++;
 		if(current_C == '<'){
-			if(in_tag == -1){
-				//in_tag = 1;
-			}
+			printf("{<@tag:%d:cont:%d}",in_tag,ext_cont);
 		}
 		if(current_C == '>'){
 			in_tag = 0;
@@ -55,7 +53,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			}
 		}
 		if(in_tag == 0){
-			check_extend(BUFF,&in_tag);
+			ext_cont = check_extend(BUFF,&in_tag);
 			//in_tag = -1;
 		}
 		if(in_tag == -1){

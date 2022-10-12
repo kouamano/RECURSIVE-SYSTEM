@@ -44,6 +44,7 @@ int check_extend(char *BUFF, int *tag){
 	if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
 		if(strncmp(BUFF+strlen(BUFF)-strlen(TTail_CDATA),TTail_CDATA,strlen(TTail_CDATA)) == 0){
 			*tag = -1;
+			cont = 0;
 		}else{
 			*tag = 0;
 			cont = 1;
