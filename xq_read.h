@@ -14,6 +14,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 	int current_Bl = start_Bl;
 	int current_Nd = start_Nd;
 	int current_Lv = start_Lv;
+	int in_cdata = 0;
 	char *BUFF = NULL;
 	int BUFF_counter = 0;
 	if((BUFF = malloc(sizeof(char) * (*opt).blocks)) == NULL){
@@ -56,7 +57,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			}
 		}
 		if(in_tag == 0){
-			ext_cont = check_extend(BUFF,&in_tag);
+			ext_cont = check_extend(BUFF,&in_tag,&in_cdata);
 			//in_tag = -1;
 		}
 		if(in_tag == -1){
