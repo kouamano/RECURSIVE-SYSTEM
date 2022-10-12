@@ -39,10 +39,10 @@ struct Block *alloc_Block(int size){
 	return(p);
 }
 
-int check_Block_type(char *BUFF, int *type, const int ext){
+int check_Block_type(char *BUFF, int *type){
 	int head_match;
 	int tail_match;
-	int ext_out = ext;
+	int ext_out = 1;
 	head_match = strncmp(BUFF,THead_CDATA,strlen(THead_CDATA));
 	tail_match = strncmp(BUFF+strlen(BUFF)-strlen(TTail_CDATA),TTail_CDATA,strlen(TTail_CDATA));
 	//CDATA
