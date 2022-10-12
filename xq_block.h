@@ -39,16 +39,16 @@ struct Block *alloc_Block(int size){
 	return(p);
 }
 
-int check_extend(char *BUFF, int *cont){
+int check_extend(char *BUFF, int *tag){
 	int ext = 0;
 	if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
 		if(strncmp(BUFF+strlen(BUFF)-strlen(TTail_CDATA),TTail_CDATA,strlen(TTail_CDATA)) == 0){
-			ext = -1;
+			*tag = -1;
 		}else{
-			ext = 0;
+			*tag = 0;
 		}
 	}else{
-			ext = -1;
+			*tag = -1;
 	}
 	return(ext);
 }
