@@ -11,6 +11,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 	int TE = 0;
 	int TI = 0;
 	int BD = 0;
+	int ext_cont = 0;
 	int current_BlType = 0;
 	int current_Bl = start_Bl;
 	int current_Nd = start_Nd;
@@ -54,7 +55,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			}
 		}
 		if(in_tag == 0){
-			in_tag = check_extend(BUFF);
+			in_tag = check_extend(BUFF,&ext_cont);
 			//in_tag = -1;
 		}
 		if(in_tag == -1){
