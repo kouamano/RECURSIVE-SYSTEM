@@ -33,12 +33,14 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		BUFF_counter++;
 		if(current_C == '<'){
 			printf("{<@tag:%d:cont:%d}",in_tag,ext_cont);
+			in_tag = 1;
 		}
 		if(current_C == '>'){
 			printf("{<@tag:%d:cont:%d}",in_tag,ext_cont);
 			in_tag = 0;
 		}
 		if(in_tag == 1){
+			//BODYのprint
 			//if current_C == '<' && BUFF != 0 then create body block
 			if(current_C == '<'){
 				if(BUFF_counter < 2){
@@ -58,6 +60,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			//in_tag = -1;
 		}
 		if(in_tag == -1){
+			//TAGのprint
 			//if current_C == '>' && BUFF != 0 then create tag block 、タグ種別判定
 			//TS/TE/TIが決まる
 			if(current_C == '>'){
