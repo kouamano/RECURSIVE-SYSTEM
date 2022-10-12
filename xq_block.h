@@ -45,7 +45,7 @@ int check_extend(char *BUFF, int *cont){
 		if(strncmp(BUFF+strlen(BUFF)-strlen(TTail_CDATA),TTail_CDATA,strlen(TTail_CDATA)) == 0){
 			ext = -1;
 		}else{
-			ext = 1;
+			ext = 0;
 		}
 	}else{
 			ext = -1;

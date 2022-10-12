@@ -47,7 +47,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 				}else{
 					//bodyのcreate
 					BUFF[BUFF_counter - 1] = '\0';
-					printf("%s$:Lv%d\n",BUFF,current_Lv);	//createの代わり
+					printf("%s$:Lv%d:tag%d\n",BUFF,current_Lv,in_tag);	//createの代わり
 					//BUFFクリア、BUFF_counter クリア
 					BUFF[0] = '<';
 					BUFF_counter = 1;
@@ -66,7 +66,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 				//TS/TE/TIをBlにset
 				//tag Blのcreate
 				BUFF[BUFF_counter] = '\0';
-				printf("%s#:Lv%d\n",BUFF,current_Lv);	//createの代わり
+				printf("%s#:Lv%d:tag%d\n",BUFF,current_Lv,in_tag);	//createの代わり
 				//BUFFクリア、BUFF_counterクリア
 				BUFF[0] = '\0';
 				BUFF_counter = 0;
