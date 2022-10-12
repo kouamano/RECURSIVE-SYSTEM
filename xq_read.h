@@ -54,6 +54,8 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			}
 		}
 		if(in_tag == 0){
+			in_tag = check_extend(BUFF);
+			/*
 			if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
 				//printf("HOGE");
 				if(strncmp(BUFF+strlen(BUFF)-strlen(TTail_CDATA),TTail_CDATA,strlen(TTail_CDATA)) == 0){
@@ -63,6 +65,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			}else{
 				in_tag = 1;
 			}
+			*/
 		}
 		if(in_tag == -1){
 			//if current_C == '>' && BUFF != 0 then create tag block 、タグ種別判定
