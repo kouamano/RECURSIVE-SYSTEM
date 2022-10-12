@@ -39,6 +39,18 @@ struct Block *alloc_Block(int size){
 	return(p);
 }
 
+int check_extend(char *BUFF){
+	int ext = 1;
+	if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
+		if(strncmp(BUFF+strlen(BUFF)-strlen(TTail_CDATA),TTail_CDATA,strlen(TTail_CDATA)) == 0){
+			ext = -1;
+			}
+		}else{
+			ext = 1;
+	}
+	return(ext);
+}
+
 int check_Block_type(char *BUFF, int *type){
 	int head_match;
 	int tail_match;
