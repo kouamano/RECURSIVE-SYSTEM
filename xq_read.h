@@ -33,11 +33,13 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		push_buff(opt,current_C,BUFF,BUFF_counter);
 		BUFF_counter++;
 		if(current_C == '<'){
+			//'<'はタグにのみ含まれるので問答無用で以下
 			in_tag = 1;
 			printf("{<@tag:%d:}",in_tag);
 		}
 		if(current_C == '>'){
 			in_tag = 0;
+			//'>'はCDATAタグに含まれる可能性があるので判定が必要
 			printf("{<@tag:%d:}",in_tag);
 		}
 		if(in_tag == 1){
@@ -57,15 +59,13 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			}
 		}
 		if(in_tag == 0){
-			//ext_cont = check_extend(BUFF,&in_tag,&in_cdata);
-			check_extend(BUFF,&in_tag,&in_cdata,BUFF_counter);
-			//in_tag = -1;
+			//check_extend(BUFF,&in_tag,&in_cdata,BUFF_counter);	再検討
 		}
 		if(in_tag == -1){
 			//TAGのprint
 			//if current_C == '>' && BUFF != 0 then create tag block 、タグ種別判定
 			//TS/TE/TIが決まる
-			if(current_C == '>'){
+			if(current_C == '>'){ //CDATAの途中ではprintしない
 				//TS/TE/TIを判定
 				//TS/TE/TIをBlにset
 				//tag Blのcreate
