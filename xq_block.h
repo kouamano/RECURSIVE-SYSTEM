@@ -109,7 +109,9 @@ int check_Block_type(char *BUFF, const int current){
 	//else if(0){
 	if(strncmp(BUFF,THead_end,strlen(THead_end)) == 0 && strncmp(BUFF,TTail_end,strlen(TTail_end))){
 		//TODO
-
+		if((out&BType_eTag) != BType_eTag){
+			out = BType_eTag;
+		}
 	}
 	//start tag
 	if(strncmp(BUFF,THead_start,strlen(THead_start)) == 0 && strncmp(BUFF,TTail_start,strlen(TTail_start))){
