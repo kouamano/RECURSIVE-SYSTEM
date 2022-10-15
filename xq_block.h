@@ -7,16 +7,12 @@ int BType_Body = 16;
 
 /* tag head and tail */
 char THead_CDATA[] = "<![CDATA[";
-//int Textend_CDATA = 1;
 char TTail_CDATA[] = "]]>";
 char THead_comment[] = "<!--";
-//int Textend_comment = 1;
 char TTail_comment[] = "-->";
 char THead_proc[] = "<?";
-//int Textend_proc = 1;
 char TTail_proc[] = "?>";
 char THead_other[] = "<!";
-//int Textend_other = 1;
 char TTail_other[] = "!>";
 char THead_start[] = "<";
 char TTail_start[] = ">";
