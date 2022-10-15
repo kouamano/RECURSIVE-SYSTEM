@@ -75,7 +75,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 					BUFF[BUFF_counter - 1] = '\0';
 					/* create Bl */
 					current_BlType = check_Block_type(BUFF,current_BlType);
-					printf("%s$(Bl%d:Ty%d:Lv%d)\n",BUFF,current_Bl,current_BlType,current_Lv);	//createの代わり
+					printf("%s$(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
 					//BUFFクリア、BUFF_counter クリア
 					BUFF[0] = '<';
 					BUFF_counter = 1;
@@ -91,10 +91,11 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 				/* create Bl */
 				current_BlType = check_Block_type(BUFF,current_BlType);
 
-				printf("%s#(Bl%d:Ty%d:Lv%d)\n",BUFF,current_Bl,current_BlType,current_Lv);	//createの代わり
+				printf("%s#(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
 				//current_LvをセットしたのちにLv up
 				if((current_BlType&BType_sTag) == BType_sTag){
 					current_Lv++;
+					current_PNd = current_Bl;
 				}
 				if((current_BlType&BType_eTag) == BType_eTag){
 					current_Lv--;
