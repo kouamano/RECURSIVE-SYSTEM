@@ -89,13 +89,10 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 				BUFF[BUFF_counter] = '\0';
 				/* create Bl */
 				current_BlType = check_Block_type(BUFF,current_BlType);
-				printf("%s#(Bl%d:Ty%d)\n",BUFF,current_Bl,current_BlType);	//createの代わり
+				printf("%s#(Bl%d:Ty%d:Lv%d)\n",BUFF,current_Bl,current_BlType,current_Lv);	//createの代わり
 				//BUFFクリア、BUFF_counterクリア
 				BUFF[0] = '\0';
 				BUFF_counter = 0;
-				//TS/TE/TI判定
-				//if tag == TS then Lv++; node生成
-				//if tag == TE then Lv--;
 				in_tag = 1;
 			}
 		}
