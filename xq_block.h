@@ -59,12 +59,8 @@ int end_cdata(char *BUFF, const int counter, int in_cdata){
 	return(end);
 }
 
-int check_Block_type(char *BUFF, int *type){
-	int head_match;
-	int tail_match;
-	int ext_out = 1;
-	head_match = strncmp(BUFF,THead_CDATA,strlen(THead_CDATA));
-	tail_match = strncmp(BUFF+strlen(BUFF)-strlen(TTail_CDATA),TTail_CDATA,strlen(TTail_CDATA));
+int check_Block_type(char *BUFF){
+	int out = 0;
 	//CDATA
 	/*
 	printf("{{{\n");
@@ -75,25 +71,12 @@ int check_Block_type(char *BUFF, int *type){
 	printf(":%d,%d:\n",head_match,tail_match);
 	printf("}}}\n");
 	*/
-	if(head_match == 0 && tail_match == 0){
-		*type = BType_iTag;
-		ext_out = -1;
-		printf("ext_out:%d:",ext_out);
-	}
-	//comment
-	/*
-	else if(strncmp(BUFF,THead_comment,strlen(THead_comment)) == 0){
-		*type = BType_iTag;
-		ext_out = 0;
-	}
-	*/
 	//proc
 	//other
 	//normal-start
 	//normal-end
 	//body
-	//return(-1);
-	return(ext_out);
+	return(out);
 }
 
 int set_Block_type(struct Block *Bl, int target_Bl, int type){
