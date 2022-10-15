@@ -34,16 +34,17 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		BUFF_counter++;
 		if(current_C == '<'){
 			//'<'はタグにのみ含まれるので問答無用で以下
+			in_tag = 1;
 			//CDATAセクションは開始か
 			start_CDATA = start_cdata(BUFF,BUFF_counter,in_cdata);
 			in_cdata = start_CDATA;
 
 			printf("{<@tag:%d:}",in_tag);
-			in_tag = 1;
 		}
 		if(current_C == '>'){
 			//'>'はCDATAタグに含まれる可能性があるので判定が必要
-			//check_extend(BUFF,&in_tag,&in_cdata,BUFF_counter);	//	再検討
+			//とはいえ、tagはとりあえずセットする
+			in_tag = -1;
 			//CDATAセクションは開始か
 			start_CDATA = start_cdata(BUFF,BUFF_counter,in_cdata);
 			in_cdata = start_CDATA;
@@ -54,10 +55,9 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			}
 			
 			printf("{<@tag:%d:}",in_tag);
-			in_tag = -1;
 		}
 		if(in_tag == 0){
-			;
+			//予備
 		}
 		if(in_tag == 1 && in_cdata == 0){
 			//BODYのprint
