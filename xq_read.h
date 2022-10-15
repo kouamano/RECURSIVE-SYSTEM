@@ -1,5 +1,4 @@
 void push_buff(struct options *opt, int C, char *BUFF, int counter){
-	//putchar(C);
 	//TODO: size check
 	BUFF[counter] = (char)C;
 
@@ -23,7 +22,6 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 	}
 	BUFF[0] = '\0';
 	int in_tag = 0;
-	//int ext_cont = 0;
 	while((current_C = fgetc(IN))){
 		if(current_C == EOF){
 			BUFF[BUFF_counter] = '\0';
@@ -50,7 +48,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 				if(BUFF_counter < 2){
 					;
 				}else{
-					//bodyのcreate
+					//body Blのcreate
 					BUFF[BUFF_counter - 1] = '\0';
 					printf("%s$:Lv%d:tag%d\n",BUFF,current_Lv,in_tag);	//createの代わり
 					//BUFFクリア、BUFF_counter クリア
