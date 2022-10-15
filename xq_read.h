@@ -90,13 +90,15 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 				BUFF[BUFF_counter] = '\0';
 				/* create Bl */
 				current_BlType = check_Block_type(BUFF,current_BlType);
+
+				printf("%s#(Bl%d:Ty%d:Lv%d)\n",BUFF,current_Bl,current_BlType,current_Lv);	//createの代わり
+				//current_LvをセットしたのちにLv up
 				if((current_BlType&BType_sTag) == BType_sTag){
 					current_Lv++;
 				}
 				if((current_BlType&BType_eTag) == BType_eTag){
 					current_Lv--;
 				}
-				printf("%s#(Bl%d:Ty%d:Lv%d)\n",BUFF,current_Bl,current_BlType,current_Lv);	//createの代わり
 				//BUFFクリア、BUFF_counterクリア
 				BUFF[0] = '\0';
 				BUFF_counter = 0;
