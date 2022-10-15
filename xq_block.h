@@ -54,7 +54,7 @@ int end_cdata(char *BUFF, const int counter, int in_cdata){
 	//if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
 	if(strncmp(BUFF+strlen(BUFF)-strlen(TTail_CDATA),TTail_CDATA,strlen(TTail_CDATA)) == 0){
 		end = 1;
-		printf("startCDATA");
+		printf("endCDATA");
 	}
 	return(end);
 }

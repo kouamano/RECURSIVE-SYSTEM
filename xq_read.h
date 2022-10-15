@@ -13,6 +13,8 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 	int current_Bl = start_Bl;
 	int current_Nd = start_Nd;
 	int current_Lv = start_Lv;
+	int start_CDATA = 0;
+	int end_CDATA = 0;
 	int in_cdata = 0;
 	char *BUFF = NULL;
 	int BUFF_counter = 0;
@@ -39,6 +41,10 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			in_tag = 0;
 			//'>'はCDATAタグに含まれる可能性があるので判定が必要
 			//check_extend(BUFF,&in_tag,&in_cdata,BUFF_counter);	//	再検討
+			//CDATA内であるか
+			start_CDATA = start_cdata(BUFF,BUFF_counter,in_cdata);
+			//CDATAセクションは終わりか
+			end_CDATA = end_cdata(BUFF,BUFF_counter,in_cdata);
 			printf("{<@tag:%d:}",in_tag);
 			in_tag = -1;
 		}
