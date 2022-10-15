@@ -86,6 +86,11 @@ int end_cdata(char *BUFF, const int counter, int in_cdata){
 int check_Block_type(char *BUFF){
 	int out = 0;
 	//CDATA
+	if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
+		if((out&BType_iTag) != BType_iTag){
+			out += BType_iTag;
+		}
+	}
 	/*
 	printf("{{{\n");
 	printf(":%s:",BUFF);
