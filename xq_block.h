@@ -30,9 +30,9 @@ struct Block {
 };
 
 struct Bl_create_opt {
-	int strsize;
+	int str_size;
 	//子ノードを初期に確保、子ノード追加ごとに余裕をチェック、余裕がなければallocする
-	int childnodes;
+	int next_nodes;
 };
 
 /* functions */
@@ -50,11 +50,13 @@ int create_Nd(struct Block *Bl, int No, struct Bl_create_opt create_opt){
 	Bl[No].Lv = 0;
 	Bl[No].Bltype = 0;
 	Bl[No].parent = -1;
-	if((Bl[No].str = malloc(sizeof(char) * create_opt.strsize)) == NULL){
+	if((Bl[No].str = malloc(sizeof(char) * create_opt.str_size)) == NULL){
 		perror("create_top_Nd");
 		exit(1);
 	}
 	Bl[No].str[0] = '\0';
+	if((Bl[No].next_Bl = malloc(sizeof(int) * create_opt.next_nodes)) == NULL){
+	}
 	return(No);
 }
 

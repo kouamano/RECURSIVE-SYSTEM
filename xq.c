@@ -117,7 +117,7 @@ int main(int argc, char **argv){
 	Bl = alloc_Block_arr((*opt).blocks);
 	/*** create top node ***/
 	struct Bl_create_opt create_opt;
-	create_opt.strsize = 1;
+	create_opt.str_size = 1;
 	create_Nd(Bl,0,create_opt);
 	/** input **/
 	if((IN = fopen((*opt).file,"r")) == NULL){
