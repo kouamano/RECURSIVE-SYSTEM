@@ -59,22 +59,6 @@ int end_cdata(char *BUFF, const int counter, int in_cdata){
 	return(end);
 }
 
-void check_extend(char *BUFF, int *tag, int *in_cdata, const int counter){
-	printf("[in check]");
-	BUFF[counter] = '\0';
-	if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
-		if(strncmp(BUFF+strlen(BUFF)-strlen(TTail_CDATA),TTail_CDATA,strlen(TTail_CDATA)) == 0){
-			printf("HOGE");
-			*tag = -1;
-		}else{
-			*tag = 0;
-			*in_cdata = 1;
-		}
-	}else{
-			*tag = -1;
-	}
-}
-
 int check_Block_type(char *BUFF, int *type){
 	int head_match;
 	int tail_match;
