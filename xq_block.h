@@ -7,17 +7,21 @@ int BType_Body = 16;
 
 /* tag head and tail */
 char THead_CDATA[] = "<![CDATA[";
-int Textend_CDATA = 1;
+//int Textend_CDATA = 1;
 char TTail_CDATA[] = "]]>";
 char THead_comment[] = "<!--";
-int Textend_comment = 1;
+//int Textend_comment = 1;
 char TTail_comment[] = "-->";
 char THead_proc[] = "<?";
-int Textend_proc = 1;
+//int Textend_proc = 1;
 char TTail_proc[] = "?>";
 char THead_other[] = "<!";
-int Textend_other = 1;
+//int Textend_other = 1;
 char TTail_other[] = "!>";
+char THead_start[] = "<";
+char TTail_start[] = ">";
+char THead_end[] = "</";
+char TTail_end[] = ">";
 
 /* structure */
 struct Block {
@@ -104,7 +108,8 @@ int check_Block_type(char *BUFF, const int current){
 	else if(0){
 	}
 	//start tag
-	else if(0){
+	//else if(0){
+	if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
 	}
 	else{
 		if((out&BType_Body) != BType_Body){
