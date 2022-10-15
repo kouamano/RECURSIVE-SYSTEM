@@ -69,8 +69,10 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 				if(BUFF_counter < 2){
 					;
 				}else{
+					current_Bl++;
 					//body Blのcreate
 					BUFF[BUFF_counter - 1] = '\0';
+					/* create Bl */
 					printf("%s$(Bl%d)\n",BUFF,current_Bl);	//createの代わり
 					//BUFFクリア、BUFF_counter クリア
 					BUFF[0] = '<';
@@ -81,8 +83,10 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		if(in_tag == -1 && in_cdata == 0){
 			//TAGのprint
 			if(current_C == '>'){ //CDATAの途中ではprintしない
+				current_Bl++;
 				//tag Blのcreate
 				BUFF[BUFF_counter] = '\0';
+				/* create Bl */
 				printf("%s#(Bl%d)\n",BUFF,current_Bl);	//createの代わり
 				//BUFFクリア、BUFF_counterクリア
 				BUFF[0] = '\0';
