@@ -6,10 +6,11 @@
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" xq [-h] [-s] [-c] if=<input file> buff=<buffer size> blocks=<blocks>.\n");
+	printf(" xq [-h] [-s] [-c] [-pT] if=<input file> buff=<buffer size> blocks=<blocks>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
+	printf("  -pT : print terminal chars.\n");
 	printf("  inputfile : input file.\n");
 	printf("  buff : buffer size.\n");
 	printf("  blocks : number of blocks.\n");
@@ -26,6 +27,8 @@ struct options {
 	char *file;
 	int buff;
 	int blocks;
+	//printt option
+	int pt;
 };
 struct options *alloc_options(void){
 	struct options *p;
@@ -46,6 +49,7 @@ void init_options(struct options *opt){
 	(*opt).file[0] = '\0';
 	(*opt).buff = LEN;
 	(*opt).blocks = LEN;
+	(*opt).pt = 0;
 }
 void get_options(int optc, char **optv, struct options *opt){
 	int i = 0;
@@ -62,6 +66,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"buff=%d",&(*opt).buff);
 		}else if(strncmp(optv[i],"blocks=",7) == 0){
 			sscanf(optv[i],"blocks=%d",&(*opt).blocks);
+		}else if(strncmp(optv[i],"-pT",3) == 0){
+			(*opt).pt = 1;
 		}
 	}
 }
@@ -70,6 +76,7 @@ void check_options(struct options *opt){
 	printf(" opt.file:%s:\n",(*opt).file);
 	printf(" opt.buff:%d:\n",(*opt).buff);
 	printf(" opt.blocks:%d:\n",(*opt).blocks);
+	printf(" opt.pt:%d:\n",(*opt).pt);
 }
 /* block operation */
 #include "./xq_block.h"
