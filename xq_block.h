@@ -51,11 +51,13 @@ int create_Nd(struct Block *Bl, int No, struct Bl_create_opt create_opt){
 	Bl[No].Bltype = 0;
 	Bl[No].parent = -1;
 	if((Bl[No].str = malloc(sizeof(char) * create_opt.str_size)) == NULL){
-		perror("create_top_Nd");
+		perror("create_Nd");
 		exit(1);
 	}
 	Bl[No].str[0] = '\0';
 	if((Bl[No].next_Bl = malloc(sizeof(int) * create_opt.next_nodes)) == NULL){
+		perror("create_Nd");
+		exit(1);
 	}
 	return(No);
 }
