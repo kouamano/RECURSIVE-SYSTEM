@@ -43,10 +43,11 @@ extra Bl(TI): same as emp-tag
 0. 用意するもの
   バッファ:BUFF
   ブロック:Bl
-    種別: TO:オープンtag、TC:クローズtag、TI:独立tag、BD:body、ND:ノード
+    タグブロック
+      種別: Node sTag eTag iTag
+    ボディブロック
   その他の属性値用変数
-    種別(TAG系): in_TAG、op_TAG、cl_TAG、i_TAG
-    種別(NODE系): current_Lv、current_Nd
+      種別: Body
 1. 最上位ノードを生成
 2. Blの読み込み
   tag:
@@ -54,22 +55,24 @@ extra Bl(TI): same as emp-tag
     Blの先頭を読み、
       後端を読み、対応が適性になるまで次の'>'を読む、extraを優先処理
     current_Lvの処理: tagがTOなら++1、tagがTCなら--1
+    Blを配列に収納
+    Blに該当する属性を付与
+
   body:
     '>'の次 ~ '<'の前まで読み込む
-  Blを配列に収納
-  Blに該当する属性を付与
-    Blが開始タグならさらにND属性を付与
+    Blを配列に収納
+    Blに該当する属性を付与
 
 ---- ---- ----
 変数
 BUFF
 current_C: int
 current_Lv: int
-current_Bl: long int
-current_Nd: long int
-current_Bl_TYPE: long int : TO TC TI BD ND
+current_Bl: int
+current_Nd: int
+current_Bl_TYPE: int
 Bl[]
-  TYPE: TO TC TI BD ND
+  TYPE
   Lv
   str
   next_Bl[]
