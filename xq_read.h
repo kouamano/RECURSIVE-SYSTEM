@@ -38,10 +38,9 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			printf("{<@tag:%d:}",in_tag);
 		}
 		if(current_C == '>'){
-			in_tag = 0;
 			//'>'はCDATAタグに含まれる可能性があるので判定が必要
 			//check_extend(BUFF,&in_tag,&in_cdata,BUFF_counter);	//	再検討
-			//CDATA内であるか
+			//CDATAセクションは開始か
 			start_CDATA = start_cdata(BUFF,BUFF_counter,in_cdata);
 			//CDATAセクションは終わりか
 			end_CDATA = end_cdata(BUFF,BUFF_counter,in_cdata);
