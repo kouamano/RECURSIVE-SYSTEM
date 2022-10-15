@@ -106,14 +106,16 @@ int check_Block_type(char *BUFF, const int current){
 	else if(0){
 	}
 	//end tag
-	else if(0){
+	//else if(0){
+	if(strncmp(BUFF,THead_end,strlen(THead_end)) == 0 && strncmp(BUFF,TTail_end,strlen(TTail_end))){
+
 	}
 	//start tag
 	if(strncmp(BUFF,THead_start,strlen(THead_start)) == 0 && strncmp(BUFF,TTail_start,strlen(TTail_start))){
 	}
 	else{
-		if((out&BType_sTag) != BType_sTag){
-			out = BType_sTag;
+		if((out&BType_Body) != BType_Body){
+			out = BType_Body;
 		}
 	}
 
