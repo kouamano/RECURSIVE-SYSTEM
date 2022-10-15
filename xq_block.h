@@ -39,6 +39,14 @@ struct Block *alloc_Block(int size){
 	return(p);
 }
 
+int start_cdata(char *BUFF, const int counter, int in_cdata){
+	int start = 0;
+	BUFF[counter] = '\0';
+	if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
+	}
+	return(start);
+}
+
 void check_extend(char *BUFF, int *tag, int *in_cdata, const int counter){
 	printf("[in check]");
 	BUFF[counter] = '\0';
