@@ -30,7 +30,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			if(strlen(BUFF) > 0 && (*opt).pt == 1){
 				//printf("%s",BUFF);
 				printf("{<@tag:%d:}",in_tag);
-				printf("%s#(Lv%d:tag%d)\n",BUFF,current_Lv,in_tag);	//createの代わり
+				printf("%s#(Bl%d)\n",BUFF,current_Bl);	//createの代わり
 			}
 			break;
 		}
@@ -71,7 +71,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 				}else{
 					//body Blのcreate
 					BUFF[BUFF_counter - 1] = '\0';
-					printf("%s$(Lv%d:tag%d)\n",BUFF,current_Lv,in_tag);	//createの代わり
+					printf("%s$(Bl%d)\n",BUFF,current_Bl);	//createの代わり
 					//BUFFクリア、BUFF_counter クリア
 					BUFF[0] = '<';
 					BUFF_counter = 1;
@@ -83,7 +83,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			if(current_C == '>'){ //CDATAの途中ではprintしない
 				//tag Blのcreate
 				BUFF[BUFF_counter] = '\0';
-				printf("%s#(Lv%d:tag%d)\n",BUFF,current_Lv,in_tag);	//createの代わり
+				printf("%s#(Bl%d)\n",BUFF,current_Bl);	//createの代わり
 				//BUFFクリア、BUFF_counterクリア
 				BUFF[0] = '\0';
 				BUFF_counter = 0;
