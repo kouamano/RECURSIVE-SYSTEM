@@ -119,7 +119,7 @@ int check_Block_type(char *BUFF, const int current){
 	//start tag
 	else if((strncmp(BUFF,THead_start,strlen(THead_start)) == 0) && (strncmp(BUFF+strlen(BUFF)-strlen(TTail_start),TTail_start,strlen(TTail_start)) == 0)){
 		if((out&BType_sTag) != BType_sTag){
-			out = BType_sTag;
+			out = BType_sTag+BType_Node;
 		}
 	}
 	//body
