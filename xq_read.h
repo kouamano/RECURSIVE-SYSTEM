@@ -34,6 +34,9 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		BUFF_counter++;
 		if(current_C == '<'){
 			//'<'はタグにのみ含まれるので問答無用で以下
+			//CDATAセクションは開始か
+			start_CDATA = start_cdata(BUFF,BUFF_counter,in_cdata);
+			in_cdata = start_CDATA;
 
 			printf("{<@tag:%d:}",in_tag);
 			in_tag = 1;
