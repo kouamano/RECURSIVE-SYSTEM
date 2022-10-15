@@ -39,6 +39,15 @@ struct Block *alloc_Block(int size){
 	return(p);
 }
 
+int create_top_Nd(struct Block *Bl){
+	Bl[0].ser = 0;
+	Bl[0].Lv = 0;
+	Bl[0].Bltype = 0;
+	Bl[0].parent = -1;
+	Bl[0].str[0] = '\0';
+	return(0);
+}
+
 int start_cdata(char *BUFF, const int counter, int in_cdata){
 	int start = 0;
 	BUFF[counter] = '\0';
@@ -48,6 +57,7 @@ int start_cdata(char *BUFF, const int counter, int in_cdata){
 	}
 	return(start);
 }
+
 int end_cdata(char *BUFF, const int counter, int in_cdata){
 	int end = 0;
 	BUFF[counter] = '\0';
@@ -88,8 +98,4 @@ int set_Block_type(struct Block *Bl, int target_Bl, int type){
 	return(rt);
 }
 
-int create_top_Nd(struct Block *Bl){
-	Bl[0].ser = 0;
-	Bl[0].Lv = 0;
-	return(0);
-}
+
