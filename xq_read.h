@@ -29,6 +29,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			BUFF[BUFF_counter] = '\0';
 			if(strlen(BUFF) > 0 && (*opt).pt == 1){
 				//printf("%s",BUFF);
+				printf("{<@tag:%d:}",in_tag);
 				printf("%s#(Lv%d:tag%d)\n",BUFF,current_Lv,in_tag);	//createの代わり
 			}
 			break;
