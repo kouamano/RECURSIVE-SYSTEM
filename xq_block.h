@@ -48,6 +48,16 @@ int start_cdata(char *BUFF, const int counter, int in_cdata){
 	}
 	return(start);
 }
+int end_cdata(char *BUFF, const int counter, int in_cdata){
+	int end = 0;
+	BUFF[counter] = '\0';
+	//if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
+	if(strncmp(BUFF+strlen(BUFF)-strlen(TTail_CDATA),TTail_CDATA,strlen(TTail_CDATA)) == 0){
+		end = 1;
+		printf("startCDATA");
+	}
+	return(end);
+}
 
 void check_extend(char *BUFF, int *tag, int *in_cdata, const int counter){
 	printf("[in check]");
