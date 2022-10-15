@@ -3,7 +3,7 @@ void push_buff(struct options *opt, int C, char *BUFF, int counter){
 	BUFF[counter] = (char)C;
 
 }
-int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int start_Nd, int start_Lv){
+int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int start_Nd, int start_Lv, int start_PNd){
 	int current_C = 0;
 	int TS = 0;
 	int TE = 0;
@@ -13,7 +13,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 	int current_Bl = start_Bl;
 	int current_Nd = start_Nd;
 	int current_Lv = start_Lv;
-	int current_PaLv = start_Lv-1;
+	int current_PNd = start_PNd;
 	int start_CDATA = 0;
 	int end_CDATA = 0;
 	int in_cdata = 0;
