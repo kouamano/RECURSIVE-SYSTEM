@@ -43,17 +43,17 @@ struct Block *alloc_Block_arr(int size){
 	return(p);
 }
 
-int create_top_Nd(struct Block *Bl, struct Bl_create_opt create_opt){
-	Bl[0].ser = 0;
-	Bl[0].Lv = 0;
-	Bl[0].Bltype = 0;
-	Bl[0].parent = -1;
-	if((Bl[0].str = malloc(sizeof(char) * create_opt.strsize)) == NULL){
+int create_Nd(struct Block *Bl, int No, struct Bl_create_opt create_opt){
+	Bl[No].ser = 0;
+	Bl[No].Lv = 0;
+	Bl[No].Bltype = 0;
+	Bl[No].parent = -1;
+	if((Bl[No].str = malloc(sizeof(char) * create_opt.strsize)) == NULL){
 		perror("create_top_Nd");
 		exit(1);
 	}
-	Bl[0].str[0] = '\0';
-	return(0);
+	Bl[No].str[0] = '\0';
+	return(No);
 }
 
 int start_cdata(char *BUFF, const int counter, int in_cdata){
