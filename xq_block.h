@@ -83,14 +83,35 @@ int end_cdata(char *BUFF, const int counter, int in_cdata){
 	return(end);
 }
 
-int check_Block_type(char *BUFF){
-	int out = 0;
+int check_Block_type(char *BUFF, const int current){
+	int out = current;
 	//CDATA
 	if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
 		if((out&BType_iTag) != BType_iTag){
-			out += BType_iTag;
+			out = BType_iTag;
 		}
 	}
+	//coment
+	else if(0){
+	}
+	//proc
+	else if(0){
+	}
+	//other itag
+	else if(0){
+	}
+	//end tag
+	else if(0){
+	}
+	//start tag
+	else if(0){
+	}
+	else{
+		if((out&BType_Body) != BType_Body){
+			out = BType_Body;
+		}
+	}
+
 	/*
 	printf("{{{\n");
 	printf(":%s:",BUFF);
@@ -100,11 +121,6 @@ int check_Block_type(char *BUFF){
 	printf(":%d,%d:\n",head_match,tail_match);
 	printf("}}}\n");
 	*/
-	//proc
-	//other
-	//normal-start
-	//normal-end
-	//body
 	return(out);
 }
 

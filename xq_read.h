@@ -73,7 +73,8 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 					//body Blのcreate
 					BUFF[BUFF_counter - 1] = '\0';
 					/* create Bl */
-					printf("%s$(Bl%d)\n",BUFF,current_Bl);	//createの代わり
+					current_BlType = check_Block_type(BUFF,current_BlType);
+					printf("%s$(Bl%d:Ty%d)\n",BUFF,current_Bl,current_BlType);	//createの代わり
 					//BUFFクリア、BUFF_counter クリア
 					BUFF[0] = '<';
 					BUFF_counter = 1;
@@ -87,7 +88,8 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 				//tag Blのcreate
 				BUFF[BUFF_counter] = '\0';
 				/* create Bl */
-				printf("%s#(Bl%d)\n",BUFF,current_Bl);	//createの代わり
+				current_BlType = check_Block_type(BUFF,current_BlType);
+				printf("%s#(Bl%d:Ty%d)\n",BUFF,current_Bl,current_BlType);	//createの代わり
 				//BUFFクリア、BUFF_counterクリア
 				BUFF[0] = '\0';
 				BUFF_counter = 0;
