@@ -40,8 +40,9 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		if(current_C == '>'){
 			in_tag = 0;
 			//'>'はCDATAタグに含まれる可能性があるので判定が必要
-			check_extend(BUFF,&in_tag,&in_cdata,BUFF_counter);	//	再検討
+			//check_extend(BUFF,&in_tag,&in_cdata,BUFF_counter);	//	再検討
 			printf("{<@tag:%d:}",in_tag);
+			in_tag = -1;
 		}
 		if(in_tag == 1){
 			//BODYのprint
