@@ -93,13 +93,16 @@ int check_Block_type(char *BUFF, const int current){
 			out = BType_iTag;
 		}
 	}
-	//coment
+	//coment itag
 	else if(0){
 	}
-	//proc
+	//proc itag
 	else if(0){
 	}
 	//other itag
+	else if(0){
+	}
+	//emp itag
 	else if(0){
 	}
 	//end tag
