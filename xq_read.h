@@ -42,12 +42,17 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			//check_extend(BUFF,&in_tag,&in_cdata,BUFF_counter);	//	再検討
 			//CDATAセクションは開始か
 			start_CDATA = start_cdata(BUFF,BUFF_counter,in_cdata);
+			in_cdata = start_CDATA;
 			//CDATAセクションは終わりか
 			end_CDATA = end_cdata(BUFF,BUFF_counter,in_cdata);
+			if(in_cdata == 1 && end_CDATA == 1){
+				in_cdata = 0;
+			}
+			
 			printf("{<@tag:%d:}",in_tag);
 			in_tag = -1;
 		}
-		if(in_tag == 1){
+		if(in_tag == 1 && in_cdata == 0){
 			//BODYのprint
 			if(current_C == '<'){
 				if(BUFF_counter < 2){
@@ -65,7 +70,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		if(in_tag == 0){
 			;
 		}
-		if(in_tag == -1){
+		if(in_tag == -1 && in_cdata == 0){
 			//TAGのprint
 			if(current_C == '>'){ //CDATAの途中ではprintしない
 				//tag Blのcreate
