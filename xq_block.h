@@ -103,16 +103,20 @@ int check_Block_type(char *BUFF, const int current){
 	else if(0){
 	}
 	//emp itag
-	else if(0){
+	//else if(0){
+	else if((strncmp(BUFF,THead_emp,strlen(THead_emp)) == 0) && (strncmp(BUFF,TTail_emp,strlen(TTail_emp)) == 0)){
+		if((out&BType_iTag) != BType_iTag){
+			out = BType_iTag;
+		}
 	}
 	//end tag
-	else if(strncmp(BUFF,THead_end,strlen(THead_end)) == 0 && strncmp(BUFF,TTail_end,strlen(TTail_end))){
+	else if((strncmp(BUFF,THead_end,strlen(THead_end)) == 0) && (strncmp(BUFF,TTail_end,strlen(TTail_end)) == 0)){
 		if((out&BType_eTag) != BType_eTag){
 			out = BType_eTag;
 		}
 	}
 	//start tag
-	else if(strncmp(BUFF,THead_start,strlen(THead_start)) == 0 && strncmp(BUFF,TTail_start,strlen(TTail_start))){
+	else if((strncmp(BUFF,THead_start,strlen(THead_start)) == 0) && (strncmp(BUFF,TTail_start,strlen(TTail_start)) == 0)){
 		if((out&BType_sTag) != BType_sTag){
 			out = BType_sTag;
 		}
@@ -124,15 +128,6 @@ int check_Block_type(char *BUFF, const int current){
 		}
 	}
 
-	/*
-	printf("{{{\n");
-	printf(":%s:",BUFF);
-	printf(":%s:",THead_CDATA);
-	printf(":%s:",BUFF+strlen(BUFF)-strlen(TTail_CDATA));
-	printf(":%s:",TTail_CDATA);
-	printf(":%d,%d:\n",head_match,tail_match);
-	printf("}}}\n");
-	*/
 	return(out);
 }
 
