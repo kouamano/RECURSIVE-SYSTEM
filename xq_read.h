@@ -27,7 +27,10 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 	while((current_C = fgetc(IN))){
 		if(current_C == EOF){
 			BUFF[BUFF_counter] = '\0';
-			printf("%s",BUFF);
+			if(strlen(BUFF) > 0 && (*opt).pt == 1){
+				//printf("%s",BUFF);
+				printf("%s#(Lv%d:tag%d)\n",BUFF,current_Lv,in_tag);	//createの代わり
+			}
 			break;
 		}
 		push_buff(opt,current_C,BUFF,BUFF_counter);
