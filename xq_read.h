@@ -34,8 +34,9 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 		BUFF_counter++;
 		if(current_C == '<'){
 			//'<'はタグにのみ含まれるので問答無用で以下
-			in_tag = 1;
+
 			printf("{<@tag:%d:}",in_tag);
+			in_tag = 1;
 		}
 		if(current_C == '>'){
 			//'>'はCDATAタグに含まれる可能性があるので判定が必要
