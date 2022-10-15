@@ -111,11 +111,13 @@ int check_Block_type(char *BUFF, const int current){
 			out = BType_eTag;
 		}
 	}
+	//start tag
 	else if(strncmp(BUFF,THead_start,strlen(THead_start)) == 0 && strncmp(BUFF,TTail_start,strlen(TTail_start))){
 		if((out&BType_sTag) != BType_sTag){
 			out = BType_sTag;
 		}
 	}
+	//body
 	else{
 		if((out&BType_Body) != BType_Body){
 			out = BType_Body;
