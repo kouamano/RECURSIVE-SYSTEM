@@ -43,6 +43,8 @@ int start_cdata(char *BUFF, const int counter, int in_cdata){
 	int start = 0;
 	BUFF[counter] = '\0';
 	if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
+		start = 1;
+		printf("startCDATA");
 	}
 	return(start);
 }
