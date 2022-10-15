@@ -13,6 +13,7 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 	int current_Bl = start_Bl;
 	int current_Nd = start_Nd;
 	int current_Lv = start_Lv;
+	int current_PaLv = start_Lv-1;
 	int start_CDATA = 0;
 	int end_CDATA = 0;
 	int in_cdata = 0;
