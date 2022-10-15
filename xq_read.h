@@ -53,6 +53,9 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 			printf("{<@tag:%d:}",in_tag);
 			in_tag = -1;
 		}
+		if(in_tag == 0){
+			;
+		}
 		if(in_tag == 1 && in_cdata == 0){
 			//BODYのprint
 			if(current_C == '<'){
@@ -67,9 +70,6 @@ int read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int st
 					BUFF_counter = 1;
 				}
 			}
-		}
-		if(in_tag == 0){
-			;
 		}
 		if(in_tag == -1 && in_cdata == 0){
 			//TAGのprint
