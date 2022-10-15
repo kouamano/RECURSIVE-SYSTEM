@@ -97,7 +97,11 @@ int check_Block_type(char *BUFF, const int current){
 	else if(0){
 	}
 	//proc itag
-	else if(0){
+	//else if(0){
+	else if((strncmp(BUFF,THead_proc,strlen(THead_proc)) == 0) && (strncmp(BUFF+strlen(BUFF)-strlen(TTail_proc),TTail_proc,strlen(TTail_proc)) == 0)){
+		if((out&BType_iTag) != BType_iTag){
+			out = BType_iTag;
+		}
 	}
 	//other itag
 	//else if(0){
