@@ -29,6 +29,10 @@ struct Block {
 	int *next_Bl;
 };
 
+struct Bl_create_opt {
+	int strsize;
+};
+
 /* functions */
 struct Block *alloc_Block_arr(int size){
 	struct Block *p;
@@ -39,11 +43,16 @@ struct Block *alloc_Block_arr(int size){
 	return(p);
 }
 
-int create_top_Nd(struct Block *Bl){
+int create_top_Nd(struct Block *Bl, struct Bl_create_opt create_opt){
 	Bl[0].ser = 0;
 	Bl[0].Lv = 0;
 	Bl[0].Bltype = 0;
 	Bl[0].parent = -1;
+	if((Bl[0].str = malloc(sizeof(char) * create_opt.strsize)) == NULL){
+		perror("create_top_Nd");
+		exit(1);
+	}
+	Bl[0].str[0] = '\0';
 	return(0);
 }
 
