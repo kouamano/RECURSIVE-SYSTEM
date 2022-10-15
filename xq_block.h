@@ -30,7 +30,7 @@ struct Block {
 };
 
 /* functions */
-struct Block *alloc_Block(int size){
+struct Block *alloc_Block_arr(int size){
 	struct Block *p;
 	if((p = malloc(sizeof(struct Block) * size)) == NULL){
 		perror("alloc_Block()\n");
@@ -44,7 +44,6 @@ int create_top_Nd(struct Block *Bl){
 	Bl[0].Lv = 0;
 	Bl[0].Bltype = 0;
 	Bl[0].parent = -1;
-	Bl[0].str[0] = '\0';
 	return(0);
 }
 

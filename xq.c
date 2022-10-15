@@ -114,7 +114,7 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 	/** create block **/
-	Bl = alloc_Block((*opt).blocks);
+	Bl = alloc_Block_arr((*opt).blocks);
 	create_top_Nd(Bl);
 	/** input **/
 	if((IN = fopen((*opt).file,"r")) == NULL){
