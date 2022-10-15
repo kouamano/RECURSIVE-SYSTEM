@@ -13,7 +13,7 @@ char TTail_comment[] = "-->";
 char THead_proc[] = "<?";
 char TTail_proc[] = "?>";
 char THead_other[] = "<!";
-char TTail_other[] = "!>";
+char TTail_other[] = ">";
 char THead_emp[] = "<";
 char TTail_emp[] = "/>";
 char THead_start[] = "<";
@@ -101,7 +101,8 @@ int check_Block_type(char *BUFF, const int current){
 	}
 	//other itag
 	//else if(0){
-	else if((strncmp(BUFF,THead_other,strlen(THead_other)) == 0) && (strncmp(BUFF+strlen(BUFF)-strlen(TTail_other),TTail_emp,strlen(TTail_other)) == 0)){
+	else if((strncmp(BUFF,THead_other,strlen(THead_other)) == 0) && (strncmp(BUFF+strlen(BUFF)-strlen(TTail_other),TTail_other,strlen(TTail_other)) == 0)){
+		printf("in_ot");
 		if((out&BType_iTag) != BType_iTag){
 			out = BType_iTag;
 		}
