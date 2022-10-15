@@ -104,7 +104,8 @@ int check_Block_type(char *BUFF, const int current){
 	}
 	//emp itag
 	//else if(0){
-	else if((strncmp(BUFF,THead_emp,strlen(THead_emp)) == 0) && (strncmp(BUFF,TTail_emp,strlen(TTail_emp)) == 0)){
+	else if((strncmp(BUFF,THead_emp,strlen(THead_emp)) == 0) && (strncmp(BUFF+strlen(BUFF)-strlen(TTail_emp),TTail_emp,strlen(TTail_emp)) == 0)){
+		printf("in_emp");
 		if((out&BType_iTag) != BType_iTag){
 			out = BType_iTag;
 		}
