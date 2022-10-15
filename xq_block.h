@@ -33,8 +33,8 @@ struct Block {
 
 struct Bl_create_opt {
 	int str_size;
-	//子ノードを初期に確保、子ノード追加ごとに余裕をチェック、余裕がなければallocする
 	int next_nodes;
+		//ノードブロックの場合のみ：子ノードを初期に確保、子ノード追加ごとに余裕をチェック、余裕がなければallocする
 };
 
 /* functions */
