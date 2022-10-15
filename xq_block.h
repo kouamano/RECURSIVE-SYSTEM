@@ -100,12 +100,15 @@ int check_Block_type(char *BUFF, const int current){
 	else if(0){
 	}
 	//other itag
-	else if(0){
+	//else if(0){
+	else if((strncmp(BUFF,THead_other,strlen(THead_other)) == 0) && (strncmp(BUFF+strlen(BUFF)-strlen(TTail_other),TTail_emp,strlen(TTail_other)) == 0)){
+		if((out&BType_iTag) != BType_iTag){
+			out = BType_iTag;
+		}
 	}
 	//emp itag
-	//else if(0){
 	else if((strncmp(BUFF,THead_emp,strlen(THead_emp)) == 0) && (strncmp(BUFF+strlen(BUFF)-strlen(TTail_emp),TTail_emp,strlen(TTail_emp)) == 0)){
-		printf("in_emp");
+		//printf("in_emp");
 		if((out&BType_iTag) != BType_iTag){
 			out = BType_iTag;
 		}
