@@ -33,9 +33,7 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 			current_Bl++;
 			BUFF[BUFF_counter] = '\0';
 			if(strlen(BUFF) > 0 && (*opt).pt == 1){
-				//printf("%s",BUFF);
 				printf("{<@tag:%d:}",in_tag);
-				//printf("%s#(Bl%d)\n",BUFF,current_Bl);	//createの代わり
 				printf("%s$(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
 			}
 			set_Block(Bl,current_Bl,current_BlType,current_Lv,current_PNd,BUFF);
@@ -53,7 +51,7 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 			printf("{<@tag:%d:}",in_tag);
 		}
 		if(current_C == '>'){
-			//'>'はCDATAタグに含まれる可能性があるので判定が必要
+			//'>'はCDATAタグだけでなく含まれる可能性があるので判定が必要
 			//とはいえ、tagはとりあえずセットする
 			in_tag = -1;
 			//CDATAセクションは開始か
@@ -64,14 +62,13 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 			if(in_cdata == 1 && end_CDATA == 1){
 				in_cdata = 0;
 			}
-			
 			printf("{<@tag:%d:}",in_tag);
 		}
 		if(in_tag == 0){
 			//予備
 		}
 		if(in_tag == 1 && in_cdata == 0){
-			//BODYのprint
+			//BODYの処理
 			if(current_C == '<'){
 				if(BUFF_counter < 2){
 					;
@@ -90,12 +87,11 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 			}
 		}
 		if(in_tag == -1 && in_cdata == 0){
-			//TAGのprint
+			//TAGの処理
 			if(current_C == '>'){ //CDATAの途中ではprintしない
 				current_Bl++;
 				//tag Blのcreate
 				BUFF[BUFF_counter] = '\0';
-				/* create Bl */
 				current_BlType = check_Block_type(BUFF,current_BlType);
 
 				printf("%s#(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
