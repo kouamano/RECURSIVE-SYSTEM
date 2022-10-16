@@ -82,6 +82,8 @@ void check_options(struct options *opt){
 #include "./xq_block.h"
 /* read operation */
 #include "./xq_read.h"
+/* executer */
+#include "./xq_executer.h"
 /* main */
 int main(int argc, char **argv){
 	/** vals **/
