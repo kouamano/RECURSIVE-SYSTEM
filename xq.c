@@ -125,11 +125,13 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 	if_open = 1;
-	read_x(opt, IN, Bl, 0, 0, 1, 0);
+	struct Bl_tree_report *report;
+	read_x(opt, IN, Bl, 0, 0, 1, 0, report);
 	if(if_open == 1){
 		fclose(IN);
 	}
 	/** operation **/
+	printf("\n===== ===== ===== =====\n");
 
 	/** finalize **/
 	return(0);

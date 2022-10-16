@@ -34,7 +34,13 @@ struct Block {
 struct Bl_create_opt {
 	int str_size;
 	int next_nodes;
-		//ノードブロックの場合のみ：子ノードを初期に確保、子ノード追加ごとに余裕をチェック、余裕がなければallocする
+		//ノードブロックの場合のみ：子ノード追加ごとにreallocする
+};
+
+struct Bl_tree_report {
+	int Bls;
+	int Nds;
+	int Chrs;
 };
 
 /* functions */
