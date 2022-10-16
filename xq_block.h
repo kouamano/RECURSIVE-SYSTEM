@@ -44,6 +44,7 @@ struct Bl_tree_report {
 };
 
 /* functions */
+/** alloc **/
 struct Block *alloc_Block_arr(int size){
 	struct Block *p;
 	if((p = malloc(sizeof(struct Block) * size)) == NULL){
@@ -61,7 +62,7 @@ struct Bl_tree_report *alloc_Bl_tree_report(void){
 	}
 	return(p);
 }
-
+/** create, edit, test **/
 int create_Nd(struct Block *Bl, int No, struct Bl_create_opt create_opt){
 	//Bl[No].ser = 0;
 	Bl[No].Lv = 0;
@@ -167,4 +168,9 @@ void set_Block(struct Block *Bl, int No, int type, int lv, int pn, char *buff){
 	Bl[No].Bltype = type;
 	Bl[No].parent = pn;
 }
-
+/** print **/
+void print_tree_report(struct Bl_tree_report *report){
+	printf("Bls:%d\n",(*report).Bls);
+	printf("Nds:%d\n",(*report).Nds);
+	printf("Chrs:%d\n",(*report).Chrs);
+}

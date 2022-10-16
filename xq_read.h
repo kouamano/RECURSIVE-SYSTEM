@@ -6,6 +6,7 @@ void push_buff(struct options *opt, int C, char *BUFF, int counter){
 struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int start_Nd, int start_Lv, int start_PNd, struct Bl_tree_report *report){
 	int current_C = 0;
 	int C_counter = 0;
+	int Nd_counter = 0;
 	int TS = 0;
 	int TE = 0;
 	int TI = 0;
@@ -105,6 +106,9 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 					//current_PNd
 					current_PNd = Bl[(Bl[current_Bl].parent)].parent;
 				}
+				if((current_BlType&BType_Node) == BType_Node){
+					Nd_counter++;
+				}
 				//BUFFクリア、BUFF_counterクリア
 				BUFF[0] = '\0';
 				BUFF_counter = 0;
@@ -113,7 +117,7 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 		}
 	}
 	(*report).Bls = current_Bl;
-	(*report).Nds = current_Nd;
+	(*report).Nds = Nd_counter+1;
 	(*report).Chrs = C_counter;
 	return(report);
 }
