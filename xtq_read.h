@@ -47,7 +47,6 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 			//CDATAセクションは開始か
 			start_CDATA = start_cdata(BUFF,BUFF_counter,in_cdata);
 			in_cdata = start_CDATA;
-
 			printf("{<@tag:%d:}",in_tag);
 		}
 		if(current_C == '>'){
@@ -93,7 +92,6 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 				//tag Blのcreate
 				BUFF[BUFF_counter] = '\0';
 				current_BlType = check_Block_type(BUFF,current_BlType);
-
 				printf("%s#(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
 				set_Block(Bl,current_Bl,current_BlType,current_Lv,current_PNd,BUFF);
 				//current_LvをセットしたのちにLv up
