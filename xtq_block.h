@@ -175,9 +175,10 @@ void print_tree_report(struct Bl_tree_report *report){
 	printf("Chrs:%d\n",(*report).Chrs);
 }
 
-void ExPrint_seq_Bl(struct Block *Bl, int target, struct options o_dummy, struct Bl_tree_report report){
+void ExPrint_seq_Bl(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
 	for(i=target;i<report.Bls;i++){
-		printf("%s",Bl[i].str);
+		//printf("%s",Bl[i].str);
+		printf(opt.pf,Bl[i].str);
 	}
 }
