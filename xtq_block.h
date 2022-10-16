@@ -123,11 +123,11 @@ void set_Block(struct Block *Bl, int No, int type, int lv, int pn, char *buff){
 }
 /** print **/
 void print_tree_report(struct Bl_tree_report *report){
-	printf("Bls:%d\n",(*report).Bls);
-	printf("Nds:%d\n",(*report).Nds);
-	printf("Chrs:%d\n",(*report).Chrs);
+	fprintf(stderr,"followings were operatied:\n");
+	fprintf(stderr,"Bls:%d\n",(*report).Bls);
+	fprintf(stderr,"Nds:%d\n",(*report).Nds);
+	fprintf(stderr,"Chrs:%d\n",(*report).Chrs);
 }
-
 void ExPrint_seq_Bl(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
 	for(i=target;i<report.Bls;i++){
@@ -135,3 +135,11 @@ void ExPrint_seq_Bl(struct Block *Bl, int target, struct options opt, struct Bl_
 		printf(opt.pf,Bl[i].str);
 	}
 }
+void ExPrint_seq_BlSt(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
+	int i;
+	for(i=target;i<report.Bls;i++){
+		printf("[[[Bl%d,Ty%d,Lv%d,Pa%d]]]",i,Bl[i].Bltype,Bl[i].Lv,Bl[i].parent);
+		printf(opt.pf,Bl[i].str);
+	}
+}
+
