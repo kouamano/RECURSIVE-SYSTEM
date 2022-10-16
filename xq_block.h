@@ -23,7 +23,7 @@ char TTail_end[] = ">";
 
 /* structure */
 struct Block {
-	int ser;
+	//int ser;
 	int Lv;
 	int Bltype;
 	int parent;
@@ -54,7 +54,7 @@ struct Block *alloc_Block_arr(int size){
 }
 
 int create_Nd(struct Block *Bl, int No, struct Bl_create_opt create_opt){
-	Bl[No].ser = 0;
+	//Bl[No].ser = 0;
 	Bl[No].Lv = 0;
 	Bl[No].Bltype = 0;
 	Bl[No].parent = -1;
@@ -147,6 +147,16 @@ int check_Block_type(char *BUFF, const int current){
 	}
 
 	return(out);
+}
+
+void set_Block(struct Block *Bl, int No, int type, int lv, int pn, char *buff){
+	int len = 0;
+	len = strlen(buff);
+	Bl[No].str = malloc(sizeof(char) * (len+1));
+	strcpy(Bl[No].str,buff);
+	Bl[No].Lv = lv;
+	Bl[No].Bltype = type;
+	Bl[No].parent = pn;
 }
 
 int set_Block_type(struct Block *Bl, int target_Bl, int type){

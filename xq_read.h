@@ -99,6 +99,7 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 				}
 				if((current_BlType&BType_eTag) == BType_eTag){
 					current_Lv--;
+					//current_PNd
 				}
 				//BUFFクリア、BUFF_counterクリア
 				BUFF[0] = '\0';
