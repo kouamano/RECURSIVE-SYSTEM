@@ -6,7 +6,7 @@
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" xtq [-h] [-s] [-c] [-pT] if=<input file> buff=<buffer size> blocks=<blocks>.\n");
+	printf(" xtq [-h] [-s] [-c] [-pT] if=<input file> buff=<buffer size> blocks=<blocks> f=<print format>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
@@ -14,6 +14,7 @@ void help(void){
 	printf("  inputfile : input file.\n");
 	printf("  buff : buffer size.\n");
 	printf("  blocks : number of blocks.\n");
+	printf("  print format : printt for block (default:%%s).\n");
 }
 void status(void){
 	printf("STATUS:\n");
@@ -29,6 +30,7 @@ struct options {
 	int blocks;
 	//printt option
 	int pt;
+	char *pf;
 };
 struct options *alloc_options(void){
 	struct options *p;
@@ -37,6 +39,10 @@ struct options *alloc_options(void){
 		exit(1);
 	}
 	if(((*p).file = malloc(sizeof(char) * LEN)) == NULL){
+		printf("failed : malloc() in alloc_options().\n");
+		exit(1);
+	}
+	if(((*p).pf = malloc(sizeof(char) * LEN)) == NULL){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
