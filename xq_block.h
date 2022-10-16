@@ -53,6 +53,15 @@ struct Block *alloc_Block_arr(int size){
 	return(p);
 }
 
+struct Bl_tree_report *alloc_Bl_tree_report(void){
+	struct Bl_tree_report *p;
+	if((p = malloc(sizeof(struct Bl_tree_report) * 1)) == NULL){
+		perror("alloc_Bl_tree_report");
+		exit(1);
+	}
+	return(p);
+}
+
 int create_Nd(struct Block *Bl, int No, struct Bl_create_opt create_opt){
 	//Bl[No].ser = 0;
 	Bl[No].Lv = 0;

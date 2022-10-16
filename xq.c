@@ -126,6 +126,7 @@ int main(int argc, char **argv){
 	}
 	if_open = 1;
 	struct Bl_tree_report *report;
+	report = alloc_Bl_tree_report();
 	read_x(opt, IN, Bl, 0, 0, 1, 0, report);
 	if(if_open == 1){
 		fclose(IN);

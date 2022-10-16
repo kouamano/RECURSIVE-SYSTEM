@@ -5,6 +5,7 @@ void push_buff(struct options *opt, int C, char *BUFF, int counter){
 }
 struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, int start_Bl, int start_Nd, int start_Lv, int start_PNd, struct Bl_tree_report *report){
 	int current_C = 0;
+	int C_counter = 0;
 	int TS = 0;
 	int TE = 0;
 	int TI = 0;
@@ -26,6 +27,7 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 	BUFF[0] = '\0';
 	int in_tag = 0;
 	while((current_C = fgetc(IN))){
+		C_counter++;
 		if(current_C == EOF){
 			BUFF[BUFF_counter] = '\0';
 			if(strlen(BUFF) > 0 && (*opt).pt == 1){
@@ -110,5 +112,8 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 			}
 		}
 	}
+	(*report).Bls = current_Bl;
+	(*report).Nds = current_Nd;
+	(*report).Chrs = C_counter;
 	return(report);
 }
