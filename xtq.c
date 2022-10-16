@@ -10,13 +10,13 @@ void help(void){
 	printf("USAGE:\n");
 	printf(" xtq [-h] [-s] [-c] [-pT] if=<input file> buff=<buffer size> blocks=<blocks> pf=<print format>.\n");
 	printf("  -h : help.\n");
-	printf("  -s : stat.\n");
+	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
 	printf("  -pT : print terminal chars.\n");
-	printf("  inputfile : input file.\n");
-	printf("  buff : buffer size.\n");
+	printf("  input file : input file.\n");
+	printf("  buffer size : buffer size.\n");
 	printf("  blocks : number of blocks.\n");
-	printf("  print format : printt for block (default:%%s).\n");
+	printf("  print format : format for block (default:\"%%s\").\n");
 }
 void status(void){
 	printf("STATUS:\n");
@@ -135,9 +135,7 @@ int main(int argc, char **argv){
 		fclose(IN);
 	}
 	/** operation **/
-	printf("\n===== ===== ===== =====\n");
 	print_tree_report(report);
-	printf("\n===== ===== ===== =====\n");
 	Executer(Bl,0,*opt,*report);
 
 	/** finalize **/

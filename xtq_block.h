@@ -123,10 +123,12 @@ void set_Block(struct Block *Bl, int No, int type, int lv, int pn, char *buff){
 }
 /** print **/
 void print_tree_report(struct Bl_tree_report *report){
-	fprintf(stderr,"followings were operatied:\n");
+	fprintf(stderr,"==== ==== ==== ==== ====\n");
+	fprintf(stderr,"followings were operated:\n");
 	fprintf(stderr,"Bls:%d\n",(*report).Bls);
 	fprintf(stderr,"Nds:%d\n",(*report).Nds);
 	fprintf(stderr,"Chrs:%d\n",(*report).Chrs);
+	fprintf(stderr,"==== ==== ==== ==== ====\n");
 }
 void ExPrint_seq_Bl(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
