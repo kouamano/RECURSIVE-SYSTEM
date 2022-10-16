@@ -116,8 +116,8 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 			}
 		}
 	}
-	(*report).Bls = current_Bl;
-	(*report).Nds = Nd_counter+1;
+	(*report).Bls = current_Bl+1;	//topノードを足す
+	(*report).Nds = Nd_counter+1;	//topノードを足す
 	(*report).Chrs = C_counter;
 	return(report);
 }
