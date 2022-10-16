@@ -28,6 +28,7 @@ struct Block {
 	int Bltype;
 	int parent;
 	char *str;
+	int nexts;
 	int *next_Bl;
 };
 
@@ -73,10 +74,8 @@ int create_Nd(struct Block *Bl, int No, struct Bl_create_opt create_opt){
 		exit(1);
 	}
 	Bl[No].str[0] = '\0';
-	if((Bl[No].next_Bl = malloc(sizeof(int) * create_opt.next_nodes)) == NULL){
-		perror("create_Nd");
-		exit(1);
-	}
+	Bl[No].nexts = 0;
+	Bl[No].next_Bl = NULL;
 	return(No);
 }
 
