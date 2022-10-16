@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define LEN 1024
+
+#include "./xtq_defstrc.h"
+
 
 /* help */
 void help(void){
@@ -21,17 +23,6 @@ void status(void){
 	printf("  under construction.\n");
 }
 /* option */
-struct options {
-	int help;
-	int stat;
-	int check;
-	char *file;
-	int buff;
-	int blocks;
-	//printt option
-	int pt;
-	char *pf;
-};
 struct options *alloc_options(void){
 	struct options *p;
 	if((p = malloc(sizeof(struct options) * 1)) == NULL){
