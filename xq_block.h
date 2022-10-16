@@ -1,4 +1,5 @@
 /* Block type */
+int BType_Unuse = -1;
 int BType_Node = 1;
 int BType_sTag = 2;
 int BType_eTag = 4;
@@ -172,4 +173,11 @@ void print_tree_report(struct Bl_tree_report *report){
 	printf("Bls:%d\n",(*report).Bls);
 	printf("Nds:%d\n",(*report).Nds);
 	printf("Chrs:%d\n",(*report).Chrs);
+}
+
+void ExPrint_seq_Bl(struct Block *Bl, int target, struct options o_dummy, struct Bl_tree_report report){
+	int i;
+	for(i=target;i<report.Bls;i++){
+		printf("%s",Bl[i].str);
+	}
 }

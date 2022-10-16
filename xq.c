@@ -136,7 +136,9 @@ int main(int argc, char **argv){
 	/** operation **/
 	printf("\n===== ===== ===== =====\n");
 	print_tree_report(report);
+	printf("\n===== ===== ===== =====\n");
 	//TODO: treeのprint
+	Executer(Bl,0,*opt,*report);
 
 	/** finalize **/
 	return(0);
