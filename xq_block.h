@@ -159,13 +159,3 @@ void set_Block(struct Block *Bl, int No, int type, int lv, int pn, char *buff){
 	Bl[No].parent = pn;
 }
 
-int set_Block_type(struct Block *Bl, int target_Bl, int type){
-	int rt = 0;
-	if(((Bl[target_Bl].Bltype)&type) != type){
-		Bl[target_Bl].Bltype += type;
-		rt = type;
-	}
-	return(rt);
-}
-
-
