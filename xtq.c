@@ -6,7 +6,7 @@
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" xq [-h] [-s] [-c] [-pT] if=<input file> buff=<buffer size> blocks=<blocks>.\n");
+	printf(" xtq [-h] [-s] [-c] [-pT] if=<input file> buff=<buffer size> blocks=<blocks>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
@@ -79,11 +79,11 @@ void check_options(struct options *opt){
 	printf(" opt.pt:%d:\n",(*opt).pt);
 }
 /* block operation */
-#include "./xq_block.h"
+#include "./xtq_block.h"
 /* read operation */
-#include "./xq_read.h"
+#include "./xtq_read.h"
 /* executer */
-#include "./xq_executer.h"
+#include "./xtq_executer.h"
 /* main */
 int main(int argc, char **argv){
 	/** vals **/
