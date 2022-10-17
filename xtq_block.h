@@ -38,7 +38,8 @@ int start_cdata(char *BUFF, const int counter, int in_cdata){
 	BUFF[counter] = '\0';
 	if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
 		start = 1;
-		printf("{startCDATA}");
+		//debug
+		//printf("{startCDATA}");
 	}
 	return(start);
 }
@@ -46,10 +47,10 @@ int start_cdata(char *BUFF, const int counter, int in_cdata){
 int end_cdata(char *BUFF, const int counter, int in_cdata){
 	int end = 0;
 	BUFF[counter] = '\0';
-	//if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){
 	if(strncmp(BUFF+strlen(BUFF)-strlen(TTail_CDATA),TTail_CDATA,strlen(TTail_CDATA)) == 0){
 		end = 1;
-		printf("{endCDATA}");
+		//debug
+		//printf("{endCDATA}");
 	}
 	return(end);
 }
@@ -64,28 +65,32 @@ int check_Block_type(char *BUFF, const int current){
 	}
 	//comment itag
 	else if((strncmp(BUFF,THead_comment,strlen(THead_comment)) == 0) && (strncmp(BUFF+strlen(BUFF)-strlen(TTail_comment),TTail_comment,strlen(TTail_comment)) == 0)){
-		printf("{in_coment}");
+		//debug
+		//printf("{in_coment}");
 		if((out&BType_iTag) != BType_iTag){
 			out = BType_iTag;
 		}
 	}
 	//proc itag
 	else if((strncmp(BUFF,THead_proc,strlen(THead_proc)) == 0) && (strncmp(BUFF+strlen(BUFF)-strlen(TTail_proc),TTail_proc,strlen(TTail_proc)) == 0)){
-		printf("{in_proc}");
+		//debug
+		//printf("{in_proc}");
 		if((out&BType_iTag) != BType_iTag){
 			out = BType_iTag;
 		}
 	}
 	//other itag
 	else if((strncmp(BUFF,THead_other,strlen(THead_other)) == 0) && (strncmp(BUFF+strlen(BUFF)-strlen(TTail_other),TTail_other,strlen(TTail_other)) == 0)){
-		printf("{in_ot}");
+		//debug
+		//printf("{in_ot}");
 		if((out&BType_iTag) != BType_iTag){
 			out = BType_iTag;
 		}
 	}
 	//emp itag
 	else if((strncmp(BUFF,THead_emp,strlen(THead_emp)) == 0) && (strncmp(BUFF+strlen(BUFF)-strlen(TTail_emp),TTail_emp,strlen(TTail_emp)) == 0)){
-		printf("{in_emp}");
+		//debug
+		//printf("{in_emp}");
 		if((out&BType_iTag) != BType_iTag){
 			out = BType_iTag;
 		}
@@ -108,7 +113,6 @@ int check_Block_type(char *BUFF, const int current){
 			out = BType_Body;
 		}
 	}
-
 	return(out);
 }
 
