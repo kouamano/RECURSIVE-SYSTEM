@@ -9,11 +9,11 @@
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" xtq [-h] [-s] [-c] [-pT] [-pB] [-pBS] if=<input file> buff=<buffer size> blocks=<blocks> pf=<print format>.\n");
+	printf(" xtq [-h] [-s] [-c] [-pt] [-pB] [-pBS] if=<input file> buff=<buffer size> blocks=<blocks> pf=<print format>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
-	printf("  -pT : print terminal chars.\n");
+	printf("  -pt : print terminal chars.\n");
 	printf("  -pB : print blocks.\n");
 	printf("  -pBS : print blocks with status.\n");
 	printf("  input file : input file.\n");
@@ -69,7 +69,7 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"buff=%d",&(*opt).buff);
 		}else if(strncmp(optv[i],"blocks=",7) == 0){
 			sscanf(optv[i],"blocks=%d",&(*opt).blocks);
-		}else if(strncmp(optv[i],"-pT",3) == 0){
+		}else if(strncmp(optv[i],"-pt",3) == 0){
 			(*opt).pt = 1;
 		}else if(strncmp(optv[i],"-pBS",4) == 0){
 			(*opt).pbs = 1;
