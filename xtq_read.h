@@ -26,12 +26,14 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 	while((current_C = fgetc(IN))){
 		C_counter++;
 		if(current_C == EOF){
-			current_Bl++;
-			BUFF[BUFF_counter] = '\0';
+			//current_Bl++;
+			//BUFF[BUFF_counter] = '\0';
 			if(strlen(BUFF) > 0 && (*opt).pt == 1){
 				//debug
 				//printf("{<@tag:%d:}",in_tag);
 				//printf("%s$(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
+			current_Bl++;
+			BUFF[BUFF_counter] = '\0';
 
 			current_BlType = check_Block_type(BUFF,current_BlType);
 			set_Block(Bl,current_Bl,current_BlType,current_Lv,current_PNd,BUFF);
