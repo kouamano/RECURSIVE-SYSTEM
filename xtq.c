@@ -91,6 +91,7 @@ void check_options(struct options *opt){
 	printf(" opt.pt:%d:\n",(*opt).pt);
 	printf(" opt.pb:%d:\n",(*opt).pb);
 	printf(" opt.pbs:%d:\n",(*opt).pbs);
+	printf(" opt.ptf:%d:\n",(*opt).ptf);
 	printf(" opt.pf:%s:\n",(*opt).pf);
 }
 /* block operation */
