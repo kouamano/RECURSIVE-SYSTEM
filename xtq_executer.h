@@ -8,5 +8,4 @@ void Executer(struct Block *Bl, int target_Bl, struct options opt, struct Bl_tre
 	if(opt.ptf == 1){
 		ExPrint_seq_Bl_T(Bl, target_Bl, opt, report);
 	}
-
 }
