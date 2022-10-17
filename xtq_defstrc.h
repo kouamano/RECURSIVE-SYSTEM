@@ -1,17 +1,4 @@
 #define LEN 1024
-struct options {
-        int help;
-        int stat;
-        int check;
-        char *file;
-        int buff;
-        int blocks;
-        //printt option
-        int pt;
-        int pb;
-        int pbs;
-        char *pf;
-};
 
 /* Block type */
 int BType_Unuse = -1;
@@ -38,6 +25,21 @@ char THead_end[] = "</";
 char TTail_end[] = ">";
 
 /* structure */
+struct options {
+        int help;
+        int stat;
+        int check;
+        char *file;
+        int buff;
+        int blocks;
+        //printt option
+        int pt;
+        int pb;
+        int pbs;
+        int ptf;
+        char *pf;
+};
+
 struct Block {
         //int ser;
         int Lv;
