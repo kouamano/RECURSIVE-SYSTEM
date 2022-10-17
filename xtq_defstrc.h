@@ -8,6 +8,8 @@ struct options {
         int blocks;
         //printt option
         int pt;
+        int pb;
+        int pbs;
         char *pf;
 };
 
