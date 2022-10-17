@@ -17,6 +17,7 @@ struct Bl_tree_report *alloc_Bl_tree_report(void){
 	}
 	return(p);
 }
+
 /** create, edit, test **/
 int create_Nd(struct Block *Bl, int No, struct Bl_create_opt create_opt){
 	//Bl[No].ser = 0;
@@ -125,6 +126,7 @@ void set_Block(struct Block *Bl, int No, int type, int lv, int pn, char *buff){
 	Bl[No].Bltype = type;
 	Bl[No].parent = pn;
 }
+
 /** print **/
 void print_tree_report(struct Bl_tree_report *report){
 	fprintf(stderr,"==== ==== ==== ==== ====\n");
@@ -134,6 +136,7 @@ void print_tree_report(struct Bl_tree_report *report){
 	fprintf(stderr,"Chrs:%d\n",(*report).Chrs);
 	fprintf(stderr,"==== ==== ==== ==== ====\n");
 }
+
 void ExPrint_seq_Bl(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
 	for(i=target;i<report.Bls;i++){
@@ -143,6 +146,7 @@ void ExPrint_seq_Bl(struct Block *Bl, int target, struct options opt, struct Bl_
 		}
 	}
 }
+
 void ExPrint_seq_BlSt(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
 	for(i=target;i<report.Bls;i++){

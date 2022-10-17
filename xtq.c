@@ -26,6 +26,7 @@ void status(void){
 	printf("STATUS:\n");
 	printf("  complete primal function.\n");
 }
+
 /* option */
 struct options *alloc_options(void){
 	struct options *p;
@@ -99,13 +100,17 @@ void check_options(struct options *opt){
 	printf(" opt.ptf:%d:\n",(*opt).ptf);
 	printf(" opt.pf:%s:\n",(*opt).pf);
 }
+
 /* block operation */
 #include "./xtq_block.h"
 #include "./xtq_block_T.h"
+
 /* read operation */
 #include "./xtq_read.h"
+
 /* executer */
 #include "./xtq_executer.h"
+
 /* main */
 int main(int argc, char **argv){
 	/** vals **/
@@ -158,7 +163,6 @@ int main(int argc, char **argv){
 	/** operation **/
 	print_tree_report(report);
 	Executer(Bl,0,*opt,*report);
-
 	/** finalize **/
 	return(0);
 }
