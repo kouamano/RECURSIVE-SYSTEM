@@ -20,7 +20,7 @@ void ExPrint_seq_Bl_T(struct Block *Bl, int target, struct options opt, struct B
 		//iTag
 		if((Bl[i].Bltype&BType_iTag) == BType_iTag){
 			//print conj
-			if( (Bl[i-1].Bltype&BType_iTag) == BType_iTag || (Bl[i].Bltype&BType_Body) == BType_Body){
+			if((Bl[i].Bltype&BType_eTag) == BType_eTag){
 				printf("%s",",");
 			}
 			//print str
@@ -29,7 +29,7 @@ void ExPrint_seq_Bl_T(struct Block *Bl, int target, struct options opt, struct B
 		//Body
 		if((Bl[i].Bltype&BType_Body) == BType_Body){
 			//print conj
-			if( (Bl[i-1].Bltype&BType_iTag) == BType_iTag || (Bl[i].Bltype&BType_Body) == BType_Body){
+			if((Bl[i].Bltype&BType_eTag) == BType_eTag){
 				printf("%s",",");
 			}
 			//print str
