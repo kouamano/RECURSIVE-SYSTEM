@@ -120,7 +120,10 @@ int check_Block_type(char *BUFF, const int current){
 void set_Block(struct Block *Bl, int No, int type, int lv, int pn, char *buff){
 	int len = 0;
 	len = strlen(buff);
-	Bl[No].str = malloc(sizeof(char) * (len+1));
+	if((Bl[No].str = malloc(sizeof(char) * (len+1))) == NULL){
+		perror("set_Block\n");
+		exit(1);
+	}
 	strcpy(Bl[No].str,buff);
 	Bl[No].Lv = lv;
 	Bl[No].Bltype = type;
