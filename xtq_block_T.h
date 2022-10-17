@@ -1,10 +1,11 @@
 void ExPrint_seq_Bl_T(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
         for(i=target;i<report.Bls;i++){
+		//start Node
 		//Node = sTag:
 		if((Bl[i].Bltype&BType_Node) == BType_Node){
 			//print conj
-			if(i > 0 && (Bl[i].Bltype&BType_Node) != BType_Node){
+			if(i > 0 && (Bl[i-1].Bltype&BType_Node) != BType_Node){
 				printf("%s",",");
 			}
 			//print str
@@ -20,7 +21,7 @@ void ExPrint_seq_Bl_T(struct Block *Bl, int target, struct options opt, struct B
 		//iTag
 		if((Bl[i].Bltype&BType_iTag) == BType_iTag){
 			//print conj
-			if((Bl[i].Bltype&BType_eTag) == BType_eTag){
+			if((Bl[i-1].Bltype&BType_eTag) == BType_eTag){
 				printf("%s",",");
 			}
 			//print str
@@ -29,7 +30,7 @@ void ExPrint_seq_Bl_T(struct Block *Bl, int target, struct options opt, struct B
 		//Body
 		if((Bl[i].Bltype&BType_Body) == BType_Body){
 			//print conj
-			if((Bl[i].Bltype&BType_eTag) == BType_eTag){
+			if((Bl[i-1].Bltype&BType_eTag) == BType_eTag){
 				printf("%s",",");
 			}
 			//print str
