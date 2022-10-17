@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "./xtq_defstrc.h"
+#include "./xtq_block_T.h"
 
 
 /* help */
