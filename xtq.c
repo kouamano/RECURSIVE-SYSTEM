@@ -8,7 +8,7 @@
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" xtq [-h] [-s] [-c] [-pt] [-pn] [-pB] [-pBS] [-pT] in=<input file> buff=<buffer size> blocks=<blocks> pf=<print format>.\n");
+	printf(" xtq [-h] [-s] [-c] [-pt] [-pn] [-pB] [-pBS] [-pT] in=<input file> buff=<buffer size> blocks=<blocks> pf=<print format> SH=<status header> SF=<status footer>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
@@ -21,6 +21,8 @@ void help(void){
 	printf("  buffer size : buffer size.\n");
 	printf("  blocks : number of blocks.\n");
 	printf("  print format : format for block (default:\"%%s\").\n");
+	printf("  status header : header for S option.\n");
+	printf("  status footer : footer for S option.\n");
 }
 void status(void){
 	printf("STATUS:\n");
@@ -42,6 +44,14 @@ struct options *alloc_options(void){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
+	if(((*p).SH = malloc(sizeof(char) * LEN)) == NULL){
+		printf("failed : malloc() in alloc_options().\n");
+		exit(1);
+	}
+	if(((*p).SF = malloc(sizeof(char) * LEN)) == NULL){
+		printf("failed : malloc() in alloc_options().\n");
+		exit(1);
+	}
 	return(p);
 }
 void init_options(struct options *opt){
@@ -57,6 +67,8 @@ void init_options(struct options *opt){
 	(*opt).pbs = 0;
 	(*opt).ptf = 0;
 	strcpy((*opt).pf,"%s");
+	strcpy((*opt).SH,"[[[");
+	strcpy((*opt).SH,"]]]");
 }
 void get_options(int optc, char **optv, struct options *opt){
 	int i = 0;
@@ -85,6 +97,10 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).ptf = 1;
 		}else if(strncmp(optv[i],"pf=",3) == 0){
 			sscanf(optv[i],"pf=%s",(*opt).pf);
+		}else if(strncmp(optv[i],"SH=",3) == 0){
+			sscanf(optv[i],"SH=%s",(*opt).SH);
+		}else if(strncmp(optv[i],"SF=",3) == 0){
+			sscanf(optv[i],"SF=%s",(*opt).SF);
 		}
 	}
 }
@@ -99,6 +115,8 @@ void check_options(struct options *opt){
 	printf(" opt.pbs:%d:\n",(*opt).pbs);
 	printf(" opt.ptf:%d:\n",(*opt).ptf);
 	printf(" opt.pf:%s:\n",(*opt).pf);
+	printf(" opt.SH:%s:\n",(*opt).SH);
+	printf(" opt.SF:%s:\n",(*opt).SF);
 }
 
 /* block operation */
