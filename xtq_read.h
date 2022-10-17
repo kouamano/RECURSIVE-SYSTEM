@@ -33,8 +33,9 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 			current_Bl++;
 			BUFF[BUFF_counter] = '\0';
 			if(strlen(BUFF) > 0 && (*opt).pt == 1){
-				printf("{<@tag:%d:}",in_tag);
-				printf("%s$(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
+				//debug
+				//printf("{<@tag:%d:}",in_tag);
+				//printf("%s$(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
 			}
 			set_Block(Bl,current_Bl,current_BlType,current_Lv,current_PNd,BUFF);
 			break;
@@ -47,7 +48,8 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 			//CDATAセクションは開始か
 			start_CDATA = start_cdata(BUFF,BUFF_counter,in_cdata);
 			in_cdata = start_CDATA;
-			printf("{<@tag:%d:}",in_tag);
+			//debug
+			//printf("{<@tag:%d:}",in_tag);
 		}
 		if(current_C == '>'){
 			//'>'はCDATAタグだけでなく含まれる可能性があるので判定が必要
@@ -61,7 +63,8 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 			if(in_cdata == 1 && end_CDATA == 1){
 				in_cdata = 0;
 			}
-			printf("{<@tag:%d:}",in_tag);
+			//debug
+			//printf("{<@tag:%d:}",in_tag);
 		}
 		if(in_tag == 0){
 			//予備
@@ -75,9 +78,10 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 					current_Bl++;
 					//body Blのcreate
 					BUFF[BUFF_counter - 1] = '\0';
-					/* create Bl */
+					//create Bl
 					current_BlType = check_Block_type(BUFF,current_BlType);
-					printf("%s$(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
+					//debug
+					//printf("%s$(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
 					set_Block(Bl,current_Bl,current_BlType,current_Lv,current_PNd,BUFF);
 					//BUFFクリア、BUFF_counter クリア
 					BUFF[0] = '<';
@@ -92,7 +96,8 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 				//tag Blのcreate
 				BUFF[BUFF_counter] = '\0';
 				current_BlType = check_Block_type(BUFF,current_BlType);
-				printf("%s#(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
+				//debug
+				//printf("%s#(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
 				set_Block(Bl,current_Bl,current_BlType,current_Lv,current_PNd,BUFF);
 				//current_LvをセットしたのちにLv up
 				if((current_BlType&BType_sTag) == BType_sTag){
