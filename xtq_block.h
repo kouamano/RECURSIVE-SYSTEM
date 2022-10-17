@@ -153,7 +153,9 @@ void ExPrint_seq_Bl(struct Block *Bl, int target, struct options opt, struct Bl_
 void ExPrint_seq_BlSt(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
 	for(i=target;i<report.Bls;i++){
-		printf("[[[Bl%d,Ty%d,Lv%d,Pa%d]]]",i,Bl[i].Bltype,Bl[i].Lv,Bl[i].parent);
+		printf("%s",opt.SH);
+		printf("Bl%d,Ty%d,Lv%d,Pa%d",i,Bl[i].Bltype,Bl[i].Lv,Bl[i].parent);
+		printf("%s",opt.SF);
 		printf(opt.pf,Bl[i].str);
 		if(opt.pn == 1){
 			printf("\n");
