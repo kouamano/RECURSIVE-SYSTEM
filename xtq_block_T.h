@@ -39,4 +39,6 @@ void ExPrint_seq_Bl_T(struct Block *Bl, int target, struct options opt, struct B
 		}
 
 	}
+	//last Node
+	printf("%s",")");
 }

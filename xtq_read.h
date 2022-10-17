@@ -36,8 +36,12 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 				//debug
 				//printf("{<@tag:%d:}",in_tag);
 				//printf("%s$(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
-			}
+
+			current_BlType = check_Block_type(BUFF,current_BlType);
 			set_Block(Bl,current_Bl,current_BlType,current_Lv,current_PNd,BUFF);
+			}
+			//current_BlType = check_Block_type(BUFF,current_BlType);
+			//set_Block(Bl,current_Bl,current_BlType,current_Lv,current_PNd,BUFF);
 			break;
 		}
 		push_buff(opt,current_C,BUFF,BUFF_counter);
