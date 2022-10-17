@@ -137,8 +137,10 @@ void print_tree_report(struct Bl_tree_report *report){
 void ExPrint_seq_Bl(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
 	for(i=target;i<report.Bls;i++){
-		//printf("%s",Bl[i].str);
 		printf(opt.pf,Bl[i].str);
+		if(opt.pn == 1){
+			printf("\n");
+		}
 	}
 }
 void ExPrint_seq_BlSt(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
@@ -146,6 +148,9 @@ void ExPrint_seq_BlSt(struct Block *Bl, int target, struct options opt, struct B
 	for(i=target;i<report.Bls;i++){
 		printf("[[[Bl%d,Ty%d,Lv%d,Pa%d]]]",i,Bl[i].Bltype,Bl[i].Lv,Bl[i].parent);
 		printf(opt.pf,Bl[i].str);
+		if(opt.pn == 1){
+			printf("\n");
+		}
 	}
 }
 
