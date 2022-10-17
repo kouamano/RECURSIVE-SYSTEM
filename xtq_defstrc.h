@@ -34,6 +34,7 @@ struct options {
         int blocks;
         //printt option
         int pt;
+        int pn;
         int pb;
         int pbs;
         int ptf;
