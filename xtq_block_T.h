@@ -14,7 +14,27 @@ void ExPrint_seq_Bl_T(struct Block *Bl, int target, struct options opt, struct B
 		}
 		//eTag
 		if((Bl[i].Bltype&BType_eTag) == BType_eTag){
+			//print close blacket
 			printf("%s",")");
 		}
+		//iTag
+		if((Bl[i].Bltype&BType_iTag) == BType_iTag){
+			//print conj
+			if( (Bl[i-1].Bltype&BType_iTag) == BType_iTag || (Bl[i].Bltype&BType_Body) == BType_Body){
+				printf("%s",",");
+			}
+			//print str
+			printf(opt.pf,Bl[i].str);
+		}
+		//Body
+		if((Bl[i].Bltype&BType_Body) == BType_Body){
+			//print conj
+			if( (Bl[i-1].Bltype&BType_iTag) == BType_iTag || (Bl[i].Bltype&BType_Body) == BType_Body){
+				printf("%s",",");
+			}
+			//print str
+			printf(opt.pf,Bl[i].str);
+		}
+
 	}
 }
