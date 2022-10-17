@@ -1,7 +1,8 @@
 void ExPrint_seq_Bl_T(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
+	//start Node
+	printf("%s","(");
         for(i=target;i<report.Bls;i++){
-		//start Node
 		//Node = sTag:
 		if((Bl[i].Bltype&BType_Node) == BType_Node){
 			//print conj
