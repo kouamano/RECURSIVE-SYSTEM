@@ -1,6 +1,6 @@
 /* functions */
 /** alloc **/
-struct Block *alloc_Block_arr(int size){
+struct Block *alloc_Bl_arr(int size){
 	struct Block *p;
 	if((p = malloc(sizeof(struct Block) * size)) == NULL){
 		perror("alloc_Block()\n");

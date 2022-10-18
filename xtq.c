@@ -161,7 +161,7 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 	/** create block **/
-	Bl = alloc_Block_arr((*opt).blocks);
+	Bl = alloc_Bl_arr((*opt).blocks);
 	/*** create top node ***/
 	struct Bl_create_opt create_opt;
 	create_opt.str_size = 1;
