@@ -1,5 +1,5 @@
 void push_buff(struct options *opt, int C, char *BUFF, int counter){
-	//TODO: size check
+	//サイズチェックはwhileロープ内で行っている
 	BUFF[counter] = (char)C;
 
 }
