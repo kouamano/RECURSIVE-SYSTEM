@@ -42,6 +42,11 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 			//set_Block(Bl,current_Bl,current_BlType,current_Lv,current_PNd,BUFF);
 			break;
 		}
+		//Block count check
+		if(current_Bl == (*opt).blocks){
+			perror("Block creation error.\n");
+			exit(1);
+		}
 		//BUFF size check
 		if(BUFF_counter == (*opt).buff){
 			perror("BUFF size error.\n");
