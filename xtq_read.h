@@ -7,7 +7,7 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 	int current_C = 0;
 	int C_counter = 0;
 	int Nd_counter = 0;
-	int current_BlType = 0;
+	int current_BType = 0;
 	int current_Bl = start_Bl;
 	//int current_Nd = start_Nd;
 	int current_Lv = start_Lv;
@@ -29,11 +29,11 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 			if(strlen(BUFF) > 0 && (*opt).pt == 1){
 				//debug
 				//printf("{<@tag:%d:}",in_tag);
-				//printf("%s$(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
+				//printf("%s$(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BType,current_Lv,current_PNd);	//createの代わり
 				current_Bl++;
 				BUFF[BUFF_counter] = '\0';
-				current_BlType = check_Bl_type(BUFF,current_BlType);
-				set_Block(Bl,current_Bl,current_BlType,current_Lv,current_PNd,BUFF);
+				current_BType = check_Bl_type(BUFF,current_BType);
+				set_Block(Bl,current_Bl,current_BType,current_Lv,current_PNd,BUFF);
 			}
 			break;
 		}
@@ -86,10 +86,10 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 					//body Blのcreate
 					BUFF[BUFF_counter - 1] = '\0';
 					//create Bl
-					current_BlType = check_Bl_type(BUFF,current_BlType);
+					current_BType = check_Bl_type(BUFF,current_BType);
 					//debug
-					//printf("%s$(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
-					set_Block(Bl,current_Bl,current_BlType,current_Lv,current_PNd,BUFF);
+					//printf("%s$(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BType,current_Lv,current_PNd);	//createの代わり
+					set_Block(Bl,current_Bl,current_BType,current_Lv,current_PNd,BUFF);
 					//BUFFクリア、BUFF_counter クリア
 					BUFF[0] = '<';
 					BUFF_counter = 1;
@@ -102,21 +102,21 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 				current_Bl++;
 				//tag Blのcreate
 				BUFF[BUFF_counter] = '\0';
-				current_BlType = check_Bl_type(BUFF,current_BlType);
+				current_BType = check_Bl_type(BUFF,current_BType);
 				//debug
-				//printf("%s#(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
-				set_Block(Bl,current_Bl,current_BlType,current_Lv,current_PNd,BUFF);
+				//printf("%s#(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BType,current_Lv,current_PNd);	//createの代わり
+				set_Block(Bl,current_Bl,current_BType,current_Lv,current_PNd,BUFF);
 				//current_LvをセットしたのちにLv up
-				if((current_BlType&BType_sTag) == BType_sTag){
+				if((current_BType&BType_sTag) == BType_sTag){
 					current_Lv++;
 					current_PNd = current_Bl;
 				}
-				if((current_BlType&BType_eTag) == BType_eTag){
+				if((current_BType&BType_eTag) == BType_eTag){
 					current_Lv--;
 					//current_PNd
 					current_PNd = Bl[(Bl[current_Bl].parent)].parent;
 				}
-				if((current_BlType&BType_Node) == BType_Node){
+				if((current_BType&BType_Node) == BType_Node){
 					Nd_counter++;
 				}
 				//BUFFクリア、BUFF_counterクリア
