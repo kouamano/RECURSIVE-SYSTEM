@@ -56,7 +56,7 @@ int end_cdata(char *BUFF, const int counter, int in_cdata){
 	return(end);
 }
 
-int check_Block_type(char *BUFF, const int current){
+int check_Bl_type(char *BUFF, const int current){
 	int out = current;
 	//CDATA
 	if(strncmp(BUFF,THead_CDATA,strlen(THead_CDATA)) == 0){

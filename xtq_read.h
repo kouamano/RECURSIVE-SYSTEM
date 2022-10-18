@@ -32,7 +32,7 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 				//printf("%s$(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
 				current_Bl++;
 				BUFF[BUFF_counter] = '\0';
-				current_BlType = check_Block_type(BUFF,current_BlType);
+				current_BlType = check_Bl_type(BUFF,current_BlType);
 				set_Block(Bl,current_Bl,current_BlType,current_Lv,current_PNd,BUFF);
 			}
 			break;
@@ -86,7 +86,7 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 					//body Blのcreate
 					BUFF[BUFF_counter - 1] = '\0';
 					//create Bl
-					current_BlType = check_Block_type(BUFF,current_BlType);
+					current_BlType = check_Bl_type(BUFF,current_BlType);
 					//debug
 					//printf("%s$(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
 					set_Block(Bl,current_Bl,current_BlType,current_Lv,current_PNd,BUFF);
@@ -102,7 +102,7 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 				current_Bl++;
 				//tag Blのcreate
 				BUFF[BUFF_counter] = '\0';
-				current_BlType = check_Block_type(BUFF,current_BlType);
+				current_BlType = check_Bl_type(BUFF,current_BlType);
 				//debug
 				//printf("%s#(Bl%d:Ty%d:Lv%d:PN%d)\n",BUFF,current_Bl,current_BlType,current_Lv,current_PNd);	//createの代わり
 				set_Block(Bl,current_Bl,current_BlType,current_Lv,current_PNd,BUFF);
