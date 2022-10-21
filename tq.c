@@ -136,10 +136,11 @@ void list_builtins(void){
 	printf("  * $U$ : <operator>: unpack single level.\n");
 	printf("  * $UU$ : <operator>: unpack tree (test ver.).\n");
 	printf("  * $PI$ : <operator>: inner production for binded data.\n");
+	printf("  * $TO$ : <operator>: outer production for tree.\n");
 	printf("  * $CAT$ : <operator>: concatenate text-string from file. (Underconstruction)\n");
 	printf("  * $NULL$ : <name>: null object.\n");
 	printf("  * [<n>] : <bind>: data bind.\n");
-	printf("  * @(<tree>*) : <bind>: pseudo-bind.\n");
+	printf("  * @(<tree>*) : <bind>: over-ride bind.\n");
 }
 void put_examples(void){
 	printf("\n");
