@@ -233,7 +233,7 @@ void put_examples(void){
 	printf("\n");
 	printf("  $PI$(@(L,W),Quantity($#4,$#2))\n");
 	printf("       ^^^^^^\n");
-	printf("       Binding data (distribution)\n");
+	printf("       Over-ride bind\n");
 	printf("\n");
 	printf(" $ tq.o in=in.ddf out=out2.ddl data=test.csv -FT -Pprod -C\n");
 	printf("  => (((L,Quantity(1,mm)),(W,Quantity(2,kg))),((L,Quantity(322,mm)),(W,Quantity(4,kg))),((L,Quantity(5,mm)),(W,Quantity(68,kg))))\n");
