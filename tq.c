@@ -138,7 +138,6 @@ void list_builtins(void){
 	printf("  * $PI$ : <operator>: inner production for binded data.\n");
 	printf("  * $CAT$ : <operator>: concatenate text-string from file. (Underconstruction)\n");
 	printf("  * $NULL$ : <name>: null object.\n");
-	printf("  * @(<string>) : <name>: binded data.\n");
 	printf("  * [<n>] : <bind>: data bind.\n");
 	printf("  * @(<tree>*) : <bind>: pseudo-bind.\n");
 }
