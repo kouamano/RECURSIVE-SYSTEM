@@ -244,7 +244,7 @@ void put_examples(void){
 	printf("\n");
 	printf("  $PI$((L,W),Quantity($#4,$#2))\n");
 	printf("       ^^^^^\n");
-	printf("       Binding data (bulk)\n");
+	printf("       insertion\n");
 	printf("\n");
 	printf("NIMS Standard SpreadSheet (NS3)\n");
 	printf("*******************************\n");
