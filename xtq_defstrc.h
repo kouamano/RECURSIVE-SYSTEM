@@ -39,6 +39,8 @@ struct options {
         int pbs;
         int ptf;
         char *pf;
+	char *BH;
+	char *BF;
 	char *SH;
 	char *SF;
 };
