@@ -41,8 +41,18 @@ echo '>> converter'
 git --no-pager diff cq:T-convStructure.h cq_debug:T-convStructure.h
 git --no-pager diff cq:T-convFunctions.h cq_debug:T-convFunctions.h
 git --no-pager diff cq:T-convFunctions_imex.h cq_debug:T-convFunctions_imex.h
+git --no-pager diff cq:tconv.c cq_debug:tconv.c
+git --no-pager diff cq:cts.c cq_debug:cts.c
+git --no-pager diff cq:cst.c cq_debug:cst.c
 git --no-pager diff cq:toPsdJSON.c cq_debug:toPsdJSON.c
 git --no-pager diff cq:indentToT.c cq_debug:indentToT.c
+### xtq
+git --no-pager diff cq:xtq.c cq_debug:xtq.c
+git --no-pager diff cq:xtq_defstrc.h cq_debug:xtq_defstrc.h
+git --no-pager diff cq:xtq_block.h cq_debug:xtq_block.h
+git --no-pager diff cq:xtq_block_T.h cq_debug:xtq_block_T.h
+git --no-pager diff cq:xtq_read.h cq_debug:xtq_read.h
+git --no-pager diff cq:xtq_executer.h cq_debug:xtq_executer.h
 ## test
 echo '>> test code'
 git --no-pager diff cq:tqcq.awk cq_debug:tqcq.awk
@@ -52,6 +62,7 @@ git --no-pager diff cq:DimensionDefinitionLanguage/conv2-test.script cq_debug:Di
 echo '>> compile'
 git --no-pager diff cq:compile-all.sh cq_debug:compile-all.sh
 git --no-pager diff cq:DimensionDefinitionLanguage/compile_checker.sh cq_debug:DimensionDefinitionLanguage/compile_checker.sh
+git --no-pager diff cq:compile-x.sh cq_debug:compile-x.sh
 
 # vs. jsik
 echo '> VS. jsik'
@@ -89,11 +100,23 @@ git --no-pager diff cq:C-help.h jsik:C-help.h
 git --no-pager diff cq:C-structure.h jsik:C-structure.h
 git --no-pager diff cq:C-functions.h jsik:C-functions.h
 git --no-pager diff cq:C-functions_imex.h jsik:C-functions_imex.h
-## tconv
+## converter
 echo '>> converter'
 git --no-pager diff cq:T-convStructure.h jsik:T-convStructure.h
 git --no-pager diff cq:T-convFunctions.h jsik:T-convFunctions.h
 git --no-pager diff cq:T-convFunctions_imex.h jsik:T-convFunctions_imex.h
+git --no-pager diff cq:tconv.c jsik:tconv.c
+git --no-pager diff cq:cts.c jsik:cts.c
+git --no-pager diff cq:cst.c jsik:cst.c
+git --no-pager diff cq:toPsdJSON.c jsik:toPsdJSON.c
+git --no-pager diff cq:indentToT.c jsik:indentToT.c
+### xtq
+git --no-pager diff cq:xtq.c jsik:xtq.c
+git --no-pager diff cq:xtq_defstrc.h jsik:xtq_defstrc.h
+git --no-pager diff cq:xtq_block.h jsik:xtq_block.h
+git --no-pager diff cq:xtq_block_T.h jsik:xtq_block_T.h
+git --no-pager diff cq:xtq_read.h jsik:xtq_read.h
+git --no-pager diff cq:xtq_executer.h jsik:xtq_executer.h
 ## test
 echo '>> test code'
 git --no-pager diff cq:tqcq.awk jsik:tqcq.awk
@@ -103,5 +126,3 @@ git --no-pager diff cq:DimensionDefinitionLanguage/conv2-test.script jsik:Dimens
 echo '>> compile'
 git --no-pager diff cq:compile-all.sh jsik:compile-all.sh
 git --no-pager diff cq:DimensionDefinitionLanguage/compile_checker.sh jsik:DimensionDefinitionLanguage/compile_checker.sh
-
-
