@@ -109,8 +109,16 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).ptf = 1;
 		}else if(strncmp(optv[i],"pf=",3) == 0){
 			sscanf(optv[i],"pf=%s",(*opt).pf);
+
+		}else if(strncmp(optv[i],"BH=",3) == 0){
+			sscanf(optv[i],"BH=%s",(*opt).BH);
+
+		}else if(strncmp(optv[i],"BF=",3) == 0){
+			sscanf(optv[i],"BF=%s",(*opt).BF);
+
 		}else if(strncmp(optv[i],"SH=",3) == 0){
 			sscanf(optv[i],"SH=%s",(*opt).SH);
+
 		}else if(strncmp(optv[i],"SF=",3) == 0){
 			sscanf(optv[i],"SF=%s",(*opt).SF);
 		}
