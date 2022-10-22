@@ -58,6 +58,18 @@ echo '>> test code'
 git --no-pager diff cq:tqcq.awk cq_debug:tqcq.awk
 git --no-pager diff cq:DimensionDefinitionLanguage/conv-test.script cq_debug:DimensionDefinitionLanguage/conv-test.script
 git --no-pager diff cq:DimensionDefinitionLanguage/conv2-test.script cq_debug:DimensionDefinitionLanguage/conv2-test.script
+## checker
+echo '>> checker'
+git --no-pager diff cq:DimensionDefinitionLanguage/gt.l cq_debug:DimensionDefinitionLanguage/gt.l
+git --no-pager diff cq:DimensionDefinitionLanguage/gt.y cq_debug:DimensionDefinitionLanguage/gt.y
+git --no-pager diff cq:DimensionDefinitionLanguage/t.l cq_debug:DimensionDefinitionLanguage/t.l
+git --no-pager diff cq:DimensionDefinitionLanguage/t.y cq_debug:DimensionDefinitionLanguage/t.y
+git --no-pager diff cq:DimensionDefinitionLanguage/et.y cq_debug:DimensionDefinitionLanguage/et.y
+git --no-pager diff cq:DimensionDefinitionLanguage/eet.y cq_debug:DimensionDefinitionLanguage/eet.y
+git --no-pager diff cq:DimensionDefinitionLanguage/s.l cq_debug:DimensionDefinitionLanguage/s.l
+git --no-pager diff cq:DimensionDefinitionLanguage/s.y cq_debug:DimensionDefinitionLanguage/s.y
+git --no-pager diff cq:DimensionDefinitionLanguage/es.y cq_debug:DimensionDefinitionLanguage/es.y
+git --no-pager diff cq:DimensionDefinitionLanguage/ees.y cq_debug:DimensionDefinitionLanguage/ees.y
 ## compile
 echo '>> compile'
 git --no-pager diff cq:compile-all.sh cq_debug:compile-all.sh
