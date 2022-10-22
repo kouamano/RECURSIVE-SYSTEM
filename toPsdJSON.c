@@ -13,7 +13,7 @@ struct options {
 
 void help(void){
 	printf("DESCRIPTION:\n");
-	printf(" toPsdJSON prints pseudo JSON form with T-format, via standard input.\n");
+	printf(" toPsdJSON prints pseudo JSON form T-format.\n");
 	printf("USAGE:\n");
 	printf(" toPsdJSON [-h] [-s] [-c] in=<file>\n");
 	printf("  -h : help.\n");
