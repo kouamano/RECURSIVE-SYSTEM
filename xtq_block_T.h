@@ -49,7 +49,7 @@ void ExPrint_seq_Bl_T(struct Block *Bl, int target, struct options opt, struct B
 			}
 			//print str
 			put_str_T(Bl[i].str);
-			printf(opt.pf,Bl[i].str);
+			//printf(opt.pf,Bl[i].str);
 		}
 
 	}
