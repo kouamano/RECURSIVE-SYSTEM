@@ -1,3 +1,16 @@
+void put_str_T(char *buff){
+	int i;
+	int len = 0;
+	len = strlen(buff);
+	putc('"',stdout);
+	for(i=0;i<len;i++){
+		if(*(buff+i) == '"'){
+			putc('"',stdout);
+		}
+		putc(*(buff+i),stdout);
+	}
+	putc('"',stdout);
+}
 void ExPrint_seq_Bl_T(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
 	//start Node
@@ -35,6 +48,7 @@ void ExPrint_seq_Bl_T(struct Block *Bl, int target, struct options opt, struct B
 				printf("%s",",");
 			}
 			//print str
+			put_str_T(Bl[i].str);
 			printf(opt.pf,Bl[i].str);
 		}
 
