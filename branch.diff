@@ -46,6 +46,13 @@ git --no-pager diff cq:cts.c cq_debug:cts.c
 git --no-pager diff cq:cst.c cq_debug:cst.c
 git --no-pager diff cq:toPsdJSON.c cq_debug:toPsdJSON.c
 git --no-pager diff cq:indentToT.c cq_debug:indentToT.c
+### xtq
+git --no-pager diff cq:xtq.c cq_debug:xtq.c
+git --no-pager diff cq:xtq_defstrc.h cq_debug:xtq_defstrc.h
+git --no-pager diff cq:xtq_block.h cq_debug:xtq_block.h
+git --no-pager diff cq:xtq_block_T.h cq_debug:xtq_block_T.h
+git --no-pager diff cq:xtq_read.h cq_debug:xtq_read.h
+git --no-pager diff cq:xtq_executer.h cq_debug:xtq_executer.h
 ## test
 echo '>> test code'
 git --no-pager diff cq:tqcq.awk cq_debug:tqcq.awk
@@ -55,6 +62,7 @@ git --no-pager diff cq:DimensionDefinitionLanguage/conv2-test.script cq_debug:Di
 echo '>> compile'
 git --no-pager diff cq:compile-all.sh cq_debug:compile-all.sh
 git --no-pager diff cq:DimensionDefinitionLanguage/compile_checker.sh cq_debug:DimensionDefinitionLanguage/compile_checker.sh
+git --no-pager diff cq:compile-x.sh cq_debug:compile-x.sh
 
 # vs. jsik
 echo '> VS. jsik'
