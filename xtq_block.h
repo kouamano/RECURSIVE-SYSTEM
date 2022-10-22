@@ -144,7 +144,9 @@ void ExPrint_seq_Bl(struct Block *Bl, int target, struct options opt, struct Bl_
 	int i;
 	for(i=target;i<report.Bls;i++){
 		//block
+		printf("%s",opt.BH);
 		printf(opt.pf,Bl[i].str);
+		printf("%s",opt.BF);
 		//tail
 		if(opt.pn == 1){
 			printf("\n");
@@ -160,7 +162,9 @@ void ExPrint_seq_BlSt(struct Block *Bl, int target, struct options opt, struct B
 		printf("Bl%d,Ty%d,Lv%d,Pa%d",i,Bl[i].Bltype,Bl[i].Lv,Bl[i].parent);
 		printf("%s",opt.SF);
 		//block
+		printf("%s",opt.BH);
 		printf(opt.pf,Bl[i].str);
+		printf("%s",opt.BF);
 		//tail
 		if(opt.pn == 1){
 			printf("\n");
