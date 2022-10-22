@@ -46,6 +46,14 @@ struct options *alloc_options(void){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
+	if(((*p).BH = malloc(sizeof(char) * LEN)) == NULL){
+		printf("failed : malloc() in alloc_options().\n");
+		exit(1);
+	}
+	if(((*p).BF = malloc(sizeof(char) * LEN)) == NULL){
+		printf("failed : malloc() in alloc_options().\n");
+		exit(1);
+	}
 	if(((*p).SH = malloc(sizeof(char) * LEN)) == NULL){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
