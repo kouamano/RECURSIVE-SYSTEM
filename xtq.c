@@ -79,8 +79,8 @@ void init_options(struct options *opt){
 	strcpy((*opt).pf,"%s");
 	strcpy((*opt).SH,"[[[");
 	strcpy((*opt).SF,"]]]");
-	(*opt).SH[0] = '\0';
-	(*opt).SF[0] = '\0';
+	(*opt).BH[0] = '\0';
+	(*opt).BF[0] = '\0';
 }
 void get_options(int optc, char **optv, struct options *opt){
 	int i = 0;
