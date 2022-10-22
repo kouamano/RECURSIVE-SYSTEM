@@ -41,6 +41,9 @@ echo '>> converter'
 git --no-pager diff cq:T-convStructure.h cq_debug:T-convStructure.h
 git --no-pager diff cq:T-convFunctions.h cq_debug:T-convFunctions.h
 git --no-pager diff cq:T-convFunctions_imex.h cq_debug:T-convFunctions_imex.h
+git --no-pager diff cq:tconv.c cq_debug:tconv.c
+git --no-pager diff cq:cts.c cq_debug:cts.c
+git --no-pager diff cq:cst.c cq_debug:cst.c
 git --no-pager diff cq:toPsdJSON.c cq_debug:toPsdJSON.c
 git --no-pager diff cq:indentToT.c cq_debug:indentToT.c
 ## test
