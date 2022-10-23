@@ -17,7 +17,6 @@ void Executer(struct Block *Bl, int target_Bl, struct options opt, struct Bl_tre
 		if(output > 0){
 			printf("\n==== ==== ==== ====\n");
 		}
-
 		ExPrint_seq_Bl_T(Bl, target_Bl, opt, report);
 		output = 1;
 	}
