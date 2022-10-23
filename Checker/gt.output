@@ -1,0 +1,236 @@
+Rules never reduced
+
+    8 arg: head
+
+
+State 4 conflicts: 1 shift/reduce
+State 5 conflicts: 1 shift/reduce
+State 6 conflicts: 1 shift/reduce
+State 9 conflicts: 2 shift/reduce
+State 11 conflicts: 1 shift/reduce, 1 reduce/reduce
+State 13 conflicts: 1 shift/reduce
+State 14 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: list $end
+
+    1 list: head
+    2     | body
+    3     | head body
+
+    4 body: FUNC_S FUNC_E
+    5     | FUNC_S arg FUNC_E
+    6     | FUNC_S body FUNC_E
+    7     | body body
+
+    8 arg: head
+
+    9 head: HEAD
+   10     | list
+   11     | NULLCHAR
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+FUNC_S (258) 4 5 6
+FUNC_E (259) 4 5 6
+HEAD (260) 9
+NULLCHAR (261) 11
+
+
+Nonterminals, with rules where they appear
+
+$accept (7)
+    on left: 0
+list (8)
+    on left: 1 2 3, on right: 0 10
+body (9)
+    on left: 4 5 6 7, on right: 2 3 6 7
+arg (10)
+    on left: 8, on right: 5
+head (11)
+    on left: 9 10 11, on right: 1 3 8
+
+
+state 0
+
+    0 $accept: . list $end
+
+    FUNC_S    shift, and go to state 1
+    HEAD      shift, and go to state 2
+    NULLCHAR  shift, and go to state 3
+
+    list  go to state 4
+    body  go to state 5
+    head  go to state 6
+
+
+state 1
+
+    4 body: FUNC_S . FUNC_E
+    5     | FUNC_S . arg FUNC_E
+    6     | FUNC_S . body FUNC_E
+
+    FUNC_S    shift, and go to state 1
+    FUNC_E    shift, and go to state 7
+    HEAD      shift, and go to state 2
+    NULLCHAR  shift, and go to state 3
+
+    list  go to state 8
+    body  go to state 9
+    arg   go to state 10
+    head  go to state 11
+
+
+state 2
+
+    9 head: HEAD .
+
+    $default  reduce using rule 9 (head)
+
+
+state 3
+
+   11 head: NULLCHAR .
+
+    $default  reduce using rule 11 (head)
+
+
+state 4
+
+    0 $accept: list . $end
+   10 head: list .
+
+    $end  shift, and go to state 12
+
+    $end      [reduce using rule 10 (head)]
+    $default  reduce using rule 10 (head)
+
+
+state 5
+
+    2 list: body .
+    7 body: body . body
+
+    FUNC_S  shift, and go to state 1
+
+    FUNC_S    [reduce using rule 2 (list)]
+    $default  reduce using rule 2 (list)
+
+    body  go to state 13
+
+
+state 6
+
+    1 list: head .
+    3     | head . body
+
+    FUNC_S  shift, and go to state 1
+
+    FUNC_S    [reduce using rule 1 (list)]
+    $default  reduce using rule 1 (list)
+
+    body  go to state 14
+
+
+state 7
+
+    4 body: FUNC_S FUNC_E .
+
+    $default  reduce using rule 4 (body)
+
+
+state 8
+
+   10 head: list .
+
+    $default  reduce using rule 10 (head)
+
+
+state 9
+
+    2 list: body .
+    6 body: FUNC_S body . FUNC_E
+    7     | body . body
+
+    FUNC_S  shift, and go to state 1
+    FUNC_E  shift, and go to state 15
+
+    FUNC_S  [reduce using rule 2 (list)]
+    FUNC_E  [reduce using rule 2 (list)]
+
+    body  go to state 13
+
+
+state 10
+
+    5 body: FUNC_S arg . FUNC_E
+
+    FUNC_E  shift, and go to state 16
+
+
+state 11
+
+    1 list: head .
+    3     | head . body
+    8 arg: head .
+
+    FUNC_S  shift, and go to state 1
+
+    FUNC_S    [reduce using rule 1 (list)]
+    FUNC_E    reduce using rule 1 (list)
+    FUNC_E    [reduce using rule 8 (arg)]
+    $default  reduce using rule 1 (list)
+
+    body  go to state 14
+
+
+state 12
+
+    0 $accept: list $end .
+
+    $default  accept
+
+
+state 13
+
+    7 body: body . body
+    7     | body body .
+
+    FUNC_S  shift, and go to state 1
+
+    FUNC_S    [reduce using rule 7 (body)]
+    $default  reduce using rule 7 (body)
+
+    body  go to state 13
+
+
+state 14
+
+    3 list: head body .
+    7 body: body . body
+
+    FUNC_S  shift, and go to state 1
+
+    FUNC_S    [reduce using rule 3 (list)]
+    $default  reduce using rule 3 (list)
+
+    body  go to state 13
+
+
+state 15
+
+    6 body: FUNC_S body FUNC_E .
+
+    $default  reduce using rule 6 (body)
+
+
+state 16
+
+    5 body: FUNC_S arg FUNC_E .
+
+    $default  reduce using rule 5 (body)
