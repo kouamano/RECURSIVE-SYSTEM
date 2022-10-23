@@ -56,24 +56,24 @@ git --no-pager diff cq:xtq_executer.h cq_debug:xtq_executer.h
 ## test
 echo '>> test code'
 git --no-pager diff cq:tqcq.awk cq_debug:tqcq.awk
-git --no-pager diff cq:DimensionDefinitionLanguage/conv-test.script cq_debug:DimensionDefinitionLanguage/conv-test.script
-git --no-pager diff cq:DimensionDefinitionLanguage/conv2-test.script cq_debug:DimensionDefinitionLanguage/conv2-test.script
+git --no-pager diff cq:Checker/conv-test.script cq_debug:Checker/conv-test.script
+git --no-pager diff cq:Checker/conv2-test.script cq_debug:Checker/conv2-test.script
 ## checker
 echo '>> checker'
-git --no-pager diff cq:DimensionDefinitionLanguage/gt.l cq_debug:DimensionDefinitionLanguage/gt.l
-git --no-pager diff cq:DimensionDefinitionLanguage/gt.y cq_debug:DimensionDefinitionLanguage/gt.y
-git --no-pager diff cq:DimensionDefinitionLanguage/t.l cq_debug:DimensionDefinitionLanguage/t.l
-git --no-pager diff cq:DimensionDefinitionLanguage/t.y cq_debug:DimensionDefinitionLanguage/t.y
-git --no-pager diff cq:DimensionDefinitionLanguage/et.y cq_debug:DimensionDefinitionLanguage/et.y
-git --no-pager diff cq:DimensionDefinitionLanguage/eet.y cq_debug:DimensionDefinitionLanguage/eet.y
-git --no-pager diff cq:DimensionDefinitionLanguage/s.l cq_debug:DimensionDefinitionLanguage/s.l
-git --no-pager diff cq:DimensionDefinitionLanguage/s.y cq_debug:DimensionDefinitionLanguage/s.y
-git --no-pager diff cq:DimensionDefinitionLanguage/es.y cq_debug:DimensionDefinitionLanguage/es.y
-git --no-pager diff cq:DimensionDefinitionLanguage/ees.y cq_debug:DimensionDefinitionLanguage/ees.y
+git --no-pager diff cq:Checker/gt.l cq_debug:Checker/gt.l
+git --no-pager diff cq:Checker/gt.y cq_debug:Checker/gt.y
+git --no-pager diff cq:Checker/t.l cq_debug:Checker/t.l
+git --no-pager diff cq:Checker/t.y cq_debug:Checker/t.y
+git --no-pager diff cq:Checker/et.y cq_debug:Checker/et.y
+git --no-pager diff cq:Checker/eet.y cq_debug:Checker/eet.y
+git --no-pager diff cq:Checker/s.l cq_debug:Checker/s.l
+git --no-pager diff cq:Checker/s.y cq_debug:Checker/s.y
+git --no-pager diff cq:Checker/es.y cq_debug:Checker/es.y
+git --no-pager diff cq:Checker/ees.y cq_debug:Checker/ees.y
 ## compile
 echo '>> compile'
 git --no-pager diff cq:compile-all.sh cq_debug:compile-all.sh
-git --no-pager diff cq:DimensionDefinitionLanguage/compile_checker.sh cq_debug:DimensionDefinitionLanguage/compile_checker.sh
+git --no-pager diff cq:Checker/compile_checker.sh cq_debug:Checker/compile_checker.sh
 git --no-pager diff cq:compile-x.sh cq_debug:compile-x.sh
 
 # vs. jsik
@@ -132,21 +132,21 @@ git --no-pager diff cq:xtq_executer.h jsik:xtq_executer.h
 ## test
 echo '>> test code'
 git --no-pager diff cq:tqcq.awk jsik:tqcq.awk
-git --no-pager diff cq:DimensionDefinitionLanguage/conv-test.script jsik:DimensionDefinitionLanguage/conv-test.script
-git --no-pager diff cq:DimensionDefinitionLanguage/conv2-test.script jsik:DimensionDefinitionLanguage/conv2-test.script
+git --no-pager diff cq:Checker/conv-test.script jsik:Checker/conv-test.script
+git --no-pager diff cq:Checker/conv2-test.script jsik:Checker/conv2-test.script
 ## checker
 echo '>> checker'
-git --no-pager diff cq:DimensionDefinitionLanguage/gt.l jsik:DimensionDefinitionLanguage/gt.l
-git --no-pager diff cq:DimensionDefinitionLanguage/gt.y jsik:DimensionDefinitionLanguage/gt.y
-git --no-pager diff cq:DimensionDefinitionLanguage/t.l jsik:DimensionDefinitionLanguage/t.l
-git --no-pager diff cq:DimensionDefinitionLanguage/t.y jsik:DimensionDefinitionLanguage/t.y
-git --no-pager diff cq:DimensionDefinitionLanguage/et.y jsik:DimensionDefinitionLanguage/et.y
-git --no-pager diff cq:DimensionDefinitionLanguage/eet.y jsik:DimensionDefinitionLanguage/eet.y
-git --no-pager diff cq:DimensionDefinitionLanguage/s.l jsik:DimensionDefinitionLanguage/s.l
-git --no-pager diff cq:DimensionDefinitionLanguage/s.y jsik:DimensionDefinitionLanguage/s.y
-git --no-pager diff cq:DimensionDefinitionLanguage/es.y jsik:DimensionDefinitionLanguage/es.y
-git --no-pager diff cq:DimensionDefinitionLanguage/ees.y jsik:DimensionDefinitionLanguage/ees.y
+git --no-pager diff cq:Checker/gt.l jsik:Checker/gt.l
+git --no-pager diff cq:Checker/gt.y jsik:Checker/gt.y
+git --no-pager diff cq:Checker/t.l jsik:Checker/t.l
+git --no-pager diff cq:Checker/t.y jsik:Checker/t.y
+git --no-pager diff cq:Checker/et.y jsik:Checker/et.y
+git --no-pager diff cq:Checker/eet.y jsik:Checker/eet.y
+git --no-pager diff cq:Checker/s.l jsik:Checker/s.l
+git --no-pager diff cq:Checker/s.y jsik:Checker/s.y
+git --no-pager diff cq:Checker/es.y jsik:Checker/es.y
+git --no-pager diff cq:Checker/ees.y jsik:Checker/ees.y
 ## compile
 echo '>> compile'
 git --no-pager diff cq:compile-all.sh jsik:compile-all.sh
-git --no-pager diff cq:DimensionDefinitionLanguage/compile_checker.sh jsik:DimensionDefinitionLanguage/compile_checker.sh
+git --no-pager diff cq:Checker/compile_checker.sh jsik:Checker/compile_checker.sh
