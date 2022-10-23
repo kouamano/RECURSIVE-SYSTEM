@@ -2,8 +2,8 @@
 #./branch.diff
 
 # compile
-cd DimensionDefinitionLanguage; ./compile_checker.sh; cd ../
-#cd DimensionDefinitionLanguage; ./compile_checker.n007.sh; cd ../
+cd Checker; ./compile_checker.sh; cd ../
+#cd Checker; ./compile_checker.n007.sh; cd ../
 ./compile-all.sh 
 
 # tq のテスト
