@@ -23,7 +23,7 @@ void status(void){
 }
 void help(void){
 	printf("=================================================\n");
-	printf(" tq: A language for graph structure description\n");
+	printf(" gq: A language for graph structure description\n");
 	printf("=================================================\n");
 	printf("\n");
 	printf("DEVELOPER\n");
@@ -35,7 +35,7 @@ void help(void){
 	printf("USAGE\n");
 	printf("*****\n");
 	printf("\n");
-	printf(" tq.o [-h|-hF|-hC|-hS|-hD|-hE] [-s] [-c] [-test] buff=<(int)size> in=<file name of input form> out=<file name of outout form> data=<data file> data_buff=<(int)size> w=<warnning level> -F<x> -C<x> -P<x>.\n");
+	printf(" gq.o [-h|-hF|-hC|-hS|-hD|-hE] [-s] [-c] [-test] buff=<(int)size> in=<file name of input form> out=<file name of outout form> data=<data file> data_buff=<(int)size> w=<warnning level> -F<x> -C<x> -P<x>.\n");
 	printf("\n");
 	printf(" - Full information\n");
 	printf("\n");
