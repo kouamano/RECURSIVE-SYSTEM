@@ -15,9 +15,9 @@ struct options {
 
 void help(void){
 	printf("DESCRIPTION:\n");
-	printf(" indentToT prints T-form from indent format.\n");
+	printf(" iq prints T-form from indent format.\n");
 	printf("USAGE:\n");
-	printf(" indentToT [-h] [-s] [-c] in=<file> idt=<char> buff=<size>\n");
+	printf(" iq [-h] [-s] [-c] in=<file> idt=<char> buff=<size>\n");
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
