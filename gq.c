@@ -1,4 +1,4 @@
-#define TQ
+#define GQ
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
