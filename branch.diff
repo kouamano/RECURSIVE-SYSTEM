@@ -44,7 +44,7 @@ git --no-pager diff cq:T-convFunctions_imex.h cq_debug:T-convFunctions_imex.h
 git --no-pager diff cq:tconv.c cq_debug:tconv.c
 git --no-pager diff cq:cts.c cq_debug:cts.c
 git --no-pager diff cq:cst.c cq_debug:cst.c
-git --no-pager diff cq:toPsdJSON.c cq_debug:toPsdJSON.c
+git --no-pager diff cq:cjt.c cq_debug:cjt.c
 git --no-pager diff cq:iq.c cq_debug:iq.c
 ### xtq
 git --no-pager diff cq:xtq.c cq_debug:xtq.c
@@ -120,7 +120,7 @@ git --no-pager diff cq:T-convFunctions_imex.h jsik:T-convFunctions_imex.h
 git --no-pager diff cq:tconv.c jsik:tconv.c
 git --no-pager diff cq:cts.c jsik:cts.c
 git --no-pager diff cq:cst.c jsik:cst.c
-git --no-pager diff cq:toPsdJSON.c jsik:toPsdJSON.c
+git --no-pager diff cq:cjt.c jsik:cjt.c
 git --no-pager diff cq:iq.c jsik:iq.c
 ### xtq
 git --no-pager diff cq:xtq.c jsik:xtq.c
