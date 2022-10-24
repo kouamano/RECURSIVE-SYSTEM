@@ -1,6 +1,6 @@
 gcc cts.c -o cts
 gcc cst.c -o cst
-gcc jtc.c -o jtc
+gcc cjt.c -o cjt
 gcc iq.c -o iq
 gcc tconv.c -o tconv
 gcc -Wall -O2 -march=native tq.c -o tq.o
