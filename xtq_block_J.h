@@ -1,6 +1,6 @@
 #define STAG_J "{"
 #define ETAG_J "}"
-void put_str_J(char *buff){
+void put_strBody_J(char *buff){
 	int i;
 	int len = 0;
 	len = strlen(buff);
@@ -27,12 +27,12 @@ void ExPrint_seq_Bl_J(struct Block *Bl, int target, struct options opt, struct B
 			//print str
 			printf(opt.pf,Bl[i].str);
 			//print open blacket
-			printf("%s","(");
+			printf("%s",STAG_J);
 		}
 		//eTag
 		if((Bl[i].Bltype&BType_eTag) == BType_eTag){
 			//print close blacket
-			printf("%s",")");
+			printf("%s",ETAG_J);
 		}
 		//iTag
 		if((Bl[i].Bltype&BType_iTag) == BType_iTag){
@@ -50,7 +50,7 @@ void ExPrint_seq_Bl_J(struct Block *Bl, int target, struct options opt, struct B
 				printf("%s",",");
 			}
 			//print str
-			put_str_J(Bl[i].str);
+			put_strBody_J(Bl[i].str);
 			//printf(opt.pf,Bl[i].str);
 		}
 
