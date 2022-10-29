@@ -37,6 +37,9 @@ void put_strBody_J(char *buff){
 		if(*(buff+i) == '"'){
 			putc('\\',stdout);
 			putc(*(buff+i),stdout);
+		}else if(*(buff)+i == '\n'){
+			putc(' ',stdout);
+			//putc(*(buff+i),stdout);
 		}else{
 			putc(*(buff+i),stdout);
 		}
