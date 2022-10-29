@@ -36,8 +36,13 @@ void put_strBody_J(char *buff){
 	for(i=0;i<len;i++){
 		if(*(buff+i) == '"'){
 			putc('\\',stdout);
+			putc(*(buff+i),stdout);
+		}else if(*(buff)+i == '\n'){
+			putc(' ',stdout);
+			//putc(*(buff+i),stdout);
+		}else{
+			putc(*(buff+i),stdout);
 		}
-		putc(*(buff+i),stdout);
 	}
 	putc('"',stdout);
 	printf("%s",":[]");
