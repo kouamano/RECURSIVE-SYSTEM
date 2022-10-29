@@ -7,7 +7,7 @@ void put_strSTag_J(char *buff){
 	putc('"',stdout);
 	for(i=0;i<len;i++){
 		if(*(buff+i) == '"'){
-			putc('"',stdout);
+			putc('\\',stdout);
 		}
 		putc(*(buff+i),stdout);
 	}
@@ -21,7 +21,7 @@ void put_strITag_J(char *buff){
 	putc('"',stdout);
 	for(i=0;i<len;i++){
 		if(*(buff+i) == '"'){
-			putc('"',stdout);
+			putc('\\',stdout);
 		}
 		putc(*(buff+i),stdout);
 	}
@@ -35,7 +35,7 @@ void put_strBody_J(char *buff){
 	putc('"',stdout);
 	for(i=0;i<len;i++){
 		if(*(buff+i) == '"'){
-			putc('"',stdout);
+			putc('\\',stdout);
 		}
 		putc(*(buff+i),stdout);
 	}
