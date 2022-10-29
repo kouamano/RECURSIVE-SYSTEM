@@ -15,18 +15,13 @@ L
 ================================================================
 バッファリング方式
     <head>xxx<head2>xxxxxx<aaa/>xxx</head2>xxx</head>
-BFT <head>   <head2>      <aaa/>   </head2>   </head>
+BFH <head>   <head2>      <aaa/>   </head2>   </head>
 BFB       xxx       xxxxxx      xxx        xxx       
-T   <a  d>   <h   2>      <a  />   </    2>   </   d>
-typ op       op           emp      cl         cl
-TS  1        1            0        0          0
-TE       0         0           0          1         1
+Tst <a  d>   <h   2>      <a  />   </    2>   </   d>
+Typ op       op           emp      cl         cl
+NS  1        1            0        0          0
+NE       0         0           0          1         1
 Lv 011111111122222222222222222222222222222211111111110
-S0 v                                                 ^
-S1  v                                               ^ 
-S2           v                            ^
-S3                            
-Tr
 Bl  1     2  3      4     5     6  7       8  9
 Nd1 1     2  *                             8  9
 Nd2          3      4     5     6  7
