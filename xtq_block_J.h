@@ -1,5 +1,33 @@
 #define STAG_J "{"
 #define ETAG_J "}"
+void put_strSTag_J(char *buff){
+	int i;
+	int len = 0;
+	len = strlen(buff);
+	putc('"',stdout);
+	for(i=0;i<len;i++){
+		if(*(buff+i) == '"'){
+			putc('"',stdout);
+		}
+		putc(*(buff+i),stdout);
+	}
+	putc('"',stdout);
+	putc(':',stdout);
+}
+void put_strITag_J(char *buff){
+	int i;
+	int len = 0;
+	len = strlen(buff);
+	putc('"',stdout);
+	for(i=0;i<len;i++){
+		if(*(buff+i) == '"'){
+			putc('"',stdout);
+		}
+		putc(*(buff+i),stdout);
+	}
+	putc('"',stdout);
+	printf("%s",":{}");
+}
 void put_strBody_J(char *buff){
 	int i;
 	int len = 0;
@@ -25,7 +53,8 @@ void ExPrint_seq_Bl_J(struct Block *Bl, int target, struct options opt, struct B
 				printf("%s",",");
 			}
 			//print str
-			printf(opt.pf,Bl[i].str);
+			put_strSTag_J(Bl[i].str);
+			//printf(opt.pf,Bl[i].str);
 			//print open blacket
 			printf("%s",STAG_J);
 		}
@@ -41,7 +70,8 @@ void ExPrint_seq_Bl_J(struct Block *Bl, int target, struct options opt, struct B
 				printf("%s",",");
 			}
 			//print str
-			printf(opt.pf,Bl[i].str);
+			put_strITag_J(Bl[i].str);
+			//printf(opt.pf,Bl[i].str);
 		}
 		//Body
 		if((Bl[i].Bltype&BType_Body) == BType_Body){
