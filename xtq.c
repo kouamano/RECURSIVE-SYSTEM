@@ -149,6 +149,7 @@ void check_options(struct options *opt){
 /* block operation */
 #include "./xtq_block.h"
 #include "./xtq_block_T.h"
+#include "./xtq_block_J.h"
 
 /* read operation */
 #include "./xtq_read.h"
