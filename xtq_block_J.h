@@ -1,3 +1,5 @@
+#define STAG_J "{"
+#define ETAG_J "}"
 void put_str_J(char *buff){
 	int i;
 	int len = 0;
