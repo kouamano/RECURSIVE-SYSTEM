@@ -8,7 +8,7 @@
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" xtq [-h] [-s] [-c] [-pt] [-pn] [-pB] [-pBS] [-pT] in=<input file> buff=<buffer size> blocks=<blocks> pf=<print format> BH=<block header> BF=<block footer> SH=<status header> SF=<status footer>.\n");
+	printf(" xtq [-h] [-s] [-c] [-pt] [-pn] [-pB] [-pBS] [-pT] [pJ] in=<input file> buff=<buffer size> blocks=<blocks> pf=<print format> BH=<block header> BF=<block footer> SH=<status header> SF=<status footer>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
@@ -17,6 +17,7 @@ void help(void){
 	printf("  -pB : print blocks.\n");
 	printf("  -pBS : print blocks with status.\n");
 	printf("  -pT : print blocks with T-form.\n");
+	printf("  -pJ : print blocks with JSON.\n");
 	printf("  input file : input file.\n");
 	printf("  buffer size : buffer size.\n");
 	printf("  blocks : number of blocks.\n");
