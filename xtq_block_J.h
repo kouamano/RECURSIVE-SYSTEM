@@ -40,11 +40,12 @@ void put_strBody_J(char *buff){
 		putc(*(buff+i),stdout);
 	}
 	putc('"',stdout);
+	printf("%s",":[]");
 }
 void ExPrint_seq_Bl_J(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
 	//start Node
-	printf("%s","[");
+	printf("%s","{");
         for(i=target;i<report.Bls;i++){
 		//Node = sTag:
 		if((Bl[i].Bltype&BType_Node) == BType_Node){
@@ -86,5 +87,5 @@ void ExPrint_seq_Bl_J(struct Block *Bl, int target, struct options opt, struct B
 
 	}
 	//last Node
-	printf("%s","]");
+	printf("%s","}");
 }
