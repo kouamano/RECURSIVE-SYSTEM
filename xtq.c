@@ -138,7 +138,7 @@ void check_options(struct options *opt){
 	printf(" opt.pb:%d:\n",(*opt).pb);
 	printf(" opt.pbs:%d:\n",(*opt).pbs);
 	printf(" opt.ptf:%d:\n",(*opt).ptf);
-	printf(" opt.pjf:%d:\n",(*opt).ptf);
+	printf(" opt.pjf:%d:\n",(*opt).pjf);
 	printf(" opt.pf:%s:\n",(*opt).pf);
 	printf(" opt.BH:%s:\n",(*opt).BH);
 	printf(" opt.BF:%s:\n",(*opt).BF);
