@@ -45,7 +45,7 @@ void put_strBody_J(char *buff){
 void ExPrint_seq_Bl_J(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
 	//start Node
-	printf("%s","{");
+	printf("%s",STAG_J);
         for(i=target;i<report.Bls;i++){
 		//Node = sTag:
 		if((Bl[i].Bltype&BType_Node) == BType_Node){
@@ -55,7 +55,6 @@ void ExPrint_seq_Bl_J(struct Block *Bl, int target, struct options opt, struct B
 			}
 			//print str
 			put_strSTag_J(Bl[i].str);
-			//printf(opt.pf,Bl[i].str);
 			//print open blacket
 			printf("%s",STAG_J);
 		}
@@ -72,7 +71,6 @@ void ExPrint_seq_Bl_J(struct Block *Bl, int target, struct options opt, struct B
 			}
 			//print str
 			put_strITag_J(Bl[i].str);
-			//printf(opt.pf,Bl[i].str);
 		}
 		//Body
 		if((Bl[i].Bltype&BType_Body) == BType_Body){
@@ -82,10 +80,9 @@ void ExPrint_seq_Bl_J(struct Block *Bl, int target, struct options opt, struct B
 			}
 			//print str
 			put_strBody_J(Bl[i].str);
-			//printf(opt.pf,Bl[i].str);
 		}
 
 	}
 	//last Node
-	printf("%s","}");
+	printf("%s",ETAG_J);
 }
