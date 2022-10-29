@@ -77,6 +77,7 @@ void init_options(struct options *opt){
 	(*opt).pb = 0;
 	(*opt).pbs = 0;
 	(*opt).ptf = 0;
+	(*opt).pjf = 0;
 	strcpy((*opt).pf,"%s");
 	strcpy((*opt).SH,"[[[");
 	strcpy((*opt).SF,"]]]");
@@ -108,6 +109,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).pb = 1;
 		}else if(strncmp(optv[i],"-pT",3) == 0){
 			(*opt).ptf = 1;
+		}else if(strncmp(optv[i],"-pJ",3) == 0){
+			(*opt).pjf = 1;
 		}else if(strncmp(optv[i],"pf=",3) == 0){
 			sscanf(optv[i],"pf=%s",(*opt).pf);
 
