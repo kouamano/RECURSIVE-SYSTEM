@@ -8,7 +8,7 @@
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" xtq [-h] [-s] [-c] [-pt] [-pn] [-pB] [-pBS] [-pT] [pJ] in=<input file> buff=<buffer size> blocks=<blocks> pf=<print format> BH=<block header> BF=<block footer> SH=<status header> SF=<status footer>.\n");
+	printf(" xtq [-h] [-s] [-c] [-pt] [-pn] [-pB] [-pBS] [-pT] [-pJ] [-pY] in=<input file> buff=<buffer size> blocks=<blocks> pf=<print format> BH=<block header> BF=<block footer> SH=<status header> SF=<status footer>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
@@ -18,6 +18,7 @@ void help(void){
 	printf("  -pBS : print blocks with status.\n");
 	printf("  -pT : print blocks with T-form.\n");
 	printf("  -pJ : print blocks with JSON.\n");
+	printf("  -pY : print blocks with YAML.\n");
 	printf("  input file : input file.\n");
 	printf("  buffer size : buffer size.\n");
 	printf("  blocks : number of blocks.\n");
@@ -78,6 +79,7 @@ void init_options(struct options *opt){
 	(*opt).pbs = 0;
 	(*opt).ptf = 0;
 	(*opt).pjf = 0;
+	(*opt).pyf = 0;
 	strcpy((*opt).pf,"%s");
 	strcpy((*opt).SH,"[[[");
 	strcpy((*opt).SF,"]]]");
@@ -111,6 +113,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).ptf = 1;
 		}else if(strncmp(optv[i],"-pJ",3) == 0){
 			(*opt).pjf = 1;
+		}else if(strncmp(optv[i],"-pY",3) == 0){
+			(*opt).pyf = 1;
 		}else if(strncmp(optv[i],"pf=",3) == 0){
 			sscanf(optv[i],"pf=%s",(*opt).pf);
 
@@ -139,6 +143,7 @@ void check_options(struct options *opt){
 	printf(" opt.pbs:%d:\n",(*opt).pbs);
 	printf(" opt.ptf:%d:\n",(*opt).ptf);
 	printf(" opt.pjf:%d:\n",(*opt).pjf);
+	printf(" opt.pyf:%d:\n",(*opt).pyf);
 	printf(" opt.pf:%s:\n",(*opt).pf);
 	printf(" opt.BH:%s:\n",(*opt).BH);
 	printf(" opt.BF:%s:\n",(*opt).BF);
@@ -150,6 +155,7 @@ void check_options(struct options *opt){
 #include "./xtq_block.h"
 #include "./xtq_block_T.h"
 #include "./xtq_block_J.h"
+#include "./xtq_block_Y.h"
 
 /* read operation */
 #include "./xtq_read.h"
