@@ -47,45 +47,61 @@ void put_strBody_Y(char *buff){
 }
 void ExPrint_seq_Bl_Y(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
+	int j;
 	//start Node
-	//printf("%s",STAG_J);
         for(i=target;i<report.Bls;i++){
 		//Node = sTag:
+		//printf("%d",Bl[i].Lv);
 		if((Bl[i].Bltype&BType_Node) == BType_Node){
+			for(j=1;j<Bl[i].Lv;j++){
+				printf(" ");
+			}
+
 			//print conj
 			if(i > 0 && (Bl[i-1].Bltype&BType_Node) != BType_Node){
-				printf("%s",",");
+				//printf("%s",",");
 			}
 			//print str
-			put_strSTag_J(Bl[i].str);
+			put_strSTag_Y(Bl[i].str);
 			//print open blacket
-			//printf("%s",STAG_J);
+			printf("\n");
 		}
 		//eTag
 		if((Bl[i].Bltype&BType_eTag) == BType_eTag){
 			//print close blacket
 			//printf("%s",ETAG_J);
+			//printf("\n");
 		}
 		//iTag
 		if((Bl[i].Bltype&BType_iTag) == BType_iTag){
+			for(j=1;j<Bl[i].Lv;j++){
+				printf(" ");
+			}
+
 			//print conj
 			if((Bl[i-1].Bltype&BType_sTag) != BType_sTag && (Bl[i-1].Bltype) != 0){
-				printf("%s",",");
+				//printf("%s",",");
 			}
 			//print str
-			put_strITag_J(Bl[i].str);
+			put_strITag_Y(Bl[i].str);
+			printf("\n");
 		}
 		//Body
 		if((Bl[i].Bltype&BType_Body) == BType_Body){
+			for(j=1;j<Bl[i].Lv;j++){
+				printf(" ");
+			}
+
 			//print conj
 			if((Bl[i-1].Bltype&BType_sTag) != BType_sTag){
-				printf("%s",",");
+				//printf("%s",",");
 			}
 			//print str
-			put_strBody_J(Bl[i].str);
+			put_strBody_Y(Bl[i].str);
+			printf("\n");
 		}
 
 	}
 	//last Node
-	//printf("%s",ETAG_J);
+	//printf("\n");
 }
