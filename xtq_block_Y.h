@@ -24,7 +24,7 @@ void put_strITag_Y(char *buff){
 		putc(*(buff+i),stdout);
 	}
 	putc('"',stdout);
-	printf("%s",":{}");
+	printf("%s",": {}");
 }
 void put_strBody_Y(char *buff){
 	int i;
@@ -43,7 +43,7 @@ void put_strBody_Y(char *buff){
 		}
 	}
 	putc('"',stdout);
-	printf("%s",":[]");
+	printf("%s",": []");
 }
 void ExPrint_seq_Bl_Y(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
