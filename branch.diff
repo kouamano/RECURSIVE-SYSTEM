@@ -52,6 +52,7 @@ git --no-pager diff cq:xtq_defstrc.h cq_debug:xtq_defstrc.h
 git --no-pager diff cq:xtq_block.h cq_debug:xtq_block.h
 git --no-pager diff cq:xtq_block_T.h cq_debug:xtq_block_T.h
 git --no-pager diff cq:xtq_block_J.h cq_debug:xtq_block_J.h
+git --no-pager diff cq:xtq_block_Y.h cq_debug:xtq_block_Y.h
 git --no-pager diff cq:xtq_read.h cq_debug:xtq_read.h
 git --no-pager diff cq:xtq_executer.h cq_debug:xtq_executer.h
 ## test
@@ -129,6 +130,7 @@ git --no-pager diff cq:xtq_defstrc.h jsik:xtq_defstrc.h
 git --no-pager diff cq:xtq_block.h jsik:xtq_block.h
 git --no-pager diff cq:xtq_block_T.h jsik:xtq_block_T.h
 git --no-pager diff cq:xtq_block_J.h jsik:xtq_block_J.h
+git --no-pager diff cq:xtq_block_Y.h jsik:xtq_block_Y.h
 git --no-pager diff cq:xtq_read.h jsik:xtq_read.h
 git --no-pager diff cq:xtq_executer.h jsik:xtq_executer.h
 ## test
