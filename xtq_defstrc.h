@@ -39,6 +39,7 @@ struct options {
         int pbs;
         int ptf;
         int pjf;
+        int pyf;
         char *pf;
 	char *BH;
 	char *BF;
