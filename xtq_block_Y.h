@@ -37,7 +37,6 @@ void put_strBody_Y(char *buff){
 			putc(*(buff+i),stdout);
 		}else if(*(buff)+i == '\n'){
 			putc(' ',stdout);
-			//putc(*(buff+i),stdout);
 		}else{
 			putc(*(buff+i),stdout);
 		}
@@ -53,13 +52,9 @@ void ExPrint_seq_Bl_Y(struct Block *Bl, int target, struct options opt, struct B
 		//Node = sTag:
 		//printf("%d",Bl[i].Lv);
 		if((Bl[i].Bltype&BType_Node) == BType_Node){
+			//print conj
 			for(j=1;j<Bl[i].Lv;j++){
 				printf(" ");
-			}
-
-			//print conj
-			if(i > 0 && (Bl[i-1].Bltype&BType_Node) != BType_Node){
-				//printf("%s",",");
 			}
 			//print str
 			put_strSTag_Y(Bl[i].str);
@@ -74,13 +69,9 @@ void ExPrint_seq_Bl_Y(struct Block *Bl, int target, struct options opt, struct B
 		}
 		//iTag
 		if((Bl[i].Bltype&BType_iTag) == BType_iTag){
+			//print conj
 			for(j=1;j<Bl[i].Lv;j++){
 				printf(" ");
-			}
-
-			//print conj
-			if((Bl[i-1].Bltype&BType_sTag) != BType_sTag && (Bl[i-1].Bltype) != 0){
-				//printf("%s",",");
 			}
 			//print str
 			put_strITag_Y(Bl[i].str);
@@ -88,13 +79,9 @@ void ExPrint_seq_Bl_Y(struct Block *Bl, int target, struct options opt, struct B
 		}
 		//Body
 		if((Bl[i].Bltype&BType_Body) == BType_Body){
+			//print conj
 			for(j=1;j<Bl[i].Lv;j++){
 				printf(" ");
-			}
-
-			//print conj
-			if((Bl[i-1].Bltype&BType_sTag) != BType_sTag){
-				//printf("%s",",");
 			}
 			//print str
 			put_strBody_Y(Bl[i].str);
