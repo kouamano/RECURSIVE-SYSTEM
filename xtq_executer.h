@@ -27,5 +27,12 @@ void Executer(struct Block *Bl, int target_Bl, struct options opt, struct Bl_tre
 		ExPrint_seq_Bl_J(Bl, target_Bl, opt, report);
 		output = 1;
 	}
+	if(opt.pyf == 1){
+		if(output > 0){
+			printf("\n==== ==== ==== ====\n");
+		}
+		ExPrint_seq_Bl_Y(Bl, target_Bl, opt, report);
+		output = 1;
+	}
 
 }
