@@ -217,7 +217,7 @@ int main(int argc, char **argv){
 	}
 	/** operation **/
 	Executer(Bl,0,*opt,*report);
-	//print_tree_report(report);
+	print_tree_report(report);
 	/** finalize **/
 	return(0);
 }
