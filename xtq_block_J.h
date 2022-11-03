@@ -3,7 +3,6 @@
 #define ETAG_topJJ "]"
 #define STAG_JJ "{"
 #define ETAG_JJ "}"
-
 void put_strSTag_JJ(char *buff){
 	int i;
 	int len = 0;
@@ -51,7 +50,6 @@ void put_strBody_JJ(char *buff){
 	putc('"',stdout);
 	printf("%s",":[]");
 }
-
 void ExPrint_seq_Bl_JJ(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
 	//start Node
@@ -96,6 +94,7 @@ void ExPrint_seq_Bl_JJ(struct Block *Bl, int target, struct options opt, struct 
 	//last Node
 	printf("%s",ETAG_topJJ);
 }
+
 /* for J */
 #define STAG_J "{"
 #define ETAG_J "}"
@@ -146,7 +145,6 @@ void put_strBody_J(char *buff){
 	putc('"',stdout);
 	printf("%s",":[]");
 }
-
 void ExPrint_seq_Bl_J(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
 	//start Node
