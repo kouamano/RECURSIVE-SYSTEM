@@ -1,0 +1,4 @@
+# xtq : xml formatter
+## to check output, use yq.
+### example
+./xtq in=xtq_test.xml -pY|yq '(. | to_xml)'
