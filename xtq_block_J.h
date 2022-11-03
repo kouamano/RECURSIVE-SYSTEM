@@ -96,7 +96,7 @@ void ExPrint_seq_Bl_JJ(struct Block *Bl, int target, struct options opt, struct 
 void ExPrint_seq_Bl_J(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
 	//start Node
-	printf("%s",STAG_topJJ);
+	printf("%s",STAG_J);
         for(i=target;i<report.Bls;i++){
 		//Node = sTag:
 		if((Bl[i].Bltype&BType_Node) == BType_Node){
@@ -135,5 +135,5 @@ void ExPrint_seq_Bl_J(struct Block *Bl, int target, struct options opt, struct B
 
 	}
 	//last Node
-	printf("%s",ETAG_topJJ);
+	printf("%s",ETAG_J);
 }
