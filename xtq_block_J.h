@@ -1,4 +1,5 @@
-/* for JJ */
+/* functions for JJ */
+/** print **/
 #define STAG_topJJ "["
 #define ETAG_topJJ "]"
 #define STAG_JJ "{"
@@ -107,7 +108,8 @@ void ExPrint_seq_Bl_JJ(struct Block *Bl, int target, struct options opt, struct 
 	printf("%s",ETAG_topJJ);
 }
 
-/* for J */
+/* functions for J */
+/** print **/
 #define STAG_J "{"
 #define ETAG_J "}"
 void put_strSTag_J(char *buff){
