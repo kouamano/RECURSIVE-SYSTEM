@@ -41,5 +41,4 @@ void Executer(struct Block *Bl, int target_Bl, struct options opt, struct Bl_tre
 		ExPrint_seq_Bl_Y(Bl, target_Bl, opt, report);
 		output = 1;
 	}
-
 }
