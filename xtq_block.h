@@ -137,6 +137,7 @@ void print_tree_report(struct Bl_tree_report *report){
 	fprintf(stderr,"Bls:%d\n",(*report).Bls);
 	fprintf(stderr,"Nds:%d\n",(*report).Nds);
 	fprintf(stderr,"Chrs:%d\n",(*report).Chrs);
+	fprintf(stderr,"==== ==== ==== ==== ====\n");
 }
 
 void ExPrint_seq_Bl(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
