@@ -94,7 +94,7 @@ void ExPrint_seq_Bl_JJ(struct Block *Bl, int target, struct options opt, struct 
 
 	}
 	//last Node
-	printf("%s",ETAG_JJ);
+	printf("%s",ETAG_topJJ);
 }
 /* for J */
 #define STAG_J "{"
