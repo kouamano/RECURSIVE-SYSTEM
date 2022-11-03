@@ -51,7 +51,7 @@ void ExPrint_seq_Bl_Y(struct Block *Bl, int target, struct options opt, struct B
 	int j;
 	//start Node
         for(i=target;i<report.Bls;i++){
-		//
+		//sTag
 		if((Bl[i].Bltype&BType_Node) == BType_Node){
 			//print conj
 			for(j=1;j<Bl[i].Lv;j++){
