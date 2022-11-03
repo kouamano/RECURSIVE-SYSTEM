@@ -85,8 +85,8 @@ void ExPrint_seq_Bl_JJ(struct Block *Bl, int target, struct options opt, struct 
 			printf("%s",STAG_JJ);
 			//print str
 			put_strITag_JJ(Bl[i].str);
-			print end
-			//printf("%s",ETAG_JJ);
+			//print end
+			printf("%s",ETAG_JJ);
 		}
 		//Body
 		if((Bl[i].Bltype&BType_Body) == BType_Body){
