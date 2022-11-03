@@ -68,4 +68,3 @@ struct Bl_tree_report {
         int Nds;
         int Chrs;
 };
-
