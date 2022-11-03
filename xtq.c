@@ -8,7 +8,7 @@
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" xtq [-h] [-s] [-c] [-pt] [-pn] [-pB] [-pBS] [-pT] [-pJ] [-pY] in=<input file> buff=<buffer size> blocks=<blocks> pf=<print format> BH=<block header> BF=<block footer> SH=<status header> SF=<status footer>.\n");
+	printf(" xtq [-h] [-s] [-c] [-pt] [-pn] [-pB] [-pBS] [-pT] [-pJ] [-pJJ] [-pY] in=<input file> buff=<buffer size> blocks=<blocks> pf=<print format> BH=<block header> BF=<block footer> SH=<status header> SF=<status footer>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
@@ -18,6 +18,7 @@ void help(void){
 	printf("  -pBS : print blocks with status.\n");
 	printf("  -pT : print blocks with T-form.\n");
 	printf("  -pJ : print blocks with JSON.\n");
+	printf("  -pJJ : print blocks with complete JSON.\n");
 	printf("  -pY : print blocks with YAML.\n");
 	printf("  input file : input file.\n");
 	printf("  buffer size : buffer size.\n");
@@ -111,6 +112,8 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).pb = 1;
 		}else if(strncmp(optv[i],"-pT",3) == 0){
 			(*opt).ptf = 1;
+		}else if(strncmp(optv[i],"-pJJ",4) == 0){
+			(*opt).pjf = 2;
 		}else if(strncmp(optv[i],"-pJ",3) == 0){
 			(*opt).pjf = 1;
 		}else if(strncmp(optv[i],"-pY",3) == 0){
