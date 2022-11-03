@@ -9,7 +9,6 @@ struct Bl_tree_report *read_x(struct options *opt, FILE *IN, struct Block *Bl, i
 	int Nd_counter = 0;
 	int current_BType = 0;
 	int current_Bl = start_Bl;
-	//int current_Nd = start_Nd;
 	int current_Lv = start_Lv;
 	int current_PNd = start_PNd;
 	int start_CDATA = 0;
