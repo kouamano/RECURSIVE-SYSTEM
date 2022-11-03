@@ -48,7 +48,7 @@ void put_strBody_JJ(char *buff){
 		}
 	}
 	putc('"',stdout);
-	printf("%s",":[]");
+	printf("%s",":{}");
 }
 void ExPrint_seq_Bl_JJ(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
