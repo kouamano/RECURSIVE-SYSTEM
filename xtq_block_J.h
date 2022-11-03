@@ -29,7 +29,7 @@ void put_strITag_JJ(char *buff){
 		putc(*(buff+i),stdout);
 	}
 	putc('"',stdout);
-	printf("%s",":{}");
+	printf("%s",":[]");
 }
 void put_strBody_JJ(char *buff){
 	int i;
