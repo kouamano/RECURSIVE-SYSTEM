@@ -61,6 +61,8 @@ void ExPrint_seq_Bl_JJ(struct Block *Bl, int target, struct options opt, struct 
 			if(i > 0 && (Bl[i-1].Bltype&BType_Node) != BType_Node){
 				printf("%s",",");
 			}
+			//print start
+			printf("%s",STAG_JJ);
 			//print str
 			put_strSTag_JJ(Bl[i].str);
 			//print open blacket
@@ -70,6 +72,8 @@ void ExPrint_seq_Bl_JJ(struct Block *Bl, int target, struct options opt, struct 
 		if((Bl[i].Bltype&BType_eTag) == BType_eTag){
 			//print close blacket
 			printf("%s",ETAG_JJ);
+			//print end
+			printf("%s",ETAG_JJ);
 		}
 		//iTag
 		if((Bl[i].Bltype&BType_iTag) == BType_iTag){
@@ -77,8 +81,12 @@ void ExPrint_seq_Bl_JJ(struct Block *Bl, int target, struct options opt, struct 
 			if((Bl[i-1].Bltype&BType_sTag) != BType_sTag && (Bl[i-1].Bltype) != 0){
 				printf("%s",",");
 			}
+			//print start
+			printf("%s",STAG_JJ);
 			//print str
 			put_strITag_JJ(Bl[i].str);
+			//print end
+			printf("%s",ETAG_JJ);
 		}
 		//Body
 		if((Bl[i].Bltype&BType_Body) == BType_Body){
@@ -86,8 +94,12 @@ void ExPrint_seq_Bl_JJ(struct Block *Bl, int target, struct options opt, struct 
 			if((Bl[i-1].Bltype&BType_sTag) != BType_sTag){
 				printf("%s",",");
 			}
+			//print start
+			printf("%s",STAG_JJ);
 			//print str
 			put_strBody_JJ(Bl[i].str);
+			//print end
+			printf("%s",ETAG_JJ);
 		}
 
 	}
