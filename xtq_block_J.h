@@ -95,11 +95,11 @@ void ExPrint_seq_Bl_JJ(struct Block *Bl, int target, struct options opt, struct 
 				printf("%s",",");
 			}
 			//print start
-			printf("%s",STAG_JJ);
+			//printf("%s",STAG_JJ);
 			//print str
 			put_strBody_JJ(Bl[i].str);
 			//print end
-			printf("%s",ETAG_JJ);
+			//printf("%s",ETAG_JJ);
 		}
 
 	}
