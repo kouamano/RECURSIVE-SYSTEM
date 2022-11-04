@@ -6,3 +6,15 @@ BfCl  ^^ ^ ^^ ^   ^^   ^^   ^^  ^^^^^^^^
 NdCr  ^^ ^  ^ ^   ^^   ^^    ^  ^       
 LvUD  ^^^  v       ^    ^   v   ^vv^v^vv
 Lv    012  1       2    3   2   32121210
+
+
+
+NdType:
+  - Dict <= '{'
+  - Arr  <= '['
+  - Key  <= '*:'
+  - KV   <= '*:*'
+  - Val  <= ':' を含まない
+  Dict、Arrは排他
+  Key、KV、Valは排他
+
