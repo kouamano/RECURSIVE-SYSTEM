@@ -69,6 +69,7 @@ current_Bl_TYPE: int
 Bl[]
   TYPE
   Lv
+  Pa
   str
   next_Bl[]
 
