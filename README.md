@@ -21,7 +21,7 @@ written by K. Amano and K. Sakamoto.
 ```
 
 ```
-cd DimensionDefinitionLanguage
+cd Checker
 ./compile_checker.sh
 ```
 ## Example
