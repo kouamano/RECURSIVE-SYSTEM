@@ -25,6 +25,9 @@ NdType:
   - current_Lv: int
   - current_Nd: int
   - current_NdType: int
+  - DQ_ESC
+  - BS_ESC
+
 
 構造体
 Nd[]
