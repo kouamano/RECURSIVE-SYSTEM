@@ -1,12 +1,12 @@
+how_to_parse_json
 ============================================================
 バファリング方式
-      {[A,B],v,k:v,{k:v,{k:v},k:[]}()()}
+      {[A,B],v,k:v,{k:v,{k:v},k:[]}[][]}
 BfIn    ^ ^  ^ ^^^  ^^^  ^^^  ^^        
 BfCl  ^^ ^ ^^ ^   ^^   ^^   ^^  ^^^^^^^^
 NdCr  ^^ ^  ^ ^   ^^   ^^    ^  ^       
 LvUD  ^^^  v       ^    ^   v   ^vv^v^vv
 Lv    012  1       2    3   2   32121210
-
 
 
 NdType:
@@ -18,3 +18,17 @@ NdType:
   Dict、Arrは排他
   Key、KV、Valは排他
 
+
+ステータス変数:
+  - BUFF: char[]
+  - current_C: int
+  - current_Lv: int
+  - current_Nd: int
+  - current_NdType: int
+
+構造体
+Nd[]
+  NdType
+  Lv
+  Pa
+  Head
