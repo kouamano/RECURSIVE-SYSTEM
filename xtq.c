@@ -216,8 +216,8 @@ int main(int argc, char **argv){
 		fclose(IN);
 	}
 	/** operation **/
-	Executer(Bl,0,*opt,*report);
 	print_tree_report(report);
+	Executer(Bl,0,*opt,*report);
 	/** finalize **/
 	return(0);
 }
