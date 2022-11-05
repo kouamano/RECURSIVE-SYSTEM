@@ -1,5 +1,8 @@
 # xtq : xml formatter
-## to check output, use yq.
+## Y
+ to check output, use yq.
+## J
+ to check output, use jq.
 ### example
 ./xtq in=xtq_test.xml -pY|yq '(. | to_xml)'
 ./xtq in=/Volumes/elecom/KAKEN-19k12707/data/PMC/XML/PMC001xxxxxx/PMC1635328.xml -pB
