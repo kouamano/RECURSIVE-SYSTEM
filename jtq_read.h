@@ -16,6 +16,7 @@ char *alloc_BUFF(int size){
 }
 void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 	int current_C = 0;
+	int prev_C = 0;
 	int current_Lv = 0;
 	int current_Nd = 0;
 	int current_NdType = -1;
@@ -41,15 +42,19 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 		// //BUFF count
 		printf(":<%c>D%dB%d",current_C,DQ_ESC,BS_ESC);
 
-		//BUFF operation
+		//BUFF operation AND node set
 		if(current_C == '[' || current_C == '{'){
+			current_Lv++;
+			current_Nd++;
 		}
 		if(current_C == ','){
+			current_Nd++;
 		}
 		if(current_C == ']' || current_C == '}'){
+			current_Lv--;
 		}
 
-		//status
+		//current status
 		if(current_C == '\\'){
 			BS_ESC = 1;
 		}else{
@@ -58,5 +63,8 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 		if(current_C == '"' && BS_ESC == 0){
 			sw_esc(&DQ_ESC);
 		}
+
+		//prev status
+		prev_C = current_C;
 	}
 }
