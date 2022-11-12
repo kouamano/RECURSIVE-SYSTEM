@@ -22,6 +22,8 @@ void read_json(struct options *opt, FILE *IN){
 	int DQ_ESC = 0;
 	int BS_ESC = 0;
 	char *BUFF = NULL;
+	BUFF = alloc_BUFF((*opt).buff);
+	BUFF[0] = '\0';
 	while((current_C = fgetc(IN))){
 		//status
 		if(current_C == '\\'){
