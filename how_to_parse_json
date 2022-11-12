@@ -18,6 +18,13 @@ NdType:
   Dict、Arrは排他
   Key、KV、Valは排他
 
+CjType:
+  - ","
+  - "]["
+  - "]{"
+  - "}{"
+  - "}["
+
 
 ステータス変数:
   - BUFF: char[]
