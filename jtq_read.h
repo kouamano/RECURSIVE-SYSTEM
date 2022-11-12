@@ -29,14 +29,13 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 	int C_counter = 0;
 	int BUFF_counter = 0;
 	while((current_C = fgetc(IN))){
+		//counter up
+		C_counter++;
+
 		//EOF
 		if(current_C == EOF){
 			break;
 		}
-
-		//counter up
-		C_counter++;
-
 
 		//check
 		// //Nd count
