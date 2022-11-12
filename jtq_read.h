@@ -16,6 +16,10 @@ char *alloc_BUFF(int size){
 }
 void set_Nd(struct options *opt, struct Nd *node, int CjT, int NdT, int Lv, int Pa, char *buff){
 	//buff
+	int len = 0;
+	len = strlen(buff);
+	(*node).head = alloc_BUFF(len + 1);
+	strcpy((*node).head,buff);
 	//other attribution
 }
 void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
