@@ -14,6 +14,8 @@ char *alloc_BUFF(int size){
 	}
 	return p;
 }
+void set_Nd(struct options *opt, struct Nd *node, int CjT, int NdT, int Lv, int Pa, char *buff){
+}
 void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 	int current_C = 0;
 	int prev_C = 0;
@@ -45,15 +47,18 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 		//BUFF operation AND node set
 		if((current_C == '[' || current_C == '{') && (DQ_ESC == 0 && BS_ESC == 0)){
 			current_Lv++;
+			//BUFF to Head & //Node set
 			current_Nd++;
 		}
 		else if((current_C == ',') && (DQ_ESC == 0 && BS_ESC == 0)){
+			//BUFF to Head & //Node set
 			current_Nd++;
 		}
 		else if((current_C == ']' || current_C == '}') && (DQ_ESC == 0 && BS_ESC == 0)){
 			current_Lv--;
 		}
 		else {
+			BUFF[BUFF_counter] = current_C;
 			BUFF_counter++;
 		}
 
