@@ -69,6 +69,8 @@ void check_options(struct options *opt){
 	printf(" opt.infile:%s:\n",(*opt).infile);
 }
 
+#include "./jtq_read.h"
+
 int main(int argc, char **argv){
 	struct options *opt;
 	int ie = 0;
