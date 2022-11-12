@@ -23,5 +23,15 @@ void read_json(struct options *opt, FILE *IN){
 	int BS_ESC = 0;
 	char *BUFF = NULL;
 	while((current_C = fgetc(IN))){
+		//status
+		if(current_C == '\\'){
+			BS_ESC = 1;
+		}else{
+			BS_ESC = 0;
+		}
+		if(current_C == '"' && BS_ESC == 0){
+			sw_esc(&DQ_ESC);
+		}
+		//check
 	}
 }
