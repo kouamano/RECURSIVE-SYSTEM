@@ -15,6 +15,8 @@ char *alloc_BUFF(int size){
 	return p;
 }
 void set_Nd(struct options *opt, struct Nd *node, int CjT, int NdT, int Lv, int Pa, char *buff){
+	//buff
+	//other attribution
 }
 void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 	int current_C = 0;
