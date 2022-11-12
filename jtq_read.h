@@ -41,18 +41,21 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 		//check
 		// //Nd count
 		// //BUFF count
-		printf(":<%c>D%dB%d",current_C,DQ_ESC,BS_ESC);
+		printf(":<%c><%c>D%dB%d",prev_C,current_C,DQ_ESC,BS_ESC);
 
 		//BUFF operation AND node set
-		if(current_C == '[' || current_C == '{'){
+		if((current_C == '[' || current_C == '{') && (DQ_ESC == 0 && BS_ESC == 0)){
 			current_Lv++;
 			current_Nd++;
 		}
-		if(current_C == ','){
+		else if((current_C == ',') && (DQ_ESC == 0 && BS_ESC == 0)){
 			current_Nd++;
 		}
-		if(current_C == ']' || current_C == '}'){
+		else if((current_C == ']' || current_C == '}') && (DQ_ESC == 0 && BS_ESC == 0)){
 			current_Lv--;
+		}
+		else {
+			BUFF_counter++;
 		}
 
 		//current status
