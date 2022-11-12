@@ -24,7 +24,31 @@ void read_json(struct options *opt, FILE *IN){
 	char *BUFF = NULL;
 	BUFF = alloc_BUFF((*opt).buff);
 	BUFF[0] = '\0';
+	int C_counter = 0;
+	int BUFF_counter = 0;
 	while((current_C = fgetc(IN))){
+		//EOF
+		if(current_C == EOF){
+			break;
+		}
+
+		//counter up
+		C_counter++;
+
+
+		//check
+		// //Nd count
+		// //BUFF count
+		printf("%c",current_C);
+
+		//BUFF operation
+		if(current_C == '[' || current_C == '{'){
+		}
+		if(current_C == ','){
+		}
+		if(current_C == ']' || current_C == '}'){
+		}
+
 		//status
 		if(current_C == '\\'){
 			BS_ESC = 1;
@@ -34,6 +58,5 @@ void read_json(struct options *opt, FILE *IN){
 		if(current_C == '"' && BS_ESC == 0){
 			sw_esc(&DQ_ESC);
 		}
-		//check
 	}
 }
