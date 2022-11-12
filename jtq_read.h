@@ -14,7 +14,7 @@ char *alloc_BUFF(int size){
 	}
 	return p;
 }
-void read_json(struct options *opt, FILE *IN){
+void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 	int current_C = 0;
 	int current_Lv = 0;
 	int current_Nd = 0;

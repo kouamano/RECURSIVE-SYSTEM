@@ -86,6 +86,7 @@ int main(int argc, char **argv){
 	struct options *opt = NULL;
 	struct Nd *NdArr = NULL;
 	int ie = 0;
+	FILE *IN;
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
@@ -110,6 +111,9 @@ int main(int argc, char **argv){
 
 	/* create node array */
 	NdArr = alloc_Nd_arr((*opt).nodes);
+	IN = fopen((*opt).infile,"rw");
+	read_json(opt,IN,NdArr);
+	fclose(IN);
 
 	return(0);
 }
