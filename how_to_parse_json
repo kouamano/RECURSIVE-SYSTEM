@@ -38,6 +38,7 @@ CjType:
 
 構造体
 Nd[]
+  CjType
   NdType
   Lv
   Pa
