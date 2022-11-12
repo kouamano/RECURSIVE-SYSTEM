@@ -25,6 +25,8 @@ void set_Nd(struct options *opt, struct Nd *node, int CjT, int NdT, int Lv, int 
 void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 	int current_C = 0;
 	int prev_C = 0;
+	int current_Cj = 0;
+	int prev_Cj = 0;
 
 	int current_CjType = 0;
 	int current_NdType = 0;
@@ -84,6 +86,10 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 
 			//node progress
 			current_Nd++;
+
+			//Cj operation
+			prev_Cj = current_Cj;
+			current_Cj = current_C;
 		}
 		else if((current_C == ']' || current_C == '}') && (DQ_ESC == 0 && BS_ESC == 0)){
 			//Lv
@@ -92,6 +98,9 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
 			printf("\n<<<%s>>>\n",BUFF);
+			//Cj operation
+			prev_Cj = current_Cj;
+			current_Cj = current_C;
 		}
 		else {
 			BUFF[BUFF_counter] = current_C;
