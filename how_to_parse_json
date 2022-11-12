@@ -15,6 +15,7 @@ NdType:
   - Key  <= '*:'
   - KV   <= '*:*'
   - Val  <= ':' を含まない
+  - IM   <= ']['などCjの情報を格納する中間ノード
   Dict、Arrは排他
   Key、KV、Valは排他
 
