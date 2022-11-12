@@ -6,11 +6,13 @@
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" jtq [-h] [-s] [-c] in=<input file>.\n");
+	printf(" jtq [-h] [-s] [-c] in=<input file> buff=<buff size> nodes=<number of nodes>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  input file : input file.\n");
+	printf("  buff size : buffer size.\n");
+	printf("  number of nodes : number of allocated nodes.\n");
 }
 
 void status(void){
@@ -22,6 +24,8 @@ struct options {
 	int help;
 	int stat;
 	int check;
+	int buff;
+	int nodes;
 	char *infile;
 };
 
@@ -43,6 +47,8 @@ void init_options(struct options *opt){
 	(*opt).help = 0;
 	(*opt).stat = 0;
 	(*opt).check = 0;
+	(*opt).buff = LEN;
+	(*opt).nodes = LEN;
 	(*opt).infile[0] = '\0';
 }
 
@@ -57,6 +63,10 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).check = 1;
 		}else if(strncmp(optv[i],"in=",3) == 0){
 			sscanf(optv[i],"in=%s",(*opt).infile);
+		}else if(strncmp(optv[i],"buff=",5) == 0){
+			sscanf(optv[i],"buff=%d",&(*opt).buff);
+		}else if(strncmp(optv[i],"nodes=",5) == 0){
+			sscanf(optv[i],"nodes=%d",&(*opt).nodes);
 		}
 	}
 }
