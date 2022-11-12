@@ -25,10 +25,13 @@ void set_Nd(struct options *opt, struct Nd *node, int CjT, int NdT, int Lv, int 
 void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 	int current_C = 0;
 	int prev_C = 0;
-	int current_Lv = 0;
-	int current_Nd = 0;
-	int current_NdType = 0;
+
 	int current_CjType = 0;
+	int current_NdType = 0;
+	int current_Lv = 0;
+	int current_Pa = -1;
+	int current_Nd = 0;
+
 	int DQ_ESC = 0;
 	int BS_ESC = 0;
 	char *BUFF = NULL;
@@ -52,16 +55,36 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 
 		//BUFF operation AND node set
 		if((current_C == '[' || current_C == '{') && (DQ_ESC == 0 && BS_ESC == 0)){
+			//Lv
 			current_Lv++;
 			//BUFF to Head & //Node set
+			BUFF[BUFF_counter] = '\0';
+			BUFF_counter = 0;
+			printf("\n<<<%s>>>\n",BUFF);
+
+			//Parent operation
+			if(prev_C != ']' && prev_C != '}'){
+				current_Pa = current_Nd;
+			}
+			//node progress
 			current_Nd++;
 		}
 		else if((current_C == ',') && (DQ_ESC == 0 && BS_ESC == 0)){
 			//BUFF to Head & //Node set
+			BUFF[BUFF_counter] = '\0';
+			BUFF_counter = 0;
+			printf("\n<<<%s>>>\n",BUFF);
+
+			//node progress
 			current_Nd++;
 		}
 		else if((current_C == ']' || current_C == '}') && (DQ_ESC == 0 && BS_ESC == 0)){
+			//Lv
 			current_Lv--;
+			//BUFF to Head & //Node set
+			BUFF[BUFF_counter] = '\0';
+			BUFF_counter = 0;
+			printf("\n<<<%s>>>\n",BUFF);
 		}
 		else {
 			BUFF[BUFF_counter] = current_C;
