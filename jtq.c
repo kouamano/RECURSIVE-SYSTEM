@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #define LEN 1024
-
+#include "./jtq_struct.h"
 
 void help(void){
 	printf("USAGE:\n");
