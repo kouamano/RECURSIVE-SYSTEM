@@ -7,6 +7,6 @@ struct Nd *alloc_Nd_arr(int size){
         return(p);
 }
 
-struct Nd *create_Nd(struct options *opt, struct Nd *node, int idx){
-	return(node+idx);
+struct Nd *create_Nd(struct options *opt, struct Nd *node, int type, int lv, int pa, char *buff){
+	return(node);
 }
