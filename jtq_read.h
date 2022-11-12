@@ -6,6 +6,14 @@ int sw_esc(int *esc){
 	}
 	return(*esc);
 }
+char *alloc_BUFF(int size){
+	char *p;
+	if((p = malloc(sizeof(char) * (size+1))) == NULL){
+		perror("alloc buff");
+		exit(1);
+	}
+	return p;
+}
 void read_json(struct options *opt, FILE *IN){
 	int current_C = 0;
 	int current_Lv = 0;

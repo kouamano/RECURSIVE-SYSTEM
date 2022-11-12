@@ -83,7 +83,8 @@ void check_options(struct options *opt){
 #include "./jtq_read.h"
 
 int main(int argc, char **argv){
-	struct options *opt;
+	struct options *opt = NULL;
+	struct Nd *NdArr = NULL;
 	int ie = 0;
 	opt = alloc_options();
 	init_options(opt);
@@ -106,5 +107,9 @@ int main(int argc, char **argv){
 	if(ie == 1){
 		exit(0);
 	}
+
+	/* create node array */
+	NdArr = alloc_Nd_arr((*opt).nodes);
+
 	return(0);
 }
