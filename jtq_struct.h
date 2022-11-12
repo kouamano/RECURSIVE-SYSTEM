@@ -1,4 +1,5 @@
 struct Nd {
+	int CjType;
 	int NdType;
 	int Lv;
 	int Pa;

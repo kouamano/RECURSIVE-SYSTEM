@@ -19,7 +19,8 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 	int prev_C = 0;
 	int current_Lv = 0;
 	int current_Nd = 0;
-	int current_NdType = -1;
+	int current_NdType = 0;
+	int current_CjType = 0;
 	int DQ_ESC = 0;
 	int BS_ESC = 0;
 	char *BUFF = NULL;
