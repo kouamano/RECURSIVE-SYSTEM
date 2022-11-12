@@ -13,3 +13,4 @@
 #define NdType_KV 4
 #define NdType_Key 8
 #define NdType_Val 16
+#define NdType_IM 32	//中間ノード
