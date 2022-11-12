@@ -39,7 +39,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 		//check
 		// //Nd count
 		// //BUFF count
-		printf("%c",current_C);
+		printf(":<%c>D%dB%d",current_C,DQ_ESC,BS_ESC);
 
 		//BUFF operation
 		if(current_C == '[' || current_C == '{'){
