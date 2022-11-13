@@ -79,6 +79,7 @@ void check_options(struct options *opt){
 	printf(" opt.infile:%s:\n",(*opt).infile);
 }
 
+#include "./jtq_buff.h"
 #include "./jtq_Nd.h"
 #include "./jtq_read.h"
 

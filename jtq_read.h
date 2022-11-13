@@ -6,6 +6,7 @@ int sw_esc(int *esc){
 	}
 	return(*esc);
 }
+/*
 char *alloc_BUFF(int size){
 	char *p;
 	if((p = malloc(sizeof(char) * (size+1))) == NULL){
@@ -14,6 +15,8 @@ char *alloc_BUFF(int size){
 	}
 	return p;
 }
+*/
+/*
 void set_Nd(struct options *opt, struct Nd *node, int CjT, int NdT, int Lv, int Pa, char *buff){
 	//buff
 	int len = 0;
@@ -22,6 +25,7 @@ void set_Nd(struct options *opt, struct Nd *node, int CjT, int NdT, int Lv, int 
 	strcpy((*node).head,buff);
 	//other attribution
 }
+*/
 void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 	int current_C = 0;
 	int prev_C = 0;
