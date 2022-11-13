@@ -6,12 +6,7 @@ struct Nd *alloc_Nd_arr(int size){
         }
         return(p);
 }
-
-struct Nd *create_Nd(struct options *opt, struct Nd *node, int type, int lv, int pa, char *buff){
-	return(node);
-}
-
-void set_Nd(struct options *opt, struct Nd *node, int CjT, int NdT, int Lv, int Pa, char *buff){
+void set_Nd(struct options *opt, struct Nd *node, int idx, int CjT, int NdT, int Lv, int Pa, char *buff){
         //buff
         int len = 0;
         len = strlen(buff);

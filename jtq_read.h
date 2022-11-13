@@ -6,26 +6,6 @@ int sw_esc(int *esc){
 	}
 	return(*esc);
 }
-/*
-char *alloc_BUFF(int size){
-	char *p;
-	if((p = malloc(sizeof(char) * (size+1))) == NULL){
-		perror("alloc buff");
-		exit(1);
-	}
-	return p;
-}
-*/
-/*
-void set_Nd(struct options *opt, struct Nd *node, int CjT, int NdT, int Lv, int Pa, char *buff){
-	//buff
-	int len = 0;
-	len = strlen(buff);
-	(*node).head = alloc_BUFF(len + 1);
-	strcpy((*node).head,buff);
-	//other attribution
-}
-*/
 void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 	int current_C = 0;
 	int prev_C = 0;
