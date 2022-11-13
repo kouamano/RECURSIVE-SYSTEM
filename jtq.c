@@ -86,16 +86,16 @@ void check_options(struct options *opt){
 int main(int argc, char **argv){
 	struct options *opt = NULL;
 	struct Nd *NdArr = NULL;
-	int ie = 0;
 	FILE *IN;
+	int ie = 0;
 
 	/* init */
 	opt = alloc_options();
 	init_options(opt);
-	get_options(argc-1, argv+1, opt);
 	NdArr = alloc_Nd_arr((*opt).nodes);
 
 	/* option operation */
+	get_options(argc-1, argv+1, opt);
 	if(argc == 1){
 		(*opt).help = 1;
 	}
