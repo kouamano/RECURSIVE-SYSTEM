@@ -93,6 +93,7 @@ int main(int argc, char **argv){
 	opt = alloc_options();
 	init_options(opt);
 	get_options(argc-1, argv+1, opt);
+	NdArr = alloc_Nd_arr((*opt).nodes);
 
 	/* option operation */
 	if(argc == 1){
@@ -113,9 +114,6 @@ int main(int argc, char **argv){
 	if(ie == 1){
 		exit(0);
 	}
-
-	/* create node array */
-	NdArr = alloc_Nd_arr((*opt).nodes);
 
 	/* read json */
 	IN = fopen((*opt).infile,"rw");
