@@ -75,7 +75,9 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 			//BUFF to Head & //Node set
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
-			printf("\n<<<%s>>>\n",BUFF);
+			if(prev_C != ']' && prev_C != '}'){
+				printf("\n<<<%s>>>\n",BUFF);
+			}
 			//Cj operation
 			prev_Cj = current_Cj;
 			current_Cj = current_C;
