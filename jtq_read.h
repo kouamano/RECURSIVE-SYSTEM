@@ -44,16 +44,10 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 			//Lv
 			current_Lv++;
 			//BUFF to Head & //Node set
-			if(prev_C != ']' && prev_C != '}'){	//中間ノード
+			//通常ノード
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
 			printf("\n<<<%s>>>\n",BUFF);
-			}
-			else {					//通常ノード
-			BUFF[BUFF_counter] = '\0';
-			BUFF_counter = 0;
-			printf("\n<<<%s>>>\n",BUFF);
-			}
 
 			//Parent operation
 			if(prev_C != ']' && prev_C != '}'){
