@@ -15,21 +15,16 @@ NdType:
   - Key  <= '*:'
   - KV   <= '*:*'
   - Val  <= ':' を含まない
-  Dict、Arrは排他
+  - Cj   <= conjugator
   Key、KV、Valは排他
 
 CjType:
   - ","
-  - "]["
-  - "]{"
-  - "}{"
-  - "}["
   - "["
   - "{"
   排他的
 
 ClType
-  - ""
   - "]"
   - "}"
   排他的
