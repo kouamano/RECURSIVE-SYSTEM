@@ -47,7 +47,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 			//通常ノード
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
-			printf("\n<<<%s>>>\n",BUFF);
+			printf("\n<<<%s|N%dP%d>>>\n",BUFF,current_Nd,current_Pa);
 
 			//Parent operation
 			if(prev_C != ']' && prev_C != '}'){
@@ -60,7 +60,9 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 			//BUFF to Head & //Node set
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
-			printf("\n<<<%s>>>\n",BUFF);
+			printf("\n<<<%s|N%dP%d>>>\n",BUFF,current_Nd,current_Pa);
+
+			//parent operation
 
 			//node progress
 			current_Nd++;
@@ -75,7 +77,10 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 			//BUFF to Head & //Node set
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
-			printf("\n<<<%s>>>\n",BUFF);
+			printf("\n<<<%s|N%dP%d>>>\n",BUFF,current_Nd,current_Pa);
+			//node progress
+			current_Nd++;
+
 			//Cj operation
 			prev_Cj = current_Cj;
 			current_Cj = current_C;
