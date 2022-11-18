@@ -44,7 +44,6 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
 			//Lv
 			current_Lv++;
 			//BUFF to Head & //Node set
-			//通常ノード
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
 			printf("\n<<<%s|N%dP%d>>>\n",BUFF,current_Nd,current_Pa);
