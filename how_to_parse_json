@@ -13,7 +13,7 @@ NdType:
   - Dict <= '{'
   - Arr  <= '['
   - Key  <= '*:'
-  - KV   <= '*:*'
+  - KVp  <= '*:*'
   - Val  <= ':' を含まない
   - Cj   <= conjugator
   Key、KV、Valは排他
