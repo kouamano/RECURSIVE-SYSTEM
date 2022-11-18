@@ -9,24 +9,24 @@ LvUD  ^^^  v       ^    ^   v   ^vv^v^vv
 Lv    012  1       2    3   2   32121210
 
 
-NdType:
-  - Dict <= '{'
-  - Arr  <= '['
-  - Key  <= '*:'
-  - KVp  <= '*:*'
-  - Val  <= ':' を含まない
-  - Cj   <= conjugator
+NdType: 8bit
+  - Dict <= '{'			1
+  - Arr  <= '['			2
+  - Key  <= '*:'		4
+  - KVp  <= '*:*'		8
+  - Val  <= ':' を含まない	16
+  - Cj   <= conjugator		32
   Key、KV、Valは排他
 
-CjType:
-  - ","
-  - "["
-  - "{"
+CjType: 4bit
+  - ","				256
+  - "["				512
+  - "{"				1024
   排他的
 
-ClType
-  - "]"
-  - "}"
+ClType 4bit
+  - "]"				4096
+  - "}"				8192
   排他的
 
 
@@ -42,8 +42,7 @@ ClType
 
 構造体
 Nd[]
-  CjType
-  NdType
+  Types	#NdType, CjType, ClTypeのビットフラグ格納
   Lv
   Pa
   Head
