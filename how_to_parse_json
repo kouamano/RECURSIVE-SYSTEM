@@ -5,28 +5,29 @@ how_to_parse_json
 BfIn    ^ ^  ^ ^^^  ^^^  ^^^  ^^        
 BfCl  ^^ ^ ^^ ^   ^^   ^^   ^^  ^^^^^^^^
 NdCr  ^^ ^ ^^ ^   ^^   ^^   ^^  ^^^^^^^^
-LvUD  ^^^  v       ^    ^   v   ^vv^v^vv
-Lv    012  1       2    3   2   32121210
+LvUD  ^^   v       ^    ^   v   ^vv^v^vv
+Lv   012   1       2    3   2   32121210
 
 
 NdType: 8bit
   - Dict <= '{'			1
   - Arr  <= '['			2
-  - Key  <= '*:'		4
-  - KVp  <= '*:*'		8
+  - KVp  <= '*:*'		4
+  - Key  <= '*:'		8
   - Val  <= ':' を含まない	16
   - Cj   <= conjugator		32
+  - Cl   <= close		64
   Key、KV、Valは排他
 
 CjType: 4bit
   - ","				256
-  - "["				512
-  - "{"				1024
+  - "{"				512
+  - "["				1024
   排他的
 
 ClType 4bit
-  - "]"				4096
-  - "}"				8192
+  - "}"				4096
+  - "]"				8192
   排他的
 
 
