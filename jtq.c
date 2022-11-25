@@ -76,6 +76,8 @@ void check_options(struct options *opt){
 	printf(" opt.help:%d:\n",(*opt).help);
 	printf(" opt.stat:%d:\n",(*opt).stat);
 	printf(" opt.check:%d:\n",(*opt).check);
+	printf(" opt.buff:%d:\n",(*opt).buff);
+	printf(" opt.nodes:%d:\n",(*opt).nodes);
 	printf(" opt.infile:%s:\n",(*opt).infile);
 }
 
