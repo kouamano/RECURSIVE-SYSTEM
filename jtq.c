@@ -116,7 +116,10 @@ int main(int argc, char **argv){
 	}
 
 	/* read json */
-	IN = fopen((*opt).infile,"rw");
+	if((IN = fopen((*opt).infile,"r")) == NULL){
+		perror("(*opt).infile");
+		exit(1);
+	}
 	read_json(opt,IN,NdArr);
 	fclose(IN);
 
