@@ -6,7 +6,7 @@ int sw_esc(int *esc){
 	}
 	return(*esc);
 }
-void read_json(struct options *opt, FILE *IN, struct Nd *NdArr){
+void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 	int current_C = 0;
 	int prev_C = 0;
 	int current_Cj = 0;

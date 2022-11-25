@@ -117,12 +117,16 @@ int main(int argc, char **argv){
 		exit(0);
 	}
 
+	/* alloc nodes */
+	struct Nd *top_node;
+	top_node = alloc_Nd_arr((*opt).nodes);
+
 	/* read json */
 	if((IN = fopen((*opt).infile,"r")) == NULL){
 		perror("(*opt).infile");
 		exit(1);
 	}
-	read_json(opt,IN,NdArr);
+	read_json(opt,IN,NdArr,0);
 	fclose(IN);
 
 	/* finish */
