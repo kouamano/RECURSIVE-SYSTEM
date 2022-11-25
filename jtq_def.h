@@ -10,7 +10,7 @@
 #define NdType_Cj 32
 #define NdType_Cl 64
 /** conjugator **/
-// for NdType_Cj	// 先行のNdにセット
+// for NdType_Cj	// 後続のNdにセット
 #define CjType_C 256	// ","
 #define CjType_D 512	// "{"
 #define CjType_A 1024	// "["
