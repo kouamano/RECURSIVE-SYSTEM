@@ -63,6 +63,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 			printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
 
 			//parent operation
+			// --
 
 			//node progress
 			current_Nd++;
@@ -80,6 +81,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 			printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
 
 			//parent operation
+			// parent.parent
 
 			//node progress
 			current_Nd++;
