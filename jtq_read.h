@@ -41,13 +41,14 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 
 		//BUFF operation AND node set
 		if((current_C == '[' || current_C == '{') && (DQ_ESC == 0 && BS_ESC == 0)){
-			//Lv
-			current_Lv++;
 			//BUFF to Head & //Node set
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
 			printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
 			set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,current_Pa,BUFF);
+
+			//Lv
+			current_Lv++;
 
 			//Parent operation
 			if(prev_C != ']' && prev_C != '}'){
