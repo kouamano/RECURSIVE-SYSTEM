@@ -38,7 +38,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 		//check
 		// //Nd count
 		// //BUFF count
-		printf(":<%c><%c>D%dB%d",prev_C,current_C,DQ_ESC,BS_ESC);
+		printf(":<%c><%c>D%dB%dP%d",prev_C,current_C,DQ_ESC,BS_ESC,current_Pa);
 
 		//BUFF operation AND node set
 		if((current_C == '[' || current_C == '{') && (DQ_ESC == 0 && BS_ESC == 0)){
