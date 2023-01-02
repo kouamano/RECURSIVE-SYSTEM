@@ -66,19 +66,21 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
 			if(prev_C != ']' && prev_C != '}'){
-			printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
-			set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,current_Pa,BUFF);
+				printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
+				set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,current_Pa,BUFF);
 
-			//parent operation
-			// --
 
-			//node progress
-			current_Nd++;
+				//parent operation
+				// --
 
-			//Cj operation
-			prev_Cj = current_Cj;
-			current_Cj = current_C;
+				//node progress
+				current_Nd++;
+
+				//Cj operation
+				prev_Cj = current_Cj;
+				current_Cj = current_C;
 			}
+
 		}
 		else if((current_C == ']' || current_C == '}') && (DQ_ESC == 0 && BS_ESC == 0)){
 			//BUFF to Head & //Node set
