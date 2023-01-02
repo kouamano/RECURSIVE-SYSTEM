@@ -68,6 +68,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 			if(prev_C != ']' && prev_C != '}'){
 				printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
 				set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,current_Pa,BUFF);
+				printf("\n<<<<%s|N%dP%dL%d>>>>\n",NdArr[current_Nd].head,current_Nd,NdArr[current_Nd].Pa,NdArr[current_Nd].Lv);
 
 
 				//parent operation
@@ -94,7 +95,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 
 			//parent operation
 			// parent.parent
-			current_Pa = NdArr[current_Nd].Pa;
+			current_Pa = NdArr[NdArr[current_Nd].Pa].Pa;
 
 			//node progress
 			current_Nd++;

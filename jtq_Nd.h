@@ -10,7 +10,14 @@ void set_Nd(struct options *opt, struct Nd *node, int idx, int CjT, int NdT, int
         //buff
         int len = 0;
         len = strlen(buff);
-        (*node).head = alloc_BUFF(len + 1);
-        strcpy((*node).head,buff);
-        //other attribution
+        node[idx].head = alloc_BUFF(len + 1);
+	if(node[idx].head == NULL){
+		perror("alloc:head");
+		exit(1);
+	}
+        strcpy(node[idx].head,buff);
+        //Lv
+	node[idx].Lv = Lv;
+	//Pa
+	node[idx].Pa = Pa;
 }
