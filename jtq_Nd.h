@@ -21,3 +21,5 @@ void set_Nd(struct options *opt, struct Nd *node, int idx, int CjT, int NdT, int
 	//Pa
 	node[idx].Pa = Pa;
 }
+void print_NdStat(struct options *opt, struct Nd *node, int idx){
+}
