@@ -73,7 +73,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 
 			//Parent operation
 			//current_Pa = current_Nd;
-			current_Pa = NdArr[current_Nd].Pa;
+			current_Pa = NdArr[current_Nd-1].Pa;
 
 			}
 		}
