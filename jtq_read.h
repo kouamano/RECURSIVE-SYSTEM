@@ -49,6 +49,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 			//BUFF to Head & //Node set
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
+			if(prev_C != ']' && prev_C != '}'){
 			//Node Type
 
 			//Parent tune
@@ -66,6 +67,15 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 
 			//node progress
 			current_Nd++;
+			}else{
+			//Lv
+			current_Lv++;
+
+			//Parent operation
+			//current_Pa = current_Nd;
+			current_Pa = NdArr[current_Nd].Pa;
+
+			}
 		}
 		else if((current_C == ',') && (DQ_ESC == 0 && BS_ESC == 0)){
 			//BUFF to Head & //Node set
