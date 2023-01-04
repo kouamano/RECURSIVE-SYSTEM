@@ -50,7 +50,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
 			if(prev_C != ']' && prev_C != '}'){
-				//Node Type
+				//Node type
 	
 				//Parent tune
 				tuned_Pa = current_Pa;
@@ -65,14 +65,13 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 				//Parent operation
 				current_Pa = current_Nd;
 	
-				//node progress
+				//Node progress
 				current_Nd++;
 			}else{
 				//Lv
 				current_Lv++;
 
 				//Parent operation
-				//current_Pa = current_Nd;
 				current_Pa = NdArr[current_Nd-1].Pa;
 			}
 		}
@@ -81,7 +80,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
 			if(prev_C != ']' && prev_C != '}'){
-				//Node Type
+				//Node type
 
 				//Set Node
 				printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
@@ -89,10 +88,10 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 				printf("\n<<<<%s|N%dP%dL%d>>>>\n",NdArr[current_Nd].head,current_Nd,NdArr[current_Nd].Pa,NdArr[current_Nd].Lv);
 
 
-				//parent operation
+				//Parent operation
 				// --
 
-				//node progress
+				//Node progress
 				current_Nd++;
 
 				//Cj operation
@@ -105,7 +104,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
 			if(prev_C != ']' && prev_C != '}'){
-				//Node Type
+				//Node type
 	
 				//Set node
 				printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
@@ -114,11 +113,10 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 				//Lv
 				current_Lv--;
 	
-				//parent operation
-				// parent.parent
+				//Parent operation
 				current_Pa = NdArr[NdArr[current_Nd].Pa].Pa;
 	
-				//node progress
+				//Node progress
 				current_Nd++;
 	
 				//Cj operation
@@ -128,7 +126,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 				//Lv
 				current_Lv--;
 
-				//parent operation
+				//Parent operation
 				current_Pa = NdArr[current_Nd].Pa;
 			}
 		}
@@ -137,7 +135,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 			BUFF_counter++;
 		}
 
-		//current status
+		//Current status
 		if(current_C == '\\'){
 			BS_ESC = 1;
 		}else{
@@ -147,7 +145,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 			sw_esc(&DQ_ESC);
 		}
 
-		//prev status
+		//Prev status
 		prev_C = current_C;
 	}
 }
