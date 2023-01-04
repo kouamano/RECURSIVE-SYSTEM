@@ -42,7 +42,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 		// //BUFF count
 
 		// //Status print
-		printf(":<%c><%c>D%dB%dP%d",prev_C,current_C,DQ_ESC,BS_ESC,current_Pa);
+		printf(":<%c><%c><D%dB%dP%d>:",prev_C,current_C,DQ_ESC,BS_ESC,current_Pa);
 
 		//BUFF operation AND Node set directive
 		if((current_C == '[' || current_C == '{') && (DQ_ESC == 0 && BS_ESC == 0)){
@@ -58,6 +58,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 				//Set Node
 				printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,tuned_Pa,current_Lv);
 				set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,tuned_Pa,BUFF);
+				print_NdStat(opt,NdArr,current_Nd,current_Nd,current_Pa);
 	
 				//Lv
 				current_Lv++;
@@ -85,7 +86,8 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 				//Set Node
 				printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
 				set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,current_Pa,BUFF);
-				printf("\n<<<<%s|N%dP%dL%d>>>>\n",NdArr[current_Nd].head,current_Nd,NdArr[current_Nd].Pa,NdArr[current_Nd].Lv);
+				print_NdStat(opt,NdArr,current_Nd,current_Nd,current_Pa);
+				//printf("\n<<<<%s|N%dP%dL%d>>>>\n",NdArr[current_Nd].head,current_Nd,NdArr[current_Nd].Pa,NdArr[current_Nd].Lv);
 
 
 				//Parent operation
@@ -109,6 +111,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 				//Set node
 				printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
 				set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,current_Pa,BUFF);
+				print_NdStat(opt,NdArr,current_Nd,current_Nd,current_Pa);
 	
 				//Lv
 				current_Lv--;
