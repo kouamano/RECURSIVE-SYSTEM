@@ -105,6 +105,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 			//BUFF to Head & //Node set
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
+			if(prev_C != ']' && prev_C != '}'){
 			//Node Type
 
 			//Set node
@@ -124,6 +125,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 			//Cj operation
 			prev_Cj = current_Cj;
 			current_Cj = current_C;
+			}
 		}
 		else {
 			BUFF[BUFF_counter] = current_C;
