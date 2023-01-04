@@ -22,5 +22,5 @@ void set_Nd(struct options *opt, struct Nd *node, int idx, int CjT, int NdT, int
 	node[idx].Pa = Pa;
 }
 void print_NdStat(struct options *opt, struct Nd *node, int idx, int current_Nd, int current_Pa){
-	printf("\n<<<<%s|N%dP%dL%d>>>>\n",node[current_Nd].head,current_Nd,node[current_Nd].Pa,node[current_Nd].Lv);
+	printf("<<<<%s|N%dP%dL%d>>>>\n",node[current_Nd].head,current_Nd,node[current_Nd].Pa,node[current_Nd].Lv);
 }
