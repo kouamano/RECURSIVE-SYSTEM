@@ -41,10 +41,10 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 
 		// //BUFF count
 
-		// //Status
+		// //Status print
 		printf(":<%c><%c>D%dB%dP%d",prev_C,current_C,DQ_ESC,BS_ESC,current_Pa);
 
-		//BUFF operation AND node set directive
+		//BUFF operation AND Node set directive
 		if((current_C == '[' || current_C == '{') && (DQ_ESC == 0 && BS_ESC == 0)){
 			//BUFF to Head & //Node set
 			BUFF[BUFF_counter] = '\0';
@@ -89,7 +89,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 
 
 				//Parent operation
-				// --
+				//-nothing-
 
 				//Node progress
 				current_Nd++;
