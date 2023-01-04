@@ -50,31 +50,30 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
 			if(prev_C != ']' && prev_C != '}'){
-			//Node Type
-
-			//Parent tune
-			tuned_Pa = current_Pa;
-
-			//Set Node
-			printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,tuned_Pa,current_Lv);
-			set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,tuned_Pa,BUFF);
-
-			//Lv
-			current_Lv++;
-
-			//Parent operation
-			current_Pa = current_Nd;
-
-			//node progress
-			current_Nd++;
+				//Node Type
+	
+				//Parent tune
+				tuned_Pa = current_Pa;
+	
+				//Set Node
+				printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,tuned_Pa,current_Lv);
+				set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,tuned_Pa,BUFF);
+	
+				//Lv
+				current_Lv++;
+	
+				//Parent operation
+				current_Pa = current_Nd;
+	
+				//node progress
+				current_Nd++;
 			}else{
-			//Lv
-			current_Lv++;
+				//Lv
+				current_Lv++;
 
-			//Parent operation
-			//current_Pa = current_Nd;
-			current_Pa = NdArr[current_Nd-1].Pa;
-
+				//Parent operation
+				//current_Pa = current_Nd;
+				current_Pa = NdArr[current_Nd-1].Pa;
 			}
 		}
 		else if((current_C == ',') && (DQ_ESC == 0 && BS_ESC == 0)){
@@ -106,25 +105,31 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
 			if(prev_C != ']' && prev_C != '}'){
-			//Node Type
+				//Node Type
+	
+				//Set node
+				printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
+				set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,current_Pa,BUFF);
+	
+				//Lv
+				current_Lv--;
+	
+				//parent operation
+				// parent.parent
+				current_Pa = NdArr[NdArr[current_Nd].Pa].Pa;
+	
+				//node progress
+				current_Nd++;
+	
+				//Cj operation
+				prev_Cj = current_Cj;
+				current_Cj = current_C;
+			}else{
+				//Lv
+				current_Lv--;
 
-			//Set node
-			printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
-			set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,current_Pa,BUFF);
-
-			//Lv
-			current_Lv--;
-
-			//parent operation
-			// parent.parent
-			current_Pa = NdArr[NdArr[current_Nd].Pa].Pa;
-
-			//node progress
-			current_Nd++;
-
-			//Cj operation
-			prev_Cj = current_Cj;
-			current_Cj = current_C;
+				//parent operation
+				current_Pa = NdArr[current_Nd].Pa;
 			}
 		}
 		else {
