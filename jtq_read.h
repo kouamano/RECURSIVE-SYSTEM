@@ -37,7 +37,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 		}
 
 		//check
-		// //Illigal char
+		// //Illegal char
 		if((current_C == ']' || current_C == '}' || current_C == '[' || current_C == '{' || current_C == ',') && (DQ_ESC == 0 && BS_ESC == 0) && (prev_C == ']' || prev_C == '}')){
 		}else{
 		}
