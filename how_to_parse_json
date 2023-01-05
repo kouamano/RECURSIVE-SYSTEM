@@ -14,9 +14,9 @@ how_to_parse_json
 - '[' or '{'
   受け入れ可能キャラクタ：
   ALL
-- ']' or '}'
+- ']' or '}' <= prev_C
   受け入れ可能キャラクタ：
-  ']' or '}' or '[' or '{' or ','
+  ']' or '}' or '[' or '{' or ',' <= current_C
 - ','
   受け入れ可能キャラクタ：
   ALL
