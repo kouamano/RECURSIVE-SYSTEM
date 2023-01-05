@@ -138,7 +138,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 			BUFF_counter++;
 		}
 
-		//Current status
+		//Escape status
 		if(current_C == '\\'){
 			BS_ESC = 1;
 		}else{
