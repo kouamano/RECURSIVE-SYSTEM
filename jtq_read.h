@@ -134,8 +134,10 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 			}
 		}
 		else {
-			BUFF[BUFF_counter] = current_C;
-			BUFF_counter++;
+			if(prev_C != ']' && prev_C != '}'){
+				BUFF[BUFF_counter] = current_C;
+				BUFF_counter++;
+			}
 		}
 
 		//Escape status
