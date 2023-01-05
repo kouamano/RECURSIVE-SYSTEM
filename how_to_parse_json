@@ -25,7 +25,6 @@ NdType: 8bit
 
 CjType: 4bit
 
-ClType 4bit
 
 
 ステータス変数:
@@ -40,7 +39,7 @@ ClType 4bit
 
 構造体
 Nd[]
-  Types	#NdType, CjType, ClTypeのビットフラグ格納
+  Types	#NdType, CjType, のビットフラグ格納
   Lv
   Pa
   Head
