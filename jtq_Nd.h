@@ -21,6 +21,12 @@ void set_Nd(struct options *opt, struct Nd *node, int idx, int CjT, int NdT, int
 	//Pa
 	node[idx].Pa = Pa;
 }
+int set_NdType(struct Nd *node, int idx, int type){
+	if(((*node).Ty&type) == 0){
+		(*node).Ty += type;
+	}
+	return((*node).Ty);
+}
 void print_NdStat(struct options *opt, struct Nd *node, int idx, int current_Nd, int current_Pa){
 	printf("<<<<%s|N%dP%dL%d>>>>\n",node[current_Nd].head,current_Nd,node[current_Nd].Pa,node[current_Nd].Lv);
 }

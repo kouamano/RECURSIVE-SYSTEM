@@ -1,5 +1,5 @@
 struct Nd {
-	int Types;
+	int Ty;
 	int Lv;
 	int Pa;
 	char *head;
