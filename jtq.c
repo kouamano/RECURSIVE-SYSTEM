@@ -89,6 +89,7 @@ void check_options(struct options *opt){
 #include "./jtq_executer.h"
 
 int main(int argc, char **argv){
+	struct NdReport *report;
 	struct options *opt = NULL;
 	struct Nd *NdArr = NULL;
 	FILE *IN;
@@ -129,10 +130,11 @@ int main(int argc, char **argv){
 		perror("(*opt).infile");
 		exit(1);
 	}
-	read_json(opt,IN,NdArr,0);
+	report = read_json(opt,IN,NdArr,0);
 	fclose(IN);
 
 	/* print nodes */
+	print_report(report);
 	print_json(opt,NdArr,0,0);
 	executer();
 

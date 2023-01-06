@@ -168,5 +168,9 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 	(*report).chars = C_counter;
 	return(report);
 }
+void print_report(struct NdReport *report){
+	printf("Nd:%d\n",(*report).Nds);
+	printf("Ch:%d\n",(*report).chars);
+}
 void print_json(struct options *opt, struct Nd *node, int idx_start, int idx_end){
 }
