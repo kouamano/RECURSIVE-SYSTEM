@@ -159,3 +159,5 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 		prev_C = current_C;
 	}
 }
+void print_json(){
+}

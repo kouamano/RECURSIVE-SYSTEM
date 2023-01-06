@@ -129,6 +129,9 @@ int main(int argc, char **argv){
 	read_json(opt,IN,NdArr,0);
 	fclose(IN);
 
+	/* print nodes */
+	print_json();
+
 	/* finish */
 	return(0);
 }
