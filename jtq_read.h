@@ -159,5 +159,5 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 		prev_C = current_C;
 	}
 }
-void print_json(struct options *opt, struct Nd *node, int idx){
+void print_json(struct options *opt, struct Nd *node, int idx_start, int idx_end){
 }

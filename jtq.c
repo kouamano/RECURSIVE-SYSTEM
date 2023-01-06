@@ -27,8 +27,10 @@ struct options {
 	int buff;
 	int nodes;
 	char *infile;
-};
 
+	char *status_header;
+	char *status_footer;
+};
 
 struct options *alloc_options(void){
 	struct options *p;
@@ -131,7 +133,7 @@ int main(int argc, char **argv){
 	fclose(IN);
 
 	/* print nodes */
-	print_json(opt,NdArr,0);
+	print_json(opt,NdArr,0,0);
 	executer();
 
 	/* finish */
