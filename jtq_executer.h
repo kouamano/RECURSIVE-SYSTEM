@@ -1,3 +1,2 @@
-void Executer(struct options *opt){
-	opt;
+void executer(){
 }

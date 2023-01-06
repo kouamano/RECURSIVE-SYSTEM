@@ -84,6 +84,7 @@ void check_options(struct options *opt){
 #include "./jtq_buff.h"
 #include "./jtq_Nd.h"
 #include "./jtq_read.h"
+#include "./jtq_executer.h"
 
 int main(int argc, char **argv){
 	struct options *opt = NULL;
@@ -131,6 +132,7 @@ int main(int argc, char **argv){
 
 	/* print nodes */
 	print_json();
+	executer();
 
 	/* finish */
 	return(0);
