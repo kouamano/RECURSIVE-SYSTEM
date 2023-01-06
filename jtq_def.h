@@ -15,6 +15,3 @@
 #define CjType_D 512	// "{"
 #define CjType_A 1024	// "["
 /** close **/		// 自身のNdにセット
-// for NdType_Cl
-#define ClType_D 4096	// "}"
-#define ClType_A 8192	// "]"
