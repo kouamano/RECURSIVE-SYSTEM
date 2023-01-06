@@ -8,6 +8,11 @@ int sw_esc(int *esc){
 }
 struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 	struct NdReport *report;
+	report = malloc(sizeof(struct NdReport) * 1);
+	if(report == NULL){
+		perror("malloc:report");
+		exit(1);
+	}
 	int current_C = 0;
 	int prev_C = 0;
 	int current_Cj = 0;
@@ -159,6 +164,8 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 		//Prev status
 		prev_C = current_C;
 	}
+	(*report).Nds = current_Nd;
+	(*report).chars = C_counter;
 	return(report);
 }
 void print_json(struct options *opt, struct Nd *node, int idx_start, int idx_end){
