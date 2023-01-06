@@ -6,7 +6,8 @@ int sw_esc(int *esc){
 	}
 	return(*esc);
 }
-void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
+struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
+	struct NdReport *report;
 	int current_C = 0;
 	int prev_C = 0;
 	int current_Cj = 0;
@@ -158,6 +159,7 @@ void read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int idx){
 		//Prev status
 		prev_C = current_C;
 	}
+	return(report);
 }
 void print_json(struct options *opt, struct Nd *node, int idx_start, int idx_end){
 }

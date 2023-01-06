@@ -9,4 +9,3 @@ struct NdReport {
 	int Nds;
 	int chars;
 };
-
