@@ -19,7 +19,7 @@ void help(void){
 
 void status(void){
 	printf("STATUS:\n");
-	printf(" Under construction.\n");
+	printf("  Under construction.\n");
 }
 
 struct options {
@@ -91,14 +91,14 @@ void get_options(int optc, char **optv, struct options *opt){
 
 void check_options(struct options *opt){
 	printf("OPTIONS:\n");
-	printf(" opt.help:%d:\n",(*opt).help);
-	printf(" opt.stat:%d:\n",(*opt).stat);
-	printf(" opt.check:%d:\n",(*opt).check);
-	printf(" opt.buff:%d:\n",(*opt).buff);
-	printf(" opt.nodes:%d:\n",(*opt).nodes);
-	printf(" opt.infile:%s:\n",(*opt).infile);
-	printf(" opt.sh:%s:\n",(*opt).status_header);
-	printf(" opt.sf:%s:\n",(*opt).status_footer);
+	printf("  opt.help:%d:\n",(*opt).help);
+	printf("  opt.stat:%d:\n",(*opt).stat);
+	printf("  opt.check:%d:\n",(*opt).check);
+	printf("  opt.buff:%d:\n",(*opt).buff);
+	printf("  opt.nodes:%d:\n",(*opt).nodes);
+	printf("  opt.infile:%s:\n",(*opt).infile);
+	printf("  opt.sh:%s:\n",(*opt).status_header);
+	printf("  opt.sf:%s:\n",(*opt).status_footer);
 }
 
 #include "./jtq_buff.h"
