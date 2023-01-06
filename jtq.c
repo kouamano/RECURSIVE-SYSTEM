@@ -81,6 +81,10 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"buff=%d",&(*opt).buff);
 		}else if(strncmp(optv[i],"nodes=",5) == 0){
 			sscanf(optv[i],"nodes=%d",&(*opt).nodes);
+		}else if(strncmp(optv[i],"sh=",3) == 0){
+			sscanf(optv[i],"sh=%s",(*opt).status_header);
+		}else if(strncmp(optv[i],"sf=",3) == 0){
+			sscanf(optv[i],"sf=%s",(*opt).status_header);
 		}
 	}
 }
@@ -93,6 +97,8 @@ void check_options(struct options *opt){
 	printf(" opt.buff:%d:\n",(*opt).buff);
 	printf(" opt.nodes:%d:\n",(*opt).nodes);
 	printf(" opt.infile:%s:\n",(*opt).infile);
+	printf(" opt.sh:%s:\n",(*opt).status_header);
+	printf(" opt.sf:%s:\n",(*opt).status_footer);
 }
 
 #include "./jtq_buff.h"
