@@ -6,13 +6,15 @@
 
 void help(void){
 	printf("USAGE:\n");
-	printf(" jtq [-h] [-s] [-c] in=<input file> buff=<buff size> nodes=<number of nodes>.\n");
+	printf(" jtq [-h] [-s] [-c] in=<input file> buff=<buff size> nodes=<number of nodes> sh=<status header> sf=<status footer>.\n");
 	printf("  -h : help.\n");
 	printf("  -s : stat.\n");
 	printf("  -c : check args.\n");
 	printf("  input file : input file.\n");
 	printf("  buff size : buffer size.\n");
 	printf("  number of nodes : number of allocated nodes.\n");
+	printf("  status header : print status with this header (1023 chars).\n");
+	printf("  status footer : print status with this footer (1023 chars).\n");
 }
 
 void status(void){
@@ -42,6 +44,14 @@ struct options *alloc_options(void){
 		printf("failed : malloc() in alloc_options().\n");
 		exit(1);
 	}
+	if(((*p).status_header = malloc(sizeof(char) * LEN)) == NULL){
+		printf("failed : malloc() in alloc_options().\n");
+		exit(1);
+	}
+	if(((*p).status_footer = malloc(sizeof(char) * LEN)) == NULL){
+		printf("failed : malloc() in alloc_options().\n");
+		exit(1);
+	}
 	return(p);
 }
 
@@ -52,6 +62,8 @@ void init_options(struct options *opt){
 	(*opt).buff = LEN;
 	(*opt).nodes = LEN;
 	(*opt).infile[0] = '\0';
+	strcpy((*opt).status_header,"<<<");
+	strcpy((*opt).status_footer,">>>");
 }
 
 void get_options(int optc, char **optv, struct options *opt){
