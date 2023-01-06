@@ -131,7 +131,7 @@ int main(int argc, char **argv){
 	fclose(IN);
 
 	/* print nodes */
-	print_json();
+	print_json(opt,NdArr,0);
 	executer();
 
 	/* finish */
