@@ -44,8 +44,11 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 
 		//check
 		// //Illegal char
-		if((current_C == ']' || current_C == '}' || current_C == '[' || current_C == '{' || current_C == ',') && (DQ_ESC == 0 && BS_ESC == 0) && (prev_C == ']' || prev_C == '}')){
-		}else{
+		if(prev_C == ']' || prev_C == '}'){
+			if(current_C == ']' || current_C == '}' || current_C == '[' || current_C == '{' || current_C == ',' || current_C == '\n'){
+			}else{
+				printf(":IC:");
+			}
 		}
 
 		// //Nd count

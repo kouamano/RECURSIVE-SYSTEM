@@ -14,5 +14,5 @@
 #define CjType_D 512	// "{"
 #define CjType_A 1024	// "["
 /** close **/		// 自身のNdにセット
-#define CjType_A 2048	// "}"
-#define CjType_A 4096	// "]"
+#define CjType_Dc 2048	// "}"
+#define CjType_Ac 4096	// "]"
