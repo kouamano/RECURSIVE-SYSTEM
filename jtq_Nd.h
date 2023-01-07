@@ -21,6 +21,12 @@ void set_Nd(struct options *opt, struct Nd *node, int idx, int CjT, int NdT, int
 	//Pa
 	node[idx].Pa = Pa;
 }
+int set_currentType(int current, int type){
+	if((current&type) == 0){
+		current += type;
+	}
+	return(current);
+}
 int set_NdType(struct Nd *node, int idx, int type){
 	if(((*node).Ty&type) == 0){
 		(*node).Ty += type;

@@ -9,10 +9,10 @@
 #define NdType_Val 16
 #define NdType_Cj 32	// コンジュゲータ
 /** conjugator **/
-// for NdType_Cj	// 後続のNdにセット
+// for NdType_Cj	// 後続のNdにセット => NdType
 #define CjType_C 256	// ","
 #define CjType_D 512	// "{"
 #define CjType_A 1024	// "["
-/** close **/		// 自身のNdにセット
-#define CjType_Dc 2048	// "}"
-#define CjType_Ac 4096	// "]"
+/** close **/		// 自身のNdにセット => NdType
+#define ClType_Dc 2048	// "}"
+#define ClType_Ac 4096	// "]"
