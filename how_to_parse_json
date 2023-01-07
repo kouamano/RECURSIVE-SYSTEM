@@ -55,6 +55,22 @@ Nd[]
   Pa
   Head
 
+
+---- ---- ---- ---- ----
+Cj pattern:
+- X
+- ,X
+- [X]
+- ,X]
+- [X
+
+---- ---- ---- ---- ----
+ex.1
+AA|[B|,CCC|,D|,E|[|{F}|,GG]|,H]
+ex.2
+AA|[B|,CCC|,D|,E|[|{F}|,GG]|,H|,|{I}]
+
+
 ---- ---- ---- ---- ----
 参考:
 https://www.json.org/json-en.html
