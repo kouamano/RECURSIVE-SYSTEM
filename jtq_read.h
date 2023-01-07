@@ -15,6 +15,8 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 	}
 	int current_C = 0;
 	int prev_C = 0;
+	int current_CjC = 0;
+	//int prev_CjC = 0;
 	int current_Cj = 0;
 	int prev_Cj = 0;
 
@@ -60,6 +62,9 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 
 		//BUFF operation AND Node set directive
 		if((current_C == '[' || current_C == '{') && (DQ_ESC == 0 && BS_ESC == 0)){
+			//Conj char
+			current_CjC = current_C;
+
 			//BUFF to Head & //Node set
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
@@ -91,6 +96,9 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 			}
 		}
 		else if((current_C == ',') && (DQ_ESC == 0 && BS_ESC == 0)){
+			//Conj char
+			current_CjC = current_C;
+
 			//BUFF to Head & //Node set
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
@@ -116,6 +124,9 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 			}
 		}
 		else if((current_C == ']' || current_C == '}') && (DQ_ESC == 0 && BS_ESC == 0)){
+			//Conj char
+			current_CjC = current_C;
+
 			//BUFF to Head & //Node set
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
