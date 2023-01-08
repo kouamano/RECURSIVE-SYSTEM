@@ -51,6 +51,9 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 			set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,tuned_Pa,BUFF);
 			print_NdStat(opt,NdArr,current_Nd,current_Nd,tuned_Pa);
 
+			//Node progress
+			current_Nd++;
+
 			break;
 		}
 
