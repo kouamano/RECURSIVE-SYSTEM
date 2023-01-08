@@ -41,6 +41,16 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 
 		//EOF
 		if(current_C == EOF){
+			//BUFF to Head & //Node set
+			BUFF[BUFF_counter] = '\0';
+			BUFF_counter = 0;
+
+			//Parent tune
+			tuned_Pa = -1;
+
+			set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,tuned_Pa,BUFF);
+			print_NdStat(opt,NdArr,current_Nd,current_Nd,tuned_Pa);
+
 			break;
 		}
 
