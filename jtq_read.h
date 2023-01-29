@@ -205,4 +205,9 @@ void print_report(struct NdReport *report){
 	fprintf(stderr,"Ch:%d\n",(*report).chars);
 }
 void print_json(struct options *opt, struct Nd *node, int idx_start, int idx_end){
+	printf("==IN:print_json==\n");
+	int i;
+	for(i=0;i<idx_end;i++){
+		printf("<%d:%s>\n",i,node[i].head);
+	}
 }

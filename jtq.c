@@ -153,7 +153,7 @@ int main(int argc, char **argv){
 
 	/* print nodes */
 	print_report(report);
-	print_json(opt,NdArr,0,0);
+	print_json(opt,NdArr,0,report->Nds);
 	executer();
 
 	/* finish */
