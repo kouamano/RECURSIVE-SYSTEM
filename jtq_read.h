@@ -35,6 +35,7 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 	BUFF[0] = '\0';
 	int C_counter = 0;
 	int BUFF_counter = 0;
+	int i;
 	while((current_C = fgetc(IN))){
 		//counter up
 		C_counter++;
@@ -108,6 +109,10 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 
 				//Parent operation
 				current_Pa = NdArr[current_Nd-1].Pa;
+				printf(":::%d:::",NdArr[current_Nd-1].Lv - current_Lv);
+				for(i=0;i<NdArr[current_Nd-1].Lv - current_Lv;i++){
+					current_Pa = NdArr[current_Pa].Pa;
+				}
 			}
 		}
 		// 2. BREAK
