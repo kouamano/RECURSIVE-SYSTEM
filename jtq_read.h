@@ -71,7 +71,7 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 		// //BUFF count
 
 		// //Status print
-		printf(":<%c><%c><D%dB%dP%d>:",prev_C,current_C,DQ_ESC,BS_ESC,current_Pa);
+		printf(":<%c><%c><N%dD%dB%dP%d>:",prev_C,current_C,current_Nd,DQ_ESC,BS_ESC,current_Pa);
 
 		//BUFF operation AND Node set directive
 		if((current_C == '[' || current_C == '{') && (DQ_ESC == 0 && BS_ESC == 0)){
