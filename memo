@@ -28,4 +28,19 @@ Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLA
 ((((L,W),Quantity(1,mm)),((L,W),Quantity(2,kg))),(((L,W),Quantity(3,mm)),((L,W),Quantity(4,kg))),(((L,W),Quantity(5,mm)),((L,W),Quantity(6,kg))))
 ((((L,W),Quantity(1,mm)),((L,W),Quantity(2,kg))),(((L,W),Quantity(3,mm)),((L,W),Quantity(4,kg))),(((L,W),Quantity(5,mm)),((L,W),Quantity(6,kg))))
 
-
+0<A><-1><0><0>
+1<><0><1><0>
+2<2><1><2><0>
+3<3><1><2><0>
+4<4><0><1><0>
+5<5k:v><0><1><0>
+6<><0><1><0>
+7<7k:v><6><2><0>
+8<><6><2><0>
+9<9k:v><8><3><0>
+10<10k:><6><2><0>
+11<11><10><3><0>
+12<14><10><2><0>
+13<16><10><2><0>
+14<
+><-1><0><0>
