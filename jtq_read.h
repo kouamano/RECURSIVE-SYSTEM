@@ -74,6 +74,7 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 		//printf(":<%c><%c><N%dD%dB%dP%d>:",prev_C,current_C,current_Nd,DQ_ESC,BS_ESC,current_Pa);
 
 		//BUFF operation AND Node set directive
+		// 1.OPEN
 		if((current_C == '[' || current_C == '{') && (DQ_ESC == 0 && BS_ESC == 0)){
 			//Conj char
 			prev_CjC = current_CjC;
@@ -109,6 +110,7 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 				current_Pa = NdArr[current_Nd-1].Pa;
 			}
 		}
+		// 2. BREAK
 		else if((current_C == ',') && (DQ_ESC == 0 && BS_ESC == 0)){
 			//Conj char
 			prev_CjC = current_CjC;
@@ -138,6 +140,7 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 				current_Cj = current_C;
 			}
 		}
+		// 3. CLOSE
 		else if((current_C == ']' || current_C == '}') && (DQ_ESC == 0 && BS_ESC == 0)){
 			//Conj char
 			prev_CjC = current_CjC;
@@ -174,13 +177,14 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 				current_Pa = NdArr[current_Nd].Pa;
 			}
 		}
+		// 4. CONTINUE
 		else {
 			//if(prev_C != ']' && prev_C != '}'){
 				BUFF[BUFF_counter] = current_C;
 				BUFF_counter++;
 			//}
 		}
-
+		// 5. STATUS set
 		//Escape status
 		if(current_C == '\\'){
 			BS_ESC = 1;
