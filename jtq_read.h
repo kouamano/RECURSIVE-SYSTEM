@@ -208,7 +208,7 @@ void print_node(struct options *opt, struct Nd *node, int idx_start, int idx_end
 	printf("==IN:print_node==\n");
 	int i;
 	for(i=0;i<idx_end;i++){
-		printf("%d:<%s>:\n",i,node[i].head);
+		printf("%d:<%s><%d><%d><%d>:\n",i,node[i].head,node[i].Pa,node[i].Lv,node[i].Ty);
 	}
 }
 void print_json(struct options *opt, struct Nd *node, int idx_start, int idx_end){
