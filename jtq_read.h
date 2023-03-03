@@ -24,7 +24,7 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 	int current_NdType = 0;
 	int current_Lv = 0;
 	int current_Pa = -1;
-	int tuned_Pa = -1;
+	//int tuned_Pa = -1;
 	int prev_Pa = -2;
 	int current_Nd = 0;
 
@@ -46,10 +46,10 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 			BUFF_counter = 0;
 
 			//Parent tune
-			tuned_Pa = -1;
+			//tuned_Pa = -1;
 
-			set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,tuned_Pa,BUFF);
-			print_NdStat(opt,NdArr,current_Nd,current_Nd,tuned_Pa);
+			set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,current_Pa,BUFF);
+			print_NdStat(opt,NdArr,current_Nd,current_Nd,current_Pa);
 
 			//Node progress
 			current_Nd++;
@@ -86,11 +86,11 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 				//Node type
 	
 				//Parent tune
-				tuned_Pa = current_Pa;
+				//tuned_Pa = current_Pa;
 	
 				//Set Node
-				printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,tuned_Pa,current_Lv);
-				set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,tuned_Pa,BUFF);
+				printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
+				set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,current_Pa,BUFF);
 				print_NdStat(opt,NdArr,current_Nd,current_Nd,current_Pa);
 	
 				//Lv
