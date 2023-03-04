@@ -24,7 +24,6 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 	int current_NdType = 0;
 	int current_Lv = 0;
 	int current_Pa = -1;
-	//int tuned_Pa = -1;
 	int prev_Pa = -2;
 	int current_Nd = 0;
 
@@ -45,9 +44,6 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 			//BUFF to Head & //Node set
 			BUFF[BUFF_counter] = '\0';
 			BUFF_counter = 0;
-
-			//Parent tune
-			//tuned_Pa = -1;
 
 			set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,current_Pa,BUFF);
 			print_NdStat(opt,NdArr,current_Nd,current_Nd,current_Pa);
@@ -86,9 +82,6 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 			BUFF_counter = 0;
 			if(prev_C != ']' && prev_C != '}'){
 				//Node type
-	
-				//Parent tune
-				//tuned_Pa = current_Pa;
 	
 				//Set Node
 				printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
@@ -131,8 +124,6 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 				printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
 				set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,current_Pa,BUFF);
 				print_NdStat(opt,NdArr,current_Nd,current_Nd,current_Pa);
-				//printf("\n<<<<%s|N%dP%dL%d>>>>\n",NdArr[current_Nd].head,current_Nd,NdArr[current_Nd].Pa,NdArr[current_Nd].Lv);
-
 
 				//Parent operation
 				//-nothing-
@@ -184,10 +175,8 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 		}
 		// 4. CONTINUE
 		else {
-			//if(prev_C != ']' && prev_C != '}'){
-				BUFF[BUFF_counter] = current_C;
-				BUFF_counter++;
-			//}
+			BUFF[BUFF_counter] = current_C;
+			BUFF_counter++;
 		}
 		// 5. STATUS set
 		//Escape status
