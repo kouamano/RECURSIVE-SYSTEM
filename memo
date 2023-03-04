@@ -28,6 +28,7 @@ Executor(itop,null_node,null_node,EOF,node_count,opt,_fopt,_copt,_sopt,DATA,EFLA
 ((((L,W),Quantity(1,mm)),((L,W),Quantity(2,kg))),(((L,W),Quantity(3,mm)),((L,W),Quantity(4,kg))),(((L,W),Quantity(5,mm)),((L,W),Quantity(6,kg))))
 ((((L,W),Quantity(1,mm)),((L,W),Quantity(2,kg))),(((L,W),Quantity(3,mm)),((L,W),Quantity(4,kg))),(((L,W),Quantity(5,mm)),((L,W),Quantity(6,kg))))
 
+A{[2,3],4,5k:v,{7k:v,{9k:v},10k:[11]}[14][16]}
 0<A><-1><0><0>
 1<><0><1><0>
 2<2><1><2><0>
