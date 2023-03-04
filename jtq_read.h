@@ -86,7 +86,7 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 				//Set Node
 				printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
 				set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,current_Pa,BUFF);
-				print_NdStat(opt,NdArr,current_Nd,current_Nd,current_Pa);
+				print_NdStat(opt,NdArr,current_Nd,current_Lv,current_Pa);
 	
 				//Lv
 				current_Lv++;
@@ -123,7 +123,7 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 				//Set Node
 				printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
 				set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,current_Pa,BUFF);
-				print_NdStat(opt,NdArr,current_Nd,current_Nd,current_Pa);
+				print_NdStat(opt,NdArr,current_Nd,current_Lv,current_Pa);
 
 				//Parent operation
 				//-nothing-
@@ -151,7 +151,7 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 				//Set node
 				printf("\n<<<%s|N%dP%dL%d>>>\n",BUFF,current_Nd,current_Pa,current_Lv);
 				set_Nd(opt,NdArr,current_Nd,-1,-1,current_Lv,current_Pa,BUFF);
-				print_NdStat(opt,NdArr,current_Nd,current_Nd,current_Pa);
+				print_NdStat(opt,NdArr,current_Nd,current_Lv,current_Pa);
 	
 				//Lv
 				current_Lv--;
