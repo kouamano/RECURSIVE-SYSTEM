@@ -157,7 +157,9 @@ struct NdReport *read_json(struct options *opt, FILE *IN, struct Nd *NdArr, int 
 				current_Lv--;
 	
 				//Parent operation
-				current_Pa = NdArr[NdArr[current_Nd].Pa].Pa;
+				//printf("***%d:%d***",current_Pa,NdArr[current_Nd].Pa);
+				//current_Pa = NdArr[NdArr[current_Nd].Pa].Pa;
+				current_Pa = NdArr[current_Pa].Pa;
 	
 				//Node progress
 				current_Nd++;
