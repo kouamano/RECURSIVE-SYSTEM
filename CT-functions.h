@@ -123,20 +123,20 @@ int Analyze_Label(NODE node){ // for labeling
 	int labelnumlen = 0;
 	char *labelnumstr;
 	int headlen = 0;
-	int labeled = 0;
+	//int labeled = 0;
 	/* label type  for referenced node */
 	// tq: if((*tree).Head[0] == '#' && (*tree).Head[1] == '#'){
 	if(head(node)[0] == '#' && head(node)[1] == '#'){
 		// tq: (*tree).LabelType = 't';
 		set_label_type(node,'t');
 		labelreadptr = 2;
-		labeled++;
+		//labeled++;
 	// tq: }else if((*tree).Head[0] == '#' && (*tree).Head[1] != '#'){
 	}else if(head(node)[0] == '#' && head(node)[1] != '#'){
 		// tq: (*tree).LabelType = 'h';
 		set_label_type(node,'h');
 		labelreadptr = 1;
-		labeled++;
+		//labeled++;
 	}
 	/* label  for referenced node */
 	// tq: if((*tree).LabelType != '\0'){
@@ -159,7 +159,7 @@ int Analyze_Label(NODE node){ // for labeling
 		set_label(node, wk);                    // SAK
 
 		free(labelnumstr);
-		labeled++;
+		//labeled++;
 	}
 	/* IndicatorPtr */
 	// tq: headlen = strlen((*tree).Head);
@@ -682,7 +682,7 @@ char *Dot_Head(NODE node){
 char *Interpret_Operator(NODE node, struct compile_options *_copt){
 	char *tmp_head;
 	char *out_head;
-	int compiled = 0;
+	//int compiled = 0;
 	int len = 0;
 	// tq: len = strlen((*tree).Head);
 	len = strlen(head(node));
@@ -714,15 +714,15 @@ char *Interpret_Operator(NODE node, struct compile_options *_copt){
 			// tq: (*tree).extra_stat = (*tree).extra_stat + 2;
 			set_extra_stat(node,extra_stat(node) + 2);
 		}
-		compiled++;
+		//compiled++;
 	}else if(strncmp(tmp_head,"$X$",3) == 0){
 		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
-		compiled++;
+		//compiled++;
 	}else if(strncmp(tmp_head,"$M$",3) == 0){
 		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
-		compiled++;
+		//compiled++;
 	}else if(strncmp(tmp_head,"$UU$",4) == 0){
 		strcpy(out_head,tmp_head+4);
 		strcpy(tmp_head,out_head);
@@ -734,7 +734,7 @@ char *Interpret_Operator(NODE node, struct compile_options *_copt){
 		int tmp_stat = 8;
 		// tq: ExFunction_Recursive_Set_Obj(tree, (struct Tree *(*)())Set_status, (int *)&tmp_stat);	// set cascading
 		ExFunction_Recursive_Set_Obj(node, (NODE(*)())Set_status, (int *)&tmp_stat);	// set cascading
-		compiled++;
+		//compiled++;
 	}else if(strncmp(tmp_head,"$U$",3) == 0){
 		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
@@ -743,7 +743,7 @@ char *Interpret_Operator(NODE node, struct compile_options *_copt){
 			// tq: (*tree).extra_stat = (*tree).extra_stat + 8;
 			set_extra_stat(node,extra_stat(node) + 8);
 		}
-		compiled++;
+		//compiled++;
 	// }else if(strncmp(tmp_head,"$``",3) == 0){ //quating tree
 	}else if(strncmp(tmp_head,"$``$",4) == 0){ //quating tree
 		int tmp_len = 0;
@@ -769,7 +769,7 @@ char *Interpret_Operator(NODE node, struct compile_options *_copt){
 			// tq: (*tree).extra_stat = (*tree).extra_stat + 4;
 			set_extra_stat(node,extra_stat(node) + 4);
 		}
-		compiled++;
+		//compiled++;
 	// }else if(strncmp(tmp_head,"$~",3) == 0){
 	// 	strcpy(out_head,tmp_head+3);
 	}else if(strncmp(tmp_head,"$~~$",4) == 0){
@@ -783,7 +783,7 @@ char *Interpret_Operator(NODE node, struct compile_options *_copt){
 		int tmp_stat = 1;
 		// tq: ExFunction_Recursive_Set_Obj(tree, (struct Tree *(*)())Set_status, (int *)&tmp_stat);	// set cascading
 		ExFunction_Recursive_Set_Obj(node, (NODE (*)())Set_status, (int *)&tmp_stat);	// set cascading
-		compiled++;
+		//compiled++;
 	// }else if(strncmp(tmp_head,"$~",2) == 0){
 	// 	strcpy(out_head,tmp_head+2);
 	}else if(strncmp(tmp_head,"$~$",3) == 0){
@@ -794,7 +794,7 @@ char *Interpret_Operator(NODE node, struct compile_options *_copt){
 			// tq: (*tree).extra_stat = (*tree).extra_stat + 1;
 			set_extra_stat(node,extra_stat(node) + 1);
 		}
-		compiled++;
+		//compiled++;
 	// }else if(strncmp(tmp_head,"$`",2) == 0){ //quating Head
 	}else if(strncmp(tmp_head,"$`$",3) == 0){ //quating Head
 		int tmp_len = 0;
@@ -810,7 +810,7 @@ char *Interpret_Operator(NODE node, struct compile_options *_copt){
 		out_head[tmp_len]='"';
 		out_head[tmp_len+1]='\0';
 		strcpy(tmp_head,out_head);
-		compiled++;
+		//compiled++;
 	}
 	free(out_head);
 	return(tmp_head);
