@@ -120,16 +120,16 @@ int Analyze_Label(struct Tree *tree){ // for labeling
 	int labelnumlen = 0;
 	char *labelnumstr;
 	int headlen = 0;
-	int labeled = 0;
+	//int labeled = 0;
 	/* label type  for referenced node */
 	if((*tree).Head[0] == '#' && (*tree).Head[1] == '#'){
 		(*tree).LabelType = 't';
 		labelreadptr = 2;
-		labeled++;
+		//labeled++;
 	}else if((*tree).Head[0] == '#' && (*tree).Head[1] != '#'){
 		(*tree).LabelType = 'h';
 		labelreadptr = 1;
-		labeled++;
+		//labeled++;
 	}
 	/* label for referenced node */
 	if((*tree).LabelType != '\0'){
@@ -145,7 +145,7 @@ int Analyze_Label(struct Tree *tree){ // for labeling
 		labelnumstr[labelnumlen] = '\0';
 		sscanf(labelnumstr,"%d",&(*tree).Label);
 		free(labelnumstr);
-		labeled++;
+		//labeled++;
 	}
 	/* IndicatorPtr */
 	headlen = strlen((*tree).Head);
