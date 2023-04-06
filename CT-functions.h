@@ -123,20 +123,20 @@ int Analyze_Label(NODE node){ // for labeling
 	int labelnumlen = 0;
 	char *labelnumstr;
 	int headlen = 0;
-	int labeled = 0;
+	//int labeled = 0;
 	/* label type  for referenced node */
 	// tq: if((*tree).Head[0] == '#' && (*tree).Head[1] == '#'){
 	if(head(node)[0] == '#' && head(node)[1] == '#'){
 		// tq: (*tree).LabelType = 't';
 		set_label_type(node,'t');
 		labelreadptr = 2;
-		labeled++;
+		//labeled++;
 	// tq: }else if((*tree).Head[0] == '#' && (*tree).Head[1] != '#'){
 	}else if(head(node)[0] == '#' && head(node)[1] != '#'){
 		// tq: (*tree).LabelType = 'h';
 		set_label_type(node,'h');
 		labelreadptr = 1;
-		labeled++;
+		//labeled++;
 	}
 	/* label  for referenced node */
 	// tq: if((*tree).LabelType != '\0'){
@@ -159,7 +159,7 @@ int Analyze_Label(NODE node){ // for labeling
 		set_label(node, wk);                    // SAK
 
 		free(labelnumstr);
-		labeled++;
+		//labeled++;
 	}
 	/* IndicatorPtr */
 	// tq: headlen = strlen((*tree).Head);
