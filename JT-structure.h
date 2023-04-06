@@ -5,6 +5,7 @@ struct Tree {
 	int NCself;
 	int Conj;
 	char LabelType;		//t -> tree, h -> head
+	char OpenType;		//[ or [
 	char CloseType;		//] or }
 	int Label;
 	int IndicatorPtr;
