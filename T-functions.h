@@ -581,7 +581,7 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 	FC(fprintf(stderr,">Interpret_Operator<\n");)
 	char *tmp_head;
 	char *out_head;
-	int compiled = 0;
+	//int compiled = 0;
 	int len = 0;
 	len = strlen((*tree).Head);
 	if((tmp_head = malloc(sizeof(char) * (len+1))) == NULL){
@@ -607,29 +607,29 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 		if(((*tree).builtin_flag&2) != 2){
 			(*tree).builtin_flag = (*tree).builtin_flag + 2;
 		}
-		compiled++;
+		//compiled++;
 	}else if(strncmp(tmp_head,"$PO$",4) == 0){	// Outer Product : under construction
 		strcpy(out_head,tmp_head+4);
 		strcpy(tmp_head,out_head);
 		if(((*tree).builtin_flag&32) != 32){
 			(*tree).builtin_flag = (*tree).builtin_flag + 32;
 		}
-		compiled++;
+		//compiled++;
 	}else if(strncmp(tmp_head,"$TO$",4) == 0){	// Outer Tree product
 		strcpy(out_head,tmp_head+4);
 		strcpy(tmp_head,out_head);
 		if(((*tree).builtin_flag&64) != 64){
 			(*tree).builtin_flag = (*tree).builtin_flag + 64;
 		}
-		compiled++;
+		//compiled++;
 	}else if(strncmp(tmp_head,"$X$",3) == 0){
 		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
-		compiled++;
+		//compiled++;
 	}else if(strncmp(tmp_head,"$M$",3) == 0){
 		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
-		compiled++;
+		//compiled++;
 	}else if(strncmp(tmp_head,"$UU$",4) == 0){
 		strcpy(out_head,tmp_head+4);
 		strcpy(tmp_head,out_head);
@@ -638,14 +638,14 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 		}
 		int tmp_stat = 8;
 		ExFunction_Recursive_Set_Obj(tree, (struct Tree *(*)())Set_status, (int *)&tmp_stat);	// set cascading
-		compiled++;
+		//compiled++;
 	}else if(strncmp(tmp_head,"$U$",3) == 0){
 		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
 		if(((*tree).builtin_flag&8) != 8){
 			(*tree).builtin_flag = (*tree).builtin_flag + 8;
 		}
-		compiled++;
+		//compiled++;
 	}else if(strncmp(tmp_head,"$``$",4) == 0){ //quating tree
 		int tmp_len = 0;
 		out_head = realloc(out_head, (sizeof(char) * (len+1)));
@@ -666,7 +666,7 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 		if(((*tree).builtin_flag&4) != 4){
 			(*tree).builtin_flag = (*tree).builtin_flag + 4;
 		}
-		compiled++;
+		//compiled++;
 	}else if(strncmp(tmp_head,"$~~$",4) == 0){
 		strcpy(out_head,tmp_head+4);
 		strcpy(tmp_head,out_head);
@@ -675,14 +675,14 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 		}
 		int tmp_stat = 1;
 		ExFunction_Recursive_Set_Obj(tree, (struct Tree *(*)())Set_status, (int *)&tmp_stat);	// set cascading
-		compiled++;
+		//compiled++;
 	}else if(strncmp(tmp_head,"$~$",3) == 0){
 		strcpy(out_head,tmp_head+3);
 		strcpy(tmp_head,out_head);
 		if(((*tree).builtin_flag&1) != 1){
 			(*tree).builtin_flag = (*tree).builtin_flag + 1;
 		}
-		compiled++;
+		//compiled++;
 	}else if(strncmp(tmp_head,"$`$",3) == 0){ //quating Head
 		int tmp_len = 0;
 		out_head = realloc(out_head, (sizeof(char) * (len+1)));
@@ -696,14 +696,14 @@ char *Interpret_Operator(struct Tree *tree, struct compile_options *_copt){
 		out_head[tmp_len]='"';
 		out_head[tmp_len+1]='\0';
 		strcpy(tmp_head,out_head);
-		compiled++;
+		//compiled++;
 	}else if(strncmp(tmp_head,"$CAT$",5) == 0){
 		strcpy(out_head,tmp_head+5);
 		strcpy(tmp_head,out_head);
 		if(((*tree).builtin_flag&16) != 16){
 			(*tree).builtin_flag = (*tree).builtin_flag + 16;
 		}
-		compiled++;
+		//compiled++;
 	}
 	free(out_head);
 	return(tmp_head);
