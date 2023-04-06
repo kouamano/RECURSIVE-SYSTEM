@@ -49,7 +49,7 @@ void help(void){
 	printf("  * -hS : search help.\n");
 	printf("  * -hD : data help.\n");
 	printf("  * -hE : print examples.\n");
-	printf("  * -s : prints status.\n");
+	printf("  * -s : print status.\n");
 	printf("  * -c : check args.\n");
 	printf("  * -test : execute test code.\n");
 	printf("  * -Pin : print input form.\n");
@@ -86,7 +86,7 @@ void compile_help(void){
 	printf("\n");
 	printf("  * -C : print compiled form.\n");
 	printf("  * -CL : list buitin functions.\n");
-	printf("  * -Cr : prints the \"print-restrict\" char at the end of line.\n");
+	printf("  * -Cr : print the \"print-restrict\" char at the end of line.\n");
 	printf("  * -Cc : clear head.\n");
 	printf("  * -Cd : rewite head to dot.\n");
 }
