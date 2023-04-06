@@ -3,7 +3,7 @@ struct Tree {
 	int ser;
 	int LVself;
 	int NCself;
-	int Conj;
+	int Conj;		//, -> 0, ][ -> 2, ]{ -> 3, }[ -> 4, }{ -> 5
 	char LabelType;		//t -> tree, h -> head
 	char OpenType;		//[ or [
 	char CloseType;		//] or }
