@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "T-definition.h"
-#include "T-structure.h"
+#include "JT-structure.h"
 
 const char cdate[] = __DATE__;
 const char ctime[] = __TIME__;
