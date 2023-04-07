@@ -75,8 +75,6 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 			/* clear BUFF */
 			BUFF[0] = '\0';
 			buf_ptr = 0;
-			/* set node_parent */
-			//parent = current;
 			/* set node_current */
 			current = next;
 			close = 0;
@@ -108,8 +106,6 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 			/* clear BUFF */
 			BUFF[0] = '\0';
 			buf_ptr = 0;
-			/* set node_parent */
-			// parent = parent;
 			/* set node_current */
 			current = next;
 			close = 0;
@@ -134,8 +130,6 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 			/* clear BUFF */
 			BUFF[0] = '\0';
 			buf_ptr = 0;
-			/* set node_parent */
-			// parent = parent;
 			/* set node_current */
 			if((*current).Parent != NULL){
 				current = (*current).Parent;
