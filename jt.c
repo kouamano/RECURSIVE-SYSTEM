@@ -614,7 +614,7 @@ void check_data_options(struct data_options *dopt){
 
 /* tree functions */
 #include "../include/list_operations.c"
-#include "T-functions.h"
+#include "JT-functions.h"
 #include "T-functions_Executor.h"
 #include "JT-functions_imex.h"
 
