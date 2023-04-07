@@ -737,6 +737,8 @@ void Print_Smems(struct Tree *tree){
 	}
 	printf(":");
 	printf(":Cj=%d:",(*tree).Conj);
+	printf(":OT=%c:",(*tree).OpenType);
+	printf(":CT=%c:",(*tree).CloseType);
 	printf(":Cs=%d:",(*tree).NCself);
 	printf(":C=%d:",(*tree).NextCount);
 	printf(":stat=%d:",(*tree).builtin_flag);
