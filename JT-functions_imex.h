@@ -14,13 +14,15 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 	int ESC = 0;
 	int BESC = 0;
 	int SN = *ncount;
+	char current_OC = '\0';
+	char current_CC = '\0';
+
 	io_top = Create_Node(SN,0);
 	SN++;
 	*ncount = SN;
-
-	WAR = (*_opt).war;
 	current = io_top;
 	next = NULL;
+	WAR = (*_opt).war;
 	if((BUFF = malloc(sizeof(char) * (*_opt).buff)) == NULL){
 		printf("[Fail] malloc.\n");
 		exit(1);

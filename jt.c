@@ -39,7 +39,7 @@ void help(void){
 	printf("\n");
 	printf(" - Full information\n");
 	printf("\n");
-	printf("   tq.o -h -hF -hC -hS -hD -hE -s -c -CL\n");
+	printf("   jt -h -hF -hC -hS -hD -hE -s -c -CL\n");
 	printf("\n");
 	printf(" - Main options\n");
 	printf("\n");
