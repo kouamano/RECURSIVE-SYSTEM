@@ -51,6 +51,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 		//if(C == '(' && ESC == 0 && BESC == 0){
 		if((C == '[' || C == '{') && ESC == 0 && BESC == 0){
 			/* confirm current */
+			current_OC = (char)C;
 			BUFF[buf_ptr] = '\0';
 			buff_size = 0;
 			buff_size = strlen(BUFF);
@@ -114,6 +115,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 		//}else if(C == ')' && ESC == 0 && BESC == 0){
 		}else if((C == ']' || C =='}') && ESC == 0 && BESC == 0){
 			/* confirm current */
+			current_CC = (char)C;
 			BUFF[buf_ptr] = '\0';
 			buff_size = 0;
 			buff_size = strlen(BUFF);
