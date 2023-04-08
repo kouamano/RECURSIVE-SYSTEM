@@ -61,6 +61,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 					exit(1);
 				}
 				strcpy((*current).Head,BUFF);
+				(*current).OpenType = current_OC;
 				Analyze_Label(current);
 			}
 			/* check */
@@ -125,6 +126,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 					exit(1);
 				}
 				strcpy((*current).Head,BUFF);
+				(*current).CloseType = current_CC;
 				Analyze_Label(current);
 			}
 			/* check */
