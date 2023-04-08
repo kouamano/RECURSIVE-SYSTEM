@@ -502,6 +502,8 @@ struct Tree *Create_Node(int _ser, int H_size){
 	(*tree).NCself = 1;
 	(*tree).Conj = 0;
 	(*tree).LabelType = '\0';
+	(*tree).OpenType = '\0';
+	(*tree).CloseType = '\0';
 	(*tree).Label = -1;
 	(*tree).IndicatorPtr = 0;
 	if(H_size < 1){
