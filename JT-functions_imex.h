@@ -49,7 +49,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 		}
 		/* function code */
 		//if(C == '(' && ESC == 0 && BESC == 0){
-		if((C == '[' || C == '{') && ESC == 0 && BESC == 0){
+		if((C == '[' || C == '{' || C ==  '(') && ESC == 0 && BESC == 0){
 			/* confirm current */
 			current_OC = (char)C;
 			BUFF[buf_ptr] = '\0';
@@ -114,7 +114,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 			current = next;
 			close = 0;
 		//}else if(C == ')' && ESC == 0 && BESC == 0){
-		}else if((C == ']' || C =='}') && ESC == 0 && BESC == 0){
+		}else if(( C == ']' || C =='}' || C == ')' ) && ESC == 0 && BESC == 0){
 			/* confirm current */
 			current_CC = (char)C;
 			BUFF[buf_ptr] = '\0';
