@@ -811,6 +811,22 @@ struct Tree *Function_Print_Conj_T(struct Tree *tree, struct function_options *_
 		DB(fprintf(stderr," after op : skip:%d:\n",(*_fopt).f_skipOnce);)
 		if((*tree).Conj == 1){
 			printf(",");
+		}else if((*tree).NCself > 1 && (*tree).Conj == 2){	// for search
+			printf("][");
+		}else if((*tree).NCself > 1 && (*tree).Conj == 3){	// for search
+			printf("]{");
+		}else if((*tree).NCself > 1 && (*tree).Conj == 4){	// for search
+			printf("](");
+		}else if((*tree).NCself > 1 && (*tree).Conj == 5){	// for search
+			printf("}[");
+		}else if((*tree).NCself > 1 && (*tree).Conj == 6){	// for search
+			printf("}{");
+		}else if((*tree).NCself > 1 && (*tree).Conj == 7){	// for search
+			printf("}(");
+		}else if((*tree).NCself > 1 && (*tree).Conj == 8){	// for search
+			printf(")[");
+		}else if((*tree).NCself > 1 && (*tree).Conj == 9){	// for search
+			printf("){");
 		}else if((*tree).NCself > 1 && (*tree).Conj == 0){	// for search
 			printf(")(");
 		}
