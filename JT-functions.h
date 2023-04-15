@@ -897,7 +897,8 @@ struct Tree *Function_Print_Bopen_T(struct Tree *tree, struct function_options *
 					//printf(",");
 				}
 			}else{
-				printf("(");	//normal case : "must"
+				//printf("(");	//normal case : "must"
+				putchar((*tree).OpenType);	//normal case : "must"
 			}
 		}
 	}
@@ -991,11 +992,20 @@ struct Tree *Function_Print_Bopen_C(struct Tree *tree, struct function_options *
 /** Bclose */
 struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options *_fopt, struct compile_options *_copt){
 	FC(fprintf(stderr,">Function_Print_Bclose_T<\n");)
+	char CC = '\0';
 	if((*tree).NextCount != 0){
 			if((*_copt).c_counter > 0 && ((*tree).builtin_flag&8) == 8&& ((*tree).builtin_flag&1) != 1){	// for unpack
 				;
 			}else{
-				printf(")");	//normal case
+				//printf(")");	//normal case
+				if((*tree).OpenType == '['){
+					CC = ']';
+				}else if((*tree).OpenType == '{'){
+					CC = '}';
+				}else if((*tree).OpenType == '('){
+					CC = ')';
+				}
+				putchar(CC);	//normal case
 			}
 			if((*_copt).c_counter > 0 && ((*tree).builtin_flag&4) == 4){	// for quating
 				printf("\"");
