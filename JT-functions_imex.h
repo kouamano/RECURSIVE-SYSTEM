@@ -16,6 +16,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 	int SN = *ncount;
 	char current_OC = '\0';
 	char current_CC = '\0';
+	char current_CJ = '\0';
 
 	io_top = Create_Node(SN,0);
 	SN++;
@@ -75,7 +76,29 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 			/* add next to current / current.NextCount / next.LVself, NCself */
 			Add_Next(current,next);
 			/* set properties of next */
-			(*next).Conj = 0;
+			if(current_CC == ']' && current_OC == '['){
+				current_CJ = 2;
+			}else if(current_CC == ']' && current_OC == '{'){
+				current_CJ = 3;
+			}else if(current_CC == ']' && current_OC == '('){
+				current_CJ = 4;
+			}else if(current_CC == '}' && current_OC == '['){
+				current_CJ = 5;
+			}else if(current_CC == '}' && current_OC == '{'){
+				current_CJ = 6;
+			}else if(current_CC == '}' && current_OC == '('){
+				current_CJ = 7;
+			}else if(current_CC == ')' && current_OC == '['){
+				current_CJ = 8;
+			}else if(current_CC == ')' && current_OC == '{'){
+				current_CJ = 9;
+			}else if(current_CC == ')' && current_OC == '('){
+				current_CJ = 0;
+			}else{
+				current_CJ = 0;
+			}
+			(*next).Conj = current_CJ;
+			//(*next).Conj = 0;
 			/* clear BUFF */
 			BUFF[0] = '\0';
 			buf_ptr = 0;
