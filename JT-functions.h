@@ -1005,6 +1005,7 @@ struct Tree *Function_Print_Bclose_T(struct Tree *tree, struct function_options 
 				}else if((*tree).OpenType == '('){
 					CC = ')';
 				}
+				CC = (*tree).CloseType;
 				putchar(CC);	//normal case
 			}
 			if((*_copt).c_counter > 0 && ((*tree).builtin_flag&4) == 4){	// for quating
