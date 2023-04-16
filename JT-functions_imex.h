@@ -153,6 +153,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 				(*current).Parent->CloseType = current_CC;
 				Analyze_Label(current);
 			}
+			(*current).Parent->CloseType = current_CC;
 			/* check */
 			if(WAR > 0){
 				print_war(C,current,WAR);
