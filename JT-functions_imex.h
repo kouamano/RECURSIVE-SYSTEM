@@ -150,6 +150,7 @@ struct Tree *import_Tree(FILE *IN, struct options *_opt, struct function_options
 				}
 				strcpy((*current).Head,BUFF);
 				(*current).CloseType = current_CC;
+				(*current).Parent->CloseType = current_CC;
 				Analyze_Label(current);
 			}
 			/* check */
