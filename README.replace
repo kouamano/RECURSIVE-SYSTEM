@@ -4,15 +4,19 @@ echo '((f(A),B),(g(B),C))'|./tq.o -FT -Pin in=/dev/stdin
 ## B -> f(A) の書き換えを参照で行う。
 ### 参照する。
 echo '((##1f(A),$##1B),(g($##1B),C))'|./tq.o -FT -Pin in=/dev/stdin
-### 参照し、参照情報をerase
+#### 参照し、参照情報をerase
 echo '((##1f(A),$##1B),(g($##1B),C))'|./tq.o -FT -Pin in=/dev/stdin | ./rmref.pl
-### 参照し、参照情報と参照元をerase
+#### 参照し、参照情報と参照元をerase
 echo '((##1f(A),$##1B),(g($##1B),C))'|./tq.o -FT -Pin in=/dev/stdin | ./rmref.pl | ./rmsref.pl
+#### 参照し、参照情報と参照元と式参照マークをerase
+echo '((##1f(A),$##1B),(g($##1B),C))'|./tq.o -FT -Pin in=/dev/stdin | ./rmref.pl | ./rmsref.pl | ./rmfref.pl
 ### 異なる方法で参照する。
 echo '((##1f(A),##2$##1B),(g($##2B),C))'|./tq.o -FT -Pin in=/dev/stdin
-### 参照し、参照情報をerase
+#### 参照し、参照情報をerase
 echo '((##1f(A),##2$##1B),(g($##2B),C))'|./tq.o -FT -Pin in=/dev/stdin | ./rmref.pl
-### 参照し、参照情報と参照元をerase
+#### 参照し、参照情報と参照元をerase
 echo '((##1f(A),##2$##1B),(g($##2B),C))'|./tq.o -FT -Pin in=/dev/stdin | ./rmref.pl | ./rmsref.pl
+#### 参照し、参照情報と参照元と式参照マークをerase
+echo '((##1f(A),##2$##1B),(g($##2B),C))'|./tq.o -FT -Pin in=/dev/stdin | ./rmref.pl | ./rmsref.pl | ./rmfref.pl
 
 この方法は、他の変換方法よりも式変形が整合であるかの確認のため、より多くの情報を与える。
