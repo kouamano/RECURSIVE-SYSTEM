@@ -1345,6 +1345,7 @@ struct Tree *Function_Print_Head(struct Tree *tree, struct function_options *_fo
 			}
 			DB(fprintf(stderr," print_head:skip:%d:\n",(*_fopt).f_skipOnce);)
 			ExFunction_Recursive_Print_Tree((*tree).RefNode, (struct Tree *(*)())Function_Print_Conj_T, (struct Tree *(*)())Function_Print_Head, (struct Tree *(*)())Function_Print_Bopen_T,  (struct Tree *(*)())Function_Print_Bclose_T,NULL,_fopt,_copt,NULL,0);
+			printf("(@)");	//ref-tree end
 		}else if((*tree).RefNode->LabelType == 't' && target_type == 'h'){
 			DB(fprintf(stderr," LT:t:,TG:h:\n");)
 			printf("@");
