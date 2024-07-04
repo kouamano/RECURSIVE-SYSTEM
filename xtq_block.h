@@ -176,10 +176,7 @@ void ExPrint_seq_BlLv(struct Block *Bl, int target, struct options opt, struct B
 	int i;
 	for(i=target;i<report.Bls;i++){
 		//status
-		//printf("%s",opt.SH);
-		//printf("Bl%d,Ty%d,Lv%d,Pa%d",i,Bl[i].Bltype,Bl[i].Lv,Bl[i].parent);
-		printf("Bl%d%s,%sTy%d%s,%sLv%d%s,%sPa%d%s",i,opt.SF,opt.SH,Bl[i].Bltype,opt.SF,opt.SH,Bl[i].Lv,opt.SF,opt.SH,Bl[i].parent,opt.SF);
-		//printf("%s",opt.SF);
+		printf("%sLv%d%s",opt.SH,Bl[i].Lv,opt.SF);
 		//block
 		printf("%s",opt.BH);
 		printf(opt.pf,Bl[i].str);
