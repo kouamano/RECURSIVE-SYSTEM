@@ -3,6 +3,9 @@ void Executer(struct Block *Bl, int target_Bl, struct options opt, struct Bl_tre
 	if(opt.pbs == 1){
 		ExPrint_seq_BlSt(Bl, target_Bl, opt, report);
 		output = 1;
+	}else if(opt.pbs == 2){
+		ExPrint_seq_BlLv(Bl, target_Bl, opt, report);
+		output = 1;
 	}
 	if(opt.pb == 1){
 		if(output > 0){
