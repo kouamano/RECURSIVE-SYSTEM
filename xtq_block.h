@@ -172,3 +172,21 @@ void ExPrint_seq_BlSt(struct Block *Bl, int target, struct options opt, struct B
 		}
 	}
 }
+void ExPrint_seq_BlLv(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
+	int i;
+	for(i=target;i<report.Bls;i++){
+		//status
+		//printf("%s",opt.SH);
+		//printf("Bl%d,Ty%d,Lv%d,Pa%d",i,Bl[i].Bltype,Bl[i].Lv,Bl[i].parent);
+		printf("Bl%d%s,%sTy%d%s,%sLv%d%s,%sPa%d%s",i,opt.SF,opt.SH,Bl[i].Bltype,opt.SF,opt.SH,Bl[i].Lv,opt.SF,opt.SH,Bl[i].parent,opt.SF);
+		//printf("%s",opt.SF);
+		//block
+		printf("%s",opt.BH);
+		printf(opt.pf,Bl[i].str);
+		printf("%s",opt.BF);
+		//tail
+		if(opt.pn == 1){
+			printf("\n");
+		}
+	}
+}
