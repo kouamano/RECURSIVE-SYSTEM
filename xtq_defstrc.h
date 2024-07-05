@@ -28,6 +28,7 @@ char TTail_end[] = ">";
 struct options {
         int help;
         int stat;
+        int exec;
         int check;
         char *file;
         int buff;
