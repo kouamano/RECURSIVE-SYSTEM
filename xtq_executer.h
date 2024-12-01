@@ -7,7 +7,7 @@ void Executer(struct Block *Bl, int target_Bl, struct options opt, struct Bl_tre
 		ExPrint_seq_BlLv(Bl, target_Bl, opt, report);
 		output = 1;
 	}else if(opt.pbs == 3){
-		ExPrint_seq_BlLeaf(Bl, target_Bl, opt, report);
+		ExPrint_seq_BlLeafParent(Bl, target_Bl, opt, report);
 		output = 1;
 	}
 	if(opt.pb == 1){

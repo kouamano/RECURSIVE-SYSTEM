@@ -8,7 +8,7 @@
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" xtq [-h] [-e|+e] [-s] [-c] [-pt] [-pn] [-pB] [-pBS] [-pBL] [-pBl] [-pT] [-pJ] [-pJJ] [-pY] in=<input file> buff=<buffer size> blocks=<blocks> pf=<print format> BH=<block header> BF=<block footer> SH=<status header> SF=<status footer>.\n");
+	printf(" xtq [-h] [-e|+e] [-s] [-c] [-pt] [-pn] [-pB] [-pBS] [-pBL] [-pBlp] [-pT] [-pJ] [-pJJ] [-pY] in=<input file> buff=<buffer size> blocks=<blocks> pf=<print format> BH=<block header> BF=<block footer> SH=<status header> SF=<status footer>.\n");
 	printf("  -h : help.\n");
 	printf("  -e : executer -> on.\n");
 	printf("  +e : executer -> off (parse only).\n");
@@ -19,7 +19,7 @@ void help(void){
 	printf("  -pB : print blocks.\n");
 	printf("  -pBS : print blocks with status.\n");
 	printf("  -pBL : print blocks with node level only.\n");
-	printf("  -pBl : print leaf blocks only.\n");
+	printf("  -pBlp : print leaf blocks only, with parent.\n");
 	printf("  -pT : print blocks with T-form.\n");
 	printf("  -pJ : print blocks with JSON.\n");
 	printf("  -pJJ : print blocks with complete JSON.\n");
@@ -119,7 +119,7 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).pbs = 1;
 		}else if(strncmp(optv[i],"-pBL",4) == 0){
 			(*opt).pbs = 2;
-		}else if(strncmp(optv[i],"-pBl",4) == 0){
+		}else if(strncmp(optv[i],"-pBlp",5) == 0){
 			(*opt).pbs = 3;
 		}else if(strncmp(optv[i],"-pB",3) == 0){
 			(*opt).pb = 1;
