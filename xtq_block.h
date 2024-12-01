@@ -193,7 +193,8 @@ void ExPrint_seq_BlLeaf(struct Block *Bl, int target, struct options opt, struct
 		if(Bl[i].Bltype == 16){
 			//printf("{{{%c}}}",Bl[i].str[0]);
 			//status
-			printf("%sLv%d%s",opt.SH,Bl[i].Lv,opt.SF);
+			//printf("%sLv%d%s",opt.SH,Bl[i].Lv,opt.SF);
+			printf("%sBl%d%s,%sTy%d%s,%sLv%d%s,%sPa%d%s",opt.SH,i,opt.SF,opt.SH,Bl[i].Bltype,opt.SF,opt.SH,Bl[i].Lv,opt.SF,opt.SH,Bl[i].parent,opt.SF);
 			//block
 			printf("%s",opt.BH);
 			printf(opt.pf,Bl[i].str);
