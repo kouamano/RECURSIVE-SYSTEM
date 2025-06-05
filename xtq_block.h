@@ -139,6 +139,13 @@ void print_tree_report(struct Bl_tree_report *report){
 	fprintf(stderr,"Chrs:%d\n",(*report).Chrs);
 	fprintf(stderr,"==== ==== ==== ==== ====\n");
 }
+void print_parent(struct Block *Bl, int self){
+	if(Bl[self].parent != -1){
+		printf("%d",Bl[self].parent);
+		printf("%s",Bl[Bl[self].parent].str);
+		print_parent(Bl,Bl[self].parent);
+	}
+}
 
 void ExPrint_seq_Bl(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
 	int i;
@@ -184,6 +191,26 @@ void ExPrint_seq_BlLv(struct Block *Bl, int target, struct options opt, struct B
 		//tail
 		if(opt.pn == 1){
 			printf("\n");
+		}
+	}
+}
+void ExPrint_seq_BlLeafParent(struct Block *Bl, int target, struct options opt, struct Bl_tree_report report){
+	int i;
+	for(i=target;i<report.Bls;i++){
+		if(Bl[i].Bltype == 16){
+			//printf("{{{%c}}}",Bl[i].str[0]);
+			//status
+			//printf("%sLv%d%s",opt.SH,Bl[i].Lv,opt.SF);
+			print_parent(Bl,i);
+			printf("%sBl%d%s,%sTy%d%s,%sLv%d%s,%sPa%d%s",opt.SH,i,opt.SF,opt.SH,Bl[i].Bltype,opt.SF,opt.SH,Bl[i].Lv,opt.SF,opt.SH,Bl[i].parent,opt.SF);
+			//block
+			printf("%s",opt.BH);
+			printf(opt.pf,Bl[i].str);
+			printf("%s",opt.BF);
+			//tail
+			if(opt.pn == 1){
+				printf("\n");
+			}
 		}
 	}
 }

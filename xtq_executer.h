@@ -6,6 +6,9 @@ void Executer(struct Block *Bl, int target_Bl, struct options opt, struct Bl_tre
 	}else if(opt.pbs == 2){
 		ExPrint_seq_BlLv(Bl, target_Bl, opt, report);
 		output = 1;
+	}else if(opt.pbs == 3){
+		ExPrint_seq_BlLeafParent(Bl, target_Bl, opt, report);
+		output = 1;
 	}
 	if(opt.pb == 1){
 		if(output > 0){
