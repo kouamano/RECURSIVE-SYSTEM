@@ -402,7 +402,7 @@ void next_token()
 		next_char();
 	}
 
-	switch((int)ch) {
+	switch(ch) {
 	case '(' :
 	case ')' :
 	case ',' :
@@ -451,7 +451,7 @@ void next_token()
 		char wk[1];
 		wk[0]='\0';
 
-		switch((int)tk) {
+		switch(tk) {
 		case EOF:
 			tk = 'E';
 			bf = wk;
