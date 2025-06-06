@@ -8,7 +8,7 @@
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" xtq [-h] [-e|+e] [-s] [-c] [-pt] [-pn] [-pB] [-pBS] [-pBL] [-pBlp] [-pT] [-pJ] [-pJJ] [-pY] in=<input file> buff=<buffer size> blocks=<blocks> pf=<print format> BH=<block header> BF=<block footer> SH=<status header> SF=<status footer>.\n");
+	printf(" xtq [-h] [-e|+e] [-s] [-c] [-t] [-n] [-pB] [-pBS] [-pBL] [-pBlp] [-pT] [-pJ] [-pJJ] [-pY] in=<input file> buff=<buffer size> blocks=<blocks> pf=<print format> BH=<block header> BF=<block footer> SH=<status header> SF=<status footer>.\n");
 	printf("  -h : help.\n");
 	printf("  -e : executer -> on.\n");
 	printf("  +e : executer -> off (parse only).\n");
@@ -111,9 +111,9 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"buff=%d",&(*opt).buff);
 		}else if(strncmp(optv[i],"blocks=",7) == 0){
 			sscanf(optv[i],"blocks=%d",&(*opt).blocks);
-		}else if(strncmp(optv[i],"-pt",3) == 0){
+		}else if(strncmp(optv[i],"-t",2) == 0){
 			(*opt).pt = 1;
-		}else if(strncmp(optv[i],"-pn",3) == 0){
+		}else if(strncmp(optv[i],"-n",2) == 0){
 			(*opt).pn = 1;
 		}else if(strncmp(optv[i],"-pBS",4) == 0){
 			(*opt).pbs = 1;
