@@ -8,7 +8,7 @@
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" xtq [-h] [-e|+e] [-s] [-c] [-t] [-n] [-pB] [-pBS] [-pBL] [-pBlp] [-fT] [-fJ] [-fJJ] [-fY] in=<input file> buff=<buffer size> blocks=<blocks> pf=<print format> BH=<block header> BF=<block footer> SH=<status header> SF=<status footer>.\n");
+	printf(" xtq [-h] [-e|+e] [-s] [-c] [-t] [-n] [-pB] [-pBS] [-pBL] [-pBlp] [-fT] [-fJ] [-fJJ] [-fY] in=<input file> buff=<buffer size> blocks=<blocks> pf=<print format> BH=<block header> BF=<block footer> SH=<status header> SF=<status footer>, options '-p' and '-f' are exclusive options.\n");
 	printf("  -h : help.\n");
 	printf("  -e : executer -> on.\n");
 	printf("  +e : executer -> off (parse only).\n");
