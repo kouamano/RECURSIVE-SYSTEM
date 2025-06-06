@@ -14,8 +14,8 @@ void help(void){
 	printf("  +e : executer -> off (parse only).\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
-	printf("  -pt : print terminal chars.\n");
-	printf("  -pn : print LF after block.\n");
+	printf("  -t : print terminal chars.\n");
+	printf("  -n : print LF after block.\n");
 	printf("  -pB : print blocks.\n");
 	printf("  -pBS : print blocks with status.\n");
 	printf("  -pBL : print blocks with node level only.\n");
