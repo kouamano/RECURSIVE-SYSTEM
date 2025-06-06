@@ -8,22 +8,22 @@
 /* help */
 void help(void){
 	printf("USAGE:\n");
-	printf(" xtq [-h] [-e|+e] [-s] [-c] [-pt] [-pn] [-pB] [-pBS] [-pBL] [-pBlp] [-pT] [-pJ] [-pJJ] [-pY] in=<input file> buff=<buffer size> blocks=<blocks> pf=<print format> BH=<block header> BF=<block footer> SH=<status header> SF=<status footer>.\n");
+	printf(" xtq [-h] [-e|+e] [-s] [-c] [-t] [-n] [-pB] [-pBS] [-pBL] [-pBlp] [-fT] [-fJ] [-fJJ] [-fY] in=<input file> buff=<buffer size> blocks=<blocks> pf=<print format> BH=<block header> BF=<block footer> SH=<status header> SF=<status footer>.\n");
 	printf("  -h : help.\n");
 	printf("  -e : executer -> on.\n");
 	printf("  +e : executer -> off (parse only).\n");
 	printf("  -s : status.\n");
 	printf("  -c : check args.\n");
-	printf("  -pt : print terminal chars.\n");
-	printf("  -pn : print LF after block.\n");
+	printf("  -t : print terminal chars.\n");
+	printf("  -n : print LF after block.\n");
 	printf("  -pB : print blocks.\n");
 	printf("  -pBS : print blocks with status.\n");
 	printf("  -pBL : print blocks with node level only.\n");
 	printf("  -pBlp : print leaf blocks only, with parent.\n");
-	printf("  -pT : print blocks with T-form.\n");
-	printf("  -pJ : print blocks with JSON.\n");
-	printf("  -pJJ : print blocks with complete JSON.\n");
-	printf("  -pY : print blocks with YAML.\n");
+	printf("  -fT : print blocks with T-form.\n");
+	printf("  -fJ : print blocks with JSON.\n");
+	printf("  -fJJ : print blocks with complete JSON.\n");
+	printf("  -fY : print blocks with YAML.\n");
 	printf("  input file : input file.\n");
 	printf("  buffer size : buffer size.\n");
 	printf("  blocks : number of blocks.\n");
@@ -111,9 +111,9 @@ void get_options(int optc, char **optv, struct options *opt){
 			sscanf(optv[i],"buff=%d",&(*opt).buff);
 		}else if(strncmp(optv[i],"blocks=",7) == 0){
 			sscanf(optv[i],"blocks=%d",&(*opt).blocks);
-		}else if(strncmp(optv[i],"-pt",3) == 0){
+		}else if(strncmp(optv[i],"-t",2) == 0){
 			(*opt).pt = 1;
-		}else if(strncmp(optv[i],"-pn",3) == 0){
+		}else if(strncmp(optv[i],"-n",2) == 0){
 			(*opt).pn = 1;
 		}else if(strncmp(optv[i],"-pBS",4) == 0){
 			(*opt).pbs = 1;
@@ -123,13 +123,13 @@ void get_options(int optc, char **optv, struct options *opt){
 			(*opt).pbs = 3;
 		}else if(strncmp(optv[i],"-pB",3) == 0){
 			(*opt).pb = 1;
-		}else if(strncmp(optv[i],"-pT",3) == 0){
+		}else if(strncmp(optv[i],"-fT",3) == 0){
 			(*opt).ptf = 1;
-		}else if(strncmp(optv[i],"-pJJ",4) == 0){
+		}else if(strncmp(optv[i],"-fJJ",4) == 0){
 			(*opt).pjf = 2;
-		}else if(strncmp(optv[i],"-pJ",3) == 0){
+		}else if(strncmp(optv[i],"-fJ",3) == 0){
 			(*opt).pjf = 1;
-		}else if(strncmp(optv[i],"-pY",3) == 0){
+		}else if(strncmp(optv[i],"-fY",3) == 0){
 			(*opt).pyf = 1;
 		}else if(strncmp(optv[i],"pf=",3) == 0){
 			sscanf(optv[i],"pf=%s",(*opt).pf);
