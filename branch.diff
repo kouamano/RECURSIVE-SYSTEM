@@ -46,7 +46,8 @@ git --no-pager diff cq:cts.c cq_debug:cts.c
 git --no-pager diff cq:cst.c cq_debug:cst.c
 git --no-pager diff cq:cjt.c cq_debug:cjt.c
 git --no-pager diff cq:iq.c cq_debug:iq.c
-### xtq
+## xtq
+echo '>> xtq'
 git --no-pager diff cq:xtq.c cq_debug:xtq.c
 git --no-pager diff cq:xtq_defstrc.h cq_debug:xtq_defstrc.h
 git --no-pager diff cq:xtq_block.h cq_debug:xtq_block.h
@@ -124,7 +125,8 @@ git --no-pager diff cq:cts.c jsik:cts.c
 git --no-pager diff cq:cst.c jsik:cst.c
 git --no-pager diff cq:cjt.c jsik:cjt.c
 git --no-pager diff cq:iq.c jsik:iq.c
-### xtq
+## xtq
+echo '>> xtq'
 git --no-pager diff cq:xtq.c jsik:xtq.c
 git --no-pager diff cq:xtq_defstrc.h jsik:xtq_defstrc.h
 git --no-pager diff cq:xtq_block.h jsik:xtq_block.h
