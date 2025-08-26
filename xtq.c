@@ -18,8 +18,8 @@ void help(void){
 	printf("  -n : print LF after block.\n");
 	printf("  -pB : print blocks.\n");
 	printf("  -pBS : print blocks with status.\n");
-	printf("  -pBL : print blocks with node level only.\n");
-	printf("  -pBlp : print leaf blocks only, with parent.\n");
+	printf("  -pBL : print blocks with node level.\n");
+	printf("  -pBlp : print leaf blocks with parent.\n");
 	printf("  -fT : print blocks with T-form.\n");
 	printf("  -fJ : print blocks with JSON.\n");
 	printf("  -fJJ : print blocks with complete JSON.\n");
