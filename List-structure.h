@@ -16,7 +16,7 @@ struct List {
 	int ACself;
 	int Val;
 	char *Head;
-	struct List *(*function)();
+	struct List *(*function)(struct List *);
 	int NextCount;
 	struct List **Next;
 	int ArgCount;
